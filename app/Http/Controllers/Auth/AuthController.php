@@ -47,34 +47,50 @@ class AuthController extends Controller
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
-    }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+    public function postRegister(Request $request){
+        $rules = [
+            'name' => 'required|min:3|max:20|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|min:6|max:18|confirmed',
+        ];
+         $messages = [
+            'name.required' => 'El campo es requerido',
+            'name.min' => 'El mínimo de caracteres permitidos son 3',
+            'name.max' => 'El máximo de caracteres permitidos son 20',
+            'name.regex' => 'Sólo se aceptan letras',
+            'email.required' => 'El campo es requerido',
+            'email.email' => 'El formato de email es incorrecto',
+            'email.max' => 'El máximo de caracteres permitidos son 255',
+            'email.unique' => 'El email ya existe',
+            'password.required' => 'El campo es requerido',
+            'password.min' => 'El mínimo de caracteres permitidos son 6',
+            'password.max' => 'El máximo de caracteres permitidos son 18',
+            'password.confirmed' => 'Los passwords no coinciden',
+        ];
+         $validator = Validator::make($request->all(), $rules, $messages);
+        
+        if ($validator->fails()){
+            return redirect("auth/register")
+            ->withErrors($validator)
+            ->withInput();
+        }
+        else{
+            $admin = new User;
+            $admin->nombreEstablecimiento = $request->nombreEstablecimiento;
+            $admin->nombrePersona = $request->name;
+            $admin->sexo = $request->sexo;
+            $admin->email = $request->email;
+            $admin->telefono = $request->telefono;
+            $admin->cedula = $request->cedula;
+            $admin->password = bcrypt($request->password);
+            $admin->remember_token = str_random(100);
+            $admin->confirm_token = str_random(100);
+            $admin->save();
+            
+            return redirect("auth/register")
+            ->with("message", "Hemos enviado un enlace de confirmación a su cuenta de correo electrónico");
+        }
     }
 
      public function confirmRegister($email, $confirm_token){
