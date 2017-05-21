@@ -24,3 +24,7 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+Route::get('auth/profile', 'Auth\AuthController@profile');
+Route::get('auth/editProfile' , 'Auth\AuthController@editProfile');
+Route::post('auth/updateProfile', 'Auth\AuthController@updateProfile');

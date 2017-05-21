@@ -20,7 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('departamento');
             $table->string('ciudad');
             $table->date('fechaNacimiento');
-            $table->string('cedula');
+            $table->string('metodoPago');
+            $table->string('cedula')->unique();
             $table->string('sexo');
             $table->string('tipoRegimen');
             $table->string('email')->unique();
@@ -33,7 +34,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-    }
+    } 
 
     /**
      * Reverse the migrations.

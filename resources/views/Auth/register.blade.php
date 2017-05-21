@@ -20,7 +20,7 @@
 
 			<!--Nombre establecimiento-->
 			 <div class='form-group'>
-		        <label for="name">Nombre del establecimiento:</label>
+		        <label for="nombreEstablecimiento">Nombre del establecimiento:</label>
 		        <input type="text" name="nombreEstablecimiento" class="form-control" value="{{ old('nombreEstablecimiento') }}" />
 		        <div class="text-danger">{{$errors->first('nombreEstablecimiento')}}</div>
 		    </div>
@@ -43,10 +43,11 @@
 			<div class="form-group">
 				<label for="sexo" class="control-label">Sexo</label>
 				<select name="sexo" class="form-control">
-					<option value="">Seleccione..</option>
-					<option value="M">Masculino</option>
-					<option value="F">Femenino</option>
+					<option value="" disabled selected>Seleccione...</option>
+					<option value="masculino">Masculino</option>
+					<option value="femenino">Femenino</option>
 				</select>
+				 <div class="text-danger">{{$errors->first('sexo')}}</div>
 			</div>
 
 			<!--Correo-->
@@ -75,7 +76,7 @@
 		    </div>
 
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>Registrarse
+				<button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Registrarse
 				</button>
 			</div>
 

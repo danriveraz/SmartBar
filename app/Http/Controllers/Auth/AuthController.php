@@ -44,31 +44,23 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        $this->middleware($this->guestMiddleware(), ['except' => ['getLogout','profile','updateProfile' , 'editProfile']]);
     }
+    
 
 
     public function postRegister(Request $request){
         $rules = [
-            'name' => 'required|min:3|max:20|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'email' => 'required|email|max:255|unique:users,email',
+            'nombreEstablecimiento' => 'required|min:3|max:20|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'name' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'email' => 'required|email|max:255|unique:admin,email',
+            'cedula' => 'required|min:1|max:9999999999|numeric',
             'password' => 'required|min:6|max:18|confirmed',
+            'sexo' => 'required',
+            'telefono' => 'required|min:1|max:9999999999|numeric',
         ];
-         $messages = [
-            'name.required' => 'El campo es requerido',
-            'name.min' => 'El mínimo de caracteres permitidos son 3',
-            'name.max' => 'El máximo de caracteres permitidos son 20',
-            'name.regex' => 'Sólo se aceptan letras',
-            'email.required' => 'El campo es requerido',
-            'email.email' => 'El formato de email es incorrecto',
-            'email.max' => 'El máximo de caracteres permitidos son 255',
-            'email.unique' => 'El email ya existe',
-            'password.required' => 'El campo es requerido',
-            'password.min' => 'El mínimo de caracteres permitidos son 6',
-            'password.max' => 'El máximo de caracteres permitidos son 18',
-            'password.confirmed' => 'Los passwords no coinciden',
-        ];
-         $validator = Validator::make($request->all(), $rules, $messages);
+         
+         $validator = Validator::make($request->all(), $rules);
         
         if ($validator->fails()){
             return redirect("auth/register")
@@ -83,6 +75,8 @@ class AuthController extends Controller
             $admin->email = $request->email;
             $admin->telefono = $request->telefono;
             $admin->cedula = $request->cedula;
+            $admin->imagenPerfil = "perfil.jpg";
+            $admin->imagenNegocio = "perfil.jpg";
             $admin->password = bcrypt($request->password);
             $admin->remember_token = str_random(100);
             $admin->confirm_token = str_random(100);
@@ -139,6 +133,70 @@ class AuthController extends Controller
             ->withErrors($validator)
             ->withInput()
             ->with('message', 'Error al iniciar sesión');
+        }
+    }
+
+    public function profile(){
+        return View('auth.profile');
+    }
+
+    public function editProfile(){
+        return View('auth.editProfile');
+    }
+
+    public function updateProfile(Request $request){
+        $rules = [
+            'nombreEstablecimiento' => 'required|min:3|max:20|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'pais'=> 'required',
+            'departamento'=> 'required',
+            'ciudad'=> 'required',
+            'fechaNacimiento' => 'required',
+            'metodoPago' => 'required',
+            'sexo' => 'required',
+            'tipoRegimen'=> 'required',
+            'telefono' => 'required|min:1|max:9999999999|numeric',
+            'baroRestaurante' =>'required',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        
+        if ($validator->fails()){
+            return redirect("auth/editProfile")
+            ->withErrors($validator)
+            ->withInput();
+        }
+        else{
+            $admin =  Auth::user();
+            $admin->nombreEstablecimiento = $request->nombreEstablecimiento;
+            $admin->nombrePersona = $request->nombrePersona;
+            $admin->pais = $request->pais;
+            $admin->departamento = $request->departamento;
+            $admin->ciudad = $request->ciudad;
+            $admin->fechaNacimiento = $request->fechaNacimiento;
+            $admin->metodoPago = $request->metodoPago;
+            $admin->sexo = $request->sexo;
+            $admin->tipoRegimen = $request->tipoRegimen;
+            $admin->telefono = $request->telefono;
+            $admin->baroRestaurante = $request->baroRestaurante;
+            $path = public_path() . '/images/admins/';
+            if($request->file('imagenPerfil'))
+            {
+                $imagenPerfil = $request->file('imagenPerfil');
+                $perfilNombre = 'perfilAdmin_' . time() . '.' . $imagenPerfil->getClientOriginalExtension();
+                $imagenPerfil->move($path, $perfilNombre);
+                $admin->imagenPerfil = $perfilNombre;
+            }
+            if($request->file('imagenNegocio'))
+            {
+                $imagenNegocio=$request->file('imagenNegocio');
+                $perfilNegocio = 'perfilNegocio_' . time() . '.' . $imagenNegocio->getClientOriginalExtension();
+                $imagenNegocio->move($path, $perfilNegocio);
+                $admin->imagenNegocio = $perfilNegocio;
+            }
+            $admin->save();
+            return redirect("auth/profile")
+            ->with("message", "Perfil actualizado correctamente");
         }
     }
 }
