@@ -28,3 +28,8 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('auth/profile', 'Auth\AuthController@profile');
 Route::get('auth/editProfile' , 'Auth\AuthController@editProfile');
 Route::post('auth/updateProfile', 'Auth\AuthController@updateProfile');
+
+Route::group(['prefix' => 'auth'], function(){
+  Route::resource('usuario','UsuariosController');
+  Route::get('usuario/{id}/destroy', ['uses' => 'UsuariosController@destroy', 'as' => 'auth.usuario.destroy']);
+});
