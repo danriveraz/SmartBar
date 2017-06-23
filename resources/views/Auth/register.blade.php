@@ -9,12 +9,12 @@
 	@endif
 </div>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-	
+
 <div class="col-sm-offset-3 col-sm-6">
 	<div class="panel-title">
 		<h1>Registro</h1>
 	</div>
-	<div class="panel-body"> 
+	<div class="panel-body">
 		<form action="{{url('auth/register')}}" method="POST">
 			{{ csrf_field() }}
 
@@ -38,7 +38,7 @@
 		        <input type="number" name="cedula" class="form-control" value="{{ old('cedula') }}" />
 		        <div class="text-danger">{{$errors->first('cedula')}}</div>
 		    </div>
-				
+
 			<!--Sexo-->
 			<div class="form-group">
 				<label for="sexo" class="control-label">Sexo</label>
@@ -63,7 +63,7 @@
 		        <input type="text" name="telefono" class="form-control" value="{{ old('telefono') }}" />
 		        <div class="text-danger">{{$errors->first('telefono')}}</div>
 		    </div>
-			
+
 		  <div class="form-group">
 		        <label for="password">Password:</label>
 		        <input type="password" class="form-control" name="password" />
