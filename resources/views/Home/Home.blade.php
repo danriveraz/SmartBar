@@ -54,9 +54,10 @@
 								<li><a href="#section-2" class="scroll">Conocenos</a></li>
 								<li><a href="" class="scroll">Conctato</a></li>
 								<li class="login" >
-									<div id="loginContainer" method="post" action="{{url('auth/login')}}" ><a href="#" id="loginButton"><span>Iniciar Sección</span></a>
+									<div id="loginContainer" ><a href="#" id="loginButton"><span>Iniciar Sección</span></a>
 						                <div id="loginBox">
-						                    <form id="loginForm">
+						                    <form id="loginForm" method="post" action="{{url('auth/login')}}">
+                                   {{csrf_field()}}
 						                        <fieldset id="body">
 						                            <fieldset>
 						                                <label for="email">Correo Electronico</label>
@@ -108,7 +109,7 @@
 					 </div>
 				   </div>
                  		 <div class="quote_button">
-                  	 		<a class="" href="{{url('auth/register')}}">Registrarse</a>                  	 				
+                  	 		<a class="" href="{{url('auth/register')}}">Registrarse</a>
                  				 </div>
               				</div>
           				</div>
