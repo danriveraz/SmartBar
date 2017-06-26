@@ -14,6 +14,8 @@
 Route::get('/', 'HomeController@home');
 Route::get('/home', 'HomeController@home');
 
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::get('auth/confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\AuthController@confirmRegister');
 
@@ -22,8 +24,7 @@ Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
+
 
 Route::get('auth/profile', 'Auth\AuthController@profile');
 Route::get('auth/editProfile' , 'Auth\AuthController@editProfile');

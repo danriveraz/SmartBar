@@ -86,7 +86,7 @@
 					<a class="hiddenanchor w3layouts agileits" id="toregister"></a>
 					<div id="wrapper">
 						<div id="login" class="animate w3layouts agileits form">
-							<h2 class="w3layouts agileits">Iniciar Seción</h2>
+							<h2 class="w3layouts agileits">Iniciar Sesión</h2>
 							<form  action="#" autocomplete="on" method="post">
 								<label>E-mail</label>
 								<input type="text" Name="Email o SubName" required="">
@@ -154,7 +154,7 @@
 									</div>
 								</form>
 								<p class="change_link w3layouts agileits">
-									¿Ya eres usuario? <a href="#tologin" class="to_register">Iniciar Secion</a>
+									¿Ya eres usuario? <a href="#tologin" class="to_register">Iniciar Sesión</a>
 								</p>
 								<div class="clear"></div>
 							</form>

@@ -5,7 +5,7 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 */
 /* reset */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;vertical-align:baseline;}
 article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
 ol,ul{list-style:none;margin:0;padding:0;}
 blockquote,q{quotes:none;}
@@ -49,7 +49,7 @@ img{max-width:100%;}
 	z-index:9;
 	width: 100%;
 	clear: both;
-	background:#232d3b;
+	background:#2d0031;
  }
   .logo{
 	float:left;
@@ -270,7 +270,7 @@ input:focus {
 	text-align: center;
 }
 .wmuSliderWrapper article p{
-	font-size:3em;
+	font-size:2em;
 	font-weight:200;
 	padding:15px 13%;
 }
@@ -296,21 +296,21 @@ input:focus {
 }
 .wmuSliderPrev, .wmuSliderNext {
 	position: absolute;
-	width: 70px;
+	width: 40px;
 	height: 85px;
 	text-indent: -9999px;
 	background: url(../images/sprites.png) no-repeat;
-	top: 50%;
+	top: 65%;
 	margin-top: -40px;
 	cursor:pointer;
 }
 .wmuSliderPrev {
-	background-position:-275px -170px;
-	left: 20px;
+	background-position:-420px -170px;
+	left: 100px;
 }
 .wmuSliderNext {
-	background-position:-352px -170px;
-	right: 20px;
+	background-position:-460px -170px;
+	right: 100px;
 }
 .dropdown-buttons{
   margin:2em 0 1em 0;
@@ -542,8 +542,8 @@ input:focus {
 } 
 .comment_icons li a{
    display:block;
-   width:35px;
-   height:35px;
+   width:15px;
+   height:15px;
    padding:18px;
     -webkit-transition: all 0.3s ease;
 		-moz-transition: all 0.3s ease;
@@ -551,20 +551,20 @@ input:focus {
 		transition: all 0.3s ease;
 }
 .comment_icons li a.comments{
-	background:#7235ac url(../images/sprites.png) no-repeat -125px 13px;
+	background:#7235ac url(../images/sprites.png) no-repeat -138px 0px;
 	border-radius:3px 3px 0px 0px;
 }
 .comment_icons li a.comments:hover{
 	background-color:#8741ca;#8741ca
 }
 .comment_icons li a.email{
-	background:#ae81d2 url(../images/sprites.png) no-repeat -178px 11px;
+	background:#ae81d2 url(../images/sprites.png) no-repeat -188px 0px;
 }
 .comment_icons li a.email:hover{
 	background-color:#bc8ee0;#bc8ee0
 }
 .comment_icons li a.like{
-	background:#905dba url(../images/sprites.png) no-repeat -231px 10px;
+	background:#905dba url(../images/sprites.png) no-repeat -241px 0px;
 	border-radius:0px 0px 3px 3px;
 }
 .comment_icons li a.like:hover{
@@ -947,7 +947,7 @@ input:focus {
 }
 .copy-right p{
 	color:#727E8D;
-	font-size: 0.85em;
+	font-size: 0.65em;
 	line-height:1.8em;
 }
 .copy-right p span{
@@ -1309,10 +1309,10 @@ input:focus {
 }
 .w3ls-welcome-right-info h2,.w3-agileits-heading h3{
     color: #000000;
-    font-size: 2em;
+    font-size: 1.8em;
     margin: 0;
     font-weight: 100;
-    font-family: 'Pacifico', cursive;
+    font-family:"Arial Black", Gadget, sans-serif, cursive;
     letter-spacing: 2px;
 }
 .w3ls-welcome-right-info h2 span,.w3-agileits-heading h3 span{
@@ -1323,6 +1323,8 @@ input:focus {
     font-size: .9em;
     line-height: 1.8em;
     margin: 2em 0 0 0;
+	text-align:justify;
+	letter-spacing: -0.1px;
 }
 .w3ls-welcome-right-info p span{
 	display:block;

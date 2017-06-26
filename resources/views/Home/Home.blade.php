@@ -5,7 +5,7 @@
 <link rel="shortcut icon" href="images/icon.png">
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-<title>PocketByR</title>
+<title>PocketSmartBar</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -89,9 +89,9 @@
             	   <div class="banner_desc">
             	      <div class="wmuSlider example1">
 							<div class="wmuSliderWrapper">
-							<article><p>Ten el control de tu establecimiento sin salir de casa...</p> <img src="images/clouds.png"  alt="" /> </article>
-							<article><p>Registrate y Conoce la plataforma que hace las cosas mas faciles para ti!</p> <img src="images/system.png"  alt="" /> </article>
-							<article><p>La mejor forma de mejorar, aumentar y llevar control de tus ingresos</p> <img src="images/slider-img3.png"  alt="" /> </article>
+                <article><p>Ten el control de tu establecimiento desde cualquier lugar.</p> <img src="images/clouds.png"  alt="" /> </article>
+  							<article><p>Conoce la plataforma que hace las cosas mas faciles para ti.</p> <img src="images/system.png"  alt="" /> </article>
+  							<article><p>Manten el control de tu personal, optimizando tus ingresos.</p> <img src="images/slider-img3.png"  alt="" /> </article>
 							</div>
                        </div>
             	      <script src="js/jquery.wmuSlider.js"></script>
