@@ -12,9 +12,13 @@ use Laracasts\Flash\Flash;
 
 class InsumoController extends Controller
 {
-    public function index(){
-    $insumos = Insumo::orderBy('id','ASC')->paginate(5);
-    return view('insumo.index')->with('insumos',$insumos);
+    public function index(Request $request){
+      $insumos = Insumo::Search($request->nombre)->
+                       Type($request->tipo)->
+                       Category($request->categoria)->
+                       orderBy('id','ASC')->
+                       paginate(20);
+      return view('insumo.index')->with('insumos',$insumos);
   }
 
   public function create(){
@@ -49,7 +53,7 @@ class InsumoController extends Controller
   public function update(Request $request, $id){
   	$insumo = Insumo::find($id);
     $insumo->idProveedor = $request->idProveedor;
-    $insumo->nombre = $request->name;
+    $insumo->nombre = $request->nombre;
     $insumo->cantidadUnidad = $request->cantidadUnidad;
     $insumo->precioUnidad = $request->precioUnidad;
     $insumo->valorCompra = $request->valorCompra;
