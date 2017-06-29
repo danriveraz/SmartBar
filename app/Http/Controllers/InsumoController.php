@@ -3,7 +3,6 @@
 namespace PocketByR\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -15,7 +14,6 @@ class InsumoController extends Controller
     public function index(Request $request){
       $insumos = Insumo::Search($request->nombre)->
                        Type($request->tipo)->
-                       Category($request->categoria)->
                        orderBy('id','ASC')->
                        paginate(20);
       return view('insumo.index')->with('insumos',$insumos);
@@ -32,9 +30,13 @@ class InsumoController extends Controller
       $insumo->cantidadUnidad = $request->cantidadUnidad;
       $insumo->precioUnidad = $request->precioUnidad;
       $insumo->valorCompra = $request->valorCompra;
-      $insumo->cantidadMedida = $request->cantidadMedida;
+      if ($request->medida == 'ml' || $request->medida == 'cm3') {
+        $insumo->cantidadMedida = $request->cantidadMedida/30;
+      }
+      else{
+        $insumo->cantidadMedida = $request->cantidadMedida;
+      }
       $insumo->tipo = $_POST['Tipo'];
-      $insumo->categoria = $_POST['Categoria'];
       $insumo->idAdmin = 1;
       $insumo->save();
       Flash::success("El insumo se ha registrado satisfactoriamente")->important();
@@ -57,9 +59,13 @@ class InsumoController extends Controller
     $insumo->cantidadUnidad = $request->cantidadUnidad;
     $insumo->precioUnidad = $request->precioUnidad;
     $insumo->valorCompra = $request->valorCompra;
-    $insumo->cantidadMedida = $request->cantidadMedida;
+    if ($request->medida == 'ml' || $request->medida == 'cm3') {
+      $insumo->cantidadMedida = $request->cantidadMedida/30;
+    }
+    else{
+      $insumo->cantidadMedida = $request->cantidadMedida;
+    }
     $insumo->tipo = $_POST['Tipo'];
-    $insumo->categoria = $_POST['Categoria'];
     $insumo->idAdmin = 1;
     $insumo->save();
     flash::warning('El insumo ha sido modificado satisfactoriamente')->important();

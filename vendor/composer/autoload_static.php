@@ -281,6 +281,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
 
     public static $classMap = array (
         'Altertableadminimagenes' => __DIR__ . '/../..' . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
+        'Altertableinsumo' => __DIR__ . '/../..' . '/database/migrations/2017_06_28_224008_altertableinsumo.php',
         'CreateInsumoTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_22_191904_create_insumo_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateProductoTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_24_040208_create_producto_table.php',

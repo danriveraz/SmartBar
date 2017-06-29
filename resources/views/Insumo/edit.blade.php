@@ -19,34 +19,31 @@
         </div>
         <div class="form-grup">
             <label for="cantidadUnidad" class="control-label">Cantidad de unidades</label>
-            <input type="number" name="cantidadUnidad" class="form-control" value="{{$insumo->cantidadUnidad}}">
+            <input type="number" name="cantidadUnidad" class="form-control" value="{{$insumo->cantidadUnidad}}"/>
         </div>
         <div class="form-grup">
             <label for="precioUnidad" class="control-label">Valor de venta</label>
-            <input type="number" name="precioUnidad" class="form-control" value="{{$insumo->precioUnidad}}">
+            <input type="number" name="precioUnidad" class="form-control" value="{{$insumo->precioUnidad}}"/>
         </div>
-            <div class="form-grup">
+        <div class="form-grup">
             <label for="valorCompra" class="control-label">Valor de compra</label>
-            <input type="number" name="valorCompra" class="form-control" value="{{$insumo->valorCompra}}">
+            <input type="number" name="valorCompra" class="form-control" value="{{$insumo->valorCompra}}"/>
         </div>
         <div class="form-grup">
             <label for="cantidadMedida" class="control-label">Cantidad de medida</label>
-            <input type="number" name="cantidadMedida" class="form-control" value="{{$insumo->cantidadMedida}}">
+            <input type="number" name="cantidadMedida" class="form-control" value="{{$insumo->cantidadMedida}}"/>
+            <select name="medida"> 
+                <option value="ml">ml</option> 
+                <option value="cm3">cm3</option> 
+                <option value="oz" <?php if($insumo->cantidadMedida !="0") echo "selected";?> >oz</option> 
+            </select>
         </div>
         <br>
         <div class="form-grup">
             <label for="tipo" class="control-label">Tipo</label>
             <select name="Tipo">
-                <option value="tipo 1">Tipo 1</option>
-                <option value="tipo 2">Tipo 2</option>
-            </select>
-        </div>
-        <br>
-        <div class="form-grup">
-            <label for="categoria" class="control-label">Categoria</label>
-            <select name="Categoria">
-                <option value="categoria 1">Categoria 1</option>
-                <option value="categoria 2">Categoria 2</option>
+                <option value="cerveza" <?php if($insumo->tipo =="cerveza") echo "selected";?>>Cerveza</option>
+                <option value="licor" <?php if($insumo->tipo =="licor") echo "selected";?>>Licor</option>
             </select>
         </div>
         <br>

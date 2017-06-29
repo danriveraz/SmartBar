@@ -30,22 +30,19 @@
                 </div>
                 <div class="form-grup">
                     <label for="cantidadMedida" class="control-label">Cantidad de medida</label>
-                    <input type="number" name="cantidadMedida" class="form-control" required="true">
+                    <input type="number" name="cantidadMedida" class="form-control" required="true"/>
+                    <select name="medida"> 
+                        <option value="ml">ml</option> 
+                        <option value="cm3">cm3</option> 
+                        <option value="oz">oz</option> 
+                    </select>
                 </div>
                 <br>
                 <div class="form-grup">
                     <label for="tipo" class="control-label">Tipo</label>
                     <select name="Tipo">
-                        <option value="tipo 1">Tipo 1</option>
-                        <option value="tipo 2">Tipo 2</option>
-                    </select>
-                </div>
-                <br>
-                 <div class="form-grup">
-                    <label for="categoria" class="control-label">Categoria</label>
-                    <select name="Categoria">
-                        <option value="categoria 1">Categoria 1</option>
-                        <option value="categoria 2">Categoria 2</option>
+                        <option value="cerveza">Cerveza</option>
+                        <option value="licor">Licor</option>
                     </select>
                 </div>
                 <br>

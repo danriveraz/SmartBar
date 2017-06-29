@@ -17,10 +17,4 @@ class Insumo extends Model
     		return $query->where('tipo',"$type");
     	}
     }
-
-    public function scopeCategory($query, $category){
-    	if($category != ""){
-    		return $query->where('categoria',"$category");
-    	}
-    }
 }

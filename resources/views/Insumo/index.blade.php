@@ -13,8 +13,7 @@
     <button type="submit" class="btn btn-dufault">Buscar</button>
     <div align="right">
       <br>
-      {!! Form::select('tipo', ['' => 'Seleccione un tipo','tipo 1'=>'Tipo 1','tipo 2'=>'Tipo 2'], null, ['class' => 'form-control']) !!}
-      {!! Form::select('categoria', ['' => 'Seleccione una categoria','categoria 1'=>'Categoria 1','categoria 2'=>'Categoria 2'], null, ['class' => 'form-control']) !!}
+      {!! Form::select('tipo', ['' => 'Seleccione un tipo','cerveza' => 'Cerveza','licor' => 'Licor'], null, ['class' => 'form-control']) !!}
     </div>
   </div>
   {!! Form::close() !!}
@@ -28,7 +27,6 @@
       <th>Valor de compra</th>
       <th>Cantidad de medida</th>
       <th>Tipo</th>
-      <th>Categoria</th>
     </thead>
     <tbody>
       @foreach($insumos as $insumo)
@@ -41,7 +39,6 @@
           <td>{{$insumo->valorCompra}}</td>
           <td>{{$insumo->cantidadMedida}}</td>
           <td>{{$insumo->tipo}}</td>
-          <td>{{$insumo->categoria}}</td>
           <td><a href="{{ route('insumo.edit',$insumo->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           </td>
         </tr>
