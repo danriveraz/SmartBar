@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductoTable extends Migration
+class CreateCategoriaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,12 @@ class CreateProductoTable extends Migration
      */
     public function up()
     {
-        Schema::create('producto', function (Blueprint $table) {
-            $table->increments('idProducto');
+        Schema::create('categoria', function (Blueprint $table) {
+            $table->increments('idCategoria');
             $table->String('nombre');
-            $table->String('tipo');
-            $table->integer('idAdmin');
+            $table->integer('idAdmin')->unsigned();
+            $table->foreign('idAdmin')->references('id')->on('admin')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateProductoTable extends Migration
      */
     public function down()
     {
-        Schema::drop('producto');
+        //
     }
 }

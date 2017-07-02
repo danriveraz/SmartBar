@@ -36,3 +36,5 @@ Route::group(['prefix' => 'auth'], function(){
 });
 
 Route::resource('insumo', 'insumoController');
+
+Route::resource('producto', 'ProductoController');
