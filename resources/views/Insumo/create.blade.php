@@ -14,7 +14,7 @@
                 </div>
                 <div class="form-grup">
                     <label for="idProveedor" class="control-label">Proveedor</label>
-                    <input type="text" name="idProveedor" class="form-control" required="true">
+                    {!! Form::select('proveedores', $proveedores, null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-grup">
                     <label for="cantidadUnidad" class="control-label">Cantidad de unidades</label>
@@ -41,8 +41,8 @@
                 <div class="form-grup">
                     <label for="tipo" class="control-label">Tipo</label>
                     <select name="Tipo">
-                        <option value="venta">A la venta</option>
-                        <option value="noVenta">No a la venta</option>
+                        <option value="A la venta">A la venta</option>
+                        <option value="No a la venta">No a la venta</option>
                     </select>
                 </div>
                 <br>

@@ -7,25 +7,30 @@ use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use PocketByR\Insumo;
+use PocketByR\Proveedor;
 use Laracasts\Flash\Flash;
 
 class InsumoController extends Controller
 {
     public function index(Request $request){
+      $proveedores = Proveedor::lists('nombre','idProveedor');
       $insumos = Insumo::Search($request->nombre)->
                        Type($request->tipo)->
                        orderBy('id','ASC')->
                        paginate(20);
-      return view('insumo.index')->with('insumos',$insumos);
+      return view('insumo.index')->with('insumos',$insumos)->with('proveedores',$proveedores);
   }
 
   public function create(){
-    return view('insumo.create');
+
+    $proveedores = Proveedor::lists('nombre','idProveedor');
+
+    return view('insumo.create')->with('proveedores',$proveedores);
   }
 
   public function store(Request $request){
       $insumo = new Insumo;
-      $insumo->idProveedor = $request->idProveedor;
+      $insumo->idProveedor = $_POST['proveedores'];
       $insumo->nombre = $request->nombre;
       $insumo->cantidadUnidad = $request->cantidadUnidad;
       $insumo->precioUnidad = $request->precioUnidad;
@@ -48,13 +53,14 @@ class InsumoController extends Controller
   }
 
   public function edit($id){
+    $proveedores = Proveedor::lists('nombre','idProveedor');
     $insumo = Insumo::find($id);
-    return view('insumo.edit')->with('insumo',$insumo);
+    return view('insumo.edit')->with('insumo',$insumo)->with('proveedores',$proveedores);
   }
 
   public function update(Request $request, $id){
   	$insumo = Insumo::find($id);
-    $insumo->idProveedor = $request->idProveedor;
+    $insumo->idProveedor = $_POST['proveedores'];
     $insumo->nombre = $request->nombre;
     $insumo->cantidadUnidad = $request->cantidadUnidad;
     $insumo->precioUnidad = $request->precioUnidad;

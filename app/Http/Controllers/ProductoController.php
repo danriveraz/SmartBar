@@ -6,28 +6,34 @@ use Illuminate\Http\Request;
 
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use PocketByR\Producto;
 use PocketByR\Categoria;
+use Laracasts\Flash\Flash;
 
 
 class ProductoController extends Controller
 {
      public function index(Request $request){
-      $categorias = Categoria::orderBy('idCategoria', 'ASC');
+      $categorias = Categoria::lists('nombre','idCategoria');
 
-      $productos = Producto::orderBy('idProducto','ASC')->
-                       paginate(20);
-      return view('producto.index')->
-      with('productos',$productos);
+      $productos = Producto::Search($request->nombre)->
+                             Category($request->categorias)->
+                             orderBy('idProducto','ASC')->
+                             paginate(20);
+      return view('producto.index',compact('categorias'))->with('productos',$productos);
   }
 
   public function create(Request $request){
-      return view('producto.create');
+
+      $categorias = Categoria::lists('nombre','idCategoria');
+
+      return view('producto.create',compact('categorias'));
     }
     public function store(Request $request){
       $producto = new Producto;
       $producto->nombre = $request->nombreProducto;
-      $producto->tipo = $_POST['TipoProducto'];
+      $producto->idCategoria = $_POST['categorias'];
       $producto->idAdmin = 1;
       $producto->save();
       Flash::success("El producto se ha registrado satisfactoriamente")->important();
@@ -35,8 +41,8 @@ class ProductoController extends Controller
     }
 
   public function edit($id){
-    $producto = Insumo::find($id);
-    print(producto);
+    $producto = Producto::find($id);
+    print($producto);
   }
 
 }

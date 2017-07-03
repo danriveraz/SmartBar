@@ -1,20 +1,21 @@
-@extends('layout.app')
-@section('panel-title', 'crear producto')
-@section('content')
+<?php $__env->startSection('panel-title', 'crear producto'); ?>
+<?php $__env->startSection('content'); ?>
 <div class="col-sm-offset-3 col-sm-6">
     <div class="panel-tittle">
         <h1>Registro de producto</h1>
     </div>
     <div class ="panel-body">
-        <form action=" {{ route('auth.producto.store') }}" method="POST">
-                {{ csrf_field() }}
+        <form action=" <?php echo e(route('auth.producto.store')); ?>" method="POST">
+                <?php echo e(csrf_field()); ?>
+
                 <div class="form-grup">
                     <label for="nombre" class="control-label">Nombre del Producto</label>
                     <input type="text" name="nombreProducto" class="form-control" placeholder="Nombre del producto" required="true"/>
                 </div>
                 <div class="form-grup">
                     <label for="tipo" class="control-label">Tipo</label>
-                    {!! Form::select('categorias', $categorias, null, ['class' => 'form-control']) !!}
+                    <?php echo Form::select('categorias', $categorias, null, ['class' => 'form-control']); ?>
+
                 </div>
                 <br>
                 <div class="form-grup">
@@ -24,4 +25,5 @@
         </form>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

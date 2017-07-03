@@ -4,8 +4,7 @@ namespace PocketByR;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Categoria extends Model
+class Proveedor extends Model
 {
-    //
-    protected $table = 'categoria';
+    protected $table = 'proveedor';
 }

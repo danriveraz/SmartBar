@@ -13,9 +13,8 @@
     <button type="submit" class="btn btn-dufault">Buscar</button>
     <div align="right">
       <br>
-      <select >
-        <option>Seleccione una categoría</option>
-      </select>
+      {!! Form::select('categoria', $categorias, null, ['class' => 'form-control']) !!}
+      <td><a href="" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></td>
     </div>
   </div>
   {!! Form::close() !!}
@@ -23,14 +22,14 @@
     <thead>
       <th>#</th>
       <th>Nombre</th>
-      <th>Tipo</th>
+      <th>Categoria</th>
     </thead>
     <tbody>
       @foreach($productos as $producto)
         <tr>
           <td>{{$producto->idProducto}}</td>
           <td>{{$producto->nombre}}</td>
-          <td>{{$producto->tipo}}</td>
+          <td>{{$categorias[$producto->idCategoria]}}</td>
           <td><a href="{{ route('auth.producto.edit',$producto->idProducto) }}" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           </td>
         </tr>

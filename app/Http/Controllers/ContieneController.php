@@ -24,11 +24,11 @@ class ContieneController extends Controller
   		return view('contiene.create')->with('insumos',$insumos);
   	}
   	public function store(Request $request,$idInsumo){
-  		$producto = Producto::orderBy('idProducto','DESC')->take(1)->get();
+  		//$producto = Producto::orderBy('idProducto','DESC')->take(1)->get();
   		$contiene = new Contiene;
-  		$contiene->idProducto = $producto->idProducto;
+  		$contiene->idProducto = 1;
   		$contiene->idInsumo = $idInsumo;
-  		$contiene->cantidad = $request->cantidadUnidad;
+  		$contiene->cantidad = $request->cantidad;
   		$contiene->idAdmin = 1;
   		$contiene->save();
   		Flash::success("El insumo se ha agregado al producto")->important();

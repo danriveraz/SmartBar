@@ -13,7 +13,7 @@
     <button type="submit" class="btn btn-dufault">Buscar</button>
     <div align="right">
       <br>
-      {!! Form::select('tipo', ['' => 'Seleccione un tipo','venta' => 'A la venta','noVenta' => 'No a la venta'], null, ['class' => 'form-control']) !!}
+      {!! Form::select('tipo', ['' => 'Seleccione un tipo','A la venta' => 'A la venta','No a la venta' => 'No a la venta'], null, ['class' => 'form-control']) !!}
     </div>
   </div>
   {!! Form::close() !!}
@@ -33,7 +33,7 @@
         <tr>
           <td>{{$insumo->id}}</td>
           <td>{{$insumo->nombre}}</td>
-          <td>{{$insumo->idProveedor}}</td>
+          <td>{{$proveedores[$insumo->idProveedor]}}</td>
           <td>{{$insumo->cantidadUnidad}}</td>
           <td>{{$insumo->precioUnidad}}</td>
           <td>{{$insumo->valorCompra}}</td>

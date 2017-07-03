@@ -15,7 +15,7 @@
 
         <div class="form-grup">
             <label for="idProveedor" class="control-label">Proveedor</label>
-            <input type="text" name="idProveedor" class="form-control" value="{{$insumo->idProveedor}}"/>
+            {!! Form::select('proveedores', $proveedores, null, ['class' => 'form-control']) !!}
         </div>
         <div class="form-grup">
             <label for="cantidadUnidad" class="control-label">Cantidad de unidades</label>
@@ -42,8 +42,8 @@
         <div class="form-grup">
             <label for="tipo" class="control-label">Tipo</label>
             <select name="Tipo">
-                <option value="cerveza" <?php if($insumo->tipo =="venta") echo "selected";?>>A la venta</option>
-                <option value="licor" <?php if($insumo->tipo =="noVenta") echo "selected";?>>No a la venta</option>
+                <option value="A la venta" <?php if($insumo->tipo =="A la venta") echo "selected";?>>A la venta</option>
+                <option value="No a la venta" <?php if($insumo->tipo =="No a la venta") echo "selected";?>>No a la venta</option>
             </select>
         </div>
         <br>
