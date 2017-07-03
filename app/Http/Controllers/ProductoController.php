@@ -21,9 +21,18 @@ class ProductoController extends Controller
       with('productos',$productos);
   }
 
-  public function create(){
-    print("hola");
-  }
+  public function create(Request $request){
+      return view('producto.create');
+    }
+    public function store(Request $request){
+      $producto = new Producto;
+      $producto->nombre = $request->nombreProducto;
+      $producto->tipo = $_POST['TipoProducto'];
+      $producto->idAdmin = 1;
+      $producto->save();
+      Flash::success("El producto se ha registrado satisfactoriamente")->important();
+      return redirect()->route('auth.contiene.create');
+    }
 
   public function edit($id){
     $producto = Insumo::find($id);

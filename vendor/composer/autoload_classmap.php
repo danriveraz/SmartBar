@@ -7,10 +7,12 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Altertableadminimagenes' => $baseDir . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
-    'Altertableinsumo' => $baseDir . '/database/migrations/2017_06_28_224008_altertableinsumo.php',
-    'CreateInsumoTable' => $baseDir . '/database/migrations/2017_05_22_191904_create_insumo_table.php',
+    'CreateCategoriaTable' => $baseDir . '/database/migrations/2017_07_01_183643_create_categoria_table.php',
+    'CreateContieneTable' => $baseDir . '/database/migrations/2017_07_02_200842_create_contiene_table.php',
+    'CreateInsumosTable' => $baseDir . '/database/migrations/2017_07_01_190921_create_insumos_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
-    'CreateProductoTable' => $baseDir . '/database/migrations/2017_05_24_040208_create_producto_table.php',
+    'CreateProductosTable' => $baseDir . '/database/migrations/2017_07_01_185420_create_productos_table.php',
+    'CreateProveedorTable' => $baseDir . '/database/migrations/2017_07_01_185819_create_proveedor_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'CreateUsuarioTable' => $baseDir . '/database/migrations/2017_05_18_130959_create_usuario_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',

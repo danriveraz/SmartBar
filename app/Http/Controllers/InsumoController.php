@@ -40,7 +40,7 @@ class InsumoController extends Controller
       $insumo->idAdmin = 1;
       $insumo->save();
       Flash::success("El insumo se ha registrado satisfactoriamente")->important();
-      return redirect()->route('insumo.index');
+      return redirect()->route('auth.insumo.index');
   }
 
   public function show($id){
@@ -69,7 +69,7 @@ class InsumoController extends Controller
     $insumo->idAdmin = 1;
     $insumo->save();
     flash::warning('El insumo ha sido modificado satisfactoriamente')->important();
-    return redirect()->route('insumo.index');
+    return redirect()->route('auth.insumo.index');
   }
 
   public function destroy($id){

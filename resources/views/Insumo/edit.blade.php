@@ -6,7 +6,7 @@
         <h1>Modificar insumo</h1>
     </div>
     <div class ="panel-body">
-      {!! Form::open(['route' => ['insumo.update',$insumo], 'method' => 'PUT']) !!}
+      {!! Form::open(['route' => ['auth.insumo.update',$insumo], 'method' => 'PUT']) !!}
 
         <div class="form-group">
           <label for="nombre" class="control-label">Nombre del insumo</label>
@@ -31,7 +31,7 @@
         </div>
         <div class="form-grup">
             <label for="cantidadMedida" class="control-label">Cantidad de medida</label>
-            <input type="number" name="cantidadMedida" class="form-control" value="{{$insumo->cantidadMedida}}"/>
+            <input type="number" step="any" name="cantidadMedida" class="form-control" value="{{$insumo->cantidadMedida}}"/>
             <select name="medida"> 
                 <option value="ml">ml</option> 
                 <option value="cm3">cm3</option> 
@@ -42,8 +42,8 @@
         <div class="form-grup">
             <label for="tipo" class="control-label">Tipo</label>
             <select name="Tipo">
-                <option value="cerveza" <?php if($insumo->tipo =="cerveza") echo "selected";?>>Cerveza</option>
-                <option value="licor" <?php if($insumo->tipo =="licor") echo "selected";?>>Licor</option>
+                <option value="cerveza" <?php if($insumo->tipo =="venta") echo "selected";?>>A la venta</option>
+                <option value="licor" <?php if($insumo->tipo =="noVenta") echo "selected";?>>No a la venta</option>
             </select>
         </div>
         <br>

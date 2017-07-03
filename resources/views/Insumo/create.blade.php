@@ -6,7 +6,7 @@
         <h1>Insumo</h1>
     </div>
     <div class ="panel-body">
-        <form action=" {{ route('insumo.store') }}" method="POST">
+        <form action=" {{ route('auth.insumo.store') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-grup">
                     <label for="nombre" class="control-label">Nombre del insumo</label>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-grup">
                     <label for="cantidadMedida" class="control-label">Cantidad de medida</label>
-                    <input type="number" name="cantidadMedida" class="form-control" required="true"/>
+                    <input type="number" step="any" name="cantidadMedida" class="form-control" required="true"/>
                     <select name="medida"> 
                         <option value="ml">ml</option> 
                         <option value="cm3">cm3</option> 
@@ -41,8 +41,8 @@
                 <div class="form-grup">
                     <label for="tipo" class="control-label">Tipo</label>
                     <select name="Tipo">
-                        <option value="cerveza">Cerveza</option>
-                        <option value="licor">Licor</option>
+                        <option value="venta">A la venta</option>
+                        <option value="noVenta">No a la venta</option>
                     </select>
                 </div>
                 <br>

@@ -35,6 +35,6 @@ Route::group(['prefix' => 'auth'], function(){
   Route::get('usuario/{id}/destroy', ['uses' => 'UsuariosController@destroy', 'as' => 'auth.usuario.destroy']);
 });
 
-Route::resource('insumo', 'insumoController');
-
-Route::resource('producto', 'ProductoController');
+Route::resource('auth/insumo', 'insumoController');
+Route::resource('auth/producto', 'productoController');
+Route::resource('auth/contiene', 'contieneController');

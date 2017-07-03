@@ -281,10 +281,12 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
 
     public static $classMap = array (
         'Altertableadminimagenes' => __DIR__ . '/../..' . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
-        'Altertableinsumo' => __DIR__ . '/../..' . '/database/migrations/2017_06_28_224008_altertableinsumo.php',
-        'CreateInsumoTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_22_191904_create_insumo_table.php',
+        'CreateCategoriaTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_01_183643_create_categoria_table.php',
+        'CreateContieneTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_02_200842_create_contiene_table.php',
+        'CreateInsumosTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_01_190921_create_insumos_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
-        'CreateProductoTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_24_040208_create_producto_table.php',
+        'CreateProductosTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_01_185420_create_productos_table.php',
+        'CreateProveedorTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_01_185819_create_proveedor_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'CreateUsuarioTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_18_130959_create_usuario_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',

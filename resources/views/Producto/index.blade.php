@@ -6,8 +6,8 @@
       <h1>Lista de productos</h1>
   </div>
   @include('flash::message')
-  <a href="{{ route('producto.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Agregar nuevo producto </a>
-  {!! Form::model(Request::all(), ['route' => ['producto.index'], 'method' => 'GET', 'class' => 'navbar-form navbar-right']) !!}
+  <a href="{{ route('auth.producto.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Agregar nuevo producto </a>
+  {!! Form::model(Request::all(), ['route' => ['auth.producto.index'], 'method' => 'GET', 'class' => 'navbar-form navbar-right']) !!}
   <div class="form-group" align="right">
     {!! Form::text('nombre', null, ['class' => 'form-control', 'placelhoder' => 'Buscar', 'aria-describedby' => 'search']) !!}
     <button type="submit" class="btn btn-dufault">Buscar</button>
@@ -31,7 +31,7 @@
           <td>{{$producto->idProducto}}</td>
           <td>{{$producto->nombre}}</td>
           <td>{{$producto->tipo}}</td>
-          <td><a href="{{ route('producto.edit',$producto->idProducto) }}" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+          <td><a href="{{ route('auth.producto.edit',$producto->idProducto) }}" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           </td>
         </tr>
       @endforeach
