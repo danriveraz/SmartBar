@@ -6,7 +6,7 @@
         <h1>Modificar insumo</h1>
     </div>
     <div class ="panel-body">
-      {!! Form::open(['route' => ['auth.insumo.update',$insumo], 'method' => 'PUT']) !!}
+      {!! Form::open(['route' => ['auth.insumo.update',$insumo],'method' => 'PUT']) !!}
 
         <div class="form-group">
           <label for="nombre" class="control-label">Nombre del insumo</label>

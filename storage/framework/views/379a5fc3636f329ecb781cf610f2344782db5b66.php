@@ -16,7 +16,8 @@
       <br>
       <?php echo Form::select('categoria', $categorias, null, ['class' => 'form-control']); ?>
 
-      <td><a href="" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></td>
+       <td><a href="<?php echo e(route('auth.categoria.create')); ?>" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></td>
+      <td><a href="<?php echo e(route('auth.categoria.index')); ?>" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a></td>
     </div>
   </div>
   <?php echo Form::close(); ?>

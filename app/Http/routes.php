@@ -38,3 +38,6 @@ Route::group(['prefix' => 'auth'], function(){
 Route::resource('auth/insumo', 'insumoController');
 Route::resource('auth/producto', 'productoController');
 Route::resource('auth/contiene', 'contieneController');
+
+Route::resource('auth/categoria', 'categoriaController');
+Route::get('categoria/{id}/destroy', ['uses' => 'CategoriaController@destroy', 'as' => 'auth.categoria.destroy']);

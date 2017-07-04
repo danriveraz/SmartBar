@@ -1,4 +1,4 @@
-<?php foreach((array) session('flash_notification') as $message): ?>
+<?php foreach(session('flash_notification', collect())->toArray() as $message): ?>
     <?php if($message['overlay']): ?>
         <?php echo $__env->make('flash::modal', [
             'modalClass' => 'flash-modal',
@@ -10,6 +10,7 @@
                     alert-<?php echo e($message['level']); ?>
 
                     <?php echo e($message['important'] ? 'alert-important' : ''); ?>"
+                    role="alert"
         >
             <?php if($message['important']): ?>
                 <button type="button"

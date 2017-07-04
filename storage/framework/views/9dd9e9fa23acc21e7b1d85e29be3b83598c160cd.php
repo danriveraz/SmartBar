@@ -13,7 +13,7 @@
                     <input type="text" name="nombreProducto" class="form-control" placeholder="Nombre del producto" required="true"/>
                 </div>
                 <div class="form-grup">
-                    <label for="tipo" class="control-label">Tipo</label>
+                    <label for="tipo" class="control-label">Categoría</label>
                     <?php echo Form::select('categorias', $categorias, null, ['class' => 'form-control']); ?>
 
                 </div>

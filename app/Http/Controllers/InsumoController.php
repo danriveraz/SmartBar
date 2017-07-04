@@ -42,7 +42,7 @@ class InsumoController extends Controller
         $insumo->cantidadMedida = $request->cantidadMedida;
       }
       $insumo->tipo = $_POST['Tipo'];
-      $insumo->idAdmin = 1;
+      $insumo->idAdmin = 4;
       $insumo->save();
       Flash::success("El insumo se ha registrado satisfactoriamente")->important();
       return redirect()->route('auth.insumo.index');
@@ -72,7 +72,7 @@ class InsumoController extends Controller
       $insumo->cantidadMedida = $request->cantidadMedida;
     }
     $insumo->tipo = $_POST['Tipo'];
-    $insumo->idAdmin = 1;
+    $insumo->idAdmin = 4;
     $insumo->save();
     flash::warning('El insumo ha sido modificado satisfactoriamente')->important();
     return redirect()->route('auth.insumo.index');
