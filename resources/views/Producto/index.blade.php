@@ -28,7 +28,7 @@
     <tbody>
       @foreach($productos as $producto)
         <tr>
-          <td>{{$producto->idProducto}}</td>
+          <td>{{$producto->id}}</td>
           <td>{{$producto->nombre}}</td>
           <td>{{$categorias[$producto->idCategoria]}}</td>
           <td><a href="{{ route('auth.producto.edit',$producto->idProducto) }}" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
