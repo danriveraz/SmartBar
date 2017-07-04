@@ -122,18 +122,18 @@
 							<form  action="#" autocomplete="on" method="post">
 								<form action="" method="post">
                                 	<label>Empresa</label>
-									<input type="text" class="name w3layouts agileits" Name="Name" required="">
+									<input type="text" class="name w3layouts agileits" Name="nombreEstablecimiento" required="">
                                 <div class="left-w3-agile">
                                     <label>Nombre</label>
-									<input type="text" class="usuario w3layouts agileits" name="" placeholder="" required="" /></div>
+									<input type="text" class="usuario w3layouts agileits" name="nombrePersona" placeholder="" required="" /></div>
 								<div class="right-agileits">
                                 <label>Apellido</label>
-								<input type="text" class="usuario w3layouts agileits" name="" placeholder="" required="" />
+								<input type="text" class="usuario w3layouts agileits" name="" placeholder=""/>
 								</div>
                                 	<label>Correo Electronico</label>
-									<input type="text" Name="Email" required="">
+									<input type="email" Name="email" required="">
 									<label>Contraseña</label>
-									<input type="password" Name="Password" required="">
+									<input type="password" Name="password" required="">
                                 <div class="left-w3-agile">
                                 <label>Ciudad</label>
 								<select id="idEstado" name="idEstado" required>

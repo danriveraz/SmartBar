@@ -119,40 +119,44 @@
 
 						<div id="register" class="animate w3layouts agileits form">
 							<!-- <h2>Registro</h2> -->
-							<form  action="#" autocomplete="on" method="post">
-								<form action="" method="post">
+							<form  role="form" method="POST" enctype="multipart/form-data" action="<?php echo e(url('auth/register')); ?>" files="true">
+							<?php echo e(csrf_field()); ?>
+
+							<div class="text-danger">
+				                 <?php if(Session::has('message')): ?>
+								   <?php echo e(Session::get('message')); ?>
+
+								 <?php endif; ?>
+							 </div>
                                 	<label>Empresa</label>
-									<input type="text" class="name w3layouts agileits" Name="Name" required="">
+									<input type="text" class="name w3layouts agileits" name="nombreEstablecimiento" required="">
                                 <div class="left-w3-agile">
                                     <label>Nombre</label>
-									<input type="text" class="usuario w3layouts agileits" name="" placeholder="" required="" /></div>
+									<input type="text" class="usuario w3layouts agileits" name="nombrePersona" placeholder="" required="" /></div>
 								<div class="right-agileits">
                                 <label>Apellido</label>
 								<input type="text" class="usuario w3layouts agileits" name="" placeholder="" required="" />
 								</div>
                                 	<label>Correo Electronico</label>
-									<input type="text" Name="Email" required="">
+									<input type="text" Name="email" required="">
 									<label>Contraseña</label>
-									<input type="password" Name="Password" required="">
+									<input type="password" Name="password" required="">
                                 <div class="left-w3-agile">
                                 <label>Ciudad</label>
 								<select id="idEstado" name="idEstado" required>
                                   <option value="0">Estados</option>
-
                                 </select></div>
 								<div class="right-agileits">
                                 <label>Departamento</label>
 								<select id="idEstado" name="idEstado" required>
                                   <option value="0">Estados</option>
-
                                 </select>
 								</div>
 									<div class="send-button w3layouts agileits">
-										<form action="#" method="post">
-											<input type="submit" value="REGISTRARME">
-										</form>
+										<button title="Registrar" type="submit" class="btn btn-block btn-info">
+                                    	<i class="fa fa-btn fa-user"></i> Registrar
+                                </button>
 									</div>
-								</form>
 								<p class="change_link w3layouts agileits">
 									¿Ya eres usuario? <a href="#tologin" class="to_register">Iniciar Sesión</a>
 								</p>

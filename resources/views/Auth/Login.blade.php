@@ -86,19 +86,21 @@
 					<a class="hiddenanchor w3layouts agileits" id="toregister"></a>
 					<div id="wrapper">
 						<div id="login" class="animate w3layouts agileits form">
-							<h2 class="w3layouts agileits">Iniciar Seción</h2>
-              <form autocomplete="on" method="post" action="{{url('auth/login')}}">
-                {{csrf_field()}}
+							<h2 class="w3layouts agileits">Iniciar Sesión</h2>
+              				<form autocomplete="on" method="post" action="{{url('auth/login')}}">
+                			{{csrf_field()}}
+                				<div class="text-danger">
+					                 @if (Session::has('message'))
+									   {{Session::get('message')}}
+									 @endif
+								 </div>
 								<label>E-mail</label>
-								<input type="text" name="email" value="{{Input::old('email')}}" required="">
-                <div class="text-danger">{{$errors->first('email')}}</div>
+								<input type="text" name="email" value="{{Input::old('email')}}" required>
 								<label>Contraseña</label>
-								<input type="password" Name="Password" required="">
+								<input type="password" Name="password" required="">
 								<div class="send-button w3layouts agileits">
-									<p><a href="#">¿Se te olvidó tu contraseña?</a></p>
-									<form>
+									<p><a href="#">¿Olvidó su contraseña?</a></p>
 										<input type="submit" value="INICIAR SESIÓN">
-									</form>
 									<div class="clear"></div>
 								</div>
 								<p class="change_link w3layouts agileits">
@@ -118,7 +120,9 @@
 						</div>
 
                         <!-- formulario de Registro-->
-						<div class="clear"></div>
+						<div class="clear">
+							<!--CREO ACA VA ALGO DE REGISTRO-->
+						</div>
 					</div>
 				</div>
 			</section>

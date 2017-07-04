@@ -51,13 +51,13 @@
 						<div class="menu">
 						    <ul>
 						    	<li class="current"><a href="#section-1" class="scroll">Inicio</a></li>
-								<li><a href="#section-2" class="scroll">Conocenos</a></li>
-								<li><a href="" class="scroll">Conctato</a></li>
+								<li><a href="#section-2" class="scroll">Conócenos</a></li>
+								<li><a href="" class="scroll">Contacto</a></li>
 								<li class="login" >
 									<div id="loginContainer" ><a href="#" id="loginButton"><span>Iniciar Sección</span></a>
 						                <div id="loginBox">
 						                    <form id="loginForm" method="post" action="{{url('auth/login')}}">
-                                   {{csrf_field()}}
+                                   				{{csrf_field()}}
 						                        <fieldset id="body">
 						                            <fieldset>
 						                                <label for="email">Correo Electronico</label>
@@ -70,7 +70,7 @@
 						                            <input type="submit" id="login" value="Iniciar">
 						                            <label for="checkbox"><input type="checkbox"> <i>Guardar sección</i></label>
 						                        </fieldset>
-						                        <span><a href="#">¿Adquiere Tu Cuenta?</a></span>
+						                        <span><a href="{{url('/auth/register') }}">¿Adquiere Tu Cuenta?</a></span>
 						                    </form>
 						                </div>
 						               </div>
