@@ -41,3 +41,12 @@ Route::resource('auth/contiene', 'contieneController');
 
 Route::resource('auth/categoria', 'categoriaController');
 Route::get('categoria/{id}/destroy', ['uses' => 'CategoriaController@destroy', 'as' => 'auth.categoria.destroy']);
+
+
+Route::post('bartender/pedido', 'BartenderController@pedido');
+Route::get('bartender/tabla', 'BartenderController@mostrarTabla');
+Route::resource('bartender', 'BartenderController');
+
+Route::resource('cajero', 'CajeroController');
+Route::post('cajero/recibo', 'CajeroController@recibo');
+

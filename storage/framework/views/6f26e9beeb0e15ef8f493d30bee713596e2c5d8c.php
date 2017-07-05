@@ -5,7 +5,7 @@
         <h1>Modificar insumo</h1>
     </div>
     <div class ="panel-body">
-      <?php echo Form::open(['route' => ['auth.insumo.update',$insumo], 'method' => 'PUT']); ?>
+      <?php echo Form::open(['route' => ['auth.insumo.update',$insumo],'method' => 'PUT']); ?>
 
 
         <div class="form-group">
