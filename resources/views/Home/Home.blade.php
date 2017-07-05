@@ -136,8 +136,8 @@
 				</div>
 				<div class="col-md-6 w3ls-welcome-right">
 					<div class="w3ls-welcome-right-info">
-						<h2>Algunas palabras <span>Sobre Nosotros</span></h2>
-						<p>Pocket ByR es la plataforma que le permite a usted como dueño de un establecimiento Comercial tipo bar o restaurante tener un control permantente del lugar, podra tener toda al información detallada y lo mejor sin estar presente todo el tiempo, bienvenido a tu negocio inteligente con pocket ByR..</span></p>
+						<h2><strong>Quienes Somos</strong></h2>
+						<p>PocketSmartBar, es la plataforma que le permite a usted, como dueño de un establecimiento Comercial tipo bar o restaurante, tener un control permantente del lugar. Podra tener toda al información detallada de tu personal, inventario, provedores y lo mejor sin estar presente.<br><strong class="">Bienvenido a tu negocio inteligente con pocket ByR.</strong></br></p>
 					</div>
 					<div class="agileits-border">
 						<div class="agileinfo-red"> </div>
