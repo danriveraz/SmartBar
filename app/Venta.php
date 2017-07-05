@@ -10,7 +10,7 @@ class Venta extends Model
     protected $table = 'venta';
     public function scopeSearch($query){
     	$query->where('estado','Por atender')
-    			->join('producto', 'venta.idProducto', '=', 'producto.idProducto')
+    			->join('producto', 'venta.idProducto', '=', 'producto.id')
     			->join('categoria', 'producto.idCategoria', '=', 'categoria.id')
     			->select('venta.id','cantidad', 'producto.nombre','categoria.nombre as categoria');
     	return $query;
@@ -22,8 +22,8 @@ class Venta extends Model
     }
     public function scopeListarElementos($query, $id){
         $query->where('idFactura', $id)
-              ->join('producto', 'venta.idProducto', '=', 'producto.idProducto')
-              ->select('nombre');
+              ->join('producto', 'venta.idProducto', '=', 'producto.id')
+              ->select('nombre', 'cantidad', 'precio', 'venta.id');
         return $query;
     }
 }

@@ -40,7 +40,7 @@
       	</td>
       	<td>
       		<?php if($mesa->estado == 'En proceso'): ?>
-      			<input type="text" name="id" value="<?php echo e($mesa->id); ?>" hidden=""h>
+      			<input type="text" name="id" value="<?php echo e($mesa->id); ?>" hidden="">
       			<button name="" class="btn btn-warning">
       				<span class="	glyphicon glyphicon-zoom-in"></span></a>
       			</button> 
