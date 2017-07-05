@@ -50,3 +50,7 @@ Route::resource('bartender', 'BartenderController');
 Route::resource('cajero', 'CajeroController');
 Route::post('cajero/recibo', 'CajeroController@recibo');
 
+Route::get('mesero/lista', 'MeseroController@lista');
+Route::resource('mesero', 'MeseroController');
+
+
