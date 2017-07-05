@@ -33,11 +33,12 @@ class ProductoController extends Controller
     public function store(Request $request){
       $producto = new Producto;
       $producto->nombre = $request->nombreProducto;
+      $producto->precio = $request->precio;
       $producto->idCategoria = $_POST['categorias'];
       $producto->idAdmin = 4;
       $producto->save();
       Flash::success("El producto se ha registrado satisfactoriamente")->important();
-      return redirect()->route('auth.contiene.index?producto=$producto');
+      return redirect()->route('auth.contiene.index', ['idProducto'=>$producto->id]);
     }
 
   public function edit($id){

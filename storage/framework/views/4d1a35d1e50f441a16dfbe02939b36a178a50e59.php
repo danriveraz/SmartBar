@@ -2,27 +2,9 @@
 
 <div class="col-sm-offset-3 col-sm-6">
   <div class="panel-tittle">
-    <h1>Lista de insumos</h1>
-  <div>
-    <h3>Insumos del producto</h3>
+      <h1>Lista de insumos</h1>
   </div>
-  <div>
-    <table class="table table-hover">
-      <thead>
-      <th></th>
-      <th>Id insumo</th>
-      <th>Cantidad de unidades (oz)</th>
-    </thead>
-    <tbody>
-        <tr>
-        </tr>
-    </tbody>
-  </table>
-  </div>
-  <br>
-  <div>
-    <h3>Insumos disponibles</h3>
-  </div>
+  <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
   <?php echo Form::model(Request::all(), ['route' => ['auth.contiene.create'], 'method' => 'GET', 'class' => 'navbar-form navbar-right']); ?>
 
   <div class="form-group" align="right">
@@ -41,26 +23,17 @@
     <thead>
       <th>#</th>
       <th>Nombre</th>
-      <th>Cantidad de unidades (oz)</th>
+      <th>Cantidad de onzas</th>
+      <th>Tipo</th>
     </thead>
     <tbody>
       <?php foreach($insumos as $insumo): ?>
         <tr>
           <td><?php echo e($insumo->id); ?></td>
           <td><?php echo e($insumo->nombre); ?></td>
-          <td>
-            <div class="form-grup">
-              <input type="number" value="0" name="cantidad" class="form-control">
-            </div>
-          </td>
-          <td>
-            <?php echo Form::model(Request::all(), ['route' => ['auth.contiene.store',$insumo->id], 'method' => 'GET', 'class' => 'navbar-form navbar-right']); ?>
-
-            <button type="submit" class="btn btn-warning">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            </button>
-            <?php echo Form::close(); ?>
-
+          <td><?php echo e($insumo->tipo); ?></td>
+          <td><input type="number" name="cantidad" class="form-control" value="0"></td>
+          <td><a href="<?php echo e(route('auth.contiene.store', ['idInsumo'=>$insumo->id, 'idProducto'=>$idProducto])); ?>" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
           </td>
         </tr>
       <?php endforeach; ?>

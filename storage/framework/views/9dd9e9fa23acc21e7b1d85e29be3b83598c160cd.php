@@ -17,6 +17,10 @@
                     <?php echo Form::select('categorias', $categorias, null, ['class' => 'form-control']); ?>
 
                 </div>
+                <div class="form-grup">
+                    <label for="precio" class="control-label">Precio</label>
+                    <input type="number" step="any" name="precio" class="form-control" required="true"/>
+                </div>
                 <br>
                 <div class="form-grup">
                     <button type="submit" class="btn btn-default" onclick = "return confirm ('¿Está seguro de registrar el producto?')"><i class="fa fa-plus"></i> Asignar insumos

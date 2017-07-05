@@ -6,9 +6,10 @@
       <h1>Asignar insumos</h1>
   </div>
   @include('flash::message')
-  <a href="{{ route('auth.contiene.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Ingresar nuevo insumo </a>
+  <a href="{{ route('auth.contiene.create', ['idProducto'=>$idProducto]) }}" class="btn btn-default"><i class="fa fa-plus"></i> Ingresar nuevo insumo </a>
   <table class="table table-hover">
     <thead>
+      <th>#</th>
       <th>Insumo</th>
       <th>Cantidad de onzas</th>
     </thead>
@@ -16,6 +17,7 @@
       @foreach($contienen as $contiene)
         <tr>
           <td>{{$contiene->idInsumo}}</td>
+          <td>{{$insumos[$contiene->idInsumo]}}</td>
           <td>{{$contiene->cantidad}}</td>
           <td><a href="" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a></td>
         </tr>

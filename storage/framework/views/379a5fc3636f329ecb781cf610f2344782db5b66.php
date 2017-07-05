@@ -26,13 +26,15 @@
     <thead>
       <th>#</th>
       <th>Nombre</th>
+      <th>Precio</th>
       <th>Categoria</th>
     </thead>
     <tbody>
       <?php foreach($productos as $producto): ?>
         <tr>
-          <td><?php echo e($producto->idProducto); ?></td>
+          <td><?php echo e($producto->id); ?></td>
           <td><?php echo e($producto->nombre); ?></td>
+          <td><?php echo e($producto->precio); ?></td>
           <td><?php echo e($categorias[$producto->idCategoria]); ?></td>
           <td><a href="<?php echo e(route('auth.producto.edit',$producto->idProducto)); ?>" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           </td>

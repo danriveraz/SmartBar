@@ -8,7 +8,7 @@ class Contiene extends Model
 {
     protected $table = 'contiene';
 
-    public function scopeSearch($query, $idProducto){
-    	return $query->where('idProducto',"$idProducto");
+    public function scopeSearch($query, $id){
+    	return $query->where('idProducto',"$id");
     }
 }

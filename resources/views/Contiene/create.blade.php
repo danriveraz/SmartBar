@@ -3,27 +3,9 @@
 
 <div class="col-sm-offset-3 col-sm-6">
   <div class="panel-tittle">
-    <h1>Lista de insumos</h1>
-  <div>
-    <h3>Insumos del producto</h3>
+      <h1>Lista de insumos</h1>
   </div>
-  <div>
-    <table class="table table-hover">
-      <thead>
-      <th></th>
-      <th>Id insumo</th>
-      <th>Cantidad de unidades (oz)</th>
-    </thead>
-    <tbody>
-        <tr>
-        </tr>
-    </tbody>
-  </table>
-  </div>
-  <br>
-  <div>
-    <h3>Insumos disponibles</h3>
-  </div>
+  @include('flash::message')
   {!! Form::model(Request::all(), ['route' => ['auth.contiene.create'], 'method' => 'GET', 'class' => 'navbar-form navbar-right']) !!}
   <div class="form-group" align="right">
     {!! Form::text('nombre', null, ['class' => 'form-control', 'placelhoder' => 'Buscar', 'aria-describedby' => 'search']) !!}
@@ -38,24 +20,17 @@
     <thead>
       <th>#</th>
       <th>Nombre</th>
-      <th>Cantidad de unidades (oz)</th>
+      <th>Cantidad de onzas</th>
+      <th>Tipo</th>
     </thead>
     <tbody>
       @foreach($insumos as $insumo)
         <tr>
           <td>{{$insumo->id}}</td>
           <td>{{$insumo->nombre}}</td>
-          <td>
-            <div class="form-grup">
-              <input type="number" value="0" name="cantidad" class="form-control">
-            </div>
-          </td>
-          <td>
-            {!! Form::model(Request::all(), ['route' => ['auth.contiene.store',$insumo->id], 'method' => 'GET', 'class' => 'navbar-form navbar-right']) !!}
-            <button type="submit" class="btn btn-warning">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            </button>
-            {!! Form::close() !!}
+          <td>{{$insumo->tipo}}</td>
+          <td><input type="number" name="cantidad" class="form-control" value="0"></td>
+          <td><a href="{{ route('auth.contiene.store', ['idInsumo'=>$insumo->id, 'idProducto'=>$idProducto]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
           </td>
         </tr>
       @endforeach

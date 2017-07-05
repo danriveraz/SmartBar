@@ -306,6 +306,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
 
     public static $classMap = array (
         'Altertableadminimagenes' => __DIR__ . '/../..' . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
+        'Altertableproductos' => __DIR__ . '/../..' . '/database/migrations/2017_07_05_100014_altertableproductos.php',
         'CreateCategoriaTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_01_183643_create_categoria_table.php',
         'CreateContieneTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_02_200842_create_contiene_table.php',
         'CreateInsumosTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_01_190921_create_insumos_table.php',

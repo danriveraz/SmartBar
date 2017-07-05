@@ -23,6 +23,7 @@
     <thead>
       <th>#</th>
       <th>Nombre</th>
+      <th>Precio</th>
       <th>Categoria</th>
     </thead>
     <tbody>
@@ -30,6 +31,7 @@
         <tr>
           <td>{{$producto->id}}</td>
           <td>{{$producto->nombre}}</td>
+          <td>{{$producto->precio}}</td>
           <td>{{$categorias[$producto->idCategoria]}}</td>
           <td><a href="{{ route('auth.producto.edit',$producto->idProducto) }}" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           </td>
