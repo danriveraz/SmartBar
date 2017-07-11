@@ -5,7 +5,7 @@
 <link rel="shortcut icon" href="../images/icon.png">
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-<title>PocketByR</title>
+<title>PocketSmartBar</title>
 
 	<!-- Meta-Tags -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -151,9 +151,9 @@
                                 </select>
 								</div>
 									<div class="send-button w3layouts agileits">
-										<button title="Registrar" type="submit" class="btn btn-block btn-info">
-                                    	<i class="fa fa-btn fa-user"></i> Registrar
-                                </button>
+
+										<input type="submit" value="REGISTRARME">
+
 									</div>
 								<p class="change_link w3layouts agileits">
 									¿Ya eres usuario? <a href="#tologin" class="to_register">Iniciar Sesión</a>
