@@ -2,17 +2,18 @@
 <html>
   <head>
     <title>
-  Pocket SMARTBAR
+      Pocket SMARTBAR
     </title>
-    <link href="../stylesheets/bootstrap.min.css" media="all" rel="stylesheet" type="text/css">
-    <link href="../stylesheets/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
-    <link href="../stylesheets/hightop-font.css" media="all" rel="stylesheet" type="text/css">
-    <link href="../stylesheets/style.css" media="all" rel="stylesheet" type="text/css">
 
-	<script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
-	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
-	<script src="../javascripts/bootstrap.min.js" type="text/javascript"></script>
-      <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    {!!Html::style('stylesheets/bootstrap.min.css')!!}
+    {!!Html::style('stylesheets/font-awesome.min.css')!!}
+    {!!Html::style('stylesheets/hightop-font.css')!!}
+    {!!Html::style('stylesheets/style.css')!!}
+
+	   <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
+    {!!Html::script('javascripts/bootstrap.min.js')!!}
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   </head>
   <body class="page-header-fixed bg-1 layout-boxed">
     <div class="modal-shiftfix">
@@ -91,7 +92,7 @@
                 </ul>
               </li>
               <li class="dropdown user hidden-xs"><a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img width="34" height="34" src="../images\avatar-male.jpg">{{Auth::user()->nombrePersona}} <b class="caret"></b></a>
+                <img width="34" height="34" src="../images\avatar-male.jpg">{{Auth::user()->nombrePersona}}------{{Auth::id()}}<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">
                     <i class="fa fa-user"></i>Perfil</a>

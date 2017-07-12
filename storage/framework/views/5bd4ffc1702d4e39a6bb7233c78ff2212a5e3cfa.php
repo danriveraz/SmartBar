@@ -1,2 +1,0 @@
-<h1>Bienvenid@ <?php echo e($data->nombrePersona); ?></h1>
-<a href="<?php echo e(url('/')); ?>/auth/confirm/email/<?php echo e($data->email); ?>/confirm_token/<?php echo e($data->confirm_token); ?>">Confirmar mi cuenta</a>
