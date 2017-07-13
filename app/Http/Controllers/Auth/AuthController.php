@@ -3,6 +3,8 @@
 namespace PocketByR\Http\Controllers\Auth;
 
 use PocketByR\User;
+use PocketByR\Departamento;
+use PocketByR\Ciudad;
 use Validator;
 use PocketByR\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -47,7 +49,12 @@ class AuthController extends Controller
         $this->middleware($this->guestMiddleware(), ['except' => ['getLogout','profile','updateProfile' , 'editProfile']]);
     }
     
-
+    public function getRegister(Request $request){
+        $departamentos = Departamento::all();
+        $ciudades = Ciudad::all();
+        return view("auth/register")->with('departamentos',$departamentos)
+                ->with('ciudades', $ciudades);
+    }
 
     public function postRegister(Request $request){
 
@@ -61,18 +68,24 @@ class AuthController extends Controller
             //'telefono' => 'required|min:1|max:9999999999|numeric',
         ];
          
-         $validator = Validator::make($request->all(), $rules);
-        
+        $validator = Validator::make($request->all(), $rules);
+        $departamentos = Departamento::All();
+        $ciudades = Ciudad::all();
         if ($validator->fails()){
             return redirect("auth/register")
             ->withErrors($validator)
-            ->withInput();
+            ->withInput()
+            ->with('departamentos',$departamentos)
+            ->with('ciudades', $ciudades);
         }
         else{
             $admin = new User;
             $admin->nombreEstablecimiento = $request->nombreEstablecimiento;
             $admin->nombrePersona = $request->nombrePersona;
             $admin->email = $request->email;
+            $admin->pais= "Colombia";
+            $admin->departamento = $departamentos[($request->idDepto) -1]->nombre;
+            $admin->ciudad = $ciudades[($request->idCiudad) -1]->nombre;
             $admin->confirmoEmail = 0;
             $admin->imagenPerfil = "perfil.jpg";
             $admin->imagenNegocio = "perfil.jpg";

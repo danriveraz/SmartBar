@@ -33,6 +33,8 @@
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700" 		  type="text/css" media="all">
 	<!-- //Fonts -->
 
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
 </head>
 <!-- //Head -->
 
@@ -127,27 +129,34 @@
 								 @endif
 							 </div>
                                 	<label>Empresa</label>
-									<input type="text" class="name w3layouts agileits" name="nombreEstablecimiento" required="">
+									<input type="text" class="name w3layouts agileits" name="nombreEstablecimiento" value="{{ old('nombreEstablecimiento') }}" >
+									<div class="text-danger">{{$errors->first('nombreEstablecimiento')}}</div>
                                 <div class="left-w3-agile">
                                     <label>Nombre</label>
-									<input type="text" class="usuario w3layouts agileits" name="nombrePersona" placeholder="" required="" /></div>
+									<input type="text" class="usuario w3layouts agileits" name="nombrePersona" placeholder="" value="{{ old('name') }}" ><div class="text-danger">{{$errors->first('name')}}</div>
+									</div>	
 								<div class="right-agileits">
                                 <label>Apellido</label>
-								<input type="text" class="usuario w3layouts agileits" name="" placeholder="" required="" />
+								<input type="text" class="usuario w3layouts agileits" name="" placeholder=""/>
 								</div>
                                 	<label>Correo Electronico</label>
-									<input type="text" Name="email" required="">
+									<input type="text" Name="email" value="{{ old('email') }}">
+									<div class="text-danger">{{$errors->first('email')}}</div>
 									<label>Contraseña</label>
-									<input type="password" Name="password" required="">
-                                <div class="left-w3-agile">
-                                <label>Ciudad</label>
-								<select id="idEstado" name="idEstado" required>
-                                  <option value="0">Estados</option>
+									<input type="password" Name="password">
+									<div class="text-danger">{{$errors->first('password')}}</div>
+                                <div class="left-w3-agile" id="target">
+                                <label>Departamento</label>
+								<select id="idDepto" name="idDepto" required>
+									<option>Elija una opción</option>>
+									@foreach($departamentos as $departamento)
+                                  		<option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
+                                 	@endforeach
                                 </select></div>
 								<div class="right-agileits">
-                                <label>Departamento</label>
-								<select id="idEstado" name="idEstado" required>
-                                  <option value="0">Estados</option>
+                                <label>Ciudad</label>
+								<select id="idCiudad" name="idCiudad" required> 
+									<option>Elija una opción</option>  
                                 </select>
 								</div>
 									<div class="send-button w3layouts agileits">
@@ -175,7 +184,26 @@
 				<p class="copy">© 2017 condiciones de uso y privacidad  <a href="" target="_blank">Derechos Reservados</a> </p>
 			</div>
 	</div>
-
+	<script>
+		$('#idDepto').on('change', function (event) {
+		    var id = $(this).find('option:selected').val();
+		    $('#idCiudad').empty();
+		    $('#idCiudad').append($('<option>', {
+					    value: 0,
+					    text: 'Elija una opción'
+					}));
+		    JSONCiudades = eval(<?php echo json_encode($ciudades);?>);
+		    JSONCiudades.forEach(function(currentValue,index,arr) {
+			    if(currentValue.idDepartamento == id){
+			    	$('#idCiudad').append($('<option>', {
+					    value: currentValue.id,
+					    text: currentValue.nombre
+					}));
+			    }
+			});
+			 
+		});
+	</script>
 </body>
 <!-- //Body -->
 
