@@ -53,4 +53,7 @@ Route::post('cajero/recibo', 'CajeroController@recibo');
 Route::get('mesero/lista', 'MeseroController@lista');
 Route::resource('mesero', 'MeseroController');
 
+Route::resource('WelcomeAdmin', 'welcomeAdmin', ['only' => [
+    'index']]);
+
 
