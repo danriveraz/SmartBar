@@ -6,7 +6,7 @@
       <h1>Asignar insumos</h1>
   </div>
   @include('flash::message')
-  <a href="{{ route('auth.contiene.create', ['idProducto'=>$idProducto]) }}" class="btn btn-default"><i class="fa fa-plus"></i> Ingresar nuevo insumo </a>
+  <a href="{{ route('contiene.create', ['idProducto'=>$idProducto]) }}" class="btn btn-default"><i class="fa fa-plus"></i> Ingresar nuevo insumo </a>
   <table class="table table-hover">
     <thead>
       <th>#</th>

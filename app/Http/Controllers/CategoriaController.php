@@ -28,7 +28,7 @@ class CategoriaController extends Controller
       $categoria->idAdmin = 4;
       $categoria->save();
       Flash::success("La categoria se ha registrado satisfactoriamente")->important();
-      return redirect()->route('auth.producto.index');
+      return redirect()->route('producto.index');
   	}
 
    	public function edit($id){
@@ -44,13 +44,13 @@ class CategoriaController extends Controller
       	$categoria->idAdmin = 4;
       	$categoria->save();
       	flash::warning('La categoria ha sido modificada satisfactoriamente')->important();
-      	return redirect()->route('auth.producto.index');
+      	return redirect()->route('producto.index');
     }
 
     public function destroy($id){
     	$categoria = Categoria::find($id);
     	$categoria->delete();
     	Flash::success('La categoría ha sido eliminada de forma exitosa')->important();
-    	return redirect()->route('auth.categoria.index');
+    	return redirect()->route('categoria.index');
   }
 }

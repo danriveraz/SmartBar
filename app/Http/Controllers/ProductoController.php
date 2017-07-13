@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use PocketByR\Producto;
 use PocketByR\Categoria;
 use Laracasts\Flash\Flash;
-
+use Auth;
 
 class ProductoController extends Controller
 {
@@ -19,6 +19,7 @@ class ProductoController extends Controller
 
       $productos = Producto::Search($request->nombre)->
                              Category($request->categorias)->
+                             where('idAdmin' , Auth::id())->
                              orderBy('id','ASC')->
                              paginate(20);
       return view('producto.index',compact('categorias'))->with('productos',$productos);
@@ -38,7 +39,7 @@ class ProductoController extends Controller
       $producto->idAdmin = 4;
       $producto->save();
       Flash::success("El producto se ha registrado satisfactoriamente")->important();
-      return redirect()->route('auth.contiene.index', ['idProducto'=>$producto->id]);
+      return redirect()->route('contiene.index', ['idProducto'=>$producto->id]);
     }
 
   public function edit($id){

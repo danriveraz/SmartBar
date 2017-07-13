@@ -1,19 +1,20 @@
-@extends('layout.app')
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="col-sm-offset-3 col-sm-6">
     <div class="panel-tittle">
         <h1>Insumo</h1>
     </div>
     <div class ="panel-body">
-        <form action=" {{ route('insumo.store') }}" method="POST">
-                {{ csrf_field() }}
+        <form action=" <?php echo e(route('insumo.store')); ?>" method="POST">
+                <?php echo e(csrf_field()); ?>
+
                 <div class="form-group">
                     <label for="nombre" class="control-label">Nombre del insumo</label>
                     <input type="text" name="nombre" class="form-control" placeholder="Nombre del insumo" required="true"/>
                 </div>
                 <div class="form-group">
                     <label for="idProveedor" class="control-label">Proveedor</label>
-                    {!! Form::select('proveedores', $proveedores, null, ['class' => 'form-control']) !!}
+                    <?php echo Form::select('proveedores', $proveedores, null, ['class' => 'form-control']); ?>
+
                 </div>
                 <div class="form-group">
                     <label for="cantidadUnidad" class="control-label">Cantidad de unidades</label>
@@ -50,4 +51,6 @@
         </form>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

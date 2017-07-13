@@ -6,7 +6,7 @@
       <h1>Lista categorías</h1>
   </div>
   @include('flash::message')
-  <a href="{{ route('auth.categoria.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Agregar nueva categoría </a>
+  <a href="{{ route('categoria.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Agregar nueva categoría </a>
 
   <table class="table table-hover">
     <thead>
@@ -19,10 +19,10 @@
           <td>{{$categoria->id}}</td>
           <td>{{$categoria->nombre}}</td>
 
-          <td><a href="{{route('auth.categoria.edit', $categoria->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+          <td><a href="{{route('categoria.edit', $categoria->id) }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+          <a href="{{route('categoria.destroy', $categoria->id) }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
           </td>
-          <td><a href="{{route('auth.categoria.destroy', $categoria->id) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
-          </td>
+
         </tr>
       @endforeach
     </tbody>

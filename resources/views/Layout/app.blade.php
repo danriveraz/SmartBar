@@ -92,7 +92,7 @@
                 </ul>
               </li>
               <li class="dropdown user hidden-xs"><a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img width="34" height="34" src="../images\avatar-male.jpg">{{Auth::user()->nombrePersona}}------{{Auth::id()}}<b class="caret"></b></a>
+                <img width="34" height="34" src="../images\avatar-male.jpg">{{Auth::user()->nombrePersona}}<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">
                     <i class="fa fa-user"></i>Perfil</a>
@@ -118,10 +118,10 @@
                 <a href="index.htm" class="current">
                 <span aria-hidden="true" class="fa fa-fw fa-group"></span>Personal</a>
               </li>
-              <li><a href="social.htm">
+              <li><a href="{{route('producto.index')}}" >
                 <span aria-hidden="true" class="fa fa-fw fa-glass"></span>Productos</a>
               </li>
-              <li class="dropdown"><a data-toggle="dropdown" href="#">
+              <li><a href="{{route('insumo.index')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-list"></span>Inventario</a>
               </li>
               <li class="dropdown"><a data-toggle="dropdown" href="#">

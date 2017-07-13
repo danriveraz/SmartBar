@@ -6,7 +6,7 @@
       <h1>Lista de insumos</h1>
   </div>
   @include('flash::message')
-  {!! Form::model(Request::all(), ['route' => ['auth.contiene.create'], 'method' => 'GET', 'class' => 'navbar-form navbar-right']) !!}
+  {!! Form::model(Request::all(), ['route' => ['contiene.create'], 'method' => 'GET', 'class' => 'navbar-form navbar-right']) !!}
   <div class="form-group" align="right">
     {!! Form::text('nombre', null, ['class' => 'form-control', 'placelhoder' => 'Buscar', 'aria-describedby' => 'search']) !!}
     <button type="submit" class="btn btn-dufault">Buscar</button>
@@ -30,7 +30,7 @@
           <td>{{$insumo->nombre}}</td>
           <td>{{$insumo->tipo}}</td>
           <td><input type="number" name="cantidad" class="form-control" value="0"></td>
-          <td><a href="{{ route('auth.contiene.store', ['idInsumo'=>$insumo->id, 'idProducto'=>$idProducto]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+          <td><a href="{{ route('contiene.store', ['idInsumo'=>$insumo->id, 'idProducto'=>$idProducto]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
           </td>
         </tr>
       @endforeach

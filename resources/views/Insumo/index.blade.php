@@ -1,4 +1,5 @@
 @extends('Layout.app')
+@section('panel-title', 'insumo')
 @section('content')
 
 <div class="col-sm-offset-3 col-sm-6">
@@ -6,8 +7,8 @@
       <h1>Lista de insumos</h1>
   </div>
   @include('flash::message')
-  <a href="{{ route('auth.insumo.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Agregar nuevo insumo </a>
-  {!! Form::model(Request::all(), ['route' => ['auth.insumo.index'], 'method' => 'GET', 'class' => 'navbar-form navbar-right']) !!}
+  <a href="{{ route('insumo.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Agregar nuevo insumo </a>
+  {!! Form::model(Request::all(), ['route' => ['insumo.index'], 'method' => 'GET', 'class' => 'navbar-form navbar-right']) !!}
   <div class="form-group" align="right">
     {!! Form::text('nombre', null, ['class' => 'form-control', 'placelhoder' => 'Buscar', 'aria-describedby' => 'search']) !!}
     <button type="submit" class="btn btn-dufault">Buscar</button>
@@ -39,7 +40,7 @@
           <td>{{$insumo->valorCompra}}</td>
           <td>{{number_format($insumo->cantidadMedida,3)}}</td>
           <td>{{$insumo->tipo}}</td>
-          <td><a href="{{ route('auth.insumo.edit',$insumo->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+          <td><a href="{{ route('insumo.edit',$insumo->id) }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           </td>
         </tr>
       @endforeach

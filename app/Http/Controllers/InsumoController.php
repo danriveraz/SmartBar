@@ -9,15 +9,17 @@ use Illuminate\Support\Facades\Validator;
 use PocketByR\Insumo;
 use PocketByR\Proveedor;
 use Laracasts\Flash\Flash;
+use Auth;
 
 class InsumoController extends Controller
 {
     public function index(Request $request){
       $proveedores = Proveedor::lists('nombre','idProveedor');
       $insumos = Insumo::Search($request->nombre)->
-                       Type($request->tipo)->
-                       orderBy('id','ASC')->
-                       paginate(20);
+                         Type($request->tipo)->
+                         where('idAdmin' , Auth::id())->
+                         orderBy('id','ASC')->
+                         paginate(20);
       return view('insumo.index')->with('insumos',$insumos)->with('proveedores',$proveedores);
   }
 
@@ -42,10 +44,10 @@ class InsumoController extends Controller
         $insumo->cantidadMedida = $request->cantidadMedida;
       }
       $insumo->tipo = $_POST['Tipo'];
-      $insumo->idAdmin = 4;
+      $insumo->idAdmin = Auth::id();
       $insumo->save();
       Flash::success("El insumo se ha registrado satisfactoriamente")->important();
-      return redirect()->route('auth.insumo.index');
+      return redirect()->route('insumo.index');
   }
 
   public function show($id){
@@ -75,7 +77,7 @@ class InsumoController extends Controller
     $insumo->idAdmin = 4;
     $insumo->save();
     flash::warning('El insumo ha sido modificado satisfactoriamente')->important();
-    return redirect()->route('auth.insumo.index');
+    return redirect()->route('insumo.index');
   }
 
   public function destroy($id){

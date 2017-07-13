@@ -35,12 +35,12 @@ Route::group(['prefix' => 'auth'], function(){
   Route::get('usuario/{id}/destroy', ['uses' => 'UsuariosController@destroy', 'as' => 'auth.usuario.destroy']);
 });
 
-Route::resource('auth/insumo', 'insumoController');
-Route::resource('auth/producto', 'productoController');
-Route::resource('auth/contiene', 'contieneController');
+Route::resource('insumo', 'insumoController');
+Route::resource('producto', 'productoController');
+Route::resource('contiene', 'contieneController');
 
-Route::resource('auth/categoria', 'categoriaController');
-Route::get('categoria/{id}/destroy', ['uses' => 'CategoriaController@destroy', 'as' => 'auth.categoria.destroy']);
+Route::resource('categoria', 'categoriaController');
+Route::get('categoria/{id}/destroy', ['uses' => 'CategoriaController@destroy', 'as' => 'categoria.destroy']);
 
 
 Route::post('bartender/pedido', 'BartenderController@pedido');
