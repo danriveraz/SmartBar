@@ -15,7 +15,8 @@ use Auth;
 class ProductoController extends Controller
 {
      public function index(Request $request){
-      $categorias = Categoria::lists('nombre','id');
+      $categorias = Categoria::where('idAdmin' , Auth::id())->
+                               lists('nombre','id');
 
       $productos = Producto::Search($request->nombre)->
                              Category($request->categorias)->

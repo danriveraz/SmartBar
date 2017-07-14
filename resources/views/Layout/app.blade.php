@@ -127,8 +127,8 @@
               <li class="dropdown"><a data-toggle="dropdown" href="#">
                 <span aria-hidden="true" class="fa fa-fw fa-usd"></span>Caja</a>
               </li>
-              <li class="dropdown"><a data-toggle="dropdown" href="#">
-                <span aria-hidden="true" class="fa fa-fw fa-truck"></span>Provedores</a>
+              <li><a href="{{route('proveedor.index')}}">
+                <span aria-hidden="true" class="fa fa-fw fa-truck"></span>Proveedores</a>
               </li>
               <li><a href="charts.htm">
                 <span aria-hidden="true" class="fa fa-fw fa-bar-chart-o"></span>Estadisticas</a>

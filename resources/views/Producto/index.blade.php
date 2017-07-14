@@ -1,6 +1,6 @@
 @extends('Layout.app')
 @section('content')
-<div class="col-sm-offset-3 col-sm-6">
+<div class="col-sm-offset-2 col-sm-8">
     <div class="panel-tittle">
         <h1>Lista de productos</h1>
     </div>
@@ -19,7 +19,7 @@
     </div>
   </div>
   {!! Form::close() !!}
-  <table class="table table-hover">
+  <table class="table table-striped">
     <thead>
       <th>#</th>
       <th>Nombre</th>

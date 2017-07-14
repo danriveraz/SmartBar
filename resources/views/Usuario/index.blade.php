@@ -6,7 +6,7 @@
   </div>
   @include('flash::message')
   <a href="{{ route('auth.usuario.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Agregar nuevo usuario </a>
-  <table class="table table-hover">
+  <table class="table table-striped">
     <thead>
       <th>#</th>
       <th>Nombre</th>

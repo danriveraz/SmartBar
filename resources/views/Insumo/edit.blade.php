@@ -8,10 +8,13 @@
       {!! Form::open(['route' => ['insumo.update',$insumo],'method' => 'PUT']) !!}
 
         <div class="form-group">
-          <label for="nombre" class="control-label">Nombre del insumo</label>
+          <label for="nombre" class="control-label">Nombre</label>
           <input type="text" name="nombre" class="form-control" value="{{$insumo->nombre}}"/>
         </div>
-
+        <div class="form-group">
+          <label for="marca" class="control-label">Marca</label>
+          <input type="text" name="marca" class="form-control" value="{{$insumo->marca}}"/>
+        </div>
         <div class="form-group">
             <label for="idProveedor" class="control-label">Proveedor</label>
             {!! Form::select('proveedores', $proveedores, null, ['class' => 'form-control']) !!}

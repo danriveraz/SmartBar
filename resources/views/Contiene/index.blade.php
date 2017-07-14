@@ -7,7 +7,7 @@
   </div>
   @include('flash::message')
   <a href="{{ route('contiene.create', ['idProducto'=>$idProducto]) }}" class="btn btn-default"><i class="fa fa-plus"></i> Ingresar nuevo insumo </a>
-  <table class="table table-hover">
+  <table class="table table-striped">
     <thead>
       <th>#</th>
       <th>Insumo</th>

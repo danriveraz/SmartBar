@@ -8,11 +8,16 @@
         <form action=" {{ route('insumo.store') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="nombre" class="control-label">Nombre del insumo</label>
+                    <label for="nombre" class="control-label">Nombre</label>
                     <input type="text" name="nombre" class="form-control" placeholder="Nombre del insumo" required="true"/>
                 </div>
                 <div class="form-group">
+                    <label for="marca" class="control-label">Marca</label>
+                    <input type="text" name="marca" class="form-control" placeholder="Marca del insumo" required="true"/>
+                </div>
+                <div class="form-group">
                     <label for="idProveedor" class="control-label">Proveedor</label>
+                    
                     {!! Form::select('proveedores', $proveedores, null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">

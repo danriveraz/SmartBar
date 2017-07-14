@@ -36,8 +36,14 @@ Route::group(['prefix' => 'auth'], function(){
 });
 
 Route::resource('insumo', 'insumoController');
+Route::get('insumo/{id}/destroy', ['uses' => 'InsumoController@destroy', 'as' => 'insumo.destroy']);
+
 Route::resource('producto', 'productoController');
+
 Route::resource('contiene', 'contieneController');
+
+Route::resource('proveedor', 'proveedorController');
+Route::get('proveedor/{id}/destroy', ['uses' => 'ProveedorController@destroy', 'as' => 'proveedor.destroy']);
 
 Route::resource('categoria', 'categoriaController');
 Route::get('categoria/{id}/destroy', ['uses' => 'CategoriaController@destroy', 'as' => 'categoria.destroy']);
