@@ -42,13 +42,28 @@
                         <option value="oz">oz</option> 
                     </select>
                 </div>
+                <script type="text/javascript">
+                    function showContent() {
+                        element = document.getElementById("content");
+                        check = document.getElementById("tipo");
+                        if (check.checked) {
+                            element.style.display='block';
+                        }
+                        else {
+                            element.style.display='none';
+                        }
+                    }
+                </script>
                 <div class="form-group">
-                    <label for="tipo" class="control-label">Tipo</label>
-                    <select name="Tipo" class="form-control">
-                        <option value="A la venta">A la venta</option>
-                        <option value="No a la venta">No a la venta</option>
-                    </select>
+                    <label for="tipo" class="control-label">Vender como producto?</label>
+                    <input type="checkbox" name="tipo" id="tipo" value="1" onchange="javascript:showContent()" />
                 </div>
+                <div id="content" style="display: none;">
+                    <label for="categorias" class="control-label">Categoría</label>
+                    <?php echo Form::select('categorias', $categorias, null, ['class' => 'form-control']); ?>
+
+                </div>
+                <br>
                 <div class="form-grup">
                     <button type="submit" class="btn btn-default"><i class="fa fa-plus"></i> Registrar insumo
                     </button>

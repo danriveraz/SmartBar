@@ -33,7 +33,7 @@
           <td>{{$producto->nombre}}</td>
           <td>{{$producto->precio}}</td>
           <td>{{$categorias[$producto->idCategoria]}}</td>
-          <td><a href="{{ route('producto.edit',$producto->idProducto) }}" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+          <td align="right"><a href="{{ route('producto.edit',$producto->id) }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           </td>
         </tr>
       @endforeach

@@ -40,13 +40,27 @@
                 <option value="oz" <?php if($insumo->cantidadMedida !="0") echo "selected";?> >oz</option> 
             </select>
         </div>
+        <script type="text/javascript">
+            function showContent() {
+                element = document.getElementById("content");
+                check = document.getElementById("tipo");
+                if (check.checked) {
+                    element.style.display='block';
+                }
+                else {
+                    element.style.display='none';
+                }
+            }
+        </script>
         <div class="form-group">
-            <label for="tipo" class="control-label">Tipo</label>
-            <select name="Tipo" class="form-control">
-                <option value="A la venta" <?php if($insumo->tipo =="A la venta") echo "selected";?>>A la venta</option>
-                <option value="No a la venta" <?php if($insumo->tipo =="No a la venta") echo "selected";?>>No a la venta</option>
-            </select>
+            <label for="tipo" class="control-label">Vender como producto?</label>
+            <input type="checkbox" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?> onchange="javascript:showContent()" />
         </div>
+        <div id="content" <?php if($insumo->tipo == "0") echo "hidden";?>>
+            <label for="categorias" class="control-label">Categoría</label>
+            {!! Form::select('categorias', $categorias, null, ['class' => 'form-control']) !!}
+        </div>
+        <br>
         <div class="form-group">
           <br><button type="submit" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" onclick = "return confirm ('¿Desea modificar este insumo?')"><i class="fa fa-plus"></i> Editar insumo
           </button>

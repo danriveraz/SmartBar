@@ -28,7 +28,8 @@ class ProductoController extends Controller
 
   public function create(Request $request){
 
-      $categorias = Categoria::lists('nombre','id');
+      $categorias = Categoria::where('idAdmin' , Auth::id())->
+                               lists('nombre','id');
 
       return view('producto.create',compact('categorias'));
     }
@@ -37,15 +38,18 @@ class ProductoController extends Controller
       $producto->nombre = $request->nombreProducto;
       $producto->precio = $request->precio;
       $producto->idCategoria = $_POST['categorias'];
-      $producto->idAdmin = 4;
+      $producto->idAdmin = Auth::id();
       $producto->save();
       Flash::success("El producto se ha registrado satisfactoriamente")->important();
-      return redirect()->route('contiene.index', ['idProducto'=>$producto->id]);
+      session_start();
+      $_SESSION['idProducto'] = $producto->id;
+      return redirect()->route('contiene.index');
     }
 
   public function edit($id){
+    $categorias = Categoria::lists('nombre','id');
     $producto = Producto::find($id);
-    print($producto);
+    return view('producto.edit',compact('categorias'))->with('producto',$producto);
   }
 
 }

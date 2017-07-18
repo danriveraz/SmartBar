@@ -3,7 +3,7 @@
 
 <div class="col-sm-offset-3 col-sm-6">
   <div class="panel-tittle">
-      <h1>Lista de insumos</h1>
+      <h1>Registro de insumos</h1>
   </div>
   @include('flash::message')
   {!! Form::model(Request::all(), ['route' => ['contiene.create'], 'method' => 'GET', 'class' => 'navbar-form navbar-right']) !!}
@@ -20,18 +20,24 @@
     <thead>
       <th>#</th>
       <th>Nombre</th>
-      <th>Cantidad de onzas</th>
       <th>Tipo</th>
+      <th>Cantidad de onzas</th>
     </thead>
     <tbody>
       @foreach($insumos as $insumo)
         <tr>
+        <form method="POST" action="{{ route('contiene.store',['idInsumo'=>$insumo->id,'idProducto'=>$idProducto])}}">
+              {{ csrf_field() }}
           <td>{{$insumo->id}}</td>
           <td>{{$insumo->nombre}}</td>
           <td>{{$insumo->tipo}}</td>
           <td><input type="number" name="cantidad" class="form-control" value="0"></td>
-          <td><a href="{{ route('contiene.store', ['idInsumo'=>$insumo->id, 'idProducto'=>$idProducto]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+          <td>
+              <button type="submit" class="btn btn-dufault">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              </button>
           </td>
+            </form>
         </tr>
       @endforeach
     </tbody>

@@ -30,7 +30,7 @@
       <th>Valor venta</th>
       <th>Valor compra</th>
       <th>(oz)</th>
-      <th>Tipo</th>
+      <th>A la venta</th>
     </thead>
     <tbody>
       <?php foreach($insumos as $insumo): ?>
@@ -43,7 +43,9 @@
           <td><?php echo e($insumo->precioUnidad); ?></td>
           <td><?php echo e($insumo->valorCompra); ?></td>
           <td><?php echo e(number_format($insumo->cantidadMedida,3)); ?></td>
-          <td><?php echo e($insumo->tipo); ?></td>
+          <td align="center">
+            <input type="checkbox" disabled="disabled" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?>/>
+          </td>
           <td align="right"><a href="<?php echo e(route('insumo.edit',$insumo->id)); ?>" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           <a href="<?php echo e(route('insumo.destroy', $insumo->id)); ?>" class="btn btn-default" onclick = "return confirm ('¿Desea eliminar este insumo?')" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
           </td>

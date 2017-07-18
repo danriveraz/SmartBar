@@ -13,7 +13,7 @@
     <button type="submit" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" class="btn btn-dufault">Buscar</button>
     <div align="right">
       <br>
-      {!! Form::select('tipo', ['' => 'Seleccione un tipo','A la venta' => 'A la venta','No a la venta' => 'No a la venta'], null, ['class' => 'form-control']) !!}
+      {!! Form::select('tipo', ['' => 'Seleccione un tipo','1' => 'A la venta','0' => 'No a la venta'], null, ['class' => 'form-control']) !!}
     </div>
   </div>
   {!! Form::close() !!}
@@ -27,7 +27,7 @@
       <th>Valor venta</th>
       <th>Valor compra</th>
       <th>(oz)</th>
-      <th>Tipo</th>
+      <th>A la venta</th>
     </thead>
     <tbody>
       @foreach($insumos as $insumo)
@@ -40,7 +40,9 @@
           <td>{{$insumo->precioUnidad}}</td>
           <td>{{$insumo->valorCompra}}</td>
           <td>{{number_format($insumo->cantidadMedida,3)}}</td>
-          <td>{{$insumo->tipo}}</td>
+          <td align="center">
+            <input type="checkbox" disabled="disabled" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?>/>
+          </td>
           <td align="right"><a href="{{ route('insumo.edit',$insumo->id) }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           <a href="{{route('insumo.destroy', $insumo->id) }}" class="btn btn-default" onclick = "return confirm ('¿Desea eliminar este insumo?')" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
           </td>

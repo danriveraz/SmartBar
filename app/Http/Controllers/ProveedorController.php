@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use PocketByR\Proveedor;
 use Laracasts\Flash\Flash;
 use PocketByR\Insumo;

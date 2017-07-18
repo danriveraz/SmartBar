@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Altertableadminimagenes' => $baseDir . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
+    'Altertablecontiene' => $baseDir . '/database/migrations/2017_07_14_161041_altertablecontiene.php',
     'Altertableinsumos' => $baseDir . '/database/migrations/2017_07_13_152912_altertableinsumos.php',
     'Altertableproductos' => $baseDir . '/database/migrations/2017_07_05_100014_altertableproductos.php',
     'CreateCategoriaTable' => $baseDir . '/database/migrations/2017_07_01_183643_create_categoria_table.php',
@@ -95,7 +96,6 @@ return array(
     'Hamcrest\\Util' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
     'Hamcrest\\Xml\\HasXPath' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
-    'InsertarDatosCiudadesYdepartamentos' => $baseDir . '/database/migrations/2017_07_13_131516_insertarDatosCiudadesYdepartamentos.php',
     'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
     'PHPUnit\\Framework\\AssertionFailedError' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/AssertionFailedError.php',
     'PHPUnit\\Framework\\BaseTestListener' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',

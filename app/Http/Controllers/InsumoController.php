@@ -8,6 +8,9 @@ use PocketByR\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use PocketByR\Insumo;
 use PocketByR\Proveedor;
+use PocketByR\Producto;
+use PocketByR\Categoria;
+use PocketByR\Contiene;
 use Laracasts\Flash\Flash;
 use Auth;
 
@@ -28,11 +31,12 @@ class InsumoController extends Controller
   }
 
   public function create(){
-
+    $categorias = Categoria::where('idAdmin' , Auth::id())->
+                               lists('nombre','id');
     $proveedores = Proveedor::where('idAdmin' , Auth::id())->
                               lists('nombre','id');
 
-    return view('insumo.create')->with('proveedores',$proveedores);
+    return view('insumo.create')->with('proveedores',$proveedores)->with('categorias',$categorias);
   }
 
   public function store(Request $request){
@@ -43,15 +47,39 @@ class InsumoController extends Controller
       $insumo->cantidadUnidad = $request->cantidadUnidad;
       $insumo->precioUnidad = $request->precioUnidad;
       $insumo->valorCompra = $request->valorCompra;
+
       if ($request->medida == 'ml' || $request->medida == 'cm3') {
         $insumo->cantidadMedida = $request->cantidadMedida/30;
       }
       else{
         $insumo->cantidadMedida = $request->cantidadMedida;
       }
-      $insumo->tipo = $_POST['Tipo'];
+
+      if($request->tipo == null){
+        $insumo->tipo = false;
+      }
+      else{
+        $insumo->tipo = true;
+      }
+
       $insumo->idAdmin = Auth::id();
       $insumo->save();
+
+      if($insumo->tipo){
+        $producto = new Producto;
+        $producto->nombre = $request->nombre;
+        $producto->precio = $request->precioUnidad;
+        $producto->idCategoria = $_POST['categorias'];
+        $producto->idAdmin = Auth::id();
+        $producto->save();
+
+        $contiene = new Contiene;
+        $contiene->idProducto = $producto->id;
+        $contiene->idInsumo = $insumo->id;
+        $contiene->cantidad = $insumo->cantidadMedida;
+        $contiene->idAdmin = Auth::id();
+        $contiene->save();
+      }
       Flash::success("El insumo se ha registrado satisfactoriamente")->important();
       return redirect()->route('insumo.index');
   }
@@ -61,9 +89,12 @@ class InsumoController extends Controller
   }
 
   public function edit($id){
-    $proveedores = Proveedor::lists('nombre','id');
+    $categorias = Categoria::where('idAdmin' , Auth::id())->
+                               lists('nombre','id');
+    $proveedores = Proveedor::where('idAdmin' , Auth::id())->
+                                lists('nombre','id');
     $insumo = Insumo::find($id);
-    return view('insumo.edit')->with('insumo',$insumo)->with('proveedores',$proveedores);
+    return view('insumo.edit')->with('insumo',$insumo)->with('proveedores',$proveedores)->with('categorias',$categorias);
   }
 
     public function update(Request $request, $id){

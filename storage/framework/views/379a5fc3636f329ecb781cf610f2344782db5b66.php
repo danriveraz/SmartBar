@@ -36,7 +36,7 @@
           <td><?php echo e($producto->nombre); ?></td>
           <td><?php echo e($producto->precio); ?></td>
           <td><?php echo e($categorias[$producto->idCategoria]); ?></td>
-          <td><a href="<?php echo e(route('producto.edit',$producto->idProducto)); ?>" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+          <td align="right"><a href="<?php echo e(route('producto.edit',$producto->id)); ?>" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           </td>
         </tr>
       <?php endforeach; ?>
