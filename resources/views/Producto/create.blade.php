@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-grup">
                     <label for="precio" class="control-label">Precio</label>
-                    <input type="number" step="any" name="precio" class="form-control" required="true"/>
+                    <input type="number" min="0" step="any" name="precio" class="form-control" required="true"/>
                 </div>
                 <br>
                 <div class="form-grup">
