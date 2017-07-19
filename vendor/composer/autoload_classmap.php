@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Addrecetaproducto' => $baseDir . '/database/migrations/2017_07_18_165302_addrecetaproducto.php',
+    'Addunidadinsumo' => $baseDir . '/database/migrations/2017_07_18_222822_addunidadinsumo.php',
     'Altertableadminimagenes' => $baseDir . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
     'Altertablecontiene' => $baseDir . '/database/migrations/2017_07_14_161041_altertablecontiene.php',
     'Altertableinsumos' => $baseDir . '/database/migrations/2017_07_13_152912_altertableinsumos.php',

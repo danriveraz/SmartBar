@@ -50,9 +50,11 @@ class InsumoController extends Controller
 
       if ($request->medida == 'ml' || $request->medida == 'cm3') {
         $insumo->cantidadMedida = $request->cantidadMedida/30;
+        $insumo->cantidadRestante = $request->cantidadMedida/30;
       }
       else{
         $insumo->cantidadMedida = $request->cantidadMedida;
+        $insumo->cantidadRestante = $request->cantidadMedida;
       }
 
       if($request->tipo == null){
@@ -107,9 +109,11 @@ class InsumoController extends Controller
       $insumo->valorCompra = $request->valorCompra;
       if ($request->medida == 'ml' || $request->medida == 'cm3') {
         $insumo->cantidadMedida = $request->cantidadMedida/30;
+        $insumo->cantidadRestante = $request->cantidadMedida/30;
       }
       else{
         $insumo->cantidadMedida = $request->cantidadMedida;
+        $insumo->cantidadRestante = $request->cantidadMedida;
       }
       $insumo->tipo = $_POST['Tipo'];
       $insumo->idAdmin = Auth::id();
