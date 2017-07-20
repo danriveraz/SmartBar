@@ -114,13 +114,13 @@
                  				 </div>
               				</div>
           				</div>
-        		<div class="comment_icons">
-                	<ul>
-                		<li><a class="comments" href="#"> <span>34 Comments</span> </a></li>
-                		<li><a class="email" href="#"> <span>86 Shares</span> </a></li>
-                		<li><a class="like" href="#"> <span>105 Likes</span> </a></li>
-                	</ul>
-                </div>
+                  <div class="comment_icons">
+                      	<ul>
+                      		<li><a class="comments" href="#"> <span>34 Comments</span> </a></li>
+                      		<li><a class="email" href="#"> <span>86 Shares</span> </a></li>
+                      		<li><a class="like" href="#"> <span>105 Likes</span> </a></li>
+                      	</ul>
+                      </div>
      		 </div>
 
         <!-- banner-bottom -->

@@ -1101,7 +1101,7 @@ input:focus {
 		left:0;
 	}
 	.comment_icons li a{
-		padding:10px;
+		/*padding:10px;*/
 	}
 	.comment_icons li a.comments {
 		background-position:-134px 6px;
@@ -1311,9 +1311,7 @@ input:focus {
     color: #000000;
     font-size: 1.8em;
     margin: 0;
-    font-weight: 100;
-    font-family:"Arial Black", Gadget, sans-serif, cursive;
-    letter-spacing: 2px;
+
 }
 .w3ls-welcome-right-info h2 span,.w3-agileits-heading h3 span{
     color: #F44336;
