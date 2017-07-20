@@ -115,7 +115,12 @@ class InsumoController extends Controller
         $insumo->cantidadMedida = $request->cantidadMedida;
         $insumo->cantidadRestante = $request->cantidadMedida;
       }
-      $insumo->tipo = $request->tipo;
+      if($request->tipo == '0'){
+        $insumo->tipo = false;
+      }
+      else{
+        $insumo->tipo = true;
+      }
       $insumo->idAdmin = Auth::id();
       $insumo->save();
       flash::warning('El insumo ha sido modificado satisfactoriamente')->important();

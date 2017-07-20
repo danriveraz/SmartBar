@@ -54,11 +54,11 @@
         </script>
         <div class="form-group">
             <label for="tipo" class="control-label">Vender como producto?</label>
-            <input type="checkbox" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?> onchange="javascript:showContent()" />
+            <input type="checkbox" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?> onchange="javascript:showContent()" disabled="disabled" />
         </div>
         <div id="content" <?php if($insumo->tipo == "0") echo "hidden";?>>
             <label for="categorias" class="control-label">Categoría</label>
-            {!! Form::select('categorias', $categorias, null, ['class' => 'form-control']) !!}
+            {!! Form::select('categorias', $categorias, null, ['class' => 'form-control', 'disabled'=>'disabled' ]) !!}
         </div>
         <br>
         <div class="form-group">
