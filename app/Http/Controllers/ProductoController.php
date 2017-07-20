@@ -38,6 +38,7 @@ class ProductoController extends Controller
     $producto->nombre = $request->nombreProducto;
     $producto->precio = $request->precio;
     $producto->idCategoria = $_POST['categorias'];
+    $producto->receta = $request->receta;
     $producto->idAdmin = Auth::id();
     $producto->save();
     Flash::success("El producto se ha registrado satisfactoriamente")->important();
@@ -61,6 +62,7 @@ class ProductoController extends Controller
     $producto->nombre = $request->nombreProducto;
     $producto->precio = $request->precio;
     $producto->idCategoria = $_POST['categorias'];
+    $producto->receta = $request->receta;
     $producto->idAdmin = Auth::id();
     $producto->save();
     Flash::success("El producto se ha modificado satisfactoriamente")->important();

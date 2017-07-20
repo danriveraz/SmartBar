@@ -22,6 +22,12 @@
                 </div>
                 <br>
                 <div class="form-grup">
+                    <label for="receta" class="control-label">Receta</label>
+                    <br>
+                    <textarea name="receta" class="form-control"></textarea>
+                </div>
+                <br>
+                <div class="form-grup">
                     <button type="submit" class="btn btn-default" onclick = "return confirm ('¿Está seguro de registrar el producto?')"><i class="fa fa-plus"></i> Asignar insumos
                     </button>
                 </div>
