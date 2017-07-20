@@ -9,6 +9,9 @@
 
 <?php echo Html::style('stylesheets\style.css'); ?>
 
+<?php echo Html::style('stylesheets\bootstrap.min.css'); ?>
+
+
 
 
 <?php echo Html::script('javascripts\bootstrap.min.js'); ?>
@@ -32,6 +35,11 @@
 <?php echo Html::script('javascripts\main.js'); ?>
 
 
+
+
+
+    
+   
 
 <div class="container-fluid main-content"><div class="social-wrapper">
   <div id="social-container">
@@ -84,6 +92,7 @@
                   <th>Cant.</th>
                   <th>Producto</th>
                   <th>Categoria</th>
+                  <th width="150">Detalles</th>
                   <th><i class="fa fa-check"></i></th>
                 </thead>
               <?php foreach($factura->ventas as $venta): ?>
@@ -91,6 +100,7 @@
                   <td><?php echo e($venta->cantidad); ?></td>
                   <td><?php echo e($venta->producto->nombre); ?></td>
                   <td><?php echo e($venta->producto->categoria->nombre); ?></td>
+                  <td><a class="btn btn btn-default popover-trigger" data-content="<?php echo e($venta->producto->receta); ?>" data-placement="bottom" data-toggle="popover">receta</a></td>
                   <td><input type="checkbox" name="pedidos[]" value="<?php echo e($venta->id); ?>"" width="25" height="25"></td>
                 </tr>
               <?php endforeach; ?> 

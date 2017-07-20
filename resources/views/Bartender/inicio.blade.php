@@ -6,6 +6,8 @@
 {!!Html::style('stylesheets\isotope.css')!!}
 {!!Html::style('stylesheets\fullcalendar.css')!!}
 {!!Html::style('stylesheets\style.css')!!}
+{!!Html::style('stylesheets\bootstrap.min.css')!!}
+
 
 
 {!!Html::script('javascripts\bootstrap.min.js')!!}
@@ -19,6 +21,11 @@
 {!!Html::script('javascripts\jquery.sparkline.min.js')!!}
 {!!Html::script('javascripts\main.js')!!}
 
+
+
+
+    
+   
 
 <div class="container-fluid main-content"><div class="social-wrapper">
   <div id="social-container">
@@ -68,6 +75,7 @@
                   <th>Cant.</th>
                   <th>Producto</th>
                   <th>Categoria</th>
+                  <th width="150">Detalles</th>
                   <th><i class="fa fa-check"></i></th>
                 </thead>
               @foreach($factura->ventas as $venta)
@@ -75,6 +83,7 @@
                   <td>{{$venta->cantidad}}</td>
                   <td>{{$venta->producto->nombre}}</td>
                   <td>{{$venta->producto->categoria->nombre}}</td>
+                  <td><a class="btn btn btn-default popover-trigger" data-content="{{$venta->producto->receta}}" data-placement="bottom" data-toggle="popover">Receta</a></td>
                   <td><input type="checkbox" name="pedidos[]" value="{{$venta->id}}"" width="25" height="25"></td>
                 </tr>
               @endforeach 
