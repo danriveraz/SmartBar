@@ -59,10 +59,10 @@ Route::resource('cajero', 'CajeroController');
 Route::post('cajero/recibo', 'CajeroController@recibo');
 Route::post('cajero/edit', 'CajeroController@edit');
 
-Route::get('mesero/lista', 'MeseroController@lista');
+Route::get('mesero/venta',  'MeseroController@venta');
+Route::get('mesero/disminuir',  'MeseroController@disminuir');
+Route::get('mesero/agregar',  'MeseroController@agregar');
 Route::resource('mesero', 'MeseroController');
 
 Route::resource('WelcomeAdmin', 'welcomeAdmin', ['only' => [
     'index']]);
-
-

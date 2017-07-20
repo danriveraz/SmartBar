@@ -26,7 +26,7 @@ class Factura extends Model
     }
 
     public function mesa(){
-      return $this->belongsTo('PocketByR\Mesa', 'idMesa', 'id');                
+      return $this->belongsTo('PocketByR\Mesa', 'idMesa', 'id');
     }
 
     public function ventasHechas(){
@@ -72,12 +72,20 @@ class Factura extends Model
 
     public function scopeActualizarValor($query, $request){
         $query->where('factura.id', "$request->idFactura")
-          ->update(['factura.total' => "$request->valor"]); 
+          ->update(['factura.total' => "$request->valor"]);
     }
     public function scopeActualizarFactura($query, $id){
         $query->where('factura.id', "$id")
-          ->update(['factura.estado' => "Finalizada"]); 
+          ->update(['factura.estado' => "Finalizada"]);
     }
 
+    public function scopeBuscarFacturaId($query, $idMesa){
+      $query->where('factura.estado','En proceso');
+      $query->join('mesa', 'factura.idMesa', '=', 'mesa.id')
+            ->where('mesa.id', $idMesa)
+            ->select('factura.id as id');
+      return $query;
+
+    }
 
 }
