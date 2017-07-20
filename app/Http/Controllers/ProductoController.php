@@ -3,7 +3,7 @@
 namespace PocketByR\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Collection;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +17,6 @@ class ProductoController extends Controller
      public function index(Request $request){
       $categorias = Categoria::where('idAdmin' , Auth::id())->
                                lists('nombre','id');
-
       $productos = Producto::Search($request->nombre)->
                              Category($request->categorias)->
                              where('idAdmin' , Auth::id())->

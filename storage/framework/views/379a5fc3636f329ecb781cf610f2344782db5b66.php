@@ -14,7 +14,7 @@
 
     <div align="right">
       <br>
-      <?php echo Form::select('categoria', $categorias, null, ['class' => 'form-control']); ?>
+      <?php echo Form::select('categorias', $categorias, null, ['class' => 'form-control']); ?>
 
        <td><a href="<?php echo e(route('categoria.create')); ?>" class="btn btn-default" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></td>
       <td><a href="<?php echo e(route('categoria.index')); ?>" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a></td>
@@ -37,6 +37,8 @@
           <td><?php echo e($producto->precio); ?></td>
           <td><?php echo e($categorias[$producto->idCategoria]); ?></td>
           <td align="right"><a href="<?php echo e(route('producto.edit',$producto->id)); ?>" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+          </td>
+          <td align="right"><a href="<?php echo e(route('producto.insumoedit',$producto->id)); ?>" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">Insumos <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           </td>
         </tr>
       <?php endforeach; ?>

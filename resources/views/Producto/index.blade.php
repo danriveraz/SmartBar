@@ -13,7 +13,7 @@
 
     <div align="right">
       <br>
-      {!! Form::select('categoria', $categorias, null, ['class' => 'form-control']) !!}
+      {!! Form::select('categorias', $categorias, null, ['class' => 'form-control']) !!}
        <td><a href="{{ route('categoria.create') }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></td>
       <td><a href="{{ route('categoria.index') }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a></td>
     </div>
