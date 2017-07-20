@@ -79,109 +79,109 @@
 @endsection
 
 <script>
-var route = "http://localhost/PocketByR/public/mesero/agregar";
-var routeDisminuir = "http://localhost/PocketByR/public/mesero/disminuir";
-var routeVenta = "http://localhost/PocketByR/public/mesero/venta";
+  var route = "http://localhost/PocketByR/public/mesero/agregar";
+  var routeDisminuir = "http://localhost/PocketByR/public/mesero/disminuir";
+  var routeVenta = "http://localhost/PocketByR/public/mesero/venta";
 
-$(function() {
-  $("#accordion").accordion({
-    collapsible: true
-  });
-} );
+  $(function() {
+    $("#accordion").accordion({
+      collapsible: true
+    });
+  } );
 
-function actualizarTabla(e){
-  $.ajax({
-    url: route,
-    type: 'GET',
-    data:{
-      idP: e
-    },
-    success : function(data) {
-       var producto = $.parseJSON(data);
-       if(producto != null){
-          $id = producto.id;
-          if($("tr#p"+$id).length){
-            $id = producto.id;
-            var cantidad = $("td#c"+ producto.id).html();
-            var cantidadFinal = ++cantidad;
-            $("td#c"+ producto.id).replaceWith('<td id="c'+producto.id +'">'+ cantidadFinal +'</td>');
-            $("td#t"+ producto.id).replaceWith('<td id="t'+producto.id +'">'+ cantidadFinal* producto.precio +'</td>');
-          }else{
-            $('#pedidoTabla > tbody').append('<tr id="p'+producto.id+'"><td>'+producto.id
-            +'</td><td>'+producto.nombre+'</td><td id="v'+producto.id+'">'+ producto.precio+'</td><td id="c'+producto.id +'">'+ 1
-            +'</td><td id="t'+ producto.id+'">'+ producto.precio + '</td><td>'+
-            '<button class="btn btn-danger" onclick="actualizarCantidad('+$id+')"><span class="glyphicon glyphicon-minus"></span></button>'
-            +'</td></tr>');
-          }
-       }else{
-         $( "#message" ).load(window.location.href + " #message" );
-       }
-   },
-    error: function(data){
-      alert('Error al aumentar la cantidad de un producto');
-   }
-  });
-}
-
-function actualizarCantidad(id){
-
-  var cantidad = $("td#c"+ id).html();
-  var cantidadFinal = cantidad - 1;
-  var precio = $("td#v"+ id).html();
-
-  $.ajax({
-    url: routeDisminuir,
-    type: 'GET',
-    data:{
-      idP: id
-    },
-    success : function() {
-       if(cantidadFinal == 0){
-         var row = document.getElementById("p"+id);
-         row.parentNode.removeChild(row);
-       }else{
-         $("td#c"+ id).replaceWith('<td id="c'+id +'">'+ cantidadFinal +'</td>');
-         $("td#t"+ id).replaceWith('<td id="t'+id +'">'+ cantidadFinal*precio +'</td>');
-       }
-   },
-    error: function(data){
-      alert('Error al disminuir la cantidad de un producto');
-   }
-  });
-
-}
-
-function enviarDatos(idFactura){
-  var idProductos = [];
-  var cantidades = [];
-  $("table#pedidoTabla tr").each(function() {
-    $(this).children("td").each(function (indextd)
-      {
-        if(indextd == 0){
-          idProductos.push($(this).text());
-        }else if(indextd == 3)
-          cantidades.push($(this).text());
-     })
-  });
-
-  if(idProductos.length != 0){
+  function actualizarTabla(e){
     $.ajax({
-        url: routeVenta,
-        type: 'GET',
-        data:{
-          productosTabla: idProductos,
-          cantidadesTabla: cantidades,
-          factura: idFactura
-        },
-        success : function() {
-          window.location = "http://localhost/PocketByR/public/mesero";
-       },
-        error: function(data){
-          alert('Error al guardar en venta');
-       }
-     })
-  }else{
-    alert('Debe agregar productos');
+      url: route,
+      type: 'GET',
+      data:{
+        idP: e
+      },
+      success : function(data) {
+         var producto = $.parseJSON(data);
+         if(producto != null){
+            $id = producto.id;
+            if($("tr#p"+$id).length){
+              $id = producto.id;
+              var cantidad = $("td#c"+ producto.id).html();
+              var cantidadFinal = ++cantidad;
+              $("td#c"+ producto.id).replaceWith('<td id="c'+producto.id +'">'+ cantidadFinal +'</td>');
+              $("td#t"+ producto.id).replaceWith('<td id="t'+producto.id +'">'+ cantidadFinal* producto.precio +'</td>');
+            }else{
+              $('#pedidoTabla > tbody').append('<tr id="p'+producto.id+'"><td>'+producto.id
+              +'</td><td>'+producto.nombre+'</td><td id="v'+producto.id+'">'+ producto.precio+'</td><td id="c'+producto.id +'">'+ 1
+              +'</td><td id="t'+ producto.id+'">'+ producto.precio + '</td><td>'+
+              '<button class="btn btn-danger" onclick="actualizarCantidad('+$id+')"><span class="glyphicon glyphicon-minus"></span></button>'
+              +'</td></tr>');
+            }
+         }else{
+           $( "#message" ).load(window.location.href + " #message" );
+         }
+     },
+      error: function(data){
+        alert('Error al aumentar la cantidad de un producto');
+     }
+    });
   }
-}
+
+  function actualizarCantidad(id){
+
+    var cantidad = $("td#c"+ id).html();
+    var cantidadFinal = cantidad - 1;
+    var precio = $("td#v"+ id).html();
+
+    $.ajax({
+      url: routeDisminuir,
+      type: 'GET',
+      data:{
+        idP: id
+      },
+      success : function() {
+         if(cantidadFinal == 0){
+           var row = document.getElementById("p"+id);
+           row.parentNode.removeChild(row);
+         }else{
+           $("td#c"+ id).replaceWith('<td id="c'+id +'">'+ cantidadFinal +'</td>');
+           $("td#t"+ id).replaceWith('<td id="t'+id +'">'+ cantidadFinal*precio +'</td>');
+         }
+     },
+      error: function(data){
+        alert('Error al disminuir la cantidad de un producto');
+     }
+    });
+
+  }
+
+  function enviarDatos(idFactura){
+    var idProductos = [];
+    var cantidades = [];
+    $("table#pedidoTabla tr").each(function() {
+      $(this).children("td").each(function (indextd)
+        {
+          if(indextd == 0){
+            idProductos.push($(this).text());
+          }else if(indextd == 3)
+            cantidades.push($(this).text());
+       })
+    });
+
+    if(idProductos.length != 0){
+      $.ajax({
+          url: routeVenta,
+          type: 'GET',
+          data:{
+            productosTabla: idProductos,
+            cantidadesTabla: cantidades,
+            factura: idFactura
+          },
+          success : function() {
+            window.location = "http://localhost/PocketByR/public/mesero";
+         },
+          error: function(data){
+            alert('Error al guardar en venta');
+         }
+       })
+    }else{
+      alert('Debe agregar productos');
+    }
+  }
 </script>

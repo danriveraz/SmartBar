@@ -1,6 +1,9 @@
 @extends('Layout.app')
 @section('content')
-
+<link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
+{!!Html::style('stylesheets\font-awesome.min.css')!!}
+{!!Html::style('stylesheets\isotope.css')!!}
+{!!Html::style('stylesheets\fullcalendar.css')!!}
 {!!Html::style('stylesheets\mesero.css')!!}
 
 {!!Html::script('javascripts\bootstrap.min.js')!!}

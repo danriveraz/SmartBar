@@ -1,4 +1,10 @@
 <?php $__env->startSection('content'); ?>
+<link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
+<?php echo Html::style('stylesheets\font-awesome.min.css'); ?>
+
+<?php echo Html::style('stylesheets\isotope.css'); ?>
+
+<?php echo Html::style('stylesheets\fullcalendar.css'); ?>
 
 <?php echo Html::style('stylesheets\mesero.css'); ?>
 
