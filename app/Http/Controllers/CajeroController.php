@@ -17,7 +17,6 @@ class CajeroController extends Controller
     }
     public function store(Request $request){
     	$nombre = $request->nombre;
-    	
     	if($request->verFacturas == 'on'){
     		$mesas = Factura::buscarMesa($nombre)
     					->paginate(20);
@@ -29,13 +28,23 @@ class CajeroController extends Controller
     	return view('cajero.inicio')->with('mesas',$mesas);
     }
     public function recibo(Request $request){
-        $mesas = Factura::buscarFactura($request->id)
-                            ->paginate(20);                         
-        $elementos = Venta::listarElementos($request->id)
-                            ->paginate(20);
-        return view('cajero.recibo')->with('mesas',$mesas)->with('elementos',$elementos);
+        $factura = Factura::find($request->id);
+        return view('cajero.recibo')->with('factura',$factura);
     }
     public function show($id){
 
+    }
+     public function edit(Request $request){
+       $productos = $request->productos;
+       if (sizeof($productos) > 0) {
+            Venta::actualizarVenta($productos);
+        }
+        Factura::actualizarValor($request);
+        $busqueda = Venta::ListarPendientes($request->idFactura)->paginate(20);
+        $contador = 0;
+        if (sizeof($busqueda) == 0){
+            Factura::actualizarFactura($request->idFactura);
+        }
+        return redirect("cajero");
     }
 }

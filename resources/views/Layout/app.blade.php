@@ -92,7 +92,7 @@
                 </ul>
               </li>
               <li class="dropdown user hidden-xs"><a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img width="34" height="34" src="../images\avatar-male.jpg">{{Auth::user()->nombrePersona}}<b class="caret"></b></a>
+                <img width="34" height="34" src="../images\avatar-male.jpg"><b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">
                     <i class="fa fa-user"></i>Perfil</a>

@@ -17,8 +17,11 @@ class Venta extends Model
     }
     public function scopeActualizar($query, $pedidos){
     	$query->wherein('id', $pedidos)
-    		  ->update(['estado' => 'Atendido']);
-    			
+    		  ->update(['estado' => 'Atendido']);		
+    }
+    public function scopeActualizarVenta($query, $productos){
+        $query->wherein('id', $productos)
+              ->update(['estado' => 'Pagó']);       
     }
     public function scopeListarElementos($query, $id){
         $query->where('idFactura', $id)
@@ -26,4 +29,13 @@ class Venta extends Model
               ->select('nombre', 'cantidad', 'precio', 'venta.id');
         return $query;
     }
+    public function scopeListarPendientes($query, $idFactura){
+        return $query->where([['idFactura', "$idFactura"], ['estado', '<>', 'Pagó']]);
+    }
+
+    public function producto(){
+      return $this->belongsTo('PocketByR\Producto', 'idProducto', 'id');                
+    }
+
+    
 }

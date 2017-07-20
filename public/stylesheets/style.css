@@ -1486,8 +1486,8 @@ th:active {
   text-align: center;
   height: 120px;
   padding-top: 14px; }
-  .social-widget.twitter {
-    background-color: #00b2f1; }
+  .social-widget.pedido {
+    background: rgb(45, 0, 49); }
   .social-widget.facebook {
     background-color: #517fa4; }
   .social-widget.pinterest {
@@ -1498,7 +1498,7 @@ th:active {
     background-color: #ea4c89; }
   .social-widget [class^="fa"], .social-widget [class*=" fa"] {
     vertical-align: middle;
-    font-size: 70px;
+    font-size: 65px;
     margin: 0 10px 0 -20px; }
   .social-widget .social-data {
     text-align: center;
@@ -1507,7 +1507,7 @@ th:active {
     vertical-align: middle; }
     .social-widget .social-data h1 {
       font-weight: 100;
-      font-size: 60px;
+      font-size: 50px;
       margin: 0;
       padding: 0; }
 
