@@ -14,6 +14,6 @@ class Contiene extends Model
     }
 
     public function scopeIdInsumo($query, $idInsumo){
-    	return $query->where('idProducto',"$idInsumo");
+    	return $query->where('idInsumo',"$idInsumo");
     }
 }

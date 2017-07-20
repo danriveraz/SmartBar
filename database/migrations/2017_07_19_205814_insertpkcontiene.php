@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Addrecetaproducto extends Migration
+class Insertpkcontiene extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,8 @@ class Addrecetaproducto extends Migration
      */
     public function up()
     {
-        Schema::table('producto', function ($table) {
-            $table->string('receta')->after('precio');
-        });
-
-        Schema::table('producto', function ($table) {
-            $table->string('receta', 500)->change();
+        Schema::table('contiene', function ($table) {
+            $table->increments('id');
         });
     }
 

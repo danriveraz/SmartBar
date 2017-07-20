@@ -5,7 +5,7 @@
       <h1>Asignar insumos</h1>
   </div>
   <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-  <a href="<?php echo e(route('contiene.index')); ?>" class="btn btn-default"><i class="fa fa-plus"></i> Modificar contenido</a>
+  <a href="<?php echo e(route('producto.index')); ?>" class="btn btn-default"><i class="fa fa-plus"></i>Guardar contenido</a>
   <div>
     <div class="col-sm-5">
       <table class="table table-hover">
@@ -20,7 +20,7 @@
               <td><?php echo e($contiene->idInsumo); ?></td>
               <td><?php echo e($insumos[$contiene->idInsumo]); ?></td>
               <td><?php echo e($contiene->cantidad); ?></td>
-              <td><a href="<?php echo e(route('contiene.destroy', ['idInsumo'=>$contiene->idInsumo])); ?>" class="btn btn-default"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a></td>
+              <td><a href="<?php echo e(route('contiene.destroy', $contiene->id)); ?>" class="btn btn-default"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a></td>
             </tr>
           <?php endforeach; ?>
         </tbody>

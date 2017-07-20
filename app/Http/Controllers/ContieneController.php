@@ -57,11 +57,10 @@ class ContieneController extends Controller
 
   public function edit($id){}
 
-  public function destroy(Request $request,$id){
-    $contiene = Contiene::IdInsumo($request->idInsumo);
-    dd($contiene);
+  public function destroy($id){
+    $contiene = Contiene::find($id);
     $contiene->delete();
-    Flash::success('La categoría ha sido eliminada de forma exitosa')->important();
-    return redirect()->route('categoria.index');
+    Flash::success('El insumo ha sido retirado del producto.')->important();
+    return redirect()->route('contiene.index');
   }
 }

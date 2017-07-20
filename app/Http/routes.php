@@ -39,8 +39,10 @@ Route::resource('insumo', 'insumoController');
 Route::get('insumo/{id}/destroy', ['uses' => 'InsumoController@destroy', 'as' => 'insumo.destroy']);
 
 Route::resource('producto', 'productoController');
+Route::post('producto/{id}/insumoedit', ['uses' => 'ProductoController@insumoedit', 'as' => 'producto.insumoedit']);
 
 Route::resource('contiene', 'contieneController');
+Route::get('contiene/{id}/destroy', ['uses' => 'ContieneController@destroy', 'as' => 'contiene.destroy']);
 
 Route::resource('proveedor', 'proveedorController');
 Route::get('proveedor/{id}/destroy', ['uses' => 'ProveedorController@destroy', 'as' => 'proveedor.destroy']);

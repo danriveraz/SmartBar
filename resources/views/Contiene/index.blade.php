@@ -6,7 +6,7 @@
       <h1>Asignar insumos</h1>
   </div>
   @include('flash::message')
-  <a href="{{ route('contiene.index') }}" class="btn btn-default"><i class="fa fa-plus"></i> Modificar contenido</a>
+  <a href="{{route('producto.index')}}" class="btn btn-default"><i class="fa fa-plus"></i>Guardar contenido</a>
   <div>
     <div class="col-sm-5">
       <table class="table table-hover">
@@ -21,7 +21,7 @@
               <td>{{$contiene->idInsumo}}</td>
               <td>{{$insumos[$contiene->idInsumo]}}</td>
               <td>{{$contiene->cantidad}}</td>
-              <td><a href="{{ route('contiene.destroy', ['idInsumo'=>$contiene->idInsumo]) }}" class="btn btn-default"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a></td>
+              <td><a href="{{ route('contiene.destroy', $contiene->id) }}" class="btn btn-default"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a></td>
             </tr>
           @endforeach
         </tbody>
