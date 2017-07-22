@@ -1,5 +1,5 @@
 <?php $__env->startSection('content'); ?>
-<div class="col-sm-offset-3 col-sm-6">
+<div class="col-sm-offset-2 col-sm-8">
     <div class="panel-tittle">
         <h1>Lista de productos</h1>
     </div>
@@ -14,7 +14,7 @@
 
     <div align="right">
       <br>
-      <?php echo Form::select('categoria', $categorias, null, ['class' => 'form-control']); ?>
+      <?php echo Form::select('categorias', $categorias, null, ['class' => 'form-control']); ?>
 
        <td><a href="<?php echo e(route('categoria.create')); ?>" class="btn btn-default" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></td>
       <td><a href="<?php echo e(route('categoria.index')); ?>" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a></td>
@@ -22,7 +22,7 @@
   </div>
   <?php echo Form::close(); ?>
 
-  <table class="table table-hover">
+  <table class="table table-striped">
     <thead>
       <th>#</th>
       <th>Nombre</th>
@@ -36,7 +36,9 @@
           <td><?php echo e($producto->nombre); ?></td>
           <td><?php echo e($producto->precio); ?></td>
           <td><?php echo e($categorias[$producto->idCategoria]); ?></td>
-          <td><a href="<?php echo e(route('producto.edit',$producto->idProducto)); ?>" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+          <td align="right"><a href="<?php echo e(route('producto.edit',$producto->id)); ?>" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+          </td>
+          <td align="right"><a href="<?php echo e(route('producto.insumoedit',$producto->id)); ?>" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">Insumos <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           </td>
         </tr>
       <?php endforeach; ?>

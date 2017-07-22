@@ -1,32 +1,50 @@
 @extends('Layout.app')
 @section('content')
+<link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
+{!!Html::style('stylesheets\font-awesome.min.css')!!}
+{!!Html::style('stylesheets\isotope.css')!!}
+{!!Html::style('stylesheets\fullcalendar.css')!!}
+{!!Html::style('stylesheets\mesero.css')!!}
+
+{!!Html::script('javascripts\bootstrap.min.js')!!}
+{!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
+{!!Html::script('javascripts\fullcalendar.min.js')!!}
+{!!Html::script('javascripts\jquery.dataTables.min.js')!!}
+{!!Html::script('javascripts\jquery.easy-pie-chart.js')!!}
+{!!Html::script('javascripts\jquery.isotope.min.js')!!}
+{!!Html::script('javascripts\jquery.fancybox.pack.js')!!}
+{!!Html::script('javascripts\select2.js')!!}
+{!!Html::script('javascripts\jquery.sparkline.min.js')!!}
+{!!Html::script('javascripts\main.js')!!}
+
 <div class="col-sm-offset-1 col-sm-10">
-  <div class="panel-tittle">
-      <h3>Mesas</h3>
-  </div>
-
-  <style>
-    a{
-      text-align: center;
-    }
-    a:hover {
-    	cursor: pointer;
-    	text-decoration: none;
-    }
-  </style>
-
-    <nav>
-    @foreach($mesas as $mesa)
-      <div class="col-md-3">
-        <a href="{{ route('mesero.show',$mesa->id) }}">
-          <div class="panel panel-default">
-            <div class ="panel-body">
-                {{$mesa->nombreMesa}}
-            </div>
-          </div>
-        </a>
+  @if(Session::has('success_msg'))
+      <div class="alert alert-dismissable alert-success">
+  			<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+  			<i class="glyphicon glyphicon-sucess"></i> {{Session::get('success_msg')}}
       </div>
-    @endforeach
-    </nav>
+   @endif
+
+  <div class="container-fluid main-content"><div class="social-wrapper">
+  	<div id="social-container"></div>
+
+  		<div id="hidden-items">
+  		@foreach($mesas as $mesa)
+  		    <div class="item social-widget mesas">
+  		      <i class="fa fa-glass"></i>
+            <a href="{{ route('mesero.show', $mesa->id) }}">
+              <div class="social-data" >
+    		        <h1>
+    		          {{$mesa->nombreMesa}}
+    		        </h1>
+    		      </div>
+            </a>
+  		    </div>
+  		@endforeach
+
+  		</div>
+  	</div>
+  </div>
 </div>
+
 @endsection

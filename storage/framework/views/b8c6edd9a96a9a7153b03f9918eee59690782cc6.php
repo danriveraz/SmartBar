@@ -1,15 +1,16 @@
-@extends('Layout.app')
-@section('content') 
+<?php $__env->startSection('content'); ?> 
  
 <div class="container-fluid main-content">
   <div class="page-title">
     <h1>
-      Recibo {{$factura->mesa->nombreMesa}}
+      Recibo <?php echo e($factura->mesa->nombreMesa); ?>
+
     </h1>
   </div>
   <div class="invoice">
-  <form name="formulario" autocomplete="on" method="post" action="{{url('cajero/edit')}}">
-    {{csrf_field()}}
+  <form name="formulario" autocomplete="on" method="post" action="<?php echo e(url('cajero/edit')); ?>">
+    <?php echo e(csrf_field()); ?>
+
     <div class="row">
       <div class="col-lg-12">
         <div class="widget-container fluid-height">
@@ -31,15 +32,15 @@
                 </th>
               </thead>
               <tbody>
-                @foreach($factura->ventasHechas as $venta)
+                <?php foreach($factura->ventasHechas as $venta): ?>
                 <tr>
-                  <td><input class="micheckbox" type="checkbox" name="productos[]" value="{{$venta->id}}" monto="{{$venta->producto->precio*$venta->cantidad}}"></td>
-                  <td>{{$venta->producto->nombre}}</td>
-                  <td>{{$venta->cantidad}}</td>
+                  <td><input class="micheckbox" type="checkbox" name="productos[]" value="<?php echo e($venta->id); ?>" monto="<?php echo e($venta->producto->precio*$venta->cantidad); ?>"></td>
+                  <td><?php echo e($venta->producto->nombre); ?></td>
+                  <td><?php echo e($venta->cantidad); ?></td>
                   <td> $ <?php echo number_format($venta->producto->precio,0,",","."); ?></td>
                   <td> $ <?php echo number_format($venta->producto->precio * $venta->cantidad,0,",","."); ?></td>
                 </tr>
-                @endforeach 
+                <?php endforeach; ?> 
               </tbody>
               <tfoot>
                 <tr>
@@ -61,8 +62,8 @@
                     <h4 class="text-primary">
                       <a id="total" value="0">$0</a>
                        <input type="text" name="total" value=0 id="totalInput" hidden="">
-                       <input type="text" name="idFactura" value="{{$factura->id}}" id="" hidden="">
-                       <input type="text" id="montoAntiguoo" name="montoAntiguo" value="{{$factura->total}}" id="" hidden="">
+                       <input type="text" name="idFactura" value="<?php echo e($factura->id); ?>" id="" hidden="">
+                       <input type="text" id="montoAntiguoo" name="montoAntiguo" value="<?php echo e($factura->total); ?>" id="" hidden="">
                        <input type="text" id="valorInput" name="valor" value=0 id="" hidden="">
                     </h4>
                   </td>
@@ -106,4 +107,5 @@ $(".micheckbox").on( 'change', function() {
     }
 });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('Layout.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

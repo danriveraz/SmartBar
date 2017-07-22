@@ -1,0 +1,49 @@
+
+table {
+  background-color: white;
+}
+.table th {
+  font-size: 14px;
+  text-align: center;
+}
+.table td {
+  font-size: 14px;
+  text-align: center;
+}
+
+.panel-title{
+  background-color: #330033;
+  color:white;
+}
+
+.panel-title > a{
+  color:white;
+}
+
+.social-widget {
+  color: white;
+  text-align: center;
+  height: 120px;
+  padding-top: 14px;
+  background: #330033;
+}
+
+.fa fa-glass{
+  width: 40px;
+}
+.social-widget .social-data h1 {
+  font-weight: 50;
+  font-size: 40px;
+}
+
+.social-widget > a{
+  color:white;
+}
+
+#tablaProductos{
+  border-collapse: collapse;
+}
+
+#botonEnviar {
+  background-color: #330033;
+}

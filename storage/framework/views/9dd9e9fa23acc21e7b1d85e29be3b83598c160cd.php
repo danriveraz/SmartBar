@@ -12,13 +12,19 @@
                     <input type="text" name="nombreProducto" class="form-control" placeholder="Nombre del producto" required="true"/>
                 </div>
                 <div class="form-grup">
-                    <label for="tipo" class="control-label">Categoría</label>
+                    <label for="categorias" class="control-label">Categoría</label>
                     <?php echo Form::select('categorias', $categorias, null, ['class' => 'form-control']); ?>
 
                 </div>
                 <div class="form-grup">
                     <label for="precio" class="control-label">Precio</label>
-                    <input type="number" step="any" name="precio" class="form-control" required="true"/>
+                    <input type="number" min="0" step="any" name="precio" class="form-control" required="true"/>
+                </div>
+                <br>
+                <div class="form-grup">
+                    <label for="receta" class="control-label">Receta</label>
+                    <br>
+                    <textarea name="receta" class="form-control"></textarea>
                 </div>
                 <br>
                 <div class="form-grup">

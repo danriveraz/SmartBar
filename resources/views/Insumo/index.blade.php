@@ -1,8 +1,7 @@
 @extends('Layout.app')
-@section('panel-title', 'insumo')
 @section('content')
 
-<div class="col-sm-offset-3 col-sm-6">
+<div class="col-sm-offset-2 col-sm-8">
   <div class="panel-tittle">
       <h1>Lista de insumos</h1>
   </div>
@@ -11,36 +10,41 @@
   {!! Form::model(Request::all(), ['route' => ['insumo.index'], 'method' => 'GET', 'class' => 'navbar-form navbar-right']) !!}
   <div class="form-group" align="right">
     {!! Form::text('nombre', null, ['class' => 'form-control', 'placelhoder' => 'Buscar', 'aria-describedby' => 'search']) !!}
-    <button type="submit" class="btn btn-dufault">Buscar</button>
+    <button type="submit" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" class="btn btn-dufault">Buscar</button>
     <div align="right">
       <br>
-      {!! Form::select('tipo', ['' => 'Seleccione un tipo','A la venta' => 'A la venta','No a la venta' => 'No a la venta'], null, ['class' => 'form-control']) !!}
+      {!! Form::select('tipo', ['' => 'Seleccione un tipo','1' => 'A la venta','0' => 'No a la venta'], null, ['class' => 'form-control']) !!}
     </div>
   </div>
   {!! Form::close() !!}
-  <table class="table table-hover">
+  <table class="table table-striped">
     <thead>
       <th>#</th>
       <th>Nombre</th>
+      <th>Marca</th>
       <th>Proveedor</th>
-      <th>Cantidad de unidades</th>
-      <th>Valor de venta</th>
-      <th>Valor de compra</th>
-      <th>Cantidad de medida (oz)</th>
-      <th>Tipo</th>
+      <th>Cantidad de unidad</th>
+      <th>Valor venta</th>
+      <th>Valor compra</th>
+      <th>(oz)</th>
+      <th>A la venta</th>
     </thead>
     <tbody>
       @foreach($insumos as $insumo)
         <tr>
           <td>{{$insumo->id}}</td>
           <td>{{$insumo->nombre}}</td>
+          <td>{{$insumo->marca}}</td>
           <td>{{$proveedores[$insumo->idProveedor]}}</td>
           <td>{{$insumo->cantidadUnidad}}</td>
           <td>{{$insumo->precioUnidad}}</td>
           <td>{{$insumo->valorCompra}}</td>
           <td>{{number_format($insumo->cantidadMedida,3)}}</td>
-          <td>{{$insumo->tipo}}</td>
-          <td><a href="{{ route('insumo.edit',$insumo->id) }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+          <td align="center">
+            <input type="checkbox" disabled="disabled" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?>/>
+          </td>
+          <td align="right"><a href="{{ route('insumo.edit',$insumo->id) }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+          <a href="{{route('insumo.destroy', $insumo->id) }}" class="btn btn-default" onclick = "return confirm ('¿Desea eliminar este insumo?')" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
           </td>
         </tr>
       @endforeach

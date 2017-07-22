@@ -6,7 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Addrecetaproducto' => $baseDir . '/database/migrations/2017_07_20_004051_addrecetaproducto.php',
+    'Addunidadinsumo' => $baseDir . '/database/migrations/2017_07_18_222822_addunidadinsumo.php',
     'Altertableadminimagenes' => $baseDir . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
+    'Altertablecontiene' => $baseDir . '/database/migrations/2017_07_14_161041_altertablecontiene.php',
+    'Altertableinsumos' => $baseDir . '/database/migrations/2017_07_13_152912_altertableinsumos.php',
     'Altertableproductos' => $baseDir . '/database/migrations/2017_07_05_100014_altertableproductos.php',
     'CreateCategoriaTable' => $baseDir . '/database/migrations/2017_07_01_183643_create_categoria_table.php',
     'CreateCiudadesTable' => $baseDir . '/database/migrations/2017_07_13_103015_create_ciudades_table.php',
@@ -94,7 +98,7 @@ return array(
     'Hamcrest\\Util' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
     'Hamcrest\\Xml\\HasXPath' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
-    'InsertarDatosCiudadesYdepartamentos' => $baseDir . '/database/migrations/2017_07_13_131516_insertarDatosCiudadesYdepartamentos.php',
+    'Insertpkcontiene' => $baseDir . '/database/migrations/2017_07_19_205814_insertpkcontiene.php',
     'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
     'PHPUnit\\Framework\\AssertionFailedError' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/AssertionFailedError.php',
     'PHPUnit\\Framework\\BaseTestListener' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
@@ -502,6 +506,7 @@ return array(
     'PHP_Token_YIELD_FROM' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'Renamepkcategoria' => $baseDir . '/database/migrations/2017_07_03_190335_renamepkcategoria.php',
     'Renamepkproducto' => $baseDir . '/database/migrations/2017_07_04_150235_renamepkproducto.php',
+    'Renamepkproveedor' => $baseDir . '/database/migrations/2017_07_14_114532_renamepkproveedor.php',
     'SebastianBergmann\\Comparator\\ArrayComparator' => $vendorDir . '/sebastian/comparator/src/ArrayComparator.php',
     'SebastianBergmann\\Comparator\\Comparator' => $vendorDir . '/sebastian/comparator/src/Comparator.php',
     'SebastianBergmann\\Comparator\\ComparisonFailure' => $vendorDir . '/sebastian/comparator/src/ComparisonFailure.php',

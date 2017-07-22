@@ -305,7 +305,11 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
     );
 
     public static $classMap = array (
+        'Addrecetaproducto' => __DIR__ . '/../..' . '/database/migrations/2017_07_20_004051_addrecetaproducto.php',
+        'Addunidadinsumo' => __DIR__ . '/../..' . '/database/migrations/2017_07_18_222822_addunidadinsumo.php',
         'Altertableadminimagenes' => __DIR__ . '/../..' . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
+        'Altertablecontiene' => __DIR__ . '/../..' . '/database/migrations/2017_07_14_161041_altertablecontiene.php',
+        'Altertableinsumos' => __DIR__ . '/../..' . '/database/migrations/2017_07_13_152912_altertableinsumos.php',
         'Altertableproductos' => __DIR__ . '/../..' . '/database/migrations/2017_07_05_100014_altertableproductos.php',
         'CreateCategoriaTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_01_183643_create_categoria_table.php',
         'CreateCiudadesTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_13_103015_create_ciudades_table.php',
@@ -393,7 +397,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
         'IlluminateQueueClosure' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
-        'InsertarDatosCiudadesYdepartamentos' => __DIR__ . '/../..' . '/database/migrations/2017_07_13_131516_insertarDatosCiudadesYdepartamentos.php',
+        'Insertpkcontiene' => __DIR__ . '/../..' . '/database/migrations/2017_07_19_205814_insertpkcontiene.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
         'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/AssertionFailedError.php',
         'PHPUnit\\Framework\\BaseTestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
@@ -801,6 +805,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'Renamepkcategoria' => __DIR__ . '/../..' . '/database/migrations/2017_07_03_190335_renamepkcategoria.php',
         'Renamepkproducto' => __DIR__ . '/../..' . '/database/migrations/2017_07_04_150235_renamepkproducto.php',
+        'Renamepkproveedor' => __DIR__ . '/../..' . '/database/migrations/2017_07_14_114532_renamepkproveedor.php',
         'SebastianBergmann\\Comparator\\ArrayComparator' => __DIR__ . '/..' . '/sebastian/comparator/src/ArrayComparator.php',
         'SebastianBergmann\\Comparator\\Comparator' => __DIR__ . '/..' . '/sebastian/comparator/src/Comparator.php',
         'SebastianBergmann\\Comparator\\ComparisonFailure' => __DIR__ . '/..' . '/sebastian/comparator/src/ComparisonFailure.php',

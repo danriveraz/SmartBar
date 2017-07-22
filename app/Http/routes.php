@@ -36,8 +36,16 @@ Route::group(['prefix' => 'auth'], function(){
 });
 
 Route::resource('insumo', 'insumoController');
+Route::get('insumo/{id}/destroy', ['uses' => 'InsumoController@destroy', 'as' => 'insumo.destroy']);
+
 Route::resource('producto', 'productoController');
+Route::get('producto/{id}/insumoedit', ['uses' => 'ProductoController@insumoedit', 'as' => 'producto.insumoedit']);
+
 Route::resource('contiene', 'contieneController');
+Route::get('contiene/{id}/destroy', ['uses' => 'ContieneController@destroy', 'as' => 'contiene.destroy']);
+
+Route::resource('proveedor', 'proveedorController');
+Route::get('proveedor/{id}/destroy', ['uses' => 'ProveedorController@destroy', 'as' => 'proveedor.destroy']);
 
 Route::resource('categoria', 'categoriaController');
 Route::get('categoria/{id}/destroy', ['uses' => 'CategoriaController@destroy', 'as' => 'categoria.destroy']);
@@ -49,11 +57,12 @@ Route::resource('bartender', 'BartenderController');
 
 Route::resource('cajero', 'CajeroController');
 Route::post('cajero/recibo', 'CajeroController@recibo');
+Route::post('cajero/edit', 'CajeroController@edit');
 
-Route::get('mesero/lista', 'MeseroController@lista');
+Route::get('mesero/venta',  'MeseroController@venta');
+Route::get('mesero/disminuir',  'MeseroController@disminuir');
+Route::get('mesero/agregar',  'MeseroController@agregar');
 Route::resource('mesero', 'MeseroController');
 
 Route::resource('WelcomeAdmin', 'welcomeAdmin', ['only' => [
     'index']]);
-
-

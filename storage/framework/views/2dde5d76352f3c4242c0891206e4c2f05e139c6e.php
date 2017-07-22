@@ -97,7 +97,7 @@
                 </ul>
               </li>
               <li class="dropdown user hidden-xs"><a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img width="34" height="34" src="../images\avatar-male.jpg"><?php echo e(Auth::user()->nombrePersona); ?><b class="caret"></b></a>
+                <img width="34" height="34" src="../images\avatar-male.jpg"><b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">
                     <i class="fa fa-user"></i>Perfil</a>
@@ -132,8 +132,8 @@
               <li class="dropdown"><a data-toggle="dropdown" href="#">
                 <span aria-hidden="true" class="fa fa-fw fa-usd"></span>Caja</a>
               </li>
-              <li class="dropdown"><a data-toggle="dropdown" href="#">
-                <span aria-hidden="true" class="fa fa-fw fa-truck"></span>Provedores</a>
+              <li><a href="<?php echo e(route('proveedor.index')); ?>">
+                <span aria-hidden="true" class="fa fa-fw fa-truck"></span>Proveedores</a>
               </li>
               <li><a href="charts.htm">
                 <span aria-hidden="true" class="fa fa-fw fa-bar-chart-o"></span>Estadisticas</a>

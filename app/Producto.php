@@ -17,4 +17,8 @@ class Producto extends Model
     		return $query->where('idCategoria',"$category");
     	}
     }
+
+    public function categoria(){
+      return $this->hasOne('PocketByR\Categoria', 'id', 'idCategoria');                
+    }
 }

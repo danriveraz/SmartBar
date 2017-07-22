@@ -880,7 +880,13 @@
       $container2.isotope({
         itemSelector: '.item'
       }).isotope('insert', $alpha.find('.item'));
+      function update(){
+         
+      }   
+      setInterval(update, 15000);
       return $("#load-more").html("Load more").find("i").hide();
+      
+
     });
     $('#load-more').click(function() {
       var item1, item2, item3, items, tmp;

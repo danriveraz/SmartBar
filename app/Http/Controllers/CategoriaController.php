@@ -8,13 +8,14 @@ use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use PocketByR\Categoria;
 use Laracasts\Flash\Flash;
-
+use Auth;
 
 class CategoriaController extends Controller
 {
     public function index(Request $request){
-      $categorias = Categoria::orderBy('id','ASC')->
-                       paginate(10);
+      $categorias = Categoria::where('idAdmin' , Auth::id())->
+                       orderBy('id','ASC')->
+                       paginate(20);
       return view('categoria.index')->with('categorias',$categorias);
   	}
 
@@ -25,7 +26,7 @@ class CategoriaController extends Controller
   	public function store(Request $request){
       $categoria = new Categoria;
       $categoria->nombre = $request->nombre;
-      $categoria->idAdmin = 4;
+      $categoria->idAdmin = Auth::id();
       $categoria->save();
       Flash::success("La categoria se ha registrado satisfactoriamente")->important();
       return redirect()->route('producto.index');
@@ -41,7 +42,7 @@ class CategoriaController extends Controller
    		$categoria = Categoria::find($id);
 
       	$categoria->nombre = $request->nombre;
-      	$categoria->idAdmin = 4;
+      	$categoria->idAdmin = Auth::id();
       	$categoria->save();
       	flash::warning('La categoria ha sido modificada satisfactoriamente')->important();
       	return redirect()->route('producto.index');
@@ -52,5 +53,5 @@ class CategoriaController extends Controller
     	$categoria->delete();
     	Flash::success('La categoría ha sido eliminada de forma exitosa')->important();
     	return redirect()->route('categoria.index');
-  }
+    }
 }
