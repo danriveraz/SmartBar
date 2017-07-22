@@ -182,7 +182,7 @@ a.hiddenanchor{
 #wrapper select {
     width: 93%;
     overflow: hidden;
-  color: #fff;
+ 	color: #fff;
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     margin: 10px 0 20px;
@@ -190,7 +190,7 @@ a.hiddenanchor{
     letter-spacing: 1px;
     padding: 10px 5px 10px 40px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    background: transparent;
+    background:#272727;
     outline: none;
 }
 
@@ -563,12 +563,15 @@ li.gog.w3ls {
         left: 61%;
         bottom: 7%;
     }
+		.right-agileits{
+		width: 46%;
+		}
 }
 
 @media screen and (max-width: 853px) {
     .container {
         width: 65%;
-        padding-bottom: 500px;
+        padding-bottom: 20px;
     }
     .content-left, .content-right {
         width: 100%;
@@ -589,6 +592,9 @@ li.gog.w3ls {
     .content-left a.more {
         left: 19%;
     }
+	.right-agileits{
+		width: 46%;
+		}
 }
 
 @media screen and (max-width: 800px) {
@@ -670,6 +676,9 @@ li.gog.w3ls {
     div#login {
         padding: 40px;
     }
+	.right-agileits{
+		width: 38%;
+		}
 }
 
 @media screen and (max-width: 414px) {
