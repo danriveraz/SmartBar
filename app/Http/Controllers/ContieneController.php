@@ -27,9 +27,13 @@ class ContieneController extends Controller
                           Type($request->tipo)->
                           orderBy('id','ASC')->
                           paginate(20);
+    $cantidad = array();
+    $contador = 0;
     return view('contiene.index')->with('insumos',$insumos)->
                                    with('contienen',$contienen)->
-                                   with('insumosDisponibles',$insumosDisponibles);
+                                   with('insumosDisponibles',$insumosDisponibles)->
+                                   with('contador',$contador)->
+                                   with('cantidad',$cantidad);
   }
 
   public function create(Request $request){
@@ -47,7 +51,7 @@ class ContieneController extends Controller
     $contiene->idProducto = $idProducto;
     $contiene->idInsumo = $request->idInsumo;
     $contiene->cantidad = $request->cantidad;
-    $contiene->idAdmin = Auth::id();
+    $contiene->idAdmin = 1;//Auth::id();
     $contiene->save();
     Flash::success("El insumo se ha agregado al producto")->important();
     return redirect()->route('contiene.index');

@@ -15,11 +15,11 @@ use Auth;
 class ProductoController extends Controller
 {
      public function index(Request $request){
-      $categorias = Categoria::where('idAdmin' , Auth::id())->
+      $categorias = Categoria:://where('idAdmin' , Auth::id())->
                                lists('nombre','id');
       $productos = Producto::Search($request->nombre)->
                              Category($request->categorias)->
-                             where('idAdmin' , Auth::id())->
+                             //where('idAdmin' , Auth::id())->
                              orderBy('id','ASC')->
                              paginate(20);
       return view('producto.index',compact('categorias'))->with('productos',$productos);
@@ -27,7 +27,7 @@ class ProductoController extends Controller
 
   public function create(Request $request){
 
-      $categorias = Categoria::where('idAdmin' , Auth::id())->
+      $categorias = Categoria:://where('idAdmin' , Auth::id())->
                                lists('nombre','id');
 
       return view('producto.create',compact('categorias'));
@@ -39,7 +39,7 @@ class ProductoController extends Controller
     $producto->precio = $request->precio;
     $producto->idCategoria = $_POST['categorias'];
     $producto->receta = $request->receta;
-    $producto->idAdmin = Auth::id();
+    $producto->idAdmin = 1;//Auth::id();
     $producto->save();
     Flash::success("El producto se ha registrado satisfactoriamente")->important();
     session_start();
@@ -63,7 +63,7 @@ class ProductoController extends Controller
     $producto->precio = $request->precio;
     $producto->idCategoria = $_POST['categorias'];
     $producto->receta = $request->receta;
-    $producto->idAdmin = Auth::id();
+    $producto->idAdmin = 1;//Auth::id();
     $producto->save();
     Flash::success("El producto se ha modificado satisfactoriamente")->important();
     return redirect()->route('producto.index');

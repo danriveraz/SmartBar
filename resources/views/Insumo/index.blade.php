@@ -23,10 +23,10 @@
       <th>Nombre</th>
       <th>Marca</th>
       <th>Proveedor</th>
-      <th>Cantidad de unidad</th>
-      <th>Valor venta</th>
+      <th>Unidades</th>
       <th>Valor compra</th>
-      <th>(oz)</th>
+      <th>Valor venta</th>
+      <th>Onzas disponibles</th>
       <th>A la venta</th>
     </thead>
     <tbody>
@@ -37,8 +37,8 @@
           <td>{{$insumo->marca}}</td>
           <td>{{$proveedores[$insumo->idProveedor]}}</td>
           <td>{{$insumo->cantidadUnidad}}</td>
-          <td>{{$insumo->precioUnidad}}</td>
           <td>{{$insumo->valorCompra}}</td>
+          <td>{{$insumo->precioUnidad}}</td>
           <td>{{number_format($insumo->cantidadMedida,3)}}</td>
           <td align="center">
             <input type="checkbox" disabled="disabled" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?>/>

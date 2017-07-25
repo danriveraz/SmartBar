@@ -25,12 +25,12 @@
                     <input type="number" min="0" name="cantidadUnidad" class="form-control" required="true">
                 </div>
                 <div class="form-group">
-                    <label for="precioUnidad" class="control-label">Valor de venta</label>
-                    <input type="number" min="0" name="precioUnidad" class="form-control" required="true">
-                </div>
-                 <div class="form-group">
                     <label for="valorCompra" class="control-label">Valor de compra</label>
-                    <input type="number"  min="0" name="valorCompra" class="form-control" required="true">
+                    <input type="number" step="any" min="0" name="valorCompra" class="form-control" required="true">
+                </div>
+                <div class="form-group">
+                    <label for="precioUnidad" class="control-label">Valor de venta</label>
+                    <input type="number" step="any" min="0" name="precioUnidad" class="form-control" required="true">
                 </div>
                 <div class="form-group">
                     <label for="cantidadMedida" class="control-label">Cantidad de medida</label>

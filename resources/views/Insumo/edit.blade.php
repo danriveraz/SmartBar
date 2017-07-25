@@ -24,12 +24,12 @@
             <input type="number" min="0" name="cantidadUnidad" class="form-control" value="{{$insumo->cantidadUnidad}}"/>
         </div>
         <div class="form-group">
-            <label for="precioUnidad" class="control-label">Valor de venta</label>
-            <input type="number" min="0" name="precioUnidad" class="form-control" value="{{$insumo->precioUnidad}}"/>
+            <label for="valorCompra" class="control-label">Valor de compra</label>
+            <input type="number" step="any" min="0" name="valorCompra" class="form-control" value="{{$insumo->valorCompra}}"/>
         </div>
         <div class="form-group">
-            <label for="valorCompra" class="control-label">Valor de compra</label>
-            <input type="number" min="0" name="valorCompra" class="form-control" value="{{$insumo->valorCompra}}"/>
+            <label for="precioUnidad" class="control-label">Valor de venta</label>
+            <input type="number" step="any" min="0" name="precioUnidad" class="form-control" value="{{$insumo->precioUnidad}}"/>
         </div>
         <div class="form-group">
             <label for="cantidadMedida" class="control-label">Cantidad de medida</label>

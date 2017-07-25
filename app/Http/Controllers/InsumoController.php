@@ -18,12 +18,12 @@ class InsumoController extends Controller
 {
 
     public function index(Request $request){
-      $proveedores = Proveedor::where('idAdmin' , Auth::id())->
+      $proveedores = Proveedor:://where('idAdmin' , Auth::id())->
                                 lists('nombre','id');
 
       $insumos = Insumo::Search($request->nombre)->
                          Type($request->tipo)->
-                         where('idAdmin' , Auth::id())->
+                         //where('idAdmin' , Auth::id())->
                          orderBy('id','ASC')->
                          paginate(20);
 
@@ -31,9 +31,9 @@ class InsumoController extends Controller
   }
 
   public function create(){
-    $categorias = Categoria::where('idAdmin' , Auth::id())->
+    $categorias = Categoria:://where('idAdmin' , Auth::id())->
                                lists('nombre','id');
-    $proveedores = Proveedor::where('idAdmin' , Auth::id())->
+    $proveedores = Proveedor:://where('idAdmin' , Auth::id())->
                               lists('nombre','id');
 
     return view('insumo.create')->with('proveedores',$proveedores)->with('categorias',$categorias);
@@ -64,7 +64,7 @@ class InsumoController extends Controller
         $insumo->tipo = true;
       }
 
-      $insumo->idAdmin = Auth::id();
+      $insumo->idAdmin = 1;//Auth::id();
       $insumo->save();
 
       if($insumo->tipo){
@@ -79,7 +79,7 @@ class InsumoController extends Controller
         $contiene->idProducto = $producto->id;
         $contiene->idInsumo = $insumo->id;
         $contiene->cantidad = $insumo->cantidadMedida;
-        $contiene->idAdmin = Auth::id();
+        $contiene->idAdmin = 1;//Auth::id();
         $contiene->save();
       }
       Flash::success("El insumo se ha registrado satisfactoriamente")->important();
@@ -91,9 +91,9 @@ class InsumoController extends Controller
   }
 
   public function edit($id){
-    $categorias = Categoria::where('idAdmin' , Auth::id())->
+    $categorias = Categoria:://where('idAdmin' , Auth::id())->
                                lists('nombre','id');
-    $proveedores = Proveedor::where('idAdmin' , Auth::id())->
+    $proveedores = Proveedor:://where('idAdmin' , Auth::id())->
                                 lists('nombre','id');
     $insumo = Insumo::find($id);
     return view('insumo.edit')->with('insumo',$insumo)->with('proveedores',$proveedores)->with('categorias',$categorias);
@@ -121,7 +121,7 @@ class InsumoController extends Controller
       else{
         $insumo->tipo = true;
       }
-      $insumo->idAdmin = Auth::id();
+      $insumo->idAdmin = 1;//Auth::id();
       $insumo->save();
       flash::warning('El insumo ha sido modificado satisfactoriamente')->important();
       return redirect()->route('insumo.index');

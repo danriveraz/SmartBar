@@ -27,8 +27,8 @@
       <th>Marca</th>
       <th>Proveedor</th>
       <th>Cantidad de unidad</th>
-      <th>Valor venta</th>
       <th>Valor compra</th>
+      <th>Valor venta</th>
       <th>(oz)</th>
       <th>A la venta</th>
     </thead>
@@ -40,8 +40,8 @@
           <td><?php echo e($insumo->marca); ?></td>
           <td><?php echo e($proveedores[$insumo->idProveedor]); ?></td>
           <td><?php echo e($insumo->cantidadUnidad); ?></td>
-          <td><?php echo e($insumo->precioUnidad); ?></td>
           <td><?php echo e($insumo->valorCompra); ?></td>
+          <td><?php echo e($insumo->precioUnidad); ?></td>
           <td><?php echo e(number_format($insumo->cantidadMedida,3)); ?></td>
           <td align="center">
             <input type="checkbox" disabled="disabled" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?>/>
