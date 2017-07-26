@@ -21,12 +21,17 @@
 {!!Html::script('javascripts\jquery.sparkline.min.js')!!}
 {!!Html::script('javascripts\main.js')!!}
 
-
-
-
-    
-   
-
+<script type="text/javascript">
+  $(window).load(function() {
+      function update(){
+        facturas = eval(<?php echo json_encode($facturas);?>);
+        if(facturas.total == 0){
+          location.reload();
+        }
+      }   
+      setInterval(update, 15000);      
+    });
+</script>
 <div class="container-fluid main-content"><div class="social-wrapper">
   <div id="social-container">
 

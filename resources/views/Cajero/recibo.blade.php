@@ -38,6 +38,8 @@
                   <td>{{$venta->cantidad}}</td>
                   <td> $ <?php echo number_format($venta->producto->precio,0,",","."); ?></td>
                   <td> $ <?php echo number_format($venta->producto->precio * $venta->cantidad,0,",","."); ?></td>
+                  <td><input type="number" min="0" max="5" step="1" readonly="" />
+</td>
                 </tr>
                 @endforeach 
               </tbody>
