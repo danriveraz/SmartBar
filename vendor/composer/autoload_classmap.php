@@ -13,6 +13,7 @@ return array(
     'Altertableadminimagenes' => $baseDir . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
     'Altertablecontiene' => $baseDir . '/database/migrations/2017_07_14_161041_altertablecontiene.php',
     'Altertableinsumos' => $baseDir . '/database/migrations/2017_07_13_152912_altertableinsumos.php',
+    'Altertablemesa' => $baseDir . '/database/migrations/2017_07_26_154954_altertablemesa.php',
     'Altertableproductos' => $baseDir . '/database/migrations/2017_07_05_100014_altertableproductos.php',
     'CreateCategoriaTable' => $baseDir . '/database/migrations/2017_07_01_183643_create_categoria_table.php',
     'CreateCiudadesTable' => $baseDir . '/database/migrations/2017_07_13_103015_create_ciudades_table.php',

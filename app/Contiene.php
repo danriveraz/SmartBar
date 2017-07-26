@@ -20,4 +20,8 @@ class Contiene extends Model
     public function insumo(){
       return $this->hasOne('PocketByR\Insumo', 'id', 'idInsumo');
     }
+
+    public function contienen(){
+      return $this->hasMany('PocketByR\Contiene','idProducto','id');
+    }
 }

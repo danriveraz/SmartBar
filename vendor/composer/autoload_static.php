@@ -312,6 +312,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'Altertableadminimagenes' => __DIR__ . '/../..' . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
         'Altertablecontiene' => __DIR__ . '/../..' . '/database/migrations/2017_07_14_161041_altertablecontiene.php',
         'Altertableinsumos' => __DIR__ . '/../..' . '/database/migrations/2017_07_13_152912_altertableinsumos.php',
+        'Altertablemesa' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_154954_altertablemesa.php',
         'Altertableproductos' => __DIR__ . '/../..' . '/database/migrations/2017_07_05_100014_altertableproductos.php',
         'CreateCategoriaTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_01_183643_create_categoria_table.php',
         'CreateCiudadesTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_13_103015_create_ciudades_table.php',
