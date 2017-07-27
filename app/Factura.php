@@ -8,21 +8,10 @@ class Factura extends Model
 {
     //
     protected $table = 'factura';
-    public function scopeSearch($query){
-    	$query->where('factura.estado','En proceso');
-    	$query->join('mesa', 'factura.idMesa', '=', 'mesa.id')
-			  ->join('venta', 'factura.id', '=', 'venta.idFactura')
-			  ->where('venta.estado', 'Por atender');
-
-		$query ->orderBy('venta.hora','ASC')
-               ->groupBy('factura.idMesa')
-               ->select('nombreMesa','idFactura', 'venta.hora', 'mesa.id');
-    	return $query;
-    }
 
     public function ventas(){
       return $this->hasMany('PocketByR\Venta', 'idFactura', 'idFactura')
-                  ->where('venta.estado', 'Por atender');
+                  ->where('venta.estadoBartender', 'Por atender');
     }
 
     public function mesa(){
@@ -30,8 +19,7 @@ class Factura extends Model
     }
 
     public function ventasHechas(){
-      return $this->hasMany('PocketByR\Venta', 'idFactura', 'id')
-                  ->where('venta.estado', 'Atendido');
+      return $this->hasMany('PocketByR\Venta', 'idFactura', 'id');
     }
 
     public function scopeListar2($query){
@@ -39,13 +27,13 @@ class Factura extends Model
                   ->join('venta', 'factura.id', '=', 'venta.idFactura');
           return $query->groupBy('factura.idMesa')
                   ->orderBy('venta.hora','ASC')
-                  ->where('venta.estado', 'Por atender');
+                  ->where('venta.estadoBartender', 'Por atender');
     }
 
     public function scopeListar($query){
-      return $query->where('estado', 'En proceso')
+      return $query->where('factura.estado', 'En proceso')
                    ->join('mesa', 'factura.idMesa', '=', 'mesa.id')
-                   ->select('nombreMesa', 'factura.fecha', 'factura.id as id', 'estado');
+                   ->select('nombreMesa', 'factura.fecha', 'factura.id as id', 'factura.estado');
 
     }
     public function scopeBuscarMesaEnProceso($query, $nombreMesa){
@@ -60,14 +48,6 @@ class Factura extends Model
             ->where('nombreMesa','LIKE',"%$nombreMesa%")
             ->select('nombreMesa', 'factura.fecha', 'factura.id as id', 'estado');
       return $query;
-    }
-    public function scopeBuscarFactura($query, $id){
-       $query->where('factura.estado', 'En proceso')
-                  ->join('venta', 'factura.id', '=', 'venta.idFactura');
-         $query->groupBy('factura.idMesa')
-                  ->orderBy('venta.hora','ASC')
-                  ->where('venta.estado', 'Por atender');
-        return $query->where('factura.id', '$id');
     }
 
     public function scopeActualizarValor($query, $request){

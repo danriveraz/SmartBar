@@ -6,10 +6,13 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddCantidadTableVenta' => $baseDir . '/database/migrations/2017_07_26_214203_addCantidadTableVenta.php',
     'AddDoubleFactura' => $baseDir . '/database/migrations/2017_07_26_113414_addDoubleFactura.php',
+    'AddEstadoCajeroTableVenta' => $baseDir . '/database/migrations/2017_07_26_214219_addEstadoCajeroTableVenta.php',
     'AddEstadosVenta' => $baseDir . '/database/migrations/2017_07_26_112257_addEstadosVenta.php',
     'Addrecetaproducto' => $baseDir . '/database/migrations/2017_07_20_004051_addrecetaproducto.php',
     'Addunidadinsumo' => $baseDir . '/database/migrations/2017_07_18_222822_addunidadinsumo.php',
+    'AlterTableVenta' => $baseDir . '/database/migrations/2017_07_26_214105_alterTableVenta.php',
     'Altertableadminimagenes' => $baseDir . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
     'Altertablecontiene' => $baseDir . '/database/migrations/2017_07_14_161041_altertablecontiene.php',
     'Altertableinsumos' => $baseDir . '/database/migrations/2017_07_13_152912_altertableinsumos.php',

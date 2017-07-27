@@ -305,10 +305,13 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
     );
 
     public static $classMap = array (
+        'AddCantidadTableVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_214203_addCantidadTableVenta.php',
         'AddDoubleFactura' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_113414_addDoubleFactura.php',
+        'AddEstadoCajeroTableVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_214219_addEstadoCajeroTableVenta.php',
         'AddEstadosVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_112257_addEstadosVenta.php',
         'Addrecetaproducto' => __DIR__ . '/../..' . '/database/migrations/2017_07_20_004051_addrecetaproducto.php',
         'Addunidadinsumo' => __DIR__ . '/../..' . '/database/migrations/2017_07_18_222822_addunidadinsumo.php',
+        'AlterTableVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_214105_alterTableVenta.php',
         'Altertableadminimagenes' => __DIR__ . '/../..' . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
         'Altertablecontiene' => __DIR__ . '/../..' . '/database/migrations/2017_07_14_161041_altertablecontiene.php',
         'Altertableinsumos' => __DIR__ . '/../..' . '/database/migrations/2017_07_13_152912_altertableinsumos.php',

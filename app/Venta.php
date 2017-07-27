@@ -9,7 +9,7 @@ class Venta extends Model
     //
     protected $table = 'venta';
     public function scopeSearch($query){
-    	$query->where('estado','Por atender')
+    	$query->where('estadoBartender','Por atender')
     			->join('producto', 'venta.idProducto', '=', 'producto.id')
     			->join('categoria', 'producto.idCategoria', '=', 'categoria.id')
     			->select('venta.id','cantidad', 'producto.nombre','categoria.nombre as categoria');
@@ -17,11 +17,13 @@ class Venta extends Model
     }
     public function scopeActualizar($query, $pedidos){
     	$query->wherein('id', $pedidos)
-    		  ->update(['estado' => 'Atendido']);		
+    		  ->update(['estadoBartender' => 'Atendido']);		
     }
-    public function scopeActualizarVenta($query, $productos){
-        $query->wherein('id', $productos)
-              ->update(['estado' => 'Pagó']);       
+    public function scopeActualizarVenta($query, $rq){
+        $id = $rq[0];
+        $estado = $rq[1];
+        $query->where('id', "$id")
+              ->update(['estadoCajero' => "$estado"]);       
     }
     public function scopeListarElementos($query, $id){
         $query->where('idFactura', $id)
@@ -30,7 +32,8 @@ class Venta extends Model
         return $query;
     }
     public function scopeListarPendientes($query, $idFactura){
-        return $query->where([['idFactura', "$idFactura"], ['estado', '<>', 'Pagó']]);
+        return $query->where('idFactura', $idFactura)
+                    ->whereColumn('estadoCajero', '<>', 'cantidad');
     }
 
     public function producto(){

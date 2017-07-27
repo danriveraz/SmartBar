@@ -1,6 +1,10 @@
 @extends('Layout.app')
 @section('content') 
- 
+<script type="text/javascript">
+  $(window).load(function() {
+      actualizarTotal();     
+    });
+</script>
 <div class="container-fluid main-content">
   <div class="page-title">
     <h1>
@@ -16,9 +20,12 @@
           <div class="widget-content padded clearfix">
             <table class="table table-striped invoice-table">
               <thead>
-                <th width="50"><i class="fa fa-check"></i> </th>
+                <th width="50">Cant.</i> </th>
                 <th>
                   Producto
+                </th>
+                <th width="70">
+                  Cant.
                 </th>
                 <th width="70">
                   Cant.
@@ -33,19 +40,23 @@
               <tbody>
                 @foreach($factura->ventasHechas as $venta)
                 <tr>
-                  <td><input class="micheckbox" type="checkbox" name="productos[]" value="{{$venta->id}}" monto="{{$venta->producto->precio*$venta->cantidad}}"></td>
+                  <td>
+                  <input type="text" hidden="" name="productosId[]" value="{{$venta->id}}">
+                  <input type="text" hidden="" name="estados[]" id="estado{{$venta->id}}"
+                  estadoActual = "{{$venta->estadoCajero}}" value={{$venta->cantidad}}>
+                  <input name="productos[]" class="cantidadSeleccionada" max="{{($venta->cantidad - $venta->estadoCajero)}}" id="cantidad{{$venta->id}}" type="number" min="0" step="1" onkeyup="validarMinMax('#cantidad{{$venta->id}}');" value="{{($venta->cantidad - $venta->estadoCajero)}}" Style="width:50px" idVenta = "{{$venta->id}}" precioUnitario="{{$venta->producto->precio}}"/>
+                    </td>                  
                   <td>{{$venta->producto->nombre}}</td>
                   <td>{{$venta->cantidad}}</td>
+                  <td>{{$venta->estadoCajero}}</td>
                   <td> $ <?php echo number_format($venta->producto->precio,0,",","."); ?></td>
-                  <td> $ <?php echo number_format($venta->producto->precio * $venta->cantidad,0,",","."); ?></td>
-                  <td><input type="number" min="0" max="5" step="1" readonly="" />
-</td>
+                  <td id="total{{$venta->id}}"> $ <?php echo number_format($venta->producto->precio * ($venta->cantidad - $venta->estadoCajero),0,",","."); ?></td>
                 </tr>
                 @endforeach 
               </tbody>
               <tfoot>
                 <tr>
-                  <td class="text-right" colspan="4">
+                  <td class="text-right" colspan="5">
                     <strong>Subtotal</strong>
                   </td>
                   <td>
@@ -54,7 +65,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="text-right" colspan="4">
+                  <td class="text-right" colspan="5">
                     <h4 class="text-primary">
                       Total
                     </h4>
@@ -87,25 +98,40 @@
   </div>
 </div>
 <script>
-$(".micheckbox").on( 'change', function() {
-    if( $(this).is(':checked') ) {
-        var montoAntiguo = parseInt($("#montoAntiguoo").attr("value"));
-        var montoSuma = parseInt($(this).attr("monto"));
-        var montoActual = parseInt($("#subtotalInput").val());
-        var suma = (montoActual+montoSuma);
-        $("#subtotalInput").val(suma);
-        $("#totalInput").val(suma);
-        $("#valorInput").val(suma + montoAntiguo);
-        $("#subtotal").html("$" + Intl.NumberFormat().format(suma));
-        $("#total").html("$" + Intl.NumberFormat().format(suma));
-    } else {
-        var montoSuma = parseInt($(this).attr("monto"));
-        var montoActual = parseInt($("#subtotalInput").val());
-        var resta = (montoActual-montoSuma);
-        $("#subtotalInput").val(resta);
-        $("#subtotal").html("$" + Intl.NumberFormat().format(resta));
-        $("#total").html("$" + Intl.NumberFormat().format(resta));
+function validarMinMax(idInput) {
+    var valor = parseInt($(idInput).val());
+    var max = parseInt($(idInput).attr("max"));
+    if(valor > max) {
+        $(idInput).val(max);
+    } 
+    if (valor < 0){
+        $(idInput).val(0);
     }
+};
+$(".cantidadSeleccionada").on( 'change', function() {
+    var cantidadNueva = parseInt($(this).val());
+    var id = "#total"+$(this).attr("idVenta");
+    var id2 = "#estado"+$(this).attr("idVenta");
+    var cantidadEstado = parseInt($(id2).attr("estadoActual"));
+    var precioUnitario =  parseInt($(this).attr("precioUnitario"));
+    $(id2).val(cantidadNueva+cantidadEstado);
+    $(id).html("$" + Intl.NumberFormat().format(cantidadNueva * precioUnitario));
+    actualizarTotal();
 });
+function actualizarTotal() {
+  facturas = eval(<?php echo json_encode($factura->ventasHechas);?>);
+  var total = 0;
+  for (var i=0; i< facturas.length; i++)
+  {
+    var precio = parseInt($("#cantidad"+facturas[i].id).attr("precioUnitario"));
+    var cantidad = parseInt($("#cantidad"+facturas[i].id).val());
+    total = total + (cantidad*precio);
+  }
+  var montoAntiguo = parseInt($("#montoAntiguoo").attr("value"));
+  $("#totalInput").val(total);
+  $("#valorInput").val(total + montoAntiguo);
+  $("#subtotal").html("$" + Intl.NumberFormat().format(total));
+  $("#total").html("$" + Intl.NumberFormat().format(total));
+}
 </script>
 @endsection
