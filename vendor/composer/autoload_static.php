@@ -305,11 +305,17 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
     );
 
     public static $classMap = array (
+        'AddCantidadTableVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_214203_addCantidadTableVenta.php',
+        'AddDoubleFactura' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_113414_addDoubleFactura.php',
+        'AddEstadoCajeroTableVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_214219_addEstadoCajeroTableVenta.php',
+        'AddEstadosVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_112257_addEstadosVenta.php',
         'Addrecetaproducto' => __DIR__ . '/../..' . '/database/migrations/2017_07_20_004051_addrecetaproducto.php',
         'Addunidadinsumo' => __DIR__ . '/../..' . '/database/migrations/2017_07_18_222822_addunidadinsumo.php',
+        'AlterTableVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_214105_alterTableVenta.php',
         'Altertableadminimagenes' => __DIR__ . '/../..' . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
         'Altertablecontiene' => __DIR__ . '/../..' . '/database/migrations/2017_07_14_161041_altertablecontiene.php',
         'Altertableinsumos' => __DIR__ . '/../..' . '/database/migrations/2017_07_13_152912_altertableinsumos.php',
+        'Altertablemesa' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_154954_altertablemesa.php',
         'Altertableproductos' => __DIR__ . '/../..' . '/database/migrations/2017_07_05_100014_altertableproductos.php',
         'CambioNombreTablaAdmin' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_233304_cambio_nombre_tabla_admin.php',
         'CambiosTablaUsuarios' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_235518_cambios_tabla_usuarios.php',
@@ -328,6 +334,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'CreateUsuarioTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_18_130959_create_usuario_table.php',
         'CreateVentaTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_01_222711_create_venta_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
+        'DeleteTotalFactura' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_113401_deleteTotalFactura.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',

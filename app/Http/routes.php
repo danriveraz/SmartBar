@@ -66,3 +66,5 @@ Route::resource('mesero', 'MeseroController');
 
 Route::resource('WelcomeAdmin', 'welcomeAdmin', ['only' => [
     'index']]);
+
+

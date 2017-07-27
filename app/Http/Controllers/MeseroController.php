@@ -88,21 +88,31 @@ class MeseroController extends Controller
       $productos = $request->productosTabla;
       $cantidades = $request->cantidadesTabla;
       $idFactura = $request->factura;
+      $idMesa = $request->mesa;
 
       $size = sizeOf($productos);
 
-      for($i=0; $i<$size; $i++){
-        $venta = new Venta;
-        $venta->cantidad = $cantidades[$i];
-        $venta->hora = date("Y-m-d H:i:s", time());
-        $venta->estado = 'Por atender';
-        $venta->idFactura = $idFactura;
-        $venta->idProducto = $productos[$i];
-        $venta->idMesero = 1; //Cambiar
-        $venta->idBartender = 1; //Cambiar
-        $venta->save();
-      }
+      if($size != 0){
+        for($i=0; $i<$size; $i++){
+          $venta = new Venta;
+          $venta->cantidad = $cantidades[$i];
+          $venta->hora = date("Y-m-d H:i:s", time());
+          //$venta->estadoMesero = '';
+          $venta->estadoBartender = 'Por atender';
+          $venta->estadoCajero = '0';
+          $venta->idFactura = $idFactura;
+          $venta->idProducto = $productos[$i];
+          $venta->idMesero = 1; //Cambiar
+          $venta->idBartender = 1; //Cambiar
+          $venta->save();
+        }
+        $mesa = Mesa::find($idMesa);
+        $mesa->estado = 'Ocupada';
+        $mesa->save();
+
         $request->session()->flash('success_msg', 'El registro del pedido se ha realizado satisfactoriamente.');
+      }
+      
     }
     /**
      * Show the form for creating a new resource.

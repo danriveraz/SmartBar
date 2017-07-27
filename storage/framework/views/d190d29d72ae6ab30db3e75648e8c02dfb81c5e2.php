@@ -5,18 +5,27 @@
       Pocket SMARTBAR
     </title>
 
-    {!!Html::style('stylesheets/bootstrap.min.css')!!}
-    {!!Html::style('stylesheets/font-awesome.min.css')!!}
-    {!!Html::style('stylesheets/hightop-font.css')!!}
-    {!!Html::style('stylesheets/style.css')!!}
-    {!!Html::style('stylesheets/bootstrap-select.css')!!}
-    {!!Html::style('stylesheets\select2.css')!!}
+    <?php echo Html::style('stylesheets/bootstrap.min.css'); ?>
+
+    <?php echo Html::style('stylesheets/font-awesome.min.css'); ?>
+
+    <?php echo Html::style('stylesheets/hightop-font.css'); ?>
+
+    <?php echo Html::style('stylesheets/style.css'); ?>
+
+    <?php echo Html::style('stylesheets/bootstrap-select.css'); ?>
+
+    <?php echo Html::style('stylesheets\select2.css'); ?>
+
 
 	   <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
-    {!!Html::script('javascripts/bootstrap.min.js')!!}
-    {!!Html::script('javascripts/bootstrap-select.js')!!}
-    {!!Html::script('javascripts\select2.js')!!}
+    <?php echo Html::script('javascripts/bootstrap.min.js'); ?>
+
+    <?php echo Html::script('javascripts/bootstrap-select.js'); ?>
+
+    <?php echo Html::script('javascripts\select2.js'); ?>
+
 
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   </head>
@@ -123,16 +132,16 @@
                 <a href="index.htm" class="current">
                 <span aria-hidden="true" class="fa fa-fw fa-group"></span>Personal</a>
               </li>
-              <li><a href="{{route('producto.index')}}" >
+              <li><a href="<?php echo e(route('producto.index')); ?>" >
                 <span aria-hidden="true" class="fa fa-fw fa-glass"></span>Productos</a>
               </li>
-              <li><a href="{{route('insumo.index')}}">
+              <li><a href="<?php echo e(route('insumo.index')); ?>">
                 <span aria-hidden="true" class="fa fa-fw fa-list"></span>Inventario</a>
               </li>
               <li class="dropdown"><a data-toggle="dropdown" href="#">
                 <span aria-hidden="true" class="fa fa-fw fa-usd"></span>Caja</a>
               </li>
-              <li><a href="{{route('proveedor.index')}}">
+              <li><a href="<?php echo e(route('proveedor.index')); ?>">
                 <span aria-hidden="true" class="fa fa-fw fa-truck"></span>Proveedores</a>
               </li>
               <li><a href="charts.htm">
@@ -150,7 +159,7 @@
 
     </div>
     <div class="">
-              @yield('content')
+              <?php echo $__env->yieldContent('content'); ?>
     </div>
     
   </body>

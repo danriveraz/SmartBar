@@ -18,6 +18,9 @@ class InsumoController extends Controller
 {
 
     public function index(Request $request){
+      $categorias = Categoria:://where('idAdmin' , Auth::id())->
+                               lists('nombre','id');
+
       $proveedores = Proveedor:://where('idAdmin' , Auth::id())->
                                 lists('nombre','id');
 
@@ -27,7 +30,7 @@ class InsumoController extends Controller
                          orderBy('id','ASC')->
                          paginate(20);
 
-      return view('insumo.index',compact('proveedores'))->with('insumos',$insumos);
+      return view('insumo.index',compact('proveedores'))->with('insumos',$insumos)->with('categorias',$categorias);
   }
 
   public function create(){
@@ -64,7 +67,7 @@ class InsumoController extends Controller
         $insumo->tipo = true;
       }
 
-      $insumo->idAdmin = 1;//Auth::id();
+      $insumo->idAdmin = 8;//Auth::id();
       $insumo->save();
 
       if($insumo->tipo){
@@ -79,7 +82,7 @@ class InsumoController extends Controller
         $contiene->idProducto = $producto->id;
         $contiene->idInsumo = $insumo->id;
         $contiene->cantidad = $insumo->cantidadMedida;
-        $contiene->idAdmin = 1;//Auth::id();
+        $contiene->idAdmin = 8;//Auth::id();
         $contiene->save();
       }
       Flash::success("El insumo se ha registrado satisfactoriamente")->important();
@@ -91,11 +94,12 @@ class InsumoController extends Controller
   }
 
   public function edit($id){
+    $insumo = Insumo::find($id);
+
     $categorias = Categoria:://where('idAdmin' , Auth::id())->
                                lists('nombre','id');
     $proveedores = Proveedor:://where('idAdmin' , Auth::id())->
                                 lists('nombre','id');
-    $insumo = Insumo::find($id);
     return view('insumo.edit')->with('insumo',$insumo)->with('proveedores',$proveedores)->with('categorias',$categorias);
   }
 
@@ -121,7 +125,7 @@ class InsumoController extends Controller
       else{
         $insumo->tipo = true;
       }
-      $insumo->idAdmin = 1;//Auth::id();
+      $insumo->idAdmin = 8;//Auth::id();
       $insumo->save();
       flash::warning('El insumo ha sido modificado satisfactoriamente')->important();
       return redirect()->route('insumo.index');

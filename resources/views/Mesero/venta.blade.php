@@ -1,7 +1,7 @@
 @extends('Layout.app')
 @section('content')
 
-{!!Html::style('stylesheets/mesero.css')!!}
+{!!Html::style('stylesheets\mesero.css')!!}
 
 <div class="col-sm-offset-2 col-sm-8">
   <div id="message">
@@ -29,7 +29,8 @@
                       <thead>
                         <th width="30px">#</th>
                         <th width="250px">Nombre</th>
-                        <th width="30px"> Valor unitario</th>
+                        <th width="30px">Detalles</th>
+                        <th width="30px">Valor unitario</th>
                         <th width="20px">Agregar</th>
                       </thead>
                       <tbody>
@@ -37,6 +38,15 @@
                       <tr>
                         <td>{{$producto->id}}</td>
                         <td>{{$producto->nombre}}</td>
+                        <td>
+                          <a class="btn btn btn-default popover-trigger" data-html="true" data-content=
+                          "<div>
+                            @foreach($producto->contienen as $contiene)
+                              <li>{{$contiene->insumo->nombre}}</li>
+                            @endforeach
+                          </div>"
+                          data-placement="bottom" data-toggle="popover">Insumos</a>
+                        </td>
                         <td>{{$producto->precio}}</td>
                         <td>
                           <button class="btn btn-success" onclick="actualizarTabla({{$producto->id}})" >
@@ -48,7 +58,6 @@
 
                   </tbody>
                   </table>
-
                   </div>
               </div>
           </div>
@@ -72,9 +81,15 @@
 
 
   @foreach($facturas as $factura)
-  <button onclick="enviarDatos({{$factura->id}})" id="botonEnviar" class="btn btn-default"><i class="fa fa-plus"></i>Enviar pedido</button>
+  <button onclick="enviarDatos({{$factura->id}}, {{$mesa->id}})" id="botonEnviar" class="btn btn-default"><i class="fa fa-plus"></i>Enviar pedido</button>
   @endforeach
 </div>
+
+{!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
+{!!Html::script('javascripts\jquery.dataTables.min.js')!!}
+{!!Html::script('javascripts\jquery.easy-pie-chart.js')!!}
+{!!Html::script('javascripts\jquery.sparkline.min.js')!!}
+{!!Html::script('javascripts\main.js')!!}
 
 @endsection
 
@@ -151,7 +166,7 @@
 
   }
 
-  function enviarDatos(idFactura){
+  function enviarDatos(idFactura, idMesa){
     var idProductos = [];
     var cantidades = [];
     $("table#pedidoTabla tr").each(function() {
@@ -171,7 +186,8 @@
           data:{
             productosTabla: idProductos,
             cantidadesTabla: cantidades,
-            factura: idFactura
+            factura: idFactura,
+            mesa: idMesa
           },
           success : function() {
             window.location = "http://localhost/PocketByR/public/mesero";
@@ -181,7 +197,7 @@
          }
        })
     }else{
-      alert('Debe agregar productos');
+      $( "#message" ).load(window.location.href + " #message" );
     }
   }
 </script>

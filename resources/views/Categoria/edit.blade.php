@@ -1,23 +1,31 @@
-@extends('layout.app')
-@section('content')
-<div class="col-sm-offset-3 col-sm-6">
-    <div class="panel-tittle">
-        <h1>Modificar categoría</h1>
+  <div class="modal-dialog">
+      <div class="modal-content">
+        {!! Form::open(['route' => ['categoria.update',$categoria],  'method' => 'PUT']) !!}
+          <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+          <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+            <h4 class="modal-title">
+            Registro
+            </h4>
+          </div>
+          <div class="modal-body">
+            <div class="pre-scrollable" >
+            <div class="widget-content">
+              <div class="form-group">
+                <div class="form-group">
+                  <label for="nombre" class="control-label">
+                    Nombre de la categoría
+                  </label>
+                  <input type="text" name="nombre" class="form-control" value="{{$categoria->nombre}}"/>
+              </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
+            <button class="btn btn-default-outline" data-dismiss="modal" type="button">Cerrar</button>
+          </div>
+        {!! Form::close() !!}
     </div>
-    <div class ="panel-body">
-      {!! Form::open(['route' => ['categoria.update',$categoria],  'method' => 'PUT']) !!}
-
-        <div class="form-group">
-          <label for="nombre" class="control-label">Nombre de la categoría</label>
-          <input type="text" name="nombre" class="form-control" value="{{$categoria->nombre}}"/>
-        </div>
-
-        <br>
-        <div class="form-grup">
-          <br><button type="submit" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" onclick = "return confirm ('¿Desea modificar esta categoría?')"><i class="fa fa-plus"></i> Editar categoría
-          </button>
-        </div>
-      {!! Form::close() !!}
   </div>
-</div>
-@endsection
+

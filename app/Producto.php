@@ -19,6 +19,10 @@ class Producto extends Model
     }
 
     public function categoria(){
-      return $this->hasOne('PocketByR\Categoria', 'id', 'idCategoria');                
+      return $this->hasOne('PocketByR\Categoria', 'id', 'idCategoria');
+    }
+
+    public function contienen(){
+    return $this->hasMany('PocketByR\Contiene', 'idProducto', 'id');
     }
 }

@@ -6,11 +6,17 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddCantidadTableVenta' => $baseDir . '/database/migrations/2017_07_26_214203_addCantidadTableVenta.php',
+    'AddDoubleFactura' => $baseDir . '/database/migrations/2017_07_26_113414_addDoubleFactura.php',
+    'AddEstadoCajeroTableVenta' => $baseDir . '/database/migrations/2017_07_26_214219_addEstadoCajeroTableVenta.php',
+    'AddEstadosVenta' => $baseDir . '/database/migrations/2017_07_26_112257_addEstadosVenta.php',
     'Addrecetaproducto' => $baseDir . '/database/migrations/2017_07_20_004051_addrecetaproducto.php',
     'Addunidadinsumo' => $baseDir . '/database/migrations/2017_07_18_222822_addunidadinsumo.php',
+    'AlterTableVenta' => $baseDir . '/database/migrations/2017_07_26_214105_alterTableVenta.php',
     'Altertableadminimagenes' => $baseDir . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
     'Altertablecontiene' => $baseDir . '/database/migrations/2017_07_14_161041_altertablecontiene.php',
     'Altertableinsumos' => $baseDir . '/database/migrations/2017_07_13_152912_altertableinsumos.php',
+    'Altertablemesa' => $baseDir . '/database/migrations/2017_07_26_154954_altertablemesa.php',
     'Altertableproductos' => $baseDir . '/database/migrations/2017_07_05_100014_altertableproductos.php',
     'CambioNombreTablaAdmin' => $baseDir . '/database/migrations/2017_07_26_233304_cambio_nombre_tabla_admin.php',
     'CambiosTablaUsuarios' => $baseDir . '/database/migrations/2017_07_26_235518_cambios_tabla_usuarios.php',
@@ -29,6 +35,7 @@ return array(
     'CreateUsuarioTable' => $baseDir . '/database/migrations/2017_05_18_130959_create_usuario_table.php',
     'CreateVentaTable' => $baseDir . '/database/migrations/2017_07_01_222711_create_venta_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
+    'DeleteTotalFactura' => $baseDir . '/database/migrations/2017_07_26_113401_deleteTotalFactura.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',
