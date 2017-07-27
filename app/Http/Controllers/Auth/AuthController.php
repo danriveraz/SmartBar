@@ -59,9 +59,9 @@ class AuthController extends Controller
     public function postRegister(Request $request){
 
         $rules = [
-            'nombreEstablecimiento' => 'required|min:3|max:20|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            //'nombreEstablecimiento' => 'required|min:3|max:20|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'email' => 'required|email|max:255|unique:admin,email',
+            'email' => 'required|email|max:255|unique:usuario,email',
             //'cedula' => 'required|min:1|max:9999999999|numeric',
             'password' => 'required|min:6|max:18',
             //'sexo' => 'required',
@@ -80,7 +80,7 @@ class AuthController extends Controller
         }
         else{
             $admin = new User;
-            $admin->nombreEstablecimiento = $request->nombreEstablecimiento;
+            //$admin->nombreEstablecimiento = $request->nombreEstablecimiento;
             $admin->nombrePersona = $request->nombrePersona;
             $admin->email = $request->email;
             $admin->pais= "Colombia";
@@ -173,7 +173,7 @@ class AuthController extends Controller
 
     public function updateProfile(Request $request){
         $rules = [
-            'nombreEstablecimiento' => 'required|min:3|max:20|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            //'nombreEstablecimiento' => 'required|min:3|max:20|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'pais'=> 'required',
             'departamento'=> 'required',
@@ -195,7 +195,7 @@ class AuthController extends Controller
         }
         else{
             $admin =  Auth::user();
-            $admin->nombreEstablecimiento = $request->nombreEstablecimiento;
+            //$admin->nombreEstablecimiento = $request->nombreEstablecimiento;
             $admin->nombrePersona = $request->nombrePersona;
             $admin->pais = $request->pais;
             $admin->departamento = $request->departamento;
