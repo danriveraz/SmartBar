@@ -1,6 +1,42 @@
 <?php $__env->startSection('content'); ?>
 
-<div class="modal fade in" id="addModal" >
+<?php echo Html::style('stylesheets\font-awesome.min.css'); ?>
+
+<?php echo Html::style('stylesheets\isotope.css'); ?>
+
+<?php echo Html::style('stylesheets\fullcalendar.css'); ?>
+
+<?php echo Html::style('stylesheets\style.css'); ?>
+
+
+<?php echo Html::script('javascripts\bootstrap.min.js'); ?>
+
+<?php echo Html::script('javascripts\jquery.bootstrap.wizard.js'); ?>
+
+<?php echo Html::script('javascripts\fullcalendar.min.js'); ?>
+
+<?php echo Html::script('javascripts\jquery.dataTables.min.js'); ?>
+
+<?php echo Html::script('javascripts\jquery.easy-pie-chart.js'); ?>
+
+<?php echo Html::script('javascripts\jquery.fancybox.pack.js'); ?>
+
+<?php echo Html::script('javascripts\select2.js'); ?>
+
+<?php echo Html::script('javascripts\jquery.sparkline.min.js'); ?>
+
+<?php echo Html::script('javascripts\main.js'); ?>
+
+
+<div class="col-sm-offset-2 col-sm-8">
+    <div class="panel-tittle">
+        <h1>Lista de productos</h1>
+    </div>
+    <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <a href="<?php echo e(route('producto.create')); ?>" class="btn btn-default"><i class="fa fa-plus"></i>Agregar nuevo producto 
+    </a>
+
+    <div class="modal fade" id="addModal" >
     <div class="modal-dialog">
       <div class="modal-content">
         <?php echo Form::open(['method' => 'POST', 'action' => 'categoriaController@store']); ?>
@@ -29,17 +65,10 @@
           </div>
         <?php echo Form::close(); ?>
 
+      </div>
+     </div>
     </div>
-   </div>
-  </div>
 
-<div class="col-sm-offset-2 col-sm-8">
-    <div class="panel-tittle">
-        <h1>Lista de productos</h1>
-    </div>
-    <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-    <a href="<?php echo e(route('producto.create')); ?>" class="btn btn-default"><i class="fa fa-plus"></i>Agregar nuevo producto 
-    </a>
     <?php echo Form::model(Request::all(), ['route' => ['producto.index'], 'method' => 'GET', 'class' => 'navbar-form navbar-right']); ?>
 
     <div class="form-group" align="right">

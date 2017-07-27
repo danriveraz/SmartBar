@@ -17,7 +17,7 @@ class ProveedorController extends Controller
     public function index(Request $request){
 
       $proveedores = Proveedor::Search($request->nombre)->
-                         where('idAdmin' , Auth::id())->
+                         //where('idAdmin' , Auth::id())->
                          orderBy('id','ASC')->
                          paginate(20);
       return view('proveedor.index')->with('proveedores',$proveedores);	
@@ -34,7 +34,7 @@ class ProveedorController extends Controller
       $proveedor->nombre = $request->nombre;
       $proveedor->direccion = $request->direccion;
       $proveedor->telefono = $request->telefono;
-      $proveedor->idAdmin = Auth::id();
+      $proveedor->idAdmin = 8;//Auth::id();
       $proveedor->save();
       Flash::success("El proveedor se ha registrado satisfactoriamente")->important();
       return redirect()->route('proveedor.index');

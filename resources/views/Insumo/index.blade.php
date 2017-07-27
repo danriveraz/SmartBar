@@ -1,6 +1,21 @@
 @extends('Layout.app')
 @section('content')
 
+{!!Html::style('stylesheets\font-awesome.min.css')!!}
+{!!Html::style('stylesheets\isotope.css')!!}
+{!!Html::style('stylesheets\fullcalendar.css')!!}
+{!!Html::style('stylesheets\style.css')!!}
+
+{!!Html::script('javascripts\bootstrap.min.js')!!}
+{!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
+{!!Html::script('javascripts\fullcalendar.min.js')!!}
+{!!Html::script('javascripts\jquery.dataTables.min.js')!!}
+{!!Html::script('javascripts\jquery.easy-pie-chart.js')!!}
+{!!Html::script('javascripts\jquery.fancybox.pack.js')!!}
+{!!Html::script('javascripts\select2.js')!!}
+{!!Html::script('javascripts\jquery.sparkline.min.js')!!}
+{!!Html::script('javascripts\main.js')!!}
+
 <div class="col-sm-offset-2 col-sm-8">
   <div class="panel-tittle">
       <h1>Lista de insumos</h1>
@@ -23,8 +38,11 @@
             </h4>
           </div>
           <div class="modal-body">
+              <div class="alert alert-warning alert-dismissable">
+                <button aria-hidden="true" type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>¡Atencion!</strong> Para el manejo de insumos como cerezas o limones se deben ingresar las unidades disponibles para así tener una mejor experiencia. Para ello la opción disponible es unidad.
+              </div>
             <div class="pre-scrollable" >
-
             <div class="widget-content">
               <div class="form-group">
                 <div class="form-group">
@@ -34,7 +52,7 @@
               </div>
               <div class="form-group">
                     <label for="marca" class="control-label">Marca</label>
-                    <input type="text" name="marca" class="form-control" placeholder="Marca del insumo" required="true"/>
+                    <input type="text" name="marca" class="form-control" placeholder="Marca del insumo" required="false"/>
                 </div>
                 <div class="form-group">
                     <label for="idProveedor" class="control-label">Proveedor</label>
@@ -43,7 +61,7 @@
                 </div>
                 <div class="form-group">
                     <label for="cantidadUnidad" class="control-label">Cantidad de unidades</label>
-                    <input type="number" min="0" name="cantidadUnidad" class="form-control" required="true">
+                    <input type="number" min="0" name="cantidadUnidad" class="form-control" required="false">
                 </div>
                 <div class="form-group">
                     <label for="valorCompra" class="control-label">Valor de compra</label>

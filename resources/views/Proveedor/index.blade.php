@@ -1,7 +1,30 @@
 @extends('Layout.app')
 @section('content')
 
-<div class="modal fade in" id="addModal" >
+
+{!!Html::style('stylesheets\font-awesome.min.css')!!}
+{!!Html::style('stylesheets\isotope.css')!!}
+{!!Html::style('stylesheets\fullcalendar.css')!!}
+{!!Html::style('stylesheets\style.css')!!}
+
+{!!Html::script('javascripts\bootstrap.min.js')!!}
+{!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
+{!!Html::script('javascripts\fullcalendar.min.js')!!}
+{!!Html::script('javascripts\jquery.dataTables.min.js')!!}
+{!!Html::script('javascripts\jquery.easy-pie-chart.js')!!}
+{!!Html::script('javascripts\jquery.fancybox.pack.js')!!}
+{!!Html::script('javascripts\select2.js')!!}
+{!!Html::script('javascripts\jquery.sparkline.min.js')!!}
+{!!Html::script('javascripts\main.js')!!}
+
+<div class="col-sm-offset-2 col-sm-8">
+  <div class="panel-tittle">
+      <h1>Lista de proveedores</h1>
+  </div>
+  @include('flash::message')
+  <a href="#addModal" class="btn btn-default" data-toggle="modal"><i class="fa fa-plus"></i> Agregar nuevo proveedor </a>
+
+  <div class="modal fade in" id="addModal" >
     <div class="modal-dialog">
       <div class="modal-content">
         {!! Form::open(['method' => 'POST', 'action' => 'proveedorController@store']) !!}
@@ -40,12 +63,6 @@
    </div>
   </div>
 
-<div class="col-sm-offset-2 col-sm-8">
-  <div class="panel-tittle">
-      <h1>Lista de proveedores</h1>
-  </div>
-  @include('flash::message')
-  <a href="#addModal" class="btn btn-default" data-toggle="modal"><i class="fa fa-plus"></i> Agregar nuevo proveedor </a>
   {!! Form::model(Request::all(), ['route' => ['proveedor.index'], 'method' => 'GET', 'class' => 'navbar-form navbar-right']) !!}
   <div class="form-group" align="right">
     {!! Form::text('nombre', null, ['class' => 'form-control', 'placelhoder' => 'Buscar', 'aria-describedby' => 'search']) !!}
