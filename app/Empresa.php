@@ -12,4 +12,3 @@ class Empresa extends Model
         'nombreEstablecimiento','pais', 'departamento', 'ciudad', 'tipoRegimen', 'telefono', 'metodoPago', 'estado','baroRestaurante','usuario_id',
     ];
 }
-x

@@ -16,7 +16,7 @@ class welcomeAdmin extends Controller
      */
     public function index()
     {
-        //
+        return View('WelcomeAdmin/welcome');
     }
 
     /**

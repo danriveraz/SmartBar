@@ -3,6 +3,7 @@
 namespace PocketByR\Http\Controllers\Auth;
 
 use PocketByR\User;
+use PocketByR\Empresa;
 use PocketByR\Departamento;
 use PocketByR\Ciudad;
 use Validator;
@@ -37,7 +38,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/WelcomeAdmin';
 
     /**
      * Create a new authentication controller instance.
@@ -79,8 +80,12 @@ class AuthController extends Controller
             ->with('ciudades', $ciudades);
         }
         else{
+            $empresa = new Empresa;
+            $empresa->nombreEstablecimiento = $request->nombreEstablecimiento;
+            $empresa->save();// crea la empresa con el nombre del establecimiento 
+
+
             $admin = new User;
-            //$admin->nombreEstablecimiento = $request->nombreEstablecimiento;
             $admin->nombrePersona = $request->nombrePersona;
             $admin->email = $request->email;
             $admin->pais= "Colombia";
@@ -92,11 +97,21 @@ class AuthController extends Controller
             $admin->password = bcrypt($request->password);
             $admin->remember_token = str_random(100);
             $admin->confirm_token = str_random(100);
-
-
-            $admin->save();
+            $admin->esAdmin = true;
+            $admin->esCajero = true;
+            $admin->esBartender = true;
+            $admin->esMesero = true;
+            $admin->cedula= $request->email; // coloco el email aquí temporalmente mientras se crea, unas lineas más adelante lo actualizo
+            $admin->idEmpresa = $empresa->id; // id de la empresa para saber a quién pertenece
+            $admin->save();// guarda el usuario registrado 
             
-            $data = User::all()->last();
+            $empresa->usuario_id = $admin->id;// obtiene el id del usuario que creo la empres apara saber la referencia 
+            $empresa->save();// guarda los cambios 
+
+            $admin->cedula = $admin->id;
+            $admin->save();
+
+            $data = $admin;
             Mail::send('Emails.confirmacion', ['data' => $data], function($mail) use($data){
                 $mail->to($data->email)->subject('Confirma tu cuenta de PocketByR');
             });
