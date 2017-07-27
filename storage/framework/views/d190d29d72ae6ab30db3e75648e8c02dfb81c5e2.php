@@ -13,10 +13,19 @@
 
     <?php echo Html::style('stylesheets/style.css'); ?>
 
+    <?php echo Html::style('stylesheets/bootstrap-select.css'); ?>
+
+    <?php echo Html::style('stylesheets\select2.css'); ?>
+
 
 	   <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
     <?php echo Html::script('javascripts/bootstrap.min.js'); ?>
+
+    <?php echo Html::script('javascripts/bootstrap-select.js'); ?>
+
+    <?php echo Html::script('javascripts\select2.js'); ?>
+
 
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   </head>
@@ -152,5 +161,8 @@
     <div class="">
               <?php echo $__env->yieldContent('content'); ?>
     </div>
+    
   </body>
+
 </html>
+

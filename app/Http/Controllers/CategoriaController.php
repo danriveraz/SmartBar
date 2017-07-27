@@ -19,17 +19,13 @@ class CategoriaController extends Controller
       return view('categoria.index')->with('categorias',$categorias);
   	}
 
-	public function create(){
-    	return view('categoria.create');
-  	}
-
   	public function store(Request $request){
       $categoria = new Categoria;
       $categoria->nombre = $request->nombre;
-      $categoria->idAdmin = 1;//Auth::id();
+      $categoria->idAdmin = 8;//Auth::id();
       $categoria->save();
       Flash::success("La categoria se ha registrado satisfactoriamente")->important();
-      return redirect()->route('producto.index');
+      return redirect()->route('categoria.index');
   	}
 
    	public function edit($id){
@@ -42,10 +38,10 @@ class CategoriaController extends Controller
    		$categoria = Categoria::find($id);
 
       	$categoria->nombre = $request->nombre;
-      	$categoria->idAdmin = 1;//Auth::id();
+      	$categoria->idAdmin = 8;//Auth::id();
       	$categoria->save();
       	flash::warning('La categoria ha sido modificada satisfactoriamente')->important();
-      	return redirect()->route('producto.index');
+      	return redirect()->route('categoria.index');
     }
 
     public function destroy($id){

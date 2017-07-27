@@ -9,10 +9,15 @@
     {!!Html::style('stylesheets/font-awesome.min.css')!!}
     {!!Html::style('stylesheets/hightop-font.css')!!}
     {!!Html::style('stylesheets/style.css')!!}
+    {!!Html::style('stylesheets/bootstrap-select.css')!!}
+    {!!Html::style('stylesheets\select2.css')!!}
 
 	   <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
     {!!Html::script('javascripts/bootstrap.min.js')!!}
+    {!!Html::script('javascripts/bootstrap-select.js')!!}
+    {!!Html::script('javascripts\select2.js')!!}
+
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   </head>
   <body class="page-header-fixed bg-1 layout-boxed">
@@ -147,5 +152,8 @@
     <div class="">
               @yield('content')
     </div>
+    
   </body>
+
 </html>
+
