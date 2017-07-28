@@ -44,7 +44,13 @@
                   <input type="text" hidden="" name="productosId[]" value="{{$venta->id}}">
                   <input type="text" hidden="" name="estados[]" id="estado{{$venta->id}}"
                   estadoActual = "{{$venta->estadoCajero}}" value={{$venta->cantidad}}>
-                  <input name="productos[]" class="cantidadSeleccionada" max="{{($venta->cantidad - $venta->estadoCajero)}}" id="cantidad{{$venta->id}}" type="number" min="0" step="1" onkeyup="validarMinMax('#cantidad{{$venta->id}}');" value="{{($venta->cantidad - $venta->estadoCajero)}}" Style="width:50px" idVenta = "{{$venta->id}}" precioUnitario="{{$venta->producto->precio}}"/>
+                  @if($venta->estadoMesero == "Cancelado")
+                    <input name="productos[]" class="cantidadSeleccionada" max=0 id="cantidad{{$venta->id}}" type="number" min="0" step="1" onkeyup="validarMinMax('#cantidad{{$venta->id}}');" value="{{($venta->cantidad - $venta->estadoCajero)}}" Style="width:50px" idVenta = "{{$venta->id}}" precioUnitario="{{$venta->producto->precio}}" disabled="" />
+                  @endif
+                  @if($venta->estadoMesero != "Cancelado")
+                    <input name="productos[]" class="cantidadSeleccionada" max="{{($venta->cantidad - $venta->estadoCajero)}}" id="cantidad{{$venta->id}}" type="number" min="0" step="1" onkeyup="validarMinMax('#cantidad{{$venta->id}}');" value="{{($venta->cantidad - $venta->estadoCajero)}}" Style="width:50px" idVenta = "{{$venta->id}}" precioUnitario="{{$venta->producto->precio}}"  />
+                  @endif
+                  
                     </td>                  
                   <td>{{$venta->producto->nombre}}</td>
                   <td>{{$venta->cantidad}}</td>

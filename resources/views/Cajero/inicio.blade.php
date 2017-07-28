@@ -36,12 +36,10 @@
       		{{$mesa->fecha}}
       	</td>
       	<td>
-      		@if($mesa->estado == 'En proceso')
       			<input type="text" name="id" value="{{$mesa->id}}" hidden="">
       			<button name="" class="btn btn-warning">
       				<span class="	glyphicon glyphicon-zoom-in"></span></a>
-      			</button> 
-      		@endif
+      			</button>  
           </td>
       </tr>
       </form>

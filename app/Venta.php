@@ -32,8 +32,16 @@ class Venta extends Model
         return $query;
     }
     public function scopeListarPendientes($query, $idFactura){
-        return $query->where('idFactura', $idFactura)
-                    ->whereColumn('estadoCajero', '<>', 'cantidad');
+        $query->where([
+                    ['idFactura', $idFactura],
+                    ['estadoMesero', '<>', 'Cancelado']
+                ]);
+
+         return $query->whereColumn('estadoCajero', '<>', 'cantidad')
+                ->orWhere([
+                    ['estadoMesero', '<>', 'Cancelado'],
+                    ['estadoBartender', 'Por atender']
+                ]);
     }
 
     public function producto(){

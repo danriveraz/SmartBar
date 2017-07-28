@@ -63,8 +63,8 @@
       <div class="modal-content">
       <form name="formulario" autocomplete="on" method="post" action="{{url('bartender/')}}">
             {{csrf_field()}}
-        <div class="modal-header">
-          <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
+        <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+          <button aria-hidden="true" class="close" data-dismiss="modal" type="button"  style="color:white">&times;</button>
           <h4 class="modal-title">
             {{$factura->mesa->nombreMesa}}
           </h4>
@@ -93,11 +93,12 @@
                 </tr>
               @endforeach 
               </table>
+                <input type="text" hidden="" name="idFactura" value="{{$factura->idFactura}}">
             </div>
             </div>
             </div>
         <div class="modal-footer">
-          <button class="btn btn-primary" >Guardar</button>
+          <button class="btn btn-primary" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">Guardar</button>
           <button class="btn btn-default-outline" data-dismiss="modal" type="button">Cerrar</button>
         </div>
         </form>

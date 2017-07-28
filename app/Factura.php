@@ -11,7 +11,10 @@ class Factura extends Model
 
     public function ventas(){
       return $this->hasMany('PocketByR\Venta', 'idFactura', 'idFactura')
-                  ->where('venta.estadoBartender', 'Por atender');
+                  ->Where([
+                    ['venta.estadoBartender', 'Por atender'],
+                    ['venta.estadoMesero', '<>','Cancelado']
+                ]);
     }
 
     public function mesa(){
@@ -27,7 +30,10 @@ class Factura extends Model
                   ->join('venta', 'factura.id', '=', 'venta.idFactura');
           return $query->groupBy('factura.idMesa')
                   ->orderBy('venta.hora','ASC')
-                  ->where('venta.estadoBartender', 'Por atender');
+                  ->Where([
+                    ['venta.estadoBartender', 'Por atender'],
+                    ['venta.estadoMesero', '<>','Cancelado']
+                    ]);
     }
 
     public function scopeListar($query){
@@ -40,13 +46,13 @@ class Factura extends Model
       $query->where('factura.estado','En proceso');
       $query->join('mesa', 'factura.idMesa', '=', 'mesa.id')
             ->where('nombreMesa','LIKE',"%$nombreMesa%")
-            ->select('nombreMesa', 'factura.fecha', 'factura.id as id', 'estado');
+            ->select('nombreMesa', 'factura.fecha', 'factura.id as id', 'factura.estado');
       return $query;
     }
     public function scopeBuscarMesa($query, $nombreMesa){
       $query->join('mesa', 'factura.idMesa', '=', 'mesa.id')
             ->where('nombreMesa','LIKE',"%$nombreMesa%")
-            ->select('nombreMesa', 'factura.fecha', 'factura.id as id', 'estado');
+            ->select('nombreMesa', 'factura.fecha', 'factura.id as id', 'factura.estado');
       return $query;
     }
 
