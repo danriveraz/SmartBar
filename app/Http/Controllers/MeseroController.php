@@ -143,6 +143,7 @@ class MeseroController extends Controller
               $nuevaVenta->idProducto = $productos[$i];
               $nuevaVenta->idMesero = 1; //Cambiar
               $nuevaVenta->idBartender = 1; //Cambiar
+              $nuevaVenta->idCajero = 1; //Cambiar
               $nuevaVenta->save();
             }
 
@@ -160,6 +161,7 @@ class MeseroController extends Controller
             $venta->idProducto = $productos[$i];
             $venta->idMesero = 1; //Cambiar
             $venta->idBartender = 1; //Cambiar
+            $venta->idCajero = 1; //Cambiar
             $venta->save();
           }
           $mesa = Mesa::find($idMesa);
@@ -206,20 +208,18 @@ class MeseroController extends Controller
       $ventas = null;
 
       if(sizeOf($busqueda) > 0){
-
         $ventas = Venta::pedidoActualMesa($busqueda->id)->get();
-
         return view('mesero.venta')->with('factura',$busqueda)->with('mesa',$mesa)->with('categorias',$categorias)->with('ventas',$ventas);
       }else{
         $nfactura = new Factura;
         $nfactura->estado = "En proceso";
-        $nfactura->total = 0;
         $nfactura->fecha = date("Y-m-d H:i:s", time());
-        $nfactura->idAdmin = 1; //Cambiar
+        $nfactura->total = 0;
+        $nfactura->idEmpresa = 1; //Cambiar
         $nfactura->idUsuario = 1; //Cambiar
-        $nfactura->idMesa = $mesa->id;
+        $nfactura->idMesa = $id;
         $nfactura->save();
-        $facturas = Factura::buscarFacturaId($id)->get();
+        $facturas = Factura::buscarFacturaId($id)->get()->last();
         return view('mesero.venta')->with('factura',$facturas)->with('mesa',$mesa)->with('categorias',$categorias)->with('ventas',$ventas);
       }
     }

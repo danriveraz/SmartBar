@@ -8,12 +8,12 @@
   <a href="{{ route('mesero.index') }}" id="botonAtras" class="btn btn-default"><i class="glyphicon glyphicon-chevron-left"></i> Atras</a>
 
   <div id="message">
-  @if(Session::has('error_msg'))
-  <div class="alert alert-danger alert-dismissable">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      {{Session::get('error_msg')}}
-  </div>
-   @endif
+    @if(Session::has('error_msg'))
+      <div class="alert alert-danger alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          {{Session::get('error_msg')}}
+      </div>
+    @endif
    </div>
 
   <div class="bs-example">
@@ -22,7 +22,8 @@
           <div class="panel panel-default">
               <div class="panel-heading">
                   <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href={{"#collapse".$categoria->id}}>{{$categoria->nombre}}</a>
+                      <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href={{"#collapse".$categoria->id}}><div class="caret pull-right"></div>
+                        {{$categoria->nombre}}</a>
                   </h4>
               </div>
               <div id={{"collapse".$categoria->id}} class="panel-collapse collapse">
@@ -30,7 +31,7 @@
                     <table class="table table-striped" id="tablaProductos">
                       <thead>
                         <th width="30px">#</th>
-                        <th width="250px">Nombre</th>
+                        <th width="200px">Nombre</th>
                         <th width="30px">Detalles</th>
                         <th width="30px">Valor unitario</th>
                         <th width="20px">Agregar</th>

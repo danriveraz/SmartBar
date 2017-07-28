@@ -310,6 +310,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'AddEstadosVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_112257_addEstadosVenta.php',
         'AddForeignKeyFactura' => __DIR__ . '/../..' . '/database/migrations/2017_07_28_110253_addForeignKeyFactura.php',
         'AddForeignKeyFactura2' => __DIR__ . '/../..' . '/database/migrations/2017_07_28_111940_addForeignKeyFactura2.php',
+        'AddForeignKeyMesa' => __DIR__ . '/../..' . '/database/migrations/2017_07_28_113158_addForeignKeyMesa.php',
         'AddForeignKeyVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_28_111410_addForeignKeyVenta.php',
         'Addrecetaproducto' => __DIR__ . '/../..' . '/database/migrations/2017_07_20_004051_addrecetaproducto.php',
         'Addunidadinsumo' => __DIR__ . '/../..' . '/database/migrations/2017_07_18_222822_addunidadinsumo.php',

@@ -11,6 +11,7 @@ return array(
     'AddEstadosVenta' => $baseDir . '/database/migrations/2017_07_26_112257_addEstadosVenta.php',
     'AddForeignKeyFactura' => $baseDir . '/database/migrations/2017_07_28_110253_addForeignKeyFactura.php',
     'AddForeignKeyFactura2' => $baseDir . '/database/migrations/2017_07_28_111940_addForeignKeyFactura2.php',
+    'AddForeignKeyMesa' => $baseDir . '/database/migrations/2017_07_28_113158_addForeignKeyMesa.php',
     'AddForeignKeyVenta' => $baseDir . '/database/migrations/2017_07_28_111410_addForeignKeyVenta.php',
     'Addrecetaproducto' => $baseDir . '/database/migrations/2017_07_20_004051_addrecetaproducto.php',
     'Addunidadinsumo' => $baseDir . '/database/migrations/2017_07_18_222822_addunidadinsumo.php',

@@ -11,13 +11,22 @@ table {
   text-align: center;
 }
 
-.panel-title{
+/*.panel-title{
   background-color: #330033;
   color:white;
-}
+}*/
 
 .panel-title > a{
-  color:white;
+  text-decoration: none;
+  color: #606060;
+}
+
+.panel-group {
+  overflow: hidden;
+}
+
+.panel-group .panel{
+  border-radius: 8px;
 }
 
 .social-widget {
