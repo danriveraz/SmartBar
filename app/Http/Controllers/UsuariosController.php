@@ -5,13 +5,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
-use PocketByR\Usuario;
+use PocketByR\User;
 use Laracasts\Flash\Flash;
 
 class UsuariosController extends Controller
 {
   public function index(){
-    $usuarios = Usuario::orderBy('id','ASC')->paginate(5);
+    $usuarios = User::orderBy('id','ASC')->paginate(5);
     return view('usuario.index')->with('usuarios',$usuarios);
   }
 

@@ -67,4 +67,7 @@ Route::resource('mesero', 'MeseroController');
 Route::resource('WelcomeAdmin', 'welcomeAdmin', ['only' => [
     'index']]);
 
+Route::resource('WelcomeTrabajador', 'WelcomeTrabajadorController', ['only' => [
+    'index']]);
+
 

@@ -3,19 +3,29 @@
 namespace PocketByR\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 
 class welcomeAdmin extends Controller
-{
+{ 
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $userActual = Auth::user();
+        if (!$userActual->esAdmin) {
+            flash('No Tiene Los Permisos Necesarios')->error()->important();
+            return redirect('/WelcomeTrabajador')->send();
+        }
+
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         return View('WelcomeAdmin/welcome');
     }
 

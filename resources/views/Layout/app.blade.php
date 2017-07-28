@@ -4,6 +4,7 @@
     <title>
       Pocket SMARTBAR
     </title>
+    <link rel="shortcut icon" href={{ asset('images/icon.png') }}>
 
     {!!Html::style('stylesheets/bootstrap.min.css')!!}
     {!!Html::style('stylesheets/font-awesome.min.css')!!}
@@ -14,9 +15,48 @@
 
 	   <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
-    {!!Html::script('javascripts/bootstrap.min.js')!!}
-    {!!Html::script('javascripts/bootstrap-select.js')!!}
-    {!!Html::script('javascripts\select2.js')!!}
+    
+{!!Html::script("javascripts\bootstrap.min.js")!!}
+{!!Html::script("javascripts/bootstrap-select.js")!!}
+{!!Html::script("javascripts\jquery.bootstrap.wizard.js")!!}
+{!!Html::script("javascripts/fullcalendar.min.js")!!}
+{!!Html::script("javascripts\gcal.js")!!}
+{!!Html::script("javascripts\jquery.dataTables.min.js")!!}
+{!!Html::script("javascripts\datatable-editable.js")!!}
+{!!Html::script("javascripts\jquery.easy-pie-chart.js")!!}
+{!!Html::script("javascripts\jquery.isotope.min.js")!!}
+{!!Html::script("javascripts\isotope_extras.js")!!}
+{!!Html::script("javascripts\modernizr.custom.js")!!}
+{!!Html::script("javascripts\jquery.fancybox.pack.js")!!}
+{!!Html::script("javascripts\select2.js")!!}
+{!!Html::script("javascripts\styleswitcher.js")!!}
+{!!Html::script("javascripts\wysiwyg.js")!!}
+{!!Html::script("javascripts/typeahead.js")!!}
+{!!Html::script("javascripts\summernote.min.js")!!}
+{!!Html::script("javascripts\jquery.inputmask.min.js")!!}
+{!!Html::script("javascripts\jquery.validate.js")!!}
+{!!Html::script("javascripts\bootstrap-fileupload.js")!!}
+{!!Html::script("javascripts\bootstrap-datepicker.js")!!}
+{!!Html::script("javascripts\bootstrap-timepicker.js")!!}
+{!!Html::script("javascripts\bootstrap-colorpicker.js")!!}
+{!!Html::script("javascripts\bootstrap-switch.min.js")!!}
+{!!Html::script("javascripts/typeahead.js")!!}
+{!!Html::script("javascripts\spin.min.js")!!}
+{!!Html::script("javascripts\ladda.min.js")!!}
+{!!Html::script("javascripts\moment.js")!!}
+{!!Html::script("javascripts\mockjax.js")!!}
+{!!Html::script("javascripts\daterange-picker.js")!!}
+{!!Html::script("javascripts\date.js")!!}
+{!!Html::script("javascripts\morris.min.js")!!}
+{!!Html::script("javascripts\skycons.js")!!}
+{!!Html::script("javascripts/fitvids.js")!!}
+{!!Html::script("javascripts\jquery.sparkline.min.js")!!}
+{!!Html::script("javascripts\dropzone.js")!!}
+{!!Html::script("javascripts\jquery.nestable.js")!!}
+
+
+{!!Html::script('javascripts\main.js')!!}
+{!!Html::script('javascripts\respond.js')!!}
 
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   </head>
@@ -97,15 +137,15 @@
                 </ul>
               </li>
               <li class="dropdown user hidden-xs"><a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img width="34" height="34" src="../images\avatar-male.jpg"><b class="caret"></b></a>
+                {{ HTML::image('images/admins/'.Auth::User()->imagenPerfil , 'avatar', array( 'width' => '34', 'height'=>'34')) }} {{Auth::User()->nombrePersona}}<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">
+                  <li><a href='#'>
                     <i class="fa fa-user"></i>Perfil</a>
                   </li>
                   <li><a href="#">
                     <i class="fa fa-gear"></i>Configuracion</a>
                   </li>
-                  <li><a href="login1.htm">
+                  <li><a href='{{url("/auth/logout")}}'>
                     <i class="fa fa-sign-out"></i>Cerrar Sesión</a>
                   </li>
                 </ul>
@@ -113,14 +153,14 @@
             </ul>
           </div>
           <button class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><div class="logo">
-						<a href="index.html"><img src="../images/logo.png" alt="" /></a>
+						<a href="index.html">{{ HTML::image('images/logo.png') }}</a>
 					</div>
         </div>
         <div class="container-fluid main-nav clearfix">
           <div class="nav-collapse">
             <ul class="nav">
               <li>
-                <a href="index.htm" class="current">
+                <a href={{url("/auth/usuario")}} class="current">
                 <span aria-hidden="true" class="fa fa-fw fa-group"></span>Personal</a>
               </li>
               <li><a href="{{route('producto.index')}}" >
@@ -150,7 +190,7 @@
 
     </div>
     <div class="">
-              @yield('content')
+      @yield('content')
     </div>
     
   </body>
