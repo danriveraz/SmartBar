@@ -10,11 +10,11 @@ class Contiene extends Model
     protected $table = 'contiene';
 
     public function scopeIdProducto($query, $idProducto){
-    	return $query->where('idProducto',"$idProducto");
+    	return $query->where('idProducto', $idProducto);
     }
 
     public function scopeIdInsumo($query, $idInsumo){
-    	return $query->where('idInsumo',"$idInsumo");
+    	return $query->where('idInsumo', $idInsumo);
     }
 
     public function insumo(){

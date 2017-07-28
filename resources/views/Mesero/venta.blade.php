@@ -4,13 +4,15 @@
 {!!Html::style('stylesheets\mesero.css')!!}
 
 <div class="col-sm-offset-2 col-sm-8">
+
+  <a href="{{ route('mesero.index') }}" id="botonAtras" class="btn btn-default"><i class="glyphicon glyphicon-chevron-left"></i> Atras</a>
+
   <div id="message">
   @if(Session::has('error_msg'))
-      <div class="alert alert-dismissable alert-danger">
-  			<button aria-hidden="true" data-dismiss="alert" class="close" type="button">
-          <i class="glyphicon glyphicon-danger"></i>×</button>
-          {{Session::get('error_msg')}}
-      </div>
+  <div class="alert alert-danger alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      {{Session::get('error_msg')}}
+  </div>
    @endif
    </div>
 
@@ -49,7 +51,7 @@
                         </td>
                         <td>{{$producto->precio}}</td>
                         <td>
-                          <button class="btn btn-success" onclick="actualizarTabla({{$producto->id}})" >
+                          <button class="btn btn-success" onclick="actualizarTabla({{$producto->id}},{{$factura->id}})" >
                             <span class="glyphicon glyphicon-plus"></span>
                           </button>
                         </td>
@@ -65,7 +67,6 @@
       </div>
   </div>
 
-
   <table class="table table-bordered" id="pedidoTabla" style="margin-top: 40px; margin-bottom: 40px;">
     <thead>
       <th width="50px">#</th>
@@ -76,13 +77,23 @@
       <th width="20px">Eliminar</th>
     </thead>
     <tbody>
+      @if($ventas != null)
+        @foreach($ventas as $venta)
+        <tr id="p{{$venta->producto->id}}">
+          <td>{{$venta->producto->id}}</td>
+          <td>{{$venta->producto->nombre}}</td>
+          <td id="v{{$venta->producto->id}}">{{$venta->producto->precio}}</td>
+          <td id="c{{$venta->producto->id}}">{{$venta->cantidad}}</td>
+          <td id="t{{$venta->producto->id}}">{{$venta->producto->precio * $venta->cantidad}}</td>
+          <td><button class="btn btn-danger" onclick="actualizarCantidad({{$venta->producto->id}},{{$factura->id}})" ><span class="glyphicon glyphicon-minus"></span></button></td>
+        </tr>
+        @endforeach
+      @endif
     </tbody>
   </table>
 
+  <button onclick="enviarDatos({{$factura->id}}, {{$mesa->id}})" id="botonEnviar" class="btn btn-default"><i class="glyphicon glyphicon-ok"></i> Guardar pedido</button>
 
-  @foreach($facturas as $factura)
-  <button onclick="enviarDatos({{$factura->id}}, {{$mesa->id}})" id="botonEnviar" class="btn btn-default"><i class="fa fa-plus"></i>Enviar pedido</button>
-  @endforeach
 </div>
 
 {!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
@@ -98,18 +109,19 @@
   var routeDisminuir = "http://localhost/PocketByR/public/mesero/disminuir";
   var routeVenta = "http://localhost/PocketByR/public/mesero/venta";
 
-  $(function() {
+  $(function(){
     $("#accordion").accordion({
       collapsible: true
     });
   } );
 
-  function actualizarTabla(e){
+  function actualizarTabla(idProducto, idFactura){
     $.ajax({
       url: route,
       type: 'GET',
       data:{
-        idP: e
+        idP: idProducto,
+        idF: idFactura
       },
       success : function(data) {
          var producto = $.parseJSON(data);
@@ -125,7 +137,7 @@
               $('#pedidoTabla > tbody').append('<tr id="p'+producto.id+'"><td>'+producto.id
               +'</td><td>'+producto.nombre+'</td><td id="v'+producto.id+'">'+ producto.precio+'</td><td id="c'+producto.id +'">'+ 1
               +'</td><td id="t'+ producto.id+'">'+ producto.precio + '</td><td>'+
-              '<button class="btn btn-danger" onclick="actualizarCantidad('+$id+')"><span class="glyphicon glyphicon-minus"></span></button>'
+              '<button class="btn btn-danger" onclick="actualizarCantidad('+$id+','+idFactura+')"><span class="glyphicon glyphicon-minus"></span></button>'
               +'</td></tr>');
             }
          }else{
@@ -138,25 +150,26 @@
     });
   }
 
-  function actualizarCantidad(id){
-
-    var cantidad = $("td#c"+ id).html();
+  function actualizarCantidad(idProducto, idFactura){
+    var cantidad = $("td#c"+ idProducto).html();
     var cantidadFinal = cantidad - 1;
-    var precio = $("td#v"+ id).html();
+    var precio = $("td#v"+ idProducto).html();
 
     $.ajax({
       url: routeDisminuir,
       type: 'GET',
       data:{
-        idP: id
+        idP: idProducto,
+        idF : idFactura,
+        cant : cantidadFinal
       },
       success : function() {
          if(cantidadFinal == 0){
-           var row = document.getElementById("p"+id);
+           var row = document.getElementById("p"+idProducto);
            row.parentNode.removeChild(row);
          }else{
-           $("td#c"+ id).replaceWith('<td id="c'+id +'">'+ cantidadFinal +'</td>');
-           $("td#t"+ id).replaceWith('<td id="t'+id +'">'+ cantidadFinal*precio +'</td>');
+           $("td#c"+ idProducto).replaceWith('<td id="c'+idProducto +'">'+ cantidadFinal +'</td>');
+           $("td#t"+ idProducto).replaceWith('<td id="t'+idProducto +'">'+ cantidadFinal*precio +'</td>');
          }
      },
       error: function(data){
@@ -179,25 +192,25 @@
        })
     });
 
-    if(idProductos.length != 0){
-      $.ajax({
-          url: routeVenta,
-          type: 'GET',
-          data:{
-            productosTabla: idProductos,
-            cantidadesTabla: cantidades,
-            factura: idFactura,
-            mesa: idMesa
-          },
-          success : function() {
+    $.ajax({
+        url: routeVenta,
+        type: 'GET',
+        data:{
+          productosTabla: idProductos,
+          cantidadesTabla: cantidades,
+          factura: idFactura,
+          mesa: idMesa
+        },
+        success : function() {
+          if(idProductos.length != 0){
             window.location = "http://localhost/PocketByR/public/mesero";
-         },
-          error: function(data){
-            alert('Error al guardar en venta');
-         }
-       })
-    }else{
-      $( "#message" ).load(window.location.href + " #message" );
-    }
+          }else{
+            $( "#message" ).load(window.location.href + " #message" );
+          }
+       },
+        error: function(data){
+          alert('Error al guardar en venta');
+       }
+     });
   }
 </script>
