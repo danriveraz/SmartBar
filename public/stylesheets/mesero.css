@@ -46,4 +46,11 @@ table {
 
 #botonEnviar {
   background-color: #330033;
+  float: right;
+}
+
+#botonAtras {
+  background-color: #330033;
+  width: 100px;
+  margin-bottom: 30px;
 }

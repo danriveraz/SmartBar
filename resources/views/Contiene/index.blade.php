@@ -19,7 +19,7 @@
         </div>
         <div class="panel-collapse collapse" id="collapseOne">
           <div class="panel-body">
-            <table class="table table-hover">
+            <table class="table table-hover" id="insumoAgregados">
               <thead>
                 <th>#</th>
                 <th>Insumo</th>
@@ -27,11 +27,15 @@
               </thead>
               <tbody>
                 @foreach($contienen as $contiene)
-                <tr>
+                <tr id="fila{{$contiene->idInsumo}}">
                   <td>{{$contiene->idInsumo}}</td>
                   <td>{{$insumos[$contiene->idInsumo]}}</td>
                   <td>{{$contiene->cantidad}}</td>
-                  <td><a href="{{ route('contiene.destroy', $contiene->id) }}" class="btn btn-default"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a></td>
+                  <td>
+                    <button type="submit" class="btn btn-dufault" onclick="removerInsumo({{$contiene->idInsumo}},{{$contiene->cantidad}})">
+                      <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                    </button>
+                  </td>
                 </tr>
                 @endforeach
               </tbody>
@@ -54,7 +58,7 @@
           </div>
         </div>
       {!! Form::close() !!}
-      <table class="table table-hover">
+      <table class="table table-hover" >
         <thead>
           <th>#</th>
           <th>Nombre</th>
@@ -65,20 +69,17 @@
         <tbody>
           @foreach($insumosDisponibles as $insumo)
           <tr>
-            <form method="POST" action="{{route('contiene.store',['idInsumo'=>$insumo->id])}}">
-              {{ csrf_field() }}
               <td>{{$insumo->id}}</td>
               <td>{{$insumo->nombre}}</td>
               <td align="center">
                 <input type="checkbox" disabled="disabled" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?>/>
               </td>
-              <td><input type="number" step="any" min="0" name="cantidad" class="form-control" value="{{$contador++}}"></td>
+              <td><input type="number"  id="{{$insumo->id}}" step="any" min="0" name="cantidad" class="form-control" value=0></td>
               <td align="center">
-                <button type="submit" class="btn btn-dufault">
+                <button type="submit" class="btn btn-dufault" onclick="adicionarInsumo({{$insumo}})">
                   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </button>
               </td>
-            </form>
           </tr>
           @endforeach
         </tbody>
@@ -88,3 +89,43 @@
   </div>
 </div>
 @endsection
+
+<script>
+
+  var routeAgregar = "http://localhost/PocketByR/public/contiene/agregar";
+  var routeEliminar = "http://localhost/PocketByR/public/contiene/eliminar";
+
+  function adicionarInsumo(insumo){
+    var cantidad = $("#"+insumo.id).val();
+    $.ajax({
+      url: routeAgregar,
+      type: 'GET',
+      data: {idI: insumo.id,
+             cant: cantidad},
+      success: function(data){
+        var fila = '<tr id="fila'+insumo.id+'"><td>'+insumo.id+'</td><td>'+insumo.nombre+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="removerInsumo('+insumo.id+','+cantidad+')"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td></tr>';
+        $("#insumoAgregados").append(fila);
+      },
+      error : function(data){
+        alert('Error al adicionar el insumo');
+      }
+    });    
+  }
+
+  function removerInsumo(id,cantidad){
+    var fila = $("#fila"+id);
+    $.ajax({
+      url: routeEliminar,
+      type: 'GET',
+      data: {idI: id,
+             cant: cantidad},
+      success: function(data){
+        $("#fila"+id).remove();
+      },
+      error : function(data){
+        alert('Error al remover el insumo');
+      }
+    });    
+  }
+
+</script>

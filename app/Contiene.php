@@ -10,12 +10,16 @@ class Contiene extends Model
     protected $table = 'contiene';
 
     public function scopeIdProducto($query, $idProducto){
-    	return $query->where('idProducto',"$idProducto");
+    	return $query->where('idProducto', $idProducto);
     }
 
     public function scopeIdInsumo($query, $idInsumo){
-    	return $query->where('idInsumo',"$idInsumo");
+    	return $query->where('idInsumo', $idInsumo);
     }
+
+    public function scopeCantidad($query, $cantidad){
+        return $query->where('cantidad', "$cantidad");
+    }    
 
     public function insumo(){
       return $this->hasOne('PocketByR\Insumo', 'id', 'idInsumo');

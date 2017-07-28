@@ -31,7 +31,7 @@ class MeseroController extends Controller
     public function agregar(Request $request){
       $producto = Producto::find($request->idP);
 
-      $contenido = Contiene::idProducto($request->idP)->paginate(20);
+      $contenido = Contiene::idProducto($request->idP)->get();
       $auxiliar = 0;
 
       foreach($contenido as $contiene){
@@ -40,13 +40,23 @@ class MeseroController extends Controller
           $cantidadRestante = $insumo->cantidadRestante - $cantidadNecesaria;
           $unidades = $insumo->cantidadUnidad;
 
-          if($cantidadRestante <= 0 && $unidades > 1){
+          if($cantidadRestante == 0 && $unidades > 1){
+            $insumo->cantidadRestante = $insumo->$cantidadMedida;
+            $insumo->cantidadUnidad = $insumo->cantidadUnidad - 1;
+            $insumo->save();
+            $auxiliar = $auxiliar+1;
+          }elseif($cantidadRestante < 0 && $unidades > 1){
             $insumo->cantidadRestante = $insumo->cantidadMedida + $cantidadRestante;
-            $insumo = $insumo->cantidadUnidad - 1;
+            $insumo->cantidadUnidad = $insumo->cantidadUnidad - 1;
             $insumo->save();
             $auxiliar = $auxiliar+1;
           }elseif($cantidadRestante > 0){
             $insumo->cantidadRestante = $cantidadRestante;
+            $insumo->save();
+            $auxiliar = $auxiliar+1;
+          }elseif($cantidadRestante == 0 && $unidades == 1){
+            $insumo->cantidadRestante = $insumo->$cantidadRestante;
+            $insumo->cantidadUnidad = $insumo->cantidadUnidad - 1;
             $insumo->save();
             $auxiliar = $auxiliar+1;
           }
@@ -63,9 +73,22 @@ class MeseroController extends Controller
     }
 
     public function disminuir(Request $request){
+
       $producto = Producto::find($request->idP);
 
-      $contenido = Contiene::idProducto($request->idP)->paginate(20);
+      if($request->cant == 0){
+        $ventas = Venta::pedidoActualMesa($request->idF)->get();
+        if(sizeOf($ventas) > 0){
+          foreach($ventas as $venta){
+            if($venta->idProducto == $producto->id){
+              $venta->estadoMesero = 'Cancelado';
+              $venta->save();
+            }
+          }
+        }
+      }
+
+      $contenido = Contiene::idProducto($request->idP)->get();
 
       foreach($contenido as $contiene){
           $cantidadNecesaria = $contiene->cantidad;
@@ -75,7 +98,7 @@ class MeseroController extends Controller
 
           if($nuevaCantidad > $insumo->cantidadMedida){
             $insumo->cantidadRestante = $nuevaCantidad - $insumo->cantidadMedida;
-            $insumo = $insumo->cantidadUnidad + 1;
+            $insumo->cantidadUnidad = $insumo->cantidadUnidad + 1;
             $insumo->save();
           }else{
             $insumo->cantidadRestante = $nuevaCantidad;
@@ -89,30 +112,66 @@ class MeseroController extends Controller
       $cantidades = $request->cantidadesTabla;
       $idFactura = $request->factura;
       $idMesa = $request->mesa;
+      $ventas = Venta::pedidoActualMesa($idFactura)->get();
 
       $size = sizeOf($productos);
+      $sizeVenta = sizeOf($ventas);
 
       if($size != 0){
-        for($i=0; $i<$size; $i++){
-          $venta = new Venta;
-          $venta->cantidad = $cantidades[$i];
-          $venta->hora = date("Y-m-d H:i:s", time());
-          //$venta->estadoMesero = '';
-          $venta->estadoBartender = 'Por atender';
-          $venta->estadoCajero = '0';
-          $venta->idFactura = $idFactura;
-          $venta->idProducto = $productos[$i];
-          $venta->idMesero = 1; //Cambiar
-          $venta->idBartender = 1; //Cambiar
-          $venta->save();
-        }
-        $mesa = Mesa::find($idMesa);
-        $mesa->estado = 'Ocupada';
-        $mesa->save();
+        if($sizeVenta != 0){
 
-        $request->session()->flash('success_msg', 'El registro del pedido se ha realizado satisfactoriamente.');
+          for($i=0; $i<$size; $i++){
+            $auxiliar = false;
+            foreach($ventas as $venta){
+              if($venta->idProducto == $productos[$i] && $venta->cantidad != $cantidades[$i]){
+                $auxiliar = true;
+                $venta->cantidad = $cantidades[$i];
+                $venta->save();
+              }elseif($venta->idProducto == $productos[$i] && $venta->cantidad == $cantidades[$i]){
+                $auxiliar = true;
+              }
+            }
+
+            if($auxiliar == false){
+              $nuevaVenta = new Venta;
+              $nuevaVenta->cantidad = $cantidades[$i];
+              $nuevaVenta->hora = date("Y-m-d H:i:s", time());
+              $nuevaVenta->estadoMesero = 'Vigente';
+              $nuevaVenta->estadoBartender = 'Por atender';
+              $nuevaVenta->estadoCajero = '0';
+              $nuevaVenta->idFactura = $idFactura;
+              $nuevaVenta->idProducto = $productos[$i];
+              $nuevaVenta->idMesero = 1; //Cambiar
+              $nuevaVenta->idBartender = 1; //Cambiar
+              $nuevaVenta->save();
+            }
+
+          }
+          $request->session()->flash('success_msg', 'El pedido se ha modificado satisfactoriamente.');
+        }else{
+          for($i=0; $i<$size; $i++){
+            $venta = new Venta;
+            $venta->cantidad = $cantidades[$i];
+            $venta->hora = date("Y-m-d H:i:s", time());
+            $venta->estadoMesero = 'Vigente';
+            $venta->estadoBartender = 'Por atender';
+            $venta->estadoCajero = '0';
+            $venta->idFactura = $idFactura;
+            $venta->idProducto = $productos[$i];
+            $venta->idMesero = 1; //Cambiar
+            $venta->idBartender = 1; //Cambiar
+            $venta->save();
+          }
+          $mesa = Mesa::find($idMesa);
+          $mesa->estado = 'Ocupada';
+          $mesa->save();
+
+          $request->session()->flash('success_msg', 'El registro del pedido se ha realizado satisfactoriamente.');
+        }
+      }else{
+        $request->session()->flash('error_msg', 'Deben agregarse productos para completar el pedido');
       }
-      
+
     }
     /**
      * Show the form for creating a new resource.
@@ -141,23 +200,28 @@ class MeseroController extends Controller
      */
     public function show($id)
     {
-        $mesa = Mesa::find($id);
-        $categorias = Categoria::all();
-        $busqueda = Factura::buscarFacturaId($id)->paginate(20);
-        if(sizeOf($busqueda) > 0){
-          return view('mesero.venta')->with('facturas',$busqueda)->with('mesa',$mesa)->with('categorias',$categorias);
-        }else{
-          $nfactura = new Factura;
-          $nfactura->estado = "En proceso";
-          $nfactura->total = 0;
-          $nfactura->fecha = date("Y-m-d H:i:s", time());
-          $nfactura->idAdmin = 1; //Cambiar
-          $nfactura->idUsuario = 1; //Cambiar
-          $nfactura->idMesa = $mesa->id;
-          $nfactura->save();
-          $facturas = Factura::buscarFacturaId($id)->paginate(20);
-          return view('mesero.venta')->with('facturas',$facturas)->with('mesa',$mesa)->with('categorias',$categorias);
-        }
+      $mesa = Mesa::find($id);
+      $categorias = Categoria::all();
+      $busqueda = Factura::buscarFacturaId($id)->get()->last();
+      $ventas = null;
+
+      if(sizeOf($busqueda) > 0){
+
+        $ventas = Venta::pedidoActualMesa($busqueda->id)->get();
+
+        return view('mesero.venta')->with('factura',$busqueda)->with('mesa',$mesa)->with('categorias',$categorias)->with('ventas',$ventas);
+      }else{
+        $nfactura = new Factura;
+        $nfactura->estado = "En proceso";
+        $nfactura->total = 0;
+        $nfactura->fecha = date("Y-m-d H:i:s", time());
+        $nfactura->idAdmin = 1; //Cambiar
+        $nfactura->idUsuario = 1; //Cambiar
+        $nfactura->idMesa = $mesa->id;
+        $nfactura->save();
+        $facturas = Factura::buscarFacturaId($id)->get();
+        return view('mesero.venta')->with('factura',$facturas)->with('mesa',$mesa)->with('categorias',$categorias)->with('ventas',$ventas);
+      }
     }
 
     /**

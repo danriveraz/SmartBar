@@ -27,13 +27,10 @@ class ContieneController extends Controller
                           Type($request->tipo)->
                           orderBy('id','ASC')->
                           paginate(20);
-    $cantidad = array();
-    $contador = 0;
     return view('contiene.index')->with('insumos',$insumos)->
                                    with('contienen',$contienen)->
                                    with('insumosDisponibles',$insumosDisponibles)->
-                                   with('contador',$contador)->
-                                   with('cantidad',$cantidad);
+                                   with('idProducto',$idProducto);
   }
 
   public function create(Request $request){
@@ -66,5 +63,25 @@ class ContieneController extends Controller
     $contiene->delete();
     Flash::success('El insumo ha sido retirado del producto.')->important();
     return redirect()->route('contiene.index');
+  }
+
+  public function agregar(Request $request){
+    $idInsumo = $request->idI;
+    $cantidad = $request->cant;
+    session_start();
+    $idProducto = $_SESSION['idProducto'];
+    $contiene = new Contiene;
+    $contiene->idProducto = $idProducto;
+    $contiene->idInsumo = $idInsumo;
+    $contiene->cantidad = $cantidad;
+    $contiene->idAdmin = 1;//Auth::id();
+    $contiene->save();
+  }
+
+  public function eliminar(Request $request){
+    session_start();
+    $idProducto = $_SESSION['idProducto'];
+    $contiene = Contiene::IdProducto($idProducto)->IdInsumo($request->idI)->Cantidad($request->cant)->get();
+    $contiene->delete();
   }
 }
