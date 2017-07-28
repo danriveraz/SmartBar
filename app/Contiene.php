@@ -17,6 +17,10 @@ class Contiene extends Model
     	return $query->where('idInsumo', $idInsumo);
     }
 
+    public function scopeCantidad($query, $cantidad){
+        return $query->where('cantidad', "$cantidad");
+    }    
+
     public function insumo(){
       return $this->hasOne('PocketByR\Insumo', 'id', 'idInsumo');
     }
