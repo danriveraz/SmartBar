@@ -41,10 +41,10 @@ Route::get('insumo/{id}/destroy', ['uses' => 'InsumoController@destroy', 'as' =>
 Route::resource('producto', 'productoController');
 Route::get('producto/{id}/insumoedit', ['uses' => 'ProductoController@insumoedit', 'as' => 'producto.insumoedit']);
 
-Route::resource('contiene', 'contieneController');
-Route::get('contiene/{id}/destroy', ['uses' => 'ContieneController@destroy', 'as' => 'contiene.destroy']);
-Route::get('contiene/agregar', 'ContieneController@agregar');
 Route::get('contiene/eliminar', 'ContieneController@eliminar');
+Route::get('contiene/guardar', 'ContieneController@guardar');
+Route::get('contiene/{id}/destroy', ['uses' => 'ContieneController@destroy', 'as' => 'contiene.destroy']);
+Route::resource('contiene', 'contieneController');
 
 Route::resource('proveedor', 'proveedorController');
 Route::get('proveedor/{id}/destroy', ['uses' => 'ProveedorController@destroy', 'as' => 'proveedor.destroy']);

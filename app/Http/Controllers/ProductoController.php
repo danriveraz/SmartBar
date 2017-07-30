@@ -9,37 +9,48 @@ use PocketByR\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use PocketByR\Producto;
 use PocketByR\Categoria;
-use Laracasts\Flash\Flash;
+use Laracasts\Flash\Flash; 
 use Auth;
 
 class ProductoController extends Controller
 {
-     public function index(Request $request){
-      $categorias = Categoria:://where('idAdmin' , Auth::id())->
-                               lists('nombre','id');
-      $productos = Producto::Search($request->nombre)->
-                             Category($request->categorias)->
-                             //where('idAdmin' , Auth::id())->
-                             orderBy('id','ASC')->
-                             paginate(20);
-      return view('producto.index',compact('categorias'))->with('productos',$productos);
+
+  public function __construct(){
+    $this->middleware('auth');
+    $userActual = Auth::user();
+    if (!$userActual->esAdmin) {
+      flash('No Tiene Los Permisos Necesarios')->error()->important();
+      return redirect('/WelcomeTrabajador')->send();
+    }  
+  }  
+
+  public function index(Request $request){
+    $userActual = Auth::user();
+    $categorias = Categoria::where('idAdmin' , $userActual->idEmpresa)->
+                             lists('nombre','id');
+    $productos = Producto::Search($request->nombre)->
+                           Category($request->categorias)->
+                           where('idAdmin' , $userActual->idEmpresa)->
+                           orderBy('id','ASC')->
+                           paginate(20);
+    return view('producto.index',compact('categorias'))->with('productos',$productos);
   }
 
   public function create(Request $request){
-
-      $categorias = Categoria:://where('idAdmin' , Auth::id())->
-                               lists('nombre','id');
-
-      return view('producto.create',compact('categorias'));
-    }
+    $userActual = Auth::user();
+    $categorias = Categoria::where('idAdmin' , $userActual->idEmpresa)->
+                             lists('nombre','id');
+    return view('producto.create',compact('categorias'));
+  }
 
   public function store(Request $request){
+    $userActual = Auth::user();
     $producto = new Producto;
     $producto->nombre = $request->nombreProducto;
     $producto->precio = $request->precio;
     $producto->idCategoria = $_POST['categorias'];
     $producto->receta = $request->receta;
-    $producto->idAdmin = 1;//Auth::id();
+    $producto->idAdmin = $userActual->idEmpresa;
     $producto->save();
     Flash::success("El producto se ha registrado satisfactoriamente")->important();
     session_start();
@@ -58,12 +69,12 @@ class ProductoController extends Controller
   }
 
   public function update(Request $request,$id){
+    $userActual = Auth::user();
     $producto = Producto::find($id);
     $producto->nombre = $request->nombreProducto;
     $producto->precio = $request->precio;
     $producto->idCategoria = $_POST['categorias'];
     $producto->receta = $request->receta;
-    $producto->idAdmin = 1;//Auth::id();
     $producto->save();
     Flash::success("El producto se ha modificado satisfactoriamente")->important();
     return redirect()->route('producto.index');

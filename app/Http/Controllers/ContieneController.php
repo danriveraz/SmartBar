@@ -5,7 +5,6 @@ namespace PocketByR\Http\Controllers;
 use Illuminate\Http\Request;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 use PocketByR\Insumo;
 use PocketByR\Producto;
 use PocketByR\Contiene;
@@ -14,6 +13,16 @@ use Auth;
 
 class ContieneController extends Controller
 {
+
+public function __construct()
+    {
+        $this->middleware('auth');
+        $userActual = Auth::user();
+        if (!$userActual->esAdmin) {
+            flash('No Tiene Los Permisos Necesarios')->error()->important();
+            return redirect('/WelcomeTrabajador')->send();
+        }
+    }  
   public function index(Request $request){
 
     session_start();
@@ -33,55 +42,46 @@ class ContieneController extends Controller
                                    with('idProducto',$idProducto);
   }
 
-  public function create(Request $request){
-    $insumosDisponibles = Insumo::Search($request->nombre)->
-                       Type($request->tipo)->
-                       orderBy('id','ASC')->
-                       paginate(20);
-    return view('contiene.create')->with('insumosDisponibles',$insumos);
-  }
+  public function create(Request $request){}
 
-  public function store(Request $request){
-    session_start();
-    $idProducto = $_SESSION['idProducto'];
-    $contiene = new Contiene;
-    $contiene->idProducto = $idProducto;
-    $contiene->idInsumo = $request->idInsumo;
-    $contiene->cantidad = $request->cantidad;
-    $contiene->idAdmin = 1;//Auth::id();
-    $contiene->save();
-    Flash::success("El insumo se ha agregado al producto")->important();
-    return redirect()->route('contiene.index');
-  }
+  public function store(Request $request){}
 
   public function show($id){}
 
   public function edit($id){}
 
-  public function destroy($id){
-    $contiene = Contiene::find($id);
-    $contiene->delete();
-    Flash::success('El insumo ha sido retirado del producto.')->important();
-    return redirect()->route('contiene.index');
-  }
+  public function destroy($id){}
 
-  public function agregar(Request $request){
-    $idInsumo = $request->idI;
-    $cantidad = $request->cant;
-    session_start();
-    $idProducto = $_SESSION['idProducto'];
-    $contiene = new Contiene;
-    $contiene->idProducto = $idProducto;
-    $contiene->idInsumo = $idInsumo;
-    $contiene->cantidad = $cantidad;
-    $contiene->idAdmin = 1;//Auth::id();
-    $contiene->save();
-  }
+  public function guardar(Request $request){
+    $userActual = Auth::user();
+    $idProducto = $request->idProducto;
+    $idInsumos = $request->insumos;
+    $cantidades = $request->cantidades;
 
-  public function eliminar(Request $request){
-    session_start();
-    $idProducto = $_SESSION['idProducto'];
-    $contiene = Contiene::IdProducto($idProducto)->IdInsumo($request->idI)->Cantidad($request->cant)->get();
-    $contiene->delete();
+    $cantidadInsumos = sizeOf($idInsumos);
+
+    if($cantidadInsumos != 0){
+      for($i=0; $i<$cantidadInsumos; $i++){
+        $contieneAux = Contiene::IdProducto($idProducto)->
+                                 IdInsumo($idInsumos[$i])->
+                                 where('idAdmin',$userActual->idEmpresa)->first();
+        if($contieneAux == null){
+          $contiene = new Contiene;
+          $contiene->idProducto = $idProducto;
+          $contiene->idInsumo = $idInsumos[$i];
+          $contiene->cantidad = $cantidades[$i];
+          $contiene->idAdmin = $userActual->idEmpresa;
+          $contiene->save();
+        }
+        else{
+          $contieneAux->cantidad = $cantidades[$i];
+          $contieneAux->save();
+        }
+      }
+      $request->session()->flash('success_msg', 'Los insumos se han agregado satisfactoriamente.');
+    }
+    else{
+      $request->session()->flash('error_msg', 'Deben agregarse insumos al producto');
+    }
   }
 }
