@@ -3,6 +3,7 @@
 namespace PocketByR\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use PocketByR\Factura;
 use PocketByR\Venta;
 use PocketByR\Mesa;
@@ -11,6 +12,16 @@ use PocketByR\Http\Controllers\Controller;
 
 class CajeroController extends Controller
 {
+     public function __construct()
+    {
+        $this->middleware('auth');
+        $userActual = Auth::user();
+        if (!$userActual->esCajero) {
+            flash('No Tiene Los Permisos Necesarios')->error()->important();
+            return redirect('/WelcomeTrabajador')->send();
+        }
+
+    }
     public function index(Request $request){
     	$mesas = Factura::listar()
     						->paginate(20);
@@ -45,6 +56,9 @@ class CajeroController extends Controller
             Venta::ActualizarVenta($rq);
             $contador = $contador + 1;
         }
+        $idUsuario = Auth::user()->id;
+        $arreglo = array($idProductos, $idUsuario, "idCajero");
+        Venta::actualizarUsuario($arreglo);
         Factura::actualizarValor($request);
         $busqueda = Venta::ListarPendientes($request->idFactura)->paginate(20);
         if (sizeof($busqueda) == 0){

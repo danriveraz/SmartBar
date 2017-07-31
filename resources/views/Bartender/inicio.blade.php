@@ -1,15 +1,13 @@
-@extends('Layout.app')
+@extends('Layout.app_empleado')
 @section('content')
 
 <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
+
 {!!Html::style('stylesheets\font-awesome.min.css')!!}
 {!!Html::style('stylesheets\isotope.css')!!}
 {!!Html::style('stylesheets\fullcalendar.css')!!}
 {!!Html::style('stylesheets\style.css')!!}
 {!!Html::style('stylesheets\bootstrap.min.css')!!}
-
-
-
 {!!Html::script('javascripts\bootstrap.min.js')!!}
 {!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
 {!!Html::script('javascripts\fullcalendar.min.js')!!}
@@ -89,7 +87,10 @@
                   <td>{{$venta->producto->nombre}}</td>
                   <td>{{$venta->producto->categoria->nombre}}</td>
                   <td><a class="btn btn btn-default popover-trigger" data-content="{{$venta->producto->receta}}" data-placement="bottom" data-toggle="popover">Receta</a></td>
-                  <td><input type="checkbox" name="pedidos[]" value="{{$venta->id}}"" width="25" height="25"></td>
+                  <td>
+                  <label>
+                  <input type="checkbox" name="pedidos[]" value="{{$venta->id}}"" width="25" height="25"><span></span></label>
+                  </td>
                 </tr>
               @endforeach 
               </table>

@@ -155,14 +155,16 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li>
-                <a href="index.htm" class="current">
-                <span aria-hidden="true" class="fa fa-fw fa-group"></span>Mesas</a>
+                <a href="{{url('mesero/')}}" class="current">
+                <span aria-hidden="true" class="fa fa-fw fa-group"></span>Mesero</a>
               </li>
-              <li><a href="social.htm">
+              <li>
+              <a href="{{url('bartender/')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-glass"></span>Bartender</a>
               </li>
-              <li class="dropdown"><a data-toggle="dropdown" href="#">
-                <span aria-hidden="true" class="fa fa-fw fa-list"></span>Caja</a>
+              <li class="dropdown">
+              <a href="{{url('cajero/')}}">
+                <span aria-hidden="true" class="fa fa-fw fa-list"></span>Cajero</a>
               </li>
             </ul>
           </div>

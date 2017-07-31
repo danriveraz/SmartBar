@@ -18,9 +18,15 @@ class Venta extends Model
     $query->wherein('id', $pedidos)
         ->update(['estadoBartender' => 'Atendido']);
   }
-  public function scopeActualizarVenta($query, $rq){
-      $id = $rq[0];
-      $estado = $rq[1];
+  public function scopeActualizarUsuario($query, $arreglo){
+    $pedidos = $arreglo[0];
+    $id = $arreglo[1];
+    $query->wherein('id', $pedidos)
+        ->update(["$arreglo[2]" => $id]);
+  }
+  public function scopeActualizarVenta($query, $arreglo){
+      $id = $arreglo[0];
+      $estado = $arreglo[1];
       $query->where('id', "$id")
             ->update(['estadoCajero' => "$estado"]);
   }

@@ -1,4 +1,4 @@
-@extends('Layout.app')
+@extends('Layout.app_empleado')
 @section('content') 
 <script type="text/javascript">
   $(window).load(function() {
