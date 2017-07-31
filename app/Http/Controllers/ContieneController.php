@@ -52,6 +52,18 @@ public function __construct()
 
   public function destroy($id){}
 
+  public function eliminar(Request $request){
+    $userActual = Auth::user();
+    $idProducto = $request->idProducto;
+    $idInsumo = $request->idInsumo; 
+    $contieneAux = Contiene::IdProducto($idProducto)->
+                             IdInsumo($idInsumo)->
+                             where('idAdmin',$userActual->idEmpresa)->first();
+    if($contieneAux != null){
+      $contieneAux->delete();
+    }
+  }
+
   public function guardar(Request $request){
     $userActual = Auth::user();
     $idProducto = $request->idProducto;
@@ -78,10 +90,6 @@ public function __construct()
           $contieneAux->save();
         }
       }
-      $request->session()->flash('success_msg', 'Los insumos se han agregado satisfactoriamente.');
-    }
-    else{
-      $request->session()->flash('error_msg', 'Deben agregarse insumos al producto');
     }
   }
 }

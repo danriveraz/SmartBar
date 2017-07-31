@@ -5,7 +5,7 @@
   <div class="panel-tittle">
       <h1>Asignar insumos</h1>
   </div>
-  <button onclick="enviarDatos({{$idProducto}})" class="btn btn-default"><i class="glyphicon glyphicon-ok"></i> Guardar pedido</button>
+  <button onclick="enviarDatos({{$idProducto}})" class="btn btn-default"><i class="glyphicon glyphicon-ok"></i> Guardar</button>
   <div class="panel">
     <div class="panel-heading">
       <div class="panel-title">
@@ -53,13 +53,17 @@
         </div>
       </div>
     {!! Form::close() !!}
-    <table class="table table-hover" >
+    <table class="table table-hover" id="insumosDisponibles">
       <thead>
         <th>#</th>
         <th>Nombre</th>
         <th>Tipo</th>
         <th>Cantidad de onzas</th>
-        <th><a href="{{route('producto.index')}}" class="btn btn-default"><i class="fa fa-plus"></i>Adicionar insumos</a></th>
+        <th>
+          <button type="submit" class="btn btn-dufault" onclick="adicionarTodo()">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"> Adicionar</span>
+          </button>          
+        </th>
       </thead>
       <tbody>
         @foreach($insumosDisponibles as $insumo)
@@ -93,7 +97,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
-  var routeAgregar = "http://localhost/PocketByR/public/contiene/agregar";
+  var routeEliminar = "http://localhost/PocketByR/public/contiene/eliminar";
   var routeGuardar = "http://localhost/PocketByR/public/contiene/guardar";
 
   function adicionarInsumo(insumo){
@@ -108,48 +112,75 @@
        })
     }
     else{
-      var fila = '<tr id="fila'+insumo.id+'"><td>'+insumo.id+'</td><td>'+insumo.nombre+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}}'+insumo.id+',)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td></tr>';
+      var fila = '<tr id="fila'+insumo.id+'"><td>'+insumo.id+'</td><td>'+insumo.nombre+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},'+insumo.id+')"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td></tr>';
       $("#insumoAgregados").append(fila);       
     }
     $("#"+insumo.id).val(0);
   }
 
   function adicionarTodo(){
-    
+    var idInsumos = [];
+      var cantidades = [];
+      $("table#insumosDisponibles tr").each(function() {
+        $(this).children("td").each(function (indextd)
+          {
+            if(indextd == 0){
+              idInsumos.push($(this).text());
+            }else if(indextd == 2)
+              cantidades.push($(this).text());
+        })
+      });    
+    alert("bien");
   }
 
   function eliminarInsumo(idProducto,idInsumo){
-    $("#fila"+idInsumo).remove();
+    if(confirm('¿Desea eliminar este insumo?')){
+      $.ajax({
+        url: routeEliminar,
+        type: 'GET',
+        data: {
+          idProducto: idProducto,
+          idInsumo: idInsumo
+        },
+        success: function(){
+          $("#fila"+idInsumo).remove();
+        },
+        error: function(data){
+          alert('Error al eliminar insumo');
+        }
+      });
+    }
   }
 
   function enviarDatos(idProducto){
-    var idInsumos = [];
-    var cantidades = [];
-    //var token = $("#token").val();
-    $("table#insumoAgregados tr").each(function() {
-      $(this).children("td").each(function (indextd)
-        {
-          if(indextd == 0){
-            idInsumos.push($(this).text());
-          }else if(indextd == 2)
-            cantidades.push($(this).text());
-       })
-    });
-    $.ajax({
-        url: routeGuardar,
-        type: 'GET',
-        data:{
-          idProducto: idProducto,
-          insumos: idInsumos,
-          cantidades: cantidades
+    if(confirm('¿Desea Guardar todos los insumos agregados?')){
+      var idInsumos = [];
+      var cantidades = [];
+      $("table#insumoAgregados tr").each(function() {
+        $(this).children("td").each(function (indextd)
+          {
+            if(indextd == 0){
+              idInsumos.push($(this).text());
+            }else if(indextd == 2)
+              cantidades.push($(this).text());
+        })
+      });
+      $.ajax({
+          url: routeGuardar,
+          type: 'GET',
+          data:{
+            idProducto: idProducto,
+            insumos: idInsumos,
+            cantidades: cantidades
+          },
+          success : function() {
+            document.location.href='producto';
         },
-        success : function() {
-          document.location.href='producto';
-       },
-        error: function(data){
-          alert('Error al adicionar insumos');
-       }
-     });
+          error: function(data){
+            alert('Error al adicionar insumos');
+        }
+      });
+    }
   }  
 
 </script>
