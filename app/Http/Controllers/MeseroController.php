@@ -3,7 +3,7 @@
 namespace PocketByR\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use PocketByR\Mesa;
@@ -12,7 +12,7 @@ use PocketByR\Categoria;
 use PocketByR\Factura;
 use PocketByR\Contiene;
 use PocketByR\Venta;
-use Auth;
+
 use Laracasts\Flash\Flash;
 
 class MeseroController extends Controller
@@ -23,9 +23,19 @@ class MeseroController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     public function __construct()
+     {
+         $this->middleware('auth');
+         $userActual = Auth::user();
+         if (!$userActual->esMesero) {
+             flash('No tiene los permisos necesarios')->error()->important();
+             return redirect('/WelcomeTrabajador')->send();
+         }
+     }
+
     public function index()
     {
-        $mesas = Mesa::all();
+        $mesas = Mesa::mesasAdmin(Auth::user()->idEmpresa)->get();
         return view('mesero.mesas')->with('mesas',$mesas);
     }
 
@@ -113,9 +123,6 @@ class MeseroController extends Controller
 
     public function venta(Request $request){
 
-      $this->middleware('auth');
-      $userActual = Auth::user();
-
       $productos = $request->productosTabla;
       $cantidades = $request->cantidadesTabla;
       $idFactura = $request->factura;
@@ -149,9 +156,9 @@ class MeseroController extends Controller
               $nuevaVenta->estadoCajero = '0';
               $nuevaVenta->idFactura = $idFactura;
               $nuevaVenta->idProducto = $productos[$i];
-              $nuevaVenta->idMesero = $userActual->id; //Cambiar?
-              $nuevaVenta->idBartender = $userActual->id; //Cambiar?
-              $nuevaVenta->idCajero = $userActual->id; //Cambiar?
+              $nuevaVenta->idMesero = Auth::user()->id; //Cambiar?
+              $nuevaVenta->idBartender = Auth::user()->id; //Cambiar?
+              $nuevaVenta->idCajero = Auth::user()->id; //Cambiar?
               $nuevaVenta->save();
             }
 
@@ -167,9 +174,9 @@ class MeseroController extends Controller
             $venta->estadoCajero = '0';
             $venta->idFactura = $idFactura;
             $venta->idProducto = $productos[$i];
-            $venta->idMesero = $userActual->id; //Cambiar?
-            $venta->idBartender = $userActual->id; //Cambiar?
-            $venta->idCajero = $userActual->id; //Cambiar?
+            $venta->idMesero = Auth::user()->id; //Cambiar?
+            $venta->idBartender = Auth::user()->id; //Cambiar
+            $venta->idCajero = Auth::user()->id; //Cambiar
             $venta->save();
           }
           $mesa = Mesa::find($idMesa);
@@ -210,9 +217,6 @@ class MeseroController extends Controller
      */
     public function show($id)
     {
-      $this->middleware('auth');
-      $userActual = Auth::user();
-
       $mesa = Mesa::find($id);
       $categorias = Categoria::all();
       $busqueda = Factura::buscarFacturaId($id)->get()->last();
@@ -226,8 +230,8 @@ class MeseroController extends Controller
         $nfactura->estado = "En proceso";
         $nfactura->fecha = date("Y-m-d H:i:s", time());
         $nfactura->total = 0;
-        $nfactura->idEmpresa = $userActual->idEmpresa; //Cambiar?
-        $nfactura->idUsuario = $userActual->id; //Cambiar?
+        $nfactura->idEmpresa = Auth::user()->idEmpresa; //Cambiar?
+        $nfactura->idUsuario = Auth::user()->id; //Cambiar?
         $nfactura->idMesa = $id;
         $nfactura->save();
         $facturas = Factura::buscarFacturaId($id)->get()->last();

@@ -12,4 +12,8 @@ class Mesa extends Model
         $query->where('mesa.id', "$id")
           ->update(['mesa.estado' => "Desocupada"]);
     }
+
+    public function scopeMesasAdmin($query, $idEmpresa){
+        return $query->where('mesa.idEmpresa', $idEmpresa);
+    }
 }

@@ -1,4 +1,4 @@
-@extends('Layout.app')
+@extends('Layout.app_empleado')
 @section('content')
 
 {!!Html::style('stylesheets\mesero.css')!!}
