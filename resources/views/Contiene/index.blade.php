@@ -102,14 +102,14 @@
 
   function adicionarInsumo(insumo){
     var cantidad = $("#"+insumo.id).val();
-    if(document.getElementById("fila"+insumo.id)!==null){
+    if(document.getElementById("fila"+insumo.id)!=null){
       $("#fila"+insumo.id).children("td").each(function (indextd)
         {
           if(indextd == 2){
             var nuevaCantidad = parseFloat($(this).text())+parseFloat(cantidad);
             $(this).text(nuevaCantidad);
           }
-       })
+       });
     }
     else{
       var fila = '<tr id="fila'+insumo.id+'"><td>'+insumo.id+'</td><td>'+insumo.nombre+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},'+insumo.id+')"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td></tr>';
@@ -119,18 +119,36 @@
   }
 
   function adicionarTodo(){
-    var idInsumos = [];
-      var cantidades = [];
+    var insumos = [];
+    var nombres = [];
       $("table#insumosDisponibles tr").each(function() {
         $(this).children("td").each(function (indextd)
           {
             if(indextd == 0){
-              idInsumos.push($(this).text());
-            }else if(indextd == 2)
-              cantidades.push($(this).text());
+              insumos.push($(this).text());
+            }else if(indextd == 1){
+              nombres.push($(this).text());
+            }
         })
-      });    
-    alert("bien");
+      });
+      for(var i = 0; i < insumos.length; i++){
+        if($("#"+insumos[i]).val() != 0){
+          if(document.getElementById("fila"+insumos[i])!=null){
+            $("#fila"+insumos[i]).children("td").each(function (indextd)
+            {
+              if(indextd == 2){
+                var nuevaCantidad = parseFloat($(this).text())+parseFloat($("#"+insumos[i]).val());
+                $(this).text(nuevaCantidad);
+              }
+            });            
+          }
+          else{
+            var fila = '<tr id="fila'+insumos[i]+'"><td>'+insumos[i]+'</td><td>'+nombres[i]+'</td><td>'+$("#"+insumos[i]).val()+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},'+insumos[i]+')"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td></tr>';
+            $("#insumoAgregados").append(fila);
+          }
+          $("#"+insumos[i]).val(0);
+        }
+      }
   }
 
   function eliminarInsumo(idProducto,idInsumo){
