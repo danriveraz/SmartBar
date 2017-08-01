@@ -16,33 +16,37 @@ use Auth;
 
 class InsumoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $userActual = Auth::user();
+        if (!$userActual->esAdmin) {
+            flash('No Tiene Los Permisos Necesarios')->error()->important();
+            return redirect('/WelcomeTrabajador')->send();
+        }
+
+    }
 
     public function index(Request $request){
-      $categorias = Categoria:://where('idAdmin' , Auth::id())->
+      $userActual = Auth::user();
+      $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                                lists('nombre','id');
 
-      $proveedores = Proveedor:://where('idAdmin' , Auth::id())->
+      $proveedores = Proveedor::where('idEmpresa' , $userActual->idEmpresa)->
                                 lists('nombre','id');
 
-      $insumos = Insumo::Search($request->nombre)->
+      $insumos = Insumo::Search($request->nombre,$request->marca)->
                          Type($request->tipo)->
-                         //where('idAdmin' , Auth::id())->
+                         where('idEmpresa' , $userActual->idEmpresa)->
                          orderBy('id','ASC')->
-                         paginate(20);
+                         paginate(2);
 
       return view('insumo.index',compact('proveedores'))->with('insumos',$insumos)->with('categorias',$categorias);
   }
 
-  public function create(){
-    $categorias = Categoria:://where('idAdmin' , Auth::id())->
-                               lists('nombre','id');
-    $proveedores = Proveedor:://where('idAdmin' , Auth::id())->
-                              lists('nombre','id');
-
-    return view('insumo.create')->with('proveedores',$proveedores)->with('categorias',$categorias);
-  }
 
   public function store(Request $request){
+      $userActual = Auth::user();
       $insumo = new Insumo;
       $insumo->idProveedor = $_POST['proveedores'];
       $insumo->nombre = $request->nombre;
@@ -67,7 +71,7 @@ class InsumoController extends Controller
         $insumo->tipo = true;
       }
 
-      $insumo->idAdmin = 8;//Auth::id();
+      $insumo->idEmpresa = $userActual->idEmpresa;
       $insumo->save();
 
       if($insumo->tipo){
@@ -82,7 +86,7 @@ class InsumoController extends Controller
         $contiene->idProducto = $producto->id;
         $contiene->idInsumo = $insumo->id;
         $contiene->cantidad = $insumo->cantidadMedida;
-        $contiene->idAdmin = 8;//Auth::id();
+        $contiene->idAdmin = Auth::id();
         $contiene->save();
       }
       Flash::success("El insumo se ha registrado satisfactoriamente")->important();
@@ -94,16 +98,18 @@ class InsumoController extends Controller
   }
 
   public function edit($id){
+    $userActual = Auth::user();
     $insumo = Insumo::find($id);
 
-    $categorias = Categoria:://where('idAdmin' , Auth::id())->
+    $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                                lists('nombre','id');
-    $proveedores = Proveedor:://where('idAdmin' , Auth::id())->
+    $proveedores = Proveedor::where('idEmpresa' , $userActual->idEmpresa)->
                                 lists('nombre','id');
     return view('insumo.edit')->with('insumo',$insumo)->with('proveedores',$proveedores)->with('categorias',$categorias);
   }
 
     public function update(Request $request, $id){
+      $userActual = Auth::user();
   	  $insumo = Insumo::find($id);
       $insumo->idProveedor = $_POST['proveedores'];
       $insumo->nombre = $request->nombre;
@@ -125,7 +131,7 @@ class InsumoController extends Controller
       else{
         $insumo->tipo = true;
       }
-      $insumo->idAdmin = 8;//Auth::id();
+      $insumo->idEmpresa = $userActual->idEmpresa;
       $insumo->save();
       flash::warning('El insumo ha sido modificado satisfactoriamente')->important();
       return redirect()->route('insumo.index');

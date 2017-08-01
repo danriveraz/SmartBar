@@ -47,6 +47,8 @@ Route::get('contiene/{id}/destroy', ['uses' => 'ContieneController@destroy', 'as
 Route::resource('contiene', 'contieneController');
 
 Route::resource('proveedor', 'proveedorController');
+Route::get('provlistall/{page?}', 'proveedorController@listall');
+Route::get('provlistall/{nombre?}', 'proveedorController@buscar');
 Route::get('proveedor/{id}/destroy', ['uses' => 'ProveedorController@destroy', 'as' => 'proveedor.destroy']);
 
 Route::resource('categoria', 'categoriaController');

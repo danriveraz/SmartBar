@@ -12,17 +12,31 @@ use Auth;
 
 class CategoriaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $userActual = Auth::user();
+        if (!$userActual->esAdmin) {
+            flash('No Tiene Los Permisos Necesarios')->error()->important();
+            return redirect('/WelcomeTrabajador')->send();
+        }
+
+    }
+    
     public function index(Request $request){
-      $categorias = Categoria:://where('idAdmin' , Auth::id())->
+      $userActual = Auth::user();
+      $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                        orderBy('id','ASC')->
                        paginate(20);
       return view('categoria.index')->with('categorias',$categorias);
   	}
 
   	public function store(Request $request){
+      $userActual = Auth::user();
       $categoria = new Categoria;
       $categoria->nombre = $request->nombre;
-      $categoria->idAdmin = 8;//Auth::id();
+      $categoria->idEmpresa = $userActual->idEmpresa;
       $categoria->save();
       Flash::success("La categoria se ha registrado satisfactoriamente")->important();
       return redirect()->route('categoria.index');
@@ -35,13 +49,14 @@ class CategoriaController extends Controller
   	}
 
     public function update(Request $request, $id){
+      $userActual = Auth::user();
    		$categoria = Categoria::find($id);
-
-      	$categoria->nombre = $request->nombre;
-      	$categoria->idAdmin = 8;//Auth::id();
-      	$categoria->save();
-      	flash::warning('La categoria ha sido modificada satisfactoriamente')->important();
-      	return redirect()->route('categoria.index');
+      $categoria->nombre = $request->nombre;
+      $categoria->idEmpresa = $userActual->idEmpresa;
+      $categoria->save();
+      flash::warning('La categoria ha sido modificada satisfactoriamente')
+      ->important();
+      return redirect()->route('categoria.index');
     }
 
     public function destroy($id){

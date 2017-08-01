@@ -1,7 +1,6 @@
 @extends('Layout.app')
 @section('content')
 
-
 {!!Html::style('stylesheets\font-awesome.min.css')!!}
 {!!Html::style('stylesheets\isotope.css')!!}
 {!!Html::style('stylesheets\fullcalendar.css')!!}
@@ -23,6 +22,17 @@
   </div>
   @include('flash::message')
   <a href="#addModal" class="btn btn-default" data-toggle="modal"><i class="fa fa-plus"></i> Agregar nuevo proveedor </a>
+
+  <form id="busqueda" name="busqueda" class="navbar-form navbar-right" method="GET" route="proveedor.listall">
+    {{csrf_field()}}
+    <div class="form-group" align="right">
+
+      <input  id="nombreInput" type="text" name="nombreInput" class="form-control" aria-describedby="search"/>
+
+      <button  href="provlistall?nombre=" id="buscarNombre" type="submit" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" class="btn btn-dufault">Buscar</button>
+    </div>
+
+  </form>
 
   <div class="modal fade in" id="addModal" >
     <div class="modal-dialog">
@@ -63,38 +73,54 @@
    </div>
   </div>
 
-  {!! Form::model(Request::all(), ['route' => ['proveedor.index'], 'method' => 'GET', 'class' => 'navbar-form navbar-right']) !!}
-  <div class="form-group" align="right">
-    {!! Form::text('nombre', null, ['class' => 'form-control', 'placelhoder' => 'Buscar', 'aria-describedby' => 'search']) !!}
-   <button type="submit" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" class="btn btn-dufault">Buscar</button>
+  <div class="panel-body">
+      <div id="list-prov"></div>
   </div>
-  {!! Form::close() !!}
-  <table class="table table-striped">
-    <thead>
-      <th>#</th>
-      <th>Nombre</th>
-      <th>Dirección</th>
-      <th>Telefono</th>
-    </thead>
-    <tbody>
-      @foreach($proveedores as $proveedor)
-        <tr>
-          <td>{{$proveedor->id}}</td>
-          <td>{{$proveedor->nombre}}</td>
-          <td>{{$proveedor->direccion}}</td>
-          <td>{{$proveedor->telefono}}</td>
-          <td align="right"><a href="{{ route('proveedor.edit',$proveedor->id) }}" data-toggle="modal" class="btn btn-default" data-target="#editModal{{$proveedor->id}}" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
-          <a href="{{route('proveedor.destroy', $proveedor->id) }}" class="btn btn-default" onclick = "return confirm ('¿Desea eliminar este proveedor?')" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
-
-          </td>
-        </tr>
-        <div class="modal fade in" id="editModal{{$proveedor->id}}" role="dialog" >
-    
-        </div>
-        
-      @endforeach
-    </tbody>
-  </table>
-  {!!$proveedores->appends(Request::all())->render() !!}
 </div>
+
+<script type="text/javascript">
+  
+  $(document).ready(function(){
+    listprov();
+  });
+
+  $(document).on("click", '#buscarNombre',function(e){
+    e.preventDefault();
+    var dato = $("#nombreInput").val();
+    var url = $(this).attr("href");
+    var urlf = url+dato;
+    $.ajax({
+      type:'get',
+      url:urlf,
+      success: function(data){
+        $("#list-prov").empty().html(data);
+      }
+    });
+  });
+
+  $(document).on("click",".pagination li a",function(e){
+    e.preventDefault();
+    var url = $(this).attr("href");
+    $.ajax({
+      type:'get',
+      url:url,
+      success: function(data){
+        $("#list-prov").empty().html(data);
+      }
+    });
+  });
+
+  var listprov = function()
+  {
+    $.ajax({
+      type:'get',
+      url: '{{url('provlistall')}}',
+      success:  function(data){
+        $('#list-prov').empty().html(data);
+      }
+    });
+  }
+
+</script>
+
 @endsection

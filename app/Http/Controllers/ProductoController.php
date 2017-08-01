@@ -26,7 +26,7 @@ class ProductoController extends Controller
 
   public function index(Request $request){
     $userActual = Auth::user();
-    $categorias = Categoria::where('idAdmin' , $userActual->idEmpresa)->
+    $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                              lists('nombre','id');
     $productos = Producto::Search($request->nombre)->
                            Category($request->categorias)->
@@ -38,7 +38,7 @@ class ProductoController extends Controller
 
   public function create(Request $request){
     $userActual = Auth::user();
-    $categorias = Categoria::where('idAdmin' , $userActual->idEmpresa)->
+    $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                              lists('nombre','id');
     return view('producto.create',compact('categorias'));
   }

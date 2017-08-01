@@ -17,11 +17,11 @@ class CreateFacturaTable extends Migration
             $table->string('estado');
             $table->integer('total');
             $table->dateTime('fecha');
-            $table->integer('idAdmin')->unsigned();;
+            $table->integer('idAdmin')->unsigned();
             $table->foreign('idAdmin')->references('id')->on('admin');
-            $table->integer('idUsuario')->unsigned();;
+            $table->integer('idUsuario')->unsigned();
             $table->foreign('idUsuario')->references('id')->on('usuario');
-            $table->integer('idMesa')->unsigned();;
+            $table->integer('idMesa')->unsigned();
             $table->foreign('idMesa')->references('id')->on('mesa');
             $table->timestamps();
         });

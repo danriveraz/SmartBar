@@ -114,15 +114,18 @@
     </div>
    </div>
   </div>
-  {!! Form::model(Request::all(), ['route' => ['insumo.index'], 'method' => 'GET', 'class' => 'navbar-form navbar-right']) !!}
-  <div class="form-group" align="right">
-    {!! Form::text('nombre', null, ['class' => 'form-control', 'placelhoder' => 'Buscar', 'aria-describedby' => 'search']) !!}
-    <button type="submit" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" class="btn btn-dufault">Buscar</button>
-    <div align="right">
-      <br>
-      {!! Form::select('tipo', ['' => 'Seleccione un tipo','1' => 'A la venta','0' => 'No a la venta'], null, ['class' => 'form-control']) !!}
+  <form class="navbar-form navbar-right" method="GET" route="'insumo.index'">
+  {{csrf_field()}}
+    <div class="form-group" align="right">
+      {!! Form::text('nombre', null, ['class' => 'form-control', 'placelhoder' => 'Buscar', 'aria-describedby' => 'search']) !!}
+      <button type="submit" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" class="btn btn-dufault">Buscar</button>
+      <div align="right">
+        <br>
+        {!! Form::select('tipo', ['' => 'Seleccione un tipo','1' => 'A la venta','0' => 'No a la venta'], null, ['class' => 'form-control']) !!}
+      </div>
     </div>
-  </div>
+  </form>
+
   {!! Form::close() !!}
   <table class="table table-striped">
     <thead>
