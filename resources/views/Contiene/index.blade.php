@@ -1,7 +1,7 @@
 @extends('Layout.app')
 @section('content')
 
-<div class="col-sm-offset-2 col-sm-8"> 
+<div class="col-sm-offset-3 col-sm-6"> 
   <div class="panel-tittle">
       <h1>Asignar insumos</h1>
   </div>

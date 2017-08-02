@@ -2,7 +2,6 @@
       <thead>
         <th>#</th>
         <th>Nombre</th>
-        <th>Marca</th>
         <th>Tipo</th>
         <th>Cantidad de onzas</th>
         <th>
@@ -17,7 +16,6 @@
           <tr>
             <td>{{$insumo->id}}</td>
             <td>{{$insumo->nombre}}</td>
-            <td>{{$insumo->marca}}</td>
             <td align="center">
               <input type="checkbox" disabled="disabled" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?>/>
             </td>
