@@ -5,7 +5,7 @@
   <div class="panel-tittle">
       <h1>Asignar insumos</h1>
   </div>
-  <button onclick="enviarDatos({{$idProducto}})" class="btn btn-default"><i class="glyphicon glyphicon-ok"></i> Guardar</button>
+  <button onclick="enviarDatos({{$idProducto}})" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><i class="glyphicon glyphicon-ok"></i> Guardar</button>
   <div class="panel">
     <div class="panel-heading">
       <div class="panel-title">
@@ -43,47 +43,24 @@
     <div>
       <h3>Insumos disponibles</h3>
     </div>
-    {!! Form::model(Request::all(), ['route' => ['contiene.index'], 'method' => 'GET', 'class' => 'navbar-form navbar-right']) !!}
+    <form id="busqueda" name="busqueda" class="navbar-form navbar-right" method="GET" 
+    route="contiene.listall">
+    {{csrf_field()}}
       <div class="form-group" align="right">
-        {!! Form::text('nombre', null, ['class' => 'form-control', 'placelhoder' => 'Buscar', 'aria-describedby' => 'search']) !!}
-        <button type="submit" class="btn btn-dufault">Buscar</button>
-        <br>
+        <input  id="nombreInput" type="text" name="nombreInput" class="form-control" aria-describedby="search"/>
+        <button  href="contlistall?nombre=" id="buscarNombre" type="submit" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" class="btn btn-dufault">Buscar</button>
         <div align="right">
-          {!! Form::select('tipo', ['' => 'Seleccione un tipo','1' => 'A la venta','0' => 'No a la venta'], null, ['class' => 'form-control']) !!}
-        </div>
+        <select id="buscarTipo" name="buscarTipo" class="form-control">
+          <option value="">Seleccione un tipo</option>
+          <option value="1">A la venta</option> 
+          <option value="0">No a la venta</option>   
+        </select>
       </div>
-    {!! Form::close() !!}
-    <table class="table table-hover" id="insumosDisponibles">
-      <thead>
-        <th>#</th>
-        <th>Nombre</th>
-        <th>Tipo</th>
-        <th>Cantidad de onzas</th>
-        <th>
-          <button type="submit" class="btn btn-dufault" onclick="adicionarTodo()">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"> Adicionar</span>
-          </button>          
-        </th>
-      </thead>
-      <tbody>
-        @foreach($insumosDisponibles as $insumo)
-          <tr>
-            <td>{{$insumo->id}}</td>
-            <td>{{$insumo->nombre}}</td>
-            <td align="center">
-              <input type="checkbox" disabled="disabled" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?>/>
-            </td>
-            <td><input type="number"  id="{{$insumo->id}}" step="any" min="0" name="cantidad" class="form-control" value=0></td>
-            <td align="center">
-              <button type="submit" class="btn btn-dufault" onclick="adicionarInsumo({{$insumo}})">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              </button>
-            </td>
-          </tr>
-        @endforeach
-      </tbody>
-    </table>
-    {!!$insumosDisponibles->appends(Request::all())->render() !!}
+      </div>
+    </form>
+    <div class="panel-body">
+      <div id="list-cont"></div>
+   </div>
   </div>
 </div>
 
@@ -95,6 +72,51 @@
 @endsection
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+  $(document).ready(function(){
+    listprov();
+  });
+
+  $(document).on("click", '#buscarNombre',function(e){
+    e.preventDefault();
+    var dato = $("#nombreInput").val();
+    var tipo = $("#buscarTipo").val();
+    var url = $(this).attr("href");
+    var urlf = url+dato+'&tipo='+tipo;
+    $.ajax({
+      type:'get',
+      url:urlf,
+      success: function(data){
+        $("#list-cont").empty().html(data);
+      }
+    });
+  });
+
+  $(document).on("click",".pagination li a",function(e){
+    e.preventDefault();
+    var url = $(this).attr("href");
+    $.ajax({
+      type:'get',
+      url:url,
+      success: function(data){
+        $("#list-cont").empty().html(data);
+      }
+    });
+  });
+
+  var listprov = function()
+  {
+    $.ajax({
+      type:'get',
+      url: '{{url('contlistall')}}',
+      success:  function(data){
+        $('#list-cont').empty().html(data);
+      }
+    });
+  }
+
+</script>
 <script>
 
   var routeEliminar = "http://localhost/PocketByR/public/contiene/eliminar";

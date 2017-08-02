@@ -24,20 +24,32 @@ public function __construct()
         }
     }  
   public function index(Request $request){
-
     session_start();
     $idProducto = $_SESSION['idProducto'];
 
     $insumos = Insumo::lists('nombre','id');
+
     $contienen = Contiene::IdProducto($idProducto)->
                            orderBy('idInsumo','ASC')->
-                           paginate(20);
+                           paginate(50);
+
+    return view('contiene.index')->with('insumos',$insumos)->
+                                   with('contienen',$contienen)->
+                                   with('idProducto',$idProducto);
+  }
+
+  public function listall(Request $request){
+    session_start();
+    $idProducto = $_SESSION['idProducto'];
+
+    $insumos = Insumo::lists('nombre','id');
+
     $insumosDisponibles = Insumo::Search($request->nombre)->
                           Type($request->tipo)->
                           orderBy('id','ASC')->
-                          paginate(20);
-    return view('contiene.index')->with('insumos',$insumos)->
-                                   with('contienen',$contienen)->
+                          paginate(2);
+                          
+    return view('contiene.listall')->with('insumos',$insumos)->
                                    with('insumosDisponibles',$insumosDisponibles)->
                                    with('idProducto',$idProducto);
   }
