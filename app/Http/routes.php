@@ -38,8 +38,8 @@ Route::group(['prefix' => 'auth'], function(){
 Route::get('insumo/eliminar', 'InsumoController@eliminar');
 Route::get('insumo/guardar', 'InsumoController@guardar');
 Route::get('inslistall/{page?}', 'insumoController@listall');
-Route::get('insumo/{id}/destroy', ['uses' => 'InsumoController@destroy', 'as' => 'insumo.destroy']);
 Route::resource('insumo', 'insumoController');
+Route::get('insumo/{id}/destroy', ['uses' => 'InsumoController@destroy', 'as' => 'insumo.destroy']);
 
 Route::resource('producto', 'productoController');
 Route::get('prodlistall', 'productoController@listall');
