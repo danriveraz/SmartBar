@@ -114,63 +114,70 @@
     </div>
    </div>
   </div>
-  <form class="navbar-form navbar-right" method="GET" route="'insumo.index'">
-  {{csrf_field()}}
+  <form id="busqueda" name="busqueda" class="navbar-form navbar-right" method="GET" 
+  route="insumo.listall">
+    {{csrf_field()}}
     <div class="form-group" align="right">
-      {!! Form::text('nombre', null, ['class' => 'form-control', 'placelhoder' => 'Buscar', 'aria-describedby' => 'search']) !!}
-      <button type="submit" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" class="btn btn-dufault">Buscar</button>
+      <input  id="nombreInput" type="text" name="nombreInput" class="form-control" aria-describedby="search"/>
+      <button  href="inslistall?nombre=" id="buscarNombre" type="submit" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" class="btn btn-dufault">Buscar</button>
       <div align="right">
-        <br>
-        {!! Form::select('tipo', ['' => 'Seleccione un tipo','1' => 'A la venta','0' => 'No a la venta'], null, ['class' => 'form-control']) !!}
+        <select id="buscarTipo" name="buscarTipo" class="form-control">
+          <option value="">Seleccione un tipo</option>
+          <option value="1">A la venta</option> 
+          <option value="0">No a la venta</option>   
+        </select>
       </div>
     </div>
-  </form>
-
-  {!! Form::close() !!}
-  <table class="table table-striped">
-    <thead>
-      <th>#</th>
-      <th>Nombre</th>
-      <th>Marca</th>
-      <th>Proveedor</th>
-      <th>Unidades</th>
-      <th>Valor compra</th>
-      <th>Valor venta</th>
-      <th>Onzas disponibles</th>
-      <th>A la venta</th>
-    </thead>
-    <tbody>
-      @foreach($insumos as $insumo)
-        <tr>
-          <td>{{$insumo->id}}</td>
-          <td>{{$insumo->nombre}}</td>
-          <td>{{$insumo->marca}}</td>
-          <td>{{$proveedores[$insumo->idProveedor]}}</td>
-          <td>{{$insumo->cantidadUnidad}}</td>
-          <td>{{$insumo->valorCompra}}</td>
-          <td>{{$insumo->precioUnidad}}</td>
-          <td>{{number_format($insumo->cantidadMedida,3)}}</td>
-          <td align="center">
-            <input type="checkbox" disabled="disabled" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?>/>
-          </td>
-          <td>
-          <a href="{{route('insumo.edit', $insumo->id)}}" 
-          data-target="#editModal{{$insumo->id}}" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-          </a>
-          </td>
-          <td>
-            <a href="{{route('insumo.destroy', $insumo->id) }}" class="btn btn-default" onclick = "return confirm ('¿Desea eliminar este insumo?')" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
-          </td>
-        </tr>
-
-        <div class="modal fade" id="editModal{{$insumo->id}}" role="dialog">
-            
-        </div>
-      @endforeach
-    </tbody>
-  </table>
-  
-  {!!$insumos->appends(Request::all())->render() !!}
-
+   </form>
+   <div class="panel-body">
+      <div id="list-ins"></div>
+   </div>
 </div>
+
+<script type="text/javascript">
+  
+  $(document).ready(function(){
+    listprov();
+  });
+
+  $(document).on("click", '#buscarNombre',function(e){
+    e.preventDefault();
+    var dato = $("#nombreInput").val();
+    var tipo = $("#buscarTipo").val();
+    var url = $(this).attr("href");
+    var urlf = url+dato+'&tipo='+tipo;
+    $.ajax({
+      type:'get',
+      url:urlf,
+      success: function(data){
+        $("#list-ins").empty().html(data);
+      }
+    });
+  });
+
+  $(document).on("click",".pagination li a",function(e){
+    e.preventDefault();
+    var url = $(this).attr("href");
+    $.ajax({
+      type:'get',
+      url:url,
+      success: function(data){
+        $("#list-ins").empty().html(data);
+      }
+    });
+  });
+
+  var listprov = function()
+  {
+    $.ajax({
+      type:'get',
+      url: '{{url('inslistall')}}',
+      success:  function(data){
+        $('#list-ins').empty().html(data);
+      }
+    });
+  }
+
+</script>
+
 @endsection

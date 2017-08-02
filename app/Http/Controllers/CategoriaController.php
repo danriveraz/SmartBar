@@ -25,12 +25,16 @@ class CategoriaController extends Controller
     }
     
     public function index(Request $request){
+      return view('categoria.index');
+  	}
+
+    public function listall(Request $request){
       $userActual = Auth::user();
       $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                        orderBy('id','ASC')->
-                       paginate(20);
-      return view('categoria.index')->with('categorias',$categorias);
-  	}
+                       paginate(15);
+      return view('categoria.listall')->with('categorias',$categorias);
+    }
 
   	public function store(Request $request){
       $userActual = Auth::user();

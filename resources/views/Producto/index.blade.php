@@ -54,43 +54,68 @@
       </div>
      </div>
     </div>
-
-    {!! Form::model(Request::all(), ['route' => ['producto.index'], 'method' => 'GET', 'class' => 'navbar-form navbar-right']) !!}
+    <form id="busqueda" name="busqueda" class="navbar-form navbar-right" method="GET" 
+    route="producto.listall">
     <div class="form-group" align="right">
-      {!! Form::text('nombre', null, ['class' => 'form-control', 'placelhoder' => 'Buscar', 'aria-describedby' => 'search']) !!}
-      <button type="submit" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" class="btn btn-dufault">Buscar</button>
-
+      <input  id="nombreInput" type="text" name="nombreInput" class="form-control" aria-describedby="search"/>
+      <button  href="prodlistall?nombre=" id="buscarNombre" type="submit" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" class="btn btn-dufault">Buscar</button>
     <div align="right">
       <br>
-      {!! Form::select('categorias', $categorias, null, ['class' => 'form-control']) !!}
-       <td><a href="#addModal" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar nueva categoría</a> 
+      {!! Form::select('categorias', $categorias, null, ['class' => 'form-control', 'placeholder' => 'Seleccione una categoría', 'id' => 'buscarCategoria']) !!}
+       <td><a href="#addModal" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </a> 
        </td>
       <td><a href="{{ route('categoria.index') }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a></td>
     </div>
   </div>
-  {!! Form::close() !!}
-  <table class="table table-striped">
-    <thead>
-      <th>#</th>
-      <th>Nombre</th>
-      <th>Precio</th>
-      <th>Categoria</th>
-    </thead>
-    <tbody>
-      @foreach($productos as $producto)
-        <tr>
-          <td>{{$producto->id}}</td>
-          <td>{{$producto->nombre}}</td>
-          <td>{{$producto->precio}}</td>
-          <td>{{$categorias[$producto->idCategoria]}}</td>
-          <td align="right"><a href="{{ route('producto.edit',$producto->id) }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
-          </td>
-          <td align="right"><a href="{{ route('producto.insumoedit',$producto->id) }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">Insumos <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
-          </td>
-        </tr>
-      @endforeach
-    </tbody>
-  </table>
-  {!!$productos->appends(Request::all())->render() !!}
+  </form>
+  <div class="panel-body">
+      <div id="list-prod"></div>
+  </div>
 </div>
+
+<script type="text/javascript">
+  
+  $(document).ready(function(){
+    listprov();
+  });
+
+  $(document).on("click", '#buscarNombre',function(e){
+    e.preventDefault();
+    var dato = $("#nombreInput").val();
+    var cat = $("#buscarCategoria").val();
+    var url = $(this).attr("href");
+    var urlf = url+dato+'&categorias='+cat;
+    $.ajax({
+      type:'get',
+      url:urlf,
+      success: function(data){
+        $("#list-prod").empty().html(data);
+      }
+    });
+  });
+
+  $(document).on("click",".pagination li a",function(e){
+    e.preventDefault();
+    var url = $(this).attr("href");
+    $.ajax({
+      type:'get',
+      url:url,
+      success: function(data){
+        $("#list-prod").empty().html(data);
+      }
+    });
+  });
+
+  var listprov = function()
+  {
+    $.ajax({
+      type:'get',
+      url: '{{url('prodlistall')}}',
+      success:  function(data){
+        $('#list-prod').empty().html(data);
+      }
+    });
+  }
+
+</script>
 @endsection

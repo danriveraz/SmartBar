@@ -28,12 +28,19 @@ class ProductoController extends Controller
     $userActual = Auth::user();
     $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                              lists('nombre','id');
+    return view('producto.index',compact('categorias'));
+  }
+
+  public function listall(Request $request){
+    $userActual = Auth::user();
+    $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
+                             lists('nombre','id');
     $productos = Producto::Search($request->nombre)->
                            Category($request->categorias)->
                            where('idAdmin' , $userActual->idEmpresa)->
                            orderBy('id','ASC')->
-                           paginate(20);
-    return view('producto.index',compact('categorias'))->with('productos',$productos);
+                           paginate(2);
+    return view('producto.listall',compact('categorias'))->with('productos',$productos);
   }
 
   public function create(Request $request){

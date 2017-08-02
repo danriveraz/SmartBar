@@ -36,9 +36,11 @@ Route::group(['prefix' => 'auth'], function(){
 });
 
 Route::resource('insumo', 'insumoController');
+Route::get('inslistall/{page?}', 'insumoController@listall');
 Route::get('insumo/{id}/destroy', ['uses' => 'InsumoController@destroy', 'as' => 'insumo.destroy']);
 
 Route::resource('producto', 'productoController');
+Route::get('prodlistall', 'productoController@listall');
 Route::get('producto/{id}/insumoedit', ['uses' => 'ProductoController@insumoedit', 'as' => 'producto.insumoedit']);
 
 Route::get('contiene/eliminar', 'ContieneController@eliminar');
@@ -52,6 +54,7 @@ Route::get('provlistall/{nombre?}', 'proveedorController@buscar');
 Route::get('proveedor/{id}/destroy', ['uses' => 'ProveedorController@destroy', 'as' => 'proveedor.destroy']);
 
 Route::resource('categoria', 'categoriaController');
+Route::get('catlistall', 'categoriaController@listall');
 Route::get('categoria/{id}/destroy', ['uses' => 'CategoriaController@destroy', 'as' => 'categoria.destroy']);
 
 

@@ -28,10 +28,8 @@
     <div class="form-group" align="right">
 
       <input  id="nombreInput" type="text" name="nombreInput" class="form-control" aria-describedby="search"/>
-
       <button  href="provlistall?nombre=" id="buscarNombre" type="submit" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" class="btn btn-dufault">Buscar</button>
     </div>
-
   </form>
 
   <div class="modal fade in" id="addModal" >
