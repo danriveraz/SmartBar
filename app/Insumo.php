@@ -9,7 +9,8 @@ class Insumo extends Model
     protected $table = 'insumo';
 
     public function scopeSearch($query, $nombre){
-    	return $query->where('nombre','LIKE',"%$nombre%");
+    	return $query->where('nombre','LIKE',"%$nombre%")
+    				->orWhere('marca', 'LIKE', "%$nombre%");
     }
 
     public function scopeType($query, $type){

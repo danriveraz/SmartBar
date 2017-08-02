@@ -1,28 +1,116 @@
 
 <table class="table table-striped">
-    <thead>
-      <th>#</th>
-      <th>Nombre</th>
-      <th>Dirección</th>
-      <th>Telefono</th>
-    </thead>
-    <tbody>
-      @foreach($proveedores as $proveedor)
-        <tr>
-          <td>{{$proveedor->id}}</td>
-          <td>{{$proveedor->nombre}}</td>
-          <td>{{$proveedor->direccion}}</td>
-          <td>{{$proveedor->telefono}}</td>
-          <td align="right"><a href="{{ route('proveedor.edit',$proveedor->id) }}" data-toggle="modal" class="btn btn-default" data-target="#editModal{{$proveedor->id}}" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
-          <a href="{{route('proveedor.destroy', $proveedor->id) }}" class="btn btn-default" onclick = "return confirm ('¿Desea eliminar este proveedor?')" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
-
-          </td>
-        </tr>
-        <div class="modal fade in" id="editModal{{$proveedor->id}}" role="dialog" >
-    
-        </div>
-        
+  <thead>
+    <th>#</th>
+    <th>Nombre</th>
+    <th>Dirección</th>
+    <th>Telefono</th>
+  </thead>
+  <tbody>
+  @foreach($proveedores as $proveedor)
+    <tr id="{{$proveedor->id}}">
+      <td>{{$proveedor->id}}</td>
+      <td>{{$proveedor->nombre}}</td>
+      <td>{{$proveedor->direccion}}</td>
+      <td>{{$proveedor->telefono}}</td>
+      <td align="right">
+        <button data-toggle="modal" class="btn btn-default" data-target="#editModal{{$proveedor->id}}" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></button>
+        <button class="btn btn-default" onclick="eliminar({{$proveedor->id}})" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
+      </td>
+    </tr>
+    <div class="modal fade in" id="editModal{{$proveedor->id}}" role="dialog" >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          {!! Form::open() !!}
+            <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+              <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+              <h4 class="modal-title">Registro</h4>
+            </div>
+            <div class="modal-body">
+              <div class="pre-scrollable" >
+                <div class="widget-content">
+                  <div class="form-group">
+                    <div class="form-group">
+                      <label for="nombre" class="control-label">Nombre</label>
+                      <input type="text" id="nombre{{$proveedor->id}}" name="nombre" class="form-control" value="{{$proveedor->nombre}}"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="direccion" class="control-label">Dirección</label>
+                      <input type="text" id="direccion{{$proveedor->id}}" name="direccion" class="form-control" value="{{$proveedor->direccion}}"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="telefono" class="control-label">Teléfono</label>
+                      <input type="text" id="telefono{{$proveedor->id}}" name="telefono" class="form-control" value="{{$proveedor->telefono}}"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-default" data-dismiss="modal" onclick="modificar({{$proveedor->id}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
+              <button class="btn btn-default-outline" data-dismiss="modal" type="button">Cerrar</button>
+            </div>
+            {!! Form::close() !!} 
+          </div>
+        </div>        
+      </div>  
       @endforeach
     </tbody>
   </table>
   {!!$proveedores->appends(Request::all())->render() !!}
+
+  
+  <script>
+    var routeModificar = "http://localhost/PocketByR/public/proveedor/modificar";
+    var routeEliminar = "http://localhost/PocketByR/public/proveedor/eliminar";
+
+    function modificar(idProveedor) {
+      var nombre = $("#nombre"+idProveedor).val();
+      var direccion = $("#direccion"+idProveedor).val();
+      var telefono = $("#telefono"+idProveedor).val();
+      $.ajax({
+        url: routeModificar,
+        type: 'GET',
+        data: {
+          id: idProveedor,
+          nombre: nombre,
+          direccion: direccion,
+          telefono: telefono
+        },
+        success: function(data){
+          $("#"+idProveedor).children("td").each(function (indextd)
+            {
+              if(indextd == 1){
+                $(this).text(nombre);
+              }else if(indextd == 2){
+                $(this).text(direccion);
+              }
+              else if(indextd == 3){
+                $(this).text(telefono);
+              }
+            });
+        },
+        error: function(data){
+          alert("Error al modificar proveedor.");
+        }
+      });
+    }
+
+    function eliminar(idProveedor){
+      if(confirm('¿Desea eliminar este proveedor?')){
+        $.ajax({
+          url: routeEliminar,
+          type: 'GET',
+          data: {
+            id: idProveedor
+          },
+          success: function(){
+            $("#"+idProveedor).remove();
+          },
+          error: function(data){
+            alert('No se puede eliminar el proveedor, debido a que se está utilizando.');
+          }
+        });
+      }
+    }
+  </script>
