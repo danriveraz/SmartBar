@@ -48,10 +48,11 @@ Route::get('contiene/guardar', 'ContieneController@guardar');
 Route::get('contiene/{id}/destroy', ['uses' => 'ContieneController@destroy', 'as' => 'contiene.destroy']);
 Route::resource('contiene', 'contieneController');
 
-Route::resource('proveedor', 'proveedorController');
+Route::get('proveedor/modificar', 'ProveedorController@modificar');
+Route::get('proveedor/eliminar', 'ProveedorController@eliminar');
 Route::get('provlistall/{page?}', 'proveedorController@listall');
 Route::get('provlistall/{nombre?}', 'proveedorController@buscar');
-Route::get('proveedor/{id}/destroy', ['uses' => 'ProveedorController@destroy', 'as' => 'proveedor.destroy']);
+Route::resource('proveedor', 'proveedorController');
 
 Route::resource('categoria', 'categoriaController');
 Route::get('catlistall', 'categoriaController@listall');

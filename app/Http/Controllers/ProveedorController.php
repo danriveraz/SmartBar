@@ -3,13 +3,10 @@
 namespace PocketByR\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 use PocketByR\Proveedor;
 use Laracasts\Flash\Flash;
-use PocketByR\Insumo;
 use Auth;
 
 class ProveedorController extends Controller
@@ -30,12 +27,25 @@ class ProveedorController extends Controller
       return view('proveedor.index');
 	  }
 
+    public function eliminar(Request $request){
+      $proveedor = Proveedor::find($request->id);
+      $proveedor->delete();
+    }    
+
+    public function modificar(Request $request){
+      $proveedor = Proveedor::find($request->id);
+      $proveedor->nombre = $request->nombre;
+      $proveedor->direccion = $request->direccion;
+      $proveedor->telefono = $request->telefono;
+      $proveedor->save();
+    }     
+
     public function listall(Request $request){
       $userActual = Auth::user();
       $proveedores = Proveedor::Search($request->nombre)->
                          where('idEmpresa' , $userActual->idEmpresa)->
                          orderBy('id','ASC')->
-                         paginate(2);
+                         paginate(15);
       return view('proveedor.listall')->with('proveedores',$proveedores);
     }
 
@@ -44,7 +54,7 @@ class ProveedorController extends Controller
       $proveedores = Proveedor::Search($request->nombre)->
                          where('idEmpresa' , $userActual->idEmpresa)->
                          orderBy('id','ASC')->
-                         paginate(2);
+                         paginate(15);
       return view('proveedor.listall')->with('proveedores',$proveedores);
     }
 
@@ -60,31 +70,12 @@ class ProveedorController extends Controller
       return redirect()->route('proveedor.index');
   	}
 
-  	public function show($id){
+  	public function show($id){}
 
-  	}
+  	public function edit($id){}
 
-  	public function edit($id){
-    	$proveedor = Proveedor::find($id);
-    	return view('proveedor.edit')->with('proveedor',$proveedor);
-  	}
+  	public function update(Request $request, $id){}
 
-  	public function update(Request $request, $id){
-      $userActual = Auth::user();
-  		$proveedor = Proveedor::find($id);
-    	$proveedor->nombre = $request->nombre;
-    	$proveedor->direccion = $request->direccion;
-    	$proveedor->telefono = $request->telefono;
-    	$proveedor->idEmpresa = $userActual->idEmpresa;
-    	$proveedor->save();
-    	flash::warning('El proveedor ha sido modificado satisfactoriamente')->important();
-    	return redirect()->route('proveedor.index');
-  	}
-
-  	public function destroy($id){
-    	$proveedor = Proveedor::find($id);
-    	$proveedor->delete();
-    	Flash::success('El proveedor ha sido eliminado de forma exitosa')->important();
-    	return redirect()->route('proveedor.index');
-    }
+  	public function destroy($id){}   
+    
 }
