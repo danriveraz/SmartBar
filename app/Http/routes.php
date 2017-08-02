@@ -35,9 +35,11 @@ Route::group(['prefix' => 'auth'], function(){
   Route::get('usuario/{id}/destroy', ['uses' => 'UsuariosController@destroy', 'as' => 'auth.usuario.destroy']);
 });
 
-Route::resource('insumo', 'insumoController');
+Route::get('insumo/eliminar', 'InsumoController@eliminar');
+Route::get('insumo/guardar', 'InsumoController@guardar');
 Route::get('inslistall/{page?}', 'insumoController@listall');
 Route::get('insumo/{id}/destroy', ['uses' => 'InsumoController@destroy', 'as' => 'insumo.destroy']);
+Route::resource('insumo', 'insumoController');
 
 Route::resource('producto', 'productoController');
 Route::get('prodlistall', 'productoController@listall');
@@ -46,14 +48,13 @@ Route::get('producto/{id}/insumoedit', ['uses' => 'ProductoController@insumoedit
 Route::get('contiene/eliminar', 'ContieneController@eliminar');
 Route::get('contiene/guardar', 'ContieneController@guardar');
 Route::get('contlistall/{page?}','contieneController@listall');
-Route::get('contiene/{id}/destroy', ['uses' => 'ContieneController@destroy', 'as' => 'contiene.destroy']);
 Route::resource('contiene', 'contieneController');
 
-
-Route::resource('proveedor', 'proveedorController');
+Route::get('proveedor/eliminar','ProveedorController@eliminar');
+Route::get('proveedor/modificar','ProveedorController@modificar');
 Route::get('provlistall/{page?}', 'proveedorController@listall');
 Route::get('provlistall/{nombre?}', 'proveedorController@buscar');
-Route::get('proveedor/{id}/destroy', ['uses' => 'ProveedorController@destroy', 'as' => 'proveedor.destroy']);
+Route::resource('proveedor', 'proveedorController');
 
 Route::resource('categoria', 'categoriaController');
 Route::get('catlistall', 'categoriaController@listall');
