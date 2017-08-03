@@ -40,6 +40,7 @@ class CategoriaController extends Controller
       $userActual = Auth::user();
       $categoria = new Categoria;
       $categoria->nombre = $request->nombre;
+      $categoria->precio = $request->precio;
       $categoria->idEmpresa = $userActual->idEmpresa;
       $categoria->save();
       Flash::success("La categoria se ha registrado satisfactoriamente")->important();
@@ -56,6 +57,7 @@ class CategoriaController extends Controller
       $userActual = Auth::user();
    		$categoria = Categoria::find($id);
       $categoria->nombre = $request->nombre;
+      $categoria->precio = $request->precio;
       $categoria->idEmpresa = $userActual->idEmpresa;
       $categoria->save();
       flash::warning('La categoria ha sido modificada satisfactoriamente')

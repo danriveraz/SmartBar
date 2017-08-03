@@ -13,11 +13,11 @@
                 </div>
                 <div class="form-grup">
                     <label for="categorias" class="control-label">Categoría</label>
-                    {!! Form::select('categorias', $categorias, null, ['class' => 'form-control']) !!}
+                    {!! Form::select('categorias', $categorias, null, ['class' => 'form-control', 'onchange' => 'mostrarValor(this.value);']) !!}
                 </div>
                 <div class="form-grup">
-                    <label for="precio" class="control-label">Precio</label>
-                    <input type="number" min="0" step="any" name="precio" class="form-control" required="true"/>
+                    <label  for="precio" class="control-label">Precio</label>
+                    <input id="precio" value="" type="number" min="0" step="any" name="precio" class="form-control" required="true"/>
                 </div>
                 <br>
                 <div class="form-grup">
@@ -33,4 +33,20 @@
         </form>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    var mostrarValor = function(x){
+        var p = 0;
+        cats = eval(<?php echo json_encode($cats);?>);
+        for (var i=0; i< cats.length; i++)
+        {
+            if(x == cats[i].id){
+                p = cats[i].precio;
+            }   
+        }
+        document.getElementById('precio').value=p;
+    };
+
+</script>
 @endsection

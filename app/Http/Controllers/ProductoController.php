@@ -39,15 +39,16 @@ class ProductoController extends Controller
                            Category($request->categorias)->
                            where('idAdmin' , $userActual->idEmpresa)->
                            orderBy('id','ASC')->
-                           paginate(2);
+                           paginate(5);
     return view('producto.listall',compact('categorias'))->with('productos',$productos);
   }
 
   public function create(Request $request){
     $userActual = Auth::user();
     $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
-                             lists('nombre','id');
-    return view('producto.create',compact('categorias'));
+                             lists('nombre','id','precio');
+    $cats = Categoria::all()->where('idEmpresa',$userActual->idEmpresa);
+    return view('producto.create',compact('categorias'))->with('cats', $cats);
   }
 
   public function store(Request $request){
@@ -70,9 +71,14 @@ class ProductoController extends Controller
   }
 
   public function edit($id){
-    $categorias = Categoria::lists('nombre','id');
+    $userActual = Auth::user();
     $producto = Producto::find($id);
-    return view('producto.edit',compact('categorias'))->with('producto',$producto);
+    $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
+                             lists('nombre','id');
+    $cats = Categoria::all()->where('idEmpresa',$userActual->idEmpresa);
+    
+    return view('producto.edit',compact('categorias'))->with('producto',$producto)
+    ->with('cats',$cats);
   }
 
   public function update(Request $request,$id){

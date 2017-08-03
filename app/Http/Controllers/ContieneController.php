@@ -47,7 +47,7 @@ public function __construct()
     $insumosDisponibles = Insumo::Search($request->nombre)->
                           Type($request->tipo)->
                           orderBy('id','ASC')->
-                          paginate(2);
+                          paginate(5);
                           
     return view('contiene.listall')->with('insumos',$insumos)->
                                    with('insumosDisponibles',$insumosDisponibles)->

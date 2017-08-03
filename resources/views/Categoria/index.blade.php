@@ -38,8 +38,13 @@
             <div class="widget-content">
               <div class="form-group">
                 <div class="form-grup">
-                    <label for="nombre" class="control-label">Nombre de la categoría</label>
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre" required="true"/>
+                    <label for="nombre" class="control-label">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" placeholder="Nombre de la categoría" required="true"/>
+                </div>
+                <br>
+                <div class="form-grup">
+                    <label for="precio" class="control-label">Precio</label>
+                    <input type="number" min="0" step="any" name="precio" class="form-control" />
                 </div>
               </div>
             </div>

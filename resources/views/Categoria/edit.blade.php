@@ -16,7 +16,11 @@
                     Nombre de la categoría
                   </label>
                   <input type="text" name="nombre" class="form-control" value="{{$categoria->nombre}}"/>
-              </div>
+                </div>
+                <div class="form-grup">
+                    <label for="precio" class="control-label">Precio</label>
+                    <input type="number" min="0" step="any" name="precio" class="form-control" value="{{$categoria->precio}}"/>
+                </div>
               </div>
             </div>
             </div>

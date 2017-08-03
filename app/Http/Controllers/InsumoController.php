@@ -51,7 +51,7 @@ class InsumoController extends Controller
                          Type($request->tipo)->
                          where('idEmpresa' , $userActual->idEmpresa)->
                          orderBy('id','ASC')->
-                         paginate(15);
+                         paginate(5);
 
       return view('insumo.listall',compact('proveedores'))->with('insumos',$insumos)->with('categorias',$categorias);
   }

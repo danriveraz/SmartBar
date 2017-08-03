@@ -21,6 +21,7 @@ return array(
     'AgregarColumnasUsuario' => $baseDir . '/database/migrations/2017_07_27_144627_agregar_columnas_usuario.php',
     'AlterTableVenta' => $baseDir . '/database/migrations/2017_07_26_214105_alterTableVenta.php',
     'Altertableadminimagenes' => $baseDir . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
+    'Altertablecategoria' => $baseDir . '/database/migrations/2017_08_02_170443_altertablecategoria.php',
     'Altertablecontiene' => $baseDir . '/database/migrations/2017_07_14_161041_altertablecontiene.php',
     'Altertableinsumos' => $baseDir . '/database/migrations/2017_07_13_152912_altertableinsumos.php',
     'Altertablemesa' => $baseDir . '/database/migrations/2017_07_26_154954_altertablemesa.php',
