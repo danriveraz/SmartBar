@@ -12,7 +12,7 @@
 <!-- Profile Widget -->
 <div class="item widget-container fluid-height profile-widget">
   <div class="heading">
-      <i class="fa fa-level-up"></i><a href="">Ver mas</a><i class="fa fa-times pull-right"></i><i class="fa fa-gear  pull-right"></i>
+      <i class="fa fa-level-up"></i><a href="{{url('auth/usuario/'.$usuario->id.'/edit')}}">Ver mas <i class="fa fa-gear  pull-right"></i></a>
   </div>
   <div class="widget-content padded">
     <div class="profile-info clearfix">
@@ -79,6 +79,7 @@
 
 <!-- inidio de slider de agregar usuario -->
 <div class="style-selector" >
+  <!--
 <div class="style-selector-container">
   <div class="row">
     <div class="">
@@ -123,13 +124,7 @@
                  
                   <div class="form-group">
                     <label for="password">Tipo De Empleado</label>
-                    <!--
-                    <select class="select2able">
-                    <option value="Category 1">Mesero
-                    <option value="Category 2">Cajero
-                    <option value="Category 3">bartenderd
-                    </select>
-                    -->                  
+                
                     <select class="select2able" multiple>
                         <option value="Category 1">Option 1</option>
                         <option value="Category 2">Option 2</option>
@@ -176,6 +171,7 @@
   </div>
   </div>
 </div>
+-->
 
 
 

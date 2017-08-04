@@ -139,7 +139,7 @@
               <li class="dropdown user hidden-xs"><a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 {{ HTML::image('images/admins/'.Auth::User()->imagenPerfil , 'avatar', array( 'width' => '34', 'height'=>'34')) }} {{Auth::User()->nombrePersona}}<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href='#'>
+                  <li><a href="{{url('auth/usuario/'.Auth::id().'/edit')}}">
                     <i class="fa fa-user"></i>Perfil</a>
                   </li>
                   <li><a href="#">
@@ -153,7 +153,7 @@
             </ul>
           </div>
           <button class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><div class="logo">
-						<a href="index.html">{{ HTML::image('images/logo.png') }}</a>
+						<a href="{{url('/')}}">{{ HTML::image('images/logo.png') }}</a>
 					</div>
         </div>
         <div class="container-fluid main-nav clearfix">
@@ -181,6 +181,10 @@
               <li class="dropdown">
               <a href="{{route('mesas.index')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-hospital-o"></span>Mesas</a>
+              </li>
+              <li class="dropdown">
+              <a href="{{url('/auth/logout')}}">
+                <span aria-hidden="true" class="fa fa-fw fa-sign-out"></span>Salir</a>
               </li>
             </ul>
           </div>

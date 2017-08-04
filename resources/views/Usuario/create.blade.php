@@ -9,38 +9,55 @@
         {{ csrf_field() }}
         <!--Nombre-->
         <div class="form-group">
-          <label for="nombre" class="control-label">Nombre</label>
-          <input type="text" name="nombre" class="form-control" placeholder="Nombre completo"/>
-          <div class="bg-danger text-white">{{$errors->first('nombre')}}</div>
+          <label for="nombrePersona" class="control-label">Nombre</label>
+          <input type="text" name="nombrePersona" class="form-control" placeholder="Nombre completo"/>
+          <div class="bg-danger text-white">{{$errors->first('nombrePersona')}}</div>
+        </div>
+
+        <div class="form-group">
+          <label for="email " class="control-label">Correo Electrónico</label>
+          <input type="text" name="email" class="form-control" placeholder="Correo electrónico"/>
+          <div class="bg-danger text-white">{{$errors->first('email')}}</div>
         </div>
 
         <!--Numero de identificacion-->
         <div class="form-grup">
-          <label for="numeroIdentificacion" class="control-label">Número de identificación:</label>
-          <input type="text" name="numeroIdentificacion" class="form-control"/>
-          <div class="bg-danger text-white">{{$errors->first('numeroIdentificacion')}}</div>
+          <label for="cedula" class="control-label">Número de identificación:</label>
+          <input type="text" name="cedula" class="form-control"/>
+          <div class="bg-danger text-white">{{$errors->first('cedula')}}</div>
         </div>
 
         <!--Contraseña-->
         <div class="form-grup">
           <label for="contraseña" class="control-label">Password:</label>
-          <input type="password" name="contraseña" class="form-control"/>
-          <div class="bg-danger text-white">{{$errors->first('contraseña')}}</div>
+          <input type="password" name="password" class="form-control"/>
+          <div class="bg-danger text-white">{{$errors->first('password')}}</div>
         </div>
 
         <!--Confirmar contraseña-->
         <div class="form-grup">
           <label for="contraseña_confirmation" class="control-label">Confirmar password:</label>
-          <input type="password" name="contraseña_confirmation" class="form-control"/>
+          <input type="password" name="password_confirmation" class="form-control"/>
+          <div class="bg-danger text-white">{{$errors->first('password_confirmation')}}</div>
         </div>
 
         <!--Sexo-->
         <div class="form-grup">
-          <br><label for="sexo" class="control-label">Sexo:</label>
-          <input type="radio" name="sexo" value="Femenino"> <label>Femenino</label>
-          <input type="radio" name="sexo" value="Masculino"> <label>Masculino</label>
-          <div class="bg-danger text-white">{{$errors->first('sexo')}}</div>
+          <br>
+          <div class="row">
+            <label for="sexo" class="control-label col-md-2">Sexo:</label>
+            <div class="col-md-7">
+              <label class="radio-inline">
+                <input type="radio" name="sexo" value="Femenino"><span>Femenino</span>
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="sexo" value="Masculino"><span>Masculino</span></label>
+              </label>
+              <div class="bg-danger text-white">{{$errors->first('sexo')}}</div>
+            </div>
+          </div>
         </div>
+
 
         <!--Fecha de nacimiento-->
         <div class="form-grup">
@@ -50,18 +67,29 @@
         </div>
 
         <!--Tipos-->
-        <div class="form-grup">
-          <br><label class="control-label">Seleccione los roles que desempeñará:</label><br>
-          <label for="mesero" class="control-label">Mesero:</label>
-          <input type="hidden" value="0" name="tipoMesero" />
-          <input type="checkbox" value="1" name="tipoMesero" /><br>
-          <label for="bartender" class="control-label">Bartender:</label>
-          <input type="hidden" value="0" name="tipoBartender" />
-          <input type="checkbox" value="1" name="tipoBartender" /><br>
-          <label for="cajero" class="control-label">Cajero:</label>
-          <input type="hidden" value="0" name="tipoCajero" />
-          <input type="checkbox" value="1" name="tipoCajero" />
+        <div class="form-group">
+          <div class="row">
+            <label class="control-label">Seleccione los roles que desempeñará:</label>
+          </div>
+          <div class="row">
+          </div>
+            <label class="checkbox-inline">
+              {!! Form::checkbox('Permisos[]', 'Mesero', 0, ['data-toggle'=>'checkbox']) !!}
+              <span>Mesero</span>
+            </label>
+            <label class="checkbox-inline">
+              {!! Form::checkbox('Permisos[]', 'Bartender', 0, ['data-toggle'=>'checkbox']) !!}<span>Bartender</span>
+            </label>
+            <label class="checkbox-inline">
+              {!! Form::checkbox('Permisos[]', 'Cajero', 0, ['data-toggle'=>'checkbox']) !!}<span>Cajero</span>
+            </label>
+            <label class="checkbox-inline">
+              {!! Form::checkbox('Permisos[]', 'Administrador', 0, ['data-toggle'=>'checkbox']) !!}<span>Administrador</span>
+            </label>
+          </div>
+          <div class="col-md-7">
         </div>
+
         <div class="form-grup">
           <br><button type="submit" class="btn btn-default"><i class="fa fa-plus"></i> Registrar usuario
           </button>

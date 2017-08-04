@@ -132,15 +132,15 @@
                 </ul>
               </li>
               <li class="dropdown user hidden-xs"><a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img width="34" height="34" src="images\avatar-male.jpg">Álvaro<b class="caret"></b></a>
+                {{ HTML::image('images/admins/'.Auth::User()->imagenPerfil , 'avatar', array( 'width' => '34', 'height'=>'34')) }} {{Auth::User()->nombrePersona}}<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">
+                  <li><a href="{{url('auth/usuario/'.Auth::id().'/edit')}}">
                     <i class="fa fa-user"></i>Perfil</a>
                   </li>
                   <li><a href="#">
                     <i class="fa fa-gear"></i>Configuracion</a>
                   </li>
-                  <li><a href="login1.htm">
+                  <li><a href="{{url('/auth/logout')}}">
                     <i class="fa fa-sign-out"></i>Salir</a>
                   </li>
                 </ul>
@@ -148,23 +148,33 @@
             </ul>
           </div>
           <button class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><div class="logo">
-            <a href="index.html"><img src="images/logo.png" alt="" /></a>
+            <a href="{{url('/')}}">{{ HTML::image('images/logo.png') }}</a>
           </div>
         </div>
         <div class="container-fluid main-nav clearfix">
           <div class="nav-collapse">
             <ul class="nav">
-              <li>
-                <a href="{{url('mesero/')}}" class="current">
-                <span aria-hidden="true" class="fa fa-fw fa-group"></span>Mesero</a>
-              </li>
+              @if(Auth::User()->esMesero)
+                <li>
+                  <a href="{{url('mesero/')}}" class="current">
+                  <span aria-hidden="true" class="fa fa-fw fa-group"></span>Mesero</a>
+                </li>
+              @endif
+              @if(Auth::User()->esBartender)
               <li>
               <a href="{{url('bartender/')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-glass"></span>Bartender</a>
               </li>
+              @endif
+              @if(Auth::User()->esCajero)
               <li class="dropdown">
               <a href="{{url('cajero/')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-list"></span>Cajero</a>
+              </li>
+              @endif
+              <li class="dropdown">
+              <a href="{{url('/auth/logout')}}">
+                <span aria-hidden="true" class="fa fa-fw fa-sign-out"></span>Salir</a>
               </li>
             </ul>
           </div>
