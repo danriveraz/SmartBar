@@ -13,7 +13,7 @@
 			</div>
 			<div class="navbar-header">
 				<b>Ver todas las facturas  &ensp;&ensp;</b>
-				<input type="checkbox" name="verFacturas">
+				<label><input type="checkbox" name="verFacturas"><span></span></label>
 			</div>
 	</form>
 </div>

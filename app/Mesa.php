@@ -16,4 +16,8 @@ class Mesa extends Model
     public function scopeMesasAdmin($query, $idEmpresa){
         return $query->where('mesa.idEmpresa', $idEmpresa);
     }
+    public function scopecalculaCantidad($query, $idEmpresa){
+        return $query->where('mesa.idEmpresa', $idEmpresa)
+        			->max('idMesa');
+    }
 }
