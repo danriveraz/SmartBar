@@ -231,7 +231,7 @@ class MeseroController extends Controller
     public function show($id)
     {
       $mesa = Mesa::find($id);
-      $categorias = Categoria::all();
+      $categorias = Categoria::categoriasEmpresa(Auth::user()->idEmpresa)->get();
       $busqueda = Factura::buscarFacturaId($id)->get()->last();
       $ventas = null;
 
