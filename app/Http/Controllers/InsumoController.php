@@ -38,6 +38,31 @@ class InsumoController extends Controller
       return view('insumo.index',compact('proveedores'))->with('categorias',$categorias);
   }
 
+  public function modificar(Request $request){
+    $userActual = Auth::user();
+    $insumo = Insumo::find($request->id);
+    $insumo->idProveedor = $request->proveedor;
+    $insumo->nombre = $request->nombre;
+    $insumo->marca = $request->marca;
+    $insumo->cantidadUnidad = $request->unidades;
+    $insumo->precioUnidad = $request->venta;
+    $insumo->valorCompra = $request->compra;
+    if ($request->medida == 'ml' || $request->medida == 'cm3') {
+      $insumo->cantidadMedida = $request->cantMedida/30;
+      $insumo->cantidadRestante = $request->cantMedida/30;
+    }
+    else{
+      $insumo->cantidadMedida = $request->cantMedida;
+      $insumo->cantidadRestante = $request->cantMedida;
+    }
+    $insumo->save();
+  }
+
+  public function eliminar(Request $request){
+    $insumo = Insumo::find($request->id);
+    $insumo->delete();
+  }
+
   public function listall(Request $request){
 
     $userActual = Auth::user();

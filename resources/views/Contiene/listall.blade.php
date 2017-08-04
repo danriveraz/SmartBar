@@ -21,7 +21,7 @@
             <td align="center">
               <input type="checkbox" disabled="disabled" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?>/>
             </td>
-            <td><input type="number"  id="{{$insumo->id}}" step="any" min="0" name="cantidad" class="form-control" value=0></td>
+            <td><input type="number"  id="{{$insumo->id}}" step="any" min="0.1" name="cantidad" class="form-control"></td>
             <td align="center">
               <button type="submit" class="btn btn-dufault" onclick="adicionarInsumo({{$insumo}})">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
