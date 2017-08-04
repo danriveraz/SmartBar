@@ -51,29 +51,42 @@ class MeseroController extends Controller
           $unidades = $insumo->cantidadUnidad;
 
           if($cantidadRestante == 0 && $unidades > 1){
-            $insumo->cantidadRestante = $insumo->cantidadMedida;
-            $insumo->cantidadUnidad = $insumo->cantidadUnidad - 1;
-            $insumo->save();
             $auxiliar = $auxiliar+1;
           }elseif($cantidadRestante == 0 && $unidades == 1){
-            $insumo->cantidadRestante = $cantidadRestante;
-            $insumo->cantidadUnidad = $insumo->cantidadUnidad - 1;
-            $insumo->save();
             $auxiliar = $auxiliar+1;
           }elseif($cantidadRestante < 0 && $unidades > 1){
-            $insumo->cantidadRestante = $insumo->cantidadMedida + $cantidadRestante;
-            $insumo->cantidadUnidad = $insumo->cantidadUnidad - 1;
-            $insumo->save();
             $auxiliar = $auxiliar+1;
           }elseif($cantidadRestante > 0){
-            $insumo->cantidadRestante = $cantidadRestante;
-            $insumo->save();
             $auxiliar = $auxiliar+1;
           }
       }
 
       if($auxiliar == sizeOf($contenido) && sizeOf($contenido) != 0){
+        foreach($contenido as $contiene){
+            $cantidadNecesaria = $contiene->cantidad;
+            $insumo = $contiene->insumo;
+            $cantidadRestante = $insumo->cantidadRestante - $cantidadNecesaria;
+            $unidades = $insumo->cantidadUnidad;
+
+            if($cantidadRestante == 0 && $unidades > 1){
+              $insumo->cantidadRestante = $insumo->cantidadMedida;
+              $insumo->cantidadUnidad = $insumo->cantidadUnidad - 1;
+              $insumo->save();
+            }elseif($cantidadRestante == 0 && $unidades == 1){
+              $insumo->cantidadRestante = $cantidadRestante;
+              $insumo->cantidadUnidad = $insumo->cantidadUnidad - 1;
+              $insumo->save();
+            }elseif($cantidadRestante < 0 && $unidades > 1){
+              $insumo->cantidadRestante = $insumo->cantidadMedida + $cantidadRestante;
+              $insumo->cantidadUnidad = $insumo->cantidadUnidad - 1;
+              $insumo->save();
+            }elseif($cantidadRestante > 0){
+              $insumo->cantidadRestante = $cantidadRestante;
+              $insumo->save();
+            }
+        }
         return json_encode($producto);
+
       }else{
         $request->session()->flash('error_msg', 'El producto se encuentra agotado.');
         $producto = null;
