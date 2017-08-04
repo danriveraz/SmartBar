@@ -29,7 +29,8 @@ class MesasController extends Controller
     public function create(Request $request){
         $userActual = Auth::user();
         $cantidadActualMesas = Mesa::calculaCantidad($userActual->idEmpresa);
-        if(sizeof($cantidadActualMesas->get()) == 0) $cantidadActualMesas = 0;
+
+        if(!is_int($cantidadActualMesas)) $cantidadActualMesas = 0;
         for ($i=0; $i < $request->cantidad; $i++) { 
             $cantidadActualMesas++;
             $mesa = new Mesa;
