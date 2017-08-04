@@ -44,11 +44,14 @@
                         <td>
                           <a class="btn btn btn-default popover-trigger" data-html="true" data-content=
                           "<div>
+                            <strong>Ingredientes:</strong>
                             @foreach($producto->contienen as $contiene)
                               <li>{{$contiene->insumo->nombre}}</li>
                             @endforeach
+                            <strong>Receta:</strong>
+                            <p>{{$producto->receta}}</p>
                           </div>"
-                          data-placement="bottom" data-toggle="popover">Insumos</a>
+                          data-placement="bottom" data-toggle="popover">Receta</a>
                         </td>
                         <td>{{$producto->precio}}</td>
                         <td>

@@ -49,6 +49,10 @@ table {
   color:white;
 }
 
+.p{
+  text-align : justify;
+}
+
 #tablaProductos{
   border-collapse: collapse;
 }

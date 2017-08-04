@@ -13,6 +13,7 @@ class AddForeignKeyMesa extends Migration
     public function up()
     {
         Schema::table('mesa', function (Blueprint $table) {
+          $table->dropForeign(['idAdmin']);
           $table->renameColumn('idAdmin', 'idEmpresa');
           $table->foreign('idEmpresa')->references('id')->on('empresa');
         });
