@@ -21,8 +21,54 @@
         <h1>Lista de productos</h1>
     </div>
     @include('flash::message')
-    <a href="{{ route('producto.create') }}" class="btn btn-default"><i class="fa fa-plus"></i>Agregar nuevo producto 
+    <a href="#addPModal" class="btn btn-default" data-toggle="modal"><i class="fa fa-plus"></i>Agregar nuevo producto 
     </a>
+
+    <div class="modal fade" id="addPModal" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        {!! Form::open(['method' => 'POST', 'action' => 'productoController@store']) !!}
+          <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+          <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+            <h4 class="modal-title">
+            Registro
+            </h4>
+          </div>
+          <div class="modal-body">
+            <div class="pre-scrollable" >
+            <div class="widget-content">
+              <div class="form-group">
+                <div class="form-grup">
+                    <label for="nombre" class="control-label">Nombre del Producto</label>
+                    <input type="text" name="nombreProducto" class="form-control" placeholder="Nombre del producto" required="true"/>
+                </div>
+                <div class="form-grup">
+                    <label for="categorias" class="control-label">Categoría</label>
+                    {!! Form::select('categorias', $categorias, null, ['class' => 'form-control', 'onchange' => 'mostrarValor(this.value);']) !!}
+                </div>
+                <div class="form-grup">
+                    <label  for="precio" class="control-label">Precio</label>
+                    <input id="precio" value="" type="number" min="0" step="any" name="precio" class="form-control" required="true"/>
+                </div>
+                <br>
+                <div class="form-grup">
+                    <label for="receta" class="control-label">Receta</label>
+                    <br>
+                    <textarea name="receta" class="form-control"></textarea>
+                </div>
+                
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" onclick = "return confirm ('¿Está seguro de registrar el producto?')" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
+            <button class="btn btn-default-outline" data-dismiss="modal" type="button">Cerrar</button>
+          </div>
+        {!! Form::close() !!}
+      </div>
+     </div>
+    </div>
 
     <div class="modal fade" id="addModal" >
     <div class="modal-dialog">
@@ -84,6 +130,17 @@
     listprov();
   });
   
+  var mostrarValor = function(x){
+        var p = 0;
+        cats = eval(<?php echo json_encode($cats);?>);
+        for (var i=0; i< cats.length; i++)
+        {
+            if(x == cats[i].id){
+                p = cats[i].precio;
+            }   
+        }
+        document.getElementById('precio').value=p;
+    };
 
   $(document).on("click", '#buscarNombre',function(e){
     e.preventDefault();

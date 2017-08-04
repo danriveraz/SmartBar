@@ -7,7 +7,7 @@
       <th>Unidades</th>
       <th>Valor compra</th>
       <th>Valor venta</th>
-      <th>Onzas disponibles</th>
+      <th>Onzas/Unidades disponibles</th>
       <th>A la venta</th>
     </thead>
     <tbody>
@@ -58,8 +58,8 @@
                       {!! Form::select('proveedores', $proveedores, $insumo->idProveedor, ['class' => 'form-control', 'id'=>'proveedores'.$insumo->id]) !!}
                     </div>
                     <div class="form-group">
-                      <label for="cantidadUnidad" class="control-label">Cantidad de unidades</label>
-                      <input type="number" id="unidades{{$insumo->id}}" min="0" name="cantidadUnidad" class="form-control" value="{{$insumo->cantidadUnidad}}"/>
+                      <label for="cantidadUnidad" class="control-label">Cantidad</label>
+                      <input type="number" id="unidades{{$insumo->id}}" name="unidades{{$insumo->id}}" min="0" class="form-control" value="{{$insumo->cantidadUnidad}}"/>
                     </div>
                     <div class="form-group">
                       <label for="valorCompra" class="control-label">Valor de compra</label>
@@ -72,10 +72,11 @@
                     <div class="form-group">
                       <label for="cantidadMedida" class="control-label">Cantidad de medida</label>
                       <input type="number" id="cantMedida{{$insumo->id}}" min="0" step="any" name="cantidadMedida" class="form-control" value="{{$insumo->cantidadMedida}}"/>
-                      <select name="medida" id="medida{{$insumo->id}}" class="form-control"> 
+                      <select name="medida" id="medida{{$insumo->id}}" class="form-control" onchange="editValor(this.value,{{$insumo->id}});"> 
                         <option value="ml">ml</option> 
                         <option value="cm3">cm3</option> 
-                        <option value="oz" <?php if($insumo->cantidadMedida !="0") echo "selected";?> >oz</option> 
+                        <option value="oz" <?php if($insumo->cantidadMedida !="0") echo "selected";?> >oz</option>
+                        <option value="unidad">unidad</option>
                       </select>
                     </div>
                     <div class="form-group">
@@ -118,6 +119,16 @@
     }
   }
 
+  var editValor = function(x,id){
+    if(x == 'unidad'){
+      document.getElementById('unidades'+id).value = 1;
+      document.getElementById('unidades'+id).disabled=true;
+     }else{
+      document.getElementById('unidades'+id).disabled=false;
+      document.getElementById('unidades'+id).value = null;
+    }
+  };
+
   function modificar(idInsumo,proveedores){
     var nombre = $("#nombre"+idInsumo).val();
     var marca = $("#marca"+idInsumo).val();
@@ -127,6 +138,10 @@
     var venta = $("#venta"+idInsumo).val();
     var cantMedida = $("#cantMedida"+idInsumo).val();
     var medida = $("#medida"+idInsumo).val();
+
+    if(marca==''){
+      marca = 'Sin marca';
+    }
 
     $.ajax({
       url: routeModificar,

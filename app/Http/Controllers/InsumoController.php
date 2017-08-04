@@ -43,18 +43,29 @@ class InsumoController extends Controller
     $insumo = Insumo::find($request->id);
     $insumo->idProveedor = $request->proveedor;
     $insumo->nombre = $request->nombre;
-    $insumo->marca = $request->marca;
     $insumo->cantidadUnidad = $request->unidades;
     $insumo->precioUnidad = $request->venta;
     $insumo->valorCompra = $request->compra;
-    if ($request->medida == 'ml' || $request->medida == 'cm3') {
-      $insumo->cantidadMedida = $request->cantMedida/30;
-      $insumo->cantidadRestante = $request->cantMedida/30;
-    }
-    else{
-      $insumo->cantidadMedida = $request->cantMedida;
-      $insumo->cantidadRestante = $request->cantMedida;
-    }
+
+      if(empty($request->marca)){
+        $insumo->marca = 'Sin marca';
+      }else{
+        $insumo->marca = $request->marca;
+      }
+      
+      if ($request->medida == 'ml' || $request->medida == 'cm3') {
+        $insumo->cantidadMedida = $request->cantMedida/30;
+        $insumo->cantidadRestante = $request->cantMedida/30;
+      }
+      elseif ($request->medida == 'unidad') {
+        $insumo->cantidadUnidad = 1;
+        $insumo->cantidadMedida = $request->cantMedida;
+        $insumo->cantidadRestante = $request->cantMedida;
+      }
+      else{
+        $insumo->cantidadMedida = $request->cantMedida;
+        $insumo->cantidadRestante = $request->cantMedida;
+      }
     $insumo->save();
   }
 
@@ -87,14 +98,24 @@ class InsumoController extends Controller
       $insumo = new Insumo;
       $insumo->idProveedor = $_POST['proveedores'];
       $insumo->nombre = $request->nombre;
-      $insumo->marca = $request->marca;
       $insumo->cantidadUnidad = $request->cantidadUnidad;
       $insumo->precioUnidad = $request->precioUnidad;
       $insumo->valorCompra = $request->valorCompra;
 
+      if(empty($request->marca)){
+        $insumo->marca = 'Sin marca';
+      }else{
+        $insumo->marca = $request->marca;
+      }
+
       if ($request->medida == 'ml' || $request->medida == 'cm3') {
         $insumo->cantidadMedida = $request->cantidadMedida/30;
         $insumo->cantidadRestante = $request->cantidadMedida/30;
+      }
+      elseif ($request->medida == 'unidad') {
+        $insumo->cantidadUnidad = 1;
+        $insumo->cantidadMedida = $request->cantidadMedida;
+        $insumo->cantidadRestante = $request->cantidadMedida;
       }
       else{
         $insumo->cantidadMedida = $request->cantidadMedida;
@@ -135,49 +156,14 @@ class InsumoController extends Controller
   }
 
   public function edit($id){
-    $userActual = Auth::user();
-    $insumo = Insumo::find($id);
-
-    $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
-                               lists('nombre','id');
-    $proveedores = Proveedor::where('idEmpresa' , $userActual->idEmpresa)->
-                                lists('nombre','id');
-    return view('insumo.edit')->with('insumo',$insumo)->with('proveedores',$proveedores)->with('categorias',$categorias);
+    
   }
 
     public function update(Request $request, $id){
-      $userActual = Auth::user();
-  	  $insumo = Insumo::find($id);
-      $insumo->idProveedor = $_POST['proveedores'];
-      $insumo->nombre = $request->nombre;
-      $insumo->marca = $request->marca;
-      $insumo->cantidadUnidad = $request->cantidadUnidad;
-      $insumo->precioUnidad = $request->precioUnidad;
-      $insumo->valorCompra = $request->valorCompra;
-      if ($request->medida == 'ml' || $request->medida == 'cm3') {
-        $insumo->cantidadMedida = $request->cantidadMedida/30;
-        $insumo->cantidadRestante = $request->cantidadMedida/30;
-      }
-      else{
-        $insumo->cantidadMedida = $request->cantidadMedida;
-        $insumo->cantidadRestante = $request->cantidadMedida;
-      }
-      if($request->tipo == '0'){
-        $insumo->tipo = false;
-      }
-      else{
-        $insumo->tipo = true;
-      }
-      $insumo->idEmpresa = $userActual->idEmpresa;
-      $insumo->save();
-      flash::warning('El insumo ha sido modificado satisfactoriamente')->important();
-      return redirect()->route('insumo.index');
+
     }
 
     public function destroy($id){
-      $insumo = Insumo::find($id);
-      $insumo->delete();
-      Flash::success('El insumo ha sido eliminado de forma exitosa')->important();
-      return redirect()->route('insumo.index');
+      
     }
 }

@@ -70,7 +70,7 @@ public function __construct()
     $idInsumo = $request->idInsumo; 
     $contieneAux = Contiene::IdProducto($idProducto)->
                              IdInsumo($idInsumo)->
-                             where('idAdmin',$userActual->idEmpresa)->first();
+                             where('idEmpresa',$userActual->idEmpresa)->first();
     if($contieneAux != null){
       $contieneAux->delete();
     }
@@ -88,13 +88,13 @@ public function __construct()
       for($i=0; $i<$cantidadInsumos; $i++){
         $contieneAux = Contiene::IdProducto($idProducto)->
                                  IdInsumo($idInsumos[$i])->
-                                 where('idAdmin',$userActual->idEmpresa)->first();
+                                 where('idEmpresa',$userActual->idEmpresa)->first();
         if($contieneAux == null){
           $contiene = new Contiene;
           $contiene->idProducto = $idProducto;
           $contiene->idInsumo = $idInsumos[$i];
           $contiene->cantidad = $cantidades[$i];
-          $contiene->idAdmin = $userActual->idEmpresa;
+          $contiene->idEmpresa = $userActual->idEmpresa;
           $contiene->save();
         }
         else{

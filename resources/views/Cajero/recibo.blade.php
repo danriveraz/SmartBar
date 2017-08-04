@@ -20,15 +20,15 @@
           <div class="widget-content padded clearfix">
             <table class="table table-striped invoice-table">
               <thead>
-                <th width="50">Cant.</i> </th>
+                <th width="50">Cant. a pagar</i> </th>
                 <th>
                   Producto
                 </th>
                 <th width="70">
-                  Cant.
+                  Cant. total
                 </th>
                 <th width="70">
-                  Cant.
+                  Cant. restante.
                 </th>
                 <th width="120">
                   Valor unitario

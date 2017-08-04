@@ -52,16 +52,15 @@
               </div>
               <div class="form-group">
                     <label for="marca" class="control-label">Marca</label>
-                    <input type="text" name="marca" class="form-control" placeholder="Marca del insumo" required="false"/>
+                    <input type="text" name="marca" class="form-control" placeholder="Marca del insumo" />
                 </div>
                 <div class="form-group">
                     <label for="idProveedor" class="control-label">Proveedor</label>
-                    
                     {!! Form::select('proveedores', $proveedores, null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
-                    <label for="cantidadUnidad" class="control-label">Cantidad de unidades</label>
-                    <input type="number" min="0" name="cantidadUnidad" class="form-control" required="false">
+                    <label for="cantidadUnidad" class="control-label">Cantidad</label>
+                    <input type="number" min="0" name="cantidadUnidad" id="cantidadUnidad" class="form-control" required="false">
                 </div>
                 <div class="form-group">
                     <label for="valorCompra" class="control-label">Valor de compra</label>
@@ -74,7 +73,7 @@
                 <div class="form-group">
                     <label for="cantidadMedida" class="control-label">Cantidad de medida</label>
                     <input type="number" step="any" min="0" name="cantidadMedida" class="form-control" required="true"/>
-                    <select name="medida" class="form-control"> 
+                    <select name="medida" class="form-control" onchange="valor(this.value);"> 
                         <option value="ml">ml</option> 
                         <option value="cm3">cm3</option> 
                         <option value="oz">oz</option>
@@ -139,6 +138,16 @@
   $(document).ready(function(){
     listprov();
   });
+
+  var valor = function(x){
+        if(x == 'unidad'){
+          document.getElementById('cantidadUnidad').disabled=true;
+          document.getElementById('cantidadUnidad').value = 1;
+        }else{
+          document.getElementById('cantidadUnidad').disabled=false;
+          document.getElementById('cantidadUnidad').value = null;
+        }
+  };
 
   $(document).on("click", '#buscarNombre',function(e){
     e.preventDefault();

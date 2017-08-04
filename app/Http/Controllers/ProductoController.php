@@ -28,7 +28,8 @@ class ProductoController extends Controller
     $userActual = Auth::user();
     $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                              lists('nombre','id');
-    return view('producto.index',compact('categorias'));
+    $cats = Categoria::all()->where('idEmpresa',$userActual->idEmpresa);                         
+    return view('producto.index',compact('categorias'))->with('cats', $cats);
   }
 
   public function listall(Request $request){
@@ -37,9 +38,9 @@ class ProductoController extends Controller
                              lists('nombre','id');
     $productos = Producto::Search($request->nombre)->
                            Category($request->categorias)->
-                           where('idAdmin' , $userActual->idEmpresa)->
+                           where('idEmpresa' , $userActual->idEmpresa)->
                            orderBy('id','ASC')->
-                           paginate(5);
+                           paginate(15);
     return view('producto.listall',compact('categorias'))->with('productos',$productos);
   }
 
@@ -58,7 +59,7 @@ class ProductoController extends Controller
     $producto->precio = $request->precio;
     $producto->idCategoria = $_POST['categorias'];
     $producto->receta = $request->receta;
-    $producto->idAdmin = $userActual->idEmpresa;
+    $producto->idEmpresa = $userActual->idEmpresa;
     $producto->save();
     Flash::success("El producto se ha registrado satisfactoriamente")->important();
     session_start();
@@ -85,7 +86,7 @@ class ProductoController extends Controller
     $userActual = Auth::user();
     $producto = Producto::find($id);
     $producto->nombre = $request->nombreProducto;
-    $producto->precio = $request->precio;
+    $producto->precio = $request->nPrecio;
     $producto->idCategoria = $_POST['categorias'];
     $producto->receta = $request->receta;
     $producto->save();
