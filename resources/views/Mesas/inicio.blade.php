@@ -1,18 +1,18 @@
-@extends('Layout.app_empleado')
+@extends('Layout.app')
 @section('content')
 <div class="col-sm-offset-2 col-sm-8">
 	<div class="panel-tittle">
 			<h1>Lista de facturas</h1>
 	</div>
 
-	<form class="navbar-form navbar-form" method="POST" action="{{url('cajero/')}}">
+	<form class="navbar-form navbar-form" method="POST" action="{{url('mesas/')}}">
 	{{csrf_field()}}
 		<div class="navbar-text navbar-right">
 				<input type="text" name="nombre" class="form-control" placeholder="Buscar">
 				<button type="submit" class="btn btn-dufault">Buscar</button>
 		</div>
 	</form>
-	<form class="navbar-form navbar-form" method="GET" action="{{url('mesas/create')}}">
+	<form class="navbar-form navbar-form" method="POST" action="{{url('mesas/create')}}">
 	{{csrf_field()}}
 		<div class="navbar-header">
 			<input type="number" name="cantidad" min="0" placeholder="Cantidad" style="width:80px;" class="cantidadSeleccionada" max="100" id="cantidad" onkeyup="validarMinMax('#cantidad');" value="0">
@@ -63,6 +63,7 @@
             </div>
             <div class="widget-content">
             Editar nombre: <input type="text" name="nombre" value="{{$mesa->nombreMesa}}">
+            <input type="text" hidden="" name="id" value="{{$mesa->id}}">
             </div>
         </div>
         <div class="modal-footer">

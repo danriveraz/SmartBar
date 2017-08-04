@@ -178,8 +178,9 @@
               <li><a href="charts.htm">
                 <span aria-hidden="true" class="fa fa-fw fa-bar-chart-o"></span>Estadisticas</a>
               </li>
-              <li class="dropdown"><a data-toggle="dropdown"  href="#">
-                <span aria-hidden="true" class="fa fa-fw fa-hospital-o"></span>Mi Negocio</a>
+              <li class="dropdown">
+              <a href="{{route('mesas.index')}}">
+                <span aria-hidden="true" class="fa fa-fw fa-hospital-o"></span>Mesas</a>
               </li>
             </ul>
           </div>

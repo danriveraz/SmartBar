@@ -29,7 +29,7 @@ class MesasController extends Controller
     public function create(Request $request){
         $userActual = Auth::user();
         $cantidadActualMesas = Mesa::calculaCantidad($userActual->idEmpresa);
-        if(sizeof($cantidadActualMesas) == 0) $cantidadActualMesas = 0;
+        if(sizeof($cantidadActualMesas->get()) == 0) $cantidadActualMesas = 0;
         for ($i=0; $i < $request->cantidad; $i++) { 
             $cantidadActualMesas++;
             $mesa = new Mesa;
@@ -40,9 +40,24 @@ class MesasController extends Controller
             $mesa->save();
         }
         $mesas = Mesa::mesasAdmin($userActual->idEmpresa)->get();
-        return view('mesas.inicio')->with('mesas',$mesas);
+        return redirect('mesas')->with('mesas',$mesas);
     }    
     public function edit(Request $request){
-        dd("Jelou");
-    }    
+        $userActual = Auth::user();
+        $id = $request->id;
+        $nombre = $request->nombre;
+        $arreglo = array("$id", "$nombre");
+        Mesa::EditarMesa($arreglo);
+        $mesas = Mesa::mesasAdmin($userActual->idEmpresa)->get();
+        return redirect('mesas')->with('mesas',$mesas);
+    }  
+
+    public function store(Request $request){
+        $userActual = Auth::user();
+        $id = $userActual->idEmpresa;
+        $nombre = $request->nombre;
+        $arreglo = array("$id", "$nombre");
+        $mesas = Mesa::buscarMesas($arreglo)->get();
+        return view('mesas.inicio')->with('mesas',$mesas);
+    }
 }
