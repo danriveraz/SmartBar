@@ -1,21 +1,6 @@
 @extends('Layout.app')
 @section('content')
 
-{!!Html::style('stylesheets\font-awesome.min.css')!!}
-{!!Html::style('stylesheets\isotope.css')!!}
-{!!Html::style('stylesheets\fullcalendar.css')!!}
-{!!Html::style('stylesheets\style.css')!!}
-
-{!!Html::script('javascripts\bootstrap.min.js')!!}
-{!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
-{!!Html::script('javascripts\fullcalendar.min.js')!!}
-{!!Html::script('javascripts\jquery.dataTables.min.js')!!}
-{!!Html::script('javascripts\jquery.easy-pie-chart.js')!!}
-{!!Html::script('javascripts\jquery.fancybox.pack.js')!!}
-{!!Html::script('javascripts\select2.js')!!}
-{!!Html::script('javascripts\jquery.sparkline.min.js')!!}
-{!!Html::script('javascripts\main.js')!!}
-
 <div class="col-sm-offset-2 col-sm-8">
   <div class="panel-tittle">
       <h1>Lista de insumos</h1>
@@ -94,7 +79,7 @@
                 </script>
                 <div class="form-group">
                     <label for="tipo" class="control-label">Vender como producto?</label>
-                    <input type="checkbox" name="tipo" id="tipo" value="1" onchange="javascript:showContent()" />
+                    <label> <input type="checkbox" name="tipo" id="tipo" value="1" onchange="javascript:showContent()"/><span></span></label>
                 </div>
                 <div id="content" style="display: none;">
                     <label for="categorias" class="control-label">Categoría</label>

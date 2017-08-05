@@ -124,20 +124,22 @@
 
   function adicionarInsumo(insumo){
     var cantidad = $("#"+insumo.id).val();
-    if(document.getElementById("fila"+insumo.id)!=null){
-      $("#fila"+insumo.id).children("td").each(function (indextd)
-        {
-          if(indextd == 2){
-            var nuevaCantidad = parseFloat($(this).text())+parseFloat(cantidad);
-            $(this).text(nuevaCantidad);
-          }
-       });
+    if(cantidad>0){
+      if(document.getElementById("fila"+insumo.id)!=null){
+        $("#fila"+insumo.id).children("td").each(function (indextd)
+          {
+            if(indextd == 2){
+              var nuevaCantidad = parseFloat($(this).text())+parseFloat(cantidad);
+              $(this).text(nuevaCantidad);
+            }
+          });
+        }
+      else{
+        var fila = '<tr id="fila'+insumo.id+'"><td>'+insumo.id+'</td><td>'+insumo.nombre+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},'+insumo.id+')"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td></tr>';
+        $("#insumoAgregados").append(fila);       
+      }
+      $("#"+insumo.id).val('');
     }
-    else{
-      var fila = '<tr id="fila'+insumo.id+'"><td>'+insumo.id+'</td><td>'+insumo.nombre+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},'+insumo.id+')"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td></tr>';
-      $("#insumoAgregados").append(fila);       
-    }
-    $("#"+insumo.id).val(0);
   }
 
   function adicionarTodo(){
@@ -168,7 +170,7 @@
             var fila = '<tr id="fila'+insumos[i]+'"><td>'+insumos[i]+'</td><td>'+nombres[i]+'</td><td>'+$("#"+insumos[i]).val()+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},'+insumos[i]+')"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td></tr>';
             $("#insumoAgregados").append(fila);
           }
-          $("#"+insumos[i]).val(0);
+          $("#"+insumos[i]).val('');
         }
       }
   }
