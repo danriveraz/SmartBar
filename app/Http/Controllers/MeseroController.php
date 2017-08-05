@@ -36,7 +36,7 @@ class MeseroController extends Controller
     public function index()
     {
         $mesas = Mesa::mesasAdmin(Auth::user()->idEmpresa)->get();
-        return view('mesero.mesas')->with('mesas',$mesas);
+        return view('Mesero.mesas')->with('mesas',$mesas);
     }
 
     public function agregar(Request $request){
@@ -237,7 +237,7 @@ class MeseroController extends Controller
 
       if(sizeOf($busqueda) > 0){
         $ventas = Venta::pedidoActualMesa($busqueda->id)->get();
-        return view('mesero.venta')->with('factura',$busqueda)->with('mesa',$mesa)->with('categorias',$categorias)->with('ventas',$ventas);
+        return view('Mesero.venta')->with('factura',$busqueda)->with('mesa',$mesa)->with('categorias',$categorias)->with('ventas',$ventas);
       }else{
         $nfactura = new Factura;
         $nfactura->estado = "En proceso";
@@ -248,7 +248,7 @@ class MeseroController extends Controller
         $nfactura->idMesa = $id;
         $nfactura->save();
         $facturas = Factura::buscarFacturaId($id)->get()->last();
-        return view('mesero.venta')->with('factura',$facturas)->with('mesa',$mesa)->with('categorias',$categorias)->with('ventas',$ventas);
+        return view('Mesero.venta')->with('factura',$facturas)->with('mesa',$mesa)->with('categorias',$categorias)->with('ventas',$ventas);
       }
     }
 
