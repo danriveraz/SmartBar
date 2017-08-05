@@ -25,7 +25,7 @@ class CajeroController extends Controller
     public function index(Request $request){
     	$mesas = Factura::listar()
     						->paginate(20);
-    	return view('cajero.inicio')->with('mesas',$mesas);
+    	return view('Cajero.inicio')->with('mesas',$mesas);
     }
     public function store(Request $request){
     	$nombre = $request->nombre;
@@ -37,11 +37,11 @@ class CajeroController extends Controller
     		$mesas = Factura::buscarMesaEnProceso($nombre)
     					->paginate(20);
     	}
-    	return view('cajero.inicio')->with('mesas',$mesas);
+    	return view('Cajero.inicio')->with('mesas',$mesas);
     }
     public function recibo(Request $request){
         $factura = Factura::find($request->id);
-        return view('cajero.recibo')->with('factura',$factura);
+        return view('Cajero.recibo')->with('factura',$factura);
     }
     public function show($id){
 

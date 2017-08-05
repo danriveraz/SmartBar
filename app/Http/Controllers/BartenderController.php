@@ -26,7 +26,7 @@ class BartenderController extends Controller
     public function index(Request $request){
       $facturas = Factura::Listar2()
                   ->paginate(20);
-    	return view('bartender.inicio')->with('facturas',$facturas);
+    	return view('Bartender.inicio')->with('facturas',$facturas);
     }
     public function store(Request $request){
       $pedidos = $request->pedidos;
@@ -44,6 +44,6 @@ class BartenderController extends Controller
       }
       $facturas = Factura::Listar2()
                   ->paginate(20);
-      return view('bartender.inicio')->with('facturas',$facturas); 
+      return view('Bartender.inicio')->with('facturas',$facturas); 
     }
 }
