@@ -25,7 +25,7 @@ class CategoriaController extends Controller
     }
     
     public function index(Request $request){
-      return view('Categoria.index');
+      return view('categoria.index');
   	}
 
     public function listall(Request $request){
@@ -33,7 +33,7 @@ class CategoriaController extends Controller
       $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                        orderBy('id','ASC')->
                        paginate(15);
-      return view('Categoria.listall')->with('categorias',$categorias);
+      return view('categoria.listall')->with('categorias',$categorias);
     }
 
   	public function store(Request $request){
@@ -44,12 +44,12 @@ class CategoriaController extends Controller
       $categoria->idEmpresa = $userActual->idEmpresa;
       $categoria->save();
       Flash::success("La categoria se ha registrado satisfactoriamente")->important();
-      return redirect()->route('Categoria.index');
+      return redirect()->route('categoria.index');
   	}
 
    	public function edit($id){
    		$categoria = Categoria::find($id);
-   		return view('Categoria.edit')->with('categoria', $categoria);
+   		return view('categoria.edit')->with('categoria', $categoria);
 
   	}
 
@@ -62,13 +62,13 @@ class CategoriaController extends Controller
       $categoria->save();
       flash::warning('La categoria ha sido modificada satisfactoriamente')
       ->important();
-      return redirect()->route('Categoria.index');
+      return redirect()->route('categoria.index');
     }
 
     public function destroy($id){
     	$categoria = Categoria::find($id);
     	$categoria->delete();
     	Flash::success('La categoría ha sido eliminada de forma exitosa')->important();
-    	return redirect()->route('Categoria.index');
+    	return redirect()->route('categoria.index');
     }
 }

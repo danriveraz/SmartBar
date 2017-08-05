@@ -35,7 +35,7 @@ class InsumoController extends Controller
       $proveedores = Proveedor::where('idEmpresa' , $userActual->idEmpresa)->
                                 lists('nombre','id');
 
-      return view('Insumo.index',compact('proveedores'))->with('categorias',$categorias);
+      return view('insumo.index',compact('proveedores'))->with('categorias',$categorias);
   }
 
   public function modificar(Request $request){
@@ -89,7 +89,7 @@ class InsumoController extends Controller
                          orderBy('id','ASC')->
                          paginate(5);
 
-      return view('Insumo.listall',compact('proveedores'))->with('insumos',$insumos)->with('categorias',$categorias);
+      return view('insumo.listall',compact('proveedores'))->with('insumos',$insumos)->with('categorias',$categorias);
   }
 
 
@@ -148,7 +148,7 @@ class InsumoController extends Controller
         $contiene->save();
       }
       Flash::success("El insumo se ha registrado satisfactoriamente")->important();
-      return redirect()->route('Insumo.index');
+      return redirect()->route('insumo.index');
   }
 
   public function show($id){
