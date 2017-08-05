@@ -54,7 +54,7 @@
 								<li><a href="#section-2" class="scroll">Conócenos</a></li>
 								<li><a href="" class="scroll">Contacto</a></li>
 								<li class="login" >
-									<div id="loginContainer" ><a href="#" id="loginButton"><span>Iniciar Sección</span></a>
+									<div id="loginContainer" ><a href="#" id="loginButton"><span>Iniciar Sesión</span></a>
 						                <div id="loginBox">
 						                    <form id="loginForm" method="post" action="{{url('Auth/login')}}">
                                    				{{csrf_field()}}

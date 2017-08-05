@@ -109,9 +109,9 @@
 @endsection
 
 <script>
-  var route = "http://localhost/PocketByR/public/mesero/agregar";
-  var routeDisminuir = "http://localhost/PocketByR/public/mesero/disminuir";
-  var routeVenta = "http://localhost/PocketByR/public/mesero/venta";
+  var route = "https://pocketdesigner.co/PocketByR/public/mesero/agregar";
+  var routeDisminuir = "https://pocketdesigner.co/PocketByR/public/mesero/disminuir";
+  var routeVenta = "https://pocketdesigner.co/PocketByR/public/mesero/venta";
 
   $(function(){
     $("#accordion").accordion({
@@ -207,7 +207,7 @@
         },
         success : function() {
           if(idProductos.length != 0){
-            window.location = "http://localhost/PocketByR/public/mesero";
+            window.location = "https://pocketdesigner.co/PocketByR/public/mesero";
           }else{
             $( "#message" ).load(window.location.href + " #message" );
           }
