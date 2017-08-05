@@ -105,8 +105,8 @@
 {!!$insumos->appends(Request::all())->render() !!}
 
 <script>
-  var routeModificar = "http://localhost/PocketByR/public/insumo/modificar";
-  var routeEliminar = "http://localhost/PocketByR/public/insumo/eliminar";  
+  var routeModificar = "https://pocketdesigner.co/PocketByR/public/insumo/modificar";
+  var routeEliminar = "https://pocketdesigner.co/PocketByR/public/insumo/eliminar";  
 
   function showContent() {
     element = document.getElementById("content");

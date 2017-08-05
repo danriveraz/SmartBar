@@ -12,7 +12,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
 
-        {!! Form::open(['method' => 'POST', 'action' => 'insumoController@store']) !!}
+        {!! Form::open(['method' => 'POST', 'action' => 'InsumoController@store']) !!}
 
           <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
 
@@ -99,7 +99,7 @@
    </div>
   </div>
   <form id="busqueda" name="busqueda" class="navbar-form navbar-right" method="GET" 
-  route="insumo.listall">
+  route="Insumo.listall">
     {{csrf_field()}}
     <div class="form-group" align="right">
       <input  id="nombreInput" type="text" name="nombreInput" class="form-control" aria-describedby="search"/>

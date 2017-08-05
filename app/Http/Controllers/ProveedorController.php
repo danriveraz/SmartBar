@@ -24,7 +24,7 @@ class ProveedorController extends Controller
     }
 
     public function index(Request $request){
-      return view('proveedor.index');
+      return view('Proveedor.index');
 	  }
 
     public function eliminar(Request $request){
@@ -46,7 +46,7 @@ class ProveedorController extends Controller
                          where('idEmpresa' , $userActual->idEmpresa)->
                          orderBy('id','ASC')->
                          paginate(15);
-      return view('proveedor.listall')->with('proveedores',$proveedores);
+      return view('Proveedor.listall')->with('proveedores',$proveedores);
     }
 
     public function buscar(Request $request){
@@ -55,7 +55,7 @@ class ProveedorController extends Controller
                          where('idEmpresa' , $userActual->idEmpresa)->
                          orderBy('id','ASC')->
                          paginate(15);
-      return view('proveedor.listall')->with('proveedores',$proveedores);
+      return view('Proveedor.listall')->with('proveedores',$proveedores);
     }
 
   	public function store(Request $request){
@@ -67,7 +67,7 @@ class ProveedorController extends Controller
       $proveedor->idEmpresa = $userActual->idEmpresa;
       $proveedor->save();
       Flash::success("El proveedor se ha registrado satisfactoriamente")->important();
-      return redirect()->route('proveedor.index');
+      return redirect()->route('Proveedor.index');
   	}
 
   	public function show($id){}

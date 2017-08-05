@@ -23,7 +23,7 @@
   @include('flash::message')
   <a href="#addModal" class="btn btn-default" data-toggle="modal"><i class="fa fa-plus"></i> Agregar nuevo proveedor </a>
 
-  <form id="busqueda" name="busqueda" class="navbar-form navbar-right" method="GET" route="proveedor.listall">
+  <form id="busqueda" name="busqueda" class="navbar-form navbar-right" method="GET" route="Proveedor.listall">
     {{csrf_field()}}
     <div class="form-group" align="right">
 
@@ -35,7 +35,7 @@
   <div class="modal fade in" id="addModal" >
     <div class="modal-dialog">
       <div class="modal-content">
-        {!! Form::open(['method' => 'POST', 'action' => 'proveedorController@store']) !!}
+        {!! Form::open(['method' => 'POST', 'action' => 'ProveedorController@store']) !!}
           <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
           <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
             <h4 class="modal-title">
