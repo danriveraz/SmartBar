@@ -22,7 +22,7 @@
           <td>{{$insumo->precioUnidad}}</td>
           <td>{{number_format($insumo->cantidadMedida,3)}}</td>
           <td align="center">
-            <label> <input type="checkbox" disabled="disabled" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?>/><span></span></label>
+            <input type="checkbox" disabled="disabled" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?>/>
           </td>
           <td>
           <button data-target="#editModal{{$insumo->id}}" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
@@ -81,7 +81,7 @@
                     </div>
                     <div class="form-group">
                       <label for="tipo" class="control-label">Vender como producto?</label>
-                      <label> <input type="checkbox" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?> onchange="javascript:showContent()" disabled="disabled" /><span></span></label>
+                      <input type="checkbox" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?> onchange="javascript:showContent()" disabled="disabled" />
                     </div>
                     <div id="content" <?php if($insumo->tipo == "0") echo "hidden";?>>
                       <label for="categorias" class="control-label">Categoría</label>

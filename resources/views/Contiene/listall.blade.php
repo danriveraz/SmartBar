@@ -3,7 +3,7 @@
         <th>#</th>
         <th>Nombre</th>
         <th>Marca</th>
-        <th>A la venta</th>
+        <th>Tipo</th>
         <th>Cantidad de onzas</th>
         <th>
         
@@ -19,7 +19,7 @@
             <td>{{$insumo->nombre}}</td>
             <td>{{$insumo->marca}}</td>
             <td align="center">
-              <label> <input type="checkbox" disabled="disabled" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?>/><span></span></label>
+              <input type="checkbox" disabled="disabled" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?>/>
             </td>
             <td><input type="number"  id="{{$insumo->id}}" step="any" min="0.1" name="cantidad" class="form-control"></td>
             <td align="center">
