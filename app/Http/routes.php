@@ -40,6 +40,7 @@ Route::get('insumo/modificar', 'InsumoController@modificar');
 Route::get('inslistall/{page?}', 'insumoController@listall');
 Route::resource('insumo', 'insumoController');
 
+Route::get('producto/modificar', 'ProductoController@modificar');
 Route::resource('producto', 'productoController');
 Route::get('prodlistall', 'productoController@listall');
 Route::get('producto/{id}/insumoedit', ['uses' => 'ProductoController@insumoedit', 'as' => 'producto.insumoedit']);

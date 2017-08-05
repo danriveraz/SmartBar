@@ -32,6 +32,15 @@ class ProductoController extends Controller
     return view('producto.index',compact('categorias'))->with('cats', $cats);
   }
 
+  function modificar(Request $request){
+    $producto = Producto::find($request->id);
+    $producto->nombre = $request->nombre;
+    $producto->precio = $request->precio;
+    $producto->idCategoria = $request->categoria;
+    $producto->receta = $request->receta;
+    $producto->save();    
+  }  
+
   public function listall(Request $request){
     $userActual = Auth::user();
     $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
@@ -102,6 +111,8 @@ class ProductoController extends Controller
 
    public function destroy($id){
       
-    }
+  }
+
+
 
 }
