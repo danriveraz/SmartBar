@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 namespace PocketByR\Http\Controllers\Auth;
 
@@ -26,7 +26,7 @@ class AuthController extends Controller
     |--------------------------------------------------------------------------
     |
     | This controller handles the registration of new users, as well as the
-    | Authentication of existing users. By default, this controller uses
+    | authentication of existing users. By default, this controller uses
     | a simple trait to add these behaviors. Why don't you explore it?
     |
     */
@@ -41,7 +41,7 @@ class AuthController extends Controller
     protected $redirectTo = '/WelcomeAdmin';
 
     /**
-     * Create a new Authentication controller instance.
+     * Create a new authentication controller instance.
      *
      * @return void
      */
@@ -53,7 +53,7 @@ class AuthController extends Controller
     public function getRegister(Request $request){
         $departamentos = Departamento::all();
         $ciudades = Ciudad::all();
-        return view("Auth/register")->with('departamentos',$departamentos)
+        return view("auth/register")->with('departamentos',$departamentos)
                 ->with('ciudades', $ciudades);
     }
 
@@ -73,7 +73,7 @@ class AuthController extends Controller
         $departamentos = Departamento::All();
         $ciudades = Ciudad::all();
         if ($validator->fails()){
-            return redirect("Auth/register")
+            return redirect("auth/register")
             ->withErrors($validator)
             ->withInput()
             ->with('departamentos',$departamentos)
@@ -116,7 +116,7 @@ class AuthController extends Controller
                 $mail->to($data->email)->subject('Confirma tu cuenta de PocketByR');
             });
             
-            return redirect("Auth/login")
+            return redirect("auth/login")
             ->with("message", "Hemos enviado un enlace de confirmación a su cuenta de correo electrónico");      
         }
     }
@@ -130,7 +130,7 @@ class AuthController extends Controller
            $confirm_token = str_random(100);
            $user->where('email', '=', $email)
            ->update(['confirmoEmail' => $confirmoEmail, 'confirm_token' => $confirm_token]);
-           return redirect('Auth/login')
+           return redirect('auth/login')
            ->with('message', 'Bienvenido ' . $the_user[0]['nombrePersona'] . ' ya puede iniciar sesión');
         }else{
            return redirect('');
@@ -166,7 +166,7 @@ class AuthController extends Controller
             ];
             $validator = Validator::make($request->all(), $rules, $messages);
             
-            return redirect('Auth/login')
+            return redirect('auth/login')
             ->withErrors($validator)
             ->withInput()
             ->with('message', 'Error al iniciar sesión');
@@ -179,11 +179,11 @@ class AuthController extends Controller
     }
 
     public function profile(){
-        return View('Auth.profile');
+        return View('auth.profile');
     }
 
     public function editProfile(){
-        return View('Auth.editProfile');
+        return View('auth.editProfile');
     }
 
     public function updateProfile(Request $request){
@@ -204,7 +204,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), $rules);
         
         if ($validator->fails()){
-            return redirect("Auth/editProfile")
+            return redirect("auth/editProfile")
             ->withErrors($validator)
             ->withInput();
         }
@@ -237,7 +237,7 @@ class AuthController extends Controller
                 $admin->imagenNegocio = $perfilNegocio;
             }
             $admin->save();
-            return redirect("Auth/profile")
+            return redirect("auth/profile")
             ->with("message", "Perfil actualizado correctamente");
         }
     }
