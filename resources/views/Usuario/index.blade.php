@@ -4,7 +4,7 @@
   <div class="">
       <h1>Lista de usuarios</h1>
       @include('flash::message')
-      <a href="{{ route('auth.usuario.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Agregar nuevo usuario </a>
+      <a href="{{ route('Auth.usuario.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Agregar nuevo usuario </a>
   </div>
   <div class="social-wrapper">
     <div id="social-container">
@@ -12,7 +12,7 @@
 <!-- Profile Widget -->
 <div class="item widget-container fluid-height profile-widget">
   <div class="heading">
-      <i class="fa fa-level-up"></i><a href="{{url('auth/usuario/'.$usuario->id.'/edit')}}">Ver mas <i class="fa fa-gear  pull-right"></i></a>
+      <i class="fa fa-level-up"></i><a href="{{url('Auth/usuario/'.$usuario->id.'/edit')}}">Ver mas <i class="fa fa-gear  pull-right"></i></a>
   </div>
   <div class="widget-content padded">
     <div class="profile-info clearfix">
@@ -66,7 +66,7 @@
 </div>
 <!-- end Profile Widget -->
           <!--
-          <td><a href="{{ route('auth.usuario.edit',$usuario->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+          <td><a href="{{ route('Auth.usuario.edit',$usuario->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           <a href="{{ route('auth.usuario.destroy',$usuario->id) }}" onclick="return confirm('¿Estas seguro que deseas eliminar este usuario?')"
              class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
           </td>

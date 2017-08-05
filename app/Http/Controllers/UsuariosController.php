@@ -17,11 +17,11 @@ class UsuariosController extends Controller
 
   public function index(){
     $usuarios = User::where('idEmpresa',Auth::User()->idEmpresa)->orderBy('id','ASC')->paginate(10);
-    return view('usuario.index')->with('usuarios',$usuarios);
+    return view('Usuario.index')->with('usuarios',$usuarios);
   }
 
   public function create(){
-    return view('usuario.create');
+    return view('Usuario.create');
   }
 
   public function store(Request $request){
@@ -37,7 +37,7 @@ class UsuariosController extends Controller
     $validator = Validator::make($request->all(), $rules);
 
     if ($validator->fails()){
-        return redirect()->route('auth.usuario.create')->withErrors($validator)->withInput();
+        return redirect()->route('Auth.usuario.create')->withErrors($validator)->withInput();
       }else{
       $Permisos = $request['Permisos'];
       $usuario = new User;
@@ -79,7 +79,7 @@ class UsuariosController extends Controller
       $usuario->save();
 
       Flash::success("El usuario se ha registrado satisfactoriamente")->important();
-      return redirect()->route('auth.usuario.index');
+      return redirect()->route('Auth.usuario.index');
       //->with("message", "El usuario se ha registrado satisfactoriamente");
     }
   }
@@ -90,7 +90,7 @@ class UsuariosController extends Controller
 
   public function edit($id){
     $usuario = User::find($id);
-    return view('usuario.edit')->with('usuario',$usuario);
+    return view('Usuario.edit')->with('usuario',$usuario);
   }
 
   public function update(Request $request, $id){
@@ -110,7 +110,7 @@ class UsuariosController extends Controller
 
     $validator = Validator::make($request->all(), $rules);
     if ($validator->fails()){
-      return redirect()->route('auth.usuario.edit',$id)->withErrors($validator)->withInput();
+      return redirect()->route('Auth.usuario.edit',$id)->withErrors($validator)->withInput();
     }else{
       $Permisos = $request['Permisos'];
       if($request->cedula!=$usuario->cedula){
@@ -146,14 +146,14 @@ class UsuariosController extends Controller
       }
       $usuario->save();
       flash::warning('El usuario ha sido modificado satisfactoriamente')->important();
-      return redirect()->route('auth.usuario.index');
+      return redirect()->route('Auth.usuario.index');
     }
   }
 
   public function destroy($id){
-    $usuario = Usuario::find($id);
+    $usuario = User::find($id);
     $usuario->delete();
     Flash::success('El usuario ha sido eliminado de forma exitosa')->important();
-    return redirect()->route('auth.usuario.index');
+    return redirect()->route('Auth.usuario.index');
   }
 }

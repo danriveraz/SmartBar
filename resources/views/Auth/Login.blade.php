@@ -87,7 +87,7 @@
 					<div id="wrapper">
 						<div id="login" class="animate w3layouts agileits form">
 							<h2 class="w3layouts agileits">Iniciar Sesión</h2>
-              				<form autocomplete="on" method="post" action="{{url('auth/login')}}">
+              				<form autocomplete="on" method="post" action="{{url('Auth/login')}}">
                 			{{csrf_field()}}
                 				<div class="text-danger">
 					                 @if (Session::has('message'))

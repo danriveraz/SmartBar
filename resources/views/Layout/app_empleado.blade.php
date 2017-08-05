@@ -134,13 +134,13 @@
               <li class="dropdown user hidden-xs"><a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 {{ HTML::image('images/admins/'.Auth::User()->imagenPerfil , 'avatar', array( 'width' => '34', 'height'=>'34')) }} {{Auth::User()->nombrePersona}}<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="{{url('auth/usuario/'.Auth::id().'/edit')}}">
+                  <li><a href="{{url('Auth/usuario/'.Auth::id().'/edit')}}">
                     <i class="fa fa-user"></i>Perfil</a>
                   </li>
                   <li><a href="#">
                     <i class="fa fa-gear"></i>Configuracion</a>
                   </li>
-                  <li><a href="{{url('/auth/logout')}}">
+                  <li><a href="{{url('/Auth/logout')}}">
                     <i class="fa fa-sign-out"></i>Salir</a>
                   </li>
                 </ul>
@@ -173,7 +173,7 @@
               </li>
               @endif
               <li class="dropdown">
-              <a href="{{url('/auth/logout')}}">
+              <a href="{{url('/Auth/logout')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-sign-out"></span>Salir</a>
               </li>
             </ul>

@@ -14,25 +14,25 @@
 Route::get('/', 'HomeController@home');
 Route::get('/home', 'HomeController@home');
 
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
+Route::get('Auth/register', 'Auth\AuthController@getRegister');
+Route::post('Auth/register', 'Auth\AuthController@postRegister');
 
-Route::get('auth/confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\AuthController@confirmRegister');
-
-
-Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
+Route::get('Auth/confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\AuthController@confirmRegister');
 
 
+Route::get('Auth/login', 'Auth\AuthController@getLogin');
+Route::post('Auth/login', 'Auth\AuthController@postLogin');
+Route::get('Auth/logout', 'Auth\AuthController@getLogout');
 
-Route::get('auth/profile', 'Auth\AuthController@profile');
-Route::get('auth/editProfile' , 'Auth\AuthController@editProfile');
-Route::post('auth/updateProfile', 'Auth\AuthController@updateProfile');
 
-Route::group(['prefix' => 'auth'], function(){
+
+Route::get('Auth/profile', 'Auth\AuthController@profile');
+Route::get('Auth/editProfile' , 'Auth\AuthController@editProfile');
+Route::post('Auth/updateProfile', 'Auth\AuthController@updateProfile');
+
+Route::group(['prefix' => 'Auth'], function(){
   Route::resource('usuario','UsuariosController');
-  Route::get('usuario/{id}/destroy', ['uses' => 'UsuariosController@destroy', 'as' => 'auth.usuario.destroy']);
+  Route::get('usuario/{id}/destroy', ['uses' => 'UsuariosController@destroy', 'as' => 'Auth.usuario.destroy']);
 });
 
 Route::get('insumo/eliminar', 'InsumoController@eliminar');

@@ -6,7 +6,7 @@
   </div>
 
   <div class ="panel-body">
-      {!! Form::open(['route' => ['auth.usuario.update',$usuario], 'method' => 'PUT']) !!}
+      {!! Form::open(['route' => ['Auth.usuario.update',$usuario], 'method' => 'PUT']) !!}
         {{ csrf_field() }}
         <!--Nombre-->
         <div class="form-group">
@@ -100,8 +100,8 @@
         <div class="form-grup">
           <br><button type="submit" class="btn btn-default" onclick = "return confirm ('¿Desea modificar este Trabajador?')"><i class="fa fa-plus"></i> Editar
           </button>
-          <button class="btn btn-error pull-right" onclick = "return confirm ('¿Está seguro de eliminar este Trabajador?')"><i class="fa fa-trash-o "></i> Eliminar
-          </button>
+          <a class="btn btn-error pull-right" href="{{url('Auth/usuario/'.$usuario->id.'/destroy')}}" onclick = "return confirm ('¿Está seguro de eliminar este Trabajador?')"><i class="fa fa-trash-o "></i> Eliminar
+          </a>
         </div>
 
 

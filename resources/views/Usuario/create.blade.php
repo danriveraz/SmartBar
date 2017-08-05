@@ -5,7 +5,7 @@
       <h1>Usuario</h1>
   </div>
   <div class ="panel-body">
-      <form action=" {{ route('auth.usuario.store') }}" method="POST">
+      <form action=" {{ route('Auth.usuario.store') }}" method="POST">
         {{ csrf_field() }}
         <!--Nombre-->
         <div class="form-group">

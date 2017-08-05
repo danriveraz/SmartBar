@@ -28,13 +28,13 @@ trait AuthenticatesUsers
     public function showLoginForm()
     {
         $view = property_exists($this, 'loginView')
-                    ? $this->loginView : 'auth.authenticate';
+                    ? $this->loginView : 'Auth.authenticate';
 
         if (view()->exists($view)) {
             return view($view);
         }
 
-        return view('auth.login');
+        return view('Auth.login');
     }
 
     /**
@@ -140,8 +140,8 @@ trait AuthenticatesUsers
      */
     protected function getFailedLoginMessage()
     {
-        return Lang::has('auth.failed')
-                ? Lang::get('auth.failed')
+        return Lang::has('Auth.failed')
+                ? Lang::get('Auth.failed')
                 : 'These credentials do not match our records.';
     }
 

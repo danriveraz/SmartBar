@@ -56,7 +56,7 @@
 								<li class="login" >
 									<div id="loginContainer" ><a href="#" id="loginButton"><span>Iniciar Sección</span></a>
 						                <div id="loginBox">
-						                    <form id="loginForm" method="post" action="{{url('auth/login')}}">
+						                    <form id="loginForm" method="post" action="{{url('Auth/login')}}">
                                    				{{csrf_field()}}
 						                        <fieldset id="body">
 						                            <fieldset>
@@ -70,7 +70,7 @@
 						                            <input type="submit" id="login" value="Iniciar">
 						                            <label for="checkbox"><input type="checkbox"> <i>Guardar sección</i></label>
 						                        </fieldset>
-						                        <span><a href="{{url('/auth/register') }}">¿Adquiere Tu Cuenta?</a></span>
+						                        <span><a href="{{url('/Auth/register') }}">¿Adquiere Tu Cuenta?</a></span>
 						                    </form>
 						                </div>
 						               </div>
@@ -109,7 +109,7 @@
 					 </div>
 				   </div>
                  		 <div class="quote_button">
-                  	 		<a class="" href="{{url('auth/register')}}">Registrarse</a>
+                  	 		<a class="" href="{{url('Auth/register')}}">Registrarse</a>
                  				 </div>
               				</div>
           				</div>

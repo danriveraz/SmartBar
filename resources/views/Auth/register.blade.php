@@ -121,7 +121,7 @@
 
 						<div id="register" class="animate w3layouts agileits form">
 							<!-- <h2>Registro</h2> -->
-							<form  role="form" method="POST" enctype="multipart/form-data" action="{{ url('auth/register') }}" files="true">
+							<form  role="form" method="POST" enctype="multipart/form-data" action="{{ url('Auth/register') }}" files="true">
 							{{ csrf_field() }}
 							<div class="text-danger">
 				                 @if (Session::has('message'))
@@ -165,7 +165,7 @@
 
 									</div>
 								<p class="change_link w3layouts agileits">
-									¿Ya eres usuario? <a href="#tologin" class="to_register">Iniciar Sesión</a>
+									¿Ya eres usuario? <a href="{{ url('Auth/login') }}" class="to_register">Iniciar Sesión</a>
 								</p>
 								<div class="clear"></div>
 							</form>
