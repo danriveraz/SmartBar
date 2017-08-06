@@ -119,8 +119,8 @@
 </script>
 <script>
 
-  var routeEliminar = "http://localhost/PocketByR/public/contiene/eliminar";
-  var routeGuardar = "http://localhost/PocketByR/public/contiene/guardar";
+  var routeEliminar = "http://pocketdesigner.co/PocketByR/public/contiene/eliminar";
+  var routeGuardar = "http://pocketdesigner.co/PocketByR/public/contiene/guardar";
 
   function adicionarInsumo(insumo){
     var cantidad = $("#"+insumo.id).val();

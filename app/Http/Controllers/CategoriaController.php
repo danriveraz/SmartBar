@@ -44,7 +44,7 @@ class CategoriaController extends Controller
       $categoria->idEmpresa = $userActual->idEmpresa;
       $categoria->save();
       Flash::success("La categoria se ha registrado satisfactoriamente")->important();
-      return redirect()->route('Categoria.index');
+      return redirect()->route('categoria.index');
   	}
 
    	public function edit($id){
@@ -62,13 +62,13 @@ class CategoriaController extends Controller
       $categoria->save();
       flash::warning('La categoria ha sido modificada satisfactoriamente')
       ->important();
-      return redirect()->route('Categoria.index');
+      return redirect()->route('categoria.index');
     }
 
     public function destroy($id){
     	$categoria = Categoria::find($id);
     	$categoria->delete();
     	Flash::success('La categoría ha sido eliminada de forma exitosa')->important();
-    	return redirect()->route('Categoria.index');
+    	return redirect()->route('categoria.index');
     }
 }

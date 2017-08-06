@@ -24,7 +24,7 @@ class MesasController extends Controller
     public function index(Request $request){
         $userActual = Auth::user();
         $mesas = Mesa::mesasAdmin($userActual->idEmpresa)->get();
-    	return view('mesas.inicio')->with('mesas',$mesas);
+    	return view('Mesas.inicio')->with('mesas',$mesas);
     } 
     public function create(Request $request){
         $userActual = Auth::user();
@@ -59,6 +59,6 @@ class MesasController extends Controller
         $nombre = $request->nombre;
         $arreglo = array("$id", "$nombre");
         $mesas = Mesa::buscarMesas($arreglo)->get();
-        return view('mesas.inicio')->with('mesas',$mesas);
+        return view('Mesas.inicio')->with('mesas',$mesas);
     }
 }

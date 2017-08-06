@@ -131,24 +131,24 @@ class InsumoController extends Controller
 
       $insumo->idEmpresa = $userActual->idEmpresa;
       $insumo->save();
-
+      $userActual = Auth::user();
       if($insumo->tipo){
         $producto = new Producto;
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precioUnidad;
         $producto->idCategoria = $_POST['categorias'];
-        $producto->idAdmin = Auth::id();
+        $producto->idEmpresa = $userActual->idEmpresa;
         $producto->save();
 
         $contiene = new Contiene;
         $contiene->idProducto = $producto->id;
         $contiene->idInsumo = $insumo->id;
         $contiene->cantidad = $insumo->cantidadMedida;
-        $contiene->idAdmin = Auth::id();
+        $contiene->idEmpresa = $userActual->idEmpresa;
         $contiene->save();
       }
       Flash::success("El insumo se ha registrado satisfactoriamente")->important();
-      return redirect()->route('Insumo.index');
+      return redirect()->route('insumo.index');
   }
 
   public function show($id){

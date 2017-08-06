@@ -41,14 +41,14 @@ Route::get('inslistall/{page?}', 'InsumoController@listall');
 Route::resource('insumo', 'InsumoController');
 
 Route::get('producto/modificar', 'ProductoController@modificar');
-Route::resource('producto', 'productoController');
-Route::get('prodlistall', 'productoController@listall');
+Route::resource('producto', 'ProductoController');
+Route::get('prodlistall', 'ProductoController@listall');
 Route::get('producto/{id}/insumoedit', ['uses' => 'ProductoController@insumoedit', 'as' => 'producto.insumoedit']);
 
 Route::get('contiene/eliminar', 'ContieneController@eliminar');
 Route::get('contiene/guardar', 'ContieneController@guardar');
-Route::get('contlistall/{page?}','contieneController@listall');
-Route::resource('contiene', 'contieneController');
+Route::get('contlistall/{page?}','ContieneController@listall');
+Route::resource('contiene', 'ContieneController');
 
 Route::get('proveedor/eliminar','ProveedorController@eliminar');
 Route::get('proveedor/modificar','ProveedorController@modificar');

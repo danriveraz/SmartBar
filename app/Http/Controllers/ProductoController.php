@@ -29,7 +29,7 @@ class ProductoController extends Controller
     $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                              lists('nombre','id');
     $cats = Categoria::all()->where('idEmpresa',$userActual->idEmpresa);                         
-    return view('producto.index',compact('categorias'))->with('cats', $cats);
+    return view('Producto.index',compact('categorias'))->with('cats', $cats);
   }
 
   function modificar(Request $request){
@@ -50,7 +50,7 @@ class ProductoController extends Controller
                            where('idEmpresa' , $userActual->idEmpresa)->
                            orderBy('id','ASC')->
                            paginate(15);
-    return view('producto.listall',compact('categorias'))->with('productos',$productos);
+    return view('Producto.listall',compact('categorias'))->with('productos',$productos);
   }
 
   public function create(Request $request){
@@ -58,7 +58,7 @@ class ProductoController extends Controller
     $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                              lists('nombre','id','precio');
     $cats = Categoria::all()->where('idEmpresa',$userActual->idEmpresa);
-    return view('producto.create',compact('categorias'))->with('cats', $cats);
+    return view('Producto.create',compact('categorias'))->with('cats', $cats);
   }
 
   public function store(Request $request){
@@ -87,7 +87,7 @@ class ProductoController extends Controller
                              lists('nombre','id');
     $cats = Categoria::all()->where('idEmpresa',$userActual->idEmpresa);
     
-    return view('producto.edit',compact('categorias'))->with('producto',$producto)
+    return view('Producto.edit',compact('categorias'))->with('producto',$producto)
     ->with('cats',$cats);
   }
 

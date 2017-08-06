@@ -33,7 +33,7 @@ public function __construct()
                            orderBy('idInsumo','ASC')->
                            paginate(50);
 
-    return view('contiene.index')->with('insumos',$insumos)->
+    return view('Contiene.index')->with('insumos',$insumos)->
                                    with('contienen',$contienen)->
                                    with('idProducto',$idProducto);
   }
@@ -49,7 +49,7 @@ public function __construct()
                           orderBy('id','ASC')->
                           paginate(5);
                           
-    return view('contiene.listall')->with('insumos',$insumos)->
+    return view('Contiene.listall')->with('insumos',$insumos)->
                                    with('insumosDisponibles',$insumosDisponibles)->
                                    with('idProducto',$idProducto);
   }

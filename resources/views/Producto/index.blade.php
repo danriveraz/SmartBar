@@ -27,7 +27,7 @@
     <div class="modal fade" id="addPModal" >
     <div class="modal-dialog">
       <div class="modal-content">
-        {!! Form::open(['method' => 'POST', 'action' => 'productoController@store']) !!}
+        {!! Form::open(['method' => 'POST', 'action' => 'ProductoController@store']) !!}
           <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
           <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
             <h4 class="modal-title">
@@ -73,7 +73,7 @@
     <div class="modal fade" id="addModal" >
     <div class="modal-dialog">
       <div class="modal-content">
-        {!! Form::open(['method' => 'POST', 'action' => 'categoriaController@store']) !!}
+        {!! Form::open(['method' => 'POST', 'action' => 'CategoriaController@store']) !!}
           <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
           <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
             <h4 class="modal-title">
