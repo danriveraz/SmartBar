@@ -64,11 +64,7 @@
   </div>
 </div>
 
-{!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
-{!!Html::script('javascripts\jquery.dataTables.min.js')!!}
-{!!Html::script('javascripts\jquery.easy-pie-chart.js')!!}
-{!!Html::script('javascripts\jquery.sparkline.min.js')!!}
-{!!Html::script('javascripts\main.js')!!}
+
 @endsection
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

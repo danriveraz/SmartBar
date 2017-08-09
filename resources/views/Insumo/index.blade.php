@@ -78,7 +78,7 @@
                     }
                 </script>
                 <div class="form-group">
-                    <label for="tipo" class="control-label">Vender como producto?</label>
+                    <label for="tipo" class="control-label">Vender como producto?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <label> <input type="checkbox" name="tipo" id="tipo" value="1" onchange="javascript:showContent()"/><span></span></label>
                 </div>
                 <div id="content" style="display: none;">

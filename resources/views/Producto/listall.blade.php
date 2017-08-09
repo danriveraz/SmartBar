@@ -70,7 +70,7 @@
   {!!$productos->appends(Request::all())->render() !!}
 
 <script>
-  var routeModificar = "http://localhost/PocketByR/public/producto/modificar";
+  var routeModificar = "http://pocketdesigner.co/PocketByR/public//producto/modificar";
 
   var editarValor = function(x){
     var p = 0;
@@ -102,9 +102,9 @@
         $("#"+idProducto).children("td").each(function (indextd){
           if(indextd == 1){
             $(this).text(nombre);
-          }else if(indextd == 2){
-            $(this).text(categorias[categoria]);
           }else if(indextd == 3){
+            $(this).text(categorias[categoria]);
+          }else if(indextd == 2){
             $(this).text(precio);
           }
         });

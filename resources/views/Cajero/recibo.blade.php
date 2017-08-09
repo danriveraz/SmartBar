@@ -28,7 +28,7 @@
                   Cant. total
                 </th>
                 <th width="70">
-                  Cant. restante.
+                  Cant. pagó.
                 </th>
                 <th width="120">
                   Valor unitario

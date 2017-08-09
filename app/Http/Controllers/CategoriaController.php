@@ -53,6 +53,13 @@ class CategoriaController extends Controller
 
   	}
 
+    public function show($id){
+      $categoria = Categoria::find($id);
+      $categoria->delete();
+      Flash::success('La categoría ha sido eliminada de forma exitosa')->important();
+      return redirect()->route('categoria.index');
+    }
+
     public function update(Request $request, $id){
       $userActual = Auth::user();
    		$categoria = Categoria::find($id);

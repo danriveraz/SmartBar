@@ -61,8 +61,8 @@
 
   
   <script>
-    var routeModificar = "https://pocketdesigner.co/PocketByR/public/proveedor/modificar";
-    var routeEliminar = "https://pocketdesigner.co/PocketByR/public/proveedor/eliminar";
+    var routeModificar = "http://pocketdesigner.co/PocketByR/public/proveedor/modificar";
+    var routeEliminar = "http://pocketdesigner.co/PocketByR/public/proveedor/eliminar";
 
     function modificar(idProveedor) {
       var nombre = $("#nombre"+idProveedor).val();
