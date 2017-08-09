@@ -1,5 +1,4 @@
-    <?php
-
+<?php
 namespace PocketByR\Http\Controllers\Auth;
 
 use PocketByR\User;
