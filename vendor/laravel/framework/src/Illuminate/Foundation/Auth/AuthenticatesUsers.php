@@ -34,7 +34,7 @@ trait AuthenticatesUsers
             return view($view);
         }
 
-        return view('Auth.login');
+        return view('Auth.Login');
     }
 
     /**
