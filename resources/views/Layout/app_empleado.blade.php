@@ -185,6 +185,10 @@
     </div>
 
   </body>
-
+<script>
+ $(document).ready(function(){
+    window.history.forward();
+  });
+</script>
 </html>
 

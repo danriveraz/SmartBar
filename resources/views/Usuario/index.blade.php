@@ -67,7 +67,7 @@
 <!-- end Profile Widget -->
           <!--
           <td><a href="{{ route('Auth.usuario.edit',$usuario->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
-          <a href="{{ route('auth.usuario.destroy',$usuario->id) }}" onclick="return confirm('¿Estas seguro que deseas eliminar este usuario?')"
+          <a href="{{ route('Auth.usuario.destroy',$usuario->id) }}" onclick="return confirm('¿Estas seguro que deseas eliminar este usuario?')"
              class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
           </td>
           -->

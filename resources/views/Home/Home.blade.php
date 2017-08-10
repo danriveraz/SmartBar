@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
-<link rel="shortcut icon" href="images/icon.png">
+<link rel="shortcut icon" href={{ asset('images/icon.png') }}>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 <title>PocketSmartBar</title>
@@ -39,7 +39,8 @@
     $(window).load(function() {
         $('#slider').nivoSlider();
     });
-    </script>
+</script>
+
 </head>
 <body>
   <div class="header" id="home">
@@ -186,6 +187,8 @@
 			<script src="js/jquery.sliderTabs.min.js"></script>
 			<script>
 				 $(document).ready(function(){
+				 	window.history.forward();
+				 	
 				      var tabs = $("div#mySliderTabs").sliderTabs({
 				        autoplay:5000,
 				        indicators: true,
@@ -199,6 +202,7 @@
 				      });
 				*/
 				      prettyPrint();
+
 				    });
 
 				    $(document).delegate(".nav-list li a", "click", function(){
