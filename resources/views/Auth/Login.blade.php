@@ -113,7 +113,7 @@
 							<div class="social-icons w3layouts agileits">
 								<p>LOGUEAR CON TUS CUENTAS SOCIALES</p>
 								<ul>
-									<li class="fb w3ls w3layouts agileits"><a href="#"><span class="icons w3layouts agileits"></span><span class="text w3layouts agileits">Facebook</span></a></li>
+									<li class="fb w3ls w3layouts agileits"><a href="{{ url('/Auth/facebook') }}"><span class="icons w3layouts agileits"></span><span class="text w3layouts agileits">Facebook</span></a></li>
 									<li class="gog w3ls w3layouts agileits"><a href="#"><span class="icons w3layouts agileits"></span><span class="text w3layouts agileits">Google</span></a></li>
 									<div class="clear"></div>
 								</ul>
