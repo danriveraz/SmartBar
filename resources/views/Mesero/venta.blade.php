@@ -30,16 +30,14 @@
                   <div class="panel-body">
                     <table class="table table-striped" id="tablaProductos">
                       <thead>
-                        <th width="30px">#</th>
-                        <th width="200px">Nombre</th>
-                        <th width="30px">Detalles</th>
-                        <th width="30px">Valor unitario</th>
-                        <th width="20px">Agregar</th>
+                        <th width="150px">Nombre</th>
+                        <th width="40px">Detalles</th>
+                        <th width="40px">Valor unitario</th>
+                        <th width="40px">Agregar</th>
                       </thead>
                       <tbody>
                     @foreach($categoria->productos as $producto)
                       <tr>
-                        <td>{{$producto->id}}</td>
                         <td>{{$producto->nombre}}</td>
                         <td>
                           <a class="btn btn btn-default popover-trigger" data-html="true" data-content=
@@ -73,7 +71,7 @@
 
   <table class="table table-bordered" id="pedidoTabla" style="margin-top: 40px; margin-bottom: 40px;">
     <thead>
-      <th width="50px">#</th>
+      <th style="display: none;">#</th>
       <th width="150px">Nombre</th>
       <th width="50px">Valor unitario</th>
       <th width="20px">Cant.</th>
@@ -84,7 +82,7 @@
       @if($ventas != null)
         @foreach($ventas as $venta)
         <tr id="p{{$venta->producto->id}}">
-          <td>{{$venta->producto->id}}</td>
+          <td style="display: none;">{{$venta->producto->id}}</td>
           <td>{{$venta->producto->nombre}}</td>
           <td id="v{{$venta->producto->id}}">{{$venta->producto->precio}}</td>
           <td id="c{{$venta->producto->id}}">{{$venta->cantidad}}</td>
@@ -138,7 +136,7 @@
               $("td#c"+ producto.id).replaceWith('<td id="c'+producto.id +'">'+ cantidadFinal +'</td>');
               $("td#t"+ producto.id).replaceWith('<td id="t'+producto.id +'">'+ cantidadFinal* producto.precio +'</td>');
             }else{
-              $('#pedidoTabla > tbody').append('<tr id="p'+producto.id+'"><td>'+producto.id
+              $('#pedidoTabla > tbody').append('<tr id="p'+producto.id+'"><td style="display: none;">'+producto.id
               +'</td><td>'+producto.nombre+'</td><td id="v'+producto.id+'">'+ producto.precio+'</td><td id="c'+producto.id +'">'+ 1
               +'</td><td id="t'+ producto.id+'">'+ producto.precio + '</td><td>'+
               '<button class="btn btn-danger" onclick="actualizarCantidad('+$id+','+idFactura+')"><span class="glyphicon glyphicon-minus"></span></button>'

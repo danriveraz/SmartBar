@@ -30,23 +30,25 @@ table {
 }
 
 .social-widget {
-  color: white;
-  text-align: center;
   height: 120px;
   padding-top: 14px;
-  background: #330033;
+  background: white;
 }
 
-.fa fa-glass{
-  width: 40px;
+.social-data{
+  padding-top: 15px;
+  vertical-align: middle;
 }
+
 .social-widget .social-data h1 {
-  font-weight: 50;
+  color: rgb(143,143,143);
+  font-weight: 300;
   font-size: 40px;
+  text-align: center;
 }
 
 .social-widget > a{
-  color:white;
+  color: rgb(143,143,143);
 }
 
 .p{

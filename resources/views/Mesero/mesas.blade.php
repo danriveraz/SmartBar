@@ -16,8 +16,7 @@
 
   		<div id="hidden-items">
   		@foreach($mesas as $mesa)
-  		    <div class="item social-widget mesas">
-  		      <i class="fa fa-glass"></i>
+  		    <div class="item social-widget">
             <a href="{{ route('mesero.show', $mesa->id) }}">
               <div class="social-data" >
     		        <h1>
