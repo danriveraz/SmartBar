@@ -69,7 +69,7 @@
 						                                <input type="password" name="password" value="" placeholder="Contraseña">
 						                            </fieldset>
 						                            <input type="submit" id="login" value="Iniciar">
-						                            <label for="checkbox"><input type="checkbox"> <i>Guardar sección</i></label>
+						                            <label for="checkbox"><input type="checkbox"> <i>Guardar sesión</i></label>
 						                        </fieldset>
 						                        <span><a href="{{url('/Auth/register') }}">¿Adquiere Tu Cuenta?</a></span>
 						                    </form>
