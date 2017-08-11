@@ -8,16 +8,12 @@ use PocketByR\Http\Requests;
 
 class HomeController extends Controller
 {
+	public function __construct(){
+    	$this->middleware('guest');
+
+    }
+
     public function home(){
-    	if(Auth::check()){
-	        $userActual = Auth::user();
-	        if ($userActual->esAdmin) {
-	            return redirect('/WelcomeAdmin')->send();
-	        }else{
-	        	return redirect('/WelcomeTrabajador')->send();
-	        }
-    	}else{
-        	return View('Home.Home');
-    	}
+        return View('Home.Home');
     }
 }

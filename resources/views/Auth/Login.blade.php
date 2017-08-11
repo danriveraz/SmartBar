@@ -68,7 +68,9 @@
 	<div class="container w3layouts agileits">
 	<!-- baner iconos sociales -->
 		<div class="content-left w3layouts agileits">
-		<img src="../images/background.jpg" alt="W3layouts Agileits">
+			<a href="{{url('/')}}">
+				<img src="../images/background.jpg" alt="W3layouts Agileits">
+			</a>
 		<div class="list w3layouts agileits">
 			<ul class="w3layouts agileits">
 				<li class="w3layouts agileits"><a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></li>
@@ -104,7 +106,7 @@
 									<div class="clear"></div>
 								</div>
 								<p class="change_link w3layouts agileits">
-									¿No tienes una cuenta? <a href="#toregister" class="to_register">Registrarme</a>
+									¿No tienes una cuenta? <a href="{{url('Auth/register')}}" class="to_register">Registrarme</a>
 								</p>
 								<div class="clear"></div>
 							</form>

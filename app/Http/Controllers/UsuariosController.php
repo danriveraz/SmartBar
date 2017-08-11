@@ -12,7 +12,9 @@ use Laracasts\Flash\Flash;
 class UsuariosController extends Controller
 {
   public function __construct(){
-    $this->middleware('auth'); 
+    $this->middleware('auth');
+    $this->middleware('Permisos:Admin')->except(['edit','update']);
+    $this->middleware('PermisoEditarUsuario')->only(['edit','update']);
   }  
 
   public function index(){

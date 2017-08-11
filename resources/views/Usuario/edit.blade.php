@@ -90,7 +90,7 @@
               {!! Form::checkbox('Permisos[]', 'Cajero', $usuario->esCajero, ['data-toggle'=>'checkbox']) !!}<span>Cajero</span>
             </label>
             <label class="checkbox-inline">
-              {!! Form::checkbox('Permisos[]', 'Administrador', $usuario->esAdministrador, ['data-toggle'=>'checkbox']) !!}<span>Administrador</span>
+              {!! Form::checkbox('Permisos[]', 'Administrador', $usuario->esAdmin, ['data-toggle'=>'checkbox']) !!}<span>Administrador</span>
             </label>
           </div>
           <div class="col-md-7">
