@@ -48,4 +48,5 @@
 {!!Html::script('javascripts\select2.js')!!}
 {!!Html::script('javascripts\jquery.sparkline.min.js')!!}
 
+
 @endsection

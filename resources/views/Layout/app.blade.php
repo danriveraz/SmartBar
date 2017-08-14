@@ -159,31 +159,39 @@
         <div class="container-fluid main-nav clearfix">
           <div class="nav-collapse">
             <ul class="nav">
-              <li>
-                <a href={{url("/Auth/usuario")}} class="current">
-                <span aria-hidden="true" class="fa fa-fw fa-group"></span>Personal</a>
-              </li>
-              <li><a href="{{route('producto.index')}}" >
-                <span aria-hidden="true" class="fa fa-fw fa-glass"></span>Productos</a>
-              </li>
-              <li><a href="{{route('insumo.index')}}">
-                <span aria-hidden="true" class="fa fa-fw fa-list"></span>Inventario</a>
-              </li>
-              <li class="dropdown"><a data-toggle="dropdown" href="#">
+             <li class="dropdown"><a data-toggle="dropdown" href="#">
+                <span aria-hidden="true" class="hightop-star"></span>Gestionar<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a id="usuario" nombre="barraNavegacion" href={{url("/Auth/usuario")}}>
+                    <span aria-hidden="true" class="fa fa-fw fa-group"></span>Personal</a>
+                  </li>
+                  <li><a id="productos" nombre="barraNavegacion" href="{{route('producto.index')}}" >
+                    <span aria-hidden="true" class="fa fa-fw fa-glass"></span>Productos</a>
+                  </li>
+                  <li><a id="insumos" nombre="barraNavegacion" href="{{route('insumo.index')}}">
+                    <span aria-hidden="true" class="fa fa-fw fa-list"></span>Inventario</a>
+                  </li>
+                  <li><a id="proveedor" nombre="barraNavegacion" href="{{route('proveedor.index')}}">
+                    <span aria-hidden="true" class="fa fa-fw fa-truck"></span>Proveedores</a>
+                  </li>
+                  <li class="dropdown">
+                    <a id="mesas" nombre="barraNavegacion" href="{{route('mesas.index')}}">
+                    <span aria-hidden="true" class="fa fa-fw fa-hospital-o"></span>Mesas</a>
+                  </li>
+                </ul>
+              </li>              
+              <li class="dropdown">
+                <a id="cajero" nombre="barraNavegacion" href="{{url('cajero/')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-usd"></span>Caja</a>
               </li>
-              <li><a href="{{route('proveedor.index')}}">
-                <span aria-hidden="true" class="fa fa-fw fa-truck"></span>Proveedores</a>
-              </li>
-              <li><a href="charts.htm">
+             
+              <li><a id="estadisticas" nombre="barraNavegacion" href="#">
                 <span aria-hidden="true" class="fa fa-fw fa-bar-chart-o"></span>Estadisticas</a>
               </li>
+             
               <li class="dropdown">
-              <a href="{{route('mesas.index')}}">
-                <span aria-hidden="true" class="fa fa-fw fa-hospital-o"></span>Mesas</a>
-              </li>
-              <li class="dropdown">
-              <a href="{{url('/Auth/logout')}}">
+              <a id="logout" nombre="barraNavegacion" href="{{url('/Auth/logout')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-sign-out"></span>Salir</a>
               </li>
             </ul>

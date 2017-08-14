@@ -114,6 +114,7 @@
   
   $(document).ready(function(){
     listprov();
+    cambiarCurrent("#productos");
   });
   
   var mostrarValor = function(x){
@@ -166,5 +167,9 @@
     });
   }
 
+function cambiarCurrent(idInput) {
+  $(".current").removeClass("current");
+  $(idInput).addClass("current");
+};
 </script>
 @endsection

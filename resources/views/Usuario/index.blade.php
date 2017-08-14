@@ -178,5 +178,13 @@
 
   {!!$usuarios->render() !!}
 </div>
-
+<script type="text/javascript">
+ $(document).ready(function(){
+    cambiarCurrent("#usuario");
+  });
+function cambiarCurrent(idInput) {
+  $(".current").removeClass("current");
+  $(idInput).addClass("current");
+};
+</script>
 @endsection

@@ -76,6 +76,10 @@
   </div>
 @endforeach 
 <script>
+$(document).ready(function(){
+
+    cambiarCurrent("#mesas");
+});
 function validarMinMax(idInput) {
     var valor = parseInt($(idInput).val());
     var max = parseInt($(idInput).attr("max"));
@@ -86,6 +90,9 @@ function validarMinMax(idInput) {
         $(idInput).val(0);
     }
 };
-
+function cambiarCurrent(idInput) {
+  $(".current").removeClass("current");
+  $(idInput).addClass("current");
+};
 </script>
 @endsection

@@ -65,6 +65,7 @@
   
   $(document).ready(function(){
     listprov();
+    cambiarCurrent("#proveedor");
   });
 
   $(document).on("click", '#buscarNombre',function(e){
@@ -103,6 +104,11 @@
       }
     });
   }
+
+function cambiarCurrent(idInput) {
+  $(".current").removeClass("current");
+  $(idInput).addClass("current");
+};
 
 </script>
 
