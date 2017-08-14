@@ -86,6 +86,9 @@
             <label class="checkbox-inline">
               {!! Form::checkbox('Permisos[]', 'Administrador', 0, ['data-toggle'=>'checkbox']) !!}<span>Administrador</span>
             </label>
+            <label class="checkbox-inline">
+              {!! Form::checkbox('Permisos[]', 'Obsequio', 0, ['data-toggle'=>'checkbox']) !!}<span>Obsequiar</span>
+            </label>
           </div>
           <div class="col-md-7">
         </div>
