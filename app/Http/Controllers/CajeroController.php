@@ -25,21 +25,37 @@ class CajeroController extends Controller
 
     }
     public function index(Request $request){
-    	$mesas = Factura::listar()
-    						->paginate(20);
-    	return view('Cajero.inicio')->with('mesas',$mesas);
+        $userActual = Auth::user();
+        $idFacturas = Factura::listarFacturaDia($userActual->idEmpresa)->get();
+        $ventas = Venta::vendido($idFacturas)->get();
+        $totalVentas = 0;
+        foreach ($ventas as $venta ) {
+            $totalVentas = $totalVentas + ($venta->producto->precio * $venta->cantidad);
+        }
+    	$mesas = Factura::listar($userActual->idEmpresa)
+    						->get();
+    	return view('Cajero.inicio')->with('mesas',$mesas)->with('totalVentas',$totalVentas);
     }
     public function store(Request $request){
     	$nombre = $request->nombre;
+        $idEmpresa = Auth::user()->idEmpresa;
+        $arreglo = array($nombre, $idEmpresa);
     	if($request->verFacturas == 'on'){
-    		$mesas = Factura::buscarMesa($nombre)
-    					->paginate(20);
+    		$mesas = Factura::buscarMesa($arreglo)
+    					->get();
     	}
     	else{
-    		$mesas = Factura::buscarMesaEnProceso($nombre)
-    					->paginate(20);
+    		$mesas = Factura::buscarMesaEnProceso($arreglo)
+    					->get();
     	}
-    	return view('Cajero.inicio')->with('mesas',$mesas);
+        $userActual = Auth::user();
+        $idFacturas = Factura::listarFacturaDia($userActual->idEmpresa)->get();
+        $ventas = Venta::vendido($idFacturas)->get();
+        $totalVentas = 0;
+        foreach ($ventas as $venta ) {
+            $totalVentas = $totalVentas + ($venta->producto->precio * $venta->cantidad);
+        }
+    	return view('Cajero.inicio')->with('mesas',$mesas)->with('totalVentas',$totalVentas);;
     }
     public function recibo(Request $request){
         $factura = Factura::find($request->id);

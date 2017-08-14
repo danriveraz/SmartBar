@@ -25,8 +25,9 @@ class BartenderController extends Controller
     }
     //
     public function index(Request $request){
-      $facturas = Factura::Listar2()
-                  ->paginate(20);
+      $userActual = Auth::user();
+      $facturas = Factura::Listar2($userActual->idEmpresa)
+                  ->get();
     	return view('Bartender.inicio')->with('facturas',$facturas);
     }
     public function store(Request $request){
@@ -43,8 +44,9 @@ class BartenderController extends Controller
             Mesa::actualizarEstado($factura->mesa->id);
         }
       }
-      $facturas = Factura::Listar2()
-                  ->paginate(20);
+      $userActual = Auth::user();
+      $facturas = Factura::Listar2($userActual->idEmpresa)
+                  ->get();
       return view('Bartender.inicio')->with('facturas',$facturas); 
     }
 }

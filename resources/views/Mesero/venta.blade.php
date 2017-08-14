@@ -102,7 +102,6 @@
 {!!Html::script('javascripts\jquery.dataTables.min.js')!!}
 {!!Html::script('javascripts\jquery.easy-pie-chart.js')!!}
 {!!Html::script('javascripts\jquery.sparkline.min.js')!!}
-{!!Html::script('javascripts\main.js')!!}
 
 @endsection
 

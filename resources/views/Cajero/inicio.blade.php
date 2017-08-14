@@ -4,7 +4,8 @@
 	<div class="panel-tittle">
 			<h1>Lista de facturas</h1>
 	</div>
-
+  <div>Ventas de la noche: $ <?php echo number_format($totalVentas,0,",","."); ?></div>
+  <br><br>
 	<form class="navbar-form navbar-form" method="POST" action="{{url('cajero/')}}">
 	{{csrf_field()}}
 			<div class="navbar-text navbar-right">

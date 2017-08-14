@@ -57,4 +57,8 @@ class Venta extends Model
   public function producto(){
     return $this->belongsTo('PocketByR\Producto', 'idProducto', 'id');
   }
+  public function scopeVendido($query, $idFacturas){
+    return $query->wherein('idFactura', $idFacturas)
+                ->whereColumn('estadoCajero', 'cantidad');
+  }
 }
