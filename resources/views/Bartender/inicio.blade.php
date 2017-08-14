@@ -4,6 +4,7 @@
 {!!Html::style('stylesheets\mesero.css')!!}
 <script type="text/javascript">
   $(window).load(function() {
+    cambiarCurrent("#bartender");
       function update(){
         facturas = eval(<?php echo json_encode($facturas);?>);
         if(facturas.total == 0){
@@ -12,6 +13,11 @@
       }   
       setInterval(update, 15000);      
     });
+
+function cambiarCurrent(idInput) {
+  $(".current").removeClass("current");
+  $(idInput).addClass("current");
+};
 </script>
 <div class="container-fluid main-content"><div class="social-wrapper">
   <div id="social-container">

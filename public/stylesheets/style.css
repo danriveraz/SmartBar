@@ -461,9 +461,9 @@ body.login2 {
               margin-right: -6px;
               border-top-color: #999999; }
             .navbar .container-fluid.main-nav .nav-collapse .nav > li > a.current {
-              color: #007aff; }
+              color: #2d0031; }
               .navbar .container-fluid.main-nav .nav-collapse .nav > li > a.current span {
-                color: #007aff; }
+                color: #2d0031; }
               .navbar .container-fluid.main-nav .nav-collapse .nav > li > a.current .caret {
                 border-top-color: #007aff; }
             .navbar .container-fluid.main-nav .nav-collapse .nav > li > a:hover {
@@ -839,8 +839,8 @@ body.sidebar-nav {
       font-size: 12px;
       margin-left: 14px; }
       .dropdown-menu > li > a:hover, .dropdown-menu > li > a.current {
-        border-bottom-color: #007aff;
-        color: #007aff;
+        border-bottom-color: #2d0031;
+        color: #2d0031;
         background: transparent; }
       .dropdown-menu > li > a i {
         margin-right: 10px;

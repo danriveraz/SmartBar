@@ -1,10 +1,13 @@
+
 @extends('Layout.app_empleado')
+
+
 @section('content')
 <div class="col-sm-offset-2 col-sm-8">
 	<div class="panel-tittle">
 			<h1>Lista de facturas</h1>
 	</div>
-  <div>Ventas de la noche: $ <?php echo number_format($totalVentas,0,",","."); ?></div>
+  <div>Ventas de la noche: $ <?php echo number_format($totalVentas,0,",","."); ?> </div>
   <br><br>
 	<form class="navbar-form navbar-form" method="POST" action="{{url('cajero/')}}">
 	{{csrf_field()}}
@@ -48,4 +51,13 @@
     </tbody>
   </table>
 </div>
+<script type="text/javascript">
+ $(document).ready(function(){
+    cambiarCurrent("#cajero");
+  });
+function cambiarCurrent(idInput) {
+  $(".current").removeClass("current");
+  $(idInput).addClass("current");
+};
+</script>
 @endsection

@@ -48,5 +48,14 @@
 {!!Html::script('javascripts\select2.js')!!}
 {!!Html::script('javascripts\jquery.sparkline.min.js')!!}
 
+<script type="text/javascript">
+ $(document).ready(function(){
+    cambiarCurrent("#mesero");
+  });
+function cambiarCurrent(idInput) {
+  $(".current").removeClass("current");
+  $(idInput).addClass("current");
+};
+</script>
 
 @endsection

@@ -156,19 +156,19 @@
             <ul class="nav">
               @if(Auth::User()->esMesero)
                 <li>
-                  <a href="{{url('mesero/')}}" class="current">
+                  <a id="mesero" href="{{url('mesero/')}}">
                   <span aria-hidden="true" class="fa fa-fw fa-group"></span>Mesero</a>
                 </li>
               @endif
               @if(Auth::User()->esBartender)
               <li>
-              <a href="{{url('bartender/')}}">
+              <a id="bartender" href="{{url('bartender/')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-glass"></span>Bartender</a>
               </li>
               @endif
               @if(Auth::User()->esCajero)
               <li class="dropdown">
-              <a href="{{url('cajero/')}}">
+              <a id="cajero" href="{{url('cajero/')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-list"></span>Cajero</a>
               </li>
               @endif
