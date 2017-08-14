@@ -16,16 +16,18 @@ class ProveedorController extends Controller
     {
         $this->middleware('auth');
         $userActual = Auth::user();
-        if (!$userActual->esAdmin) {
-            flash('No Tiene Los Permisos Necesarios')->error()->important();
-            return redirect('/WelcomeTrabajador')->send();
+        if($userActual != null){
+          if (!$userActual->esAdmin) {
+              flash('No Tiene Los Permisos Necesarios')->error()->important();
+              return redirect('/WelcomeTrabajador')->send();
+          }
         }
 
     }
 
     public function index(Request $request){
-      return view('Proveedor.index');
-	  }
+        return view('Proveedor.index');
+	 }
 
     public function eliminar(Request $request){
       $proveedor = Proveedor::find($request->id);
@@ -44,8 +46,8 @@ class ProveedorController extends Controller
       $userActual = Auth::user();
       $proveedores = Proveedor::Search($request->nombre)->
                          where('idEmpresa' , $userActual->idEmpresa)->
-                         orderBy('id','ASC')->
-                         paginate(15);
+                         orderBy('nombre','ASC')->
+                         paginate(1000);
       return view('Proveedor.listall')->with('proveedores',$proveedores);
     }
 
@@ -67,7 +69,7 @@ class ProveedorController extends Controller
       $proveedor->idEmpresa = $userActual->idEmpresa;
       $proveedor->save();
       Flash::success("El proveedor se ha registrado satisfactoriamente")->important();
-      return redirect()->route('Proveedor.index');
+      return redirect()->route('proveedor.index');
   	}
 
   	public function show($id){}

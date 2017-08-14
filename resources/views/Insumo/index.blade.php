@@ -122,6 +122,7 @@
   
   $(document).ready(function(){
     listprov();
+    cambiarCurrent("#insumos");
   });
 
   var valor = function(x){
@@ -171,7 +172,10 @@
       }
     });
   }
-
+function cambiarCurrent(idInput) {
+  $(".current").removeClass("current");
+  $(idInput).addClass("current");
+};
 </script>
 
 @endsection

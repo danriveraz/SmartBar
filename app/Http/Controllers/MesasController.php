@@ -15,9 +15,11 @@ class MesasController extends Controller
     {
         $this->middleware('auth');
         $userActual = Auth::user();
-        if (!$userActual->esAdmin) {
-            flash('No Tiene Los Permisos Necesarios')->error()->important();
-            return redirect('/WelcomeTrabajador')->send();
+        if($userActual != null){
+            if (!$userActual->esAdmin) {
+                flash('No Tiene Los Permisos Necesarios')->error()->important();
+                return redirect('/WelcomeTrabajador')->send();
+            }
         }
 
     }

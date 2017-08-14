@@ -68,7 +68,7 @@
 	<div class="container w3layouts agileits">
 	<!-- baner iconos sociales -->
 		<div class="content-left w3layouts agileits">
-			<a href="{{url('/')}}">
+			<a href="{{url('/home')}}">
 				<img src="../images/background.jpg" alt="W3layouts Agileits">
 			</a>
 		<div class="list w3layouts agileits">

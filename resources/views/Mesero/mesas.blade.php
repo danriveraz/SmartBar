@@ -33,6 +33,7 @@
 </div>
 
 <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
+
 {!!Html::style('stylesheets\font-awesome.min.css')!!}
 {!!Html::style('stylesheets\isotope.css')!!}
 {!!Html::style('stylesheets\fullcalendar.css')!!}
@@ -46,6 +47,15 @@
 {!!Html::script('javascripts\jquery.fancybox.pack.js')!!}
 {!!Html::script('javascripts\select2.js')!!}
 {!!Html::script('javascripts\jquery.sparkline.min.js')!!}
-{!!Html::script('javascripts\main.js')!!}
+
+<script type="text/javascript">
+ $(document).ready(function(){
+    cambiarCurrent("#mesero");
+  });
+function cambiarCurrent(idInput) {
+  $(".current").removeClass("current");
+  $(idInput).addClass("current");
+};
+</script>
 
 @endsection

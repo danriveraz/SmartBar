@@ -1,4 +1,4 @@
-@extends('Layout.app_empleado')
+@extends(Auth::User()->esAdmin ? 'Layout.app' : 'Layout.app_empleado');
 @section('content') 
 <script type="text/javascript">
   $(window).load(function() {

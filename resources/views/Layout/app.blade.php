@@ -13,7 +13,7 @@
     {!!Html::style('stylesheets/bootstrap-select.css')!!}
     {!!Html::style('stylesheets\select2.css')!!}
 
-	   <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+     <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
     
 {!!Html::script("javascripts\bootstrap.min.js")!!}
@@ -60,12 +60,12 @@
 
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   </head>
-  <body class="page-header-fixed bg-1 layout-boxed">
-    <div class="modal-shiftfix">
+  <body class="page-header-fixed bg-1 layout-boxed" style="BACKGROUND-COLOR:WHITE">
+    <div class="modal-shiftfix" >
       <!-- Navegación -->
-      <div class="navbar navbar-fixed-top scroll-hide">
-        <div class="container-fluid top-bar">
-          <div class="pull-right">
+      <div class="navbar navbar-fixed-top scroll-hide" >
+        <div class="container-fluid top-bar" >
+          <div class="pull-right ">
             <ul class="nav navbar-nav pull-right">
               <li class="dropdown notifications hidden-xs">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="Notificaciones"><span aria-hidden="true" class="hightop-flag"></span>
@@ -76,7 +76,7 @@
                     4
                   </p>
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" >
                   <li><a href="#">
                     <div class="notifications label label-info">
                       Nuevo
@@ -153,37 +153,45 @@
             </ul>
           </div>
           <button class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><div class="logo">
-						<a href="{{url('/')}}">{{ HTML::image('images/logo.png') }}</a>
-					</div>
+            <a href="{{url('/')}}">{{ HTML::image('images/logo.png') }}</a>
+          </div>
         </div>
-        <div class="container-fluid main-nav clearfix">
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li>
-                <a href={{url("/Auth/usuario")}} class="current">
-                <span aria-hidden="true" class="fa fa-fw fa-group"></span>Personal</a>
-              </li>
-              <li><a href="{{route('producto.index')}}" >
-                <span aria-hidden="true" class="fa fa-fw fa-glass"></span>Productos</a>
-              </li>
-              <li><a href="{{route('insumo.index')}}">
-                <span aria-hidden="true" class="fa fa-fw fa-list"></span>Inventario</a>
-              </li>
-              <li class="dropdown"><a data-toggle="dropdown" href="#">
+        <div class="container-fluid main-nav clearfix" >
+          <div class="nav-collapse" >
+            <ul class="nav" style="BACKGROUND-COLOR: rgb(245,245,245)">
+             <li class="dropdown"><a data-toggle="dropdown" href="#">
+                <span aria-hidden="true" class="hightop-star"></span>Gestionar<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a id="usuario" nombre="barraNavegacion" href={{url("/Auth/usuario")}}>
+                    <span aria-hidden="true" class="fa fa-fw fa-group"></span>Personal</a>
+                  </li>
+                  <li><a id="productos" nombre="barraNavegacion" href="{{route('producto.index')}}" >
+                    <span aria-hidden="true" class="fa fa-fw fa-glass"></span>Productos</a>
+                  </li>
+                  <li><a id="insumos" nombre="barraNavegacion" href="{{route('insumo.index')}}">
+                    <span aria-hidden="true" class="fa fa-fw fa-list"></span>Inventario</a>
+                  </li>
+                  <li><a id="proveedor" nombre="barraNavegacion" href="{{route('proveedor.index')}}">
+                    <span aria-hidden="true" class="fa fa-fw fa-truck"></span>Proveedores</a>
+                  </li>
+                  <li class="dropdown">
+                    <a id="mesas" nombre="barraNavegacion" href="{{route('mesas.index')}}">
+                    <span aria-hidden="true" class="fa fa-fw fa-hospital-o"></span>Mesas</a>
+                  </li>
+                </ul>
+              </li>              
+              <li class="dropdown">
+                <a id="cajero" nombre="barraNavegacion" href="{{url('cajero/')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-usd"></span>Caja</a>
               </li>
-              <li><a href="{{route('proveedor.index')}}">
-                <span aria-hidden="true" class="fa fa-fw fa-truck"></span>Proveedores</a>
-              </li>
-              <li><a href="charts.htm">
+             
+              <li><a id="estadisticas" nombre="barraNavegacion" href="#">
                 <span aria-hidden="true" class="fa fa-fw fa-bar-chart-o"></span>Estadisticas</a>
               </li>
+             
               <li class="dropdown">
-              <a href="{{route('mesas.index')}}">
-                <span aria-hidden="true" class="fa fa-fw fa-hospital-o"></span>Mesas</a>
-              </li>
-              <li class="dropdown">
-              <a href="{{url('/Auth/logout')}}">
+              <a id="logout" nombre="barraNavegacion" href="{{url('/Auth/logout')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-sign-out"></span>Salir</a>
               </li>
             </ul>

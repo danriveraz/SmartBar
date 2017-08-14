@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddColumnaUsername' => $baseDir . '/database/migrations/2017_08_13_235105_add_columna_username.php',
     'AddDoubleFactura' => $baseDir . '/database/migrations/2017_07_26_113414_addDoubleFactura.php',
     'AddEstadoCajeroTableVenta' => $baseDir . '/database/migrations/2017_07_26_214219_addEstadoCajeroTableVenta.php',
     'AddEstadosVenta' => $baseDir . '/database/migrations/2017_07_26_112257_addEstadosVenta.php',
@@ -18,6 +19,7 @@ return array(
     'AddForeignKeyProducto' => $baseDir . '/database/migrations/2017_08_04_163337_addForeignKeyProducto.php',
     'AddForeignKeyProveedor' => $baseDir . '/database/migrations/2017_07_29_110847_addForeignKeyProveedor.php',
     'AddForeignKeyVenta' => $baseDir . '/database/migrations/2017_07_28_111410_addForeignKeyVenta.php',
+    'AddPersimoRegalar' => $baseDir . '/database/migrations/2017_08_14_174017_add_persimo_regalar.php',
     'Addrecetaproducto' => $baseDir . '/database/migrations/2017_07_20_004051_addrecetaproducto.php',
     'Addunidadinsumo' => $baseDir . '/database/migrations/2017_07_18_222822_addunidadinsumo.php',
     'AgregarColumnasUsuario' => $baseDir . '/database/migrations/2017_07_27_144627_agregar_columnas_usuario.php',
@@ -46,6 +48,7 @@ return array(
     'CreateVentaTable' => $baseDir . '/database/migrations/2017_07_01_222711_create_venta_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'DeleteTotalFactura' => $baseDir . '/database/migrations/2017_07_26_113401_deleteTotalFactura.php',
+    'DeleteUniqueCedulaCorreo' => $baseDir . '/database/migrations/2017_08_13_234303_delete_unique_cedula_correo.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',

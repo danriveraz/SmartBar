@@ -97,12 +97,19 @@
   <button onclick="enviarDatos({{$factura->id}}, {{$mesa->id}})" id="botonEnviar" class="btn btn-default"><i class="glyphicon glyphicon-ok"></i> Guardar pedido</button>
 
 </div>
-
+<script type="text/javascript">
+ $(document).ready(function(){
+    cambiarCurrent("#mesero");
+  });
+function cambiarCurrent(idInput) {
+  $(".current").removeClass("current");
+  $(idInput).addClass("current");
+};
+</script>
 {!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
 {!!Html::script('javascripts\jquery.dataTables.min.js')!!}
 {!!Html::script('javascripts\jquery.easy-pie-chart.js')!!}
 {!!Html::script('javascripts\jquery.sparkline.min.js')!!}
-{!!Html::script('javascripts\main.js')!!}
 
 @endsection
 

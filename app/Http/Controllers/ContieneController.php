@@ -18,14 +18,17 @@ public function __construct()
     {
         $this->middleware('auth');
         $userActual = Auth::user();
-        if (!$userActual->esAdmin) {
-            flash('No Tiene Los Permisos Necesarios')->error()->important();
-            return redirect('/WelcomeTrabajador')->send();
+        if($userActual != null){
+          if (!$userActual->esAdmin) {
+              flash('No Tiene Los Permisos Necesarios')->error()->important();
+              return redirect('/WelcomeTrabajador')->send();
+          }
         }
     }  
   public function index(Request $request){
     session_start();
     $idProducto = $_SESSION['idProducto'];
+    $nombre = $_SESSION['nombre'];
 
     $insumos = Insumo::lists('nombre','id');
 
@@ -35,19 +38,22 @@ public function __construct()
 
     return view('Contiene.index')->with('insumos',$insumos)->
                                    with('contienen',$contienen)->
-                                   with('idProducto',$idProducto);
+                                   with('idProducto',$idProducto)->
+                                   with('nombre',$nombre);
   }
 
   public function listall(Request $request){
+    $userActual = Auth::user();
     session_start();
     $idProducto = $_SESSION['idProducto'];
 
     $insumos = Insumo::lists('nombre','id');
 
     $insumosDisponibles = Insumo::Search($request->nombre)->
+                          where('idEmpresa' , $userActual->idEmpresa)->
                           Type($request->tipo)->
-                          orderBy('id','ASC')->
-                          paginate(5);
+                          orderBy('nombre','ASC')->
+                          paginate(1000);
                           
     return view('Contiene.listall')->with('insumos',$insumos)->
                                    with('insumosDisponibles',$insumosDisponibles)->

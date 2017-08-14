@@ -1,4 +1,4 @@
-@extends('Layout.app')
+@extends(Auth::User()->esAdmin ? 'Layout.app' : 'Layout.app_empleado');
 @section('content')
 <div class="col-sm-offset-3 col-sm-6">
   <div class="panel-tittle">
@@ -92,6 +92,9 @@
             <label class="checkbox-inline">
               {!! Form::checkbox('Permisos[]', 'Administrador', $usuario->esAdmin, ['data-toggle'=>'checkbox']) !!}<span>Administrador</span>
             </label>
+            <label class="checkbox-inline">
+              {!! Form::checkbox('Permisos[]', 'Obsequiar', $usuario->obsequio, ['data-toggle'=>'checkbox']) !!}<span>Obsequiar</span>
+            </label>
           </div>
           <div class="col-md-7">
         </div>
@@ -108,4 +111,6 @@
       {!! Form::close() !!}
   </div>
 </div>
-@endsection
+@if(Auth::User()->esAdmin)
+  @endsection
+@endif

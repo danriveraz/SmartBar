@@ -1,26 +1,10 @@
 @extends('Layout.app_empleado')
 @section('content')
 
-<link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
-
-{!!Html::style('stylesheets\font-awesome.min.css')!!}
-{!!Html::style('stylesheets\isotope.css')!!}
-{!!Html::style('stylesheets\fullcalendar.css')!!}
-{!!Html::style('stylesheets\style.css')!!}
-{!!Html::style('stylesheets\bootstrap.min.css')!!}
-{!!Html::script('javascripts\bootstrap.min.js')!!}
-{!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
-{!!Html::script('javascripts\fullcalendar.min.js')!!}
-{!!Html::script('javascripts\jquery.dataTables.min.js')!!}
-{!!Html::script('javascripts\jquery.easy-pie-chart.js')!!}
-{!!Html::script('javascripts\jquery.isotope.min.js')!!}
-{!!Html::script('javascripts\jquery.fancybox.pack.js')!!}
-{!!Html::script('javascripts\select2.js')!!}
-{!!Html::script('javascripts\jquery.sparkline.min.js')!!}
-{!!Html::script('javascripts\main.js')!!}
-
+{!!Html::style('stylesheets\mesero.css')!!}
 <script type="text/javascript">
   $(window).load(function() {
+    cambiarCurrent("#bartender");
       function update(){
         facturas = eval(<?php echo json_encode($facturas);?>);
         if(facturas.total == 0){
@@ -29,23 +13,29 @@
       }   
       setInterval(update, 15000);      
     });
+
+function cambiarCurrent(idInput) {
+  $(".current").removeClass("current");
+  $(idInput).addClass("current");
+};
 </script>
 <div class="container-fluid main-content"><div class="social-wrapper">
   <div id="social-container">
 
     <div id="hidden-items"> 
     @foreach($facturas as $factura)
-        <div class="item social-widget pedido" nombre="pedidoMesa" id="{{$factura->mesa->id}}">
-          <i class="fa fa-glass"></i>
+        <div class="item social-widget" nombre="pedidoMesa" id="{{$factura->mesa->id}}">
           <div class="social-data">
             <h1>
               {{$factura->mesa->nombreMesa}}
             </h1>
+            <b>
             <?php
               $posiciones = explode(" ", $factura->fecha);
               $hora = explode(":", $posiciones[1]);
             ?>
             {{$hora[0]}}:{{$hora[1]}}<br>{{$posiciones[0]}} 
+            </b>
           </div>
         </div>
         <a class="btn btn-primary btn" data-toggle="modal" href="#myModal{{$factura->mesa->id}}" id="boton{{$factura->mesa->id}}" hidden="true"></a>
@@ -86,7 +76,16 @@
                   <td>{{$venta->cantidad}}</td>
                   <td>{{$venta->producto->nombre}}</td>
                   <td>{{$venta->producto->categoria->nombre}}</td>
-                  <td><a class="btn btn btn-default popover-trigger" data-content="{{$venta->producto->receta}}" data-placement="bottom" data-toggle="popover">Receta</a></td>
+                  <td><a class="btn btn btn-default popover-trigger" data-html="true" data-content="
+                  <div>
+                    <strong>Ingredientes:</strong>
+                    @foreach($venta->producto->contienen as $contiene)
+                    <li>{{$contiene->insumo->nombre}}</li>
+                    @endforeach
+                    <strong>Receta:</strong>
+                    <p>{{$venta->producto->receta}}</p>
+                  </div>"
+                  data-placement="bottom" data-toggle="popover">Receta</a></td>
                   <td>
                   <label>
                   <input type="checkbox" name="pedidos[]" value="{{$venta->id}}"" width="25" height="25"><span></span></label>
@@ -118,4 +117,19 @@
       $(id).trigger('click');
     });
 </script>
+
+<link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
+{!!Html::style('stylesheets\font-awesome.min.css')!!}
+{!!Html::style('stylesheets\isotope.css')!!}
+{!!Html::style('stylesheets\fullcalendar.css')!!}
+
+{!!Html::script('javascripts\bootstrap.min.js')!!}
+{!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
+{!!Html::script('javascripts\fullcalendar.min.js')!!}
+{!!Html::script('javascripts\jquery.dataTables.min.js')!!}
+{!!Html::script('javascripts\jquery.easy-pie-chart.js')!!}
+{!!Html::script('javascripts\jquery.isotope.min.js')!!}
+{!!Html::script('javascripts\jquery.fancybox.pack.js')!!}
+{!!Html::script('javascripts\select2.js')!!}
+{!!Html::script('javascripts\jquery.sparkline.min.js')!!}
 @endsection

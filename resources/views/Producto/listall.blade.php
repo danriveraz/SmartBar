@@ -16,7 +16,7 @@
             <button data-target="#editModal{{$producto->id}}" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></button>
           </td>
           <td align="right">
-            <a href="{{ route('producto.insumoedit',$producto->id) }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">Insumos <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+            <a href="{{ route('producto.insumoedit',$producto->id) }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">Inventario<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           </td>
         </tr>
         <div class="modal fade in" id="editModal{{$producto->id}}" role="dialog">
@@ -31,23 +31,22 @@
                   <div class="modal-body">
                     <div class="pre-scrollable" >
                       <div class="widget-content">
-                        <div class="form-grup">
-                          <label for="nombre" class="control-label">Nombre del Producto</label>
-                          <input type="text" id="nombre{{$producto->id}}" name="nombreProducto" class="form-control" placeholder="Nombre del producto" value="{{$producto->nombre}}" />
+                        <div class="form-grup">                         
+                          <input type="text" id="nombre{{$producto->id}}" name="nombreProducto" class="form-control" placeholder="Nombre del producto" value="{{$producto->nombre}}" placeholder="Nombre" />
                         </div>
                         <br>
                         <div class="form-grup">
-                          <label for="categorias" class="control-label">Categoría</label>
+                          <label for="categorias" class="control-label">Categor铆a</label>
                           {!! Form::select('categorias', $categorias, $producto->idCategoria, ['class' => 'form-control', 'id' => 'categoria'.$producto->id, 'onchange' => 'editarValor(this.value);']) !!}
                         </div>
                         <br>
                         <div class="form-grup">
-                          <label for="precio" class="control-label">Precio</label>
-                          <input id="nPrecio{{$producto->id}}" type="number" step="any" name="nPrecio{{$producto->id}}" class="form-control" value="{{$producto->precio}}" />
+                          
+                          <input id="nPrecio{{$producto->id}}" type="number" step="any" name="nPrecio{{$producto->id}}" class="form-control" value="{{$producto->precio}}" placeholder="Precio" />
                         </div>
                         <br>
                         <div class="form-grup">
-                          <label for="receta" class="control-label">Receta</label>
+                          <label for="receta" class="control-label">Preparaci贸n</label>
                           <br>
                           <textarea name="receta" id="receta{{$producto->id}}" class="form-control">{{$producto->receta}}</textarea>
                         </div>

@@ -101,6 +101,7 @@ class AuthController extends Controller
             $admin->esCajero = true;
             $admin->esBartender = true;
             $admin->esMesero = true;
+            $admin->obsequio = true;
             $admin->cedula= $request->email; // coloco el email aquí temporalmente mientras se crea, unas lineas más adelante lo actualizo
             $admin->idEmpresa = $empresa->id; // id de la empresa para saber a quién pertenece
             $admin->save();// guarda el usuario registrado 
@@ -295,6 +296,7 @@ class AuthController extends Controller
             'esAdmin'=>'1',
             'esMesero'=>'1',
             'esBartender'=>'1',
+            'obseqio'=>'1',
             'esCajero'=>'1',
             'confirmoEmail' => '1',
             'sexo' => $user['gender'],

@@ -16,16 +16,18 @@ class BartenderController extends Controller
     {
         $this->middleware('auth');
         $userActual = Auth::user();
-        if (!$userActual->esBartender) {
+        if($userActual != null){
+         if (!$userActual->esBartender) {
             flash('No Tiene Los Permisos Necesarios')->error()->important();
             return redirect('/WelcomeTrabajador')->send();
+          }
         }
-
     }
     //
     public function index(Request $request){
-      $facturas = Factura::Listar2()
-                  ->paginate(20);
+      $userActual = Auth::user();
+      $facturas = Factura::Listar2($userActual->idEmpresa)
+                  ->get();
     	return view('Bartender.inicio')->with('facturas',$facturas);
     }
     public function store(Request $request){
@@ -42,8 +44,9 @@ class BartenderController extends Controller
             Mesa::actualizarEstado($factura->mesa->id);
         }
       }
-      $facturas = Factura::Listar2()
-                  ->paginate(20);
+      $userActual = Auth::user();
+      $facturas = Factura::Listar2($userActual->idEmpresa)
+                  ->get();
       return view('Bartender.inicio')->with('facturas',$facturas); 
     }
 }

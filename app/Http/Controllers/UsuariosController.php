@@ -65,6 +65,7 @@ class UsuariosController extends Controller
           $usuario->esBartender = 1;
           $usuario->esCajero = 1;
           $usuario->esAdmin = 1;
+          $usuario->obsequio = 1;
         }else{
           if($value=='Mesero'){
             $usuario->esMesero = 1;
@@ -74,6 +75,9 @@ class UsuariosController extends Controller
           }
           if($value=='Bartender'){
             $usuario->esBartender = 1;
+          }
+          if($value=='Obsequio'){
+            $usuario->obsequio = 1;
           }
         }
       }
@@ -128,12 +132,14 @@ class UsuariosController extends Controller
       $usuario->esBartender = 0;
       $usuario->esCajero = 0;
       $usuario->esAdmin = 0;
+      $usuario->obsequio = 0;
       foreach ($Permisos as $key => $value) {
         if($value=='Administrador'){
           $usuario->esMesero = 1;
           $usuario->esBartender = 1;
           $usuario->esCajero = 1;
           $usuario->esAdmin = 1;
+          $usuario->obsequio = 1;
         }else{
           if($value=='Mesero'){
             $usuario->esMesero = 1;
@@ -143,6 +149,9 @@ class UsuariosController extends Controller
           }
           if($value=='Bartender'){
             $usuario->esBartender = 1;
+          }
+          if($value=='Obsequio'){
+            $usuario->obsequio = 1;
           }
         }
       }

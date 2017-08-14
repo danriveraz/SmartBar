@@ -20,9 +20,11 @@ class InsumoController extends Controller
     {
         $this->middleware('auth');
         $userActual = Auth::user();
-        if (!$userActual->esAdmin) {
-            flash('No Tiene Los Permisos Necesarios')->error()->important();
-            return redirect('/WelcomeTrabajador')->send();
+        if($userActual != null){
+          if (!$userActual->esAdmin) {
+              flash('No Tiene Los Permisos Necesarios')->error()->important();
+              return redirect('/WelcomeTrabajador')->send();
+          }
         }
 
     }
@@ -86,8 +88,8 @@ class InsumoController extends Controller
       $insumos = Insumo::Search($request->nombre,$request->marca)->
                          Type($request->tipo)->
                          where('idEmpresa' , $userActual->idEmpresa)->
-                         orderBy('id','ASC')->
-                         paginate(5);
+                         orderBy('nombre','ASC')->
+                         paginate(1000);
 
       return view('Insumo.listall',compact('proveedores'))->with('insumos',$insumos)->with('categorias',$categorias);
   }
