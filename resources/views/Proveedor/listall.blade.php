@@ -1,7 +1,6 @@
 
 <table class="table table-striped">
   <thead>
-    <th>#</th>
     <th>Nombre</th>
     <th>Dirección</th>
     <th>Telefono</th>
@@ -9,11 +8,10 @@
   <tbody>
   @foreach($proveedores as $proveedor)
     <tr id="{{$proveedor->id}}">
-      <td>{{$proveedor->id}}</td>
       <td>{{$proveedor->nombre}}</td>
       <td>{{$proveedor->direccion}}</td>
       <td>{{$proveedor->telefono}}</td>
-      <td align="right">
+      <td align="right" id="ocultar{{$proveedor->id}}">
         <button data-toggle="modal" class="btn btn-default" data-target="#editModal{{$proveedor->id}}" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></button>
         <button class="btn btn-default" onclick="eliminar({{$proveedor->id}})" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
       </td>
@@ -24,22 +22,20 @@
           {!! Form::open() !!}
             <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
               <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
-              <h4 class="modal-title">Registro</h4>
+              <h4 class="modal-title">Editar proveedor</h4>
             </div>
             <div class="modal-body">
               <div class="pre-scrollable" >
                 <div class="widget-content">
                   <div class="form-group">
                     <div class="form-group">
-                      <label for="nombre" class="control-label">Nombre</label>
+                     
                       <input type="text" id="nombre{{$proveedor->id}}" name="nombre" class="form-control" value="{{$proveedor->nombre}}"/>
                     </div>
                     <div class="form-group">
-                      <label for="direccion" class="control-label">Dirección</label>
                       <input type="text" id="direccion{{$proveedor->id}}" name="direccion" class="form-control" value="{{$proveedor->direccion}}"/>
                     </div>
                     <div class="form-group">
-                      <label for="telefono" class="control-label">Teléfono</label>
                       <input type="text" id="telefono{{$proveedor->id}}" name="telefono" class="form-control" value="{{$proveedor->telefono}}"/>
                     </div>
                   </div>
@@ -50,6 +46,11 @@
               <button class="btn btn-default" data-dismiss="modal" onclick="modificar({{$proveedor->id}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
               <button class="btn btn-default-outline" data-dismiss="modal" type="button">Cerrar</button>
             </div>
+            <script type="text/javascript">
+                function ocultar(){
+                    document.getElementById('oculto').style.display = 'none';
+                }
+            </script>
             {!! Form::close() !!} 
           </div>
         </div>        
@@ -57,12 +58,17 @@
       @endforeach
     </tbody>
   </table>
-  {!!$proveedores->appends(Request::all())->render() !!}
 
   
   <script>
     var routeModificar = "http://pocketdesigner.co/PocketByR/public/proveedor/modificar";
     var routeEliminar = "http://pocketdesigner.co/PocketByR/public/proveedor/eliminar";
+
+    $("#ocultar{{$proveedor->id}}").hover(function(){
+            $("#ocultar{{$proveedor->id}}").show();
+        },  function(){
+            $("#ocultar{{$proveedor->id}}").hide();
+    });
 
     function modificar(idProveedor) {
       var nombre = $("#nombre"+idProveedor).val();
@@ -80,12 +86,12 @@
         success: function(data){
           $("#"+idProveedor).children("td").each(function (indextd)
             {
-              if(indextd == 1){
+              if(indextd == 0){
                 $(this).text(nombre);
-              }else if(indextd == 2){
+              }else if(indextd == 1){
                 $(this).text(direccion);
               }
-              else if(indextd == 3){
+              else if(indextd == 2){
                 $(this).text(telefono);
               }
             });

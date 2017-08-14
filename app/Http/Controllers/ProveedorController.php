@@ -47,7 +47,7 @@ class ProveedorController extends Controller
       $proveedores = Proveedor::Search($request->nombre)->
                          where('idEmpresa' , $userActual->idEmpresa)->
                          orderBy('nombre','ASC')->
-                         paginate(15);
+                         paginate(1000);
       return view('Proveedor.listall')->with('proveedores',$proveedores);
     }
 
