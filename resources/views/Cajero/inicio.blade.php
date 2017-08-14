@@ -1,7 +1,4 @@
-
-@extends('Layout.app_empleado')
-
-
+@extends(Auth::User()->esAdmin ? 'Layout.app' : 'Layout.app_empleado');
 @section('content')
 <div class="col-sm-offset-2 col-sm-8">
 	<div class="panel-tittle">
