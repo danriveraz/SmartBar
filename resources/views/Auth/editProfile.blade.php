@@ -9,12 +9,12 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <div class="col-sm-offset-3 col-sm-6">
     <div class="panel-title">
-        <h1>Editar perfil</h1>
+        <h1>Mi perfil</h1>
     </div>
         <form method="POST" enctype="multipart/form-data" action="{{url('auth/updateProfile')}}">
                 {{ csrf_field() }} 
             <div class="form-group">
-                <label for="nombreEstablecimiento" class="control-label">Nombre establecimiento</label>
+                <label for="nombreEstablecimiento" class="control-label">Mi negocio</label>
                 <input type="text" name="nombreEstablecimiento" class="form-control" 
                 value="{{Auth::user()->nombreEstablecimiento}}" >
                 <div class="text-danger">{{$errors->first('nombreEstablecimiento')}}</div>

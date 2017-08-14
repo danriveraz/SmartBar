@@ -1,1 +1,3 @@
 /storage
+resources/views/Layout/app.blade.php
+*.php
