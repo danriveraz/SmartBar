@@ -16,11 +16,12 @@ class BartenderController extends Controller
     {
         $this->middleware('auth');
         $userActual = Auth::user();
-        if (!$userActual->esBartender) {
+        if($userActual != null){
+         if (!$userActual->esBartender) {
             flash('No Tiene Los Permisos Necesarios')->error()->important();
             return redirect('/WelcomeTrabajador')->send();
+          }
         }
-
     }
     //
     public function index(Request $request){

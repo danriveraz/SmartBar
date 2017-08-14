@@ -16,10 +16,12 @@ class CajeroController extends Controller
     {
         $this->middleware('auth');
         $userActual = Auth::user();
-        if (!$userActual->esCajero) {
-            flash('No Tiene Los Permisos Necesarios')->error()->important();
-            return redirect('/WelcomeTrabajador')->send();
-        }
+        if($userActual != null){
+            if (!$userActual->esCajero) {
+                flash('No Tiene Los Permisos Necesarios')->error()->important();
+                return redirect('/WelcomeTrabajador')->send();
+            }
+        }   
 
     }
     public function index(Request $request){

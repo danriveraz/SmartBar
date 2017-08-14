@@ -8,6 +8,7 @@ use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use PocketByR\Producto;
+use PocketByR\Contiene;
 use PocketByR\Categoria;
 use Laracasts\Flash\Flash; 
 use Auth;
@@ -18,17 +19,19 @@ class ProductoController extends Controller
   public function __construct(){
     $this->middleware('auth');
     $userActual = Auth::user();
-    if (!$userActual->esAdmin) {
-      flash('No Tiene Los Permisos Necesarios')->error()->important();
-      return redirect('/WelcomeTrabajador')->send();
-    }  
+    if($userActual != null){
+      if (!$userActual->esAdmin) {
+        flash('No Tiene Los Permisos Necesarios')->error()->important();
+        return redirect('/WelcomeTrabajador')->send();
+      }  
+    }
   }  
 
   public function index(Request $request){
     $userActual = Auth::user();
     $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                              lists('nombre','id');
-    $cats = Categoria::all()->where('idEmpresa',$userActual->idEmpresa);                         
+    $cats = Categoria::where('idEmpresa',$userActual->idEmpresa)->get();
     return view('Producto.index',compact('categorias'))->with('cats', $cats);
   }
 
@@ -39,7 +42,16 @@ class ProductoController extends Controller
     $producto->idCategoria = $request->categoria;
     $producto->receta = $request->receta;
     $producto->save();    
-  }  
+  }
+  
+  public function eliminar(Request $request){
+    $contenido = Contiene::idProducto($request->id)->get();
+    foreach($contenido as $contiene){
+        $contiene->delete();
+    }
+    $producto = Producto::find($request->id);
+    $producto->delete();
+  }
 
   public function listall(Request $request){
     $userActual = Auth::user();
@@ -48,8 +60,8 @@ class ProductoController extends Controller
     $productos = Producto::Search($request->nombre)->
                            Category($request->categorias)->
                            where('idEmpresa' , $userActual->idEmpresa)->
-                           orderBy('id','ASC')->
-                           paginate(15);
+                           orderBy('nombre','ASC')->
+                           paginate(1000);
     return view('Producto.listall',compact('categorias'))->with('productos',$productos);
   }
 
@@ -105,7 +117,9 @@ class ProductoController extends Controller
 
   public function insumoedit($id){
     session_start();
+    $producto = Producto::find($id);
     $_SESSION['idProducto'] = $id;
+    $_SESSION['nombre'] = $producto->nombre;
     return redirect()->route('contiene.index');
   }
 

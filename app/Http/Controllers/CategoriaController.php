@@ -17,9 +17,11 @@ class CategoriaController extends Controller
     {
         $this->middleware('auth');
         $userActual = Auth::user();
-        if (!$userActual->esAdmin) {
-            flash('No Tiene Los Permisos Necesarios')->error()->important();
-            return redirect('/WelcomeTrabajador')->send();
+        if($userActual != null){
+          if (!$userActual->esAdmin) {
+              flash('No Tiene Los Permisos Necesarios')->error()->important();
+              return redirect('/WelcomeTrabajador')->send();
+          }
         }
 
     }
@@ -31,7 +33,7 @@ class CategoriaController extends Controller
     public function listall(Request $request){
       $userActual = Auth::user();
       $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
-                       orderBy('id','ASC')->
+                       orderBy('nombre','ASC')->
                        paginate(15);
       return view('Categoria.listall')->with('categorias',$categorias);
     }

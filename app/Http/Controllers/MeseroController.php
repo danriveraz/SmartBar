@@ -25,12 +25,14 @@ class MeseroController extends Controller
 
      public function __construct()
      {
-         $this->middleware('auth');
-         $userActual = Auth::user();
-         if (!$userActual->esMesero) {
-             flash('No tiene los permisos necesarios')->error()->important();
-             return redirect('/WelcomeTrabajador')->send();
-         }
+       $this->middleware('auth');
+       $userActual = Auth::user();
+        if($userActual != null){
+           if (!$userActual->esMesero) {
+               flash('No tiene los permisos necesarios')->error()->important();
+               return redirect('/WelcomeTrabajador')->send();
+           }
+        }
      }
 
     public function index()
