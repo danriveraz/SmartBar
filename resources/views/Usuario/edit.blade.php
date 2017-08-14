@@ -1,5 +1,4 @@
-@extends('Layout.app')
-@section('content')
+@extends(Auth::User()->esAdmin ? 'Layout.app' : 'Layout.app_empleado');
 <div class="col-sm-offset-3 col-sm-6">
   <div class="panel-tittle">
       <h1>Editar usuario</h1>
@@ -108,4 +107,6 @@
       {!! Form::close() !!}
   </div>
 </div>
-@endsection
+@if(Auth::User()->esAdmin)
+  @endsection
+@endif

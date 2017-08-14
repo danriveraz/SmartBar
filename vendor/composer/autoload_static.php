@@ -341,6 +341,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
     );
 
     public static $classMap = array (
+        'AddColumnaUsername' => __DIR__ . '/../..' . '/database/migrations/2017_08_13_235105_add_columna_username.php',
         'AddDoubleFactura' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_113414_addDoubleFactura.php',
         'AddEstadoCajeroTableVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_214219_addEstadoCajeroTableVenta.php',
         'AddEstadosVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_112257_addEstadosVenta.php',
@@ -381,6 +382,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'CreateVentaTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_01_222711_create_venta_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'DeleteTotalFactura' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_113401_deleteTotalFactura.php',
+        'DeleteUniqueCedulaCorreo' => __DIR__ . '/../..' . '/database/migrations/2017_08_13_234303_delete_unique_cedula_correo.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
