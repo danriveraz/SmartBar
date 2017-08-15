@@ -11,7 +11,7 @@
           <td>{{$producto->precio}}</td>
           <td>{{$categorias[$producto->idCategoria]}}</td>
           <td align="right">
-            <button data-target="#editModal{{$producto->id}}" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="fa fa-edit" aria-hidden="true"></span></button>
+            <button data-target="#editModal{{$producto->id}}" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="fa fa-pencil" aria-hidden="true"></span></button>
           </td>
           <td>
             <button class="btn btn-default" onclick="eliminar({{$producto->id}})" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>

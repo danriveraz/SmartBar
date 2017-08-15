@@ -12,7 +12,7 @@
       <td>{{$proveedor->direccion}}</td>
       <td>{{$proveedor->telefono}}</td>
       <td align="right" id="ocultar{{$proveedor->id}}">
-        <button data-toggle="modal" class="btn btn-default" data-target="#editModal{{$proveedor->id}}" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="fa fa-edit" aria-hidden="true"></span></button>
+        <button data-toggle="modal" class="btn btn-default" data-target="#editModal{{$proveedor->id}}" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="fa fa-pencil" aria-hidden="true"></span></button>
         <button class="btn btn-default" onclick="eliminar({{$proveedor->id}})" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
       </td>
     </tr>
