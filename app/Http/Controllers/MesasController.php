@@ -46,13 +46,9 @@ class MesasController extends Controller
         return redirect('mesas')->with('mesas',$mesas);
     }    
     public function edit(Request $request){
-        $userActual = Auth::user();
-        $id = $request->id;
-        $nombre = $request->nombre;
-        $arreglo = array("$id", "$nombre");
-        Mesa::EditarMesa($arreglo);
-        $mesas = Mesa::mesasAdmin($userActual->idEmpresa)->get();
-        return redirect('mesas')->with('mesas',$mesas);
+        $mesa = Mesa::find($request->id);
+        $mesa->nombre = $request->nombre;
+        $mesa->save();
     }  
 
     public function store(Request $request){
@@ -63,4 +59,9 @@ class MesasController extends Controller
         $mesas = Mesa::buscarMesas($arreglo)->get();
         return view('Mesas.inicio')->with('mesas',$mesas);
     }
+    public function eliminar(Request $request){
+      $mesa = Mesa::find($request->id);
+      $mesa->delete();
+    }    
+
 }

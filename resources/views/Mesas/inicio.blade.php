@@ -1,15 +1,13 @@
 @extends('Layout.app')
 @section('content')
 <div class="col-sm-offset-2 col-sm-8">
-	<div class="panel-tittle">
-			<h1>Lista de facturas</h1>
-	</div>
-
+<div class="panel-tittle" align="center">
+      <h3>ESTADOS MESAS</h3>
+  </div>
 	<form class="navbar-form navbar-form" method="POST" action="{{url('mesas/')}}">
 	{{csrf_field()}}
 		<div class="navbar-text navbar-right">
 				<input type="text" name="nombre" class="form-control" placeholder="Buscar">
-				<button type="submit" class="btn btn-dufault">Buscar</button>
 		</div>
 	</form>
 	<form class="navbar-form navbar-form" method="POST" action="{{url('mesas/create')}}">
@@ -22,23 +20,29 @@
 	
 </div>
 <div class="col-sm-offset-2 col-sm-8">
-	<table id="tabla" class="table table-hover">
+	<table id="tabla" class="table table-striped">
     <thead>
-      <th>Mesa</th>
-      <th width="250">Estado</th>
-      <th width="20">Editar</th>
+      <th></th>
+      <th></th>
+      <th width="20"></th>
+      <th width="20"></th>
     </thead>
     <tbody>
       
 	@foreach($mesas as $mesa)
-    	<tr>
+    	<tr id="{{$mesa->id}}">
     		<td>{{$mesa->nombreMesa}}</td>
     		<td>{{$mesa->estado}}</td>
     		<td>
-      			<button name="" class="btn btn-warning" data-toggle="modal" href="#myModal{{$mesa->id}}">
-      			<span class="	glyphicon glyphicon-zoom-in"></span></a>
+      			<button name="" class="btn btn-default" data-toggle="modal" href="#myModal{{$mesa->id}}" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+      			<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
       			</button> 
-      		</td>
+    		</td>
+        <td>
+          <button class="btn btn-default" onclick="eliminar({{$mesa->id}});" style="BACKGROUND-COLOR: rgb(187,187,187); color:white">
+          <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+          </button>
+        </td>
     	</tr>
     @endforeach 
 
@@ -49,8 +53,6 @@
   <div class="modal fade" id="myModal{{$mesa->id}}">
     <div class="modal-dialog">
       <div class="modal-content">
-      <form name="formulario" autocomplete="on" method="post" action="{{url('mesas/edit')}}">
-            {{csrf_field()}}
         <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
           <button aria-hidden="true" class="close" data-dismiss="modal" type="button"  style="color:white">&times;</button>
           <h4 class="modal-title">
@@ -62,15 +64,24 @@
                 
             </div>
             <div class="widget-content">
-            Editar nombre: <input type="text" name="nombre" value="{{$mesa->nombreMesa}}">
-            <input type="text" hidden="" name="id" value="{{$mesa->id}}">
+             <div class="form-group">
+                <div class="form-group">
+                    <input type="text" id="nombre{{$mesa->id}}" class="form-control" value="{{$mesa->nombreMesa}}" />
+                </div>
+                <div class="form-group">
+                    <select id="estado{{$mesa->id}}"  class="form-control" value="{{$mesa->estado}}">
+                      <option value="Disponible">Disponible</option>
+                      <option value="Ocupada">Ocupada</option>
+                      <option value="Reservada">Reservada</option>
+                    </select>
+                </div>
+              </div>  
             </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">Guardar</button>
+          <button class="btn btn-primary" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" onclick="modificar({{$mesa->id}})">Guardar</button>
           <button class="btn btn-default-outline" data-dismiss="modal" type="button">Cerrar</button>
         </div>
-        </form>
       </div>
     </div>
   </div>
@@ -94,5 +105,45 @@ function cambiarCurrent(idInput) {
   $(".current").removeClass("current");
   $(idInput).addClass("current");
 };
+
+
+var routeEliminar = "http://pocketdesigner.co/PocketByR/public/mesas/eliminar";
+var routeModificar = "http://pocketdesigner.co/PocketByR/public/mesas/edit";
+function eliminar(idMesa){
+      if(confirm('¿Desea eliminar este proveedor?')){
+        $.ajax({
+          url: routeEliminar,
+          type: 'GET',
+          data: {
+            id: idMesa
+          },
+          success: function(){
+            $("#"+idMesa).remove();
+          },
+          error: function(data){
+            alert('No se puede eliminar la mesa, debido a que se está utilizando.');
+          }
+        });
+      }
+    }
+  function modificar(idMesa) {
+      var nombre = $("#nombre"+idMesa).val();
+      var estado = $("#estado"+idMesa).val();
+      $.ajax({
+        url: routeModificar,
+        type: 'GET',
+        data: {
+          id: idMesa,
+          nombre: nombre
+          estado: estado
+        },
+        success: function(data){
+          alert("modifique");
+        },
+        error: function(data){
+          alert("Error al modificar mesa.");
+        }
+      });
+    }
 </script>
 @endsection
