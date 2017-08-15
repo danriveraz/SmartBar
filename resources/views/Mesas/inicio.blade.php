@@ -20,6 +20,44 @@
     </div>
   </div>
 	
+<div class="modal fade in" id="addModal" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form name="formulario" autocomplete="on" method="post" action="{{url('mesas/create')}}">
+            {{csrf_field()}}
+          <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+          <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+            <h4 class="modal-title">
+            Nuevo Mesa
+            </h4>
+          </div>
+          <div class="modal-body">
+            <div class="" >
+            <div class="widget-content">
+              <div class="form-group">
+                <div class="form-group">
+                    <input type="text" name="nombre" class="form-control" placeholder="Nombre de la mesa" required="true"/>
+                </div>
+                <div class="form-group">
+                    <select name="estado"  class="form-control">
+                      <option value="Disponible">Disponible</option>
+                      <option value="Ocupada">Ocupada</option>
+                      <option value="Reservada">Reservada</option>
+                    </select>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
+          </div>
+        </form>
+    </div>
+   </div>
+  </div>
+
+
 </div>
 <div id="list-prov" class="col-sm-offset-2 col-sm-8">
 	
@@ -61,16 +99,6 @@ var listprov = function()
       }
     });
   }
-function validarMinMax(idInput) {
-    var valor = parseInt($(idInput).val());
-    var max = parseInt($(idInput).attr("max"));
-    if(valor > max) {
-        $(idInput).val(max);
-    } 
-    if (valor < 0){
-        $(idInput).val(0);
-    }
-};
 function cambiarCurrent(idInput) {
   $(".current").removeClass("current");
   $(idInput).addClass("current");
@@ -90,7 +118,7 @@ function cambiarCurrent(idInput) {
     
     .icon-addon {
         position: relative;
-        color: #555;
+        color: rgb(79,0,85);
         display: block;
     }
     
@@ -160,7 +188,7 @@ function cambiarCurrent(idInput) {
     .icon-addon:hover .glyphicon,
     .icon-addon .form-control:focus + .fa,
     .icon-addon:hover .fa {
-        color: #2580db;
+        color: rgb(79,0,85);
     }
   </style>
 @endsection

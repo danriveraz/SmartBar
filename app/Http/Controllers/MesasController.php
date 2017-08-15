@@ -24,14 +24,24 @@ class MesasController extends Controller
 
     }
     public function index(Request $request){
-        $userActual = Auth::user();
-        $mesas = Mesa::mesasAdmin($userActual->idEmpresa)->get();
-    	return view('Mesas.inicio')->with('mesas',$mesas);
+    	return view('Mesas.inicio');
     } 
     public function create(Request $request){
         $userActual = Auth::user();
         $cantidadActualMesas = Mesa::calculaCantidad($userActual->idEmpresa);
-
+        if(!is_int($cantidadActualMesas)) $cantidadActualMesas = 0;
+        $cantidadActualMesas++;
+        $mesa = new Mesa;
+        $mesa->idMesa = $cantidadActualMesas;
+        $mesa->nombreMesa = $request->nombre;
+        $mesa->estado = $request->estado;
+        $mesa->idEmpresa = $userActual->idEmpresa;
+        $mesa->save();
+        return redirect('mesas');
+    }    
+    public function createNMesas(Request $request){
+        $userActual = Auth::user();
+        $cantidadActualMesas = Mesa::calculaCantidad($userActual->idEmpresa);
         if(!is_int($cantidadActualMesas)) $cantidadActualMesas = 0;
         for ($i=0; $i < $request->cantidad; $i++) { 
             $cantidadActualMesas++;
