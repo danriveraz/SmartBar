@@ -76,7 +76,8 @@ Route::get('mesero/agregar',  'MeseroController@agregar');
 Route::resource('mesero', 'MeseroController');
 
 Route::get('mesas/eliminar','MesasController@eliminar');
-Route::get('mesas/edit', 'MesasController@edit');
+Route::get('mesas/modificar', 'MesasController@modificar');
+Route::get('mesaslistall/{page?}', 'MesasController@listall');
 Route::post('mesas/create', 'MesasController@create');
 Route::resource('mesas', 'MesasController');
 

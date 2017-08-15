@@ -4,93 +4,63 @@
 <div class="panel-tittle" align="center">
       <h3>ESTADOS MESAS</h3>
   </div>
-	<form class="navbar-form navbar-form" method="POST" action="{{url('mesas/')}}">
-	{{csrf_field()}}
-		<div class="navbar-text navbar-right">
-				<input type="text" name="nombre" class="form-control" placeholder="Buscar">
-		</div>
-	</form>
-	<form class="navbar-form navbar-form" method="POST" action="{{url('mesas/create')}}">
-	{{csrf_field()}}
-		<div class="navbar-header">
-			<input type="number" name="cantidad" min="0" placeholder="Cantidad" style="width:80px;" class="cantidadSeleccionada" max="100" id="cantidad" onkeyup="validarMinMax('#cantidad');" value="0">
-			<button type="submit" class="btn btn-dufault">Crear automaticamente</button>
-		</div>
-	</form>
-	
-</div>
-<div class="col-sm-offset-2 col-sm-8">
-	<table id="tabla" class="table table-striped">
-    <thead>
-      <th></th>
-      <th></th>
-      <th width="20"></th>
-      <th width="20"></th>
-    </thead>
-    <tbody>
-      
-	@foreach($mesas as $mesa)
-    	<tr id="{{$mesa->id}}">
-    		<td>{{$mesa->nombreMesa}}</td>
-    		<td>{{$mesa->estado}}</td>
-    		<td>
-      			<button name="" class="btn btn-default" data-toggle="modal" href="#myModal{{$mesa->id}}" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
-      			<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-      			</button> 
-    		</td>
-        <td>
-          <button class="btn btn-default" onclick="eliminar({{$mesa->id}});" style="BACKGROUND-COLOR: rgb(187,187,187); color:white">
-          <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
-          </button>
-        </td>
-    	</tr>
-    @endforeach 
-
-    </tbody>
-  </table>
-</div>
- @foreach($mesas as $mesa)
-  <div class="modal fade" id="myModal{{$mesa->id}}">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
-          <button aria-hidden="true" class="close" data-dismiss="modal" type="button"  style="color:white">&times;</button>
-          <h4 class="modal-title">
-            {{$mesa->nombreMesa}}
-          </h4>
-        </div>
-        <div class="modal-body">
-            <div class="heading">
-                
-            </div>
-            <div class="widget-content">
-             <div class="form-group">
-                <div class="form-group">
-                    <input type="text" id="nombre{{$mesa->id}}" class="form-control" value="{{$mesa->nombreMesa}}" />
-                </div>
-                <div class="form-group">
-                    <select id="estado{{$mesa->id}}"  class="form-control" value="{{$mesa->estado}}">
-                      <option value="Disponible">Disponible</option>
-                      <option value="Ocupada">Ocupada</option>
-                      <option value="Reservada">Reservada</option>
-                    </select>
-                </div>
-              </div>  
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" onclick="modificar({{$mesa->id}})">Guardar</button>
-          <button class="btn btn-default-outline" data-dismiss="modal" type="button">Cerrar</button>
-        </div>
+  <div class="navbar-form navbar-left" >
+    <div class="form-group" align="left">
+        <a href="#addModal" class="btn btn-default" data-toggle="modal">
+            <i class="fa fa-plus"></i> Nueva mesa &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 
+        </a>
+    </div>
+  </div >
+  <div class="navbar-form navbar-right" >
+    <div class="form-group" align="right">
+      <div class="icon-addon addon-md">
+          <input  id="nombreInput" type="text" size="40" maxlength="30" placeholder="Buscar..." class="form-control" />
+          <label for="nombreInput" class="glyphicon glyphicon-search" rel="tooltip" title="nombreInput"></label>
       </div>
     </div>
   </div>
-@endforeach 
+	
+</div>
+<div id="list-prov" class="col-sm-offset-2 col-sm-8">
+	
+</div>
+ 
 <script>
 $(document).ready(function(){
-
+    listprov();
     cambiarCurrent("#mesas");
+    $("#nombreInput").keyup(function(e){
+        var dato = $("#nombreInput").val();
+        var url = "mesaslistall?nombre=";
+        var urlf = url+dato;
+        sleep(100);
+        $.ajax({
+          type:'get',
+          url:urlf,
+          success: function(data){
+              $("#list-prov").empty().html(data);
+          }
+        });
+    });
 });
+ function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+var listprov = function()
+  {
+    $.ajax({
+      type:'get',
+      url: '{{url('mesaslistall')}}',
+      success:  function(data){
+        $("#list-prov").empty().html(data);
+      }
+    });
+  }
 function validarMinMax(idInput) {
     var valor = parseInt($(idInput).val());
     var max = parseInt($(idInput).attr("max"));
@@ -106,44 +76,91 @@ function cambiarCurrent(idInput) {
   $(idInput).addClass("current");
 };
 
-
-var routeEliminar = "http://pocketdesigner.co/PocketByR/public/mesas/eliminar";
-var routeModificar = "http://pocketdesigner.co/PocketByR/public/mesas/edit";
-function eliminar(idMesa){
-      if(confirm('¿Desea eliminar este proveedor?')){
-        $.ajax({
-          url: routeEliminar,
-          type: 'GET',
-          data: {
-            id: idMesa
-          },
-          success: function(){
-            $("#"+idMesa).remove();
-          },
-          error: function(data){
-            alert('No se puede eliminar la mesa, debido a que se está utilizando.');
-          }
-        });
-      }
-    }
-  function modificar(idMesa) {
-      var nombre = $("#nombre"+idMesa).val();
-      var estado = $("#estado"+idMesa).val();
-      $.ajax({
-        url: routeModificar,
-        type: 'GET',
-        data: {
-          id: idMesa,
-          nombre: nombre
-          estado: estado
-        },
-        success: function(data){
-          alert("modifique");
-        },
-        error: function(data){
-          alert("Error al modificar mesa.");
-        }
-      });
-    }
 </script>
+  <style>
+    .center-block {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .input-group .icon-addon .form-control {
+        border-radius: 0;
+    }
+    
+    .icon-addon {
+        position: relative;
+        color: #555;
+        display: block;
+    }
+    
+    .icon-addon:after,
+    .icon-addon:before {
+        display: table;
+        content: " ";
+    }
+    
+    .icon-addon:after {
+        clear: both;
+    }
+    
+    .icon-addon.addon-md .glyphicon,
+    .icon-addon .glyphicon, 
+    .icon-addon.addon-md .fa,
+    .icon-addon .fa {
+        position: absolute;
+        z-index: 2;
+        left: 10px;
+        font-size: 14px;
+        width: 20px;
+        margin-left: -2.5px;
+        text-align: center;
+        padding: 10px 0;
+        top: 1px
+    }
+    
+    .icon-addon.addon-lg .form-control {
+        line-height: 1.33;
+        height: 46px;
+        font-size: 18px;
+        padding: 10px 16px 10px 40px;
+    }
+    
+    .icon-addon.addon-sm .form-control {
+        height: 30px;
+        padding: 5px 10px 5px 28px;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    .icon-addon.addon-lg .fa,
+    .icon-addon.addon-lg .glyphicon {
+        font-size: 18px;
+        margin-left: 0;
+        left: 11px;
+        top: 4px;
+    }
+    
+    .icon-addon.addon-md .form-control,
+    .icon-addon .form-control {
+        padding-left: 30px;
+        float: left;
+        font-weight: normal;
+    }
+    
+    .icon-addon.addon-sm .fa,
+    .icon-addon.addon-sm .glyphicon {
+        margin-left: 0;
+        font-size: 12px;
+        left: 5px;
+        top: -1px
+    }
+    
+    .icon-addon .form-control:focus + .glyphicon,
+    .icon-addon:hover .glyphicon,
+    .icon-addon .form-control:focus + .fa,
+    .icon-addon:hover .fa {
+        color: #2580db;
+    }
+  </style>
 @endsection
