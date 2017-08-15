@@ -13,14 +13,14 @@
         </a>
     </div>
   </form >
-  <form id="busqueda" name="busqueda" class="navbar-form navbar-right">
+  <div id="busqueda" name="busqueda" class="navbar-form navbar-right">
     <div class="form-group" align="right">
       <div class="icon-addon addon-md">
           <input  id="nombreInput" type="text" size="40" maxlength="30" placeholder="Buscar..." class="form-control" />
           <label for="nombreInput" class="glyphicon glyphicon-search" rel="tooltip" title="nombreInput"></label>
       </div>
     </div>
-  </form>
+  </div>
 
 
   <div class="modal fade in" id="addModal" >
@@ -34,17 +34,17 @@
             </h4>
           </div>
           <div class="modal-body">
-            <div class="pre-scrollable" >
+            <div class="" >
             <div class="widget-content">
               <div class="form-group">
                 <div class="form-group">
                     <input type="text" name="nombre" class="form-control" placeholder="Nombre del proveedor" required="true"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="direccion" placeholder="Direcci贸n" class="form-control" required="true">
+                    <input type="text" name="direccion" placeholder="Dirección" class="form-control" required="true">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="telefono" placeholder="Tel茅fono" class="form-control" value="(+57)" required="true">
+                    <input type="text" name="telefono" placeholder="Teléfono" class="form-control" value="(+57)" required="true">
                 </div>
               </div>
             </div>
@@ -135,7 +135,7 @@
     
     .icon-addon {
         position: relative;
-        color: #555;
+        color: rgb(79,0,85);
         display: block;
     }
     
@@ -205,7 +205,7 @@
     .icon-addon:hover .glyphicon,
     .icon-addon .form-control:focus + .fa,
     .icon-addon:hover .fa {
-        color: #2580db;
+        color: rgb(79,0,85);
     }
   </style>
 

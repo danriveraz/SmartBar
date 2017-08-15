@@ -21,7 +21,7 @@
             </h4>
           </div>
           <div class="modal-body">
-            <div class="pre-scrollable" >
+            <div class="" >
             <div class="widget-content">
               <div class="form-group">
                 <div class="form-grup">
@@ -116,6 +116,10 @@
   $(document).ready(function(){
     listprov();
     cambiarCurrent("#productos");
+    var p = 0;
+    cats = eval(<?php echo json_encode($cats);?>);
+    p = cats[0].precio;
+    document.getElementById('precio').value=p;
   });
   
   var mostrarValor = function(x){

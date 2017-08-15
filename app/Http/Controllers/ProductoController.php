@@ -69,7 +69,7 @@ class ProductoController extends Controller
     $userActual = Auth::user();
     $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                              lists('nombre','id','precio');
-    $cats = Categoria::all()->where('idEmpresa',$userActual->idEmpresa);
+    $cats = Categoria::where('idEmpresa',$userActual->idEmpresa)->get();
     return view('Producto.create',compact('categorias'))->with('cats', $cats);
   }
 
