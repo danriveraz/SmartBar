@@ -160,7 +160,7 @@
           <div class="nav-collapse" >
             <ul class="nav" style="BACKGROUND-COLOR: rgb(245,245,245)">
              <li class="dropdown"><a data-toggle="dropdown" href="#">
-                <span aria-hidden="true" class="hightop-star"></span>Gestionar<b class="caret"></b></a>
+                <span aria-hidden="true" class="glyphicon-folder-open"></span> Nombre del Negocio<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li>
                     <a id="usuario" nombre="barraNavegacion" href={{url("/Auth/usuario")}}>
@@ -210,7 +210,7 @@
     <div class="wrap">
         <p class="copy">© 2017 condiciones de uso y privacidad  <a href="" target="_blank">Derechos Reservados</a> </p>
       </div>
-      
+
   </div>
   </body>
 <script>

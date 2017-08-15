@@ -3,11 +3,11 @@
 
 
 <div class="col-sm-offset-2 col-sm-8">
-    <div class="panel-tittle">
-        <h1>Lista de productos</h1>
+    <div class="panel-tittle" align="center">
+        <h3> MIS PRODUCTOS </h3>
     </div>
     @include('flash::message')
-    <a href="#addPModal" class="btn btn-default" data-toggle="modal"><i class="fa fa-plus"></i>Agregar nuevo producto 
+    <a href="#addPModal" class="btn btn-default" data-toggle="modal"><i class="fa fa-plus"></i>Nuevo Producto 
     </a>
 
     <div class="modal fade" id="addPModal" >
@@ -17,7 +17,7 @@
           <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
           <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
             <h4 class="modal-title">
-            Registro
+            Nuevo Producto
             </h4>
           </div>
           <div class="modal-body">
@@ -25,16 +25,16 @@
             <div class="widget-content">
               <div class="form-group">
                 <div class="form-grup">
-                    <label for="nombre" class="control-label">Nombre del Producto</label>
-                    <input type="text" name="nombreProducto" class="form-control" placeholder="Nombre del producto" required="true"/>
-                </div>
+                    
+                    <input type="text" name="nombreProducto" class="form-control" placeholder="Nombre" required="true" />
+                    </div><br>
                 <div class="form-grup">
-                    <label for="categorias" class="control-label">Categoría</label>
+                    
                     {!! Form::select('categorias', $categorias, null, ['class' => 'form-control', 'onchange' => 'mostrarValor(this.value);']) !!}
-                </div>
+                </div><br>
                 <div class="form-grup">
-                    <label  for="precio" class="control-label">Precio</label>
-                    <input id="precio" value="" type="number" min="0" step="any" name="precio" class="form-control" required="true"/>
+                    
+                    <input id="precio" value="" type="number" min="0" step="any" name="precio" class="form-control" required="true" placeholder="Precio" />
                 </div>
                 <br>
                 <div class="form-grup">
@@ -49,7 +49,7 @@
           </div>
           <div class="modal-footer">
             <button class="btn btn-default" onclick = "return confirm ('¿Está seguro de registrar el producto?')" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
-            <button class="btn btn-default-outline" data-dismiss="modal" type="button">Cerrar</button>
+            
           </div>
         {!! Form::close() !!}
       </div>
@@ -63,7 +63,7 @@
           <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
           <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
             <h4 class="modal-title">
-            Registro
+            Nueva Categoria
             </h4>
           </div>
           <div class="modal-body">
@@ -71,13 +71,13 @@
             <div class="widget-content">
               <div class="form-group">
                 <div class="form-grup">
-                    <label for="nombre" class="control-label">Nombre de la categoría</label>
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre" required="true"/>
+                    
+                    <input type="text" name="nombre" class="form-control" placeholder="Nombre" required="true" placeholder="Nombre" />
                 </div>
                 <br>
                 <div class="form-grup">
-                    <label for="precio" class="control-label">Precio</label>
-                    <input type="number" min="0" step="any" name="precio" class="form-control" />
+                    
+                    <input type="number" min="0" step="any" name="precio" class="form-control" placeholder="Precio" />
                 </div>
               </div>
             </div>
@@ -85,7 +85,7 @@
           </div>
           <div class="modal-footer">
             <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
-            <button class="btn btn-default-outline" data-dismiss="modal" type="button">Cerrar</button>
+            
           </div>
         {!! Form::close() !!}
       </div>
@@ -95,13 +95,14 @@
     route="producto.listall">
     <div class="form-group" align="right">
       <input  id="nombreInput" type="text" name="nombreInput" class="form-control" aria-describedby="search"/>
-      <button  href="prodlistall?nombre=" id="buscarNombre" type="submit" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" class="btn btn-dufault">Buscar</button>
+      
+      
     <div align="right">
       <br>
       {!! Form::select('categorias', $categorias, null, ['class' => 'form-control', 'placeholder' => 'Seleccione una categoría', 'id' => 'buscarCategoria']) !!}
        <td><a href="#addModal" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(187,187,187); color:white">A&ntildeadir categor&iacutea <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </a> 
        </td>
-      <td><a href="{{ route('categoria.index') }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a></td>
+      <td><a href="{{ route('categoria.index') }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></td>
     </div>
   </div>
   </form>

@@ -80,7 +80,7 @@
                       </select>
                     </div>
                     <div class="form-group">
-                      <label for="tipo" class="control-label">Vender como producto?</label>
+                      <label for="tipo" class="control-label">¿Vender en botella?</label>
                       <label> <input type="checkbox" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?> onchange="javascript:showContent()" disabled="disabled" /><span></span></label>
                     </div>
                     <div id="content" <?php if($insumo->tipo == "0") echo "hidden";?>>
@@ -93,7 +93,7 @@
               </div>
               <div class="modal-footer">
                 <button class="btn btn-default" data-dismiss="modal" onclick="modificar({{$insumo->id}},{{$proveedores}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
-                <button class="btn btn-default-outline" data-dismiss="modal" type="button">Cerrar</button>
+                
               </div>
             {!! Form::close() !!} 
           </div>

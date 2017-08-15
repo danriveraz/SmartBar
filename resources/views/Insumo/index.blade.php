@@ -2,12 +2,12 @@
 @section('content')
 
 <div class="col-sm-offset-2 col-sm-8">
-  <div class="panel-tittle">
-      <h1>Lista de insumos</h1>
+  <div class="panel-tittle" align="center">
+      <h3>INVENTARIO</h3>
   </div>
   @include('flash::message')
 
-  <a href="#addModal" class="btn btn-default" data-toggle="modal"><i class="fa fa-plus"></i> Agregar nuevo insumo </a>
+  <a href="#addModal" class="btn btn-default" data-toggle="modal"><i class="fa fa-plus"></i> Nuevo insumo </a>
   <div class="modal fade in" id="addModal" >
     <div class="modal-dialog">
       <div class="modal-content">
@@ -18,9 +18,7 @@
 
           <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
 
-            <h4 class="modal-title">
-            Registro
-            </h4>
+            <h4 class="modal-title">Nuevo Insumo</h4> 
           </div>
           <div class="modal-body">
               <div class="alert alert-warning alert-dismissable">
@@ -31,38 +29,38 @@
             <div class="widget-content">
               <div class="form-group">
                 <div class="form-group">
-                    <label for="nombre" class="control-label">Nombre</label>
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre del insumo" required="true"/>
+                    
+                    <input type="text" name="nombre" class="form-control" placeholder="Nombre del insumo" placeholder="Nombre" required="true"/>
                 </div>
               </div>
               <div class="form-group">
-                    <label for="marca" class="control-label">Marca</label>
-                    <input type="text" name="marca" class="form-control" placeholder="Marca del insumo" />
+                    
+                    <input type="text" name="marca" class="form-control" placeholder="Marca del insumo" placeholder="Marca"/>
                 </div>
                 <div class="form-group">
                     <label for="idProveedor" class="control-label">Proveedor</label>
                     {!! Form::select('proveedores', $proveedores, null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
-                    <label for="cantidadUnidad" class="control-label">Cantidad</label>
-                    <input type="number" min="0" name="cantidadUnidad" id="cantidadUnidad" class="form-control" required="false">
+                    
+                    <input type="number" min="0" name="cantidadUnidad" id="cantidadUnidad" class="form-control" required="false" placeholder="Cantidad">
                 </div>
                 <div class="form-group">
-                    <label for="valorCompra" class="control-label">Valor de compra</label>
-                    <input type="number" step="any" min="0" name="valorCompra" class="form-control" required="true">
+                    
+                    <input type="number" step="any" min="0" name="valorCompra" class="form-control" required="true" placeholder="Costo">
                 </div>
                 <div class="form-group">
-                    <label for="precioUnidad" class="control-label">Valor de venta</label>
-                    <input type="number" step="any" min="0" name="precioUnidad" class="form-control" required="true">
+                    
+                    <input type="number" step="any" min="0" name="precioUnidad" class="form-control" required="true" placeholder="Venta">
                 </div>
                 <div class="form-group">
-                    <label for="cantidadMedida" class="control-label">Cantidad de medida</label>
-                    <input type="number" step="any" min="0" name="cantidadMedida" class="form-control" required="true"/>
+                    
+                    <input type="number" step="any" min="0" name="cantidadMedida" placeholde="Contenido"class="form-control" required="true" />
                     <select name="medida" class="form-control" onchange="valor(this.value);"> 
                         <option value="ml">ml</option> 
                         <option value="cm3">cm3</option> 
                         <option value="oz">oz</option>
-                        <option value="unidad">unidad</option>
+                        <option value="unidad">unid</option>
                     </select>
                 </div>
                 <script type="text/javascript">
@@ -78,7 +76,7 @@
                     }
                 </script>
                 <div class="form-group">
-                    <label for="tipo" class="control-label">Vender como producto?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <label for="tipo" class="control-label">¿Vender por botella?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <label> <input type="checkbox" name="tipo" id="tipo" value="1" onchange="javascript:showContent()"/><span></span></label>
                 </div>
                 <div id="content" style="display: none;">
@@ -91,7 +89,6 @@
           </div>
           <div class="modal-footer">
             <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
-            <button class="btn btn-default-outline" data-dismiss="modal" type="button">Cerrar</button>
           </div>
         {!! Form::close() !!}
  
@@ -106,9 +103,17 @@
       <button  href="inslistall?nombre=" id="buscarNombre" type="submit" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" class="btn btn-dufault">Buscar</button>
       <div align="right">
         <select id="buscarTipo" name="buscarTipo" class="form-control">
-          <option value="">Seleccione un tipo</option>
+          <option value="">Buscar por</option>
           <option value="1">A la venta</option> 
-          <option value="0">No a la venta</option>   
+          <option value="0">Se venden en botella</option>
+          <option value="0">Marca</option> 
+          <option value="0">Proveedor</option> 
+          <option value="0">Nuevos</option> 
+          <option value="0">Mayor rotación</option> 
+          <option value="0">Menor rotación</option> 
+          <option value="0">Mayores unidades</option> 
+          <option value="0">Menores unidades</option> 
+
         </select>
       </div>
     </div>

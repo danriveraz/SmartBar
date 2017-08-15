@@ -11,13 +11,13 @@
           <td>{{$producto->precio}}</td>
           <td>{{$categorias[$producto->idCategoria]}}</td>
           <td align="right">
-            <button data-target="#editModal{{$producto->id}}" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></button>
+            <button data-target="#editModal{{$producto->id}}" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="fa fa-edit" aria-hidden="true"></span></button>
           </td>
           <td>
-            <button class="btn btn-default" onclick="eliminar({{$producto->id}})" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
+            <button class="btn btn-default" onclick="eliminar({{$producto->id}})" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
           </td>
           <td align="right">
-            <a href="{{ route('producto.insumoedit',$producto->id) }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">Inventario <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+            <a href="{{ route('producto.insumoedit',$producto->id) }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">Inventario <span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
           </td>
         </tr>
         <div class="modal fade in" id="editModal{{$producto->id}}" role="dialog">
@@ -58,7 +58,7 @@
                   </div>
                   <div class="modal-footer">
                     <button class="btn btn-default" data-dismiss="modal" onclick="modificar({{$producto->id}},{{$categorias}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
-                    <button class="btn btn-default-outline" data-dismiss="modal" type="button">Cerrar</button>
+                    
                   </div>
                 {!! Form::close() !!}
               </div>
