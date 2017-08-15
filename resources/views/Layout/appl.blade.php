@@ -35,6 +35,12 @@
 
                 </a>
             </div>
+            
+            <div class="footer w3layouts agileits">
+        <div class="wrap">
+                <p class="copy">© 2017 condiciones de uso y privacidad  <a href="" target="_blank">Derechos Reservados</a> </p>
+            </div>
+    </div>
 
         </div>
     </nav>

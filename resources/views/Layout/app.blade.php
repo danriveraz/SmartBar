@@ -143,7 +143,7 @@
                     <i class="fa fa-user"></i>Perfil</a>
                   </li>
                   <li><a href="#">
-                    <i class="fa fa-gear"></i>Configuracion</a>
+                    <i class="fa fa-gear"></i>Ajustes</a>
                   </li>
                   <li><a href='{{url("/Auth/logout")}}'>
                     <i class="fa fa-sign-out"></i>Cerrar Sesión</a>
@@ -205,7 +205,13 @@
     <div class="">
       @yield('content')
     </div>
-    
+
+    <div class="footer w3layouts agileits">
+    <div class="wrap">
+        <p class="copy">© 2017 condiciones de uso y privacidad  <a href="" target="_blank">Derechos Reservados</a> </p>
+      </div>
+      
+  </div>
   </body>
 <script>
  $(document).ready(function(){

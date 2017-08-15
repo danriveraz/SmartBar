@@ -5,7 +5,7 @@
 <link rel="shortcut icon" href="../images/icon.png">
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-<title>PocketByR</title>
+<title>SMARTBAR</title>
 
 	<!-- Meta-Tags -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,11 +51,11 @@
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text" style="text-align:center">
                         <br><br />
-                            <h1 class="color2">Formulario de Registro</h1>
+                            <h1 class="color2">TODO TU NEGOCIO, EN TU BOLSILLO</h1>
                             <div class="description color1">
                             	<p>
-	                            	Ingresa los datos correspodientes en los campos del formulario, ingresa al mundo de PocketByR y este en su bar todo el tiempo, sin estar en el!
-	                            	si ya estas registraso da <a href="" target="_blank"><strong class="color2">clik aqui</strong></a>
+	                            	Completa el formulario e ingresa al mundo de SMARTBAR, donde mantienes el control de tu negocio 24/7. <br>
+	                            	</strong></a>
                             	</p>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
 					<a class="hiddenanchor w3layouts agileits" id="toregister"></a>
 					<div id="wrapper">
 						<div id="login" class="animate w3layouts agileits form">
-							<h2 class="w3layouts agileits">Iniciar Sesión</h2>
+							<h2 class="w3layouts agileits">INICIA SESIÓN</h2>
               				<form autocomplete="on" method="post" action="{{url('Auth/login')}}">
                 			{{csrf_field()}}
                 				<div class="text-danger">
@@ -101,20 +101,20 @@
 								<label>Contraseña</label>
 								<input type="password" Name="password" required="">
 								<div class="send-button w3layouts agileits">
-									<p><a href="#">¿Olvidó su contraseña?</a></p>
+									<p><a href="#">Recupera tu contraseña</a></p>
 										<input type="submit" value="INICIAR SESIÓN">
 									<div class="clear"></div>
 								</div>
 								<p class="change_link w3layouts agileits">
-									¿No tienes una cuenta? <a href="{{url('Auth/register')}}" class="to_register">Registrarme</a>
+									¿NO ERES SMARTBAR? <a href="{{url('Auth/register')}}" class="to_register">Registrate</a>
 								</p>
 								<div class="clear"></div>
 							</form>
 							<div class="social-icons w3layouts agileits">
-								<p>LOGUEAR CON TUS CUENTAS SOCIALES</p>
+								<p>LOGUEAR CON REDES SOCIALES</p>
 								<ul>
 									<li class="fb w3ls w3layouts agileits"><a href="{{ url('/Auth/facebook') }}"><span class="icons w3layouts agileits"></span><span class="text w3layouts agileits">Facebook</span></a></li>
-									<li class="gog w3ls w3layouts agileits"><a href="#"><span class="icons w3layouts agileits"></span><span class="text w3layouts agileits">Google</span></a></li>
+									<li class="gog w3ls w3layouts agileits"><a href="#"><span class="icons w3layouts agileits"></span><span class="text w3layouts agileits">Google +</span></a></li>
 									<div class="clear"></div>
 								</ul>
 							</div>
@@ -135,7 +135,7 @@
 
 	<div class="footer w3layouts agileits">
 		<div class="wrap">
-				<p class="copy">© 2017 condiciones de uso y privacidad  <a href="" target="_blank">Derechos Reservados</a> </p>
+				<p class="copy">© 2017 condiciones de uso y privacidad  <a href="" target="_blank">Todos Derechos Reservados</a> </p>
 			</div>
 	</div>
 

@@ -5,7 +5,7 @@
 <link rel="shortcut icon" href="images/icon.png">
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-<title>PocketSmartBar</title>
+<title>POCKETSMARTBAR</title>
 
 	<!-- Meta-Tags -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,11 +53,11 @@
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text" style="text-align:center">
                         <br><br />
-                            <h1 class="color2">Formulario de Registro</h1>
+                            <h1 class="color2">TODO TU NEGOCIO, EN TU BOLSILLO</h1>
                             <div class="description color1">
                             	<p>
-	                            	Ingresa los datos correspodientes en los campos del formulario, ingresa al mundo de PocketByR y este en su bar todo el tiempo, sin estar en el!
-	                            	si ya estas registraso da <a href="" target="_blank"><strong class="color2">clik aqui</strong></a>
+	                            	Completa el formulario e ingresa al mundo de SMARTBAR, donde mantienes el control de tu negocio 24/7. <br>
+	                            	Si estas registrado <a href="" target="_blank"><strong class="color2">clik aqui</strong></a>
                             	</p>
                             </div>
                         </div>
@@ -90,29 +90,27 @@
 					<a class="hiddenanchor w3layouts agileits" id="toregister"></a>
 					<div id="wrapper">
 						<div id="login" class="animate w3layouts agileits form">
-							<h2 class="w3layouts agileits">Iniciar Sesión</h2>
+							<h2 class="w3layouts agileits">INICIAR SESIÓN</h2>
 							<form  action="#" autocomplete="on" method="post">
 								<label>E-mail</label>
 								<input type="text" Name="Email o SubName" required="">
 								<label>Contraseña</label>
 								<input type="password" Name="Password" required="">
 								<div class="send-button w3layouts agileits">
-									<p><a href="#">¿Se te olvidó tu contraseña?</a></p>
+									<p><a href="#">Recupera tu contraseña</a></p>
 									<form>
 										<input type="submit" value="INICIAR SESIÓN">
 									</form>
 									<div class="clear"></div>
 								</div>
-								<p class="change_link w3layouts agileits">
-									¿No tienes una cuenta? <a href="#toregister" class="to_register">Registrarme</a>
-								</p>
+								
 								<div class="clear"></div>
 							</form>
 							<div class="social-icons w3layouts agileits">
-								<p>LOGUEAR CON TUS CUENTAS SOCIALES</p>
+								<p>LOGUEAR CON TUS REDES SOCIALES</p>
 								<ul>
 									<li class="fb w3ls w3layouts agileits"><a href="{{ url('/Auth/facebook') }}"><span class="icons w3layouts agileits"></span><span class="text w3layouts agileits">Facebook</span></a></li>
-									<li class="gog w3ls w3layouts agileits"><a href="#"><span class="icons w3layouts agileits"></span><span class="text w3layouts agileits">Google</span></a></li>
+									<li class="gog w3ls w3layouts agileits"><a href="#"><span class="icons w3layouts agileits"></span><span class="text w3layouts agileits">Google +</span></a></li>
 									<div class="clear"></div>
 								</ul>
 							</div>
@@ -133,24 +131,22 @@
                                 	<label>Empresa</label>
 									<input type="text" class="name w3layouts agileits" name="nombreEstablecimiento" value="{{ old('nombreEstablecimiento') }}" >
 									<div class="text-danger">{{$errors->first('nombreEstablecimiento')}}</div>
-                                <div class="left-w3-agile">
+                                <div>
                                     <label>Nombre</label>
 									<input type="text" class="usuario w3layouts agileits" name="nombrePersona" placeholder="" value="{{ old('name') }}" ><div class="text-danger">{{$errors->first('name')}}</div>
 									</div>	
-								<div class="right-agileits">
-                                <label>Apellido</label>
-								<input type="text" class="usuario w3layouts agileits" name="" placeholder=""/>
-								</div>
-                                	<label>Correo Electronico</label>
+								
+                                	<label>E-mail</label>
 									<input type="text" Name="email" value="{{ old('email') }}">
 									<div class="text-danger">{{$errors->first('email')}}</div>
+
 									<label>Contraseña</label>
 									<input type="password" Name="password">
 									<div class="text-danger">{{$errors->first('password')}}</div>
                                 <div class="left-w3-agile" id="target">
                                 <label>Departamento</label>
 								<select id="idDepto" name="idDepto" required>
-									<option>Elija una opción</option>>
+									<option></option>>
 									@foreach($departamentos as $departamento)
                                   		<option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
                                  	@endforeach
@@ -158,7 +154,7 @@
 								<div class="right-agileits">
                                 <label>Ciudad</label>
 								<select id="idCiudad" name="idCiudad" required> 
-									<option>Elija una opción</option>  
+									<option></option>  
                                 </select>
 								</div>
 									<div class="send-button w3layouts agileits">
@@ -166,13 +162,11 @@
 										<input type="submit" value="REGISTRARME">
 
 									</div>
-								<p class="change_link w3layouts agileits">
-									¿Ya eres usuario? <a href="{{ url('Auth/login') }}" class="to_register">Iniciar Sesión</a>
-								</p>
+								
 								<div class="clear"></div>
 							</form>
 							<div class="social-icons w3layouts agileits">
-								<p>LOGUEAR CON TUS CUENTAS SOCIALES</p>
+								<p>REGISTRATE CON TUS CUENTAS SOCIALES</p>
 								<ul>
 									<li class="fb w3ls w3layouts agileits"><a href="{{ url('/Auth/facebook') }}"><span class="icons w3layouts agileits"></span><span class="text w3layouts agileits">Facebook</span></a></li>
 									<li class="gog w3ls w3layouts agileits"><a href="#"><span class="icons w3layouts agileits"></span><span class="text w3layouts agileits">Google</span></a></li>
