@@ -13,14 +13,14 @@
         </a>
     </div>
   </form >
-  <form id="busqueda" name="busqueda" class="navbar-form navbar-right">
+  <div id="busqueda" name="busqueda" class="navbar-form navbar-right">
     <div class="form-group" align="right">
       <div class="icon-addon addon-md">
           <input  id="nombreInput" type="text" size="40" maxlength="30" placeholder="Buscar..." class="form-control" />
           <label for="nombreInput" class="glyphicon glyphicon-search" rel="tooltip" title="nombreInput"></label>
       </div>
     </div>
-  </form>
+  </div>
 
 
   <div class="modal fade in" id="addModal" >
@@ -34,7 +34,7 @@
             </h4>
           </div>
           <div class="modal-body">
-            <div class="pre-scrollable" >
+            <div class="" >
             <div class="widget-content">
               <div class="form-group">
                 <div class="form-group">
