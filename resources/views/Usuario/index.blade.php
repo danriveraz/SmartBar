@@ -6,10 +6,13 @@
       @include('flash::message')
       <a href="{{ route('Auth.usuario.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Agregar nuevo usuario </a>
   </div>
+  <div class="row">
   <div class="social-wrapper">
     <div id="social-container">
   @foreach($usuarios as $usuario)
 <!-- Profile Widget -->
+<div class="row">
+<div clas="col-md-4">
 <div class="item widget-container fluid-height profile-widget">
   <div class="heading">
       <i class="fa fa-level-up"></i><a href="{{url('Auth/usuario/'.$usuario->id.'/edit')}}">Ver mas <i class="fa fa-gear  pull-right"></i></a>
@@ -63,7 +66,6 @@
       
     </div>
   </div>
-</div>
 <!-- end Profile Widget -->
           <!--
           <td><a href="{{ route('Auth.usuario.edit',$usuario->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
@@ -71,15 +73,18 @@
              class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
           </td>
           -->
-      @endforeach
     </div>
+    </div>
+    </div>
+    @endforeach
   </div>
-
+</div>
+</div>
 
 
 <!-- inidio de slider de agregar usuario -->
 <div class="style-selector" >
-  <!--
+
 <div class="style-selector-container">
   <div class="row">
     <div class="">
@@ -87,13 +92,13 @@
         <div class="heading">
           <i class="fa fa-shield"></i>Formulario Para Nuevo Usuario      </div>
         <div class="widget-content padded">
-          <form action="" id="validate-form" method="get">
+         <form id="checkbox">
+          <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
             <fieldset>
               <div class="row">
                 <div class="col-md-4">
                    
-                   
-                       <div class="form-group">
+            <div class="form-group">
               <label class="control-label col-md-2"></label>
               <div class="col-md-9">
                 <div class="fileupload fileupload-new" data-provides="fileupload">
@@ -109,56 +114,79 @@
             </div>
             
              <div  style="margin-top: 73%;"></div>
-                   <div class="form-group">
-                    <label for="firstname">Nombre Del Empleado</label><input class="form-control" id="" name="" type="text">
-                  </div> 
+               <div class="form-group">
+                <label for="nombrePersona">Nombre Del Empleado</label><input class="form-control" id="nombrePersona" name="nombrePersona" type="text">
+              </div> 
                    
                 </div>
                 <div class="col-md-4 ">
                   <div class="form-group">
-                    <label for="lastname">Cedula o Documento</label><input class="form-control" id="" name="" type="text">
+                    <label for="cedula">Número de identificación:</label><input class="form-control" id="cedula" name="cedula" type="text">
                   </div>
                   <div class="form-group">
-                    <label for="firstname">Email</label><input class="form-control" id="" name="" type="email">
+                    <label for="email">Email</label><input class="form-control" id="email" name="email" type="email">
                   </div>
                  
                   <div class="form-group">
-                    <label for="password">Tipo De Empleado</label>
-                
-                    <select class="select2able" multiple>
-                        <option value="Category 1">Option 1</option>
-                        <option value="Category 2">Option 2</option>
-                        <option value="Category 3">Option 3</option>
-                        <option value="Category 4">Option 4</option>
-                    </select>
-                    
+                    <label for="fechaNacimiento">Fecha De Nacimiento</label><input class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" placeholder="dd/mm/yyyy" type="text" name="fechaNacimiento" id="fechaNacimiento">
                   </div>
-                  <div class="form-group">
-                    <label for="username">Fecha De Nacimiento</label><input class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" placeholder="dd/mm/yyyy" type="text">
+
+                <div class="row">
+                  <label for="sexo" class="control-label col-md-2">Sexo:</label>
+                  <div class="col-md-7">
+                    <label class="radio-inline">
+                      <input type="radio" id="sexo" name="sexo" value="Femenino"><span>Femenino</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" id="sexo" name="sexo" value="Masculino"><span>Masculino</span></label>
+                    </label>
+                    <div class="bg-danger text-white">{{$errors->first('sexo')}}</div>
                   </div>
+                </div>
+
                 </div>
                 
                 <div class="col-md-4">
                   
-                    <div class="form-group">
-                    <label for="email">Sexo</label> <select class="select2able"><option value="Category 1">Masculino<option value="Category 2">Femenino</select>
+                  <div class="form-group">
+                    <label for="password">Password:</label><input class="form-control" type="password" name="password" id="password">
                   </div>
                   
                   <div class="form-group">
-                    <label for="firstname">Dirección De Residencia</label><input class="form-control" id="" name="" type="text">
-                  </div>
-                  <div class="form-group">
-                    <label for="firstname">Telefono</label><input class="form-control" data-inputmask="'mask': ['(999) 999-9999']" type="text" placeholder="Ingrese Numero de Telefono">
+                    <label for="contraseña_confirmation">Confirmar password:</label><input class="form-control" type="password" name="password_confirmation" id="password_confirmation">
                   </div>
                   
-                    <div class="form-group">
-                    <label for="firstname">Salario X Dia</label><input class="form-control" id="" name="" type="number" placeholder="Ingrese El Salario A Pagar Al Empleador">
-                  </div>                            
+                  <!--Tipos-->
+                  <div class="form-group">
+                    <div class="row">
+                      <label class="control-label">Seleccione los roles que desempeñará:</label>
+                    </div>
+                    <div class="row">
+                    </div>
+                      <label class="checkbox-inline">
+                        {!! Form::checkbox('Permisos[]', 'Mesero', 0, ['data-toggle'=>'checkbox', 'class' => 'Check']) !!}
+                        <span>Mesero</span>
+                      </label>
+                      <label class="checkbox-inline">
+                        {!! Form::checkbox('Permisos[]', 'Bartender', 0, ['data-toggle'=>'checkbox', 'class' => 'Check']) !!}<span>Bartender</span>
+                      </label>
+                      <label class="checkbox-inline">
+                        {!! Form::checkbox('Permisos[]', 'Cajero', 0, ['data-toggle'=>'checkbox', 'class' => 'Check']) !!}<span>Cajero</span>
+                      </label>
+                      <label class="checkbox-inline">
+                        {!! Form::checkbox('Permisos[]', 'Administrador', 0, ['data-toggle'=>'checkbox', 'class' => 'Check']) !!}<span>Administrador</span>
+                      </label>
+                      <label class="checkbox-inline">
+                        {!! Form::checkbox('Permisos[]', 'Obsequio', 0, ['data-toggle'=>'checkbox', 'class' => 'Check']) !!}<span>Obsequiar</span>
+                      </label>
+                    </div>
+
                 </div>
                 
                 
               </div>
-                         <div  class="col-md-3 col-md-offset-5"><input class="btn btn-primary" type="submit" value="Validate form"> </div>
+                <div  class="col-md-3 col-md-offset-5">{!!link_to('#', $title='Registrar', $attributes = ['id'=>'registrarUsuario', 'class'=>'btn btn-fill btn-block btn-info'], $secure = null)!!}
+                </div>
 
             </fieldset>
           </form>
@@ -171,13 +199,9 @@
   </div>
   </div>
 </div>
--->
-
-
-
-
   {!!$usuarios->render() !!}
 </div>
+
 <script type="text/javascript">
  $(document).ready(function(){
     cambiarCurrent("#usuario");
@@ -186,5 +210,61 @@ function cambiarCurrent(idInput) {
   $(".current").removeClass("current");
   $(idInput).addClass("current");
 };
+
+/// Ajax para registrar un usuario
+$("#registrarUsuario").click(function(){
+    //Aquí buscamos todos los inputs que tengan una clase llamada; Check
+    var a = document.querySelectorAll("input.Check:checked");
+    //Ahora vamos hacer uso del Prototype de JS para digamos recorrer todo lo que se ha generado desde la variable a y lo devolvemos a la variable ids_
+    var Permisos = Array.prototype.map.call(a,function(x){ return x.value; });
+
+    var token = $("#token").val();
+    var type = "POST";
+    var formData = {
+            nombrePersona: $("#nombrePersona").val(),
+            cedula: $('#cedula').val(),
+            email: $('#email').val(),
+            nivelAcademico: $('#nivelAcademico').val(),
+            fechaNacimiento: $('#fechaNacimiento').val(),
+            sexo: $('#sexo').val(),
+            password: $('#password').val(),
+            password_confirmation: $('#password_confirmation').val(),
+            Permisos: Permisos
+        }
+
+    $.ajax({
+        url: '{{url('Auth/registerUser')}}',
+        headers: {'X-CSRF-TOKEN': token},
+        type: type,
+        dataType: 'json',
+        data: formData,
+        success: function (data) { //anunciar creado autor
+           var usuarioNuevo = JSON.parse(data.user);
+           console.log(usuarioNuevo);
+           var permisoQueTiene= '';
+           if(usuarioNuevo.esAdmin){
+              permisoQueTiene += ' Administrador';
+           }if(usuarioNuevo.esMesero){
+              permisoQueTiene += ' Mesero';
+           }if(usuarioNuevo.esBartender){
+              permisoQueTiene += ' Bartender';
+           }if(usuarioNuevo.esCajero){
+              permisoQueTiene += ' Cajero';
+           }
+           var link = '<div class="row"><div clas="col-md-4"><div class="item widget-container fluid-height profile-widget"><div class="heading"><i class="fa fa-level-up"></i><a href="http://localhost/PocketByR/public/Auth/usuario/1/edit">Ver mas <i class="fa fa-gear  pull-right"></i></a></div><div class="widget-content padded"><div class="profile-info clearfix"><img width="70" height="70" class="social-avatar pull-left" src="http://localhost/PocketByR/public/images/admins/perfil.jpg"><div class="profile-details"><a class="user-name" href="">'+ usuarioNuevo.nombrePersona +'</a><p>Datos del Empleado</p><em><i class="fa fa-list-alt "></i>'+ usuarioNuevo.cedula +'</em><em><i class="fa fa-phone "></i>3012343457</em><p>'+permisoQueTiene+'</p></div></div><div class="profile-stats"><div class="col-md-4"><div class="btn-group dropup"><button class="btn btn-info">Control</button><button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#"><i class="fa fa-clock-o pull-left"></i>Horas Ingreso</a></li><li><a href="#"><i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a></li><li><a href="#"><i class="fa fa-money pull-left"></i>Salario</a></li></ul></div></div><div class="col-md-4"><button class="btn btn-info"><i class="fa fa-calendar-o"></i>Agenda</button></div><div class="col-md-4"><button class="btn btn-info"><i class="fa fa-envelope-o"></i>Mensaje</button></div></div></div></div></div></div>';
+           $("#social-container").append(link);
+        }, error: function(xhr,status, response) {
+              var error = jQuery.parseJSON(xhr.responseText);  // this section is key player in getting the value of the errors from controller.
+                for(var k in error.message){
+                    if(error.message.hasOwnProperty(k)){
+                        error.message[k].forEach(function(val){
+                            console.log(val);
+                        });
+                    }
+                }
+        }
+    });
+});
+
 </script>
 @endsection

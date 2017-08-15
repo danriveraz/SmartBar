@@ -29,8 +29,8 @@ class UsuariosController extends Controller
   public function store(Request $request){
     $rules = [
             'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'email' => 'required|email|max:255|unique:usuario,email',
-            'cedula' => 'required|min:1|max:9999999999|numeric|unique:usuario,cedula',
+            'email' => 'required|email|max:255',
+            'cedula' => 'required|min:1|max:9999999999|numeric',
             'password' => 'required|min:6|max:18|confirmed',
             'fechaNacimiento' => 'required',
             'sexo' => 'required'
@@ -167,4 +167,71 @@ class UsuariosController extends Controller
     Flash::success('El usuario ha sido eliminado de forma exitosa')->important();
     return redirect()->route('Auth.usuario.index');
   }
+
+  public function registerUser(Request $request){
+
+      if($request->ajax()){
+        $validator = Validator::make($request->all(), [
+            'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'email' => 'required|email|max:255',
+            'cedula' => 'required|min:1|max:9999999999|numeric',
+            'password' => 'required|min:6|max:18|confirmed',
+            'fechaNacimiento' => 'required',
+            'sexo' => 'required'
+         ]);
+
+      if($validator->passes()){
+          $Permisos = $request['Permisos'];
+          $usuario = new User;
+          $usuario->nombrePersona = $request->nombrePersona;
+          $usuario->email = $request->email;
+          $usuario->cedula = $request->cedula;
+          $usuario->password = bcrypt($request->password);
+          $usuario->sexo = $request->sexo;
+          $usuario->fechaNacimiento = $request->fechaNacimiento;
+          $usuario->pais= "Colombia";
+          $usuario->departamento= Auth::user()->departamento;
+          $usuario->ciudad= Auth::user()->ciudad;
+          $usuario->confirmoEmail = 1;
+          $usuario->imagenPerfil = "perfil.jpg";
+          $usuario->imagenNegocio = "perfil.jpg";
+          $usuario->remember_token = str_random(100);
+          $usuario->confirm_token = str_random(100);
+          $usuario->idEmpresa = Auth::user()->idEmpresa; // id de la empresa para saber a quién pertenece
+
+          foreach ($Permisos as $key => $value) {
+            if($value=='Administrador'){
+                  $usuario->esMesero = 1;
+                  $usuario->esBartender = 1;
+                  $usuario->esCajero = 1;
+                  $usuario->esAdmin = 1;
+                  $usuario->obsequio = 1;
+            }else{
+                if($value=='Mesero'){
+                    $usuario->esMesero = 1;
+                }if($value=='Cajero'){
+                    $usuario->esCajero = 1;
+                }if($value=='Bartender'){
+                    $usuario->esBartender = 1;
+                }if($value=='Obsequio'){
+                    $usuario->obsequio = 1;
+                }
+              }
+            }
+            $usuario->save();
+
+            $user = User::all()->last()->toJson();
+            return response()->json(['success' => true,'message' => 'record updated', 'user' => $user], 200);
+            Flash::success("El usuario se ha registrado satisfactoriamente")->important();
+
+        }if ($validator->fails()) { 
+            $errors = $validator->errors();
+            $errors =  json_decode($errors); 
+            return response()->json(['success' => false,'message' => $errors], 422);
+        }
+      }
+
+
+  }
+
 }
