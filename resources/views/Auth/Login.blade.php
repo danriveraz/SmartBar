@@ -97,7 +97,7 @@
 									 @endif
 								 </div>
 								<label>E-mail</label>
-								<input type="text" name="email" value="{{Input::old('email')}}" required>
+								<input type="text" name="username" value="{{Input::old('username')}}" required>
 								<label>Contraseña</label>
 								<input type="password" Name="password" required="">
 								<div class="send-button w3layouts agileits">
