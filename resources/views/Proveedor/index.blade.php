@@ -41,10 +41,10 @@
                     <input type="text" name="nombre" class="form-control" placeholder="Nombre del proveedor" required="true"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="direccion" placeholder="Direcci贸n" class="form-control" required="true">
+                    <input type="text" name="direccion" placeholder="Dirección" class="form-control" required="true">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="telefono" placeholder="Tel茅fono" class="form-control" value="(+57)" required="true">
+                    <input type="text" name="telefono" placeholder="Teléfono" class="form-control" value="(+57)" required="true">
                 </div>
               </div>
             </div>
@@ -135,7 +135,7 @@
     
     .icon-addon {
         position: relative;
-        color: #555;
+        color: rgb(79,0,85);
         display: block;
     }
     
@@ -205,7 +205,7 @@
     .icon-addon:hover .glyphicon,
     .icon-addon .form-control:focus + .fa,
     .icon-addon:hover .fa {
-        color: #2580db;
+        color: rgb(79,0,85);
     }
   </style>
 

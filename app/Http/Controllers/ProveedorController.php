@@ -44,10 +44,11 @@ class ProveedorController extends Controller
 
     public function listall(Request $request){
       $userActual = Auth::user();
-      $proveedores = Proveedor::Search($request->nombre)->
-                         where('idEmpresa' , $userActual->idEmpresa)->
-                         orderBy('nombre','ASC')->
-                         paginate(1000);
+      $nombre = $request->nombre;
+      $idEmpresa = $userActual->idEmpresa;
+      $arreglo = array($nombre,$idEmpresa);
+      $proveedores = Proveedor::Search($arreglo)->
+                                get();
       return view('Proveedor.listall')->with('proveedores',$proveedores);
     }
 

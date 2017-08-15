@@ -25,4 +25,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function Empresa(){
+      return $this->belongsTo('PocketByR\Empresa', 'idEmpresa', 'id');
+    }
 }

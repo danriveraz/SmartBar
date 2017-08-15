@@ -160,7 +160,7 @@
           <div class="nav-collapse" >
             <ul class="nav" style="BACKGROUND-COLOR: rgb(245,245,245)">
              <li class="dropdown"><a data-toggle="dropdown" href="#">
-                <span aria-hidden="true" class="glyphicon-folder-open"></span> Nombre del Negocio<b class="caret"></b></a>
+                <span aria-hidden="true" class="glyphicon glyphicon-folder-open"></span> {{Auth::User()->empresa->nombreEstablecimiento}} <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li>
                     <a id="usuario" nombre="barraNavegacion" href={{url("/Auth/usuario")}}>
@@ -206,11 +206,10 @@
       @yield('content')
     </div>
 
-    <div class="footer w3layouts agileits">
-    <div class="wrap">
-        <p class="copy">© 2017 condiciones de uso y privacidad  <a href="" target="_blank">Derechos Reservados</a> </p>
+    <div class="footer">
+    <div class="container">
+        <p class="text-muted"> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;© 2017 condiciones de uso y privacidad  <a href="" target="_blank">Derechos Reservados&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</a> </p>
       </div>
-
   </div>
   </body>
 <script>
