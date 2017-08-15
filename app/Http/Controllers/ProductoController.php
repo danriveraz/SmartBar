@@ -47,7 +47,7 @@ class ProductoController extends Controller
   public function eliminar(Request $request){
     $contenido = Contiene::idProducto($request->id)->get();
     foreach($contenido as $contiene){
-        $contiene->delete();
+      $contiene->delete();
     }
     $producto = Producto::find($request->id);
     $producto->delete();

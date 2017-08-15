@@ -1,6 +1,5 @@
 <table class="table table-striped">
     <thead>
-      <th>#</th>
       <th>Nombre</th>
       <th>Precio</th>
       <th>Categoria</th>
@@ -8,15 +7,17 @@
     <tbody>
       @foreach($productos as $producto)
         <tr id="{{$producto->id}}">
-          <td>{{$producto->id}}</td>
           <td>{{$producto->nombre}}</td>
           <td>{{$producto->precio}}</td>
           <td>{{$categorias[$producto->idCategoria]}}</td>
           <td align="right">
             <button data-target="#editModal{{$producto->id}}" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></button>
           </td>
+          <td>
+            <button class="btn btn-default" onclick="eliminar({{$producto->id}})" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
+          </td>
           <td align="right">
-            <a href="{{ route('producto.insumoedit',$producto->id) }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">Inventario<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+            <a href="{{ route('producto.insumoedit',$producto->id) }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">Inventario <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
           </td>
         </tr>
         <div class="modal fade in" id="editModal{{$producto->id}}" role="dialog">
@@ -36,7 +37,7 @@
                         </div>
                         <br>
                         <div class="form-grup">
-                          <label for="categorias" class="control-label">Categor铆a</label>
+                          <label for="categorias" class="control-label">Categor&iacutea</label>
                           {!! Form::select('categorias', $categorias, $producto->idCategoria, ['class' => 'form-control', 'id' => 'categoria'.$producto->id, 'onchange' => 'editarValor(this.value);']) !!}
                         </div>
                         <br>
@@ -46,7 +47,7 @@
                         </div>
                         <br>
                         <div class="form-grup">
-                          <label for="receta" class="control-label">Preparaci贸n</label>
+                          <label for="receta" class="control-label">Preparaci&oacuten</label>
                           <br>
                           <textarea name="receta" id="receta{{$producto->id}}" class="form-control">{{$producto->receta}}</textarea>
                         </div>
@@ -70,6 +71,7 @@
 
 <script>
   var routeModificar = "http://pocketdesigner.co/PocketByR/public//producto/modificar";
+  var routeEliminar = "http://pocketdesigner.co/PocketByR/public//producto/eliminar";
 
   var editarValor = function(x){
     var p = 0;
@@ -112,5 +114,23 @@
         alert('Error al modificar producto');
       }
     });       
+  }
+
+  function eliminar(idProducto){
+    if(confirm('¿Desea eliminar este Producto?')){
+      $.ajax({
+        url: routeEliminar,
+        type: 'GET',
+        data: {
+          id: idProducto
+        },
+        success: function(){
+            $("#"+idProducto).remove();
+        },
+        error: function(data){
+          alert('No se puede eliminar el producto, ya que existe historial de ventas del mismo.');
+        }
+      });
+    }
   }
 </script>  

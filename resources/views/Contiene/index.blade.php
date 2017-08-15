@@ -3,28 +3,27 @@
 
 <div class="col-sm-offset-2 col-sm-8"> 
   <div class="panel-tittle">
-      <h1>Asignar insumos</h1>
+      <h1>{{$nombre}}</h1>
   </div>
-  <button onclick="enviarDatos({{$idProducto}})" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><i class="glyphicon glyphicon-ok"></i> Guardar</button>
   <div class="panel">
     <div class="panel-heading">
       <div class="panel-title">
-        <a class="accordion-toggle collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseOne">
+        <a class="accordion-toggle" data-parent="#accordion" data-toggle="collapse" href="#collapseOne">
           <div class="caret pull-right"></div>Insumos del producto</a>
       </div>
     </div>
-    <div class="panel-collapse collapse" id="collapseOne">
+    <div class="panel-collapse collapse in" id="collapseOne">
       <div class="panel-body">
         <table class="table table-hover" id="insumoAgregados">
           <thead>
-            <th>#</th>
+            <th style="visibility: hidden;">#</th>
             <th>Insumo</th>
-            <th>Cantidad de onzas</th>
+            <th>Cantidad de onzas/unidades</th>
           </thead>
           <tbody>
             @foreach($contienen as $contiene)
               <tr id="fila{{$contiene->idInsumo}}">
-                <td>{{$contiene->idInsumo}}</td>
+                <td style="visibility: hidden;">{{$contiene->idInsumo}}</td>
                 <td>{{$insumos[$contiene->idInsumo]}}</td>
                 <td>{{$contiene->cantidad}}</td>
                 <td>
@@ -60,6 +59,9 @@
     </form>
     <div class="panel-body">
       <div id="list-cont"></div>
+   </div>
+   <div align="right">
+     <button onclick="enviarDatos({{$idProducto}})" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><i class="glyphicon glyphicon-ok"></i> Guardar</button>
    </div>
   </div>
 </div>
@@ -118,8 +120,19 @@
   var routeEliminar = "http://pocketdesigner.co/PocketByR/public/contiene/eliminar";
   var routeGuardar = "http://pocketdesigner.co/PocketByR/public/contiene/guardar";
 
+  function tecla(e,insumo){
+    if(e.which == 13){
+      adicionarInsumo(insumo);
+    }
+  }
+
   function adicionarInsumo(insumo){
     var cantidad = $("#"+insumo.id).val();
+    var medida = $("#medida"+insumo.id).val();
+    if(medida == 2 || medida == 3){
+      var cantidadAux = cantidad/30;
+      cantidad = cantidadAux;
+    }
     if(cantidad>0){
       if(document.getElementById("fila"+insumo.id)!=null){
         $("#fila"+insumo.id).children("td").each(function (indextd)
@@ -135,8 +148,30 @@
         $("#insumoAgregados").append(fila);       
       }
       $("#"+insumo.id).val('');
+      $("#medida"+insumo.id).val('1');
     }
   }
+
+  function modificarInsumo(insumo){
+    var cantidad = $("#"+insumo.id).val();
+    var medida = $("#medida"+insumo.id).val();
+    if(medida == 2 || medida == 3){
+      var cantidadAux = cantidad/30;
+      cantidad = cantidadAux;
+    }
+    if(cantidad>0){
+      if(document.getElementById("fila"+insumo.id)!=null){
+        $("#fila"+insumo.id).children("td").each(function (indextd)
+          {
+            if(indextd == 2){
+              $(this).text(cantidad);
+            }
+          });
+        }
+      $("#"+insumo.id).val('');
+      $("#medida"+insumo.id).val('1');
+    }
+  }  
 
   function adicionarTodo(){
     var insumos = [];
@@ -152,21 +187,28 @@
         })
       });
       for(var i = 0; i < insumos.length; i++){
-        if($("#"+insumos[i]).val() != 0){
+        var cantidad = $("#"+insumos[i]).val();
+        var medida = $("#medida"+insumos[i]).val();
+        if(medida == 2 || medida == 3){
+          var cantidadAux = cantidad/30;
+          cantidad = cantidadAux;
+        }        
+        if(cantidad != 0){
           if(document.getElementById("fila"+insumos[i])!=null){
             $("#fila"+insumos[i]).children("td").each(function (indextd)
             {
               if(indextd == 2){
-                var nuevaCantidad = parseFloat($(this).text())+parseFloat($("#"+insumos[i]).val());
+                var nuevaCantidad = parseFloat($(this).text())+parseFloat(cantidad);
                 $(this).text(nuevaCantidad);
               }
             });            
           }
           else{
-            var fila = '<tr id="fila'+insumos[i]+'"><td>'+insumos[i]+'</td><td>'+nombres[i]+'</td><td>'+$("#"+insumos[i]).val()+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},'+insumos[i]+')"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td></tr>';
+            var fila = '<tr id="fila'+insumos[i]+'"><td>'+insumos[i]+'</td><td>'+nombres[i]+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},'+insumos[i]+')"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td></tr>';
             $("#insumoAgregados").append(fila);
           }
           $("#"+insumos[i]).val('');
+          $("#medida"+insumos[i]).val('1');
         }
       }
   }

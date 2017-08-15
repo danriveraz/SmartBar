@@ -40,6 +40,7 @@ Route::get('insumo/modificar', 'InsumoController@modificar');
 Route::get('inslistall/{page?}', 'InsumoController@listall');
 Route::resource('insumo', 'InsumoController');
 
+Route::get('producto/eliminar', 'ProductoController@eliminar');
 Route::get('producto/modificar', 'ProductoController@modificar');
 Route::resource('producto', 'ProductoController');
 Route::get('prodlistall', 'ProductoController@listall');
