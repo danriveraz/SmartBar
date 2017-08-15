@@ -12,8 +12,8 @@
       <td>{{$proveedor->direccion}}</td>
       <td>{{$proveedor->telefono}}</td>
       <td align="right" id="ocultar{{$proveedor->id}}">
-        <button data-toggle="modal" class="btn btn-default" data-target="#editModal{{$proveedor->id}}" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></button>
-        <button class="btn btn-default" onclick="eliminar({{$proveedor->id}})" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
+        <button data-toggle="modal" class="btn btn-default" data-target="#editModal{{$proveedor->id}}" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="fa fa-edit" aria-hidden="true"></span></button>
+        <button class="btn btn-default" onclick="eliminar({{$proveedor->id}})" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
       </td>
     </tr>
     <div class="modal fade in" id="editModal{{$proveedor->id}}" role="dialog" >
@@ -44,7 +44,7 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-default" data-dismiss="modal" onclick="modificar({{$proveedor->id}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
-              <button class="btn btn-default-outline" data-dismiss="modal" type="button">Cerrar</button>
+
             </div>
             <script type="text/javascript">
                 function ocultar(){

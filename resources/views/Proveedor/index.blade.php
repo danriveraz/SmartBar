@@ -52,7 +52,6 @@
           </div>
           <div class="modal-footer">
             <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
-            <button class="btn btn-default-outline" data-dismiss="modal" type="button">Cerrar</button>
           </div>
         {!! Form::close() !!}
     </div>
