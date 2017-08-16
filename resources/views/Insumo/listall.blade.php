@@ -1,10 +1,9 @@
 <table class="table table-striped">
     <thead>
-      <th>#</th>
+      <th>Unidades</th>
       <th>Nombre</th>
       <th>Marca</th>
       <th>Proveedor</th>
-      <th>Unidades</th>
       <th>Valor compra</th>
       <th>Valor venta</th>
       <th>Onzas/Unidades disponibles</th>
@@ -13,16 +12,15 @@
     <tbody>
       @foreach($insumos as $insumo)
         <tr id="{{$insumo->id}}">
-          <td>{{$insumo->id}}</td>
+          <td>{{$insumo->cantidadUnidad}}</td>
           <td>{{$insumo->nombre}}</td>
           <td>{{$insumo->marca}}</td>
           <td>{{$proveedores[$insumo->idProveedor]}}</td>
-          <td>{{$insumo->cantidadUnidad}}</td>
           <td>{{$insumo->valorCompra}}</td>
           <td>{{$insumo->precioUnidad}}</td>
           <td>{{number_format($insumo->cantidadMedida,3)}}</td>
           <td align="center">
-            <label> <input type="checkbox" disabled="disabled" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?>/><span></span></label>
+            <label> <input type="checkbox" disabled="disabled" name="tipo" id="t{{$insumo->id}}" <?php if($insumo->tipo == "1") echo "checked";?>/><span></span></label>
           </td>
           <td>
           <button data-target="#editModal{{$insumo->id}}" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
@@ -63,11 +61,11 @@
                     </div>
                     <div class="form-group">
                       <label for="valorCompra" class="control-label">Valor de compra</label>
-                      <input type="number" id="compra{{$insumo->id}}" step="any" min="0" name="valorCompra" class="form-control" value="{{$insumo->valorCompra}}"/>
+                      <input type="number" id="compra{{$insumo->id}}" step="any" min="0" name="valorCompra" class="form-control" value="{{$insumo->valorCompra}}" onkeypress="autocompletar(event,this)"/>
                     </div>
                     <div class="form-group">
                       <label for="precioUnidad" class="control-label">Valor de venta</label>
-                      <input type="number" id="venta{{$insumo->id}}" step="any" min="0" name="precioUnidad" class="form-control" value="{{$insumo->precioUnidad}}"/>
+                      <input type="number" id="venta{{$insumo->id}}" step="any" min="0" name="precioUnidad" class="form-control" value="{{$insumo->precioUnidad}}" onkeypress="autocompletar(event,this)"/>
                     </div>
                     <div class="form-group">
                       <label for="cantidadMedida" class="control-label">Cantidad de medida</label>
@@ -81,11 +79,11 @@
                     </div>
                     <div class="form-group">
                       <label for="tipo" class="control-label">¿Vender en botella?</label>
-                      <label> <input type="checkbox" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?> onchange="javascript:showContent()" disabled="disabled" /><span></span></label>
+                      <label> <input type="checkbox" name="tipo" id="tipo{{$insumo->id}}" <?php if($insumo->tipo == "1") echo "checked";?> onchange="showContent({{$insumo->id}})" /><span></span></label>
                     </div>
-                    <div id="content" <?php if($insumo->tipo == "0") echo "hidden";?>>
-                      <label for="categorias" class="control-label">Categoría</label>
-                      {!! Form::select('categorias', $categorias, null, ['class' => 'form-control', 'disabled'=>'disabled' ]) !!}
+                    <div id="content{{$insumo->id}}" <?php if($insumo->tipo == "0") echo "hidden";?>>
+                      <label for="categorias" class="control-label">Categor&iacutea</label>
+                      {!! Form::select('categorias', $categorias, null, ['class' => 'form-control', 'id'=>'categoria'.$insumo->id]) !!}
                     </div>
                     <br>
                   </div>
@@ -108,9 +106,9 @@
   var routeModificar = "http://pocketdesigner.co/PocketByR/public/insumo/modificar";
   var routeEliminar = "http://pocketdesigner.co/PocketByR/public/insumo/eliminar";  
 
-  function showContent() {
-    element = document.getElementById("content");
-    check = document.getElementById("tipo");
+  function showContent(idInsumo) {
+    element = document.getElementById("content"+idInsumo);
+    check = document.getElementById("tipo"+idInsumo);
     if (check.checked) {
       element.style.display='block';
     }
@@ -138,7 +136,13 @@
     var venta = $("#venta"+idInsumo).val();
     var cantMedida = $("#cantMedida"+idInsumo).val();
     var medida = $("#medida"+idInsumo).val();
+    var check = document.getElementById("tipo"+idInsumo);
+    var categoria = $("#categoria"+idInsumo).val();
+    var tipo = '0';
 
+    if(check.checked){
+      tipo = '1';
+    }
     if(marca==''){
       marca = 'Sin marca';
     }
@@ -155,9 +159,11 @@
         compra: compra,
         venta: venta,
         cantMedida: cantMedida,
-        medida: medida
+        medida: medida,
+        tipo: tipo,
+        categoria: categoria
       },
-      success: function(data){
+      success: function(){
         $("#"+idInsumo).children("td").each(function (indextd){
           if(indextd == 1){
             $(this).text(nombre);
@@ -165,16 +171,17 @@
             $(this).text(marca);
           }else if(indextd == 3){
             $(this).text(proveedores[proveedor]);
-          }else if(indextd == 4){
+          }else if(indextd == 0){
             $(this).text(unidades);
-          }else if(indextd == 5){
+          }else if(indextd == 4){
             $(this).text(compra);
-          }else if(indextd == 6){
+          }else if(indextd == 5){
             $(this).text(venta);
-          }else if(indextd == 7){
+          }else if(indextd == 6){
             $(this).text(cantMedida);
           }
         });
+        document.getElementById("t"+idInsumo).checked = check.checked;
       },
       error: function(data){
         alert('Error al modificar insumo');

@@ -49,25 +49,50 @@ class InsumoController extends Controller
     $insumo->precioUnidad = $request->venta;
     $insumo->valorCompra = $request->compra;
 
-      if(empty($request->marca)){
-        $insumo->marca = 'Sin marca';
+    if(empty($request->marca)){
+      $insumo->marca = 'Sin marca';
+    }else{
+      $insumo->marca = $request->marca;
+    }
+    if ($request->medida == 'ml' || $request->medida == 'cm3') {
+      $insumo->cantidadMedida = $request->cantMedida/30;
+      $insumo->cantidadRestante = $request->cantMedida/30;
+    }
+    elseif ($request->medida == 'unidad') {
+      $insumo->cantidadUnidad = 1;
+      $insumo->cantidadMedida = $request->cantMedida;
+      $insumo->cantidadRestante = $request->cantMedida;
+    }
+    else{
+      $insumo->cantidadMedida = $request->cantMedida;
+      $insumo->cantidadRestante = $request->cantMedida;
+    }
+
+    if($insumo->tipo != $request->tipo){
+      $insumo->tipo = $request->tipo;
+      if($request->tipo == '1'){
+        $producto = new Producto;
+        $producto->nombre = $request->nombre;
+        $producto->precio = $request->venta;
+        $producto->idCategoria = $request->categoria;
+        $producto->idEmpresa = $userActual->idEmpresa;
+        $producto->save();
+
+        $contiene = new Contiene;
+        $contiene->idProducto = $producto->id;
+        $contiene->idInsumo = $insumo->id;
+        $contiene->cantidad = $insumo->cantidadMedida;
+        $contiene->idEmpresa = $userActual->idEmpresa;
+        $contiene->save();        
       }else{
-        $insumo->marca = $request->marca;
+        $producto = Producto::Nombre($request->nombre)->first();
+        $contenido = Contiene::IdProducto($producto->id)->get();
+        foreach($contenido as $contiene){
+          $contiene->delete();
+        }
+        $producto->delete();
       }
-      
-      if ($request->medida == 'ml' || $request->medida == 'cm3') {
-        $insumo->cantidadMedida = $request->cantMedida/30;
-        $insumo->cantidadRestante = $request->cantMedida/30;
-      }
-      elseif ($request->medida == 'unidad') {
-        $insumo->cantidadUnidad = 1;
-        $insumo->cantidadMedida = $request->cantMedida;
-        $insumo->cantidadRestante = $request->cantMedida;
-      }
-      else{
-        $insumo->cantidadMedida = $request->cantMedida;
-        $insumo->cantidadRestante = $request->cantMedida;
-      }
+    }
     $insumo->save();
   }
 
