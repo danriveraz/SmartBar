@@ -30,7 +30,7 @@
     </div>
     <form class="navbar-form navbar-left">
     <div class="form-group" align="left">
-        <a href="#addModal" class="btn btn-default" data-toggle="modal">
+        <a href="#addPModal" class="btn btn-default" data-toggle="modal">
             <i class="fa fa-plus"></i> Nuevo producto &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
         </a>
     </div>
