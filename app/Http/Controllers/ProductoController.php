@@ -86,6 +86,7 @@ class ProductoController extends Controller
     Flash::success("El producto se ha registrado satisfactoriamente")->important();
     session_start();
     $_SESSION['idProducto'] = $producto->id;
+    $_SESSION['nombre'] = $producto->nombre;
     return redirect()->route('contiene.index');
   }
 

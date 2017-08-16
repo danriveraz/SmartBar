@@ -23,7 +23,7 @@
           <div class="modal-body">
               <div class="alert alert-warning alert-dismissable">
                 <button aria-hidden="true" type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>¡Atencion!</strong> Para el manejo de insumos como cerezas o limones se deben ingresar las unidades disponibles para así tener una mejor experiencia. Para ello la opción disponible es unidad.
+                <strong>¡Atencion!</strong> Para un mejor control, se recomienda a&ntildeadir productos como limones o cerezas en unidad.
               </div>
             <div class="pre-scrollable" >
             <div class="widget-content">
@@ -47,11 +47,11 @@
                 </div>
                 <div class="form-group">
                     
-                    <input type="number" step="any" min="0" name="valorCompra" class="form-control" required="true" placeholder="Costo">
+                    <input type="number" step="any" min="0" name="valorCompra" class="form-control" required="true" placeholder="Costo" onkeypress="autocompletar(event,this)">
                 </div>
                 <div class="form-group">
                     
-                    <input type="number" step="any" min="0" name="precioUnidad" class="form-control" required="true" placeholder="Venta">
+                    <input type="number" step="any" min="0" name="precioUnidad" class="form-control" required="true" placeholder="Venta" onkeypress="autocompletar(event,this)">
                 </div>
                 <div class="form-group">
                     
@@ -60,7 +60,7 @@
                         <option value="ml">ml</option> 
                         <option value="cm3">cm3</option> 
                         <option value="oz">oz</option>
-                        <option value="unidad">unid</option>
+                        <option value="unidad">unidad</option>
                     </select>
                 </div>
                 <script type="text/javascript">
@@ -139,6 +139,13 @@
           document.getElementById('cantidadUnidad').value = null;
         }
   };
+
+  function autocompletar(e,element){
+    if(e.which == 32){
+      var valor = element.value*1000;
+      element.value = valor;
+    }
+  }  
 
   $(document).on("click", '#buscarNombre',function(e){
     e.preventDefault();
