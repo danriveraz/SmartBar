@@ -145,7 +145,7 @@
         var url = "prodlistall?nombre=";
         var cat = $("#buscarCategoria").val();
         var urlf = url+dato+'&categorias='+cat;
-        sleep(50);
+        sleep(100);
         $.ajax({
           type:'get',
           url:urlf,
@@ -183,7 +183,7 @@
         var url = "prodlistall?nombre=";
         var cat = $("#buscarCategoria").val();
         var urlf = url+dato+'&categorias='+cat;
-        sleep(10);
+        sleep(100);
         $.ajax({
           type:'get',
           url:urlf,
