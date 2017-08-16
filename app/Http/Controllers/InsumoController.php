@@ -84,12 +84,12 @@ class InsumoController extends Controller
 
       $proveedores = Proveedor::where('idEmpresa' , $userActual->idEmpresa)->
                                 lists('nombre','id');
-      $nombre = $request->nombre;
-      $marca = $request->marca;
-      $tipo = $request->tipo;
-      $idEmpresa = $userActual->idEmpresa;
-      $arreglo = array($nombre,$marca,$tipo,$idEmpresa);                        
-      $insumos = Insumo::Search($arreglo)->get();
+
+      $insumos = Insumo::Search($request->nombre,$request->marca)->
+                         Type($request->tipo)->
+                         where('idEmpresa' , $userActual->idEmpresa)->
+                         orderBy('nombre','ASC')->
+                         paginate(1000);
 
       return view('Insumo.listall',compact('proveedores'))->with('insumos',$insumos)->with('categorias',$categorias);
   }

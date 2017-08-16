@@ -38,7 +38,7 @@
                         <br>
                         <div class="form-grup">
                           <label for="categorias" class="control-label">Categor&iacutea</label>
-                          {!! Form::select('categorias', $categorias, $producto->idCategoria, ['class' => 'form-control', 'id' => 'categoria'.$producto->id, 'onchange' => 'editarValor(this.value);']) !!}
+                          {!! Form::select('categorias', $categorias, $producto->idCategoria, ['class' => 'form-control', 'id' => 'categoria'.$producto->id, 'name' => $producto->id , 'onchange' => 'editarValor(this.value, this.name);']) !!}
                         </div>
                         <br>
                         <div class="form-grup">
@@ -73,15 +73,15 @@
   var routeModificar = "http://pocketdesigner.co/PocketByR/public//producto/modificar";
   var routeEliminar = "http://pocketdesigner.co/PocketByR/public//producto/eliminar";
 
-  var editarValor = function(x){
+  var editarValor = function(x, idProducto){
     var p = 0;
-    cats = eval(<?php echo json_encode($categorias);?>);
+    cats = eval(<?php echo json_encode($cats);?>);
     for (var i=0; i< cats.length; i++){   
       if(x == cats[i].id){
         p = cats[i].precio;
       }   
     }
-    document.getElementById('nPrecio{{$producto->id}}').value = p;
+    document.getElementById("nPrecio"+idProducto).value = p;
   };
 
   function modificar(idProducto,categorias){
@@ -101,11 +101,11 @@
       },
       success: function(){
         $("#"+idProducto).children("td").each(function (indextd){
-          if(indextd == 1){
+          if(indextd == 0){
             $(this).text(nombre);
-          }else if(indextd == 3){
-            $(this).text(categorias[categoria]);
           }else if(indextd == 2){
+            $(this).text(categorias[categoria]);
+          }else if(indextd == 1){
             $(this).text(precio);
           }
         });

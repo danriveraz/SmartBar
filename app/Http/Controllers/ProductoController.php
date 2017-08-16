@@ -57,12 +57,13 @@ class ProductoController extends Controller
     $userActual = Auth::user();
     $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                              lists('nombre','id');
+    $cats = Categoria::where('idEmpresa',$userActual->idEmpresa)->get();
     $productos = Producto::Search($request->nombre)->
                            Category($request->categorias)->
                            where('idEmpresa' , $userActual->idEmpresa)->
                            orderBy('nombre','ASC')->
                            paginate(1000);
-    return view('Producto.listall',compact('categorias'))->with('productos',$productos);
+    return view('Producto.listall',compact('categorias'))->with('productos',$productos)->with('cats',$cats);
   }
 
   public function create(Request $request){

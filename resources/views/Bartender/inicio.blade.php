@@ -233,7 +233,6 @@ function cambiarCurrent(idInput) {
 {!!Html::style('stylesheets\isotope.css')!!}
 {!!Html::style('stylesheets\fullcalendar.css')!!}
 
-{!!Html::script('javascripts\bootstrap.min.js')!!}
 {!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
 {!!Html::script('javascripts\fullcalendar.min.js')!!}
 {!!Html::script('javascripts\jquery.dataTables.min.js')!!}
