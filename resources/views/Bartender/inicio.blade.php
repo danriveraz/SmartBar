@@ -151,7 +151,7 @@ function cambiarCurrent(idInput) {
                 Pedidos
               </div>
             <div class="widget-content">
-              <table class="table table-hover">
+              <table  name="tabla" class="table table-hover">
                <thead>
                   <th>Cant.</th>
                   <th>Producto</th>
@@ -180,7 +180,7 @@ function cambiarCurrent(idInput) {
                   data-placement="bottom" data-toggle="popover">Receta</a></td>
                   <td>
                   <label>
-                  <input type="checkbox" name="pedidos[]" value="{{$venta->id}}"" width="25" height="25" class="check{{$factura->id}}" ><span></span></label>
+                  <input type="checkbox" name="pedidos[]" value="{{$venta->id}}" width="25" height="25" class="check{{$factura->id}}" ><span></span></label>
                   </td>
                 </tr>
               @endforeach 
@@ -210,21 +210,19 @@ function cambiarCurrent(idInput) {
     });
 
     function seleccionar(idMesa){
-      
-      if($("#seleccionarTodos").attr('valor') == "0"){
-          $(".check"+idMesa).each(function(){
-            $(this).attr('checked', true);
-          });
-          $("#seleccionarTodos").attr('valor', "1");
+      var checks = document.getElementsByName("pedidos[]");
+      if($("#seleccionarTodos").attr("valor") == "0"){
+        for (var i=0; i<checks.length; i++) {
+            checks[i].checked = true;
+            $("#seleccionarTodos").attr("valor", "1");
+        }
       }
-      else if($("#seleccionarTodos").attr('valor') == "1"){
-        $(".check"+idMesa).each(function(){
-            $(this).attr('checked', false);
-          });
-        $("#seleccionarTodos").attr('valor', "0");
+      else {
+        for (var i=0; i<checks.length; i++) {
+            checks[i].checked = false;
+            $("#seleccionarTodos").attr("valor", "0");
+        }
       }
-      
-
     }
 </script>
 
@@ -233,6 +231,7 @@ function cambiarCurrent(idInput) {
 {!!Html::style('stylesheets\isotope.css')!!}
 {!!Html::style('stylesheets\fullcalendar.css')!!}
 
+{!!Html::script('javascripts\bootstrap.min.js')!!}
 {!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
 {!!Html::script('javascripts\fullcalendar.min.js')!!}
 {!!Html::script('javascripts\jquery.dataTables.min.js')!!}
