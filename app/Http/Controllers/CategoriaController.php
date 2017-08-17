@@ -75,10 +75,14 @@ class CategoriaController extends Controller
       return redirect()->route('categoria.index');
     }
 
-    public function destroy($id){
-    	$categoria = Categoria::find($id);
-    	$categoria->delete();
-    	Flash::success('La categoría ha sido eliminada de forma exitosa')->important();
-    	return redirect()->route('categoria.index');
-    }
+   public function eliminar(Request $request){
+      $categoria = Categoria::find($request->id);
+      $categoria->delete();
+    }   
+    public function modificar(Request $request){
+      $categoria = Categoria::find($request->id);
+      $categoria->nombre = $request->nombre;
+      $categoria->precio = $request->precio;
+      $categoria->save();
+    } 
 }

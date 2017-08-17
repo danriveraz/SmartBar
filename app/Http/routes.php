@@ -58,6 +58,8 @@ Route::get('provlistall/{page?}', 'ProveedorController@listall');
 Route::get('provlistall/{nombre?}', 'ProveedorController@buscar');
 Route::resource('proveedor', 'ProveedorController');
 
+Route::get('categoria/eliminar','CategoriaController@eliminar');
+Route::get('categoria/modificar', 'CategoriaController@modificar');
 Route::resource('categoria', 'CategoriaController');
 Route::get('catlistall', 'CategoriaController@listall');
 Route::get('categoria/{id}/destroy', ['uses' => 'CategoriaController@destroy', 'as' => 'Categoria.destroy']);
