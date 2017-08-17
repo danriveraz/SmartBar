@@ -3,7 +3,6 @@
 namespace PocketByR\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use PocketByR\Categoria;
@@ -32,9 +31,11 @@ class CategoriaController extends Controller
 
     public function listall(Request $request){
       $userActual = Auth::user();
-      $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
-                       orderBy('nombre','ASC')->
-                       paginate(15);
+      $nombre = $request->nombre;
+      $idEmpresa = $userActual->idEmpresa;
+      $arreglo = array($nombre,$idEmpresa);
+      $categorias = Categoria::Search($arreglo)->
+                                get();
       return view('Categoria.listall')->with('categorias',$categorias);
     }
 

@@ -22,7 +22,6 @@
     </div>
   </div>
 
-
   <div class="modal fade in" id="addModal" >
     <div class="modal-dialog">
       <div class="modal-content">
@@ -84,13 +83,13 @@
   });
   
   function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds){
+        break;
+      }
     }
   }
-}
   
   $(document).on("click",".pagination li a",function(e){
     e.preventDefault();

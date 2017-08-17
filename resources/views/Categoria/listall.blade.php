@@ -1,13 +1,11 @@
 <table class="table table-striped">
     <thead>
-      <th>#</th>
       <th>Nombre</th>
       <th>Precio</th>
     </thead>
     <tbody>
       @foreach($categorias as $categoria)
         <tr>
-          <td>{{$categoria->id}}</td>
           <td>{{$categoria->nombre}}</td>
           <td>{{$categoria->precio}}</td>
           <td align="right"><a href="{{route('categoria.edit', $categoria->id) }}" class="btn btn-default" data-toggle="modal" data-target="#editModal{{$categoria->id}}" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
@@ -20,4 +18,3 @@
       @endforeach
     </tbody>
 </table>
-{!!$categorias->appends(Request::all())->render() !!}

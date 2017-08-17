@@ -79,7 +79,7 @@
                     </div>
                     <div class="form-group">
                       <label for="tipo" class="control-label">¿Vender en botella?</label>
-                      <label> <input type="checkbox" name="tipo" id="tipo{{$insumo->id}}" <?php if($insumo->tipo == "1") echo "checked";?> onchange="showContent({{$insumo->id}})" /><span></span></label>
+                      <label> &ensp;&ensp;&ensp;&ensp;<input type="checkbox" name="tipo" id="tipo{{$insumo->id}}" <?php if($insumo->tipo == "1") echo "checked";?> onchange="showContent({{$insumo->id}})" /><span></span></label>
                     </div>
                     <div id="content{{$insumo->id}}" <?php if($insumo->tipo == "0") echo "hidden";?>>
                       <label for="categorias" class="control-label">Categor&iacutea</label>

@@ -11,7 +11,7 @@
       <td>{{$proveedor->nombre}}</td>
       <td>{{$proveedor->direccion}}</td>
       <td>{{$proveedor->telefono}}</td>
-      <td align="right" id="ocultar{{$proveedor->id}}">
+      <td align="right"">
         <button data-toggle="modal" class="btn btn-default" data-target="#editModal{{$proveedor->id}}" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="fa fa-pencil" aria-hidden="true"></span></button>
         <button class="btn btn-default" onclick="eliminar({{$proveedor->id}})" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
       </td>
@@ -63,12 +63,6 @@
   <script>
     var routeModificar = "http://pocketdesigner.co/PocketByR/public/proveedor/modificar";
     var routeEliminar = "http://pocketdesigner.co/PocketByR/public/proveedor/eliminar";
-
-    $("#ocultar{{$proveedor->id}}").hover(function(){
-            $("#ocultar{{$proveedor->id}}").show();
-        },  function(){
-            $("#ocultar{{$proveedor->id}}").hide();
-    });
 
     function modificar(idProveedor) {
       var nombre = $("#nombre"+idProveedor).val();

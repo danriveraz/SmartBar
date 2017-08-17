@@ -1,3 +1,4 @@
+
 @extends('Layout.app')
 @section('content')
 
@@ -100,7 +101,7 @@
             </h4>
           </div>
           <div class="modal-body">
-            <div class="pre-scrollable" >
+            <div class="" >
             <div class="widget-content">
               <div class="form-group">
                 <div class="form-grup">
