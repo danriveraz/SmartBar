@@ -326,6 +326,7 @@ class UsuariosController extends Controller
       'nombreEstablecimiento' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
       ];
     $empresa =  Auth::User()->empresa;
+    $user =  User::find($empresa->usuario_id);
     if($request->telefono!=$empresa->telefono){
       $rules += ['telefono' => 'required|min:1|max:9999999999|numeric']; 
     }
@@ -348,7 +349,6 @@ class UsuariosController extends Controller
       $empresa->nombreEstablecimiento = $request->nombreEstablecimiento;
       $empresa->telefono = $request->telefono;
       $empresa->save();
-      $user =  User::find($empresa->usuario_id);
       $user->save();
       flash::warning('Los datos de la empresa se modificaron satisfactoriamente')->important();
       return redirect()->route('Auth.usuario.index');
