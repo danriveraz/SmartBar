@@ -142,7 +142,7 @@
                   <li><a href="{{url('Auth/usuario/'.Auth::id().'/edit')}}">
                     <i class="fa fa-user"></i>Perfil</a>
                   </li>
-                  <li><a href="#">
+                  <li><a href="{{url('Auth/modificarEmpresa')}}">
                     <i class="fa fa-gear"></i>Ajustes</a>
                   </li>
                   <li><a href='{{url("/Auth/logout")}}'>

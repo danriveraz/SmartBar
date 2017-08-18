@@ -32,6 +32,8 @@ Route::post('Auth/updateProfile', 'Auth\AuthController@updateProfile');
 
 Route::group(['prefix' => 'Auth'], function(){
   Route::post('registerUser', 'UsuariosController@registerUser');
+  Route::post('modificarEmpresa', ['uses' => 'UsuariosController@postmodificarEmpresa', 'as' => 'Auth.usuario.editEmpresa']);
+  Route::get('modificarEmpresa', ['uses' => 'UsuariosController@modificarEmpresa', 'as' => 'Auth.usuario.showeditEmpresa']);
   Route::resource('usuario','UsuariosController');
   Route::get('usuario/{id}/destroy', ['uses' => 'UsuariosController@destroy', 'as' => 'Auth.usuario.destroy']);
 });

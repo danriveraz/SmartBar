@@ -19,7 +19,7 @@ class PermisoEditarUsuario
     public function handle($request, Closure $next)
     {
         $userActual = Auth::user();
-        if($request->route()->usuario!=$userActual->id){
+        if(!($userActual->esAdmin)&&$request->route()->usuario!=$userActual->id){
             flash('No Tiene Los Permisos Necesarios para editar este usuario, ya que no eres tú mismo')->error()->important();
             return redirect('/WelcomeTrabajador')->send();
         }

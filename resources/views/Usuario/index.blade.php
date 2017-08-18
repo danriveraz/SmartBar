@@ -107,29 +107,25 @@
                   </div>
                   <div class="fileupload-preview fileupload-exists img-thumbnail" style="width: 200px; max-height: 150px"></div>
                   <div>
-                    <span class="btn btn-default btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file"></span><a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Remove</a>
+                    <span class="btn btn-default btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" class="form-control" name="imagenPerfil"  id="imagenPerfil"></span><a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Remove</a>
                   </div>
                 </div>
               </div>
             </div>
             
              <div  style="margin-top: 73%;"></div>
-               <div class="form-group">
-                <label for="nombrePersona">Nombre Del Empleado</label><input class="form-control" id="nombrePersona" name="nombrePersona" type="text">
-              </div> 
+
                    
                 </div>
                 <div class="col-md-4 ">
                   <div class="form-group">
-                    <label for="cedula">Número de identificación:</label><input class="form-control" id="cedula" name="cedula" type="text">
-                  </div>
+                    <label for="nombrePersona">Nombre Del Empleado</label><input class="form-control" id="nombrePersona" name="nombrePersona" type="text">
+                  </div> 
+
                   <div class="form-group">
                     <label for="email">Email</label><input class="form-control" id="email" name="email" type="email">
                   </div>
                  
-                  <div class="form-group">
-                    <label for="fechaNacimiento">Fecha De Nacimiento</label><input class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" placeholder="dd/mm/yyyy" type="text" name="fechaNacimiento" id="fechaNacimiento">
-                  </div>
 
                 <div class="row">
                   <label for="sexo" class="control-label col-md-2">Sexo:</label>
@@ -147,14 +143,20 @@
                 </div>
                 
                 <div class="col-md-4">
-                  
                   <div class="form-group">
+                    <label for="cedula">Número de identificación:</label><input class="form-control" id="cedula" name="cedula" type="text">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="fechaNacimiento">Fecha De Nacimiento</label><input class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" placeholder="dd/mm/yyyy" type="text" name="fechaNacimiento" id="fechaNacimiento">
+                  </div>
+                  <!--<div class="form-group">
                     <label for="password">Password:</label><input class="form-control" type="password" name="password" id="password">
                   </div>
                   
                   <div class="form-group">
                     <label for="contraseña_confirmation">Confirmar password:</label><input class="form-control" type="password" name="password_confirmation" id="password_confirmation">
-                  </div>
+                  </div>-->
                   
                   <!--Tipos-->
                   <div class="form-group">
@@ -177,7 +179,7 @@
                         {!! Form::checkbox('Permisos[]', 'Administrador', 0, ['data-toggle'=>'checkbox', 'class' => 'Check']) !!}<span>Administrador</span>
                       </label>
                       <label class="checkbox-inline">
-                        {!! Form::checkbox('Permisos[]', 'Obsequio', 0, ['data-toggle'=>'checkbox', 'class' => 'Check']) !!}<span>Obsequiar</span>
+                        {!! Form::checkbox('Permisos[]', 'Obsequio', 0, ['data-toggle'=>'checkbox', 'class' => 'Obsequio']) !!}<span>Obsequiar</span>
                       </label>
                     </div>
 
@@ -215,28 +217,36 @@ function cambiarCurrent(idInput) {
 $("#registrarUsuario").click(function(){
     //Aquí buscamos todos los inputs que tengan una clase llamada; Check
     var a = document.querySelectorAll("input.Check:checked");
+
     //Ahora vamos hacer uso del Prototype de JS para digamos recorrer todo lo que se ha generado desde la variable a y lo devolvemos a la variable ids_
     var Permisos = Array.prototype.map.call(a,function(x){ return x.value; });
+    // si tiene el permiso de obsequio
+    var Obsequio = $(document.querySelectorAll("input.Obsequio:checked")[0]).val();
+
+    var image = $('#imagenPerfil')[0].files[0];// la imagen de perfil
 
     var token = $("#token").val();
     var type = "POST";
-    var formData = {
+    /*var formData = {
             nombrePersona: $("#nombrePersona").val(),
             cedula: $('#cedula').val(),
             email: $('#email').val(),
-            nivelAcademico: $('#nivelAcademico').val(),
             fechaNacimiento: $('#fechaNacimiento').val(),
             sexo: $('#sexo').val(),
-            password: $('#password').val(),
-            password_confirmation: $('#password_confirmation').val(),
-            Permisos: Permisos
-        }
+            Permisos: Permisos,
+            Obsequio: Obsequio,
+            imagenPerfil: image
+        };*/
+
+    var formData = new FormData($('#checkbox')[0]);
 
     $.ajax({
         url: '{{url('Auth/registerUser')}}',
         headers: {'X-CSRF-TOKEN': token},
         type: type,
         dataType: 'json',
+        contentType: false,
+        processData: false,
         data: formData,
         success: function (data) { //anunciar creado autor
            var usuarioNuevo = JSON.parse(data.user);

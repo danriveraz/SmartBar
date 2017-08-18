@@ -7,7 +7,9 @@ use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use PocketByR\User;
 use Auth;
+use Mail;
 use Laracasts\Flash\Flash;
+use PocketByR\Empresa;
 
 class UsuariosController extends Controller
 {
@@ -101,60 +103,96 @@ class UsuariosController extends Controller
 
   public function update(Request $request, $id){
     
-        $rules = [
-            'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'fechaNacimiento' => 'required',
-            'sexo' => 'required'
-            ];
+    $rules = [
+        'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+        'imagenPerfil' => 'image',
+        ];
     $usuario = User::find($id);
-    if($request->cedula!=$usuario->cedula){
-      $rules += ['cedula' => 'required|min:1|max:9999999999|numeric|unique:usuario,cedula']; 
+    if(Auth::User()->esAdmin){ // validar que cuadno sea admin el que modifica, los usuarios deben de quedar con permisos
+        $rules += ['Permisos' => 'required',];
     }
-    if ($request->password!=null) {
+    if($request->username!=$usuario->username){// agrega la regla si el username ha sido modificado
+      $rules += ['username'=> 'required|min:3|max:40|alpha_dash|unique:usuario,username']; 
+    }    
+    if($request->cedula!=$usuario->cedula){// agrega la regla si la cedula ha sido modificada
+      $rules += ['cedula' => 'required|min:1|max:9999999999|numeric']; 
+    }
+    if ($request->password!=null) {// agrega la regla si el password ha sido modificado
       $rules += ['password' => 'required|min:6|max:18|confirmed'];
     }
+    if($request->telefono!=$usuario->telefono){ // agrega la regla si el telefomo ha sido modificado
+      $rules += ['telefono' => 'required|min:1|max:9999999999|numeric']; 
+    }
 
-    $validator = Validator::make($request->all(), $rules);
+    $messages = [
+      'Permisos.required' => 'Debe tener asignado por lo menos un Permiso',
+    ];
+
+    $validator = Validator::make($request->all(), $rules,$messages);
     if ($validator->fails()){
       return redirect()->route('Auth.usuario.edit',$id)->withErrors($validator)->withInput();
     }else{
-      $Permisos = $request['Permisos'];
       if($request->cedula!=$usuario->cedula){
         $usuario->cedula = $request->cedula;
       }
       if($request->password!=null){
         $usuario->password = bcrypt($request->password);
       }
+      if($request->username!=$usuario->username){
+        $usuario->username=$request->username;
+      } 
+      if($request->telefono!=$usuario->telefono){ 
+        $usuario->telefono=$request->telefono;
+      }
       $usuario->nombrePersona = $request->nombrePersona;
       $usuario->sexo = $request->sexo;
       $usuario->fechaNacimiento = $request->fechaNacimiento;
-      $usuario->esMesero = 0;
-      $usuario->esBartender = 0;
-      $usuario->esCajero = 0;
-      $usuario->esAdmin = 0;
-      $usuario->obsequio = 0;
-      foreach ($Permisos as $key => $value) {
-        if($value=='Administrador'){
-          $usuario->esMesero = 1;
-          $usuario->esBartender = 1;
-          $usuario->esCajero = 1;
-          $usuario->esAdmin = 1;
+
+      //obtenemos el campo file definido en el formulario
+      $file = $request->file('imagenPerfil');
+      if($file!=null){// verifica que se haya subido una imagen nueva
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));        
+        $usuario->imagenPerfil = $nombre;// guarda la imagen en la base de datos
+      }
+
+
+      if(Auth::User()->esAdmin&&Auth::id()!=$usuario->id){// si es admin asigna los permisos
+        $usuario->esMesero = 0;
+        $usuario->esBartender = 0;
+        $usuario->esCajero = 0;
+        $usuario->esAdmin = 0;
+        $usuario->obsequio = 0;
+
+        if($request['Obsequiar']=='Obsequiar'){
           $usuario->obsequio = 1;
-        }else{
-          if($value=='Mesero'){
+        }
+
+        $Permisos = $request['Permisos'];
+
+        foreach ($Permisos as $key => $value) {
+          if($value=='Administrador'){
             $usuario->esMesero = 1;
-          }
-          if($value=='Cajero'){
-            $usuario->esCajero = 1;
-          }
-          if($value=='Bartender'){
             $usuario->esBartender = 1;
-          }
-          if($value=='Obsequio'){
+            $usuario->esCajero = 1;
+            $usuario->esAdmin = 1;
             $usuario->obsequio = 1;
+          }else{
+            if($value=='Mesero'){
+              $usuario->esMesero = 1;
+            }
+            if($value=='Cajero'){
+              $usuario->esCajero = 1;
+            }
+            if($value=='Bartender'){
+              $usuario->esBartender = 1;
+            }
           }
         }
       }
+
       $usuario->save();
       flash::warning('El usuario ha sido modificado satisfactoriamente')->important();
       return redirect()->route('Auth.usuario.index');
@@ -175,9 +213,9 @@ class UsuariosController extends Controller
             'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'email' => 'required|email|max:255',
             'cedula' => 'required|min:1|max:9999999999|numeric',
-            'password' => 'required|min:6|max:18|confirmed',
             'fechaNacimiento' => 'required',
-            'sexo' => 'required'
+            'sexo' => 'required',
+            'Permisos' => 'required'
          ]);
 
       if($validator->passes()){
@@ -186,7 +224,8 @@ class UsuariosController extends Controller
           $usuario->nombrePersona = $request->nombrePersona;
           $usuario->email = $request->email;
           $usuario->cedula = $request->cedula;
-          $usuario->password = bcrypt($request->password);
+          $contrasena = str_random(8);
+          $usuario->password = bcrypt($contrasena);
           $usuario->sexo = $request->sexo;
           $usuario->fechaNacimiento = $request->fechaNacimiento;
           $usuario->pais= "Colombia";
@@ -199,6 +238,40 @@ class UsuariosController extends Controller
           $usuario->confirm_token = str_random(100);
           $usuario->idEmpresa = Auth::user()->idEmpresa; // id de la empresa para saber a quién pertenece
 
+          //asignar username
+          // parte del código para generar el username inicial
+          $numeroRepetido = 0; // numero que se agregará al username por si ya hay alguno parecido y poderlo diferenciar
+          $auxiliarBool = true;
+          $auxiliarUser;
+          $auxiliarUsername;
+          while ($auxiliarBool) {
+              if($numeroRepetido==0){
+                  $auxiliarUsername = str_replace(' ','',$request->nombrePersona).'-'.str_replace(' ','',Auth::User()->empresa->nombreEstablecimiento);
+                  $auxiliarUser = User::where('username', $auxiliarUsername)->first();
+              }else{
+                  $auxiliarUsername = str_replace(' ','',$request->nombrePersona).'-'.str_replace(' ','',Auth::User()->empresa->nombreEstablecimiento).$numeroRepetido;
+                  $auxiliarUser = User::where('username', $auxiliarUsername)->first();
+              }
+              if($auxiliarUser==null){
+                  $auxiliarBool= false;
+              }
+              $numeroRepetido++;
+
+          }
+          $usuario->username = $auxiliarUsername;
+
+
+          //Guardar imagen
+          //obtenemos el campo file definido en el formulario
+          $file = $request->file('imagenPerfil');
+          if($file!=null){// verifica que se haya subido una imagen nueva
+            //obtenemos el nombre del archivo
+            $nombre = $file->getClientOriginalName();
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            \Storage::disk('local')->put($nombre,  \File::get($file));        
+            $usuario->imagenPerfil = $nombre;// guarda la imagen en la base de datos
+          }
+
           foreach ($Permisos as $key => $value) {
             if($value=='Administrador'){
                   $usuario->esMesero = 1;
@@ -207,22 +280,29 @@ class UsuariosController extends Controller
                   $usuario->esAdmin = 1;
                   $usuario->obsequio = 1;
             }else{
-                if($value=='Mesero'){
-                    $usuario->esMesero = 1;
-                }if($value=='Cajero'){
-                    $usuario->esCajero = 1;
-                }if($value=='Bartender'){
-                    $usuario->esBartender = 1;
-                }if($value=='Obsequio'){
-                    $usuario->obsequio = 1;
-                }
+              if($value=='Mesero'){
+                  $usuario->esMesero = 1;
+              }if($value=='Cajero'){
+                  $usuario->esCajero = 1;
+              }if($value=='Bartender'){
+                  $usuario->esBartender = 1;
               }
             }
-            $usuario->save();
+          }
+          if($request['Obsequio']='Obsequio'){
+            $usuario->obsequio = 1;
+          }
+          $usuario->save();// guardar el usuario
 
-            $user = User::all()->last()->toJson();
-            return response()->json(['success' => true,'message' => 'record updated', 'user' => $user], 200);
-            Flash::success("El usuario se ha registrado satisfactoriamente")->important();
+          // enviar mail
+          $data = ['user'=>$usuario, 'contrasena' => $contrasena];
+          Mail::send('Emails.confirmacionDatosTrabajador', ['data' => $data], function($mail) use($data){
+              $mail->to($data['user']->email)->subject('Bienvenido a SMARTBAR');
+          });
+
+          $user = User::all()->last()->toJson();
+          return response()->json(['success' => true,'message' => 'record updated', 'user' => $user], 200);
+          Flash::success("El usuario se ha registrado satisfactoriamente")->important();
 
         }if ($validator->fails()) { 
             $errors = $validator->errors();
@@ -234,4 +314,44 @@ class UsuariosController extends Controller
 
   }
 
+  public function modificarEmpresa(){
+    $usuario = User::find(Auth::id());
+    $Empresa = Empresa::find($usuario->idEmpresa);
+    return view('Usuario.editEmpresa')->with('usuario',$usuario)->with('empresa',$Empresa);
+  }
+
+
+  public function postmodificarEmpresa(Request $request){
+    $rules = [
+      'nombreEstablecimiento' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+      ];
+    $empresa =  Auth::User()->empresa;
+    if($request->telefono!=$empresa->telefono){
+      $rules += ['telefono' => 'required|min:1|max:9999999999|numeric']; 
+    }
+    $validator = Validator::make($request->all(), $rules);
+    if ($validator->fails()){
+      return redirect()->route('Auth.usuario.showeditEmpresa')->withErrors($validator)->withInput();
+    }else{
+      //obtenemos el campo file definido en el formulario
+      $file = $request->file('imagenEstablecimiento');
+      if($file!=null){// verifica que se haya subido una imagen nueva
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));        
+        $user->imagenNegocio = $nombre;
+      }
+
+
+      $empresa->nombreEstablecimiento = $request->nombreEstablecimiento;
+      $empresa->telefono = $request->telefono;
+      $empresa->save();
+      $user =  User::find($empresa->usuario_id);
+      $user->save();
+      flash::warning('Los datos de la empresa se modificaron satisfactoriamente')->important();
+      return redirect()->route('Auth.usuario.index');
+    }
+  }
 }
