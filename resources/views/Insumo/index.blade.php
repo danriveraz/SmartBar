@@ -62,7 +62,7 @@
                     </select>
                 </div>
                 <div class="form-group"> 
-                    <input type="number" min="0" name="cantidadUnidad" id="cantidadUnidad" class="form-control" required="false" placeholder="Cantidad">
+                    <input type="number" min="0" name="cantidadUnidad" id="cantidadUnidad" class="form-control" required="false" placeholder="Cantidad" >
                 </div>
                 <script type="text/javascript">
                     function showContent() {
