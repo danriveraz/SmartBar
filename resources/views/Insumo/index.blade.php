@@ -64,21 +64,9 @@
                 <div class="form-group"> 
                     <input type="number" min="0" name="cantidadUnidad" id="cantidadUnidad" class="form-control" required="false" placeholder="Cantidad" >
                 </div>
-                <script type="text/javascript">
-                    function showContent() {
-                        element = document.getElementById("content");
-                        check = document.getElementById("tipo");
-                        if (check.checked) {
-                            element.style.display='block';
-                        }
-                        else {
-                            element.style.display='none';
-                        }
-                    }
-                </script>
                 <div class="form-group">
                     <label for="tipo" class="control-label">¿Vender por botella?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                    <label> <input type="checkbox" name="tipo" id="tipo" value="1" onchange="javascript:showContent()"/><span></span></label>
+                    <label> <input type="checkbox" name="tipo" id="tipo" value="1" onchange="showContent('')"/><span></span></label>
                 </div>
                 <div id="content" style="display: none;">
                     <label for="categorias" class="control-label">Categoría</label>
@@ -147,6 +135,17 @@
     });
   });
 
+  function showContent(idInsumo) {
+    element = document.getElementById("content"+idInsumo);
+    check = document.getElementById("tipo"+idInsumo);
+    if (check.checked) {
+      element.style.display='block';
+    }
+    else {
+      element.style.display='none';
+    }
+  }
+  
   function sleep(milliseconds) {
     var start = new Date().getTime();
     for (var i = 0; i < 1e7; i++) {

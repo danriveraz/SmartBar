@@ -41,8 +41,10 @@ class InsumoController extends Controller
   }
 
   public function modificar(Request $request){
+
     $userActual = Auth::user();
     $insumo = Insumo::find($request->id);
+    $nombre = $insumo->nombre;
     $insumo->idProveedor = $request->proveedor;
     $insumo->nombre = $request->nombre;
     $insumo->cantidadUnidad = $request->unidades;
@@ -92,6 +94,15 @@ class InsumoController extends Controller
         }
         $producto->delete();
       }
+    }
+    else if($request->tipo == '1'){
+      $producto = Producto::Nombre($nombre)->first();
+      $producto->nombre = $request->nombre;
+      $producto->precio = $request->venta;
+      $producto->idCategoria = $request->categoria;
+      $contiene = Contiene::IdProducto($producto->id)->IdInsumo($insumo->id)->first();
+      $contiene = $insumo->cantidadMedida;
+      $producto->save();
     }
     $insumo->save();
   }

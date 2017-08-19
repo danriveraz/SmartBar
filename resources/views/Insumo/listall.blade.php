@@ -22,7 +22,7 @@
           <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->precioUnidad}}</td>
           <td id="{{$insumo->id}}" class="seleccionar">{{number_format($insumo->cantidadMedida,3)}}</td>
           <td id="{{$insumo->id}}" class="seleccionar">
-            <span  aria-hidden="true" 
+            <span  id="span{{$insumo->id}}" aria-hidden="true" 
               <?php if($insumo->tipo == "1") echo "class='glyphicon glyphicon-ok'" ;?>
               <?php if($insumo->tipo == "0") echo "class='glyphicon glyphicon-remove'" ;?>
             ></span>
@@ -104,19 +104,9 @@
 {!!$insumos->appends(Request::all())->render() !!}
 
 <script>
-  var routeModificar = "http://pocketdesigner.co/PocketByR/public/insumo/modificar";
-  var routeEliminar = "http://pocketdesigner.co/PocketByR/public/insumo/eliminar";  
-
-  function showContent(idInsumo) {
-    element = document.getElementById("content"+idInsumo);
-    check = document.getElementById("tipo"+idInsumo);
-    if (check.checked) {
-      element.style.display='block';
-    }
-    else {
-      element.style.display='none';
-    }
-  }
+  var routeModificar1 = "http://pocketdesigner.co/PocketByR/public/insumo/modificar";
+  var routeModificar = "http://localhost/PocketByR/public/insumo/modificar";
+  var routeEliminar = "http://localhost/PocketByR/public/insumo/eliminar";
 
   var editValor = function(x,id){
     if(x == 'unidad'){
@@ -165,6 +155,11 @@
         categoria: categoria
       },
       success: function(){
+        if(tipo == '1'){
+          document.getElementById('span'+idInsumo).className = "glyphicon glyphicon-ok";
+        }else{
+          document.getElementById('span'+idInsumo).className = "glyphicon glyphicon-remove";
+        }        
         $("#"+idInsumo).children("td").each(function (indextd){
           if(indextd == 1){
             $(this).text(nombre);
@@ -179,10 +174,9 @@
           }else if(indextd == 5){
             $(this).text(venta);
           }else if(indextd == 6){
-            $(this).text(cantMedida);
+            $(this).text(cantMedida.toFixed(3));
           }
         });
-        document.getElementById("t"+idInsumo).checked = check.checked;
       },
       error: function(data){
         alert('Error al modificar insumo');
