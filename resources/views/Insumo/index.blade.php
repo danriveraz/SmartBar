@@ -46,11 +46,6 @@
                     {!! Form::select('proveedores', $proveedores, null, ['class' => 'form-control', 'placeholder' => 'Proveedor', 'required' => 'true']) !!}
                 </div>
                 <div class="form-group">
-                    
-                    <input type="number" min="0" name="cantidadUnidad" id="cantidadUnidad" class="form-control" required="false" placeholder="Cantidad">
-                </div>
-                <div class="form-group">
-                    
                     <input type="number" step="any" min="0" name="valorCompra" class="form-control" required="true" placeholder="Costo" onkeypress="autocompletar(event,this)">
                 </div>
                 <div class="form-group">
@@ -58,13 +53,16 @@
                     <input type="number" step="any" min="0" name="precioUnidad" class="form-control" required="true" placeholder="Venta" onkeypress="autocompletar(event,this)">
                 </div>
                 <div class="form-group">
-                    <input type="number" step="any" min="0" name="cantidadMedida" placeholder="Contenido"class="form-control" required="true" />
+                    <input type="number" step="any" min="0" id="cantidadMedida" name="cantidadMedida" placeholder="Contenido" class="form-control" required="true" />
                     <select name="medida" class="form-control" onchange="valor(this.value);"> 
                         <option value="ml">ml</option> 
                         <option value="cm3">cm3</option> 
                         <option value="oz">oz</option>
                         <option value="unidad">unidad</option>
                     </select>
+                </div>
+                <div class="form-group"> 
+                    <input type="number" min="0" name="cantidadUnidad" id="cantidadUnidad" class="form-control" required="false" placeholder="Cantidad">
                 </div>
                 <script type="text/javascript">
                     function showContent() {
@@ -160,11 +158,13 @@
 
   var valor = function(x){
         if(x == 'unidad'){
-          document.getElementById('cantidadUnidad').disabled=true;
+          document.getElementById('cantidadUnidad').style.display='none';
           document.getElementById('cantidadUnidad').value = 1;
+          document.getElementById('cantidadMedida').placeholder ="Cantidad";
         }else{
-          document.getElementById('cantidadUnidad').disabled=false;
+          document.getElementById('cantidadUnidad').style.display='block';
           document.getElementById('cantidadUnidad').value = null;
+          document.getElementById('cantidadMedida').placeholder ="Contenido";
         }
   };
 
