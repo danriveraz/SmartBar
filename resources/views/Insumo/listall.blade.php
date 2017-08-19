@@ -8,18 +8,20 @@
       <th>Valor venta</th>
       <th>Onzas/Unidades disponibles</th>
       <th>A la venta</th>
+      <th width="20"></th>
+      <th width="20"></th>
     </thead>
     <tbody>
       @foreach($insumos as $insumo)
-        <tr id="{{$insumo->id}}" class="seleccionar">
-          <td>{{$insumo->cantidadUnidad}}</td>
-          <td>{{$insumo->nombre}}</td>
-          <td>{{$insumo->marca}}</td>
-          <td>{{$proveedores[$insumo->idProveedor]}}</td>
-          <td>{{$insumo->valorCompra}}</td>
-          <td>{{$insumo->precioUnidad}}</td>
-          <td>{{number_format($insumo->cantidadMedida,3)}}</td>
-          <td>
+        <tr id="{{$insumo->id}}">
+          <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->cantidadUnidad}}</td>
+          <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->nombre}}</td>
+          <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->marca}}</td>
+          <td id="{{$insumo->id}}" class="seleccionar">{{$proveedores[$insumo->idProveedor]}}</td>
+          <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->valorCompra}}</td>
+          <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->precioUnidad}}</td>
+          <td id="{{$insumo->id}}" class="seleccionar">{{number_format($insumo->cantidadMedida,3)}}</td>
+          <td id="{{$insumo->id}}" class="seleccionar">
             <span  aria-hidden="true" 
               <?php if($insumo->tipo == "1") echo "class='glyphicon glyphicon-ok'" ;?>
               <?php if($insumo->tipo == "0") echo "class='glyphicon glyphicon-remove'" ;?>
