@@ -5,7 +5,7 @@
 
 <div class="col-sm-offset-2 col-sm-8">
     <div class="panel-tittle" align="center">
-        <h3> MIS CATEGORIAS </h3>
+        <h3><b> MIS CATEGORIAS </b></h3>
     </div>
     <div class="navbar-form navbar-right" style="width: 600px; height: 50px;">
       {!! Form::select('categorias', $categorias, null, ['class' => 'form-control', 'placeholder' => 'Mis categorías', 'id' => 'buscarCategoria']) !!}
@@ -27,7 +27,7 @@
     <br>
     <br>
     <div class="panel-tittle" align="center">
-        <h3> MIS PRODUCTOS </h3>
+        <h3><b> MIS PRODUCTOS</b></h3>
     </div>
     <form class="navbar-form navbar-left">
     <div class="form-group" align="left">

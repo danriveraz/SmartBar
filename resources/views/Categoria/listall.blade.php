@@ -2,15 +2,15 @@
     <thead>
       <th>Nombre</th>
       <th>Precio</th>
+      <th width="20"></th>
     </thead>
     <tbody>
       @foreach($categorias as $categoria)
         <tr id="{{$categoria->id}}">
-          <td>{{$categoria->nombre}}</td>
-          <td>{{$categoria->precio}}</td>
+          <td  id="{{$categoria->id}}" class="seleccionar">{{$categoria->nombre}}</td>
+          <td  id="{{$categoria->id}}" class="seleccionar">{{$categoria->precio}}</td>
           <td align="right">
-          <a href="#editModal{{$categoria->id}}" class="btn btn-default" data-toggle="modal" data-target="#editModal{{$categoria->id}}" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="fa fa-pencil" aria-hidden="true"></span></a>
-           <button class="btn btn-default" onclick="eliminar({{$categoria->id}})" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+           <button class="btn btn-default" onclick="eliminar({{$categoria->id}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
           </td>
         </tr>
 
@@ -95,4 +95,10 @@
       });
     }
   }
+  $(".seleccionar").click(function(){
+    var idElegido = $(this).attr("id");
+    var palabra = "#editModal";
+    var id = palabra.concat(idElegido);
+    $(id).modal();
+  });
 </script>
