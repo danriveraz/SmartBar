@@ -29,7 +29,7 @@
       @foreach($mesas as $mesa)
       <form action="{{url('cajero/recibo')}}" method="POST">
         {{csrf_field()}}
-      <tr class="mesaSeleccionada" valor="{{$mesa->nombreMesa}}" name = "{{$mesa->idFactura}}">
+      <tr class="mesaSeleccionada" valor="{{$mesa->nombreMesa}}" nombre="{{$mesa->id}}">
       	<td>
       		{{$mesa->nombreMesa}}
       	</td>
@@ -38,7 +38,7 @@
       	</td>
       	<td>
       			<input type="text" name="id" value="{{$mesa->id}}" hidden="">
-      			<button name="" class="btn btn-warning">
+      			<button name="" class="btn btn-warning" id="boton{{$mesa->id}}">
       				<span class="	glyphicon glyphicon-zoom-in"></span></a>
       			</button>  
           </td>
@@ -56,5 +56,12 @@ function cambiarCurrent(idInput) {
   $(".current").removeClass("current");
   $(idInput).addClass("current");
 };
+$(".mesaSeleccionada").click(function(){
+    var idElegido = $(this).attr("nombre");
+    var palabra = "#boton";
+    var id = palabra.concat(idElegido);
+    alert(id);
+    $(id).trigger('click');
+});
 </script>
 @endsection

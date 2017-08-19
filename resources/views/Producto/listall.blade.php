@@ -3,18 +3,17 @@
       <th>Nombre</th>
       <th>Precio</th>
       <th>Categoria</th>
+      <th width="20"></th>
+      <th width="20"></th>
     </thead>
     <tbody>
       @foreach($productos as $producto)
         <tr id="{{$producto->id}}">
-          <td>{{$producto->nombre}}</td>
-          <td>{{$producto->precio}}</td>
-          <td>{{$categorias[$producto->idCategoria]}}</td>
-          <td align="right">
-            <button data-target="#editModal{{$producto->id}}" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="fa fa-pencil" aria-hidden="true"></span></button>
-          </td>
+          <td id="{{$producto->id}}" class="seleccionar">{{$producto->nombre}}</td>
+          <td id="{{$producto->id}}" class="seleccionar">{{$producto->precio}}</td>
+          <td id="{{$producto->id}}" class="seleccionar">{{$categorias[$producto->idCategoria]}}</td>
           <td>
-            <button class="btn btn-default" onclick="eliminar({{$producto->id}})" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+            <button class="btn btn-default" onclick="eliminar({{$producto->id}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
           </td>
           <td align="right">
             <a href="{{ route('producto.insumoedit',$producto->id) }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">Inventario <span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
@@ -133,4 +132,10 @@
       });
     }
   }
+  $(".seleccionar").click(function(){
+    var idElegido = $(this).attr("id");
+    var palabra = "#editModal";
+    var id = palabra.concat(idElegido);
+    $(id).modal();
+});
 </script>  

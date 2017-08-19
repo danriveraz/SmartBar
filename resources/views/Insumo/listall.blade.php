@@ -11,7 +11,7 @@
     </thead>
     <tbody>
       @foreach($insumos as $insumo)
-        <tr id="{{$insumo->id}}">
+        <tr id="{{$insumo->id}}" class="seleccionar">
           <td>{{$insumo->cantidadUnidad}}</td>
           <td>{{$insumo->nombre}}</td>
           <td>{{$insumo->marca}}</td>
@@ -19,15 +19,14 @@
           <td>{{$insumo->valorCompra}}</td>
           <td>{{$insumo->precioUnidad}}</td>
           <td>{{number_format($insumo->cantidadMedida,3)}}</td>
-          <td align="center">
-            <label> <input type="checkbox" disabled="disabled" name="tipo" id="t{{$insumo->id}}" <?php if($insumo->tipo == "1") echo "checked";?>/><span></span></label>
+          <td>
+            <span  aria-hidden="true" 
+              <?php if($insumo->tipo == "1") echo "class='glyphicon glyphicon-ok'" ;?>
+              <?php if($insumo->tipo == "0") echo "class='glyphicon glyphicon-remove'" ;?>
+            ></span>
           </td>
           <td>
-          <button data-target="#editModal{{$insumo->id}}" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-          </button>
-          </td>
-          <td>
-            <button class="btn btn-default" onclick="eliminar({{$insumo->id}})" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
+            <button class="btn btn-default" onclick="eliminar({{$insumo->id}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
           </td>
         </tr>
 
@@ -206,4 +205,10 @@
       });
     }
   }
+  $(".seleccionar").click(function(){
+    var idElegido = $(this).attr("id");
+    var palabra = "#editModal";
+    var id = palabra.concat(idElegido);
+    $(id).modal();
+  });
 </script>

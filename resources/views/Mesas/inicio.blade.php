@@ -2,7 +2,7 @@
 @section('content')
 <div class="col-sm-offset-2 col-sm-8">
 <div class="panel-tittle" align="center">
-      <h3>ESTADOS MESAS</h3>
+      <h3><b>MIS MESAS</b></h3>
   </div>
   <div class="navbar-form navbar-left" >
     <div class="form-group" align="left">

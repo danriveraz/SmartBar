@@ -3,7 +3,7 @@
 
 <div class="col-sm-offset-2 col-sm-8">
   <div class="panel-tittle" align="center">
-      <h3>MIS PROVEEDORES</h3>
+      <h3><B>MIS PROVEEDORES</B></h3>
   </div>
   @include('flash::message')
   <form class="navbar-form navbar-left">
