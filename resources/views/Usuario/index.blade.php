@@ -1,10 +1,12 @@
 @extends('Layout.app')
 @section('content')
 <div class="container-fluid main-content">
-  <div class="">
-      <h1>Lista de usuarios</h1>
+  <div class="panel-tittle" align="center">
+      <h3><B>MI PERSONAL</B></h3>
+
+
       @include('flash::message')
-      <a href="{{ route('Auth.usuario.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Agregar nuevo usuario </a>
+      <a href="{{ route('Auth.usuario.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Nuevo Empleado </a>
   </div>
   <div class="row">
   <div class="social-wrapper">
@@ -90,7 +92,7 @@
     <div class="">
       <div class="widget-container">
         <div class="heading">
-          <i class="fa fa-shield"></i>Formulario Para Nuevo Usuario      </div>
+          <i class="fa fa-shield"></i>Nuevo Usuario      </div>
         <div class="widget-content padded">
          <form id="checkbox">
           <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
@@ -107,7 +109,7 @@
                   </div>
                   <div class="fileupload-preview fileupload-exists img-thumbnail" style="width: 200px; max-height: 150px"></div>
                   <div>
-                    <span class="btn btn-default btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" class="form-control" name="imagenPerfil"  id="imagenPerfil"></span><a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Remove</a>
+                    <span class="btn btn-default btn-file"><span class="fileupload-new">Cargar Imagen</span><span class="fileupload-exists">editar</span><input type="file" class="form-control" name="imagenPerfil"  id="imagenPerfil"></span><a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Eliminar</a>
                   </div>
                 </div>
               </div>
@@ -119,7 +121,7 @@
                 </div>
                 <div class="col-md-4 ">
                   <div class="form-group">
-                    <label for="nombrePersona">Nombre Del Empleado</label><input class="form-control" id="nombrePersona" name="nombrePersona" type="text">
+                    <label for="nombrePersona">Nombre</label><input class="form-control" id="nombrePersona" name="nombrePersona" type="text">
                   </div> 
 
                   <div class="form-group">
@@ -144,11 +146,13 @@
                 
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="cedula">Número de identificación:</label><input class="form-control" id="cedula" name="cedula" type="text">
+                   
+                    <input class="form-control" id="cedula" name="cedula" type="text" placeholder="Identificación">
                   </div>
 
                   <div class="form-group">
-                    <label for="fechaNacimiento">Fecha De Nacimiento</label><input class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" placeholder="dd/mm/yyyy" type="text" name="fechaNacimiento" id="fechaNacimiento">
+                    <label for="fechaNacimiento">Fecha De Nacimiento</label>
+                    <input class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" placeholder="dd/mm/yyyy" type="text" name="fechaNacimiento" id="fechaNacimiento">
                   </div>
                   <!--<div class="form-group">
                     <label for="password">Password:</label><input class="form-control" type="password" name="password" id="password">
@@ -161,7 +165,7 @@
                   <!--Tipos-->
                   <div class="form-group">
                     <div class="row">
-                      <label class="control-label">Seleccione los roles que desempeñará:</label>
+                      <label class="control-label">Permisos:</label>
                     </div>
                     <div class="row">
                     </div>

@@ -1,8 +1,8 @@
 @extends(Auth::User()->esAdmin ? 'Layout.app' : 'Layout.app_empleado');
 @section('content')
 <div class="col-sm-offset-3 col-sm-6">
-  <div class="panel-tittle">
-      <h1>Editar usuario</h1>
+ <div class="panel-tittle" align="center">
+      <h3><B>EDITAR USUARIO</B></h3>
   </div>
 
   <div class ="panel-body">
@@ -12,7 +12,7 @@
         <div class="row ">
           <div class="col-md-6">
             <div class="form-group">
-              <p class="text-center">Imagen de Perfil</p>
+              
               <div class="text-center">
                 <div class="fileupload fileupload-new" data-provides="fileupload">
                   <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
@@ -24,7 +24,7 @@
                   </div>
                   <div class="fileupload-preview fileupload-exists img-thumbnail" style="width: 200px; max-height: 150px"></div>
                   <div>
-                    <span class="btn btn-default btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" class="form-control" name="imagenPerfil" ></span><a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Remove</a>
+                    <span class="btn btn-default btn-file"><span class="fileupload-new">Cargar imagen</span><span class="fileupload-exists">Cambiar</span><input type="file" class="form-control" name="imagenPerfil" ></span><a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Eliminar</a>
                   </div>
                 </div>
               </div>
@@ -46,34 +46,34 @@
             </div>
             <!-- correo electronico -->
             <div class="form-group">
-              <label for="email " class="control-label">Correo Electrónico</label>
+              <label for="email " class="control-label">Email</label>
               <input type="text" disabled class="form-control" value="{{$usuario->email}}"/>
             </div>
           </div>
         </div>
         <!--Numero de identificacion-->
         <div class="form-grup">
-          <label for="cedula" class="control-label">Número de identificación:</label>
+          <label for="cedula" class="control-label">Identificación:</label>
           <input type="text" name="cedula" class="form-control" value="{{$usuario->cedula}}"/>
           <div class="bg-danger text-white">{{$errors->first('cedula')}}</div>
         </div>
         <!--Numero telefónico-->
         <div class="form-grup">
-          <label for="telefono" class="control-label">Número de teléfono:</label>
+          <label for="telefono" class="control-label">Teléfono:</label>
           <input type="text" name="telefono" class="form-control" value="{{$usuario->telefono}}"/>
           <div class="bg-danger text-white">{{$errors->first('telefono')}}</div>
         </div>
 
         <!--Contraseña-->
         <div class="form-grup">
-          <label for="contraseña" class="control-label">Password:</label>
+          <label for="contraseña" class="control-label">Contraseña:</label>
           <input type="password" name="password" class="form-control"/>
           <div class="bg-danger text-white">{{$errors->first('password')}}</div>
         </div>
 
         <!--Confirmar contraseña-->
         <div class="form-grup">
-          <label for="contraseña_confirmation" class="control-label">Confirmar password:</label>
+          <label for="contraseña_confirmation" class="control-label">Confirmar Contraseña:</label>
           <input type="password" name="password_confirmation" class="form-control"/>
         </div>
 
@@ -111,10 +111,10 @@
         </div>
 
         @if(Auth::User()->esAdmin)
-          <!--Tipos-->
+          <!--Tipos--><br>
           <div class="form-group">
             <div class="row">
-              <label class="control-label">Seleccione los roles que desempeñará:</label>
+              <label class="control-label">Permisos:</label>
             </div>
               <label class="checkbox-inline">
                 {!! Form::checkbox('Permisos[]', 'Mesero', $usuario->esMesero, ['data-toggle'=>'checkbox']) !!}
@@ -133,15 +133,16 @@
           </div>
           <div class="form-group">
             <label class="checkbox-inline">
-              {!! Form::checkbox('Obsequiar', 'Obsequiar', $usuario->obsequio, ['data-toggle'=>'checkbox']) !!}<span>Permiso de Obsequiar</span>
+              {!! Form::checkbox('Obsequiar', 'Obsequiar', $usuario->obsequio, ['data-toggle'=>'checkbox']) !!}<span>Obsequiar</span>
             </label>
           </div>
           <div class="form-grup">
         @endif
-          <br><button type="submit" class="btn btn-default" onclick = "return confirm ('¿Desea modificar este Trabajador?')"><i class="fa fa-plus"></i> Editar
-          </button>
-          <a class="btn btn-error pull-right" href="{{url('Auth/usuario/'.$usuario->id.'/destroy')}}" onclick = "return confirm ('¿Está seguro de eliminar este Trabajador?')"><i class="fa fa-trash-o "></i> Eliminar
-          </a>
+          
+          <div class="modal-footer">
+            <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" onclick = "return confirm ('¿Desea modificar este Trabajador?')">Guardar</button>
+          </div>
+
         </div>
 
 
