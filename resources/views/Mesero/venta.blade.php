@@ -89,7 +89,7 @@
   </div>
 
   @if(sizeOf($ventas) != 0)
-    <table class="table table-bordered" id="pedidoTabla" style="display: table; margin-top: 10px; margin-bottom: 40px;">
+    <table class="table table-bordered" id="pedidoTabla" style="display: table; margin-top: 10px; margin-bottom: 30px;">
         <thead>
           <th style="display: none;">#</th>
           <th width="150px">Nombre</th>
@@ -124,7 +124,7 @@
         </tbody>
     </table>
   @else
-    <table class="table table-bordered" id="pedidoTabla" style="display: none; margin-top: 10px; margin-bottom: 40px;">
+    <table class="table table-bordered" id="pedidoTabla" style="display: none; margin-top: 10px; margin-bottom: 30px;">
         <thead>
           <th style="display: none;">#</th>
           <th width="150px">Nombre</th>
@@ -168,7 +168,7 @@
   var routeVenta = "http://pocketdesigner.co/PocketByR/public/mesero/venta";
 
   function actualizarTabla(idProducto, idFactura, obsequio){
-    $('#pedidoTabla').css({'display': 'table', 'margin-top': '10px' , 'margin-bottom': '40px'});
+    $('#pedidoTabla').css({'display': 'table', 'margin-top': '10px' , 'margin-bottom': '30px'});
     $.ajax({
       url: route,
       type: 'GET',
