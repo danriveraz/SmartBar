@@ -2,7 +2,7 @@
 @section('content')
 <div class="col-sm-offset-3 col-sm-6">
   <div class="panel-tittle">
-      <h1>Editar de la Empresa: {{$empresa->nombreEstablecimiento}}</h1>
+      <h1>Editar Empresa: {{$empresa->nombreEstablecimiento}}</h1>
   </div>
 
   <div class ="panel-body">
@@ -22,7 +22,7 @@
               </div>
               <div class="fileupload-preview fileupload-exists img-thumbnail" style="width: 200px; max-height: 150px"></div>
               <div>
-                <span class="btn btn-default btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" class="form-control" name="imagenEstablecimiento" ></span><a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Remove</a>
+                <span class="btn btn-default btn-file"><span class="fileupload-new">Cargar</span><span class="fileupload-exists">Cambiar</span><input type="file" class="form-control" name="imagenEstablecimiento" ></span><a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Eliminar</a>
               </div>
             </div>
           </div>
@@ -40,7 +40,7 @@
           <div class="bg-danger text-white">{{$errors->first('telefono')}}</div>
         </div>
         <div class="form-grup">
-          <br><button type="submit" class="btn btn-default" onclick = "return confirm ('¿Desea modificar Los datos de la empresa?')"><i class="fa fa-plus"></i> Editar
+          <br><button type="submit" class="btn btn-default" onclick = "return confirm ('¿Desea modificar Los datos de la empresa?')"><i class="fa fa-plus"></i> Guardar
           </button>
         </div>
       {!! Form::close() !!}

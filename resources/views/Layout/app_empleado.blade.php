@@ -58,7 +58,7 @@
 
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   </head>
-  <body class="page-header-fixed bg-1 layout-boxed">
+    <body class="page-header-fixed bg-1 layout-boxed" style="BACKGROUND-COLOR:WHITE">
     <div class="modal-shiftfix">
       <!-- Navegación-->
       <div class="navbar navbar-fixed-top scroll-hide">
