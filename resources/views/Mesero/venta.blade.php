@@ -163,9 +163,9 @@
     $(idInput).addClass("current");
   };
 
-  var route = "http://localhost/PocketByR/public/mesero/agregar";
-  var routeDisminuir = "http://localhost/PocketByR/public/mesero/disminuir";
-  var routeVenta = "http://localhost/PocketByR/public/mesero/venta";
+  var route = "http://pocketdesigner.co/PocketByR/public/mesero/agregar";
+  var routeDisminuir = "http://pocketdesigner.co/PocketByR/public/mesero/disminuir";
+  var routeVenta = "http://pocketdesigner.co/PocketByR/public/mesero/venta";
 
   function actualizarTabla(idProducto, idFactura, obsequio){
     $('#pedidoTabla').css({'display': 'table', 'margin-top': '10px' , 'margin-bottom': '40px'});
@@ -293,7 +293,7 @@
         },
         success : function() {
           if(idProductos.length != 0){
-            window.location = "http://localhost/PocketByR/public/mesero";
+            window.location = "http://pocketdesigner.co/PocketByR/public/mesero";
           }else{
             $( "#message" ).load(window.location.href + " #message" );
           }
