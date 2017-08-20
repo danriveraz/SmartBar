@@ -1,5 +1,6 @@
 @extends('Layout.app')
 @section('content')
+
 <div class="container-fluid main-content">
   <div class="panel-tittle" align="center">
       <h3><B>MI PERSONAL</B></h3>
@@ -207,7 +208,12 @@
 </div>
   {!!$usuarios->render() !!}
 </div>
-
+<!-- Para notificaciones con ajax -->
+{!!Html::style('css/notificaciones/ns-default.css')!!}
+{!!Html::style('css/notificaciones/ns-style-growl.css')!!}
+{!!Html::script('javascripts/notificaciones/classie.js')!!}
+{!!Html::script('javascripts/notificaciones/modernizr.custom.js')!!}
+{!!Html::script('javascripts/notificaciones/notificationFx.js')!!}
 <script type="text/javascript">
  $(document).ready(function(){
     cambiarCurrent("#usuario");
@@ -221,14 +227,10 @@ function cambiarCurrent(idInput) {
 $("#registrarUsuario").click(function(){
     //Aquí buscamos todos los inputs que tengan una clase llamada; Check
     var a = document.querySelectorAll("input.Check:checked");
-
-    //Ahora vamos hacer uso del Prototype de JS para digamos recorrer todo lo que se ha generado desde la variable a y lo devolvemos a la variable ids_
     var Permisos = Array.prototype.map.call(a,function(x){ return x.value; });
     // si tiene el permiso de obsequio
     var Obsequio = $(document.querySelectorAll("input.Obsequio:checked")[0]).val();
-
     var image = $('#imagenPerfil')[0].files[0];// la imagen de perfil
-
     var token = $("#token").val();
     var type = "POST";
     /*var formData = {
@@ -276,17 +278,24 @@ $("#registrarUsuario").click(function(){
               }, 250);
             } 
         }, error: function(xhr,status, response) {
-              var error = jQuery.parseJSON(xhr.responseText);  // this section is key player in getting the value of the errors from controller.
+              var error = jQuery.parseJSON(xhr.responseText);  
                 for(var k in error.message){
                     if(error.message.hasOwnProperty(k)){
                         error.message[k].forEach(function(val){
-                            console.log(val);
+                            var notification = new NotificationFx({
+                              message : val,
+                              layout : 'growl',
+                              effect : 'genie',
+                              type : 'warning',
+                            });
+                            notification.show();
                         });
                     }
                 }
         }
     });
 });
+
 
 </script>
 @endsection
