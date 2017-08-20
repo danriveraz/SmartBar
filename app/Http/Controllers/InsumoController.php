@@ -51,24 +51,9 @@ class InsumoController extends Controller
     $insumo->precioUnidad = $request->venta;
     $insumo->valorCompra = $request->compra;
 
-    if(empty($request->marca)){
-      $insumo->marca = 'Sin marca';
-    }else{
-      $insumo->marca = $request->marca;
-    }
-    if ($request->medida == 'ml' || $request->medida == 'cm3') {
-      $insumo->cantidadMedida = $request->cantMedida/30;
-      $insumo->cantidadRestante = $request->cantMedida/30;
-    }
-    elseif ($request->medida == 'unidad') {
-      $insumo->cantidadUnidad = 1;
-      $insumo->cantidadMedida = $request->cantMedida;
-      $insumo->cantidadRestante = $request->cantMedida;
-    }
-    else{
-      $insumo->cantidadMedida = $request->cantMedida;
-      $insumo->cantidadRestante = $request->cantMedida;
-    }
+    
+    $insumo->cantidadMedida = $request->cantMedida;
+    $insumo->cantidadRestante = $request->cantMedida;    
 
     if($insumo->tipo != $request->tipo){
       $insumo->tipo = $request->tipo;

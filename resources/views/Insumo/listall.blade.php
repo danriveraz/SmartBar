@@ -114,7 +114,6 @@
       document.getElementById('unidades'+id).disabled=true;
      }else{
       document.getElementById('unidades'+id).disabled=false;
-      document.getElementById('unidades'+id).value = null;
     }
   };
 
@@ -137,6 +136,15 @@
     if(marca==''){
       marca = 'Sin marca';
     }
+    if(medida == 'ml' || medida == 'cm3'){
+      var cantidad = parseFloat(cantMedida)/30;
+      cantMedida = cantidad;
+    }
+    else if(medida == 'unidad'){
+      unidades = 1;
+    }
+
+    cantMedida = parseFloat(cantMedida).toFixed(3);
 
     $.ajax({
       url: routeModificar,
@@ -174,7 +182,7 @@
           }else if(indextd == 5){
             $(this).text(venta);
           }else if(indextd == 6){
-            $(this).text(cantMedida.toFixed(3));
+            $(this).text(cantMedida);
           }
         });
       },
