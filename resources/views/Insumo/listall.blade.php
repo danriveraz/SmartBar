@@ -104,9 +104,8 @@
 {!!$insumos->appends(Request::all())->render() !!}
 
 <script>
-  var routeModificar1 = "http://pocketdesigner.co/PocketByR/public/insumo/modificar";
-  var routeModificar = "http://localhost/PocketByR/public/insumo/modificar";
-  var routeEliminar = "http://localhost/PocketByR/public/insumo/eliminar";
+  var routeModificar = "http://pocketdesigner.co/PocketByR/public/insumo/modificar";
+  var routeEliminar = "http://pocketdesigner.co/PocketByR/public/insumo/eliminar";
 
   var editValor = function(x,id){
     if(x == 'unidad'){
