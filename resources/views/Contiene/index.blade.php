@@ -2,8 +2,8 @@
 @section('content')
 
 <div class="col-sm-offset-2 col-sm-8"> 
-  <div class="panel-tittle">
-      <h1>{{$nombre}}</h1>
+  <div class="panel-tittle" align="center">
+      <h3><b>{{$nombre}}<b></h3>
   </div>
   <div class="panel">
     <div class="panel-heading">
@@ -16,19 +16,19 @@
       <div class="panel-body">
         <table class="table table-hover" id="insumoAgregados">
           <thead>
-            <th style="visibility: hidden;">#</th>
+            <th style="display: none;">#</th>
             <th>Insumo</th>
             <th>Cantidad de onzas/unidades</th>
           </thead>
           <tbody>
             @foreach($contienen as $contiene)
               <tr id="fila{{$contiene->idInsumo}}">
-                <td style="visibility: hidden;">{{$contiene->idInsumo}}</td>
+                <td style="display: none;">{{$contiene->idInsumo}}</td>
                 <td>{{$insumos[$contiene->idInsumo]}}</td>
                 <td>{{$contiene->cantidad}}</td>
                 <td>
-                  <button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},{{$contiene->idInsumo}})">
-                    <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                  <button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},{{$contiene->idInsumo}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                   </button>
                 </td>
               </tr>
@@ -144,7 +144,7 @@
           });
         }
       else{
-        var fila = '<tr id="fila'+insumo.id+'"><td>'+insumo.id+'</td><td>'+insumo.nombre+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},'+insumo.id+')"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td></tr>';
+        var fila = '<tr id="fila'+insumo.id+'"><td style="display: none;">'+insumo.id+'</td><td>'+insumo.nombre+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},'+insumo.id+')" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>';
         $("#insumoAgregados").append(fila);       
       }
       $("#"+insumo.id).val('');
@@ -204,7 +204,7 @@
             });            
           }
           else{
-            var fila = '<tr id="fila'+insumos[i]+'"><td>'+insumos[i]+'</td><td>'+nombres[i]+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},'+insumos[i]+')"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td></tr>';
+            var fila = '<tr id="fila'+insumos[i]+'"><td  style="display: none;">'+insumos[i]+'</td><td>'+nombres[i]+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},'+insumos[i]+')" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>';
             $("#insumoAgregados").append(fila);
           }
           $("#"+insumos[i]).val('');

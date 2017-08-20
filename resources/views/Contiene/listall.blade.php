@@ -1,6 +1,6 @@
 <table class="table table-hover" id="insumosDisponibles">
       <thead>
-        <th style="visibility: hidden;">#</th>
+        <th style="display: none;">#</th>
         <th>Nombre</th>
         <th>Marca</th>
         <th>A la venta</th>
@@ -8,15 +8,14 @@
         <th>Medida</th>
         <th>
         
-          <button type="submit" class="btn btn-dufault" onclick="adicionarTodo()">A&ntildeadir seleccionados 
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          <button type="submit" class="btn btn-dufault" style="BACKGROUND-COLOR: rgb(187,187,187); color:white" onclick="adicionarTodo()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> A&ntildeadir seleccionados
           </button>          
         </th>
       </thead>
       <tbody>
         @foreach($insumosDisponibles as $insumo)
           <tr>
-            <td style="visibility: hidden;">{{$insumo->id}}</td>
+            <td style="display: none;">{{$insumo->id}}</td>
             <td>{{$insumo->nombre}}</td>
             <td>{{$insumo->marca}}</td>
             <td align="center">
@@ -27,13 +26,13 @@
               {!! Form::select('medida', ['1'=>'oz','2'=>'ml','3'=>'cm3','4'=>'unidad'], null, ['class'=>'form-control', 'id'=>'medida'.$insumo->id]) !!}
             </td>
             <td align="center">
-              <button type="submit" class="btn btn-dufault" onclick="adicionarInsumo({{$insumo}})">
+              <button type="submit" class="btn btn-dufault" onclick="adicionarInsumo({{$insumo}})" style="BACKGROUND-COLOR: rgb(187,187,187); color:white">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
               </button>
             </td>
             <td align="center">
-              <button type="submit" class="btn btn-dufault" onclick="modificarInsumo({{$insumo}})">
-                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+              <button type="submit" class="btn btn-dufault" onclick="modificarInsumo({{$insumo}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
               </button>
             </td>            
           </tr>
