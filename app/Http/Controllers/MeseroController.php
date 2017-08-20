@@ -140,6 +140,7 @@ class MeseroController extends Controller
 
       $productos = $request->productosTabla;
       $cantidades = $request->cantidadesTabla;
+      $totales = $request->totalesTabla;
       $idFactura = $request->factura;
       $idMesa = $request->mesa;
       $ventas = Venta::pedidoActualMesa($idFactura)->get();
@@ -153,11 +154,11 @@ class MeseroController extends Controller
           for($i=0; $i<$size; $i++){
             $auxiliar = false;
             foreach($ventas as $venta){
-              if($venta->idProducto == $productos[$i] && $venta->cantidad != $cantidades[$i]){
+              if($venta->idProducto == $productos[$i] && $venta->cantidad != $cantidades[$i] && $venta->obsequio == $totales[$i]){
                 $auxiliar = true;
                 $venta->cantidad = $cantidades[$i];
                 $venta->save();
-              }elseif($venta->idProducto == $productos[$i] && $venta->cantidad == $cantidades[$i]){
+              }elseif($venta->idProducto == $productos[$i] && $venta->cantidad == $cantidades[$i] && $venta->obsequio == $totales[$i]){
                 $auxiliar = true;
               }
             }
@@ -171,9 +172,10 @@ class MeseroController extends Controller
               $nuevaVenta->estadoCajero = '0';
               $nuevaVenta->idFactura = $idFactura;
               $nuevaVenta->idProducto = $productos[$i];
-              $nuevaVenta->idMesero = Auth::user()->id; //Cambiar?
-              $nuevaVenta->idBartender = Auth::user()->id; //Cambiar?
-              $nuevaVenta->idCajero = Auth::user()->id; //Cambiar?
+              $nuevaVenta->obsequio = $totales[$i];
+              $nuevaVenta->idMesero = Auth::user()->id;
+              $nuevaVenta->idBartender = Auth::user()->id;
+              $nuevaVenta->idCajero = Auth::user()->id;
               $nuevaVenta->save();
             }
 
@@ -189,9 +191,10 @@ class MeseroController extends Controller
             $venta->estadoCajero = '0';
             $venta->idFactura = $idFactura;
             $venta->idProducto = $productos[$i];
-            $venta->idMesero = Auth::user()->id; //Cambiar?
-            $venta->idBartender = Auth::user()->id; //Cambiar
-            $venta->idCajero = Auth::user()->id; //Cambiar
+            $venta->obsequio = $totales[$i];
+            $venta->idMesero = Auth::user()->id;
+            $venta->idBartender = Auth::user()->id;
+            $venta->idCajero = Auth::user()->id;
             $venta->save();
           }
           $mesa = Mesa::find($idMesa);
@@ -235,11 +238,12 @@ class MeseroController extends Controller
       $mesa = Mesa::find($id);
       $categorias = Categoria::categoriasEmpresa(Auth::user()->idEmpresa)->get();
       $busqueda = Factura::buscarFacturaId($id)->get()->last();
+      $obsequiar = Auth::user()->obsequio;
       $ventas = null;
 
       if(sizeOf($busqueda) > 0){
         $ventas = Venta::pedidoActualMesa($busqueda->id)->get();
-        return view('Mesero.venta')->with('factura',$busqueda)->with('mesa',$mesa)->with('categorias',$categorias)->with('ventas',$ventas);
+        return view('Mesero.venta')->with('factura',$busqueda)->with('mesa',$mesa)->with('categorias',$categorias)->with('ventas',$ventas)->with('obsequiar', $obsequiar);
       }else{
         $nfactura = new Factura;
         $nfactura->estado = "En proceso";
@@ -250,7 +254,7 @@ class MeseroController extends Controller
         $nfactura->idMesa = $id;
         $nfactura->save();
         $facturas = Factura::buscarFacturaId($id)->get()->last();
-        return view('Mesero.venta')->with('factura',$facturas)->with('mesa',$mesa)->with('categorias',$categorias)->with('ventas',$ventas);
+        return view('Mesero.venta')->with('factura',$facturas)->with('mesa',$mesa)->with('categorias',$categorias)->with('ventas',$ventas)->with('obsequiar', $obsequiar);
       }
     }
 

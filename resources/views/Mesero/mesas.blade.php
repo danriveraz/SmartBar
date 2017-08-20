@@ -17,6 +17,13 @@
   		<div id="hidden-items">
   		@foreach($mesas as $mesa)
   		    <div class="item social-widget">
+            @if($mesa->estado == 'Disponible')
+              <div id="mesaDisponible"></div>
+            @elseif($mesa->estado == 'Ocupada')
+              <div id="mesaOcupada"></div>
+            @else
+              <div id="mesaReservada"></div>
+            @endif
             <a href="{{ route('mesero.show', $mesa->id) }}">
               <div class="social-data" >
     		        <h1>
@@ -48,14 +55,5 @@
 {!!Html::script('javascripts\select2.js')!!}
 {!!Html::script('javascripts\jquery.sparkline.min.js')!!}
 
-<script type="text/javascript">
- $(document).ready(function(){
-    cambiarCurrent("#mesero");
-  });
-function cambiarCurrent(idInput) {
-  $(".current").removeClass("current");
-  $(idInput).addClass("current");
-};
-</script>
 
 @endsection

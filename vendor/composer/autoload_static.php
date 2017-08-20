@@ -360,6 +360,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'Addunidadinsumo' => __DIR__ . '/../..' . '/database/migrations/2017_07_18_222822_addunidadinsumo.php',
         'AgregarColumnasUsuario' => __DIR__ . '/../..' . '/database/migrations/2017_07_27_144627_agregar_columnas_usuario.php',
         'AlterTableVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_214105_alterTableVenta.php',
+        'AltertableVenta' => __DIR__ . '/../..' . '/database/migrations/2017_08_19_210706_altertableVenta.php',
         'Altertableadminimagenes' => __DIR__ . '/../..' . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
         'Altertablecategoria' => __DIR__ . '/../..' . '/database/migrations/2017_08_02_170443_altertablecategoria.php',
         'Altertablecontiene' => __DIR__ . '/../..' . '/database/migrations/2017_07_14_161041_altertablecontiene.php',

@@ -1,7 +1,10 @@
 @extends('Layout.app_empleado')
 @section('content')
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://cdn.bootcss.com/animate.css/3.5.1/animate.min.css">
 {!!Html::style('stylesheets\mesero.css')!!}
+
 
 <div class="col-sm-offset-2 col-sm-8">
 
@@ -16,31 +19,37 @@
     @endif
    </div>
 
-  <div class="bs-example">
-      <div class="panel-group" id="accordion">
-        @foreach($categorias as $categoria)
-          <div class="panel panel-default">
-              <div class="panel-heading">
-                  <h4 class="panel-title">
-                      <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href={{"#collapse".$categoria->id}}><div class="caret pull-right"></div>
-                        {{$categoria->nombre}}</a>
-                  </h4>
-              </div>
-              <div id={{"collapse".$categoria->id}} class="panel-collapse collapse">
-                  <div class="panel-body">
-                    <table class="table table-striped" id="tablaProductos">
-                      <thead>
-                        <th width="150px">Nombre</th>
-                        <th width="40px">Detalles</th>
-                        <th width="40px">Valor unitario</th>
-                        <th width="40px">Agregar</th>
-                      </thead>
-                      <tbody>
+  <div class="bs-example" id="contenedor">
+      <div class="widget-container scrollable" id="contenedorCategorias">
+        <div class="widget-content" id="scrollContent">
+          @foreach($categorias as $categoria)
+          <a data-toggle="tab" href="#tabProductos{{$categoria->id}}">
+            <div id="categoria">
+                  {{$categoria->nombre}}
+            </div>
+          </a>
+          @endforeach
+        </div>
+      </div>
+      <div class="widget-container scrollable" id="contenedorProductos">
+        <div class="widget-content" id="scrollContent">
+          <div class="tab-content" id="productos">
+            @foreach($categorias as $categoria)
+              <div class="tab-pane" id="tabProductos{{$categoria->id}}">
+                <table class="table table-striped" id="tablaProductos">
+                  <thead>
+                    <th width="40%">Nombre</th>
+          					<th width="20%">Detalles</th>
+          					<th width="20%">Valor unitario</th>
+          					<th width="10%">Agregar</th>
+                    <th width="10%">Obsequiar</th>
+                   </thead>
+                  <tbody>
                     @foreach($categoria->productos as $producto)
                       <tr>
                         <td>{{$producto->nombre}}</td>
                         <td>
-                          <a class="btn btn btn-default popover-trigger" data-html="true" data-content=
+                          <a class="btn btn btn-primary popover-trigger" data-html="true" data-content=
                           "<div>
                             <strong>Ingredientes:</strong>
                             @foreach($producto->contienen as $contiene)
@@ -53,59 +62,86 @@
                         </td>
                         <td>{{$producto->precio}}</td>
                         <td>
-                          <button class="btn btn-success" onclick="actualizarTabla({{$producto->id}},{{$factura->id}})" >
+                          <button class="btn btn-success" onclick="actualizarTabla({{$producto->id}},{{$factura->id}}, 0)" >
                             <span class="glyphicon glyphicon-plus"></span>
                           </button>
                         </td>
+                        <td>
+                          @if($obsequiar == 1)
+                          <button class="btn btn-info" onclick="actualizarTabla({{$producto->id}},{{$factura->id}}, 1)" >
+                            <span class="glyphicon glyphicon-gift"></span>
+                          </button>
+                          @else
+                          <button class="btn btn-default" onclick="actualizarTabla({{$producto->id}},{{$factura->id}}, 1)" disabled>
+                            <span class="glyphicon glyphicon-gift"></span>
+                          </button>
+                          @endif
+                        </td>
                       </tr>
                     @endforeach
-
                   </tbody>
-                  </table>
-                  </div>
+                </table>
               </div>
+            @endforeach
           </div>
-        @endforeach
+        </div>
       </div>
   </div>
 
-  <table class="table table-bordered" id="pedidoTabla" style="margin-top: 40px; margin-bottom: 40px;">
-    <thead>
-      <th style="display: none;">#</th>
-      <th width="150px">Nombre</th>
-      <th width="50px">Valor unitario</th>
-      <th width="20px">Cant.</th>
-      <th width="100px">Total</th>
-      <th width="20px">Eliminar</th>
-    </thead>
-    <tbody>
-      @if($ventas != null)
-        @foreach($ventas as $venta)
-        <tr id="p{{$venta->producto->id}}">
-          <td style="display: none;">{{$venta->producto->id}}</td>
-          <td>{{$venta->producto->nombre}}</td>
-          <td id="v{{$venta->producto->id}}">{{$venta->producto->precio}}</td>
-          <td id="c{{$venta->producto->id}}">{{$venta->cantidad}}</td>
-          <td id="t{{$venta->producto->id}}">{{$venta->producto->precio * $venta->cantidad}}</td>
-          <td><button class="btn btn-danger" onclick="actualizarCantidad({{$venta->producto->id}},{{$factura->id}})" ><span class="glyphicon glyphicon-minus"></span></button></td>
-        </tr>
-        @endforeach
-      @endif
-    </tbody>
-  </table>
+  @if(sizeOf($ventas) != 0)
+    <table class="table table-bordered" id="pedidoTabla" style="display: table; margin-top: 10px; margin-bottom: 40px;">
+        <thead>
+          <th style="display: none;">#</th>
+          <th width="150px">Nombre</th>
+          <th width="50px">Valor unitario</th>
+          <th width="20px">Cant.</th>
+          <th width="100px">Total</th>
+          <th width="20px">Eliminar</th>
+        </thead>
+        <tbody>
+
+            @foreach($ventas as $venta)
+              @if($venta->obsequio == 0)
+                <tr id="p{{$venta->producto->id}}">
+                  <td style="display: none;">{{$venta->producto->id}}</td>
+                  <td>{{$venta->producto->nombre}}</td>
+                  <td id="v{{$venta->producto->id}}">{{$venta->producto->precio}}</td>
+                  <td id="c{{$venta->producto->id}}">{{$venta->cantidad}}</td>
+                  <td id="t{{$venta->producto->id}}">{{$venta->producto->precio * $venta->cantidad}}</td>
+                  <td><button class="btn btn-danger" onclick="actualizarCantidad({{$venta->producto->id}},{{$factura->id}},{{$venta->obsequio}})" ><span class="glyphicon glyphicon-minus"></span></button></td>
+                </tr>
+              @else
+                <tr id="p{{$venta->producto->id}}1">
+                  <td style="display: none;">{{$venta->producto->id}}</td>
+                  <td>{{$venta->producto->nombre}}</td>
+                  <td id="v{{$venta->producto->id}}1">{{$venta->producto->precio}}</td>
+                  <td id="c{{$venta->producto->id}}1">{{$venta->cantidad}}</td>
+                  <td id="t{{$venta->producto->id}}1">Obsequio</td>
+                  <td><button class="btn btn-danger" onclick="actualizarCantidad({{$venta->producto->id}},{{$factura->id}},{{$venta->obsequio}})" ><span class="glyphicon glyphicon-minus"></span></button></td>
+                </tr>
+              @endif
+            @endforeach
+        </tbody>
+    </table>
+  @else
+    <table class="table table-bordered" id="pedidoTabla" style="display: none; margin-top: 10px; margin-bottom: 40px;">
+        <thead>
+          <th style="display: none;">#</th>
+          <th width="150px">Nombre</th>
+          <th width="50px">Valor unitario</th>
+          <th width="20px">Cant.</th>
+          <th width="100px">Total</th>
+          <th width="20px">Eliminar</th>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+  @endif
 
   <button onclick="enviarDatos({{$factura->id}}, {{$mesa->id}})" id="botonEnviar" class="btn btn-default"><i class="glyphicon glyphicon-ok"></i> Guardar pedido</button>
 
 </div>
-<script type="text/javascript">
- $(document).ready(function(){
-    cambiarCurrent("#mesero");
-  });
-function cambiarCurrent(idInput) {
-  $(".current").removeClass("current");
-  $(idInput).addClass("current");
-};
-</script>
+
 {!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
 {!!Html::script('javascripts\jquery.dataTables.min.js')!!}
 {!!Html::script('javascripts\jquery.easy-pie-chart.js')!!}
@@ -113,18 +149,26 @@ function cambiarCurrent(idInput) {
 
 @endsection
 
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="project.js"></script>
 <script>
-  var route = "http://pocketdesigner.co/PocketByR/public/mesero/agregar";
-  var routeDisminuir = "http://pocketdesigner.co/PocketByR/public/mesero/disminuir";
-  var routeVenta = "http://pocketdesigner.co/PocketByR/public/mesero/venta";
 
-  $(function(){
-    $("#accordion").accordion({
-      collapsible: true
-    });
-  } );
+  $(document).ready(function(){
+      $("#scrollContent a:first-child").click();
+      cambiarCurrent("#mesero");
+  });
 
-  function actualizarTabla(idProducto, idFactura){
+  function cambiarCurrent(idInput) {
+    $(".current").removeClass("current");
+    $(idInput).addClass("current");
+  };
+
+  var route = "http://localhost/PocketByR/public/mesero/agregar";
+  var routeDisminuir = "http://localhost/PocketByR/public/mesero/disminuir";
+  var routeVenta = "http://localhost/PocketByR/public/mesero/venta";
+
+  function actualizarTabla(idProducto, idFactura, obsequio){
+    $('#pedidoTabla').css({'display': 'table', 'margin-top': '10px' , 'margin-bottom': '40px'});
     $.ajax({
       url: route,
       type: 'GET',
@@ -133,21 +177,36 @@ function cambiarCurrent(idInput) {
         idF: idFactura
       },
       success : function(data) {
-         var producto = $.parseJSON(data);
-         if(producto != null){
+        var producto = $.parseJSON(data);
+        if(producto != null){
             $id = producto.id;
-            if($("tr#p"+$id).length){
-              $id = producto.id;
-              var cantidad = $("td#c"+ producto.id).html();
-              var cantidadFinal = ++cantidad;
-              $("td#c"+ producto.id).replaceWith('<td id="c'+producto.id +'">'+ cantidadFinal +'</td>');
-              $("td#t"+ producto.id).replaceWith('<td id="t'+producto.id +'">'+ cantidadFinal* producto.precio +'</td>');
+            if(obsequio == 0){
+              if($("tr#p"+$id).length){
+                $id = producto.id;
+                var cantidad = $("td#c"+ producto.id).html();
+                var cantidadFinal = ++cantidad;
+                $("td#c"+ producto.id).replaceWith('<td id="c'+producto.id +'">'+ cantidadFinal +'</td>');
+                $("td#t"+ producto.id).replaceWith('<td id="t'+producto.id +'">'+ cantidadFinal* producto.precio +'</td>');
+              }else{
+                $('#pedidoTabla > tbody').append('<tr id="p'+producto.id+'"><td style="display: none;">'+producto.id
+                +'</td><td>'+producto.nombre+'</td><td id="v'+producto.id+'">'+ producto.precio+'</td><td id="c'+producto.id +'">'+ 1
+                +'</td><td id="t'+ producto.id+'">'+ producto.precio + '</td><td>'+
+                '<button class="btn btn-danger" onclick="actualizarCantidad('+$id+','+idFactura+',0)"><span class="glyphicon glyphicon-minus"></span></button>'
+                +'</td></tr>');
+              }
             }else{
-              $('#pedidoTabla > tbody').append('<tr id="p'+producto.id+'"><td style="display: none;">'+producto.id
-              +'</td><td>'+producto.nombre+'</td><td id="v'+producto.id+'">'+ producto.precio+'</td><td id="c'+producto.id +'">'+ 1
-              +'</td><td id="t'+ producto.id+'">'+ producto.precio + '</td><td>'+
-              '<button class="btn btn-danger" onclick="actualizarCantidad('+$id+','+idFactura+')"><span class="glyphicon glyphicon-minus"></span></button>'
-              +'</td></tr>');
+              if($("tr#p"+$id+"1").length){
+                var cantidad = $("td#c"+ producto.id + "1").html();
+                var cantidadFinal = ++cantidad;
+                $("td#c"+ producto.id + "1").replaceWith('<td id="c'+producto.id +'1">'+ cantidadFinal +'</td>');
+              }else{
+                $('#pedidoTabla > tbody').append('<tr id="p'+producto.id+'1"><td style="display: none;">'+producto.id
+                +'</td><td>'+producto.nombre+'</td><td id="v'+producto.id+'1">'+ producto.precio+'</td><td id="c'+producto.id +'1">'+ 1
+                +'</td><td id="t'+ producto.id+'1">Obsequio</td><td>'+
+                '<button class="btn btn-danger" onclick="actualizarCantidad('+$id+','+idFactura+',1)"><span class="glyphicon glyphicon-minus"></span></button>'
+                +'</td></tr>');
+              }
+
             }
          }else{
            $( "#message" ).load(window.location.href + " #message" );
@@ -156,13 +215,19 @@ function cambiarCurrent(idInput) {
       error: function(data){
         alert('Error al aumentar la cantidad de un producto');
      }
-    });
+   });
   }
 
-  function actualizarCantidad(idProducto, idFactura){
-    var cantidad = $("td#c"+ idProducto).html();
-    var cantidadFinal = cantidad - 1;
-    var precio = $("td#v"+ idProducto).html();
+  function actualizarCantidad(idProducto, idFactura, obsequio){
+    if(obsequio == 0){
+      var cantidad = $("td#c"+ idProducto).html();
+      var cantidadFinal = --cantidad;
+      var precio = $("td#v"+ idProducto).html();
+    }else{
+      var cantidad = $("td#c"+ idProducto+"1").html();
+      var cantidadFinal = --cantidad;
+      var precio = $("td#v"+ idProducto+"1").html();
+    }
 
     $.ajax({
       url: routeDisminuir,
@@ -173,13 +238,20 @@ function cambiarCurrent(idInput) {
         cant : cantidadFinal
       },
       success : function() {
+        if(obsequio == 0){
+          if(cantidadFinal == 0){
+            $("tr#p"+idProducto).remove();
+          }else{
+            $("td#c"+ idProducto).replaceWith('<td id="c'+idProducto +'">'+ cantidadFinal +'</td>');
+            $("td#t"+ idProducto).replaceWith('<td id="t'+idProducto +'">'+ cantidadFinal*precio +'</td>');
+          }
+       }else{
          if(cantidadFinal == 0){
-           var row = document.getElementById("p"+idProducto);
-           row.parentNode.removeChild(row);
+           $("tr#p"+idProducto+"1").remove();
          }else{
-           $("td#c"+ idProducto).replaceWith('<td id="c'+idProducto +'">'+ cantidadFinal +'</td>');
-           $("td#t"+ idProducto).replaceWith('<td id="t'+idProducto +'">'+ cantidadFinal*precio +'</td>');
-         }
+           $("td#c"+ idProducto+"1").replaceWith('<td id="c'+idProducto +'1">'+ cantidadFinal +'</td>');
+       }
+     }
      },
       error: function(data){
         alert('Error al disminuir la cantidad de un producto');
@@ -191,13 +263,21 @@ function cambiarCurrent(idInput) {
   function enviarDatos(idFactura, idMesa){
     var idProductos = [];
     var cantidades = [];
+    var totales = [];
     $("table#pedidoTabla tr").each(function() {
       $(this).children("td").each(function (indextd)
         {
           if(indextd == 0){
             idProductos.push($(this).text());
-          }else if(indextd == 3)
+          }else if(indextd == 3){
             cantidades.push($(this).text());
+          }else if(indextd == 4){
+            if($(this).text() == 'Obsequio'){
+              totales.push('1');
+            }else{
+              totales.push('0');
+            }
+          }
        })
     });
 
@@ -207,12 +287,13 @@ function cambiarCurrent(idInput) {
         data:{
           productosTabla: idProductos,
           cantidadesTabla: cantidades,
+          totalesTabla: totales,
           factura: idFactura,
           mesa: idMesa
         },
         success : function() {
           if(idProductos.length != 0){
-            window.location = "http://pocketdesigner.co/PocketByR/public/mesero";
+            window.location = "http://localhost/PocketByR/public/mesero";
           }else{
             $( "#message" ).load(window.location.href + " #message" );
           }
@@ -222,4 +303,5 @@ function cambiarCurrent(idInput) {
        }
      });
   }
+
 </script>
