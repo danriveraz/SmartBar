@@ -86,7 +86,8 @@ class InsumoController extends Controller
       $producto->precio = $request->venta;
       $producto->idCategoria = $request->categoria;
       $contiene = Contiene::IdProducto($producto->id)->IdInsumo($insumo->id)->first();
-      $contiene = $insumo->cantidadMedida;
+      $contiene->cantidad = $insumo->cantidadMedida;
+      $contiene->save();
       $producto->save();
     }
     $insumo->save();
