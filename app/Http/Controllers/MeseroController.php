@@ -100,12 +100,13 @@ class MeseroController extends Controller
     public function disminuir(Request $request){
 
       $producto = Producto::find($request->idP);
+      $obs = $request->obsequiar;
 
       if($request->cant == 0){
         $ventas = Venta::pedidoActualMesa($request->idF)->get();
         if(sizeOf($ventas) > 0){
           foreach($ventas as $venta){
-            if($venta->idProducto == $producto->id){
+            if($venta->idProducto == $producto->id && $venta->obsequio == $obs){
               $venta->estadoMesero = 'Cancelado';
               $venta->save();
             }

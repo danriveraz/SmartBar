@@ -18,7 +18,7 @@ class Categoria extends Model
     }
 
     public function productos(){
-      return $this->hasMany('PocketByR\Producto', 'idCategoria', 'id');
+      return $this->hasMany('PocketByR\Producto', 'idCategoria', 'id')->orderBy('nombre', 'ASC');;
     }
 
     public function scopeCategoriasEmpresa($query, $idEmpresa){
