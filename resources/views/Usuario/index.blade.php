@@ -4,12 +4,9 @@
 <div class="container-fluid main-content">
   <div class="panel-tittle" align="center">
       <h3><B>MI PERSONAL</B></h3>
-
-
       @include('flash::message')
       <a href="{{ route('Auth.usuario.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Nuevo Empleado </a>
   </div>
-  <div class="row">
   <div class="social-wrapper">
     <div id="social-container">
   @foreach($usuarios as $usuario)
@@ -55,6 +52,12 @@
             <li>
               <a href="#"><i class="fa fa-money pull-left"></i>Salario</a>
             </li>
+            <li>
+              <a href="{{route('Auth.usuario.cambiarEstado',$usuario->id) }}" onclick="return confirm('¿Estas seguro que deseas cambiar el estado de este suario?')">
+              @if($usuario->estado == 1) <i class="fa fa-toggle-on pull-left"></i>Desactivar
+              @else <i class="fa fa-toggle-off pull-left"></i> Activar
+              @endif</a>
+            </li>
           </ul>
         </div>                      
       </div>
@@ -66,7 +69,6 @@
       <div class="col-md-4">            
         <button class="btn btn-info"><i class="fa fa-envelope-o"></i>Mensaje</button>            
       </div>
-      
     </div>
   </div>
 <!-- end Profile Widget -->
@@ -82,7 +84,7 @@
     @endforeach
   </div>
 </div>
-</div>
+
 
 
 <!-- inidio de slider de agregar usuario -->

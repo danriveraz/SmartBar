@@ -206,6 +206,25 @@ class UsuariosController extends Controller
     return redirect()->route('Auth.usuario.index');
   }
 
+  public function cambiarEstado($id){
+    $usuario = User::find($id);
+      if ($usuario->estado == true){
+          $usuario -> fill([
+          'estado' => false
+          ]);
+          $usuario -> save();
+      }else{
+          $usuario -> fill([
+          'estado' => true
+          ]);
+          $usuario -> save();
+      }
+
+    Flash::success('El estado del usuario cambió satisfactoriamente')->important();
+    return redirect()->route('Auth.usuario.index');
+  }
+
+
   public function registerUser(Request $request){
 
       if($request->ajax()){

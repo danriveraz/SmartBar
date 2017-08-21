@@ -36,6 +36,7 @@ Route::group(['prefix' => 'Auth'], function(){
   Route::get('modificarEmpresa', ['uses' => 'UsuariosController@modificarEmpresa', 'as' => 'Auth.usuario.showeditEmpresa']);
   Route::resource('usuario','UsuariosController');
   Route::get('usuario/{id}/destroy', ['uses' => 'UsuariosController@destroy', 'as' => 'Auth.usuario.destroy']);
+  Route::get('usuario/{id}/active', ['uses' => 'UsuariosController@cambiarEstado', 'as' => 'Auth.usuario.cambiarEstado']);
 });
 
 Route::get('insumo/eliminar', 'InsumoController@eliminar');
