@@ -19,6 +19,8 @@
     @endif
    </div>
 
+  <div id="nombreMesa">{{$mesa->nombreMesa}}</div>
+
   <div class="bs-example" id="contenedor">
       <div class="widget-container scrollable" id="contenedorCategorias">
         <div class="widget-content" id="scrollContent">
