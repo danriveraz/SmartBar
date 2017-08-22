@@ -2,7 +2,13 @@
 @section('content')
 <!--<h1>Hola {{Auth::user()->nombrePersona}}</h1>
 <h2>Puede regalar: {{Auth::user()->obsequio}}</h2>-->
-
+@if(Auth::User()->empresa->nombreEstablecimiento=='')
+	<div class='alert alert-warning alert-important'>
+		<p>Por favor terminar de llenar la informarción de la empresa aquí
+			<a href="{{url('Auth/modificarEmpresa')}}"><i class="fa fa-gear"></i>Ajustes</a>
+		</p>
+	</div>
+@endif
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="http://cdn.bootcss.com/animate.css/3.5.1/animate.min.css">
 

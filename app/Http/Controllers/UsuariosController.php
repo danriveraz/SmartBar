@@ -251,6 +251,7 @@ class UsuariosController extends Controller
           $usuario->departamento= Auth::user()->departamento;
           $usuario->ciudad= Auth::user()->ciudad;
           $usuario->confirmoEmail = 1;
+          $usuario->estado = true;
           $usuario->imagenPerfil = "perfil.jpg";
           $usuario->imagenNegocio = "perfil.jpg";
           $usuario->remember_token = str_random(100);

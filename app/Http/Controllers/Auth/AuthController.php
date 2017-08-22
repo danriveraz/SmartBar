@@ -16,6 +16,7 @@ use Session;
 use Input;
 use Redirect;
 use Socialite;
+use Laracasts\Flash\Flash;
 
 
 class AuthController extends Controller
@@ -92,6 +93,7 @@ class AuthController extends Controller
             $admin->departamento = $departamentos[($request->idDepto) -1]->nombre;
             $admin->ciudad = $ciudades[($request->idCiudad) -1]->nombre;
             $admin->confirmoEmail = 0;
+            $admin->estado = true;
             $admin->imagenPerfil = "perfil.jpg";
             $admin->imagenNegocio = "perfil.jpg";
             $admin->password = bcrypt($request->password);
@@ -167,7 +169,8 @@ class AuthController extends Controller
                 [
                     'username' => $request->username,
                     'password' => $request->password,
-                    'confirmoEmail' => 1
+                    'confirmoEmail' => 1,
+                    'estado' => true
                 ]
                 , $request->has('remember')
                 )){
@@ -177,7 +180,14 @@ class AuthController extends Controller
                     'password' => $request->password,
                     'confirmoEmail' => 0
                 ], $request->has('remember'))){            
-            return $this->volverLogin();
+            return $this->volverLogin('Por favor activa tu cuenta primero');
+        }
+        if(Auth::attempt([
+                    'username' => $request->username,
+                    'password' => $request->password,
+                    'estado' => false
+                ], $request->has('remember'))){
+            return $this->volverLogin('Ha sido desactivado, por favor contacte con el administrador');
         }else{
             $rules = [
                 'username' => 'required',
@@ -196,9 +206,10 @@ class AuthController extends Controller
         }
     }
 
-    public function volverLogin(){
+    public function volverLogin($mensaje){
         Auth::guard($this->getGuard())->logout();
-        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/')->with('message', 'Por Favor Activa tu Cuenta');;
+        flash::warning($mensaje)->important();
+        return redirect('/');
     }
 
     public function profile(){
@@ -305,24 +316,70 @@ class AuthController extends Controller
      */
     public function findOrCreateUser($user, $provider)
     {
-        $authUser = User::where('email', $user->email)->first();
+        $authUser = User::where('provider_id', $user->getId())->first();
         if ($authUser) {
             return $authUser;
         }
-        return User::create([
-            'nombrePersona'=> $user->name,
-            'email'    => $user->email,
-            'provider' => $provider,
-            'provider_id' => $user->getId(),
-            'imagenPerfil'=> 'perfil.jpg',
-            'esAdmin'=>'1',
-            'esMesero'=>'1',
-            'esBartender'=>'1',
-            'obsequio'=>'1',
-            'esCajero'=>'1',
-            'confirmoEmail' => '1',
-            'sexo' => $user['gender'],
-        ]);
+
+        $empresa = new Empresa;
+        $empresa->nombreEstablecimiento = '';
+        $empresa->save();// crea la empresa con el nombre del establecimiento 
+
+
+        $admin = new User;
+        $admin->nombrePersona = $user->name;
+        $admin->email = $user->email;
+        $admin->pais= "Colombia";
+        $admin->departamento = '';
+        $admin->ciudad = '';
+        $admin->confirmoEmail = 1;
+        $admin->estado = true;
+        $admin->imagenPerfil = "perfil.jpg";
+        $admin->imagenNegocio = "perfil.jpg";
+        $admin->password = bcrypt(str_random(8));
+        $admin->remember_token = str_random(100);
+        $admin->confirm_token = str_random(100);
+        $admin->esAdmin = true;
+        $admin->esCajero = true;
+        $admin->esBartender = true;
+        $admin->esMesero = true;
+        $admin->obsequio = true;
+        $admin->cedula= ''; 
+        $admin->idEmpresa = $empresa->id; // id de la empresa para saber a quién pertenece
+        $admin->username = str_random(100);
+        $admin->save();// guarda el usuario registrado 
+        
+        $empresa->usuario_id = $admin->id;// obtiene el id del usuario que creo la empres apara saber la referencia 
+        $empresa->save();// guarda los cambios 
+
+        
+        // parte del código para generar el username inicial
+        $numeroRepetido = 0; // numero que se agregará al username por si ya hay alguno parecido y poderlo diferenciar
+        $auxiliarBool = true;
+        $auxiliarUser;
+        $auxiliarUsername;
+        while ($auxiliarBool) {
+            if($numeroRepetido==0){
+                $auxiliarUsername = str_replace(' ','',$user->name);
+                $auxiliarUser = User::where('username', $auxiliarUsername)->first();
+            }else{
+                $auxiliarUsername = str_replace(' ','',$user->name).'-'.$numeroRepetido;
+                $auxiliarUser = User::where('username', $auxiliarUsername)->first();
+            }
+            if($auxiliarUser==null){
+                $auxiliarBool= false;
+            }
+            $numeroRepetido++;
+
+        }
+        $admin->username = $auxiliarUsername;
+        $admin->provider = $provider;
+        $admin->provider_id = $user->getId();
+        $admin->sexo = $user['gender'];
+        $admin->save();
+
+
+        return $admin;
     }
 
 

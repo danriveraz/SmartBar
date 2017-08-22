@@ -51,6 +51,7 @@
 					</div>
 						<div class="menu">
 						    <ul>
+						    	<li>@include('flash::message')</li>
 						    	<li class="current"><a href="#section-1" class="scroll">Inicio</a></li>
 								<li><a href="#section-2" class="scroll">Conócenos</a></li>
 								<li><a href="" class="scroll">Contacto</a></li>
