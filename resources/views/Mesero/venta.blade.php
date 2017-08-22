@@ -23,42 +23,40 @@
     @endif
    </div>
 
-  <div class="bs-example" id="contenedor" style="height: calc({{sizeOf($categorias)}} * 68px);">
-      <div class="widget-container scrollable" id="contenedorCategorias">
-        <div class="widget-content" id="scrollContent">
+  <div class="bs-example" id="contenedor" style="height: calc({{sizeOf($categorias)}} * 61px);">
+      <div id="contenedorCategorias">
           @foreach($categorias as $categoria)
-          <a data-toggle="tab" href="#tabProductos{{$categoria->id}}" >
+          <a onclick="scrollZero()" data-toggle="tab" href="#tabProductos{{$categoria->id}}" >
             <div id="categoria">
                   {{$categoria->nombre}}
             </div>
           </a>
           @endforeach
-        </div>
       </div>
-      <div class="widget-container scrollable" id="contenedorProductos">
-        <div class="widget-content" id="scrollContent">
+      <div id="contenedorProductos">
           <div class="tab-content" id="productos">
             @foreach($categorias as $categoria)
               <div class="tab-pane" id="tabProductos{{$categoria->id}}">
                 <table class="table table-striped" id="tablaProductos">
                   <thead>
                     @if($obsequiar == 1)
-                    <th width="40%">Nombre</th>
-          					<th width="20%">Detalles</th>
-          					<th width="20%">Valor unitario</th>
-                    <th width="10%">Obsequiar</th>
+                    <th width="300px">Nombre</th>
+          					<th width="150px">Detalles</th>
+          					<th width="150px">Valor unitario</th>
+                    <th width="100px">Obsequiar</th>
                     @else
-                    <th width="40%">Nombre</th>
-          					<th width="20%">Detalles</th>
-          					<th width="20%">Valor unitario</th>
+                    <th width="250px">Nombre</th>
+          					<th width="150px">Detalles</th>
+          					<th width="150px">Valor unitario</th>
                     <th style="display: none;">Obsequiar</th>
                     @endif
                    </thead>
-                  <tbody>
+                   <tbody style="height: calc({{sizeOf($categorias)}} * 49px);">
                     @foreach($categoria->productos as $producto)
+                      @if($obsequiar == 1)
                       <tr>
-                        <td onclick="actualizarTabla({{$producto->id}},{{$factura->id}}, 0)">{{$producto->nombre}}</td>
-                        <td>
+                        <td width="300px" onclick="actualizarTabla({{$producto->id}},{{$factura->id}}, 0)">{{$producto->nombre}}</td>
+                        <td width="150px">
                           <a class="btn btn btn-primary popover-trigger" data-html="true" data-content=
                           "<div>
                             <strong>Ingredientes:</strong>
@@ -70,28 +68,42 @@
                           </div>"
                           data-placement="bottom" data-toggle="popover">Receta</a>
                         </td>
-                        <td onclick="actualizarTabla({{$producto->id}},{{$factura->id}}, 0)">{{$producto->precio}}</td>
-                        @if($obsequiar == 1)
-                        <td>
+                        <td width="150px" onclick="actualizarTabla({{$producto->id}},{{$factura->id}}, 0)">{{$producto->precio}}</td>
+                        <td width="100px">
                           <button class="btn btn-info" onclick="actualizarTabla({{$producto->id}},{{$factura->id}}, 1)" >
                             <span class="glyphicon glyphicon-gift"></span>
                           </button>
                         </td>
-                        @else
-                        <td>
-                          <button class="btn btn-info" onclick="actualizarTabla({{$producto->id}},{{$factura->id}}, 1)" style="display: none;">
+                      </tr>
+                      @else
+                      <tr>
+                        <td width="250px" onclick="actualizarTabla({{$producto->id}},{{$factura->id}}, 0)">{{$producto->nombre}}</td>
+                        <td width="150px">
+                          <a class="btn btn btn-primary popover-trigger" data-html="true" data-content=
+                          "<div>
+                            <strong>Ingredientes:</strong>
+                            @foreach($producto->contienen as $contiene)
+                              <li>{{$contiene->insumo->nombre}}</li>
+                            @endforeach
+                            <strong>Receta:</strong>
+                            <p>{{$producto->receta}}</p>
+                          </div>"
+                          data-placement="bottom" data-toggle="popover">Receta</a>
+                        </td>
+                        <td width="150px" onclick="actualizarTabla({{$producto->id}},{{$factura->id}}, 0)">{{$producto->precio}}</td>
+                        <td style="display: none;">
+                          <button class="btn btn-info" onclick="actualizarTabla({{$producto->id}},{{$factura->id}}, 1)">
                             <span class="glyphicon glyphicon-gift"></span>
                           </button>
                         </td>
-                        @endif
                       </tr>
+                      @endif
                     @endforeach
                   </tbody>
                 </table>
               </div>
             @endforeach
           </div>
-        </div>
       </div>
   </div>
 
@@ -100,14 +112,13 @@
   </div>
 
   @if(sizeOf($ventas) != 0)
-    <table class="table table-bordered" id="pedidoTabla" style="display: table; margin-top: 10px; margin-bottom: 30px;">
+    <table class="table table-striped" id="pedidoTabla" style="display: table; margin-top: 10px; margin-bottom: 30px;">
         <thead>
           <th style="display: none;">#</th>
           <th width="20px" style="display: none;">Cant.</th>
           <th width="150px" style="display: none;">Nombre</th>
           <th width="50px" style="display: none;">Valor unitario</th>
           <th width="100px" style="display: none;">Total</th>
-          <th width="20px" style="display: none;">Eliminar</th>
         </thead>
         <tbody>
 
@@ -115,34 +126,31 @@
               @if($venta->obsequio == 0)
                 <tr id="p{{$venta->producto->id}}">
                   <td style="display: none;">{{$venta->producto->id}}</td>
-                  <td id="c{{$venta->producto->id}}">{{$venta->cantidad}}</td>
-                  <td>{{$venta->producto->nombre}}</td>
-                  <td id="v{{$venta->producto->id}}">{{$venta->producto->precio}}</td>
-                  <td id="t{{$venta->producto->id}}">{{$venta->producto->precio * $venta->cantidad}}</td>
-                  <td><button class="btn btn-danger" onclick="actualizarCantidad({{$venta->producto->id}},{{$factura->id}},{{$venta->obsequio}})" ><span class="glyphicon glyphicon-minus"></span></button></td>
+                  <td id="c{{$venta->producto->id}}" onclick="actualizarCantidad({{$venta->producto->id}},{{$factura->id}},{{$venta->obsequio}})">{{$venta->cantidad}}</td>
+                  <td onclick="actualizarCantidad({{$venta->producto->id}},{{$factura->id}},{{$venta->obsequio}})">{{$venta->producto->nombre}}</td>
+                  <td id="v{{$venta->producto->id}}" onclick="actualizarCantidad({{$venta->producto->id}},{{$factura->id}},{{$venta->obsequio}})">{{$venta->producto->precio}}</td>
+                  <td id="t{{$venta->producto->id}}" onclick="actualizarCantidad({{$venta->producto->id}},{{$factura->id}},{{$venta->obsequio}})">{{$venta->producto->precio * $venta->cantidad}}</td>
                 </tr>
               @else
                 <tr id="p{{$venta->producto->id}}1">
-                  <td style="display: none;">{{$venta->producto->id}}</td>
-                  <td id="c{{$venta->producto->id}}1">{{$venta->cantidad}}</td>
-                  <td>{{$venta->producto->nombre}}</td>
-                  <td id="v{{$venta->producto->id}}1">{{$venta->producto->precio}}</td>
-                  <td id="t{{$venta->producto->id}}1">Obsequio</td>
-                  <td><button class="btn btn-danger" onclick="actualizarCantidad({{$venta->producto->id}},{{$factura->id}},{{$venta->obsequio}})" ><span class="glyphicon glyphicon-minus"></span></button></td>
+                  <td style="display: none;" >{{$venta->producto->id}}</td>
+                  <td id="c{{$venta->producto->id}}1" onclick="actualizarCantidad({{$venta->producto->id}},{{$factura->id}},{{$venta->obsequio}})">{{$venta->cantidad}}</td>
+                  <td onclick="actualizarCantidad({{$venta->producto->id}},{{$factura->id}},{{$venta->obsequio}})">{{$venta->producto->nombre}}</td>
+                  <td id="v{{$venta->producto->id}}1" onclick="actualizarCantidad({{$venta->producto->id}},{{$factura->id}},{{$venta->obsequio}})">{{$venta->producto->precio}}</td>
+                  <td id="t{{$venta->producto->id}}1" onclick="actualizarCantidad({{$venta->producto->id}},{{$factura->id}},{{$venta->obsequio}})">Obsequio</td>
                 </tr>
               @endif
             @endforeach
         </tbody>
     </table>
   @else
-    <table class="table table-bordered" id="pedidoTabla" style="display: none; margin-top: 10px; margin-bottom: 30px;">
+    <table class="table table-striped" id="pedidoTabla" style="display: none; margin-top: 10px; margin-bottom: 30px;">
         <thead>
           <th style="display: none;">#</th>
           <th width="20px" style="display: none;">Cant.</th>
           <th width="150px" style="display: none;">Nombre</th>
           <th width="50px" style="display: none;">Valor unitario</th>
           <th width="100px" style="display: none;">Total</th>
-          <th width="20px" style="display: none;">Eliminar</th>
         </thead>
         <tbody>
         </tbody>
@@ -165,7 +173,7 @@
 <script>
 
   $(document).ready(function(){
-      $("#scrollContent a:first-child").click();
+      $("#contenedorCategorias a:first-child").click();
       cambiarCurrent("#mesero");
   });
 
@@ -178,57 +186,57 @@
   var routeDisminuir = "http://pocketdesigner.co/PocketByR/public/mesero/disminuir";
   var routeVenta = "http://pocketdesigner.co/PocketByR/public/mesero/venta";
 
-
+  function scrollZero(){
+    $('#tablaProductos tbody').scrollTop(0);
+  };
 
   function actualizarTabla(idProducto, idFactura, obsequio){
-    if(confirm('¿Desea agregar este producto al pedido?')){
-      $('#pedidoTabla').css({'display': 'table', 'margin-top': '10px' , 'margin-bottom': '30px'});
-      $.ajax({
-        url: route,
-        type: 'GET',
-        data:{
-          idP: idProducto,
-          idF: idFactura
-        },
-        success : function(data) {
-          var producto = $.parseJSON(data);
-          if(producto != null){
-              $id = producto.id;
-              if(obsequio == 0){
-                if($("tr#p"+$id).length){
-                  $id = producto.id;
-                  var cantidad = $("td#c"+ producto.id).html();
-                  var cantidadFinal = ++cantidad;
-                  $("td#c"+ producto.id).replaceWith('<td id="c'+producto.id +'">'+ cantidadFinal +'</td>');
-                  $("td#t"+ producto.id).replaceWith('<td id="t'+producto.id +'">'+ cantidadFinal* producto.precio +'</td>');
-                }else{
-                  $('#pedidoTabla > tbody').append('<tr id="p'+producto.id+'"><td style="display: none;">'+producto.id
-                  +'</td><td id="c'+producto.id +'">'+ 1 +'</td><td>'+producto.nombre+'</td><td id="v'+producto.id+'">'+ producto.precio+'</td><td id="t'+ producto.id+'">'+ producto.precio + '</td><td>'+
-                  '<button class="btn btn-danger" onclick="actualizarCantidad('+$id+','+idFactura+',0)"><span class="glyphicon glyphicon-minus"></span></button>'
-                  +'</td></tr>');
-                }
+    $('#pedidoTabla').css({'display': 'table', 'margin-top': '10px' , 'margin-bottom': '30px'});
+    $.ajax({
+      url: route,
+      type: 'GET',
+      data:{
+        idP: idProducto,
+        idF: idFactura
+      },
+      success : function(data) {
+        var producto = $.parseJSON(data);
+        if(producto != null){
+            $id = producto.id;
+            if(obsequio == 0){
+              if($("tr#p"+$id).length){
+                $id = producto.id;
+                var cantidad = $("td#c"+ producto.id).html();
+                var cantidadFinal = ++cantidad;
+                $("td#c"+ producto.id).replaceWith('<td id="c'+producto.id +'" onclick="actualizarCantidad('+$id+','+idFactura+',0)">'+ cantidadFinal +'</td>');
+                $("td#t"+ producto.id).replaceWith('<td id="t'+producto.id +'" onclick="actualizarCantidad('+$id+','+idFactura+',0)">'+ cantidadFinal* producto.precio +'</td>');
               }else{
-                if($("tr#p"+$id+"1").length){
-                  var cantidad = $("td#c"+ producto.id + "1").html();
-                  var cantidadFinal = ++cantidad;
-                  $("td#c"+ producto.id + "1").replaceWith('<td id="c'+producto.id +'1">'+ cantidadFinal +'</td>');
-                }else{
-                  $('#pedidoTabla > tbody').append('<tr id="p'+producto.id+'1"><td style="display: none;">'+producto.id
-                  +'</td><td id="c'+producto.id +'1">'+ 1 +'</td><td>'+producto.nombre+'</td><td id="v'+producto.id+'1">'+ producto.precio+'</td><td id="t'+ producto.id+'1">Obsequio</td><td>'+
-                  '<button class="btn btn-danger" onclick="actualizarCantidad('+$id+','+idFactura+',1)"><span class="glyphicon glyphicon-minus"></span></button>'
-                  +'</td></tr>');
-                }
-
+                $('#pedidoTabla > tbody').append('<tr id="p'+producto.id+'"><td style="display: none;">'+producto.id
+                +'</td><td id="c'+producto.id +'" onclick="actualizarCantidad('+$id+','+idFactura+',0)">'+ 1
+                +'</td><td onclick="actualizarCantidad('+$id+','+idFactura+',0)">'+producto.nombre+'</td><td id="v'+producto.id+'" onclick="actualizarCantidad('+$id+','+idFactura+',0)">'+ producto.precio
+                +'</td><td id="t'+ producto.id+'" onclick="actualizarCantidad('+$id+','+idFactura+',0)">'+ producto.precio + '</td></tr>');
               }
-           }else{
-             $( "#message" ).load(window.location.href + " #message" );
-           }
-       },
-        error: function(data){
-          alert('Error al aumentar la cantidad de un producto');
-       }
-     });
-   }
+            }else{
+              if($("tr#p"+$id+"1").length){
+                var cantidad = $("td#c"+ producto.id + "1").html();
+                var cantidadFinal = ++cantidad;
+                $("td#c"+ producto.id + "1").replaceWith('<td id="c'+producto.id +'1" onclick="actualizarCantidad('+$id+','+idFactura+',1)">'+ cantidadFinal +'</td>');
+              }else{
+                $('#pedidoTabla > tbody').append('<tr id="p'+producto.id+'1"><td style="display: none;">'+producto.id
+                +'</td><td id="c'+producto.id +'1" onclick="actualizarCantidad('+$id+','+idFactura+',1)">'+ 1
+                +'</td><td onclick="actualizarCantidad('+$id+','+idFactura+',1)">'+producto.nombre+'</td><td id="v'+producto.id+'1" onclick="actualizarCantidad('+$id+','+idFactura+',1)">'+ producto.precio
+                +'</td><td id="t'+ producto.id+'1" onclick="actualizarCantidad('+$id+','+idFactura+',1)">Obsequio</td></tr>');
+              }
+
+            }
+         }else{
+           $( "#message" ).load(window.location.href + " #message" );
+         }
+     },
+      error: function(data){
+        alert('Error al aumentar la cantidad de un producto');
+     }
+   });
  };
 
   function actualizarCantidad(idProducto, idFactura, obsequio){
@@ -256,14 +264,14 @@
           if(cantidadFinal == 0){
             $("tr#p"+idProducto).remove();
           }else{
-            $("td#c"+ idProducto).replaceWith('<td id="c'+idProducto +'">'+ cantidadFinal +'</td>');
-            $("td#t"+ idProducto).replaceWith('<td id="t'+idProducto +'">'+ cantidadFinal*precio +'</td>');
+            $("td#c"+ idProducto).replaceWith('<td id="c'+idProducto +'" onclick="actualizarCantidad('+idProducto+','+idFactura+',0)">'+ cantidadFinal +'</td>');
+            $("td#t"+ idProducto).replaceWith('<td id="t'+idProducto +'" onclick="actualizarCantidad('+idProducto+','+idFactura+',0)">'+ cantidadFinal*precio +'</td>');
           }
        }else if(obsequio == 1){
          if(cantidadFinal == 0){
            $("tr#p"+idProducto+"1").remove();
          }else{
-           $("td#c"+ idProducto+"1").replaceWith('<td id="c'+idProducto +'1">'+ cantidadFinal +'</td>');
+           $("td#c"+ idProducto+"1").replaceWith('<td id="c'+idProducto +'1" onclick="actualizarCantidad('+idProducto+','+idFactura+',1)">'+ cantidadFinal +'</td>');
          }
        }
      },

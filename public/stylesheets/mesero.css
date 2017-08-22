@@ -1,19 +1,35 @@
 table {
   background-color: white;
+  width: 100%;
 }
-.table th {
-  font-size: 14px;
-  text-align: center;
-}
-.table td {
+
+table th, table td{
   font-size: 14px;
   text-align: center;
 }
 
-/*.panel-title{
-  background-color: #330033;
-  color:white;
-}*/
+#tablaProductos thead, #tablaProductos tbody {
+  display: block;
+}
+#tablaProductos tbody {
+  width: 100%;
+  overflow-y: scroll;
+}
+
+#tablaProductos tr{
+  width: 100%;
+}
+#tablaProductos tbody::-webkit-scrollbar {
+  width: 0px;  /* remove scrollbar space */
+  background: transparent;  /* optional: just make scrollbar invisible */
+  display: none;
+}
+
+#contenedorProductos::-webkit-scrollbar {
+  width: 0px;  /* remove scrollbar space */
+  background: transparent;  /* optional: just make scrollbar invisible */
+  display: none;
+}
 
 .panel-title > a{
   text-decoration: none;
@@ -89,25 +105,14 @@ table {
   width: 30%;
   background-color: rgba(255, 255, 255, 0.9);
   float: left;
-  margin-top: -3%;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.0);
 }
 
 #contenedorProductos{
   width: 70%;
+  display: block;
+  overflow-x: scroll;
   background-color: rgba(255, 255, 255, 0.9);
   float: left;
-  margin-top: -3%;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.0);
-}
-
-#scrollContent{
-  overflow-y: scroll;
-  overflow-x: scroll;
-}
-.widget-content::-webkit-scrollbar {
-  width: 0px;  /* remove scrollbar space */
-  background: transparent;  /* optional: just make scrollbar invisible */
 }
 
 #categoria{
@@ -133,7 +138,7 @@ table {
   margin-top: -14px;
   width: 15px;
   height: 110px;
-  background: #8CC657;
+  background: #5df000;
 }
 
 #mesaOcupada {
@@ -141,7 +146,7 @@ table {
   margin-top: -14px;
   width: 15px;
   height: 110px;
-  background: tomato;
+  background: #ff0012;
 }
 
 #mesaReservada {
@@ -149,11 +154,7 @@ table {
   margin-top: -14px;
   width: 15px;
   height: 110px;
-  background: royalblue;
-}
-
-#tablaProductos{
-  border-collapse: collapse;
+  background: rgb(45,0,49);
 }
 
 #botonEnviar {
