@@ -4,7 +4,7 @@
 <h2>Puede regalar: {{Auth::user()->obsequio}}</h2>-->
 @if(Auth::User()->empresa->nombreEstablecimiento=='')
 	<div class='alert alert-warning alert-important'>
-		<p>Por favor terminar de llenar la informarción de la empresa aquí
+		<p>Completa tu perfil aquí
 			<a href="{{url('Auth/modificarEmpresa')}}"><i class="fa fa-gear"></i>Ajustes</a>
 		</p>
 	</div>
@@ -30,8 +30,8 @@
                         <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="http://s20.postimg.org/pfmmo6qj1/window_domain.png">
                     </div>
                     <div class="col-md-9 text-left">
-                        <h3 data-animation="animated bounceInDown">Oh no!</h3>
-                        <h4 data-animation="animated bounceInUp">Me tocaron</h4>             
+                        <h3 data-animation="animated bounceInDown">Manten el control de tu negocio</h3>
+                        <h4 data-animation="animated bounceInUp">más fácil y rápido que nunca!</h4>             
                      </div>
                 </div></div>
              </div> 
@@ -39,8 +39,8 @@
             <div class="item slide2">
                 <div class="row"><div class="container">
                     <div class="col-md-7 text-left">
-                        <h3 data-animation="animated bounceInDown"> 50 animation options A beautiful</h3>
-                        <h4 data-animation="animated bounceInUp">Create beautiful slideshows </h4>
+                        <h3 data-animation="animated bounceInDown">Ingresa todos tus gastos</h3>
+                        <h4 data-animation="animated bounceInUp">Asi lograras un mejor control de tus ganancias </h4>
                      </div>
                     <div class="col-md-5 text-right">
                         <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="http://s20.postimg.org/sp11uneml/rack_server_unlock.png">
@@ -51,7 +51,7 @@
             <div class="item slide3">
                 <div class="row"><div class="container">
                     <div class="col-md-7 text-left">
-                        <h3 data-animation="animated bounceInDown">Simple Bootstrap Carousel</h3>
+                        <h3 data-animation="animated bounceInDown">Solo toma unos minutos añadir tu inventario</h3>
                         <h4 data-animation="animated bounceInUp">Bootstrap Image Carousel Slider with Animate.css</h4>
                      </div>
                     <div class="col-md-5 text-right">
@@ -63,8 +63,8 @@
             <div class="item slide4">
                 <div class="row"><div class="container">
                     <div class="col-md-7 text-left">
-                        <h3 data-animation="animated bounceInDown">We are creative</h3>
-                        <h4 data-animation="animated bounceInUp">Get start your next awesome project</h4>
+                        <h3 data-animation="animated bounceInDown">Cuenta con recetas únicas</h3>
+                        <h4 data-animation="animated bounceInUp">y actualización permanente para tus empleados</h4>
                      </div>
                     <div class="col-md-5 text-right">
                         <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="http://s20.postimg.org/9vf8xngel/internet_speed.png">
@@ -76,10 +76,10 @@
         </div>
         <!-- End Wrapper for slides-->
         <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            <i class="fa fa-angle-left"></i><span class="sr-only">Previous</span>
+            <i class="fa fa-angle-left"></i><span class="sr-only">Anterior</span>
         </a>
         <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-            <i class="fa fa-angle-right"></i><span class="sr-only">Next</span>
+            <i class="fa fa-angle-right"></i><span class="sr-only">Siguiente</span>
         </a>
     </div>
 </div>
