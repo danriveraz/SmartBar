@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
       Pocket SMARTBAR
     </title>
@@ -11,6 +12,23 @@
     {!!Html::style('stylesheets/style.css')!!}
     {!!Html::style('stylesheets/bootstrap-select.css')!!}
     {!!Html::style('stylesheets\select2.css')!!}
+
+<script>
+ $(document).ready(function(){
+    console.log("ejecuta al cargar");
+        $.ajax({
+          type: "POST",
+          url: '{{url('Auth/verificarUser')}}',
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          success: function (data) { //anunciar creado autor
+            console.log("sigue logueado");
+          }, error: function(xhr,status, response) {
+            console.log("ya no está logueado");
+            window.history.forward();
+          }
+    });
+});
+</script>
 
      <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
@@ -185,10 +203,6 @@
     </div>
 
   </body>
-<script>
- $(document).ready(function(){
-    window.history.forward();
-  });
-</script>
+
 </html>
 

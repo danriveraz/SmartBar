@@ -1152,7 +1152,7 @@
      *   Input placeholder fix
      * =============================================================================
      */
-    if (!Modernizr.input.placeholder) {
+   /*if (!Modernizr.input.placeholder) {
       $("[placeholder]").focus(function() {
         var input;
         input = $(this);
@@ -1177,7 +1177,7 @@
           }
         });
       });
-    }
+    } */
 
     /*
      * =============================================================================
