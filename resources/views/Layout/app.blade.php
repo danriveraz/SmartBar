@@ -14,8 +14,8 @@
     {!!Html::style('stylesheets/bootstrap-select.css')!!}
     {!!Html::style('stylesheets\select2.css')!!}
 
-     <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
+     <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
 
 
 <script>

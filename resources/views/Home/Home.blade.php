@@ -18,8 +18,8 @@
 <link href="css/slider.css" rel="stylesheet" type="text/css" media="all"/>
 
 <!-- fuentes google -->
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,700,400' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600,700,400' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
 
 <!-- sript basico -->
 <script type="text/javascript" src="js/jquery.min.js"></script>
