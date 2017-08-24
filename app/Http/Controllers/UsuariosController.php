@@ -374,4 +374,12 @@ class UsuariosController extends Controller
       return redirect()->route('Auth.usuario.index');
     }
   }
+
+  public function verificarUser(){
+    if(Auth::check()){
+      return response()->json(['success' => true,'message' => 'Está todavía logueado']);
+    }else{
+      return response()->json(['success' => false,'message' => 'Ya no está logueado']);
+    }
+  }
 }
