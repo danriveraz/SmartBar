@@ -8,12 +8,35 @@
       <a href="{{ route('Auth.usuario.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Nuevo Empleado </a>
   </div>
   <div class="social-wrapper">
+    <div class="row" id="filters">
+      <h4>Filtros:</h4>
+      <a href="" class="btn btn-default" data-filter="*">Mostrar Todos</a>
+      <a href="" class="btn btn-default" data-filter=".Administrador">Administradores</a>
+      <a href="" class="btn btn-default" data-filter=".Mesero">Meseros</a>
+      <a href="" class="btn btn-default" data-filter=".Bartender">Bármanes</a>
+      <a href="" class="btn btn-default" data-filter=".Cajero">Cajeros</a>
+      <a href="" class="btn btn-default" data-filter=".Habilitado">Habilitados</a>
+      <a href="" class="btn btn-default" data-filter=".Deshabilitado">Deshabilitados</a>
+    </div>
     <div id="social-container">
   @foreach($usuarios as $usuario)
 <!-- Profile Widget -->
-<div class="row">
+<div class=" item row 
+          @if($usuario->esAdmin == 1) Administrador
+          @else 
+            @if($usuario->esMesero != 0) Mesero 
+            @endif
+            @if($usuario->esBartender != 0) Bartender
+            @endif
+            @if($usuario->esCajero != 0) Cajero
+            @endif
+          @endif
+          @if($usuario->estado == 1) Habilitado
+          @else Deshabilitado
+          @endif
+">
 <div clas="col-md-4">
-<div class="item widget-container fluid-height profile-widget">
+<div class=" widget-container fluid-height profile-widget">
   <div class="heading">
       <i class="fa fa-level-up"></i><a href="{{url('Auth/usuario/'.$usuario->id.'/edit')}}">Ver mas <i class="fa fa-gear  pull-right"></i></a>
   </div>
@@ -25,7 +48,7 @@
         <p>Datos del Empleado</p>
         <em><i class="fa fa-list-alt "></i>{{$usuario->cedula}}</em>
         <em><i class="fa fa-phone "></i>3012343457</em>
-        <p>
+        <p >
           @if($usuario->esAdmin == 1) Administrador
           @else 
             @if($usuario->esMesero != 0) Mesero 
@@ -149,7 +172,7 @@
                 
                 <div class="col-md-4">
                   <div class="form-group">
-                   
+                    <label for="número de identificación">Número de identificación</label>
                     <input class="form-control" id="cedula" name="cedula" type="text" placeholder="Identificación">
                   </div>
 
@@ -219,6 +242,16 @@
 <script type="text/javascript">
  $(document).ready(function(){
     cambiarCurrent("#usuario");
+
+    //Filtros del isotope
+    $('#filters a').click(function(){
+      var $container = $('#social-container');
+      var selector = $(this).attr('data-filter');
+      $container.isotope({ filter: selector });
+      return false;
+    });
+
+
   });
 function cambiarCurrent(idInput) {
   $(".current").removeClass("current");
@@ -269,8 +302,8 @@ $("#registrarUsuario").click(function(){
            }if(usuarioNuevo.esCajero){
               permisoQueTiene += ' Cajero';
            }
-           var link = '<div class="row"><div clas="col-md-4"><div class="item widget-container fluid-height profile-widget"><div class="heading"><i class="fa fa-level-up"></i><a href="http://localhost/PocketByR/public/Auth/usuario/1/edit">Ver mas <i class="fa fa-gear  pull-right"></i></a></div><div class="widget-content padded"><div class="profile-info clearfix"><img width="70" height="70" class="social-avatar pull-left" src="http://localhost/PocketByR/public/images/admins/perfil.jpg"><div class="profile-details"><a class="user-name" href="">'+ usuarioNuevo.nombrePersona +'</a><p>Datos del Empleado</p><em><i class="fa fa-list-alt "></i>'+ usuarioNuevo.cedula +'</em><em><i class="fa fa-phone "></i>3012343457</em><p>'+permisoQueTiene+'</p></div></div><div class="profile-stats"><div class="col-md-4"><div class="btn-group dropup"><button class="btn btn-info">Control</button><button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#"><i class="fa fa-clock-o pull-left"></i>Horas Ingreso</a></li><li><a href="#"><i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a></li><li><a href="#"><i class="fa fa-money pull-left"></i>Salario</a></li></ul></div></div><div class="col-md-4"><button class="btn btn-info"><i class="fa fa-calendar-o"></i>Agenda</button></div><div class="col-md-4"><button class="btn btn-info"><i class="fa fa-envelope-o"></i>Mensaje</button></div></div></div></div></div></div>';
-           $("#social-container").append(link);
+           var $link = $('<div class="item row '+permisoQueTiene+'"><div clas="col-md-4"><div class=" widget-container fluid-height profile-widget"><div class="heading"><i class="fa fa-level-up"></i><a href="http://localhost/PocketByR/public/Auth/usuario/1/edit">Ver mas <i class="fa fa-gear  pull-right"></i></a></div><div class="widget-content padded"><div class="profile-info clearfix"><img width="70" height="70" class="social-avatar pull-left" src="http://localhost/PocketByR/public/images/admins/perfil.jpg"><div class="profile-details"><a class="user-name" href="">'+ usuarioNuevo.nombrePersona +'</a><p>Datos del Empleado</p><em><i class="fa fa-list-alt "></i>'+ usuarioNuevo.cedula +'</em><em><i class="fa fa-phone "></i>3012343457</em><p>'+permisoQueTiene+'</p></div></div><div class="profile-stats"><div class="col-md-4"><div class="btn-group dropup"><button class="btn btn-info">Control</button><button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#"><i class="fa fa-clock-o pull-left"></i>Horas Ingreso</a></li><li><a href="#"><i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a></li><li><a href="#"><i class="fa fa-money pull-left"></i>Salario</a></li></ul></div></div><div class="col-md-4"><button class="btn btn-info"><i class="fa fa-calendar-o"></i>Agenda</button></div><div class="col-md-4"><button class="btn btn-info"><i class="fa fa-envelope-o"></i>Mensaje</button></div></div></div></div></div></div>');  
+           $("#social-container").isotope('insert', $link);// añadir al isotope de usuarios
             // cerrar la ventana de registro
             var ventana = $(".style-toggle");
             if ($(ventana).hasClass("open")) {
