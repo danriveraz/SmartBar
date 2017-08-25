@@ -23,7 +23,7 @@
             </td>
             <td><input type="number" onkeypress="tecla(event,{{$insumo}})" id="{{$insumo->id}}" step="any" min="0.1" name="cantidad" class="form-control"></td>
             <td>
-              {!! Form::select('medida', ['1'=>'oz','2'=>'ml','3'=>'cm3','4'=>'unidad'], null, ['class'=>'form-control', 'id'=>'medida'.$insumo->id]) !!}
+              {!! Form::select('medida', ['0'=>'oz','2'=>'ml','3'=>'cm3','1'=>'unidad'], $insumo->medida, ['class'=>'form-control', 'id'=>'medida'.$insumo->id]) !!}
             </td>
             <td align="center">
               <button type="submit" class="btn btn-dufault" onclick="adicionarInsumo({{$insumo}})" style="BACKGROUND-COLOR: rgb(187,187,187); color:white">

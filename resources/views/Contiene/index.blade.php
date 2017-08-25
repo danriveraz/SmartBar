@@ -148,7 +148,7 @@
         $("#insumoAgregados").append(fila);       
       }
       $("#"+insumo.id).val('');
-      $("#medida"+insumo.id).val('1');
+      $("#medida"+insumo.id).val(insumo.medida);
     }
   }
 
@@ -169,7 +169,7 @@
           });
         }
       $("#"+insumo.id).val('');
-      $("#medida"+insumo.id).val('1');
+      $("#medida"+insumo.id).val(insumo.medida);
     }
   }  
 
@@ -208,7 +208,7 @@
             $("#insumoAgregados").append(fila);
           }
           $("#"+insumos[i]).val('');
-          $("#medida"+insumos[i]).val('1');
+          $("#medida"+insumos[i]).val(insumos[i].medida);
         }
       }
   }

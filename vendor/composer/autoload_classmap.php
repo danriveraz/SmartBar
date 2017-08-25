@@ -19,6 +19,7 @@ return array(
     'AddForeignKeyProducto' => $baseDir . '/database/migrations/2017_08_04_163337_addForeignKeyProducto.php',
     'AddForeignKeyProveedor' => $baseDir . '/database/migrations/2017_07_29_110847_addForeignKeyProveedor.php',
     'AddForeignKeyVenta' => $baseDir . '/database/migrations/2017_07_28_111410_addForeignKeyVenta.php',
+    'AddMedidaInsumo' => $baseDir . '/database/migrations/2017_08_22_220235_addMedidaInsumo.php',
     'AddPersimoRegalar' => $baseDir . '/database/migrations/2017_08_14_174017_add_persimo_regalar.php',
     'Addrecetaproducto' => $baseDir . '/database/migrations/2017_07_20_004051_addrecetaproducto.php',
     'Addunidadinsumo' => $baseDir . '/database/migrations/2017_07_18_222822_addunidadinsumo.php',

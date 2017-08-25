@@ -50,6 +50,7 @@ class InsumoController extends Controller
     $insumo->cantidadUnidad = $request->unidades;
     $insumo->precioUnidad = $request->venta;
     $insumo->valorCompra = $request->compra;
+    $insumo->medida = $request->medida;
 
     
     $insumo->cantidadMedida = $request->cantMedida;
@@ -133,15 +134,18 @@ class InsumoController extends Controller
       }
 
       if ($request->medida == 'ml' || $request->medida == 'cm3') {
+        $insumo->medida = false;
         $insumo->cantidadMedida = $request->cantidadMedida/30;
         $insumo->cantidadRestante = $request->cantidadMedida/30;
       }
       elseif ($request->medida == 'unidad') {
         $insumo->cantidadUnidad = 1;
+        $insumo->medida = true;
         $insumo->cantidadMedida = $request->cantidadMedida;
         $insumo->cantidadRestante = $request->cantidadMedida;
       }
       else{
+        $insumo->medida = false;
         $insumo->cantidadMedida = $request->cantidadMedida;
         $insumo->cantidadRestante = $request->cantidadMedida;
       }

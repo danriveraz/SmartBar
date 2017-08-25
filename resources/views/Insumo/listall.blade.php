@@ -1,13 +1,13 @@
 <table class="table table-striped">
     <thead>
-      <th>Unidades</th>
+      <th>Unid</th>
       <th>Nombre</th>
       <th>Marca</th>
       <th>Proveedor</th>
-      <th>Valor compra</th>
-      <th>Valor venta</th>
-      <th>Onzas/Unidades disponibles</th>
-      <th>A la venta</th>
+      <th>Compra</th>
+      <th>Venta</th>
+      <th>Disponible</th>
+      <th>Medida</th>
       <th width="20"></th>
       <th width="20"></th>
     </thead>
@@ -21,6 +21,7 @@
           <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->valorCompra}}</td>
           <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->precioUnidad}}</td>
           <td id="{{$insumo->id}}" class="seleccionar">{{number_format($insumo->cantidadMedida,3)}}</td>
+          <td id="{{$insumo->id}}" class="seleccionar">{!! Form::select('medida', ['0'=>'oz','1'=>'unidad'], $insumo->medida, ['class'=>'form-control', 'disabled'=>'disabled', 'id'=>'filaMedida'.$insumo->id]) !!}</td>
           <td id="{{$insumo->id}}" class="seleccionar">
             <span  id="span{{$insumo->id}}" aria-hidden="true" 
               <?php if($insumo->tipo == "1") echo "class='glyphicon glyphicon-ok'" ;?>
@@ -57,26 +58,26 @@
                       {!! Form::select('proveedores', $proveedores, $insumo->idProveedor, ['class' => 'form-control', 'id'=>'proveedores'.$insumo->id]) !!}
                     </div>
                     <div class="form-group">
-                      <label for="cantidadUnidad" class="control-label">Cantidad</label>
-                      <input type="number" id="unidades{{$insumo->id}}" name="unidades{{$insumo->id}}" min="0" class="form-control" value="{{$insumo->cantidadUnidad}}"/>
-                    </div>
-                    <div class="form-group">
-                      <label for="valorCompra" class="control-label">Valor de compra</label>
+                      <label for="valorCompra" class="control-label">Costo</label>
                       <input type="number" id="compra{{$insumo->id}}" step="any" min="0" name="valorCompra" class="form-control" value="{{$insumo->valorCompra}}" onkeypress="autocompletar(event,this)"/>
                     </div>
                     <div class="form-group">
-                      <label for="precioUnidad" class="control-label">Valor de venta</label>
+                      <label for="precioUnidad" class="control-label">Venta</label>
                       <input type="number" id="venta{{$insumo->id}}" step="any" min="0" name="precioUnidad" class="form-control" value="{{$insumo->precioUnidad}}" onkeypress="autocompletar(event,this)"/>
                     </div>
                     <div class="form-group">
-                      <label for="cantidadMedida" class="control-label">Cantidad de medida</label>
+                      <label id="label{{$insumo->id}}" for="cantidadMedida" class="control-label"><?php if($insumo->medida == "0"){echo "Contenido";}else{echo "Cantidad";} ?></label>
                       <input type="number" id="cantMedida{{$insumo->id}}" min="0" step="any" name="cantidadMedida" class="form-control" value="{{$insumo->cantidadMedida}}"/>
                       <select name="medida" id="medida{{$insumo->id}}" class="form-control" onchange="editValor(this.value,{{$insumo->id}});"> 
-                        <option value="ml">ml</option> 
-                        <option value="cm3">cm3</option> 
-                        <option value="oz" <?php if($insumo->cantidadMedida !="0") echo "selected";?> >oz</option>
-                        <option value="unidad">unidad</option>
+                        <option value="2">ml</option> 
+                        <option value="3">cm3</option> 
+                        <option value="0" <?php if($insumo->medida =="0") echo "selected";?>>oz</option>
+                        <option value="1" <?php if($insumo->medida =="1") echo "selected";?>>unidad</option>
                       </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="cantidadUnidad" class="control-label">Cantidad</label>
+                      <input type="number" id="unidades{{$insumo->id}}" name="unidades{{$insumo->id}}" min="0" class="form-control" value="{{$insumo->cantidadUnidad}}" <?php if($insumo->medida == "1") echo'style="display:none;"' ?>/>
                     </div>
                     <div class="form-group">
                       <label for="tipo" class="control-label">¿Vender en botella?</label>
@@ -104,15 +105,18 @@
 {!!$insumos->appends(Request::all())->render() !!}
 
 <script>
-  var routeModificar = "http://pocketdesigner.co/PocketByR/public/insumo/modificar";
+  var routeModificar = "http://localhost/PocketByR/public/insumo/modificar";
   var routeEliminar = "http://pocketdesigner.co/PocketByR/public/insumo/eliminar";
 
   var editValor = function(x,id){
-    if(x == 'unidad'){
+    if(x == '1'){
+      document.getElementById('unidades'+id).style.display='none';
       document.getElementById('unidades'+id).value = 1;
-      document.getElementById('unidades'+id).disabled=true;
+      $("#label"+id).text('Cantidad');
      }else{
-      document.getElementById('unidades'+id).disabled=false;
+
+      document.getElementById('unidades'+id).style.display='block';
+      $("#label"+id).text('Contenido');
     }
   };
 
@@ -132,15 +136,21 @@
     if(check.checked){
       tipo = '1';
     }
+
     if(marca==''){
       marca = 'Sin marca';
     }
-    if(medida == 'ml' || medida == 'cm3'){
+
+    if(medida == '2' || medida == '3'){
       var cantidad = parseFloat(cantMedida)/30;
       cantMedida = cantidad;
+      medida = '0';
     }
-    else if(medida == 'unidad'){
+    else if(medida == '1'){
       unidades = 1;
+    }
+    else{
+      medida = '0';
     }
 
     cantMedida = parseFloat(cantMedida).toFixed(3);
@@ -184,6 +194,7 @@
             $(this).text(cantMedida);
           }
         });
+        $("#filaMedida"+idInsumo).val(medida);
       },
       error: function(data){
         alert('Error al modificar insumo');
