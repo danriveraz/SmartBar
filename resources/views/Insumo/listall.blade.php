@@ -105,7 +105,7 @@
 {!!$insumos->appends(Request::all())->render() !!}
 
 <script>
-  var routeModificar = "http://localhost/PocketByR/public/insumo/modificar";
+  var routeModificar = "http://pocketdesigner.co/PocketByR/public/insumo/modificar";
   var routeEliminar = "http://pocketdesigner.co/PocketByR/public/insumo/eliminar";
 
   var editValor = function(x,id){
