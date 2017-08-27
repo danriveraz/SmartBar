@@ -77,7 +77,7 @@
 						                            </fieldset>
 						                            <fieldset>
 						                                <label for="password">Contraseña</label>
-						                                <input type="password1" name="password" value="" placeholder="Contraseña">
+						                                <input type="password" name="password" value="" placeholder="Contraseña">
 						                            </fieldset>
 						                            <input type="submit" id="login" value="Iniciar">
 						                            <label for="checkbox"><input type="checkbox"> <i>Guardar sesión</i></label>

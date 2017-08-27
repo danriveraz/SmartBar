@@ -141,6 +141,7 @@ img{max-width:100%;}
     margin-top: 0px;
 	background:#151C27;
 	border: 1px solid #151C27;
+	text-align:left;
 }
 #loginForm fieldset {
     margin:0 0 10px 0;
@@ -183,7 +184,7 @@ fieldset#body {
     font-weight:500;
 }
 /* Default Input */
-#loginForm input[type="text1"],#loginForm input[type="password1"]{
+#loginForm input[type="text1"],#loginForm input[type="password"]{
     width:92%;
     border:1px solid #DADADA;
 	color: #222;
@@ -192,6 +193,9 @@ fieldset#body {
     font-size:0.85em;
     -webkit-apperance:none;
     font-family: 'Open Sans', sans-serif;
+	line-height:0%;
+	height:30px;
+	-webkit-box-shadow: 0 0px 0 0;
 }
 /* Sign In Button */
 #loginForm #login{
