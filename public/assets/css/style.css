@@ -318,7 +318,7 @@ ul.navbar-nav {
 	display: inline-block;
 	width: 275px;
 	text-align: right;
-	vertical-align: top;
+	/*vertical-align: top;*/
 }
 
 .form-bottom form .form-links a { color: #888; }

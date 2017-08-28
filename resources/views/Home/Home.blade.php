@@ -62,7 +62,6 @@
 					</div>
 						<div class="menu">
 						    <ul>
-                            	<li>@include('flash::message')</li>
 						    	<li class="current"><a  class="scroll">Ayuda</a></li>
 								<li><a class="scroll">Conctato</a></li>
 								<li class="login" >
@@ -121,7 +120,7 @@
                         	<div class="form-top">
                         		<div class="form-top-left">
                         			<h3>Formulario de Registro</h3>
-                                    <p>Fill in the form below to get instant access:</p>
+                                    <p>Completa la información y convierte tu negocio en un lugar inteligente</p>
                         		</div>
                         		<div class="form-top-right">
                         			<span aria-hidden="true" class="typcn typcn-pencil"></span>
@@ -592,7 +591,7 @@
         </footer>
 
 
-        <!-- MODAL: Privacy policy
+        <!-- MODAL: Privacy policy-->
         <div class="modal fade" id="modal-privacy" tabindex="-1" role="dialog" aria-labelledby="modal-privacy-label" aria-hidden="true">
         	<div class="modal-dialog">
         		<div class="modal-content">
@@ -639,7 +638,7 @@
         	</div>
         </div>
 
-        <!-- MODAL: Frequent questions
+        <!-- MODAL: Frequent questions-->
         <div class="modal fade" id="modal-faq" tabindex="-1" role="dialog" aria-labelledby="modal-faq-label" aria-hidden="true">
         	<div class="modal-dialog">
         		<div class="modal-content">
@@ -680,7 +679,7 @@
         			</div>
         		</div>
         	</div>
-        </div> -->
+        </div>
 
         <!--  script para contraseña -->
         <script type="text/javascript">
