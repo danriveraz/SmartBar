@@ -21,11 +21,13 @@
           <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->valorCompra}}</td>
           <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->precioUnidad}}</td>
           <td id="{{$insumo->id}}" class="seleccionar">{{number_format($insumo->cantidadMedida,3)}}</td>
-          <td id="{{$insumo->id}}" class="seleccionar">{!! Form::select('medida', ['0'=>'oz','1'=>'unidad'], $insumo->medida, ['class'=>'form-control', 'disabled'=>'disabled', 'id'=>'filaMedida'.$insumo->id]) !!}</td>
           <td id="{{$insumo->id}}" class="seleccionar">
-            <span  id="span{{$insumo->id}}" aria-hidden="true" 
-              <?php if($insumo->tipo == "1") echo "class='glyphicon glyphicon-ok'" ;?>
-              <?php if($insumo->tipo == "0") echo "class='glyphicon glyphicon-remove'" ;?>
+            <?php if($insumo->medida == "0"){echo "oz";}else{echo "unidad";} ?>
+          </td>
+          <td id="{{$insumo->id}}" class="seleccionar">
+            <span  id="span{{$insumo->id}}" aria-hidden="true" data-toggle="tooltip"
+              <?php if($insumo->tipo == "1") echo "class='glyphicon glyphicon-ok tooltip-trigger' title='Este producto se vende por botella'" ;?>
+              <?php if($insumo->tipo == "0") echo "class='glyphicon glyphicon-remove tooltip-trigger' title='Este producto no se vende por botella'" ;?>
             ></span>
           </td>
           <td>
@@ -173,9 +175,11 @@
       },
       success: function(){
         if(tipo == '1'){
-          document.getElementById('span'+idInsumo).className = "glyphicon glyphicon-ok";
+          document.getElementById('span'+idInsumo).className = "glyphicon glyphicon-ok tooltip-trigger";
+          document.getElementById('span'+idInsumo).title = "Este producto se vende por botella";
         }else{
-          document.getElementById('span'+idInsumo).className = "glyphicon glyphicon-remove";
+          document.getElementById('span'+idInsumo).className = "glyphicon glyphicon-remove tooltip-trigger";
+          document.getElementById('span'+idInsumo).title = "Este producto no se vende por botella";
         }        
         $("#"+idInsumo).children("td").each(function (indextd){
           if(indextd == 1){
@@ -192,9 +196,14 @@
             $(this).text(venta);
           }else if(indextd == 6){
             $(this).text(cantMedida);
+          }else if(indextd == 7){
+            if(medida == '0'){
+              $(this).text("oz");
+            }else{
+              $(this).text("unidad");
+            }
           }
         });
-        $("#filaMedida"+idInsumo).val(medida);
       },
       error: function(data){
         alert('Error al modificar insumo');
