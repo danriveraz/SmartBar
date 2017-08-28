@@ -63,7 +63,7 @@
 						<div class="menu">
 						    <ul>
 						    	<li class="current"><a  class="scroll">Ayuda</a></li>
-								<li><a class="scroll">Conctato</a></li>
+								<li><a class="scroll">Contactos</a></li>
 								<li class="login" >
 									<div id="loginContainer" ><a href="#" id="loginButton"><span>Iniciar Sesión</span></a>
 						                <div id="loginBox">
@@ -108,7 +108,7 @@
                             </div>
                             <div class="top-big-link wow fadeInUp">
                                 <div class="description wow fadeInLeftBig">
-                                    <p>Loguear con tus redes sociales</p>
+                                    <p>Logueate usando redes sociales</p>
                                 </div>
      <a class="btn btn-link-1 btn-social-icon btn-twitter scroll-link" href="#pricing"><span class="fa fa-twitter"></span></a>
      <a class="btn btn-link-1 btn-social-icon btn-facebook scroll-link" href="#pricing"><span class="fa fa-facebook"></span></a>
@@ -119,8 +119,8 @@
                         <div class="col-sm-5 form-box wow fadeInUp">
                         	<div class="form-top">
                         		<div class="form-top-left">
-                        			<h3>Formulario de Registro</h3>
-                                    <p>Completa la información y convierte tu negocio en un lugar inteligente</p>
+                        			<h3>Registro</h3>
+                                    <p>Ahora serás dueño de un negocio inteligente.</p>
                         		</div>
                         		<div class="form-top-right">
                         			<span aria-hidden="true" class="typcn typcn-pencil"></span>
@@ -129,15 +129,15 @@
                             <div class="form-bottom">
 			                    <form role="form" action="" method="post">
 			                    	<div class="form-group">
-			                    		<label class="sr-only" for="form-first-name">Nombre de Empresa</label>
+			                    		
 			                        	<input type="text" name="form-first-name" placeholder="Nombre de Empresa" class="form-first-name form-control" id="form-first-name">
 			                        </div>
 			                        <div class="form-group">
-			                        	<label class="sr-only" for="form-last-name">Nombre Completo</label>
+			                        	
 			                        	<input type="text" name="form-last-name" placeholder="Nombre..." class="form-last-name form-control" id="form-last-name">
 			                        </div>
 			                        <div class="form-group">
-			                        	<label class="sr-only" for="form-email">Email</label>
+			                        	
 			                        	<input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
 			                        </div>
 			                        <div class="form-group">
@@ -150,13 +150,13 @@
                                 <div class="form-group">
                                     <div class="left-w3-agile">
                                     <select id="" name="" class="form-email form-control" id="form-email" required>
-                                        <option value="0">Estados</option>
+                                        <option value="0">Ciudad</option>
 
                                     </select>
                                 	</div>
 									<div class="right-agileits">
                                     <select id="" name="" class="form-last-name form-control" id="" required>
-                                      <option value="0">Estados</option>
+                                      <option value="0">Departamento</option>
 
                                     </select>
 									</div>
@@ -165,7 +165,7 @@
 
 			                        <button type="submit" class="btn">Registrarme</button>
 			                        <div class="form-links">
-			                        	<a href="#" class="launch-modal" data-modal-id="modal-privacy">Politicas De Privacidad</a> -
+			                        	<a href="#" class="launch-modal" data-modal-id="modal-privacy">Políticas</a> -
 			                        	<a href="#" class="launch-modal" data-modal-id="modal-faq">Preguntas</a>
 			                        </div>
 			                    </form>
@@ -357,7 +357,7 @@
                     </div>
                     <div class="col-sm-4 pricing-box pricing-box-best wow fadeInDown">
                     	<div class="pricing-box-inner">
-		                	<div class="pricing-box-price"><span>$ </span><strong>3.000.000</strong><span> / Cop</span>
+		                	<div class="pricing-box-price"><span>$ </span><strong>2.000.000</strong><span> / Cop</span>
 		                		<div class="pricing-box-icon">
 			                		<span aria-hidden="true" class="typcn typcn-star"></span>
 			                	</div>
@@ -595,46 +595,50 @@
         <div class="modal fade" id="modal-privacy" tabindex="-1" role="dialog" aria-labelledby="modal-privacy-label" aria-hidden="true">
         	<div class="modal-dialog">
         		<div class="modal-content">
-        			<div class="modal-header">
+        		<div class="modal-header">
         				<button type="button" class="close" data-dismiss="modal">
         					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
         				</button>
-        				<h2 class="modal-title" id="modal-privacy-label">Privacy policy</h2>
+        			
+        			</div>
+        			<div class="modal-header">        				
+        				<h2 class="modal-title" id="modal-privacy-label">Politicas</h2>
         			</div>
         			<div class="modal-body">
-        				<h3>1. Dolor sit amet</h3>
-        				<p>
-	                    	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-	                    	labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-	                    </p>
-	                    <ul>
-	                    	<li>Easy To Use</li>
-	                    	<li>Awesome Design</li>
-	                    	<li>Cloud Based</li>
-	                    </ul>
-	                    <p>
-	                    	Ut wisi enim ad minim veniam, <a href="#">quis nostrud exerci tation</a> ullamcorper suscipit lobortis nisl ut aliquip ex ea
-	                    	commodo consequat nostrud tation.
-	                    </p>
-	                    <h3>2. Sed do eiusmod</h3>
-	                    <p>
-	                    	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-	                    	labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-	                    </p>
-	                    <h3>3. Nostrud exerci tation</h3>
-	                    <p>
-	                    	Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-	                    	commodo consequat nostrud tation.
-	                    </p>
-	                    <p>
-	                    	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-	                    	labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-	                    </p>
+        				<h3>1.Politicas de Privacidad</h3>
+        				<p style="text-align:justify">
+	                    	La presente Política de Privacidad establece los términos en que Pocket Compañy usa y protege la información que es proporcionada por sus usuarios al momento de utilizar su sitio web. Esta compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le pedimos llenar los campos de información personal con la cual usted pueda ser identificado, lo hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento. Sin embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios.
+
+	                    	Información que es recogida en nuestro sitio web podrá tener información personal por ejemplo: Nombre,  información de contacto como  su dirección de correo electrónica e información demográfica. Así mismo cuando sea necesario podrá ser requerida información específica para procesar algún pedido o realizar una entrega o facturación.</p>
+	                    	<br>
+	                    	<h3>2. Uso de la Información</h3>
+	                    	<p style="text-align:justify">                   	
+	                    	Uso de la información recogida en nuestro sitio web, emplea la información con el fin de proporcionar el mejor servicio posible, particularmente para mantener un registro de usuarios, de pedidos en caso que aplique, y mejorar nuestros productos y servicios.  Es posible que sean enviados correos electrónicos periódicamente a través de nuestro sitio con ofertas especiales, nuevos productos y otra información publicitaria que consideremos relevante para usted o que pueda brindarle algún beneficio, estos correos electrónicos serán enviados a la dirección que usted proporcione y podrán ser cancelados en cualquier momento.<br>
+
+	                    	
+	                    	Pocket Compañy está altamente comprometido para cumplir con el compromiso de mantener su información segura. Usamos los sistemas más avanzados y los actualizamos constantemente para asegurarnos que no exista ningún acceso no autorizado.</p>
+	                    	<br>
+                            <h3>3. Uso de Cookies</h3>
+                            <p style="text-align:justify">
+                            Una cookie se refiere a un fichero que es enviado con la finalidad de solicitar permiso para almacenarse en su ordenador, al aceptar dicho fichero se crea y la cookie sirve entonces para tener información respecto al tráfico web, y también facilita las futuras visitas a una web recurrente. Otra función que tienen las cookies es que con ellas las web pueden reconocerte individualmente y por tanto brindarte el mejor servicio personalizado de su web.
+
+	                    	Nuestro sitio web emplea las cookies para poder identificar las páginas que son visitadas y su frecuencia. Esta información es empleada únicamente para análisis estadístico y después la información se elimina de forma permanente. Usted puede eliminar las cookies en cualquier momento desde su ordenador. Sin embargo las cookies ayudan a proporcionar un mejor servicio de los sitios web, estás no dan acceso a información de su ordenador ni de usted, a menos de que usted así lo quiera y la proporcione directamente. Usted puede aceptar o negar el uso de cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues sirve para tener un mejor servicio web. También usted puede cambiar la configuración de su ordenador para declinar las cookies. Si se declinan es posible que no pueda utilizar algunos de nuestros servicios.</p>
+	                    	<br>
+                            <h3>4. Enlaces a terceros</h3>
+                            <p style="text-align:justify">
+	                    	este sitio web pudiera contener en laces a otros sitios que pudieran ser de su interés. Una vez que usted de clic en estos enlaces y abandone nuestra página, ya no tenemos control sobre al sitio al que es redirigido y por lo tanto no somos responsables de los términos o privacidad ni de la protección de sus datos en esos otros sitios terceros. Dichos sitios están sujetos a sus propias políticas de privacidad por lo cual es recomendable que los consulte para confirmar que usted está de acuerdo con estas.</p>
+	                    	<br>
+	                    	<h3>5. Control de su información personal</h3>
+                            <p style="text-align:justify"> 
+	                    	En cualquier momento usted puede restringir la recopilación o el uso de la información personal que es proporcionada a nuestro sitio web.  Cada vez que se le solicite rellenar un formulario, como el de alta de usuario, puede marcar o desmarcar la opción de recibir información por correo electrónico.  En caso de que haya marcado la opción de recibir nuestro boletín o publicidad usted puede cancelarla en cualquier momento.
+
+	                    	Esta compañía no venderá, cederá ni distribuirá la información personal que es recopilada sin su consentimiento, salvo que sea requerido por un juez con un orden judicial.
+
+	                    	Pocket Compañy Se reserva el derecho de cambiar los términos de la presente Política de Privacidad en cualquier momento.
+	                    	 </p>
+	             
         			</div>
-        			<div class="modal-footer">
-        				<button type="button" class="btn" data-dismiss="modal">Close</button>
         			</div>
-        		</div>
         	</div>
         </div>
 
@@ -646,38 +650,22 @@
         				<button type="button" class="close" data-dismiss="modal">
         					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
         				</button>
-        				<h2 class="modal-title" id="modal-faq-label">Frequent questions</h2>
-        			</div>
-        			<div class="modal-body">
-        				<h3>1. Lorem ipsum dolor?</h3>
+        				 </div>
+
+           			<div class="modal-body">
+        			<b><h3 class="modal-title" ">Preguntas Frecuentes</h3></b><br>
+        				<h4>1. ¿Cómo ingreso de forma rápida mi inventario?</h4><br>
         				<p>
-	                    	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-	                    	labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-	                    </p>
-	                    <h3>2. Ut wisi enim ad minim?</h3>
-	                    <p>
-	                    	Ut wisi enim ad minim veniam, <a href="#">quis nostrud exerci tation</a> ullamcorper suscipit lobortis nisl ut aliquip ex ea
-	                    	commodo consequat nostrud tation.
-	                    </p>
-	                    <h3>3. Sed do eiusmod tempor?</h3>
-	                    <p>
-	                    	Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-	                    </p>
-	                    <h3>4. Nostrud exerci tation?</h3>
-	                    <p>
-	                    	Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-	                    	commodo consequat nostrud tation.
-	                    </p>
-	                    <h3>5. Consectetur adipisicing elit?</h3>
-	                    <p>
-	                    	Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-	                    	labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-	                    </p>
+	                    	Se recomienda descargar la plantilla de excel, llenarla y cargarla al programa, el automaticamente cargará la información en el lugar correcto.
+	                    </p><br>
+
+	                    <h4>2. ¿Cómo me subscribo al canal de SmartBar?</h4><br>
+        				<p>
+	                    	Puedes Inscribirte en la parte superior de nuestra página, clickeando en contactos, sigue los pasos y seguiras recibiendo todas las actualizaciones de SmartBar.
+	                    </p><br>
+
         			</div>
-        			<div class="modal-footer">
-        				<button type="button" class="btn" data-dismiss="modal">Close</button>
         			</div>
-        		</div>
         	</div>
         </div>
 
