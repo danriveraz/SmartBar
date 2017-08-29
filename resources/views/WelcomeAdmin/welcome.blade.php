@@ -10,7 +10,7 @@
 	</div>
 @endif
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="http://cdn.bootcss.com/animate.css/3.5.1/animate.min.css" colorfont="#00000">
+<link rel="stylesheet" href="http://cdn.bootcss.com/animate.css/3.5.1/animate.min.css">
  {!!Html::style('css/sliderAdmin.css')!!}
 <div id="first-slider">
     <div id="carousel-example-generic" class="carousel slide carousel-fade">
@@ -31,15 +31,21 @@
                         <h3 data-animation="animated bounceInDown">Manten el control de tu negocio</h3>
                         <h4 data-animation="animated bounceInUp">más fácil y rápido que nunca!</h4>
                      </div>
+                     <div class="col-md-5 text-right">
+                        <img style="max-width: 500px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-admin/0.png') }}">
+                    </div>
                 </div></div>
              </div>
             <!-- Item 2 -->
             <div class="item slide2">
                 <div class="row"><div class="container">
                     <div class="col-md-7 text-left">
-                        <h3 data-animation="animated bounceInDown" color="Black">Ingresa todos tus gastos</h3>
-                        <h4 data-animation="animated bounceInUp">Asi lograras un mejor control de tus ganancias </h4>
+                        <h3 data-animation="animated bounceInDown" color="Black">Ingresa el estado de tu negocio</h3>
+                        <h4 data-animation="animated bounceInUp">Asi lograras un control automatico de tus ganancias </h4>
                      </div>
+                     <div class="col-md-5 text-right">
+                        <img style="max-width: 500px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-admin/2.png') }}">
+                    </div>
                                          
                 </div></div>
             </div>
@@ -51,7 +57,7 @@
                         <h4 data-animation="animated bounceInUp">descarga nuestra plantilla en excel, llenala y listo!</h4>
                      </div>
                     <div class="col-md-5 text-right">
-                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-admin/globe_network.png') }}">
+                        <img style="max-width: 600px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-admin/4.png') }}">
                     </div>
                 </div></div>
             </div>
@@ -63,7 +69,7 @@
                         <h4 data-animation="animated bounceInUp">y actualización permanente para tus empleados</h4>
                      </div>
                     <div class="col-md-5 text-right">
-                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-admin/internet_speed.png') }}">
+                        <img style="max-width: 620px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-admin/3.png') }}">
                     </div>
                 </div></div>
             </div>
