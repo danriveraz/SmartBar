@@ -52,8 +52,8 @@
             <div class="item slide3">
                 <div class="row"><div class="container">
                     <div class="col-md-7 text-left">
-                        <h3 data-animation="animated bounceInDown">Solo toma unos minutos añadir tu inventario</h3>
-                        <h4 data-animation="animated bounceInUp">Bootstrap Image Carousel Slider with Animate.css</h4>
+                        <h3 data-animation="animated bounceInDown">Solo toma unos minutos añadir tu inventario,</h3>
+                        <h4 data-animation="animated bounceInUp">descarga nuestra plantilla en excel, llenala y listo!</h4>
                      </div>
                     <div class="col-md-5 text-right">
                         <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-admin/globe_network.png') }}">
