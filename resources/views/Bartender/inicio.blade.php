@@ -24,10 +24,13 @@
                         <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="http://s20.postimg.org/pfmmo6qj1/window_domain.png">
                     </div>
                     <div class="col-md-9 text-left">
-                        <h3 data-animation="animated bounceInDown">Oh no!</h3>
-                        <h4 data-animation="animated bounceInUp">Me tocaron</h4>             
+                        <h3 data-animation="animated bounceInDown">Lo nuevo en mixología,</h3>
+                        <h4 data-animation="animated bounceInUp">Lo tienes con SMARTBAR</h4>             
                      </div>
-                </div></div>
+                     <div>
+                     <iframe width="560" height="315" src="https://www.youtube.com/embed/fn6hCcPS2Z0?autoplay=1" frameborder="0" allowfullscreen></iframe></div>
+                </div>
+                </div>
              </div> 
             <!-- Item 2 -->
             <div class="item slide2">

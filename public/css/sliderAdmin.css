@@ -16,14 +16,14 @@ Image credits: unsplash.com
 	}
 
 	#first-slider .slide1 h3, #first-slider .slide2 h3, #first-slider .slide3 h3, #first-slider .slide4 h3{
-	    color: #fff;
+	    color: #000;
 	    font-size: 30px;
 	      text-transform: uppercase;
 	      font-weight:700;
 	}
 
 	#first-slider .slide1 h4,#first-slider .slide2 h4,#first-slider .slide3 h4,#first-slider .slide4 h4{
-	    color: #fff;
+	    color: #000;
 	    font-size: 30px;
 	      text-transform: uppercase;
 	      font-weight:700;
@@ -102,7 +102,7 @@ Image credits: unsplash.com
 	#first-slider .carousel-indicators .active{
 	    width: 16px;
 	    height: 16px;
-	    background-color: #fff;
+	    background-color: #000;
 	  border:none;
 	}
 
@@ -149,7 +149,7 @@ Image credits: unsplash.com
 	    height: 38px;
 	    margin-top: -15px;
 	    font-size: 30px;
-	    color: #fff;
+	    color: #000;
 	    border: 3px solid #ffffff;
 	    -webkit-border-radius: 23px;
 	    -moz-border-radius: 23px;
@@ -162,7 +162,7 @@ Image credits: unsplash.com
 	    height: 38px;
 	    margin-top: -15px;
 	    font-size: 30px;
-	    color: #fff;
+	    color: #000;
 	    border: 3px solid #ffffff;
 	    -webkit-border-radius: 23px;
 	    -moz-border-radius: 23px;
