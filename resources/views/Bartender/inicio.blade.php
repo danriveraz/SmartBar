@@ -21,9 +21,7 @@
             <!-- Item 1 -->
             <div class="item active slide1">
                 <div class="row"><div class="container">
-                    <div class="col-md-3 text-right">
-                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-bartender/0.png') }}">
-                    </div>
+                    
                     <div class="col-md-9 text-left">
                         <h3 data-animation="animated bounceInDown">Lo nuevo en mixología,</h3>
                         <h4 data-animation="animated bounceInUp">Lo tienes con SMARTBAR</h4>             
@@ -37,11 +35,11 @@
             <div class="item slide2">
                 <div class="row"><div class="container">
                     <div class="col-md-7 text-left">
-                        <h3 data-animation="animated bounceInDown"> 50 animation options A beautiful</h3>
-                        <h4 data-animation="animated bounceInUp">Create beautiful slideshows </h4>
+                        <h3 data-animation="animated bounceInDown"> <b>Cócteles Únicos </b> </h3>
+                        <h4 data-animation="animated bounceInUp">Ideas innovadoras todo el tiempo</h4>
                      </div>
                     <div class="col-md-5 text-right">
-                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-bartender/0.png') }}">
+                        <img style="max-width: 700px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-bartender/0.png') }}">
                     </div>
                 </div></div>
             </div>
@@ -49,11 +47,11 @@
             <div class="item slide3">
                 <div class="row"><div class="container">
                     <div class="col-md-7 text-left">
-                        <h3 data-animation="animated bounceInDown">Simple Bootstrap Carousel</h3>
-                        <h4 data-animation="animated bounceInUp">Bootstrap Image Carousel Slider with Animate.css</h4>
+                        <h3 data-animation="animated bounceInDown">Conoce los Nuevos licores</h3>
+                        <h4 data-animation="animated bounceInUp">Mejora tus mezclas con ellos</h4>
                      </div>
                     <div class="col-md-5 text-right">
-                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-bartender/0.png') }}">
+                        <img style="max-width: 500px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-bartender/2.png') }}">
                     </div>     
                 </div></div>
             </div>
@@ -61,11 +59,11 @@
             <div class="item slide4">
                 <div class="row"><div class="container">
                     <div class="col-md-7 text-left">
-                        <h3 data-animation="animated bounceInDown">We are creative</h3>
-                        <h4 data-animation="animated bounceInUp">Get start your next awesome project</h4>
+                        <h3 data-animation="animated bounceInDown">Ingresa a nuestra tienda</h3>
+                        <h4 data-animation="animated bounceInUp">Conoce todo lo que tenemos para ti</h4>
                      </div>
                     <div class="col-md-5 text-right">
-                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-bartender/0.png') }}">
+                        <img style="max-width: 700px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-bartender/3.png') }}">
                     </div>  
                 </div></div>
             </div>

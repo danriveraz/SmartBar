@@ -11,7 +11,7 @@
       </div>
    @endif
 
-  <div class="container-fluid main-content"><div class="social-wrapper">
+  <div class="container-fluid main-content"><div class="btn btn-primary btn">
   	<div id="social-container"></div>
 
   		<div id="hidden-items">

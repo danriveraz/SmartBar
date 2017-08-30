@@ -273,7 +273,7 @@
 	        </div>
         </div>
 
-        <!-- How it works -->
+        <!-- Negocio Inteligente en  pasos -->
         <div class="how-it-works-container section-container section-container-image-bg">
 	        <div class="container">
 	            <div class="row">
