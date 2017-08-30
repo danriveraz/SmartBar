@@ -108,7 +108,7 @@
                             </div>
                             <div class="top-big-link wow fadeInUp">
                                 <div class="description wow fadeInLeftBig">
-                                    <p>Logueate usando redes sociales</p>
+                                    <p><b>Logueate usando redes sociales</b></p>
                                 </div>
      <a class="btn btn-link-1 btn-social-icon btn-twitter scroll-link" href="#pricing"><span class="fa fa-twitter"></span></a>
      <a class="btn btn-link-1 btn-social-icon btn-facebook scroll-link" href="#pricing"><span class="fa fa-facebook"></span></a>
