@@ -57,6 +57,13 @@ class Venta extends Model
   public function producto(){
     return $this->belongsTo('PocketByR\Producto', 'idProducto', 'id');
   }
+  public function mesero(){
+    return $this->hasOne('PocketByR\user', 'id', 'idMesero');
+  }
+
+  public function bartender(){
+    return $this->hasOne('PocketByR\user', 'id', 'idBartender');
+  }
   public function scopeVendido($query, $idFacturas){
     return $query->wherein('idFactura', $idFacturas)
                 ->whereColumn('estadoCajero', 'cantidad');
