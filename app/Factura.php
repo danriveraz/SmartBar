@@ -20,7 +20,6 @@ class Factura extends Model
     public function mesa(){
       return $this->belongsTo('PocketByR\Mesa', 'idMesa', 'id');
     }
-
     public function ventasHechas(){
       return $this->hasMany('PocketByR\Venta', 'idFactura', 'id');
     }
@@ -38,11 +37,11 @@ class Factura extends Model
     }
 
     public function scopeListar($query, $idEmpresa){
-      return $query->where([
+      return $query->join('mesa', 'factura.idMesa', '=', 'mesa.id')
+                   ->where([
                     ['factura.estado', 'En proceso'],
                     ['factura.idEmpresa', $idEmpresa]
                     ])
-                   ->join('mesa', 'factura.idMesa', '=', 'mesa.id')
                    ->select('nombreMesa', 'factura.fecha', 'factura.id as id', 'factura.estado');
 
     }
@@ -108,5 +107,8 @@ class Factura extends Model
       }
 
     }
-
+   public function scopeBuscarFacturas($query, $idEmpresa){
+        $query->where('factura.idEmpresa', $idEmpresa);
+        return $query;
+      }
 }

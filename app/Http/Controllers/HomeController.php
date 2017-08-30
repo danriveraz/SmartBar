@@ -4,6 +4,8 @@ namespace PocketByR\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use PocketByR\Departamento;
+use PocketByR\Ciudad;
 use PocketByR\Http\Requests;
 
 class HomeController extends Controller
@@ -14,6 +16,9 @@ class HomeController extends Controller
     }
 
     public function home(){
-        return View('Home.Home');
+    	$departamentos = Departamento::all();
+        $ciudades = Ciudad::all();
+        return View('Home.Home')->with('departamentos',$departamentos)
+                ->with('ciudades', $ciudades);
     }
 }

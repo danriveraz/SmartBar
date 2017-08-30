@@ -32,9 +32,9 @@ class CajeroController extends Controller
         foreach ($ventas as $venta ) {
             $totalVentas = $totalVentas + ($venta->producto->precio * $venta->cantidad);
         }
-    	$mesas = Factura::listar($userActual->idEmpresa)
-    						->get();
-    	return view('Cajero.inicio')->with('mesas',$mesas)->with('totalVentas',$totalVentas);
+    	$mesas = Mesa::mesasAdmin(Auth::user()->idEmpresa)->get();
+        $facturas = Factura::buscarFacturas(Auth::user()->idEmpresa)->get();
+    	return view('Cajero.inicio')->with('mesas',$mesas)->with('facturas',$facturas)->with('totalVentas',$totalVentas);
     }
     public function store(Request $request){
     	$nombre = $request->nombre;
