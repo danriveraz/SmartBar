@@ -73,6 +73,8 @@ Route::post('bartender/pedido', 'BartenderController@pedido');
 Route::get('bartender/tabla', 'BartenderController@mostrarTabla');
 Route::resource('bartender', 'BartenderController');
 
+Route::resource('Estadisticas', 'EstadisticasController');
+
 Route::resource('cajero', 'CajeroController');
 Route::post('cajero/recibo', 'CajeroController@recibo');
 Route::post('cajero/edit', 'CajeroController@edit');
@@ -96,4 +98,6 @@ Route::resource('WelcomeTrabajador', 'WelcomeTrabajadorController', ['only' => [
 
 Route::get('Auth/{provider}', 'Auth\AuthController@redirectToProvider');
 Route::get('Auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
+
+
 
