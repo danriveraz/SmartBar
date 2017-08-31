@@ -1,4 +1,5 @@
 <?php
+
 namespace PocketByR\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class EstadisticasController extends Controller
 
     }
     public function index(Request $request){
-    	return view('Estadisticas.inicio');
+    	
     } 
     } 
 
