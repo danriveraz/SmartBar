@@ -39,7 +39,7 @@
                         <h4 data-animation="animated bounceInUp">Ideas innovadoras todo el tiempo</h4>
                      </div>
                     <div class="col-md-5 text-right">
-                        <img style="max-width: 700px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-bartender/0.png') }}">
+                        <img style="max-width: 700px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/Slider-bartender/0.png') }}">
                     </div>
                 </div></div>
             </div>
@@ -51,7 +51,7 @@
                         <h4 data-animation="animated bounceInUp">Mejora tus mezclas con ellos</h4>
                      </div>
                     <div class="col-md-5 text-right">
-                        <img style="max-width: 500px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-bartender/2.png') }}">
+                        <img style="max-width: 500px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/Slider-bartender/2.png') }}">
                     </div>     
                 </div></div>
             </div>
@@ -63,7 +63,7 @@
                         <h4 data-animation="animated bounceInUp">Conoce todo lo que tenemos para ti</h4>
                      </div>
                     <div class="col-md-5 text-right">
-                        <img style="max-width: 700px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/slider-bartender/3.png') }}">
+                        <img style="max-width: 700px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/Slider-bartender/3.png') }}">
                     </div>  
                 </div></div>
             </div>
