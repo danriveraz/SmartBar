@@ -33,9 +33,9 @@ class UsuariosController extends Controller
             'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'email' => 'required|email|max:255',
             'cedula' => 'required|min:1|max:9999999999|numeric',
-            'password' => 'required|min:6|max:18|confirmed',
             'fechaNacimiento' => 'required',
-            'sexo' => 'required'
+            'sexo' => 'required',
+            'Permisos' => 'required'
             ];
 
     $validator = Validator::make($request->all(), $rules);
@@ -43,52 +43,91 @@ class UsuariosController extends Controller
     if ($validator->fails()){
         return redirect()->route('Auth.usuario.create')->withErrors($validator)->withInput();
       }else{
-      $Permisos = $request['Permisos'];
-      $usuario = new User;
-      $usuario->nombrePersona = $request->nombrePersona;
-      $usuario->email = $request->email;
-      $usuario->cedula = $request->cedula;
-      $usuario->password = bcrypt($request->password);
-      $usuario->sexo = $request->sexo;
-      $usuario->fechaNacimiento = $request->fechaNacimiento;
-      $usuario->pais= "Colombia";
-      $usuario->departamento= Auth::user()->departamento;
-      $usuario->ciudad= Auth::user()->ciudad;
-      $usuario->confirmoEmail = 1;
-      $usuario->imagenPerfil = "perfil.jpg";
-      $usuario->imagenNegocio = "perfil.jpg";
-      $usuario->remember_token = str_random(100);
-      $usuario->confirm_token = str_random(100);
-      $usuario->idEmpresa = Auth::user()->idEmpresa; // id de la empresa para saber a quién pertenece
+        
+        $Permisos = $request['Permisos'];
+          $usuario = new User;
+          $usuario->nombrePersona = $request->nombrePersona;
+          $usuario->email = $request->email;
+          $usuario->cedula = $request->cedula;
+          $contrasena = str_random(8);
+          $usuario->password = bcrypt($contrasena);
+          $usuario->sexo = $request->sexo;
+          $usuario->fechaNacimiento = $request->fechaNacimiento;
+          $usuario->pais= "Colombia";
+          $usuario->departamento= Auth::user()->departamento;
+          $usuario->ciudad= Auth::user()->ciudad;
+          $usuario->confirmoEmail = 1;
+          $usuario->estado = true;
+          $usuario->imagenPerfil = "perfil.jpg";
+          $usuario->imagenNegocio = "perfil.jpg";
+          $usuario->remember_token = str_random(100);
+          $usuario->confirm_token = str_random(100);
+          $usuario->idEmpresa = Auth::user()->idEmpresa; // id de la empresa para saber a quién pertenece
 
-      foreach ($Permisos as $key => $value) {
-        if($value=='Administrador'){
-          $usuario->esMesero = 1;
-          $usuario->esBartender = 1;
-          $usuario->esCajero = 1;
-          $usuario->esAdmin = 1;
-          $usuario->obsequio = 1;
-        }else{
-          if($value=='Mesero'){
-            $usuario->esMesero = 1;
+          //asignar username
+          // parte del código para generar el username inicial
+          $numeroRepetido = 0; // numero que se agregará al username por si ya hay alguno parecido y poderlo diferenciar
+          $auxiliarBool = true;
+          $auxiliarUser;
+          $auxiliarUsername;
+          while ($auxiliarBool) {
+              if($numeroRepetido==0){
+                  $auxiliarUsername = str_replace(' ','',$request->nombrePersona).'-'.str_replace(' ','',Auth::User()->empresa->nombreEstablecimiento);
+                  $auxiliarUser = User::where('username', $auxiliarUsername)->first();
+              }else{
+                  $auxiliarUsername = str_replace(' ','',$request->nombrePersona).'-'.str_replace(' ','',Auth::User()->empresa->nombreEstablecimiento).$numeroRepetido;
+                  $auxiliarUser = User::where('username', $auxiliarUsername)->first();
+              }
+              if($auxiliarUser==null){
+                  $auxiliarBool= false;
+              }
+              $numeroRepetido++;
+
           }
-          if($value=='Cajero'){
-            $usuario->esCajero = 1;
+          $usuario->username = $auxiliarUsername;
+
+
+          //Guardar imagen
+          //obtenemos el campo file definido en el formulario
+          $file = $request->file('imagenPerfil');
+          if($file!=null){// verifica que se haya subido una imagen nueva
+            //obtenemos el nombre del archivo
+            $nombre = $file->getClientOriginalName();
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            \Storage::disk('local')->put($nombre,  \File::get($file));        
+            $usuario->imagenPerfil = $nombre;// guarda la imagen en la base de datos
           }
-          if($value=='Bartender'){
-            $usuario->esBartender = 1;
+
+          foreach ($Permisos as $key => $value) {
+            if($value=='Administrador'){
+                  $usuario->esMesero = 1;
+                  $usuario->esBartender = 1;
+                  $usuario->esCajero = 1;
+                  $usuario->esAdmin = 1;
+                  $usuario->obsequio = 1;
+            }else{
+              if($value=='Mesero'){
+                  $usuario->esMesero = 1;
+              }if($value=='Cajero'){
+                  $usuario->esCajero = 1;
+              }if($value=='Bartender'){
+                  $usuario->esBartender = 1;
+              }
+            }
           }
-          if($value=='Obsequio'){
+          if($request['Obsequio']='Obsequio'){
             $usuario->obsequio = 1;
           }
-        }
-      }
+          $usuario->save();// guardar el usuario
 
-      $usuario->save();
+          // enviar mail
+          $data = ['user'=>$usuario, 'contrasena' => $contrasena];
+          Mail::send('Emails.confirmacionDatosTrabajador', ['data' => $data], function($mail) use($data){
+              $mail->to($data['user']->email)->subject('Bienvenido a SMARTBAR');
+          });
 
-      Flash::success("El usuario se ha registrado satisfactoriamente")->important();
-      return redirect()->route('Auth.usuario.index');
-      //->with("message", "El usuario se ha registrado satisfactoriamente");
+          flash::success('El usuario ha sido registrado satisfactoriamente')->important();
+          return redirect()->route('Auth.usuario.index');
     }
   }
 
