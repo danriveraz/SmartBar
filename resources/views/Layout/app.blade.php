@@ -209,7 +209,8 @@
                 <span aria-hidden="true" class="fa fa-fw fa-usd"></span>Caja</a>
               </li>
              
-              <li><a id="estadisticas" nombre="barraNavegacion" href="{url('Estadisticas/')}}">
+              <li class="dropdown">
+              <a id="Estadisticas" nombre="barraNavegacion" href="{{url('Estadisticas/')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-bar-chart-o"></span>Estadisticas</a>
               </li>
             </ul>
