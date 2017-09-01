@@ -5,17 +5,15 @@
       <h3><B>MI PERSONAL</B></h3>
   </div>
   <div class ="panel-body">
-      <form action=" {{ route('Auth.usuario.store') }}" method="POST">
+      {!!Form::open(['route'=>'Auth.usuario.store', 'method'=>'POST', 'files' => true])!!}
         {{ csrf_field() }}
         <!--Nombre-->
         <div class="form-group">
-          
           <input type="text" name="nombrePersona" class="form-control" placeholder="Nombre completo" placeholder="Nombre" />
           <div class="bg-danger text-white">{{$errors->first('nombrePersona')}}</div>
         </div>
 
         <div class="form-group">
-          
           <input type="text" name="email" class="form-control" placeholder="Correo electrónico" placeholder="E-mail" />
           <div class="bg-danger text-white">{{$errors->first('email')}}</div>
         </div>
@@ -27,18 +25,20 @@
           <div class="bg-danger text-white">{{$errors->first('cedula')}}</div>
         </div> <br>
 
-        <!--Contraseña-->
-        <div class="form-grup">
-          
-          <input type="password" name="password" class="form-control" placeholder="Contraseña" />
-          <div class="bg-danger text-white">{{$errors->first('password')}}</div>
-        </div> <br>
-
-        <!--Confirmar contraseña-->
-        <div class="form-grup">
-                    <input type="password" name="password_confirmation" class="form-control" placeholder="confirmar Contraseña" />
-          <div class="bg-danger text-white">{{$errors->first('password_confirmation')}}</div>
-        </div>
+         <div class="form-group">
+              <label class="control-label"></label>
+              <div class="col-md-12">
+                <div class="fileupload fileupload-new" data-provides="fileupload">
+                  <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
+                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
+                  </div>
+                  <div class="fileupload-preview fileupload-exists img-thumbnail" style="width: 200px; max-height: 150px"></div>
+                  <div>
+                    <span class="btn btn-default btn-file"><span class="fileupload-new">Cargar Imagen</span><span class="fileupload-exists">editar</span><input type="file" class="form-control" name="imagenPerfil"  id="imagenPerfil"></span><a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Eliminar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
         <!--Sexo-->
         <div class="form-grup">
@@ -97,7 +97,7 @@
           </button>
         </div>
 
-      </form>
+      {!!Form::close()!!}
   </div>
 </div>
 @endsection
