@@ -10,8 +10,8 @@
 		<link rel="shortcut icon" href={{ asset('images/icon.png') }}>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link href="css/bootstrap3.css" rel="stylesheet" id="bootstrap-css">
         <link rel="stylesheet" href="assets/typicons/typicons.min.css">
         <link rel="stylesheet" href="assets/css/animate.css">
 		<link rel="stylesheet" href="assets/css/form-elements.css">
@@ -129,15 +129,15 @@
                             <div class="form-bottom">
 			                    <form role="form" action="" method="post">
 			                    	<div class="form-group">
-			                    		
+
 			                        	<input type="text" name="form-first-name" placeholder="Nombre de Empresa" class="form-first-name form-control" id="form-first-name">
 			                        </div>
 			                        <div class="form-group">
-			                        	
+
 			                        	<input type="text" name="form-last-name" placeholder="Nombre..." class="form-last-name form-control" id="form-last-name">
 			                        </div>
 			                        <div class="form-group">
-			                        	
+
 			                        	<input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
 			                        </div>
 			                        <div class="form-group">
@@ -599,9 +599,9 @@
         				<button type="button" class="close" data-dismiss="modal">
         					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
         				</button>
-        			
+
         			</div>
-        			<div class="modal-header">        				
+        			<div class="modal-header">
         				<h2 class="modal-title" id="modal-privacy-label">Politicas</h2>
         			</div>
         			<div class="modal-body">
@@ -612,10 +612,10 @@
 	                    	Información que es recogida en nuestro sitio web podrá tener información personal por ejemplo: Nombre,  información de contacto como  su dirección de correo electrónica e información demográfica. Así mismo cuando sea necesario podrá ser requerida información específica para procesar algún pedido o realizar una entrega o facturación.</p>
 	                    	<br>
 	                    	<h3>2. Uso de la Información</h3>
-	                    	<p style="text-align:justify">                   	
+	                    	<p style="text-align:justify">
 	                    	Uso de la información recogida en nuestro sitio web, emplea la información con el fin de proporcionar el mejor servicio posible, particularmente para mantener un registro de usuarios, de pedidos en caso que aplique, y mejorar nuestros productos y servicios.  Es posible que sean enviados correos electrónicos periódicamente a través de nuestro sitio con ofertas especiales, nuevos productos y otra información publicitaria que consideremos relevante para usted o que pueda brindarle algún beneficio, estos correos electrónicos serán enviados a la dirección que usted proporcione y podrán ser cancelados en cualquier momento.<br>
 
-	                    	
+
 	                    	Pocket Compañy está altamente comprometido para cumplir con el compromiso de mantener su información segura. Usamos los sistemas más avanzados y los actualizamos constantemente para asegurarnos que no exista ningún acceso no autorizado.</p>
 	                    	<br>
                             <h3>3. Uso de Cookies</h3>
@@ -629,14 +629,14 @@
 	                    	este sitio web pudiera contener en laces a otros sitios que pudieran ser de su interés. Una vez que usted de clic en estos enlaces y abandone nuestra página, ya no tenemos control sobre al sitio al que es redirigido y por lo tanto no somos responsables de los términos o privacidad ni de la protección de sus datos en esos otros sitios terceros. Dichos sitios están sujetos a sus propias políticas de privacidad por lo cual es recomendable que los consulte para confirmar que usted está de acuerdo con estas.</p>
 	                    	<br>
 	                    	<h3>5. Control de su información personal</h3>
-                            <p style="text-align:justify"> 
+                            <p style="text-align:justify">
 	                    	En cualquier momento usted puede restringir la recopilación o el uso de la información personal que es proporcionada a nuestro sitio web.  Cada vez que se le solicite rellenar un formulario, como el de alta de usuario, puede marcar o desmarcar la opción de recibir información por correo electrónico.  En caso de que haya marcado la opción de recibir nuestro boletín o publicidad usted puede cancelarla en cualquier momento.
 
 	                    	Esta compañía no venderá, cederá ni distribuirá la información personal que es recopilada sin su consentimiento, salvo que sea requerido por un juez con un orden judicial.
 
 	                    	Pocket Compañy Se reserva el derecho de cambiar los términos de la presente Política de Privacidad en cualquier momento.
 	                    	 </p>
-	             
+
         			</div>
         			</div>
         	</div>
