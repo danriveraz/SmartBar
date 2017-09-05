@@ -146,7 +146,7 @@
                                 <div class="left-w3-agile" id="target">
                                 <label>Departamento</label>
 								<select id="idDepto" name="idDepto" required>
-									<option></option>>
+									<option></option>
 									@foreach($departamentos as $departamento)
                                   		<option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
                                  	@endforeach

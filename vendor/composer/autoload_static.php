@@ -356,6 +356,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'AddForeignKeyProveedor' => __DIR__ . '/../..' . '/database/migrations/2017_07_29_110847_addForeignKeyProveedor.php',
         'AddForeignKeyVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_28_111410_addForeignKeyVenta.php',
         'AddMedidaInsumo' => __DIR__ . '/../..' . '/database/migrations/2017_08_22_220235_addMedidaInsumo.php',
+        'AddPerfilProveedorUsuarios' => __DIR__ . '/../..' . '/database/migrations/2017_09_05_144059_addPerfilProveedorUsuarios.php',
         'AddPersimoRegalar' => __DIR__ . '/../..' . '/database/migrations/2017_08_14_174017_add_persimo_regalar.php',
         'Addrecetaproducto' => __DIR__ . '/../..' . '/database/migrations/2017_07_20_004051_addrecetaproducto.php',
         'Addunidadinsumo' => __DIR__ . '/../..' . '/database/migrations/2017_07_18_222822_addunidadinsumo.php',

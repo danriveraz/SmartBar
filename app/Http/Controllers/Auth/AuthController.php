@@ -40,7 +40,17 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectTo = '/WelcomeAdmin';
-
+    
+    protected function redirectTo()
+    {   
+        if(Auth::User()->esAdmin){
+            return '/WelcomeAdmin';
+        }elseif(Auth::User()->esProveedor){
+            return '/WelcomeProveedor';
+        }else{
+            return '/WelcomeTrabajador';
+        }
+    }
     /**
      * Create a new Authentication controller instance.
      *
@@ -63,7 +73,7 @@ class AuthController extends Controller
         $rules = [
             //'nombreEstablecimiento' => 'required|min:3|max:20|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'email' => 'required|email|max:255|unique:usuario,email',
+            'email' => 'required|email|max:255',
             //'cedula' => 'required|min:1|max:9999999999|numeric',
             'password' => 'required|min:6|max:18',
             //'sexo' => 'required',
@@ -110,6 +120,8 @@ class AuthController extends Controller
             $admin->save();// guarda el usuario registrado 
             
             $empresa->usuario_id = $admin->id;// obtiene el id del usuario que creo la empres apara saber la referencia 
+            $empresa->departamento = $departamentos[($request->idDepto) -1]->nombre;
+            $empresa->ciudad = $ciudades[($request->idCiudad) -1]->nombre;
             $empresa->save();// guarda los cambios 
 
             
@@ -381,6 +393,5 @@ class AuthController extends Controller
 
         return $admin;
     }
-
 
 }

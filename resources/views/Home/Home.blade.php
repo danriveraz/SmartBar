@@ -22,7 +22,6 @@
         <link href="css/bootstrap-social.css" rel="stylesheet">
 
 
-    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,10 +57,11 @@
   	  <div class="header_top">
 	   <div class="wrap">
 		 	     <div class="logo">
-						<a href="index.html"><img src="images/logo.png" alt="" /></a>
+						<a href="{{url('/')}}"><img src="images/logo.png" alt="" /></a>
 					</div>
 						<div class="menu">
 						    <ul>
+						    	<li><a href="{{url('RegistrarProveedor')}}" class="">Registrar como Proveedor</a></li>
 						    	<li class="current"><a  class="scroll">Ayuda</a></li>
 								<li><a class="scroll">Contactos</a></li>
 								<li class="login" >
@@ -149,15 +149,15 @@
 
                                 <div class="form-group">
                                     <div class="left-w3-agile">
-                                    <select id="" name="" class="form-email form-control" id="form-email" required>
-                                        <option value="0">Ciudad</option>
-
+                                    <select id="idCiudad" name="" class="form-email form-control" id="form-email" required>
+                                    	<option></option>  
                                     </select>
                                 	</div>
 									<div class="right-agileits">
-                                    <select id="" name="" class="form-last-name form-control" id="" required>
-                                      <option value="0">Departamento</option>
-
+                                    <select name="" class="form-last-name form-control" id="idDepto" required>
+										@foreach($departamentos as $departamento)
+	                                  		<option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
+	                                 	@endforeach
                                     </select>
 									</div>
                                 </div>
@@ -653,7 +653,7 @@
         				 </div>
 
            			<div class="modal-body">
-        			<b><h3 class="modal-title" ">Preguntas Frecuentes</h3></b><br>
+        			<b><h3 class="modal-title" >Preguntas Frecuentes</h3></b><br>
         				<h4>1. ¿Cómo ingreso de forma rápida mi inventario?</h4><br>
         				<p>
 	                    	Se recomienda descargar la plantilla de excel, llenarla y cargarla al programa, el automaticamente cargará la información en el lugar correcto.
@@ -669,8 +669,42 @@
         	</div>
         </div>
 
+        <!-- Javascript -->
+        <script src="assets\js\jquery-1.11.1.min.js"></script>
+        <script src="assets\bootstrap\js\bootstrap.min.js"></script>
+        <script src="assets\js\jquery.backstretch.min.js"></script>
+        <script src="assets\js\wow.min.js"></script>
+        <script src="assets\js\retina-1.1.0.min.js"></script>
+        <script src="assets\js\scripts.js"></script>
+
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+	<script>
+		$('#idDepto').on('change', function (event) {
+		    var id = $(this).find('option:selected').val();
+		    $('#idCiudad').empty();
+		    $('#idCiudad').append($('<option>', {
+					    value: 0,
+					    text: 'Elija una opción'
+					}));
+		    JSONCiudades = eval(<?php echo json_encode($ciudades);?>);
+		    JSONCiudades.forEach(function(currentValue,index,arr) {
+			    if(currentValue.idDepartamento == id){
+			    	$('#idCiudad').append($('<option>', {
+					    value: currentValue.id,
+					    text: currentValue.nombre
+					}));
+			    }
+			});
+			 
+		});
+	</script>
+
+
+
         <!--  script para contraseña -->
-        <script type="text/javascript">
+    <script type="text/javascript">
         $("#passwordfield").on("keyup",function(){
             if($(this).val())
                 $(".glyphicon-eye-open").show();
@@ -684,20 +718,8 @@
                     }).mouseout(function(){
                         $("#passwordfield").attr('type','password');
                     });
-            </script>
+    </script>
         <!--  script para contraseña -->
-        <!-- Javascript -->
-        <script src="assets\js\jquery-1.11.1.min.js"></script>
-        <script src="assets\bootstrap\js\bootstrap.min.js"></script>
-        <script src="assets\js\jquery.backstretch.min.js"></script>
-        <script src="assets\js\wow.min.js"></script>
-        <script src="assets\js\retina-1.1.0.min.js"></script>
-        <script src="assets\js\scripts.js"></script>
-
-        <!--[if lt IE 10]>
-            <script src="assets/js/placeholder.js"></script>
-        <![endif]-->
-
     </body>
 
 </html>

@@ -99,5 +99,10 @@ Route::resource('WelcomeTrabajador', 'WelcomeTrabajadorController', ['only' => [
 Route::get('Auth/{provider}', 'Auth\AuthController@redirectToProvider');
 Route::get('Auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 
+// rutas apra registrar proveedores
+Route::get('RegistrarProveedor', 'RegistrarProveedorController@registrarProveedor');// registrar el proveedor
+Route::post('RegistrarProveedor', 'RegistrarProveedorController@postRegistrarProveedor');
+Route::get('WelcomeProveedor', 'RegistrarProveedorController@index');
+
 
 
