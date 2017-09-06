@@ -46,11 +46,11 @@
                     {!! Form::select('proveedores', $proveedores, null, ['class' => 'form-control', 'placeholder' => 'Proveedor', 'required' => 'true']) !!}
                 </div>
                 <div class="form-group">
-                    <input type="number" step="any" min="0" name="valorCompra" class="form-control" required="true" placeholder="Costo" onkeypress="autocompletar(event,this)">
+                    <input type="number" step="any" min="0" name="valorCompra" class="form-control" required="true" placeholder="Costo" onkeyup="autocompletar(event,this,0)">
                 </div>
                 <div class="form-group">
                     
-                    <input type="number" step="any" min="0" name="precioUnidad" class="form-control" required="true" placeholder="Venta" onkeypress="autocompletar(event,this)">
+                    <input type="number" step="any" min="0" name="precioUnidad" class="form-control" required="true" placeholder="Venta" onkeyup="autocompletar(event,this,1)">
                 </div>
                 <div class="form-group">
                     <input type="number" step="any" min="0" id="cantidadMedida" name="cantidadMedida" placeholder="Contenido" class="form-control" required="true" />
@@ -167,10 +167,23 @@
         }
   };
 
-  function autocompletar(e,element){
-    if(e.which == 32){
-      var valor = element.value*1000;
-      element.value = valor;
+  var cont = [true,true,false,false];
+
+  function autocompletar(e,element,index){
+    var valor = parseInt(e.key);
+    if(valor >= 0 && valor <= 9){
+      if(element.value.length != 1 && element.value != 0){
+        if(cont[index]){
+          var texto = parseInt(element.value)/1000;
+          element.value = parseInt(((texto + valor)*1000)-valor);
+        }
+      }else{
+        element.value = parseInt(valor*1000);
+        cont[index] = true;
+      }
+    }else if(e.which == 8 && cont[index]){
+      element.value = parseInt(element.value)/100;
+      cont[index] = false;
     }
   }  
 
@@ -216,7 +229,17 @@ function cambiarCurrent(idInput) {
   $(".current").removeClass("current");
   $(idInput).addClass("current");
 };
+
 </script>
+<style type="text/css">
+  ::-webkit-scrollbar { 
+    display: none; 
+}
+#content browser {
+  overflow:-moz-scrollbars-none;
+ overflow:-moz-hidden-unscrollable;
+}
+</style>
 <style>
     .center-block {
         float: none;

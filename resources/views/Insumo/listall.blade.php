@@ -61,11 +61,11 @@
                     </div>
                     <div class="form-group">
                       <label for="valorCompra" class="control-label">Costo</label>
-                      <input type="number" id="compra{{$insumo->id}}" step="any" min="0" name="valorCompra" class="form-control" value="{{$insumo->valorCompra}}" onkeypress="autocompletar(event,this)"/>
+                      <input type="number" id="compra{{$insumo->id}}" step="any" min="0" name="valorCompra" class="form-control" value="{{$insumo->valorCompra}}" onkeyup="autocompletar(event,this,2)"/>
                     </div>
                     <div class="form-group">
                       <label for="precioUnidad" class="control-label">Venta</label>
-                      <input type="number" id="venta{{$insumo->id}}" step="any" min="0" name="precioUnidad" class="form-control" value="{{$insumo->precioUnidad}}" onkeypress="autocompletar(event,this)"/>
+                      <input type="number" id="venta{{$insumo->id}}" step="any" min="0" name="precioUnidad" class="form-control" value="{{$insumo->precioUnidad}}" onkeyup="autocompletar(event,this,3)"/>
                     </div>
                     <div class="form-group">
                       <label id="label{{$insumo->id}}" for="cantidadMedida" class="control-label"><?php if($insumo->medida == "0"){echo "Contenido";}else{echo "Cantidad";} ?></label>
