@@ -3,20 +3,22 @@
 
 {!!Html::style('stylesheets\mesero.css')!!}
 
-<div class="col-sm-offset-1 col-sm-10">
+<div class="col-offset-2 col-4">
+  <div class="col-sm-offset-2 col-sm-8">
   @if(Session::has('success_msg'))
       <div class="alert alert-dismissable alert-success">
   			<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
   			<i class="glyphicon glyphicon-sucess"></i> {{Session::get('success_msg')}}
       </div>
    @endif
+ </div>
 
-  <div class="container-fluid main-content"><div class="btn btn-primary btn">
+  <div class="container-fluid main-content"><div class="social-wrapper">
   	<div id="social-container"></div>
 
   		<div id="hidden-items">
   		@foreach($mesas as $mesa)
-  		    <div class="item social-widget">
+  		    <div class="item social-widget" nombre="mesa" id="{{$mesa->id}}">
             @if($mesa->estado == 'Disponible')
               <div id="mesaDisponible"></div>
             @elseif($mesa->estado == 'Ocupada')
@@ -44,6 +46,11 @@
 {!!Html::style('stylesheets\isotope.css')!!}
 {!!Html::style('stylesheets\fullcalendar.css')!!}
 
-
+<script>
+  $("div[nombre|='mesa']").click(function(){
+    var idDiv = $(this).attr("id");
+    window.location = "http://localhost/PocketByR/public/mesero/"+idDiv;
+  });
+</script>
 
 @endsection
