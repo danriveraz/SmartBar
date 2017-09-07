@@ -258,7 +258,7 @@
                     <input class="form-control" id="nombrePersona" name="nombrePersona" placeholder="Nombre Del Empleado" type="text">
                   </div>
                 </div>
-                <!--<div class="form-group">
+                <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-lock"></i></span><input class="form-control" placeholder="Contraseña" type="password">
                   </div>
@@ -268,7 +268,7 @@
                     <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
                     <input class="form-control" placeholder="Telefono de Contato" type="text">
                   </div>
-                </div>-->
+                </div>
               </div>
               <div class="col-md-4 ">
                 <!--<div class="form-group">
@@ -289,12 +289,12 @@
                     <input class="form-control" id="cedula" name="cedula" placeholder="Identificación" type="text">
                   </div>
                 </div>
-                <!--<div class="form-group">
+                <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-map"></i></span>
                     <input class="form-control" placeholder="Dirección De Recidencia" type="text">
                   </div>
-                </div>-->
+                </div>
                 <div class="form-group"> <!-- OJO esto dará error -->
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
@@ -310,12 +310,12 @@
                     <input data-date-format="yyyy/mm/dd" class="form-control datepicker" data-date-autoclose="true" placeholder="Fecha de Nacimiento" name="fechaNacimiento" id="fechaNacimiento" type="text">
                   </div>
                 </div>
-                <!--<div class="form-group">
+                <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-money"></i></span>
                     <input class="form-control" type="number"><span class="input-group-addon">.00</span>          
                   </div>
-                </div>-->
+                </div>
                 <div class="text-center">
                   <label class="checkbox">{{ Form::checkbox('regalar') }}<span>Activar Para Obsequiar</span></label>
                 </div>
