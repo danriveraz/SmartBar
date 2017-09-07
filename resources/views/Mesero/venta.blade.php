@@ -66,7 +66,7 @@
                             <strong>Receta:</strong>
                             <p>{{$producto->receta}}</p>
                           </div>"
-                          data-placement="bottom" data-toggle="popover">Receta</a>
+                          data-placement="bottom" data-toggle="popover" >Receta</a>
                         </td>
                         <td width="150px" onclick="actualizarTabla({{$producto->id}},{{$factura->id}}, 0)">{{$producto->precio}}</td>
                         <td width="100px">
@@ -79,8 +79,8 @@
                       <tr>
                         <td width="250px" onclick="actualizarTabla({{$producto->id}},{{$factura->id}}, 0)">{{$producto->nombre}}</td>
                         <td width="150px">
-                          <a class="btn btn btn-primary popover-trigger" data-html="true" data-content=
-                          "<div>
+                          <a class="btn btn btn-primary popover-trigger" data-html="true" data-content="
+                          <div>
                             <strong>Ingredientes:</strong>
                             @foreach($producto->contienen as $contiene)
                               <li>{{$contiene->insumo->nombre}}</li>
@@ -161,9 +161,10 @@
 
 </div>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
 
 {!!Html::script('javascripts\mesero.js')!!}
+
 {!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
 {!!Html::script('javascripts\jquery.dataTables.min.js')!!}
 {!!Html::script('javascripts\jquery.easy-pie-chart.js')!!}
