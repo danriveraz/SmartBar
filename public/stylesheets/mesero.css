@@ -31,19 +31,6 @@ table th, table td{
   display: none;
 }
 
-.panel-title > a{
-  text-decoration: none;
-  color: #606060;
-}
-
-.panel-group {
-  overflow: hidden;
-}
-
-.panel-group .panel{
-  border-radius: 8px;
-}
-
 .social-widget {
   height: 120px;
   padding-top: 14px;
@@ -78,8 +65,13 @@ table th, table td{
   height: 80px;
   margin-bottom: 20px;
   box-shadow: 2px 2px 3px 2px rgba(153, 153, 153, 0.5);
-  margin: 10px;
-  float: left; }
+  margin-left: 20px;
+}
+
+#estadoMesa{
+  display: flex;
+  justify-content: center;
+}
 
 #nombreMesa{
   width: 20%;

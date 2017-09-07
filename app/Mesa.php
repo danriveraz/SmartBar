@@ -16,6 +16,19 @@ class Mesa extends Model
     public function scopeMesasAdmin($query, $idEmpresa){
         return $query->where('mesa.idEmpresa', $idEmpresa);
     }
+
+    public function scopeMesasAdminOcupadas($query, $idEmpresa){
+        return $query->where('mesa.idEmpresa', $idEmpresa)
+        ->where('mesa.estado', 'Ocupada');
+    }
+    public function scopeMesasAdminDisponibles($query, $idEmpresa){
+        return $query->where('mesa.idEmpresa', $idEmpresa)
+        ->where('mesa.estado', 'Disponible');
+    }
+    public function scopeMesasAdminReservadas($query, $idEmpresa){
+        return $query->where('mesa.idEmpresa', $idEmpresa)
+        ->where('mesa.estado', 'Reservada');
+    }
     public function scopecalculaCantidad($query, $idEmpresa){
         return $query->where('mesa.idEmpresa', $idEmpresa)
         			->max('idMesa');
@@ -33,5 +46,5 @@ class Mesa extends Model
                   ['nombreMesa','LIKE',"%$nombre%"],
                   ['idEmpresa', $id]
               ]);
-    } 
+    }
 }

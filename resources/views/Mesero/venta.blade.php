@@ -26,7 +26,7 @@
   <div class="bs-example" id="contenedor" style="height: calc({{sizeOf($categorias)}} * 61px);">
       <div id="contenedorCategorias">
           @foreach($categorias as $categoria)
-          <a id="{{$categoria->id}}" onclick="scrollZero()" data-toggle="tab" href="#tabProductos{{$categoria->id}}" >
+          <a onclick="scrollZero()" data-toggle="tab" href="#tabProductos{{$categoria->id}}" >
             <div id="categoria">
                   {{$categoria->nombre}}
             </div>
@@ -162,6 +162,7 @@
 </div>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
 {!!Html::script('javascripts\mesero.js')!!}
 {!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
 {!!Html::script('javascripts\jquery.dataTables.min.js')!!}

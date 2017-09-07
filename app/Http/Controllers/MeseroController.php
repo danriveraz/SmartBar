@@ -37,8 +37,21 @@ class MeseroController extends Controller
 
     public function index()
     {
-        $mesas = Mesa::mesasAdmin(Auth::user()->idEmpresa)->get();
-        return view('Mesero.mesas')->with('mesas',$mesas);
+        $mesasDisponibles = Mesa::mesasAdminDisponibles(Auth::user()->idEmpresa)->get();
+        $mesasOcupadas =  Mesa::mesasAdminOcupadas(Auth::user()->idEmpresa)->get();
+        $mesasReservadas =  Mesa::mesasAdminReservadas(Auth::user()->idEmpresa)->get();
+        $cantidad = 0;
+        if(sizeOf($mesasDisponibles) > 0){
+          $cantidad = $cantidad+1;
+        }
+        if(sizeOf($mesasOcupadas) > 0){
+          $cantidad = $cantidad+1;
+        }
+        if(sizeOf($mesasReservadas) > 0){
+          $cantidad = $cantidad+1;
+        }
+        return view('Mesero.mesas')->with('mesasDisponibles',$mesasDisponibles)->with('mesasOcupadas',$mesasOcupadas)
+        ->with('mesasReservadas',$mesasReservadas)->with('cantidad',$cantidad);
     }
 
     public function agregar(Request $request){
