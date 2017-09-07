@@ -649,7 +649,7 @@
      * =============================================================================
      */
     $(".fancybox").fancybox({
-      maxWidth: 700,
+      maxWidth: 400,
       height: 'auto',
       fitToView: false,
       autoSize: true,
@@ -881,8 +881,6 @@
         itemSelector: '.item'
       }).isotope('insert', $alpha.find('.item'));
       return $("#load-more").html("Load more").find("i").hide();
-      
-
     });
     $('#load-more').click(function() {
       var item1, item2, item3, items, tmp;
@@ -1152,7 +1150,7 @@
      *   Input placeholder fix
      * =============================================================================
      */
-   /*if (!Modernizr.input.placeholder) {
+    if (!Modernizr.input.placeholder) {
       $("[placeholder]").focus(function() {
         var input;
         input = $(this);
@@ -1177,7 +1175,7 @@
           }
         });
       });
-    } */
+    }
 
     /*
      * =============================================================================
