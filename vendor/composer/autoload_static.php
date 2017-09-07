@@ -371,6 +371,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'Altertableproductos' => __DIR__ . '/../..' . '/database/migrations/2017_07_05_100014_altertableproductos.php',
         'CambioNombreTablaAdmin' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_233304_cambio_nombre_tabla_admin.php',
         'CambiosTablaUsuarios' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_235518_cambios_tabla_usuarios.php',
+        'CreateAgendatrabajadoresTable' => __DIR__ . '/../..' . '/database/migrations/2017_09_06_185140_create_agendatrabajadores_table.php',
         'CreateCategoriaTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_01_183643_create_categoria_table.php',
         'CreateCiudadesTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_13_103015_create_ciudades_table.php',
         'CreateContieneTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_02_200842_create_contiene_table.php',

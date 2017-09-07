@@ -6,6 +6,7 @@
       Pocket SMARTBAR
     </title>
     <link rel="shortcut icon" href={{ asset('images/icon.png') }}>
+    <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
 
     {!!Html::style('stylesheets/bootstrap.min.css')!!}
     {!!Html::style('stylesheets/font-awesome.min.css')!!}
@@ -13,6 +14,40 @@
     {!!Html::style('stylesheets/style.css')!!}
     {!!Html::style('stylesheets/bootstrap-select.css')!!}
     {!!Html::style('stylesheets\select2.css')!!}
+
+    {!!Html::style('stylesheets\bootstrap.css')!!}
+    {!!Html::style('stylesheets\isotope.css')!!}
+    {!!Html::style('stylesheets\jquery.fancybox.css')!!}
+    {!!Html::style('stylesheets\fullcalendar.css')!!}
+    {!!Html::style('stylesheets\wizard.css')!!}
+    {!!Html::style('stylesheets\morris.css')!!}
+    {!!Html::style('stylesheets\datatables.css')!!}
+    {!!Html::style('stylesheets\datepicker.css')!!}
+    {!!Html::style('stylesheets\timepicker.css')!!}
+    {!!Html::style('stylesheets\colorpicker.css')!!}
+    {!!Html::style('stylesheets\bootstrap-switch.css')!!}
+    {!!Html::style('stylesheets\bootstrap-editable.css')!!}
+    {!!Html::style('stylesheets\daterange-picker.css')!!}
+    {!!Html::style('stylesheets\typeahead.css')!!}
+    {!!Html::style('stylesheets\summernote.css')!!}
+    {!!Html::style('stylesheets\ladda-themeless.min.css')!!}
+    {!!Html::style('stylesheets\social-buttons.css')!!}
+    {!!Html::style('stylesheets\jquery.fileupload-ui.css')!!}
+    {!!Html::style('stylesheets\dropzone.css')!!}
+    {!!Html::style('stylesheets\nestable.css')!!}
+    {!!Html::style('stylesheets\pygments.css')!!}
+
+    {!!Html::style('stylesheets\color\green.css')!!}
+    {!!Html::style('stylesheets\color\orange.css')!!}
+    {!!Html::style('stylesheets\color\magenta.css')!!}
+    {!!Html::style('stylesheets\color\gray.css')!!}
+
+
+
+
+
+
+
 
      <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
@@ -72,14 +107,36 @@
 {!!Html::script("javascripts\jquery.sparkline.min.js")!!}
 {!!Html::script("javascripts\dropzone.js")!!}
 {!!Html::script("javascripts\jquery.nestable.js")!!}
-
-
 {!!Html::script('javascripts\main.js')!!}
 {!!Html::script('javascripts\respond.js')!!}
 
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+{!!Html::script('javascripts\raphael.min.js')!!}
+{!!Html::script('javascripts\selectivizr-min.js')!!}
+{!!Html::script('javascripts\jquery.mousewheel.js')!!}
+{!!Html::script('javascripts\jquery.vmap.min.js')!!}
+{!!Html::script('javascripts\jquery.vmap.sampledata.js')!!}
+{!!Html::script('javascripts\jquery.vmap.world.js')!!}
+{!!Html::script('javascripts\excanvas.min.js')!!}
+{!!Html::script('javascripts\bootstrap-editable.min.js')!!}
+{!!Html::script('javascripts\xeditable-demo-mock.js')!!}
+{!!Html::script('javascripts\xeditable-demo.js')!!}
+{!!Html::script('javascripts\address.js')!!}
+
+{!!Html::script('croppie/croppie.js')!!}
+{!!Html::script('croppie/upload.js')!!}
+{!!Html::script('javascripts/upload/plugins/sortable.js')!!}
+{!!Html::script('javascripts/upload/fileinput.js')!!}
+{!!Html::script('javascripts/upload/locales/fr.js')!!}
+{!!Html::script('javascripts/upload/locales/es.js')!!}
+{!!Html::script('javascripts/upload/theme.js')!!}
+
+{!!Html::style('croppie/croppie.css')!!}
+{!!Html::style('stylesheets/upload/fileinput.css')!!}
+{!!Html::style('stylesheets/upload/theme.css')!!}
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   </head>
-  <body class="page-header-fixed bg-1 layout-boxed" style="BACKGROUND-COLOR:WHITE">
+  <body class="page-header-fixed bg-1">
     <div class="modal-shiftfix" >
       <!-- Navegación -->
       <div class="navbar navbar-fixed-top scroll-hide" >
@@ -181,26 +238,26 @@
         </div>
         <div class="container-fluid main-nav clearfix" >
           <div class="nav-collapse" >
-            <ul class="nav" style="BACKGROUND-COLOR: rgb(245,245,245)">
+            <ul class="nav">
              <li class="dropdown"><a data-toggle="dropdown" href="#">
                 <span aria-hidden="true" class="glyphicon glyphicon-folder-open"></span> {{Auth::User()->empresa->nombreEstablecimiento}} <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li>
                     <a id="usuario" nombre="barraNavegacion" href={{url("/Auth/usuario")}}>
-                    <span aria-hidden="true" class="fa fa-fw fa-group"></span>Personal</a>
+                    <span aria-hidden="true" class="fa fa-fw fa-group fa-2x"></span>  Personal</a>
                   </li>
                   <li><a id="productos" nombre="barraNavegacion" href="{{route('producto.index')}}" >
-                    <span aria-hidden="true" class="fa fa-fw fa-glass"></span>Productos</a>
+                    <span aria-hidden="true" class="fa fa-fw fa-glass fa-2x"></span>   Productos</a>
                   </li>
                   <li><a id="insumos" nombre="barraNavegacion" href="{{route('insumo.index')}}">
-                    <span aria-hidden="true" class="fa fa-fw fa-list"></span>Inventario</a>
+                    <span aria-hidden="true" class="fa fa-fw fa-list fa-2x"></span>   Inventario</a>
                   </li>
                   <li><a id="proveedor" nombre="barraNavegacion" href="{{route('proveedor.index')}}">
-                    <span aria-hidden="true" class="fa fa-fw fa-truck"></span>Proveedores</a>
+                    <span aria-hidden="true" class="fa fa-fw fa-truck fa-2x"></span>  Proveedores</a>
                   </li>
                   <li class="dropdown">
                     <a id="mesas" nombre="barraNavegacion" href="{{route('mesas.index')}}">
-                    <span aria-hidden="true" class="fa fa-fw fa-hospital-o"></span>Mesas</a>
+                    <span aria-hidden="true" class="fa fa-fw fa-hospital-o fa-2x"></span>  Mesas</a>
                   </li>
                 </ul>
               </li>              
@@ -218,6 +275,7 @@
         </div>
       </div>
       <!-- fin de la navegación -->
+
   <div class="modal fade" id="tutModal" role="dialog" >
     <div class="modal-dialog modal-lg" style="min-width: 800px;">
       <div class="modal-content" >
@@ -354,12 +412,12 @@
         </div>
       </div>
     </div>
-  </div>
 
-    </div>
+  
     <div class="">
       @yield('content')
     </div>
+</div>
 
     <div class="footer">
     <div class="container">

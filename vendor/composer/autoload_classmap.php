@@ -35,6 +35,7 @@ return array(
     'Altertableproductos' => $baseDir . '/database/migrations/2017_07_05_100014_altertableproductos.php',
     'CambioNombreTablaAdmin' => $baseDir . '/database/migrations/2017_07_26_233304_cambio_nombre_tabla_admin.php',
     'CambiosTablaUsuarios' => $baseDir . '/database/migrations/2017_07_26_235518_cambios_tabla_usuarios.php',
+    'CreateAgendatrabajadoresTable' => $baseDir . '/database/migrations/2017_09_06_185140_create_agendatrabajadores_table.php',
     'CreateCategoriaTable' => $baseDir . '/database/migrations/2017_07_01_183643_create_categoria_table.php',
     'CreateCiudadesTable' => $baseDir . '/database/migrations/2017_07_13_103015_create_ciudades_table.php',
     'CreateContieneTable' => $baseDir . '/database/migrations/2017_07_02_200842_create_contiene_table.php',
