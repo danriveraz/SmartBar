@@ -91,7 +91,7 @@
 @endif
 <!-- fin slider -->
 
-{!!Html::style('stylesheets\mesero.css')!!}
+{!!Html::style('stylesheets\bartender.css')!!}
 <script type="text/javascript">
   $(window).load(function() {
     cambiarCurrent("#bartender");

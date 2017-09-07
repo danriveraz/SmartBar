@@ -20,76 +20,50 @@
     @endif
    </div>
 
-   <div class="bs-example" id="contenedor" style="height: calc(7 * 61px);" >
-      <div id="contenedorCategorias" style="height: calc(7 * 61px); overflow: scroll;">
-        @foreach($mesas as $mesa)
-            <a data-toggle="tab" href="#tabMesas{{$mesa->id}}" >
+   <div class="bs-example" id="contenedor" style="height: calc(10 * 61px);" >
+      <div id="contenedorCategorias" style="height: calc(10 * 61px); overflow: scroll;">
+        @foreach($facturas as $factura)
+          @if(sizeof($factura->ventasHechas)>0)
+            <a data-toggle="tab" href="#tabMesas{{$factura->mesa->id}}" >
               <div id="categoria">
-                    {{$mesa->nombreMesa}}
+                    {{$factura->mesa->nombreMesa}}
               </div>
             </a>      
+          @endif
         @endforeach
       </div>
 
       <div id="contenedorProductos">
-          <div class="tab-content" id="productos">
-            @foreach($mesas as $mesa)
-              <div class="tab-pane" id="tabMesas{{$mesa->id}}">
-                <table class="table table-striped" id="tablaProductos">
-                  <thead>
-                    <th width="120px">Estado</th>
-                    <th width="120px">Fecha</th>
-                    <th width="120px">Hora</th>
-                    <th width="120px">Total</th>
-                    <th width="120px">Mesero</th>
-                    <th width="120px">Bartender</th>
-                   </thead>
-                   <tbody style="height: calc(7 * 49px);">
-                     @foreach($facturas as $factura)
-                        @if($factura->idMesa == $mesa->id and sizeof($factura->ventasHechas) != 0)
-                        <tr id="{{$factura->id}}" class="seleccionar">
-                          <td width="120px">{{$factura->estado}}</td>
-                          <td  width="120px">
-                              <?php $date = new DateTime($factura->fecha);
+          <div class="tab-content" id="productos" style="height: calc(10 * 61px);">
+            @foreach($facturas as $factura)
+            @if(sizeof($factura->ventasHechas)>0)
+              <div class="tab-pane" id="tabMesas{{$factura->mesa->id}}">
+               <div class="invoice">     
+                <div class="row">
+                  <div class="col-md-">
+                    <div class="well">
+                      <strong>Datos</strong>
+                      <h3>
+                        {{$factura->mesa->nombreMesa}}
+                      </h3>
+                      <p>
+                        Fecha: <?php $date = new DateTime($factura->fecha);
                               echo $date->format('Y-m-d'); ?>
-                          </td>
-                          <td width="120px">
-                              <?php $date = new DateTime($factura->fecha);
+                        <br>
+                        Hora: <?php $date = new DateTime($factura->fecha);
                               echo $date->format('H:i:s');?>
-                          </td>
-                          <td width="120px">{{$factura->total}}</td>
-                          <td width="120px">{{$factura->ventasHechas[0]->mesero->nombrePersona}}</td>
-                          <td  width="120px"> {{$factura->ventasHechas[0]->bartender->nombrePersona}}</td>
-                        </tr>
-                        @endif
-                      @endforeach
-                  </tbody>
-                </table>
+                        <br>
+                        Mesero: {{$factura->ventasHechas[0]->mesero->nombrePersona}}
+                        <br>
+                        Bartender: {{$factura->ventasHechas[0]->bartender->nombrePersona}}
+                        <br>
+                      </p>
+                    </div>
+                  </div>
+               
+                </div>
               </div>
-            @endforeach
-          </div>
-      </div>
-
-  </div>
-</div>
-
-
-@foreach($facturas as $factura)
-  <div class="modal fade" id="myModal{{$factura->id}}">
-    <div class="modal-dialog" style="min-width: 800px;">
-      <div class="modal-content">
-        <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
-          <button aria-hidden="true" class="close" data-dismiss="modal" type="button"  style="color:white">&times;</button>
-          <h4 class="modal-title">
-            {{$factura->mesa->nombreMesa}}
-          </h4>
-        </div>
-        <div class="modal-body">
-            <div class="heading">
-                
-            </div>
-            <div class="widget-content">
-              <div class="container-fluid main-content">
+                <div class="container-fluid main-content">
                 <div class="invoice">
                 <form name="formulario" autocomplete="on" method="post" action="{{url('cajero/edit')}}">
                   {{csrf_field()}}
@@ -99,20 +73,20 @@
                         <div class="widget-content padded clearfix">
                           <table class="table table-striped invoice-table">
                             <thead>
-                              <th width="50">Cant. a pagar</i> </th>
+                              <th>Cant. a pagar</i> </th>
                               <th>
                                 Producto
                               </th>
-                              <th width="70">
+                              <th>
                                 Cant. total
                               </th>
-                              <th width="70">
+                              <th>
                                 Cant. pagó.
                               </th>
-                              <th width="120">
+                              <th>
                                 Valor unitario
                               </th>
-                              <th width="120">
+                              <th>
                                 Total
                               </th>
                             </thead>
@@ -145,24 +119,52 @@
                                   <strong>Subtotal</strong>
                                 </td>
                                 <td>
-                                  <a id="subtotal">$0</a>
+                                  <a id="subtotal{{$factura->ventasHechas[0]->id}}" style="color:#2d0031;">$0</a>
                                   <input type="text" name="subtotal" value=0 id="subtotalInput" hidden="">
                                 </td>
                               </tr>
                               <tr>
                                 <td class="text-right" colspan="5">
-                                  <h4 class="text-primary">
+                                  <h4 class="text-primary" style="color:#2d0031;">
                                     Total
                                   </h4>
                                 </td>
                                 <td>
                                   <h4 class="text-primary">
-                                    <a id="total" value="0">$0</a>
-                                     <input type="text" name="total" value=0 id="totalInput" hidden="">
+                                    <a id="totalt{{$factura->ventasHechas[0]->id}}" value="0" style="color: #2d0031;">$0</a>
+                                     <input type="text" name="total" value=0 id="totalInput{{$factura->ventasHechas[0]->id}}" hidden="">
                                      <input type="text" name="idFactura" value="{{$factura->id}}" id="" hidden="">
-                                     <input type="text" id="montoAntiguoo" name="montoAntiguo" value="{{$factura->total}}" id="" hidden="">
-                                     <input type="text" id="valorInput" name="valor" value=0 id="" hidden="">
+                                     <input type="text" id="montoAntiguoo{{$factura->ventasHechas[0]->id}}" name="montoAntiguo" value="{{$factura->total}}" id="" hidden="">
+                                     <input type="text" id="valorInput{{$factura->ventasHechas[0]->id}}" name="valor" value=0 id="" hidden="">
                                   </h4>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="text-right" colspan="5">
+                                  <strong>Forma de pago:</strong>
+                                </td>
+                                <td>
+                                  <select id="formaPago{{$factura->ventasHechas[0]->id}}" class="form-last-name form-control"  onchange="editValor(this.value,{{$factura->ventasHechas[0]->id}});" width="50px">
+                                  <option value="efectivo">Efectivo</option>
+                                  <option value="credito">Crédito</option>
+                                  <option value="debito">Débito</option>
+                                  </select>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="text-right" colspan="5">
+                                  <strong id="textoEfectivo{{$factura->ventasHechas[0]->id}}">Efectivo:</strong>
+                                </td>
+                                <td>
+                                  <input type="number" name="" id="efectivo{{$factura->ventasHechas[0]->id}}" class="efectivoNum" onkeyup="validarEfectivo('#efectivo{{$factura->ventasHechas[0]->id}}');" idVenta="{{$factura->ventasHechas[0]->id}}">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="text-right" colspan="5">
+                                  <strong id="textoCambio{{$factura->ventasHechas[0]->id}}">Cambio:</strong>
+                                </td>
+                                <td>
+                                  <a id="cambio{{$factura->ventasHechas[0]->id}}" value="0" style="color: #2d0031;" valor=0>$0</a>
                                 </td>
                               </tr>
                             </tfoot>
@@ -172,20 +174,24 @@
                       </div>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <button class="btn btn-primary pull-right" style="background: #2d0031; border-color:#2d0031;">Guardar</button>
+                    </div>
+                  </div>
                   </form>
                 </div>
               </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" data-dismiss="modal"  style="BACKGROUND-COLOR: rgb(79,0,85); color:white" onclick="modificar({{$mesa->id}})">Guardar</button>
-        </div>
+                     
+              </div>
+              @endif
+            @endforeach
+          </div>
       </div>
-    </div>
-  </div>
-@endforeach 
 
-   
+  </div>
+</div>
+ 
 
 {!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
 {!!Html::script('javascripts\jquery.dataTables.min.js')!!}
@@ -195,7 +201,21 @@
 <script type="text/javascript">
  $(document).ready(function(){
     cambiarCurrent("#cajero");
-    actualizarTotal();
+    $("#contenedorCategorias a:first-child").click();
+    <?php 
+      $cantidad = sizeof($facturas);
+      $index = 0;
+      for($i = 0; $i < sizeof($facturas); $i++){
+        if(sizeof($facturas[$i]->ventasHechas)>0){
+          $ventas[] = $facturas[$i]->ventasHechas;
+        }
+      }
+    ?>
+    var cantidad = <?php echo $cantidad;?>;
+    var ventasFacturas = <?php echo json_encode($ventas);?>;
+    for (var i = 0; i < cantidad; i++) {
+      actualizarTotal(ventasFacturas[i]);
+    }    
   });
 function cambiarCurrent(idInput) {
   $(".current").removeClass("current");
@@ -219,6 +239,10 @@ function cambiarCurrent(idInput) {
     if (valor < 0){
         $(idInput).val(0);
     }
+    if(isNaN(valor)){
+      $(idInput).val(0);
+      valor = 0;
+    }
 };
 $(".cantidadSeleccionada").on( 'change', function() {
     var cantidadNueva = parseInt($(this).val());
@@ -228,23 +252,55 @@ $(".cantidadSeleccionada").on( 'change', function() {
     var precioUnitario =  parseInt($(this).attr("precioUnitario"));
     $(id2).val(cantidadNueva+cantidadEstado);
     $(id).html("$" + Intl.NumberFormat().format(cantidadNueva * precioUnitario));
-    actualizarTotal();
+    var cantidad = <?php echo $cantidad;?>;
+    var ventasFacturas = <?php echo json_encode($ventas);?>;
+    for (var i = 0; i < cantidad; i++) {
+      actualizarTotal(ventasFacturas[i]);
+    } 
 });
-function actualizarTotal() {
-  facturas = eval(<?php echo json_encode($factura->ventasHechas);?>);
+ function validarEfectivo(idInput) {
+    var valor = parseInt($(idInput).val()); 
+    if (valor < 0){
+        $(idInput).val(0);
+        valor = 0;
+    }
+    if(isNaN(valor)){
+      $(idInput).val(0);
+      valor = 0;
+    }
+    var id = $(idInput).attr("idVenta");
+    var total = $("#totalInput"+id).val();
+    var resultado = valor - total;
+    $("#cambio"+id).html("$" + Intl.NumberFormat().format(resultado));
+
+};
+function actualizarTotal(ventas) {
   var total = 0;
-  for (var i=0; i< facturas.length; i++)
+  for (var i=0; i< ventas.length; i++)
   {
-    var precio = parseInt($("#cantidad"+facturas[i].id).attr("precioUnitario"));
-    var cantidad = parseInt($("#cantidad"+facturas[i].id).val());
+    var precio = parseInt($("#cantidad"+ventas[i].id).attr("precioUnitario"));
+    var cantidad = parseInt($("#cantidad"+ventas[i].id).val());
     total = total + (cantidad*precio);
   }
-  var montoAntiguo = parseInt($("#montoAntiguoo").attr("value"));
-  $("#totalInput").val(total);
-  $("#valorInput").val(total + montoAntiguo);
-  $("#subtotal").html("$" + Intl.NumberFormat().format(total));
-  $("#total").html("$" + Intl.NumberFormat().format(total));
+  var montoAntiguo = parseInt($("#montoAntiguoo"+ventas[0].id).attr("value"));
+  $("#totalInput"+ventas[0].id).val(total);
+  $("#valorInput"+ventas[0].id).val(total + montoAntiguo);
+  $("#subtotal"+ventas[0].id).html("$" + Intl.NumberFormat().format(total));
+  $("#totalt"+ventas[0].id).html("$" + Intl.NumberFormat().format(total));
 }
+ var editValor = function(x,id){
+    if(x != 'efectivo'){
+      document.getElementById('textoEfectivo'+id).style.display='none';
+      document.getElementById('efectivo'+id).style.display='none';
+      document.getElementById('textoCambio'+id).style.display='none';
+      document.getElementById('cambio'+id).style.display='none';
+     }else{
+      document.getElementById('textoEfectivo'+id).style.display='block';
+      document.getElementById('efectivo'+id).style.display='block';
+      document.getElementById('textoCambio'+id).style.display='block';
+      document.getElementById('cambio'+id).style.display='block';
+    }
+  };
 </script>
 <style type="text/css">
   ::-webkit-scrollbar { 

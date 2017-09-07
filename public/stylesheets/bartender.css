@@ -1,0 +1,168 @@
+table {
+  background-color: white;
+  width: 100%;
+}
+
+table th, table td{
+  font-size: 14px;
+  text-align: center;
+}
+
+#tablaProductos thead, #tablaProductos tbody {
+  display: block;
+}
+#tablaProductos tbody {
+  width: 100%;
+  overflow-y: scroll;
+}
+
+#tablaProductos tr{
+  width: 100%;
+}
+#tablaProductos tbody::-webkit-scrollbar {
+  width: 0px;  /* remove scrollbar space */
+  background: transparent;  /* optional: just make scrollbar invisible */
+  display: none;
+}
+
+#contenedorProductos::-webkit-scrollbar {
+  width: 0px;  /* remove scrollbar space */
+  background: transparent;  /* optional: just make scrollbar invisible */
+  display: none;
+}
+
+.panel-title > a{
+  text-decoration: none;
+  color: #606060;
+}
+
+.panel-group {
+  overflow: hidden;
+}
+
+.panel-group .panel{
+  border-radius: 8px;
+}
+
+.social-widget {
+  height: 120px;
+  padding-top: 14px;
+  background: white;
+}
+
+.social-data{
+  padding-top: 15px;
+  vertical-align: middle;
+  color: rgb(143,143,143);
+}
+
+.social-widget .social-data h1 {
+  color: rgb(143,143,143);
+  font-weight: 300;
+  font-size: 40px;
+  text-align: center;
+}
+
+.social-widget > a{
+  color: rgb(143,143,143);
+  text-decoration: none;
+}
+
+.p{
+  text-align : justify;
+}
+
+.social-wrapper #social-container .item {
+  width: 280px;
+  height: 110px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  margin: 10px;
+  float: left; }
+
+#nombreMesa{
+  border-radius: 8px;
+  width: 20%;
+  height: 50px;
+  font-size: 16px;
+  background-color: rgb(45,0,49);
+  color: white;
+  margin-left: 40%;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+#contenedor{
+  overflow: hidden;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+#contenedorCategorias{
+  width: 30%;
+  background-color: rgba(255, 255, 255, 0.9);
+  float: left;
+}
+
+#contenedorProductos{
+  width: 70%;
+  display: block;
+  overflow-x: scroll;
+  background-color: rgba(255, 255, 255, 0.9);
+  float: left;
+}
+
+#categoria{
+  border-radius: 8px;
+  background: rgb(45,0,49);
+  color: white;
+  height: 50px;
+  margin-bottom: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#productos{
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+#mesaDisponible {
+  float:left;
+  margin-top: -14px;
+  width: 15px;
+  height: 110px;
+  background: #5df000;
+}
+
+#mesaOcupada {
+  float:left;
+  margin-top: -14px;
+  width: 15px;
+  height: 110px;
+  background: #ff0012;
+}
+
+#mesaReservada {
+  float:left;
+  margin-top: -14px;
+  width: 15px;
+  height: 110px;
+  background: rgb(45,0,49);
+}
+
+#botonEnviar {
+  background-color: #330033;
+  float: right;
+}
+
+#botonAtras {
+  background-color: #330033;
+  width: 100px;
+}

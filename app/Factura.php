@@ -108,7 +108,8 @@ class Factura extends Model
 
     }
    public function scopeBuscarFacturas($query, $idEmpresa){
-        $query->where('factura.idEmpresa', $idEmpresa);
+        $query->where('factura.idEmpresa', $idEmpresa)
+              ->where('factura.estado','En proceso');
         return $query;
       }
 }
