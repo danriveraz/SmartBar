@@ -168,6 +168,7 @@ class AuthController extends Controller
            $confirm_token = str_random(100);
            $user->where('email', '=', $email)
            ->update(['confirmoEmail' => $confirmoEmail, 'confirm_token' => $confirm_token]);
+           
            return redirect('Auth/login')
            ->with('message', 'Bienvenido ' . $the_user[0]['nombrePersona'] . ' ya puede iniciar sesión');
         }else{

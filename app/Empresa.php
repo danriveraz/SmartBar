@@ -15,4 +15,9 @@ class Empresa extends Model
     public function AdminTotal(){
       return $this->belongsTo('PocketByR\User', 'usuario_id', 'id');
     }
+
+    public function empleados(){
+    	return $this->hasmany('PocketByR\User','idEmpresa');
+    }
+    /*PocketByR\User::find(25)->empresa->empleados->where('estado',1)*/
 }
