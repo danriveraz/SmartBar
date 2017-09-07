@@ -144,7 +144,7 @@
                                   <strong>Forma de pago:</strong>
                                 </td>
                                 <td>
-                                  <select id="formaPago{{$factura->ventasHechas[0]->id}}" class="form-last-name form-control"  onchange="editValor(this.value,{{$factura->ventasHechas[0]->id}});" width="50px">
+                                  <select Style="width:100px" id="formaPago{{$factura->ventasHechas[0]->id}}" class="form-last-name form-control"  onchange="editValor(this.value,{{$factura->ventasHechas[0]->id}});">
                                   <option value="efectivo">Efectivo</option>
                                   <option value="credito">Crédito</option>
                                   <option value="debito">Débito</option>
@@ -156,7 +156,7 @@
                                   <strong id="textoEfectivo{{$factura->ventasHechas[0]->id}}">Efectivo:</strong>
                                 </td>
                                 <td>
-                                  <input type="number" name="" id="efectivo{{$factura->ventasHechas[0]->id}}" class="efectivoNum" onkeyup="validarEfectivo('#efectivo{{$factura->ventasHechas[0]->id}}');" idVenta="{{$factura->ventasHechas[0]->id}}">
+                                  <input Style="width:100px" type="number" name="" id="efectivo{{$factura->ventasHechas[0]->id}}" class="efectivoNum" onkeyup="validarEfectivo('#efectivo{{$factura->ventasHechas[0]->id}}');" idVenta="{{$factura->ventasHechas[0]->id}}">
                                 </td>
                               </tr>
                               <tr>
