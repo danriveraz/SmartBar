@@ -105,69 +105,114 @@
       </div>
       <div class="modal-body">
         <!-- Login Screen -->
-        <div class="login-wrapper">
-            <div class=" row widget-content padded4">
-                <img width="100" height="100" class="social-avatar pull-left"  src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">           
+        {!! Form::open(['route' => ['Auth.usuario.update',$usuario], 'method' => 'PUT','enctype' => 'multipart/form-data']) !!}
+        {{ csrf_field() }}
+          <div class="widget-content padded4">
+            <div class="gallery-container">
+              <a class="gallery-item filter1 fancybox" href="#fancybox-example" rel="">
+              <img src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
+              <div class="actions">
+                 <i class="fa fa-pencil"></i>
+              </div></a>            
+           </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <input name="nombrePersona" class="form-control" value="{{$usuario->nombrePersona}}" placeholder="Username" type="text" >
             </div>
-            <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input class="form-control" value="{{$usuario->nombrePersona}}" placeholder="Username" type="text" disabled>
-              </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+              <input name="username" class="form-control" value="{{$usuario->username}}"  placeholder="Username" type="text">
             </div>
-            <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                <input class="form-control" value="{{$usuario->username}}" disabled placeholder="Username" type="text">
-              </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+              <input name="email" class="form-control" value="{{$usuario->email}}"  placeholder="Email" type="text">
             </div>
-            <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                <input class="form-control" value="{{$usuario->email}}" disabled placeholder="Email" type="text">
-              </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
+              <input name="cedula" class="form-control" value="{{$usuario->cedula}}"  placeholder="Identificacion" type="text">
             </div>
-            <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
-                <input class="form-control" value="{{$usuario->cedula}}" disabled placeholder="Identificacion" type="text">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
-                <input class="form-control" value="{{$usuario->sexo}}" disabled placeholder="sexo" type="text">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
-                <input class="form-control datepicker" value="{{$usuario->fechaNacimiento}}" disabled data-date-autoclose="true" placeholder="Fecha de Nacimiento" type="text">
-              </div>
-            </div>
-            <div class="form-group">
-              <h3>Permisos</h3>
-                  @if($usuario->esAdmin == 1) Administrador
-                  @else 
-                    @if($usuario->esMesero != 0) Mesero 
-                    @endif
-                    @if($usuario->esBartender != 0) Bartender
-                    @endif
-                    @if($usuario->esCajero != 0) Cajero
-                    @endif
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
+                <select name='sexo' class="form-control" placeholder="Tipo De Sexo">
+                  @if($usuario->sexo=='Femenino')
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino" selected="selected">Femenino</option>
+                  @else
+                    <option value="Masculino" selected="selected">Masculino</option>
+                    <option value="Femenino" >Femenino</option>
                   @endif
+                </select>
             </div>
-            <div class="form-group">
-              <div class="text-left">
-                @if($usuario->obsequio)
-                  <span>Activo Para Obsequiar</span>
-                @else
-                  <span>No Está Activo Para Obsequiar</span>
-                @endif
-              </div>
-            </div>      
-              <a class="pull-right" href="#">Mirar Calendario De Trabajo</a>
-        </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
+              <input  value="{{$usuario->fechaNacimiento}}" class="form-control datepicker" data-date-autoclose="true" placeholder="Fecha de Nacimiento" type="text">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span><input name="password" class="form-control" placeholder="Contraseña" type="password">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span><input name="password" class="form-control" name="password_confirmation" placeholder="Confirmar Contraseña" type="password">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-money"></i></span>
+              <input class="form-control" type="number"><span class="input-group-addon">.00</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-users"></i></span>
+              <select id="selectPermisos" name="Permisos[]"class="form-control select2able" multiple="multiple">
+                <option value="Administrador"
+                  @if($usuario->esAdmin == 1) 
+                    selected="selected"
+                  @endif 
+                >Administrador</option>
+                <option value="Mesero" selected="selected"
+                    @if($usuario->esMesero != 0) 
+                      selected="selected" 
+                    @endif
+                >Mesero</option>
+                <option value="Bartender" 
+                    @if($usuario->esBartender != 0)
+                      selected="selected"
+                    @endif
+                >Bartender</option>
+                <option value="Cajero"
+                    @if($usuario->esCajero != 0) 
+                      selected="selected"
+                    @endif
+                >Cajero</option>
+              </select>
+            </div>
+          </div>      
+            <a class="pull-right" href="#">Mirar Calendario De Trabajo</a>
+            <div class="text-left">
+              <label class="checkbox">{!! Form::checkbox('Obsequiar', 'Obsequiar', $usuario->obsequio) !!}<span>Activar Para Obsequiar</span></label>
+            </div>
+      
+          <div class="form-group">
+            <input id="file-4" type="file" class="file" data-upload-url="#">
+          </div>
+          <input class="btn btn-lg btn-primary btn-block" type="submit" value="Guardar">
+        </form>
       </div>
     </div>
   </div>
