@@ -348,7 +348,7 @@ class UsuariosController extends Controller
               }
             }
           }
-          if($request['Obsequio']='Obsequio'){
+          if($request['regalar']){
             $usuario->obsequio = 1;
           }
           $usuario->save();// guardar el usuario

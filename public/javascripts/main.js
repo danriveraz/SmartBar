@@ -1053,14 +1053,14 @@
      * =============================================================================
      */
     $(".date-range").daterangepicker({
-      format: "MM/dd/yyyy",
+      format: "yyy/MM/dd",
       separator: " to ",
       startDate: Date.today().add({
         days: -29
       }),
       endDate: Date.today(),
-      minDate: "01/01/2012",
-      maxDate: "12/31/2014"
+      minDate: "01/01/1900",
+      maxDate: "12/31/2050"
     });
 
     /*
@@ -1150,7 +1150,7 @@
      *   Input placeholder fix
      * =============================================================================
      */
-    if (!Modernizr.input.placeholder) {
+    /*if (!Modernizr.input.placeholder) {
       $("[placeholder]").focus(function() {
         var input;
         input = $(this);
@@ -1175,7 +1175,7 @@
           }
         });
       });
-    }
+    }*/
 
     /*
      * =============================================================================

@@ -7,38 +7,43 @@
   <div class ="panel-body">
       {!!Form::open(['route'=>'Auth.usuario.store', 'method'=>'POST', 'files' => true])!!}
         {{ csrf_field() }}
-        <!--Nombre-->
-        <div class="form-group">
-          <input type="text" name="nombrePersona" class="form-control" placeholder="Nombre completo" placeholder="Nombre" />
-          <div class="bg-danger text-white">{{$errors->first('nombrePersona')}}</div>
-        </div>
-
-        <div class="form-group">
-          <input type="text" name="email" class="form-control" placeholder="Correo electrónico" placeholder="E-mail" />
-          <div class="bg-danger text-white">{{$errors->first('email')}}</div>
-        </div>
-
-        <!--Numero de identificacion-->
-        <div class="form-grup">
-          
-          <input type="text" name="cedula" class="form-control" placeholder="Identificación" />
-          <div class="bg-danger text-white">{{$errors->first('cedula')}}</div>
-        </div> <br>
-
-         <div class="form-group">
-              <label class="control-label"></label>
-              <div class="col-md-12">
-                <div class="fileupload fileupload-new" data-provides="fileupload">
-                  <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
-                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
-                  </div>
-                  <div class="fileupload-preview fileupload-exists img-thumbnail" style="width: 200px; max-height: 150px"></div>
-                  <div>
-                    <span class="btn btn-default btn-file"><span class="fileupload-new">Cargar Imagen</span><span class="fileupload-exists">editar</span><input type="file" class="form-control" name="imagenPerfil"  id="imagenPerfil"></span><a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Eliminar</a>
+        <div class="row">
+          <div class="col-md-6">
+             <div class="form-group">
+                  <label class="control-label"></label>
+                  <div class="col-md-12">
+                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                      <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
+                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
+                      </div>
+                      <div class="fileupload-preview fileupload-exists img-thumbnail" style="width: 200px; max-height: 150px"></div>
+                      <div>
+                        <span class="btn btn-default btn-file"><span class="fileupload-new">Cargar Imagen</span><span class="fileupload-exists">editar</span><input type="file" class="form-control" name="imagenPerfil"  id="imagenPerfil"></span><a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Eliminar</a>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+          </div>
+          <div class="col-md-6">
+            <!--Nombre-->
+            <div class="form-group">
+              <input type="text" name="nombrePersona" class="form-control" placeholder="Nombre completo" placeholder="Nombre" />
+              <div class="bg-danger text-white">{{$errors->first('nombrePersona')}}</div>
             </div>
+
+            <div class="form-group">
+              <input type="text" name="email" class="form-control" placeholder="Correo electrónico" placeholder="E-mail" />
+              <div class="bg-danger text-white">{{$errors->first('email')}}</div>
+            </div>
+
+            <!--Numero de identificacion-->
+            <div class="form-grup">
+              
+              <input type="text" name="cedula" class="form-control" placeholder="Identificación" />
+              <div class="bg-danger text-white">{{$errors->first('cedula')}}</div>
+            </div> <br>
+          </div>
+        </div>
 
         <!--Sexo-->
         <div class="form-grup">
@@ -61,7 +66,7 @@
         <!--Fecha de nacimiento-->
         <div class="form-grup">
           <br><label for="fechaNacimiento" class="control-label">Fecha de nacimiento:</label>
-          <input type="date" name="fechaNacimiento" class="form-control"/>
+          <input type="text" name="fechaNacimiento" data-date-autoclose="true" class="form-control datepicker"/>
           <div class="bg-danger text-white">{{$errors->first('fechaNacimiento')}}</div>
         </div><br>
 

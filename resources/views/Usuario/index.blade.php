@@ -4,19 +4,19 @@
 <div class="container-fluid main-content">
   <div class="panel-tittle" align="center">
       @include('flash::message')
-      <a href="{{ route('Auth.usuario.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Nuevo Empleado </a><BR><BR>
       <!--<a href="{{ route('AgendaTrabajadores.create') }}" class="btn btn-default"><i class="fa fa-calendar"></i> Agenda de Trabajadores </a><BR><BR>-->
   </div>
   <div class="social-wrapper">
     <div class="col-lg-12">
-      <div class="" align="center">
-          <a href="" class="btn btn-bitbucket" data-filter="*"><i class="fa fa-user-o"></i>Mostrar Todos</a>
-          <a href="" class="btn btn-bitbucket" data-filter=".Administrador"><i class="fa fa-user-o"></i>Administradores</a>
-          <a href="" class="btn btn-bitbucket" data-filter=".Mesero"><i class="fa fa-user-o"></i>Meseros</a>
-          <a href="" class="btn btn-bitbucket" data-filter=".Bartender"><i class="fa fa-user-o"></i>Bármanes</a>
-          <a href="" class="btn btn-bitbucket" data-filter=".Cajero"><i class="fa fa-user-o"></i>Cajeros</a>
-          <a href="" class="btn btn-bitbucket" data-filter=".Habilitado"><i class="fa fa-user-o"></i>Habilitados</a>
-          <a href="" class="btn btn-bitbucket" data-filter=".Deshabilitado"><i class="fa fa-user-o"></i>Deshabilitados</a>
+      <div class="row"  id="filters" align="center">
+          <a href="{{ route('Auth.usuario.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Nuevo Empleado </a>
+          <a  class="btn btn-bitbucket" data-filter="*"><i class="fa fa-user-o"></i>Todos</a>
+          <!--<a  class="btn btn-bitbucket" data-filter=".Administrador"><i class="fa fa-user-o"></i>Administradores</a>
+          <a  class="btn btn-bitbucket" data-filter=".Mesero"><i class="fa fa-user-o"></i>Meseros</a>
+          <a  class="btn btn-bitbucket" data-filter=".Bartender"><i class="fa fa-user-o"></i>Bármanes</a>
+          <a  class="btn btn-bitbucket" data-filter=".Cajero"><i class="fa fa-user-o"></i>Cajeros</a>-->
+          <a  class="btn btn-bitbucket" data-filter=".Habilitado"><i class="fa fa-user-o"></i>Habilitados</a>
+          <a  class="btn btn-bitbucket" data-filter=".Deshabilitado"><i class="fa fa-user-o"></i>Deshabilitados</a>
       </div>
     </div>
 
@@ -26,11 +26,23 @@
     </div>
   </div>
   <div id="hidden-items"> 
-    @foreach($usuarios as $usuario) 
-     <div class="item widget-container fluid-height">
+    @foreach($usuarios as $usuario)
+      <div class=" item row widget-container fluid-height
+             @if($usuario->esAdmin == 1) Administrador
+             @else 
+               @if($usuario->esMesero != 0) Mesero 
+               @endif
+               @if($usuario->esBartender != 0) Bartender
+               @endif
+               @if($usuario->esCajero != 0) Cajero
+               @endif
+             @endif
+             @if($usuario->estado == 1) Habilitado
+             @else Deshabilitado
+             @endif"> 
         <div class="heading">
-            <i class="fa fa-times pull-right"></i><i class="fa fa-eye  pull-right" data-toggle="modal" href="#myModal"></i>
-            <!-- <i class="fa fa-level-up"></i><a href="{{url('Auth/usuario/'.$usuario->id.'/edit')}}">Ver mas <i class="fa fa-gear  pull-right"></i></a> -->
+            <i class="fa fa-times pull-right"></i><i class="fa fa-eye  pull-right" data-toggle="modal" href="#myModal{{$usuario->id}}"></i>
+            <a href="{{url('Auth/usuario/'.$usuario->id.'/edit')}}"><i class="fa fa-gear  pull-right"></i></a>
         </div>
         <div class="widget-container fluid-height clearfix ">
           <div class="profile-info clearfix padded3">
@@ -53,7 +65,7 @@
           </div>
           <div class="widget-content padded2 colorpocket">
             <div class="dg btn-group dropup">
-              <button class="btn btn-pocket dropdown-toggle" data-toggle="dropdown">Action<span class="caret"></span></button>
+              <button class="btn btn-pocket dropdown-toggle" data-toggle="dropdown">Control<span class="caret"></span></button>
               <ul class="dropdown-menu">
                 <li>
                   <a href="#"><i class="fa fa-clock-o pull-left"></i>Horas Ingreso</a>
@@ -82,8 +94,9 @@
 </div>
 </div>
 
+@foreach($usuarios as $usuario)
 <!--modal ver más datos-->    
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="myModal{{$usuario->id}}">
   <div class="modal-dialog">
     <div class="modal-content  col-lg-9">
       <div class="modal-header">
@@ -93,94 +106,73 @@
       <div class="modal-body">
         <!-- Login Screen -->
         <div class="login-wrapper">
-          <form action="index.html">
-            <div class="widget-content padded4">
-              <div class="gallery-container">
-                <a class="gallery-item filter1 fancybox" href="#fancybox-example" rel="">
-                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
-                <div class="actions">
-                   <i class="fa fa-pencil"></i>
-                </div></a>            
-             </div>
+            <div class=" row widget-content padded4">
+                <img width="100" height="100" class="social-avatar pull-left"  src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">           
             </div>
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input class="form-control" placeholder="Nombre" type="text">
+                <input class="form-control" value="{{$usuario->nombrePersona}}" placeholder="Username" type="text" disabled>
               </div>
             </div>
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                <input class="form-control" placeholder="Username" type="text">
+                <input class="form-control" value="{{$usuario->username}}" disabled placeholder="Username" type="text">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                <input class="form-control" placeholder="Email" type="text">
+                <input class="form-control" value="{{$usuario->email}}" disabled placeholder="Email" type="text">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
-                <input class="form-control" placeholder="Identificacion" type="text">
+                <input class="form-control" value="{{$usuario->cedula}}" disabled placeholder="Identificacion" type="text">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
-                  <select class="form-control" placeholder="Tipo De Sexo">
-                  <option value="Category 1">Tipo de Sexo</option>
-                  <option value="Category 2">Masculino</option>
-                  <option value="Category 3">Femenino</option>
-                  </select>
+                <input class="form-control" value="{{$usuario->sexo}}" disabled placeholder="sexo" type="text">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
-                <input class="form-control datepicker" data-date-autoclose="true" placeholder="Fecha de Nacimiento" type="text">
+                <input class="form-control datepicker" value="{{$usuario->fechaNacimiento}}" disabled data-date-autoclose="true" placeholder="Fecha de Nacimiento" type="text">
               </div>
             </div>
             <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span><input class="form-control" placeholder="Contraseña" type="password">
-              </div>
+              <h3>Permisos</h3>
+                  @if($usuario->esAdmin == 1) Administrador
+                  @else 
+                    @if($usuario->esMesero != 0) Mesero 
+                    @endif
+                    @if($usuario->esBartender != 0) Bartender
+                    @endif
+                    @if($usuario->esCajero != 0) Cajero
+                    @endif
+                  @endif
             </div>
             <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                <input class="form-control" type="number"><span class="input-group-addon">.00</span>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                  <select class="form-control select2able" multiple="">
-                    <option value="Category 1">Mesero</option>
-                    <option value="Category 2">Bartender</option>
-                    <option value="Category 3">Cajero</option>
-                    <option value="Category 4">Administrador</option>
-                  </select>
+              <div class="text-left">
+                @if($usuario->obsequio)
+                  <span>Activo Para Obsequiar</span>
+                @else
+                  <span>No Está Activo Para Obsequiar</span>
+                @endif
               </div>
             </div>      
               <a class="pull-right" href="#">Mirar Calendario De Trabajo</a>
-              <div class="text-left">
-                <label class="checkbox"><input type="checkbox"><span>Activar Para Obsequiar</span></label>
-              </div>
-        
-            <div class="form-group">
-              <input id="file-4" type="file" class="file" data-upload-url="#">
-            </div>
-            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Guardar">
-          </form>
         </div>
       </div>
     </div>
   </div>
 </div>
-
+@endforeach
 <!-- inidio de slider de agregar usuario -->
 <div class="style-selector" >
   <div class="style-selector-container">
@@ -214,14 +206,14 @@
                     </div>
                   </div>
                 </div>
-                <div  style="margin-top: 61%;"></div>
+                <div  style="margin-top: 70%;"></div>
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     <input class="form-control" id="nombrePersona" name="nombrePersona" placeholder="Nombre Del Empleado" type="text">
                   </div>
                 </div>
-                <div class="form-group">
+                <!--<div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-lock"></i></span><input class="form-control" placeholder="Contraseña" type="password">
                   </div>
@@ -231,15 +223,15 @@
                     <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
                     <input class="form-control" placeholder="Telefono de Contato" type="text">
                   </div>
-                </div>
+                </div>-->
               </div>
               <div class="col-md-4 ">
-                <div class="form-group">
+                <!--<div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
                     <input class="form-control" placeholder="Username" type="text">
                   </div>
-                </div>
+                </div>-->
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
@@ -252,46 +244,47 @@
                     <input class="form-control" id="cedula" name="cedula" placeholder="Identificación" type="text">
                   </div>
                 </div>
-                <div class="form-group">
+                <!--<div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-map"></i></span>
                     <input class="form-control" placeholder="Dirección De Recidencia" type="text">
                   </div>
-                </div>
+                </div>-->
                 <div class="form-group"> <!-- OJO esto dará error -->
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
-                      <select class="select2able">
-                        <option value="Category 1">Masculino</option>
-                        <option value="Category 2">Femenino</option>
-                      </select>
+                    <select id="sexo"  name="sexo" class=" select2able"  style="weight: 100%;">
+                      <option value="Masculino">Masculino</option>
+                      <option value="Femenino">Femenino</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
-                    <input class="form-control datepicker" data-date-autoclose="true" placeholder="Fecha de Nacimiento" name="fechaNacimiento" id="fechaNacimiento" type="text">
+                    <input data-date-format="yyyy/mm/dd" class="form-control datepicker" data-date-autoclose="true" placeholder="Fecha de Nacimiento" name="fechaNacimiento" id="fechaNacimiento" type="text">
                   </div>
                 </div>
-                <div class="form-group">
+                <!--<div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-money"></i></span>
                     <input class="form-control" type="number"><span class="input-group-addon">.00</span>          
                   </div>
-                </div>
+                </div>-->
                 <div class="text-center">
-                  <label class="checkbox"><input type="checkbox"><span>Activar Para Obsequiar</span></label>
+                  <label class="checkbox">{{ Form::checkbox('regalar') }}<span>Activar Para Obsequiar</span></label>
                 </div>
               </div>  
               <div class="col-md-4">
+
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                        <select class="form-control select2able" multiple="">
-                          <option value="Category 1">Mesero</option>
-                          <option value="Category 2">Bartender</option>
-                          <option value="Category 3">Cajero</option>
-                          <option value="Category 4">Administrador</option>
+                        <select id="selectPermisos" name="Permisos[]"class="form-control select2able" multiple="multiple">
+                          <option value="Mesero">Mesero</option>
+                          <option value="Bartender">Bartender</option>
+                          <option value="Cajero">Cajero</option>
+                          <option value="Administrador">Administrador</option>
                         </select>
                   </div>
                 </div>
@@ -368,6 +361,10 @@ $("#registrarUsuario").click(function(){
     var image = $('#imagenPerfil')[0].files[0];// la imagen de perfil
     var token = $("#token").val();
     var type = "POST";
+    var selectPermisos = $('#selectPermisos').val();
+    selectPermisos.forEach(function(element) {
+        console.log(element);
+    });
     /*var formData = {
             nombrePersona: $("#nombrePersona").val(),
             cedula: $('#cedula').val(),
@@ -402,20 +399,20 @@ $("#registrarUsuario").click(function(){
            }if(usuarioNuevo.esCajero){
               permisoQueTiene += ' Cajero';
            }
-           var $link = $('<div class="item row '+permisoQueTiene+'"><div clas="col-md-4"><div class=" widget-container fluid-height profile-widget"><div class="heading"><i class="fa fa-level-up"></i><a href="http://localhost/PocketByR/public/Auth/usuario/1/edit">Ver mas <i class="fa fa-gear  pull-right"></i></a></div><div class="widget-content padded"><div class="profile-info clearfix"><img width="70" height="70" class="social-avatar pull-left" src="http://localhost/PocketByR/public/images/admins/perfil.jpg"><div class="profile-details"><a class="user-name" href="">'+ usuarioNuevo.nombrePersona +'</a><p>Datos del Empleado</p><em><i class="fa fa-list-alt "></i>'+ usuarioNuevo.cedula +'</em><em><i class="fa fa-phone "></i>3012343457</em><p>'+permisoQueTiene+'</p></div></div><div class="profile-stats"><div class="col-md-4"><div class="btn-group dropup"><button class="btn btn-info">Control</button><button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#"><i class="fa fa-clock-o pull-left"></i>Horas Ingreso</a></li><li><a href="#"><i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a></li><li><a href="#"><i class="fa fa-money pull-left"></i>Salario</a></li></ul></div></div><div class="col-md-4"><button class="btn btn-info"><i class="fa fa-calendar-o"></i>Agenda</button></div><div class="col-md-4"><button class="btn btn-info"><i class="fa fa-envelope-o"></i>Mensaje</button></div></div></div></div></div></div>');  
+           var $link = $('<div class=" item row widget-container fluid-height"> <div class="heading"><i class="fa fa-times pull-right"></i><i class="fa fa-eye  pull-right" data-toggle="modal" href="#myModal'+usuarioNuevo.id+'"></i><a href="http://localhost/PocketByR/public/Auth/usuario/'+usuarioNuevo.id+'/edit"><i class="fa fa-gear  pull-right"></i></a></div><div class="widget-container fluid-height clearfix "><div class="profile-info clearfix padded3"><img width="70" height="70" class="social-avatar pull-left" src="http://localhost/PocketByR/public/images/admins/'+usuarioNuevo.imagenPerfil+'"><div class="profile-details"><strong><a class="user-name" >'+usuarioNuevo.nombrePersona+'</a></strong><br>'+permisoQueTiene+'<br><em><i class="fa fa-list-alt "></i>'+usuarioNuevo.cedula+'</em>&nbsp&nbsp<em><i class="fa fa-phone "></i>'+usuarioNuevo.telefono+'</em></div></div><div class="widget-content padded2 colorpocket"><div class="dg btn-group dropup"><button class="btn btn-pocket dropdown-toggle" data-toggle="dropdown">Control<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#"><i class="fa fa-clock-o pull-left"></i>Horas Ingreso</a></li><li><a href="#"><i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a></li><li><a href="#"><i class="fa fa-money pull-left"></i>Salario</a></li></ul></div><button class="dg btn btn-pocket"><i class="fa fa-calendar-o"></i>Agenda</button><button class="dg btn btn-pocket"><i class="fa fa-envelope-o"></i>Mensaje</button></div></div></div>');  
            $("#social-container").isotope('insert', $link);// añadir al isotope de usuarios
            $("#nombrePersona").val("");
            $("#cedula").val("");
            $("#email").val("");
            $("#fechaNacimiento").val("");
-           document.getElementById('sexo').checked = false;
+           /*document.getElementById('sexo').checked = false;
            document.getElementById('sexo1').checked = false;
            for (i=0;i<a.length;i++){
               a[i].checked=0 
            }
            for (i=0;i<document.querySelectorAll("input.Obsequio:checked").length;i++){
                 document.querySelectorAll("input.Obsequio:checked")[i].checked = 0;
-           }
+           }*/
             // cerrar la ventana de registro
             var ventana = $(".style-toggle");
             if ($(ventana).hasClass("open")) {
