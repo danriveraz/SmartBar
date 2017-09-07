@@ -71,6 +71,7 @@ table th, table td{
 #estadoMesa{
   display: flex;
   justify-content: center;
+  margin-left: -8%;
 }
 
 #nombreMesa{

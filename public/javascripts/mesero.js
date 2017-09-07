@@ -1,7 +1,6 @@
 $(document).ready(function(){
-  
+  $("#contenedorCategorias a:first-child")[0].click();
   cambiarCurrent("#mesero");
-  $("#contenedorCategorias a:first-child").click();
 });
 
 function cambiarCurrent(idInput) {

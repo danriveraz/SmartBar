@@ -26,7 +26,7 @@
   <div class="bs-example" id="contenedor" style="height: calc({{sizeOf($categorias)}} * 61px);">
       <div id="contenedorCategorias">
           @foreach($categorias as $categoria)
-          <a onclick="scrollZero()" data-toggle="tab" href="#tabProductos{{$categoria->id}}" >
+          <a href="#tabProductos{{$categoria->id}}" onclick="scrollZero()" data-toggle="tab" >
             <div id="categoria">
                   {{$categoria->nombre}}
             </div>
