@@ -49,8 +49,8 @@
     </tbody>
 </table>
 <script type="text/javascript">
-  var routeModificar = "http://pocketdesigner.co/PocketByR/public//categoria/modificar";
-  var routeEliminar = "http://pocketdesigner.co/PocketByR/public//categoria/eliminar";
+  var routeModificar = "http://localhost/PocketByR/public//categoria/modificar";
+  var routeEliminar = "http://localhost/PocketByR/public//categoria/eliminar";
 
   function modificar(idCategoria){
     var nombre = $("#nombre"+idCategoria).val();

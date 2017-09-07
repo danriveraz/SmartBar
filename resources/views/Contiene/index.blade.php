@@ -117,8 +117,8 @@
 </script>
 <script>
 
-  var routeEliminar = "http://pocketdesigner.co/PocketByR/public/contiene/eliminar";
-  var routeGuardar = "http://pocketdesigner.co/PocketByR/public/contiene/guardar";
+  var routeEliminar = "http://localhost/PocketByR/public/contiene/eliminar";
+  var routeGuardar = "http://localhost/PocketByR/public/contiene/guardar";
 
   function tecla(e,insumo){
     if(e.which == 13){
@@ -176,6 +176,7 @@
   function adicionarTodo(){
     var insumos = [];
     var nombres = [];
+    var medida = [];
       $("table#insumosDisponibles tr").each(function() {
         $(this).children("td").each(function (indextd)
           {
@@ -188,8 +189,8 @@
       });
       for(var i = 0; i < insumos.length; i++){
         var cantidad = $("#"+insumos[i]).val();
-        var medida = $("#medida"+insumos[i]).val();
-        if(medida == 2 || medida == 3){
+        medida[i] = $("#medida"+insumos[i]).val();
+        if(medida[i] == 2 || medida[i] == 3){
           var cantidadAux = cantidad/30;
           cantidad = cantidadAux;
         }        
@@ -208,7 +209,7 @@
             $("#insumoAgregados").append(fila);
           }
           $("#"+insumos[i]).val('');
-          $("#medida"+insumos[i]).val(insumos[i].medida);
+          $("#medida"+insumos[i]).val(medida[i]);
         }
       }
   }

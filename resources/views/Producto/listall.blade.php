@@ -69,8 +69,8 @@
   {!!$productos->appends(Request::all())->render() !!}
 
 <script>
-  var routeModificar = "http://pocketdesigner.co/PocketByR/public//producto/modificar";
-  var routeEliminar = "http://pocketdesigner.co/PocketByR/public//producto/eliminar";
+  var routeModificar = "http://localhost/PocketByR/public//producto/modificar";
+  var routeEliminar = "http://localhost/PocketByR/public//producto/eliminar";
 
   var editarValor = function(x, idProducto){
     var p = 0;
