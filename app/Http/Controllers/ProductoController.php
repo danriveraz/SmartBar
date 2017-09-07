@@ -76,18 +76,27 @@ class ProductoController extends Controller
 
   public function store(Request $request){
     $userActual = Auth::user();
-    $producto = new Producto;
-    $producto->nombre = $request->nombreProducto;
-    $producto->precio = $request->precio;
-    $producto->idCategoria = $_POST['categorias'];
-    $producto->receta = $request->receta;
-    $producto->idEmpresa = $userActual->idEmpresa;
-    $producto->save();
-    Flash::success("El producto se ha registrado satisfactoriamente")->important();
-    session_start();
-    $_SESSION['idProducto'] = $producto->id;
-    $_SESSION['nombre'] = $producto->nombre;
-    return redirect()->route('contiene.index');
+    $existe = Producto::Nombre($request->nombreProducto)->first();
+    if(is_null($existe)){
+      $producto = new Producto;
+      $producto->nombre = $request->nombreProducto;
+      $producto->precio = $request->precio;
+      $producto->idCategoria = $_POST['categorias'];
+      $producto->receta = $request->receta;
+      $producto->idEmpresa = $userActual->idEmpresa;
+      $producto->save();
+      Flash::success("El producto se ha registrado satisfactoriamente")->important();
+      session_start();
+      $_SESSION['idProducto'] = $producto->id;
+      $_SESSION['nombre'] = $producto->nombre;
+      return redirect()->route('contiene.index');
+    }else{
+      Flash::error("Ya existe un producto con ese nombre")->important();
+      $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
+                               lists('nombre','id');
+      $cats = Categoria::where('idEmpresa',$userActual->idEmpresa)->get();
+      return view('Producto.index',compact('categorias'))->with('cats', $cats);      
+    }
   }
 
   public function show($id){

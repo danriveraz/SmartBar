@@ -7,6 +7,7 @@
     <div class="panel-tittle" align="center">
         <h3><b> MIS CATEGORIAS </b></h3>
     </div>
+    @include('flash::message')
     <div class="navbar-form navbar-right" style="width: 600px; height: 50px;">
       {!! Form::select('categorias', $categorias, null, ['class' => 'form-control', 'placeholder' => 'Mis categorías', 'id' => 'buscarCategoria']) !!}
     </div>
