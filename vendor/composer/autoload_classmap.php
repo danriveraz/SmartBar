@@ -47,6 +47,7 @@ return array(
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateProductosTable' => $baseDir . '/database/migrations/2017_07_01_185420_create_productos_table.php',
     'CreateProveedorTable' => $baseDir . '/database/migrations/2017_07_01_185819_create_proveedor_table.php',
+    'CreateTableRegistroEntradaYsalida' => $baseDir . '/database/migrations/2017_09_12_232203_create_table_RegistroEntradaYsalida.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'CreateUsuarioTable' => $baseDir . '/database/migrations/2017_05_18_130959_create_usuario_table.php',
     'CreateVentaTable' => $baseDir . '/database/migrations/2017_07_01_222711_create_venta_table.php',

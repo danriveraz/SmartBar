@@ -383,6 +383,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateProductosTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_01_185420_create_productos_table.php',
         'CreateProveedorTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_01_185819_create_proveedor_table.php',
+        'CreateTableRegistroEntradaYsalida' => __DIR__ . '/../..' . '/database/migrations/2017_09_12_232203_create_table_RegistroEntradaYsalida.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'CreateUsuarioTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_18_130959_create_usuario_table.php',
         'CreateVentaTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_01_222711_create_venta_table.php',

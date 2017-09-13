@@ -12,13 +12,14 @@ class welcomeAdmin extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $userActual = Auth::user();
+        $this->middleware('Permisos:Admin');
+        /*$userActual = Auth::user();
         if($userActual != null){
             if (!$userActual->esAdmin) {
                 flash('No Tiene Los Permisos Necesarios')->error()->important();
                 return redirect('/WelcomeTrabajador')->send();
             }
-        }
+        }*/
 
     }
     /**

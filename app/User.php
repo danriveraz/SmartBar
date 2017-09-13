@@ -2,6 +2,8 @@
 
 namespace PocketByR;
 
+use PocketByR\RegistroLogin; // modelo de regitro de entreda y salida
+use Carbon\Carbon; // clase para obtener la Hora del registro, función Now()
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -28,5 +30,13 @@ class User extends Authenticatable
 
     public function Empresa(){
       return $this->belongsTo('PocketByR\Empresa', 'idEmpresa', 'id');
+    }
+
+    public function inicioSesion(){
+        $Inicio = new RegistroLogin;
+        $Inicio->idUsuario =  $this->id;
+        $Inicio->ingreso =  Carbon::now();
+        $Inicio->salida =  Carbon::now();
+        $Inicio->save();
     }
 }

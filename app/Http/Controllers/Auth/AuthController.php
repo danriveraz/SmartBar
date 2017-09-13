@@ -17,6 +17,7 @@ use Input;
 use Redirect;
 use Socialite;
 use Laracasts\Flash\Flash;
+use Illuminate\Support\Facades\Log;
 
 
 class AuthController extends Controller
@@ -187,6 +188,7 @@ class AuthController extends Controller
                 ]
                 , $request->has('remember')
                 )){
+            Auth::User()->inicioSesion();// función que se llama para que guarde un nuevo registro en la tabla de registro de inicio y cierre de sesión
             return redirect()->intended($this->redirectPath());
         }if (Auth::attempt([
                     'username' => $request->username,
