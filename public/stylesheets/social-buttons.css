@@ -315,7 +315,7 @@ fieldset[disabled] .btn-dropbox.active {
 
 .btn-bitbucket {
   color: #ffffff;
-  background-color: #2d5f9c;
+  background-color: #2f0033;
 }
 
 .btn-bitbucket:hover,
@@ -324,7 +324,7 @@ fieldset[disabled] .btn-dropbox.active {
 .btn-bitbucket.active,
 .open .dropdown-toggle.btn-bitbucket {
   color: #ffffff;
-  background-color: #244c7c;
+  background-color: #4f0157;
 }
 
 .btn-bitbucket:active,

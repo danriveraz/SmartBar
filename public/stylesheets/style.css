@@ -20,6 +20,13 @@
   align-items: center;
 	}
 
+.pocketColor{
+	background:#2f0033;
+	color:#FFFFFF;
+	}
+	
+
+
 html, body {
   width: 100%; }
 
@@ -307,9 +314,9 @@ body.login2 {
   .navbar .nav .open > a, .navbar .nav .open > a:hover, .navbar .nav .open > a:focus {
     background-color: transparent !important; }
   .navbar .container-fluid.top-bar {
-    height: 50px;
+    height: 65px;
     border-bottom: 1px solid #e6e6e6;
-    padding: 0 10px 0 20px;
+    padding: 6px 10px 0 20px;
     width: 100%;
     float: left; }
     .navbar .container-fluid.top-bar .navbar-toggle {
@@ -668,7 +675,7 @@ body.sidebar-nav {
     border-top-color: white; }
   	.btn-pocket:hover, .btn-pocket.active {
     background: transparent;
-    color: #aaaaaa;
+    color: white;
     }
     .btn-pocket:hover .caret, .btn-pocket.active .caret {
       border-top-color: #FFFFFF; }
@@ -2516,7 +2523,8 @@ input[type="text"] {
   padding: 19px 20px 30px; }
 
 .modal-header {
-  background: #f1f1f1; }
+  background: #2f0033;
+  color:#FFFFFF; }
 
 /*----------------------------------------------------------------------------------- */
 /*  Bootstrap Tab Styles */

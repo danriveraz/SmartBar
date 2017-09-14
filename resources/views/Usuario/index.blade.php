@@ -99,9 +99,8 @@
 <div class="modal fade" id="myModal{{$usuario->id}}">
   <div class="modal-dialog">
     <div class="modal-content  col-lg-9">
-      <div class="modal-header">
-        <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
-          <h4 class="modal-title">Información Del Empleado</h4>
+      <div class="colorpocket modal-header">
+          <h4 class="modal-title"> Editar Información Del Empleado</h4>
       </div>
       <div class="modal-body">
         <!-- Login Screen -->
@@ -209,9 +208,9 @@
             </div>
       
           <div class="form-group">
-            <input id="file-4" type="file" class="file" data-upload-url="#">
+            <input id="file-4" style="background-color: #4f0157;" type="file" class="file" data-upload-url="#">
           </div>
-          <input class="btn btn-lg btn-primary btn-block" type="submit" value="Guardar">
+          <input class="btn btn-lg btn-bitbucket btn-block" type="submit" value="Guardar">
         </form>
       </div>
     </div>
