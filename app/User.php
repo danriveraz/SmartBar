@@ -32,11 +32,15 @@ class User extends Authenticatable
       return $this->belongsTo('PocketByR\Empresa', 'idEmpresa', 'id');
     }
 
-    public function inicioSesion(){
+    public function inicioSesion(){// función para crear un registro en la tabla de registroEntadaSalida, para administrar las entradas y salidas del usuario
         $Inicio = new RegistroLogin;
         $Inicio->idUsuario =  $this->id;
         $Inicio->ingreso =  Carbon::now();
         $Inicio->salida =  Carbon::now();
         $Inicio->save();
+    }
+
+    public function registros(){
+        return $this->hasmany('PocketByR\RegistroLogin','idUsuario');
     }
 }

@@ -15,6 +15,7 @@ class UsuariosController extends Controller
 {
   public function __construct(){
     $this->middleware('auth');
+    $this->middleware('guardarAccionUser');
     $this->middleware('Permisos:Admin')->except(['edit','update']);
     $this->middleware('PermisoEditarUsuario')->only(['edit','update']);
   }  

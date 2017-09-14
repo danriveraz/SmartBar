@@ -51,5 +51,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'PermisoEditarUsuario' => \PocketByR\Http\Middleware\PermisoEditarUsuario::class,
         'Permisos' => \PocketByR\Http\Middleware\Permisos::class,
+        'guardarAccionUser' => \PocketByR\Http\Middleware\guardarAccionUser::class,
     ];
 }
