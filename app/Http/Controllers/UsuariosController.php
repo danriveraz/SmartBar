@@ -15,7 +15,7 @@ class UsuariosController extends Controller
 {
   public function __construct(){
     $this->middleware('auth');
-    $this->middleware('guardarAccionUser');
+    $this->middleware('guardarAccionUser');// solo con colocar este middleware aquí, ya en todas las vistas se le va a estar actualizando las horas de las actividades que ha estado haciendo, esto se debe a en todas las vistas hay un ajax que verifica que el usuario esté logueado y hace un llamado a este controlador, por lo tanto en las todas las vistas se está ejecutando este middleware
     $this->middleware('Permisos:Admin')->except(['edit','update']);
     $this->middleware('PermisoEditarUsuario')->only(['edit','update']);
   }  

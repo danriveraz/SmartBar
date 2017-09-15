@@ -68,7 +68,7 @@
               <button class="btn btn-pocket dropdown-toggle" data-toggle="dropdown">Control<span class="caret"></span></button>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="#"><i class="fa fa-clock-o pull-left"></i>Horas Ingreso</a>
+                  <a href="{{url('RegistroLogin/'.$usuario->id)}}"><i class="fa fa-clock-o pull-left"></i>Horas Ingreso</a>
                 </li>
                 <li>
                   <a href="#"><i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a>

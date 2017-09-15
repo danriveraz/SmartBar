@@ -54,6 +54,7 @@
 
 
 <script>
+// ajax para verificar que el usuario esté logueado y así no dejar ver la página
  $(document).ready(function(){
     console.log("ejecuta al cargar");
         $.ajax({
