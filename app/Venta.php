@@ -64,6 +64,9 @@ class Venta extends Model
   public function bartender(){
     return $this->hasOne('PocketByR\user', 'id', 'idBartender');
   }
+  public function cajero(){
+    return $this->hasOne('PocketByR\user', 'id', 'idCajero');
+  }
   public function scopeVendido($query, $idFacturas){
     return $query->wherein('idFactura', $idFacturas)
                 ->whereColumn('estadoCajero', 'cantidad');
