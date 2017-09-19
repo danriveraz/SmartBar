@@ -4,7 +4,7 @@
 <div class="container-fluid main-content">
   <div class="panel-tittle" align="center">
       @include('flash::message')
-      <!--<a href="{{ route('AgendaTrabajadores.create') }}" class="btn btn-default"><i class="fa fa-calendar"></i> Agenda de Trabajadores </a><BR><BR>-->
+      <a href="{{ route('AgendaTrabajadores.create') }}" class="btn btn-default"><i class="fa fa-calendar"></i> Agenda de Trabajadores </a><BR><BR>
   </div>
   <div class="social-wrapper">
     <div class="col-lg-12">
@@ -324,7 +324,7 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                        <select id="selectPermisos" name="Permisos[]"class="form-control select2able" multiple="multiple">
+                        <select id="selectPermisos" name="Permisos[]" class="form-control select2able" multiple="multiple">
                           <option value="Mesero">Mesero</option>
                           <option value="Bartender">Bartender</option>
                           <option value="Cajero">Cajero</option>

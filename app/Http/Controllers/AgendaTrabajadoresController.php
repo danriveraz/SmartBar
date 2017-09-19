@@ -13,6 +13,11 @@ use PocketByR\AgendaTrabajadores;
 
 class AgendaTrabajadoresController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('guardarAccionUser');// solo con colocar este middleware aquí, ya en todas las vistas se le va a estar actualizando las horas de las actividades que ha estado haciendo, esto se debe a en todas las vistas hay un ajax que verifica que el usuario esté logueado y hace un llamado a este controlador, por lo tanto en las todas las vistas se está ejecutando este middleware
+        $this->middleware('Permisos:Admin');
+    }  
     /**
      * Display a listing of the resource.
      *
@@ -40,6 +45,25 @@ class AgendaTrabajadoresController extends Controller
      */
     public function store(Request $request){
         //
+        $rules = [
+            'fechaTrabajo' => 'required',
+            'idUsuario' => 'required'
+            ];
+            $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()){
+            return redirect()->route('Auth.usuario.create')->withErrors($validator)->withInput();
+        }else{
+            $trabajadores = $request['idUsuario'];
+            foreach ($trabajadores as $trabajador){
+                AgendaTrabajadores::create([
+                    // Empaquetamos los Datos  y los envamos al Insert
+                    'fechaTrabajo' => $request['fechaTrabajo'],
+                    'idUsuario' => $trabajador
+                ]);
+            }
+            flash::success('Se han agregado las agendas de trabajo')->important();
+            return redirect()->action('UsuariosController@index');         
+        }
     }
 
     /**
@@ -59,7 +83,8 @@ class AgendaTrabajadoresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
-        //
+        $agenda = AgendaTrabajadores::find($id);  
+        return view('AgendaTrabajadores/editarAgenda' , ['agenda' => $agenda] );
     }
 
     /**
@@ -70,7 +95,14 @@ class AgendaTrabajadoresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-        //
+        $agenda = AgendaTrabajadores::find($id);
+        $agenda -> fill([
+            // Empaquetamos los Datos  y los envamos al Insert
+            'fechaTrabajo' => $request['fechaTrabajo']
+            ]);
+        $agenda -> save();
+        flash::success('Agenda actualizada')->important();
+        return redirect()->action('UsuariosController@index');   
     }
 
     /**
@@ -80,6 +112,9 @@ class AgendaTrabajadoresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){
-        //
+        $agenda = AgendaTrabajadores::find($id);
+        $agenda->delete();
+        flash::success('Se ha eliminado la agenda')->important();
+        return redirect()->action('UsuariosController@index'); 
     }
 }
