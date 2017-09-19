@@ -12,4 +12,8 @@ class AgendaTrabajadores extends Model
     protected $fillable = [
         'idUsuario','fechaTrabajo', 
     ];
+
+    public function user(){
+    	return $this->belongsTo('PocketByR\User', 'idUsuario', 'id');
+    }
 }
