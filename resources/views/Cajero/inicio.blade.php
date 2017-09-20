@@ -287,6 +287,7 @@
     <?php 
       $cantidad = sizeof($facturas);
       $index = 0;
+      $ventas[] = null;
       for($i = 0; $i < sizeof($facturas); $i++){
         if(sizeof($facturas[$i]->ventasHechas)>0){
           $ventas[] = $facturas[$i]->ventasHechas;
