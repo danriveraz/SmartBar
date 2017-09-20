@@ -283,6 +283,7 @@
    $(document).ready(function(){
     cambiarCurrent("#cajero");
     $("#contenedorMesas a:first-child").click();
+    
     <?php 
       $cantidad = sizeof($facturas);
       $index = 0;
