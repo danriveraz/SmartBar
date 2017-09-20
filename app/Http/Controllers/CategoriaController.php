@@ -45,6 +45,12 @@ class CategoriaController extends Controller
       $categoria->nombre = $request->nombre;
       $categoria->precio = $request->precio;
       $categoria->idEmpresa = $userActual->idEmpresa;
+      $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
+                               lists('nombre','id');
+      if(sizeof($categorias) == 0){
+        $userActual->estadoTut += 1;
+        $userActual->save();
+      }
       $categoria->save();
       Flash::success("La categoria se ha registrado satisfactoriamente")->important();
       return redirect()->route('categoria.index');

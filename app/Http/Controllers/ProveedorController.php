@@ -68,6 +68,12 @@ class ProveedorController extends Controller
       $proveedor->direccion = $request->direccion;
       $proveedor->telefono = $request->telefono;
       $proveedor->idEmpresa = $userActual->idEmpresa;
+      $proveedores = Proveedor::where('idEmpresa' , $userActual->idEmpresa)->
+                                lists('nombre','id');
+      if(sizeof($proveedores) == 0){
+        $userActual->estadoTut += 1;
+        $userActual->save();
+      }
       $proveedor->save();
       Flash::success("El proveedor se ha registrado satisfactoriamente")->important();
       return redirect()->route('proveedor.index');

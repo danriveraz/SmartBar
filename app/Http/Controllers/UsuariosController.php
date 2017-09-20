@@ -10,6 +10,7 @@ use Auth;
 use Mail;
 use Laracasts\Flash\Flash;
 use PocketByR\Empresa;
+use PocketByR\Proveedor;
 
 class UsuariosController extends Controller
 {
@@ -27,6 +28,52 @@ class UsuariosController extends Controller
 
   public function create(){
     return view('Usuario.create');
+  }
+
+  public function tutorial(){
+    $userActual = Auth::user();
+    if($userActual->estadoTut == 0 | $userActual->estadoTut == 1){
+      if($userActual->estadoTut == 0){
+          $userActual->estadoTut += 1;
+          $userActual->save();
+        }
+      return redirect()->route('proveedor.index');
+    }
+    if($userActual->estadoTut == 2 | $userActual->estadoTut == 3){
+      if($userActual->estadoTut == 2){
+          $userActual->estadoTut += 1;
+          $userActual->save();
+        }
+      return redirect()->route('categoria.index');
+    }
+    if($userActual->estadoTut == 4 | $userActual->estadoTut == 5){
+      if($userActual->estadoTut == 4){
+          $userActual->estadoTut += 1;
+          $userActual->save();
+        }
+      return redirect()->route('insumo.index');
+    }
+    if($userActual->estadoTut == 6 | $userActual->estadoTut == 7){
+      if($userActual->estadoTut == 6){
+          $userActual->estadoTut += 1;
+          $userActual->save();
+        }
+      return redirect()->route('producto.index');
+    }
+    if($userActual->estadoTut == 9 | $userActual->estadoTut == 10){
+      if($userActual->estadoTut == 9){
+          $userActual->estadoTut += 1;
+          $userActual->save();
+        }
+      return redirect()->route('Auth.usuario.index');
+    }
+    if($userActual->estadoTut == 11 | $userActual->estadoTut == 12){
+      if($userActual->estadoTut == 11){
+          $userActual->estadoTut += 1;
+          $userActual->save();
+        }
+      return redirect()->route('mesas.index');
+    }
   }
 
   public function store(Request $request){
@@ -120,7 +167,6 @@ class UsuariosController extends Controller
             $usuario->obsequio = 1;
           }
           $usuario->save();// guardar el usuario
-
           // enviar mail
           $data = ['user'=>$usuario, 'contrasena' => $contrasena];
           Mail::send('Emails.confirmacionDatosTrabajador', ['data' => $data], function($mail) use($data){
@@ -352,8 +398,15 @@ class UsuariosController extends Controller
           if($request['regalar']){
             $usuario->obsequio = 1;
           }
+          $userActual = Auth::user();
+          $usuarios = User::where('idEmpresa' , $userActual->idEmpresa)->
+                                lists('id');
+          if(sizeof($usuarios) == 1){
+            $userActual->estadoTut += 1;
+            $userActual->save();
+          }
           $usuario->save();// guardar el usuario
-
+          
           // enviar mail
           $data = ['user'=>$usuario, 'contrasena' => $contrasena];
           Mail::send('Emails.confirmacionDatosTrabajador', ['data' => $data], function($mail) use($data){

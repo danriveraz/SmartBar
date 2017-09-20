@@ -84,6 +84,12 @@ class ProductoController extends Controller
       $producto->idCategoria = $_POST['categorias'];
       $producto->receta = $request->receta;
       $producto->idEmpresa = $userActual->idEmpresa;
+      $productos = Producto::where('idEmpresa' , $userActual->idEmpresa)->
+                                lists('nombre','id');
+      if(sizeof($productos) == 0){
+        $userActual->estadoTut += 1;
+        $userActual->save();
+      }
       $producto->save();
       Flash::success("El producto se ha registrado satisfactoriamente")->important();
       session_start();

@@ -109,5 +109,7 @@ Route::get('WelcomeProveedor', 'RegistrarProveedorController@index');
 // rutas para el registro de entrada y salida de los usuarios, controlador regitroLoginController
 Route::get('RegistroLogin/{id}', 'RegistroLoginController@show');// registrar el proveedor
 
+Route::get('Tutorial' , ['uses' => 'UsuariosController@tutorial', 'as' => 'usuarios.tutorial']);
+
 
 

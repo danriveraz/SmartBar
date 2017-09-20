@@ -158,7 +158,14 @@ class InsumoController extends Controller
       }
 
       $insumo->idEmpresa = $userActual->idEmpresa;
+      $insumos = Insumo::where('idEmpresa' , $userActual->idEmpresa)->
+                                lists('nombre','id');
+      if(sizeof($insumos) == 0){
+        $userActual->estadoTut += 1;
+        $userActual->save();
+      }
       $insumo->save();
+
       $userActual = Auth::user();
       if($insumo->tipo){
         $producto = new Producto;
@@ -166,6 +173,12 @@ class InsumoController extends Controller
         $producto->precio = $request->precioUnidad;
         $producto->idCategoria = $_POST['categorias'];
         $producto->idEmpresa = $userActual->idEmpresa;
+        $productos = Producto::where('idEmpresa' , $userActual->idEmpresa)->
+                                lists('nombre','id');
+        if(sizeof($productos) == 0){
+          $userActual->estadoTut += 3;
+          $userActual->save();
+        }
         $producto->save();
 
         $contiene = new Contiene;

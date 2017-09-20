@@ -36,6 +36,12 @@ class MesasController extends Controller
         $mesa->nombreMesa = $request->nombre;
         $mesa->estado = $request->estado;
         $mesa->idEmpresa = $userActual->idEmpresa;
+        $mesas = Mesa::where('idEmpresa' , $userActual->idEmpresa)->
+                               lists('id');
+        if(sizeof($mesas) == 0){
+            $userActual->estadoTut += 1;
+            $userActual->save();
+          }
         $mesa->save();
         return redirect('mesas');
     }    

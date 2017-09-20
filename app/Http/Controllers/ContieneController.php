@@ -102,6 +102,10 @@ public function __construct()
           $contiene->cantidad = $cantidades[$i];
           $contiene->idEmpresa = $userActual->idEmpresa;
           $contiene->save();
+          if($userActual->estadoTut == 8){
+            $userActual->estadoTut += 1;
+            $userActual->save();
+          }
         }
         else{
           $contieneAux->cantidad = $cantidades[$i];
