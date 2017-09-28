@@ -121,7 +121,7 @@
 
 						<div id="register" class="animate w3layouts agileits form">
 							<!-- <h2>Registro</h2> -->
-							<form  role="form" method="POST" enctype="multipart/form-data" action="{{ url('Auth/register') }}" files="true">
+							<form  autocomplete="off" role="form" method="POST" enctype="multipart/form-data" action="{{ url('Auth/register') }}" files="true">
 							{{ csrf_field() }}
 							<div class="text-danger">
 				                 @if (Session::has('message'))
@@ -134,7 +134,7 @@
                                 <div>
                                     <label>Nombre</label>
 									<input type="text" class="usuario w3layouts agileits" name="nombrePersona" placeholder="" value="{{ old('name') }}" ><div class="text-danger">{{$errors->first('name')}}</div>
-									</div>	
+								</div>	
 								
                                 	<label>E-mail</label>
 									<input type="text" Name="email" value="{{ old('email') }}">

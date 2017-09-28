@@ -127,34 +127,44 @@
                         		</div>
                             </div>
                             <div class="form-bottom">
-			                    <form role="form" action="" method="post">
+								<form autocomplete="off" role="form" method="POST" enctype="multipart/form-data" action="{{ url('Auth/register') }}" files="true">
+								{{ csrf_field() }}
+									<div class="text-danger">
+						                 @if (Session::has('message'))
+										   {{Session::get('message')}}
+										 @endif
+									 </div>
 			                    	<div class="form-group">
 			                    		
-			                        	<input type="text" name="form-first-name" placeholder="Nombre de Empresa" class="form-first-name form-control" id="form-first-name">
+			                        	<input type="text" name="nombreEstablecimiento" placeholder="Nombre de Empresa" value="{{ old('nombreEstablecimiento') }}" class="form-first-name form-control" id="form-first-name">
+										<div class="text-danger">{{$errors->first('nombreEstablecimiento')}}</div>
 			                        </div>
 			                        <div class="form-group">
 			                        	
-			                        	<input type="text" name="form-last-name" placeholder="Nombre..." class="form-last-name form-control" id="form-last-name">
+			                        	<input value="{{ old('name') }}" type="text" name="nombrePersona" placeholder="Nombre..." class="form-last-name form-control" id="form-last-name">
+			                        	<div class="text-danger">{{$errors->first('name')}}</div>
 			                        </div>
 			                        <div class="form-group">
 			                        	
-			                        	<input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
+			                        	<input type="text"  name="email" value="{{ old('email') }}" placeholder="Email..." class="form-email form-control" id="form-email">
+			                        	<div class="text-danger">{{$errors->first('email')}}</div>
 			                        </div>
 			                        <div class="form-group">
                                        <div class="password">
-                                            <input type="password" id="passwordfield" placeholder="Contraseña..."class="form-email form-control" id="form-email">
+                                            <input type="password" id="passwordfield" placeholder="Contraseña..."class="form-email form-control" name="password" id="form-email">
                                             <span class="glyphicon glyphicon-eye-open"></span>
                                         </div>
+                                        <div class="text-danger">{{$errors->first('password')}}</div>
 			                        </div>
 
                                 <div class="form-group">
                                     <div class="left-w3-agile">
-                                    <select id="idCiudad" name="" class="form-email form-control" id="form-email" required>
+                                    <select id="idCiudad" name="idCiudad" class="form-email form-control" id="form-email" required>
                                     	<option></option>  
                                     </select>
                                 	</div>
 									<div class="right-agileits">
-                                    <select name="" class="form-last-name form-control" id="idDepto" required>
+                                    <select name="idDepto" class="form-last-name form-control" id="idDepto" required>
 										@foreach($departamentos as $departamento)
 	                                  		<option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
 	                                 	@endforeach

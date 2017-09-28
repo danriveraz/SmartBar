@@ -101,8 +101,8 @@ class AuthController extends Controller
             $admin->nombrePersona = $request->nombrePersona;
             $admin->email = $request->email;
             $admin->pais= "Colombia";
-            $admin->departamento = $departamentos[($request->idDepto) -1]->nombre;
-            $admin->ciudad = $ciudades[($request->idCiudad) -1]->nombre;
+            $admin->departamento = Departamento::find($request->idDepto)->nombre;
+            $admin->ciudad = Ciudad::find($request->idCiudad)->nombre;
             $admin->confirmoEmail = 0;
             $admin->estado = true;
             $admin->imagenPerfil = "perfil.jpg";
