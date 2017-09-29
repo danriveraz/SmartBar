@@ -1679,7 +1679,6 @@ select optgroup {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-  outline: thin dotted #333;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -5566,7 +5565,7 @@ a.list-group-item:focus {
   font-size: 21px;
   font-weight: bold;
   line-height: 1;
-  color: #000000;
+  color: #FFFFFF;
   text-shadow: 0 1px 0 #ffffff;
   opacity: 0.2;
   filter: alpha(opacity=20);
@@ -5574,7 +5573,7 @@ a.list-group-item:focus {
 
 .close:hover,
 .close:focus {
-  color: #000000;
+  color: #FFFFFF;
   text-decoration: none;
   cursor: pointer;
   opacity: 0.5;
@@ -5732,6 +5731,13 @@ body.modal-open,
     right: auto;
     left: 50%;
     width: 600px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .dialog1 {
+    right: auto;
+    left: 50%;
+    width: 800px;
     padding-top: 30px;
     padding-bottom: 30px;
   }

@@ -358,7 +358,7 @@
      *   DataTables
      * =============================================================================
      */
-    $("#dataTable1").dataTable({
+    $("#dataTable1,#dataTable2").dataTable({
       "sPaginationType": "full_numbers",
       aoColumnDefs: [
         {
@@ -901,7 +901,7 @@
       $('#summernote').summernote({
         height: 300,
         focus: true,
-        toolbar: [['style', ['style']], ['style', ['bold', 'italic', 'underline', 'clear']], ['fontsize', ['fontsize']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['height', ['height']], ['insert', ['picture', 'link']], ['table', ['table']], ['fullscreen', ['fullscreen']]]
+        toolbar: [['style', ['bold', 'italic', 'underline', 'clear']],['para', ['ul', 'ol', 'paragraph']],['fullscreen', ['fullscreen']]]
       });
     }
 
@@ -1053,14 +1053,14 @@
      * =============================================================================
      */
     $(".date-range").daterangepicker({
-      format: "yyy/MM/dd",
+      format: "MM/dd/yyyy",
       separator: " to ",
       startDate: Date.today().add({
         days: -29
       }),
       endDate: Date.today(),
-      minDate: "01/01/1900",
-      maxDate: "12/31/2050"
+      minDate: "01/01/2012",
+      maxDate: "12/31/2014"
     });
 
     /*
@@ -1150,7 +1150,7 @@
      *   Input placeholder fix
      * =============================================================================
      */
-    /*if (!Modernizr.input.placeholder) {
+    if (!Modernizr.input.placeholder) {
       $("[placeholder]").focus(function() {
         var input;
         input = $(this);
@@ -1175,7 +1175,7 @@
           }
         });
       });
-    }*/
+    }
 
     /*
      * =============================================================================
