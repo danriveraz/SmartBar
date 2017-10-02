@@ -265,7 +265,7 @@
                   </li>
                   <li class="dropdown">
                     <a id="mesas" nombre="barraNavegacion" href="{{route('mesas.index')}}">
-                    <span aria-hidden="true" class="fa fa-fw fa-hospital-o fa-2x"></span>  Mesas</a>
+                    <i aria-hidden="true" class="fa fa-hospital-o pull-left"></i>Mesas</a>
                   </li>
                 </ul>
               </li>              
@@ -959,7 +959,7 @@ Credits: Bootstrap, jQuery, TouchSwipe, Animate.css, FontAwesome
 
 //Initialise Bootstrap Carousel Touch Slider
 // Curently there are no option available.
-$('#bootstrap-touch-slider').bsTouchSlider();
+//$('#bootstrap-touch-slider').bsTouchSlider();
 </script>
 
 </html>

@@ -1,230 +1,282 @@
 @extends('Layout.app')
 @section('content')
-
-<div class="container-fluid main-content">
-  <div class="panel-tittle" align="center">
-      @include('flash::message')
-      <a href="{{ route('AgendaTrabajadores.create') }}" class="btn btn-default"><i class="fa fa-calendar"></i> Agenda de Trabajadores </a><BR><BR>
-  </div>
-  <div class="social-wrapper">
-    <div class="col-lg-12">
-      <div class="row"  id="filters" align="center">
-          <a href="{{ route('Auth.usuario.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Nuevo Empleado </a>
-          <a  class="btn btn-bitbucket" data-filter="*"><i class="fa fa-user-o"></i>Todos</a>
-          <!--<a  class="btn btn-bitbucket" data-filter=".Administrador"><i class="fa fa-user-o"></i>Administradores</a>
-          <a  class="btn btn-bitbucket" data-filter=".Mesero"><i class="fa fa-user-o"></i>Meseros</a>
-          <a  class="btn btn-bitbucket" data-filter=".Bartender"><i class="fa fa-user-o"></i>Bármanes</a>
-          <a  class="btn btn-bitbucket" data-filter=".Cajero"><i class="fa fa-user-o"></i>Cajeros</a>-->
-          <a  class="btn btn-bitbucket" data-filter=".Habilitado"><i class="fa fa-user-o"></i>Habilitados</a>
-          <a  class="btn btn-bitbucket" data-filter=".Deshabilitado"><i class="fa fa-user-o"></i>Deshabilitados</a>
-      </div>
-    </div>
-
-<div id="social-container"></div>
-  <div class="row">
-    <div class="col-lg-12">
-    </div>
-  </div>
-  <div id="hidden-items"> 
-    @foreach($usuarios as $usuario)
-      <div class=" item row widget-container fluid-height
-             @if($usuario->esAdmin == 1) Administrador
-             @else 
-               @if($usuario->esMesero != 0) Mesero 
-               @endif
-               @if($usuario->esBartender != 0) Bartender
-               @endif
-               @if($usuario->esCajero != 0) Cajero
-               @endif
-             @endif
-             @if($usuario->estado == 1) Habilitado
-             @else Deshabilitado
-             @endif"> 
-        <div class="heading">
-            <i class="fa fa-times pull-right"></i><i class="fa fa-eye  pull-right" data-toggle="modal" href="#myModal{{$usuario->id}}"></i>
-            <a href="{{url('Auth/usuario/'.$usuario->id.'/edit')}}"><i class="fa fa-gear  pull-right"></i></a>
-        </div>
-        <div class="widget-container fluid-height clearfix ">
-          <div class="profile-info clearfix padded3">
-            <img width="70" height="70" class="social-avatar pull-left" src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
-              <div class="profile-details">
-                <strong><a class="user-name" >{{$usuario->nombrePersona}}</a></strong><br>
-                  @if($usuario->esAdmin == 1) Administrador
-                  @else 
-                    @if($usuario->esMesero != 0) Mesero 
-                    @endif
-                    @if($usuario->esBartender != 0) Bartender
-                    @endif
-                    @if($usuario->esCajero != 0) Cajero
-                    @endif
-                  @endif
-                <br>
-                <em><i class="fa fa-list-alt "></i>{{$usuario->cedula}}</em>&nbsp&nbsp
-                <em><i class="fa fa-phone "></i>{{$usuario->telefono}}</em>
-              </div>
+<!--Barra de título y botones de busqueda-->
+<div id="page-content">
+  <div class="container">                   
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row invoice-header">
+          <div class="col-md-8">
+            <h2>Mis Empleados</h2>
+            @include('flash::message')
           </div>
-          <div class="widget-content padded2 colorpocket">
-            <div class="dg btn-group dropup">
-              <button class="btn btn-pocket dropdown-toggle" data-toggle="dropdown">Control<span class="caret"></span></button>
-              <ul class="dropdown-menu">
+          <div class="col-md-4 float-right">
+            <div class=" btn1 pull-right">
+              <a class=" dropdown-toggle" data-toggle="dropdown"><i class="pocketMorado fa fa-2x fa-sliders" ></i></a>
+              <ul id="filters" class="dropdown-menu">
                 <li>
-                  <a href="{{url('RegistroLogin/'.$usuario->id)}}"><i class="fa fa-clock-o pull-left"></i>Horas Ingreso</a>
+                  <a data-filter="*"><i class="fa fa-plus"></i>Todos</a>
                 </li>
                 <li>
-                  <a href="#"><i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a>
+                  <a data-filter=".Habilitado"><i class="fa fa-check"></i>Habilitados</a>
                 </li>
                 <li>
-                  <a href="#"><i class="fa fa-money pull-left"></i>Salario</a>
+                  <a data-filter=".Deshabilitado"><i class="fa fa-times"></i>Deshabilitados</a>
                 </li>
                 <li>
-                  <a href="{{route('Auth.usuario.cambiarEstado',$usuario->id) }}" onclick="return confirm('¿Estas seguro que deseas cambiar el estado de este suario?')">
-                  @if($usuario->estado == 1) <i class="fa fa-toggle-on pull-left"></i>Desactivar
-                  @else <i class="fa fa-toggle-off pull-left"></i> Activar
-                  @endif</a>
+                  <a data-filter=".Administrador"><i class="fa fa-imdb"></i>Administradores</a>
+                </li>
+                <li>
+                  <a data-filter=".Bartender"><i class="fa fa-imdb"></i>Bartenders</a>
+                </li>
+                <li>
+                  <a data-filter=".Mesero"><i class="fa fa-houzz"></i>Meseros</a>
+                </li>
+                <li>
+                  <a data-filter=".Cajero"><i class="fa fa-wpbeginner"></i>Cajeros</a>
                 </li>
               </ul>
             </div>
-              <button class="dg btn btn-pocket"><i class="fa fa-calendar-o"></i>Agenda</button>
-              <button class="dg btn btn-pocket"><i class="fa fa-envelope-o"></i>Mensaje</button>
-          </div>
+          </div>                
         </div>
-      </div>        
-    @endforeach
+      </div>
+    </div>
   </div>
 </div>
+<!--Fin Barra de título y botones de busqueda-->
+<!--Inicio de los items de usuarios -->
+<div class="container-fluid main-content">
+  <div class="social-wrapper">
+    <div id="social-container"></div>
+      <div id="hidden-items"> 
+        @foreach($usuarios as $usuario)
+          <div class=" item row widget-container fluid-height
+                 @if($usuario->esAdmin == 1) Administrador
+                 @else 
+                   @if($usuario->esMesero != 0) Mesero 
+                   @endif
+                   @if($usuario->esBartender != 0) Bartender
+                   @endif
+                   @if($usuario->esCajero != 0) Cajero
+                   @endif
+                 @endif
+                 @if($usuario->estado == 1) Habilitado
+                 @else Deshabilitado
+                 @endif"> 
+            <div class="heading">
+              <i class="pocketMorado fa fa-times pull-right"></i>
+              <i class="pocketMorado fa fa-eye pull-right" data-toggle="modal" href="#myModal{{$usuario->id}}"></i>
+              <!--<a href="{{url('Auth/usuario/'.$usuario->id.'/edit')}}"><i class="fa fa-gear  pull-right"></i></a>-->
+            </div>
+            <div class="widget-container fluid-height clearfix ">
+              <div class="profile-info clearfix padded3">
+                <img width="70" height="70" class="social-avatar pull-left" src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
+                  <div class="profile-details">
+                    <strong><a class="pocketMorado user-name" >{{$usuario->nombrePersona}}</a></strong><br>
+                      @if($usuario->esAdmin == 1) Administrador
+                      @else 
+                        @if($usuario->esMesero != 0) Mesero 
+                        @endif
+                        @if($usuario->esBartender != 0) Bartender
+                        @endif
+                        @if($usuario->esCajero != 0) Cajero
+                        @endif
+                      @endif
+                    <br>
+                    <em><i class="fa fa-list-alt "></i>{{$usuario->cedula}}</em>&nbsp&nbsp
+                    <em><i class="fa fa-phone "></i>{{$usuario->telefono}}</em>
+                  </div>
+              </div>
+              <div class="widget-content padded2 colorpocket">
+                <div class="dg btn-group dropup">
+                  <button class="btn btn-pocket dropdown-toggle" data-toggle="dropdown">Control<span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="{{url('RegistroLogin/'.$usuario->id)}}"><i class="fa fa-clock-o pull-left"></i>Horas Ingreso</a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-money pull-left"></i>Salario</a>
+                    </li>
+                    <li>
+                      <a href="{{route('Auth.usuario.cambiarEstado',$usuario->id) }}" onclick="return confirm('¿Estas seguro que deseas cambiar el estado de este suario?')">
+                      @if($usuario->estado == 1) <i class="fa fa-toggle-on pull-left"></i>Desactivar
+                      @else <i class="fa fa-toggle-off pull-left"></i> Activar
+                      @endif</a>
+                    </li>
+                  </ul>
+                </div>
+                  <a href="{{ route('AgendaTrabajadores.create') }}" class="dg btn btn-pocket"><i class="fa fa-calendar-o"></i>Agenda</a>
+                  <button class="dg btn btn-pocket"><i class="fa fa-envelope-o"></i>Mensaje</button>
+              </div>
+            </div>
+          </div>        
+        @endforeach
+      </div>
+  </div>
 </div>
+<!--Fin de los items de usuarios -->
 
+<!--Inicio modal ver más datos-->    
 @foreach($usuarios as $usuario)
-<!--modal ver más datos-->    
 <div class="modal fade" id="myModal{{$usuario->id}}">
-  <div class="modal-dialog">
-    <div class="modal-content  col-lg-9">
-      <div class="colorpocket modal-header">
-          <h4 class="modal-title"> Editar Información Del Empleado</h4>
+  <div class="modal-body">
+    <div class="col-lg-12" style="background-color:#FFFFFF">
+      <div class="modal-header">
+          <button aria-hidden="true" class=" close " data-dismiss="modal" type="button">&times;</button>
+          <h4 class="modal-title text-center"> Editar Información Del Empleado</h4>
       </div>
       <div class="modal-body">
-        <!-- Login Screen -->
-        {!! Form::open(['route' => ['Auth.usuario.update',$usuario], 'method' => 'PUT','enctype' => 'multipart/form-data']) !!}
-        {{ csrf_field() }}
-          <div class="widget-content padded4">
-            <div class="gallery-container">
-              <a class="gallery-item filter1 fancybox" href="#fancybox-example" rel="">
-              <img src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
-              <div class="actions">
-                 <i class="fa fa-pencil"></i>
-              </div></a>            
-           </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-user"></i></span>
-              <input name="nombrePersona" class="form-control" value="{{$usuario->nombrePersona}}" placeholder="Username" type="text" >
+        <div class="row">
+          <div class="heading">
+            <i class=" pocketMorado fa fa-shield"></i>&nbsp;Nuevo Empleado      
+          </div>  
+          <!-- Login Screen -->
+          {!! Form::open(['route' => ['Auth.usuario.update',$usuario], 'method' => 'PUT','enctype' => 'multipart/form-data']) !!}
+          {{ csrf_field() }}
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div class="row">
+                    <label class="control-label col-md-2"></label>
+                    <div class="col-md-9">
+                      <div class="widget-content ">
+                        <div class="gallery-container">
+                          <a class="gallery-item filter1 fancybox" href="#fancybox-example" rel="">
+                          <img src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
+                          <div class="actions">
+                             <i class="fa fa-pencil"></i>
+                          </div></a>            
+                       </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input name="nombrePersona" class="form-control" value="{{$usuario->nombrePersona}}" placeholder="Username" type="text" >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+                    <input name="username" class="form-control" value="{{$usuario->username}}"  placeholder="Username" type="text">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    <input name="email" class="form-control" value="{{$usuario->email}}"  placeholder="Email" type="text">
+                  </div>
+                </div>
+                <a class="pull-right" href="#">Mirar Calendario De Trabajo</a>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
+                    <input name="cedula" class="form-control" value="{{$usuario->cedula}}"  placeholder="Identificacion" type="text">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
+                      <select name='sexo' class="form-control" placeholder="Tipo De Sexo">
+                        @if($usuario->sexo=='Femenino')
+                          <option value="Masculino">Masculino</option>
+                          <option value="Femenino" selected="selected">Femenino</option>
+                        @else
+                          <option value="Masculino" selected="selected">Masculino</option>
+                          <option value="Femenino" >Femenino</option>
+                        @endif
+                      </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
+                    <input  value="{{$usuario->fechaNacimiento}}" class="form-control datepicker" data-date-autoclose="true" placeholder="Fecha de Nacimiento" type="text">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span><input name="password" class="form-control" placeholder="Contraseña" type="password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span><input name="password" class="form-control" name="password_confirmation" placeholder="Confirmar Contraseña" type="password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                    <input class="form-control" type="number"><span class="input-group-addon">.00</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                    <select id="selectPermisos" name="Permisos[]"class="form-control select2able" multiple="multiple">
+                      <option value="Administrador"
+                        @if($usuario->esAdmin == 1) 
+                          selected="selected"
+                        @endif 
+                      >Administrador</option>
+                      <option value="Mesero" selected="selected"
+                          @if($usuario->esMesero != 0) 
+                            selected="selected" 
+                          @endif
+                      >Mesero</option>
+                      <option value="Bartender" 
+                          @if($usuario->esBartender != 0)
+                            selected="selected"
+                          @endif
+                      >Bartender</option>
+                      <option value="Cajero"
+                          @if($usuario->esCajero != 0) 
+                            selected="selected"
+                          @endif
+                      >Cajero</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <label class="checkbox">{!! Form::checkbox('Obsequiar', 'Obsequiar', $usuario->obsequio) !!}<span>Activar Para Obsequiar</span></label>
+                </div>      
+              </div>
+              <div class="col-md-4">            
+                <div class="form-group">
+                  <input id="file-4" style="background-color: #4f0157;" type="file" class="file" data-upload-url="#">
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-              <input name="username" class="form-control" value="{{$usuario->username}}"  placeholder="Username" type="text">
+            <div class="row">
+              <div  class="col-md-3 col-md-offset-5">
+                <button class="btn btn-bitbucket" type="submit">
+                  <i class="fa fa-send"></i>Guardar
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-              <input name="email" class="form-control" value="{{$usuario->email}}"  placeholder="Email" type="text">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
-              <input name="cedula" class="form-control" value="{{$usuario->cedula}}"  placeholder="Identificacion" type="text">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
-                <select name='sexo' class="form-control" placeholder="Tipo De Sexo">
-                  @if($usuario->sexo=='Femenino')
-                    <option value="Masculino">Masculino</option>
-                    <option value="Femenino" selected="selected">Femenino</option>
-                  @else
-                    <option value="Masculino" selected="selected">Masculino</option>
-                    <option value="Femenino" >Femenino</option>
-                  @endif
-                </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
-              <input  value="{{$usuario->fechaNacimiento}}" class="form-control datepicker" data-date-autoclose="true" placeholder="Fecha de Nacimiento" type="text">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-lock"></i></span><input name="password" class="form-control" placeholder="Contraseña" type="password">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-lock"></i></span><input name="password" class="form-control" name="password_confirmation" placeholder="Confirmar Contraseña" type="password">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-money"></i></span>
-              <input class="form-control" type="number"><span class="input-group-addon">.00</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-users"></i></span>
-              <select id="selectPermisos" name="Permisos[]"class="form-control select2able" multiple="multiple">
-                <option value="Administrador"
-                  @if($usuario->esAdmin == 1) 
-                    selected="selected"
-                  @endif 
-                >Administrador</option>
-                <option value="Mesero" selected="selected"
-                    @if($usuario->esMesero != 0) 
-                      selected="selected" 
-                    @endif
-                >Mesero</option>
-                <option value="Bartender" 
-                    @if($usuario->esBartender != 0)
-                      selected="selected"
-                    @endif
-                >Bartender</option>
-                <option value="Cajero"
-                    @if($usuario->esCajero != 0) 
-                      selected="selected"
-                    @endif
-                >Cajero</option>
-              </select>
-            </div>
-          </div>      
-            <a class="pull-right" href="#">Mirar Calendario De Trabajo</a>
-            <div class="text-left">
-              <label class="checkbox">{!! Form::checkbox('Obsequiar', 'Obsequiar', $usuario->obsequio) !!}<span>Activar Para Obsequiar</span></label>
-            </div>
-      
-          <div class="form-group">
-            <input id="file-4" style="background-color: #4f0157;" type="file" class="file" data-upload-url="#">
-          </div>
-          <input class="btn btn-lg btn-bitbucket btn-block" type="submit" value="Guardar">
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </div>
 @endforeach
-<!-- inidio de slider de agregar usuario -->
+<!-- Fin de modal ver más datos-->
+<!-- inicio de slider de agregar usuario -->
 <div class="style-selector" >
   <div class="style-selector-container">
     <div class="row">
       <div class="">
         <div class="">
           <div class="heading">
-            <i class="fa fa-shield"></i>Formulario Para Nuevo Usuario
+            <i class="fa fa-shield"></i>Nuevo empleado
           </div>
           <div class="widget-content padded">
             <form id="checkbox">
@@ -243,10 +295,16 @@
                            <i class="fa fa-pencil"></i>
                         </div></a>
                       </div>
-                      <div class="fileupload-preview fileupload-exists img-thumbnail" style="width: 200px; max-height: 150px"></div>
-                      <div>
-                        <span class="btn btn-default btn-file"><span class="fileupload-new">Cargar Imagen</span><span class="fileupload-exists">editar</span><input type="file" class="form-control" name="imagenPerfil"  id="imagenPerfil"></span><a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Eliminar</a>
+                      <div class="fileupload-preview fileupload-exists img-thumbnail" style="width: 200px; max-height: 150px">
                       </div>
+                      <div>
+                        <span class="btn btn-default btn-file">
+                        <span class="fileupload-new">Cargar Imagen</span>
+                        <span class="fileupload-exists">editar</span>
+                        <input type="file" class="form-control" name="imagenPerfil"  id="imagenPerfil"></span>
+                        <a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Eliminar</a>
+                      </div>
+                      
                     </div>
                   </div>
                 </div>
@@ -259,29 +317,18 @@
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-lock"></i></span><input class="form-control" placeholder="Contraseña" type="password">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
                     <input class="form-control" placeholder="Telefono de Contato" type="text">
                   </div>
                 </div>
-              </div>
-              <div class="col-md-4 ">
-                <!--<div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                    <input class="form-control" placeholder="Username" type="text">
-                  </div>
-                </div>-->
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                     <input class="form-control" placeholder="Email" id="email" name="email" type="email">
                   </div>
                 </div>
+              </div>
+              <div class="col-md-4 ">
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
@@ -311,18 +358,6 @@
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                    <input class="form-control" type="number"><span class="input-group-addon">.00</span>          
-                  </div>
-                </div>
-                <div class="text-center">
-                  <label class="checkbox">{{ Form::checkbox('regalar') }}<span>Activar Para Obsequiar</span></label>
-                </div>
-              </div>  
-              <div class="col-md-4">
-
-                <div class="form-group">
-                  <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
                         <select id="selectPermisos" name="Permisos[]" class="form-control select2able" multiple="multiple">
                           <option value="Mesero">Mesero</option>
@@ -333,11 +368,27 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                    <input class="form-control" placeholder="Salario Diario" type="number"><span class="input-group-addon">.00</span>          
+                  </div>
+                </div>
+                <div class="text-center">
+                  <label class="checkbox">{{ Form::checkbox('regalar') }}<span>Activar Para Obsequiar</span></label>
+                </div>
+              </div>  
+              <div class="col-md-4">
+                <div class="form-group">
                   <input id="file-4" type="file" class="file" data-upload-url="#">
                 </div>
               </div>
             </div>
-            <div  class="col-md-3 col-md-offset-5">{!!link_to('#', $title='Registrar', $attributes = ['id'=>'registrarUsuario', 'class'=>'btn btn-fill btn-block btn-info'], $secure = null)!!}
+            <div  class="col-md-3 col-md-offset-5">
+              <div  class="col-md-3 col-md-offset-5">
+                <a id='registrarUsuario' class="btn btn-bitbucket" type="submit">
+                  <i class="fa fa-send"></i>Guardar
+                </a>
+              </div>
             </div>
             </fieldset>
           </form>
