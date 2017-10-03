@@ -108,18 +108,24 @@
     <div class="login-wrapper">
     <h1>
       <div class="col-lg-12" style="background-color:#2d0031">
-           <a href=""><img src="images/logo2.png"></a>
+           <a href="{{url('/home')}}"><img src="../images/logo2.png"></a>
       </div>
     </h1>
-      <form action="index.html">
-        <div class="form-group">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-envelope"></i></span><input class="form-control" placeholder="Username o Email" type="text">
-          </div>
+	<form autocomplete="on" method="post" action="{{url('Auth/login')}}">
+	{{csrf_field()}}
+		<div class="text-danger">
+	         @if (Session::has('message'))
+			   {{Session::get('message')}}
+			 @endif
+		 </div>        
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-envelope"></i></span><input class="form-control" placeholder="Username" type="text" name="username" value="{{Input::old('username')}}" required>
+			</div>
         </div>
         <div class="form-group">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-lock"></i></span><input class="form-control" placeholder="Contraseña" type="text">
+            <span class="input-group-addon"><i class="fa fa-lock"></i></span><input class="form-control" placeholder="Contraseña" type="password" Name="password" required>
           </div>
         </div>
         <a class="pull-right pocketMorado" href="#">Olvidaste tu contraseña</a>
@@ -129,152 +135,16 @@
         <input class="btn btn-lg btn-primaryp btn-block" type="submit" value="Log in">
         
         <div class="social-login clearfix">
-        <button class="btn btn-facebook"><i class="fa fa-facebook"></i>iniciar con Facebook</button>
-		<button class="btn btn-google-plus"><i class="fa fa-google-plus"></i>iniciar con Google Plus</button>        </div>
-      </form>
+	        <a href="{{ url('/Auth/facebook') }}" class="btn btn-facebook"><i class="fa fa-facebook"></i>iniciar con Facebook</a>
+			<a href="{{ url('/Auth/google') }}" class="btn btn-google-plus"><i class="fa fa-google-plus"></i>iniciar con Google Plus</a>        
+		</div>
+
+	</form>
       <p>
         ¿Aún no tienes una cuenta?
       </p>
-      <a class="btn btn-default-outline btn-block" href="signup2.htm">Regístrese ahora</a>
+      <a class="btn btn-default-outline btn-block" href="{{url('/home')}}">Regístrese ahora</a>
     </div>
     <!-- End Login Screen -->
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Body -->
-<body>
-
-<!-- contenido del formulario -->
-
-            <div class="contec">
-
-            <div class="inner-bg">
-                <div class="container">
-
-                    <div class="row">
-                        <div class="col-sm-8 col-sm-offset-2 text" style="text-align:center">
-                        <br><br />
-                            <h1 class="color2">TODO TU NEGOCIO, EN TU BOLSILLO</h1>
-                            <div class="description color1">
-                            	<p>
-	                            	Completa el formulario e ingresa al mundo de SMARTBAR, donde mantienes el control de tu negocio 24/7. <br>
-	                            	</strong></a>
-                            	</p>
-                            </div>
-                        </div>
-                    </div>
-
-				</div>
-            </div>
-         </div>
-
-	<div class="container w3layouts agileits">
-	<!-- baner iconos sociales -->
-		<div class="content-left w3layouts agileits">
-			<a href="{{url('/home')}}">
-				<img src="../images/background.jpg" alt="W3layouts Agileits">
-			</a>
-		<div class="list w3layouts agileits">
-			<ul class="w3layouts agileits">
-				<li class="w3layouts agileits"><a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></li>
-					<li class="li2 w3layouts agileits"><a class="btn btn-social-icon btn-instagram"><span class="fa fa-instagram"></span></a></li>
-					<li class="w3layouts agileits"><a class="btn btn-social-icon btn-google"><span class="fa fa-google"></span></a></li>
-				</ul>
-			</div>
-		</div>
-	<!-- baner iconos sociales -->
-
-		<div class="content-right w3layouts agileits">
-			<section>
-				<div id="container_demo">
-					<a class="hiddenanchor w3layouts agileits" id="tologin"></a>
-					<a class="hiddenanchor w3layouts agileits" id="toregister"></a>
-					<div id="wrapper">
-						<div id="login" class="animate w3layouts agileits form">
-							<h2 class="w3layouts agileits">INICIA SESIÓN</h2>
-              				<form autocomplete="on" method="post" action="{{url('Auth/login')}}">
-                			{{csrf_field()}}
-                				<div class="text-danger">
-					                 @if (Session::has('message'))
-									   {{Session::get('message')}}
-									 @endif
-								 </div>
-								<label>E-mail</label>
-								<input type="text" name="username" value="{{Input::old('username')}}" required>
-								<label>Contraseña</label>
-								<input type="password" Name="password" required="">
-								<div class="send-button w3layouts agileits">
-									<p><a href="#">Recupera tu contraseña</a></p>
-										<input type="submit" value="INICIAR SESIÓN">
-									<div class="clear"></div>
-								</div>
-								<p class="change_link w3layouts agileits">
-									¿NO ERES SMARTBAR? <a href="{{url('Auth/register')}}" class="to_register">Registrate</a>
-								</p>
-								<div class="clear"></div>
-							</form>
-							<div class="social-icons w3layouts agileits">
-								<p>LOGUEAR CON REDES SOCIALES</p>
-								<ul>
-									<li class="fb w3ls w3layouts agileits"><a href="{{ url('/Auth/facebook') }}"><span class="icons w3layouts agileits"></span><span class="text w3layouts agileits">Facebook</span></a></li>
-									<li class="gog w3ls w3layouts agileits"><a href="#"><span class="icons w3layouts agileits"></span><span class="text w3layouts agileits">Google +</span></a></li>
-									<div class="clear"></div>
-								</ul>
-							</div>
-							<div class="clear"></div>
-						</div>
-
-                        <!-- formulario de Registro-->
-						<div class="clear">
-							<!--CREO ACA VA ALGO DE REGISTRO-->
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-		<div class="clear"></div>
-
-	</div>
-
-	<div class="footer w3layouts agileits">
-		<div class="wrap">
-				<p class="copy">© 2017 condiciones de uso y privacidad  <a href="" target="_blank">Todos Derechos Reservados</a> </p>
-			</div>
-	</div>
-
-</body>
-
