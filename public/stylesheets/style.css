@@ -86,7 +86,7 @@ html {
 
 body {
   font-family: "Lato", sans-serif !important;
-  color: #666666;
+  color: #2f0033;
   min-height: 100%; }
   body.page-header-fixed {
     padding-top: 140px; }
@@ -124,7 +124,7 @@ strong {
 a {
   color: #007aff; }
   a:hover {
-    color: #666666;
+    color: ##2f0033;
     text-decoration: none; }
 
 ul.no-style {

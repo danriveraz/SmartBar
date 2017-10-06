@@ -41,12 +41,12 @@ class InsumoController extends Controller
   }
 
   public function modificar(Request $request){
-
     $userActual = Auth::user();
     $insumo = Insumo::find($request->id);
     $nombre = $insumo->nombre;
     $insumo->idProveedor = $request->proveedor;
     $insumo->nombre = $request->nombre;
+    $insumo->marca = $request->marca;
     $insumo->cantidadUnidad = $request->unidades;
     $insumo->precioUnidad = $request->venta;
     $insumo->valorCompra = $request->compra;

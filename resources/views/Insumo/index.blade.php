@@ -1,90 +1,13 @@
 @extends('Layout.app')
 @section('content')
-
-<div class="col-sm-offset-2 col-sm-8">
-  <div class="panel-tittle" align="center">
-      <h3><b>MI INVENTARIO</b></h3>
+<div class="container main-content">
+  <div class="page-title">
+    <h2 class="">
+      <B> Mi Inventario </B>
+    </h2>
   </div>
   @include('flash::message')
-  <form class="navbar-form navbar-left">
-    <div class="form-group" align="left">
-        <a href="#addModal" class="btn btn-default" data-toggle="modal">
-            <i class="fa fa-plus"></i> Nuevo insumo &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 
-        </a>
-    </div>
-  </form >
-  <div class="modal fade in" id="addModal" >
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        {!! Form::open(['method' => 'POST', 'action' => 'InsumoController@store']) !!}
-
-          <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
-
-          <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
-
-            <h4 class="modal-title">Nuevo Insumo</h4> 
-          </div>
-          <div class="modal-body">
-              <div class="alert alert-warning alert-dismissable">
-                <button aria-hidden="true" type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>¡Atencion!</strong> Para un mejor control, se recomienda a&ntildeadir productos como limones o cerezas en unidad.
-              </div>
-            <div class="pre-scrollable" >
-            <div class="widget-content">
-              <div class="form-group">
-                <div class="form-group">
-                    
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre del insumo" placeholder="Nombre" required="true"/>
-                </div>
-              </div>
-              <div class="form-group">
-                    
-                    <input type="text" name="marca" class="form-control" placeholder="Marca del insumo" placeholder="Marca"/>
-                </div>
-                <div class="form-group">
-                    {!! Form::select('proveedores', $proveedores, null, ['class' => 'form-control', 'placeholder' => 'Proveedor', 'required' => 'true']) !!}
-                </div>
-                <div class="form-group">
-                    <input type="number" step="any" min="0" name="valorCompra" class="form-control" required="true" placeholder="Costo" onkeyup="autocompletar(event,this,0)">
-                </div>
-                <div class="form-group">
-                    
-                    <input type="number" step="any" min="0" name="precioUnidad" class="form-control" required="true" placeholder="Venta" onkeyup="autocompletar(event,this,1)">
-                </div>
-                <div class="form-group">
-                    <input type="number" step="any" min="0" id="cantidadMedida" name="cantidadMedida" placeholder="Contenido" class="form-control" required="true" />
-                    <select name="medida" class="form-control" onchange="valor(this.value);"> 
-                        <option value="ml">ml</option> 
-                        <option value="cm3">cm3</option> 
-                        <option value="oz">oz</option>
-                        <option value="unidad">unidad</option>
-                    </select>
-                </div>
-                <div class="form-group"> 
-                    <input type="number" min="0" name="cantidadUnidad" id="cantidadUnidad" class="form-control" required="false" placeholder="Cantidad" >
-                </div>
-                <div class="form-group">
-                    <label for="tipo" class="control-label">¿Vender por botella?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                    <label> <input type="checkbox" name="tipo" id="tipo" value="1" onchange="showContent('')"/><span></span></label>
-                </div>
-                <div id="content" style="display: none;">
-                    <label for="categorias" class="control-label">Categoría</label>
-                    {!! Form::select('categorias', $categorias, null, ['class' => 'form-control']) !!}
-                </div>
-                <br>
-            </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
-          </div>
-        {!! Form::close() !!}
- 
-    </div>
-   </div>
-  </div>
-  <div id="busqueda" name="busqueda" class="navbar-form navbar-right">
+  <!-- <div id="busqueda" name="busqueda" class="navbar-form navbar-right">
     <div class="form-group" align="right">
       <div class="icon-addon addon-md">
           <input  id="nombreInput" type="text" size="40" maxlength="30" placeholder="Buscar..." class="form-control" />
@@ -98,20 +21,153 @@
         <option value="">Buscar por</option>
         <option value="1">A la venta</option>
         <option value="0">No a la venta</option> 
-        <option value="0">Se venden en botella</option>
-        <option value="0">Marca</option> 
-        <option value="0">Proveedor</option> 
-        <option value="0">Nuevos</option> 
-        <option value="0">Mayor rotación</option> 
-        <option value="0">Menor rotación</option> 
-        <option value="0">Mayores unidades</option> 
-        <option value="0">Menores unidades</option> 
       </select>
     </div>
-  </div>
+  </div>-->
+
    <div class="panel-body">
       <div id="list-ins"></div>
    </div>
+
+  <!-- inicio cambios pocket -->
+  <div class="style-selector" >
+      <div class="style-selector-container">
+    <!-- inidio de slider de agregar usuario -->
+        <div class="row">
+          <div class="">
+            <div class="">
+              <div class="heading">
+                <i class="fa fa-shield"></i>&nbsp;Nuevo Insumo</div>
+              <div class="widget-content padded">
+                {!! Form::open(['method' => 'POST', 'action' => 'InsumoController@store']) !!}
+                  <fieldset>
+                    <div class="row">
+                      <div class="col-md-4">
+                      <div class="bs-example">
+                          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                              <!-- Carousel indicators -->
+                              <ol class="carousel-indicators">
+                                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                              </ol>   
+                              <!-- Wrapper for carousel items -->
+                              <div class="carousel-inner">
+                                  <div class="item active">
+                                      <img src="/examples/images/slide1.png" alt="First Slide">
+                                  </div>
+                                  <div class="item">
+                                      <img src="/examples/images/slide2.png" alt="Second Slide">
+                                  </div>
+                                  <div class="item">
+                                      <img src="/examples/images/slide3.png" alt="Third Slide">
+                                  </div>
+                              </div>
+                              <!-- Carousel controls 
+                              <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                                  <span class="glyphicon glyphicon-chevron-left"></span>
+                              </a>
+                              <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                                  <span class="glyphicon glyphicon-chevron-right"></span>
+                              </a>
+                              -->
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-4 ">
+                    <div class=" bs-example">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
+                          <input type="text" name="nombre" class="form-control" placeholder="Nombre" placeholder="Nombre" required="true"/>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-commenting-o"></i></span>
+                          <input type="text" name="marca" class="form-control" placeholder="Marca" placeholder="Marca"/>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-500px"></i></span>
+                          {!! Form::select('proveedores', $proveedores, null, ['class' => 'select2able', 'placeholder' => 'Proveedor', 'required' => 'true']) !!}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                          <input type="number" step="any" min="0" name="valorCompra" class="form-control" required="true" placeholder="Costo" onkeyup="autocompletar(event,this,0)">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="tipo" class="control-label"> ¿Vender por botella?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <label> 
+                        <input type="checkbox" name="tipo" id="stipo" value="1" onchange="showContent('')"/>
+                          <span></span>
+                        </label>
+                      </div>
+                      <div class="form-group">
+                        <div id="scontent" style="display: none;">
+                          <label for="categorias" class="control-label">Categoría</label>
+                            {!! Form::select('categorias', $categorias, null, ['class' => 'form-control']) !!}
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class=" bs-example">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                          <input type="number" step="any" min="0" name="precioUnidad" class="form-control" required="true" placeholder="Venta" onkeyup="autocompletar(event,this,1)">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-eyedropper"></i></span>
+                          <input type="number" step="any" min="0" id="cantidadMedida" name="cantidadMedida" placeholder="Contenido" class="form-control" required="true" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-hourglass-half"></i></span>
+                          <select name="medida" class="select2able" onchange="valor(this.value);"> 
+                            <option value="ml">ml</option> 
+                            <option value="cm3">cm3</option> 
+                            <option value="oz">oz</option>
+                            <option value="unidad">unidad</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div id="divcantidad" class="form-group">
+                        <div class="input-group">
+                          <span id="iconCantidad" class="input-group-addon"><i class="fa fa-superscript"></i></span>
+                          <input type="number" min="0" name="cantidadUnidad" id="cantidadUnidad" class="form-control" required="false" placeholder="Cantidad" >
+                        </div>
+                      </div>
+                    </div>
+                    <div  class="text-center">
+                      <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >
+                          Guardar
+                      </button>
+                    </div>      
+                  </div> 
+                </div>
+              </fieldset>
+            {!! Form::close() !!}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- fin de slider de agregar usuario -->
+    <div class="style-toggle closed">
+      <span aria-hidden="true" class="pocketMorado fa fa-fw fa-plus-circle"></span>
+    </div>
+  </div>
+</div>  
+<!-- fin cambios pocket -->
+
 </div>
 
 <script type="text/javascript">
@@ -136,8 +192,8 @@
   });
 
   function showContent(idInsumo) {
-    element = document.getElementById("content"+idInsumo);
-    check = document.getElementById("tipo"+idInsumo);
+    element = document.getElementById("scontent"+idInsumo);
+    check = document.getElementById("stipo"+idInsumo);
     if (check.checked) {
       element.style.display='block';
     }
@@ -156,15 +212,15 @@
   }
 
   var valor = function(x){
-        if(x == 'unidad'){
-          document.getElementById('cantidadUnidad').style.display='none';
-          document.getElementById('cantidadUnidad').value = 1;
-          document.getElementById('cantidadMedida').placeholder ="Cantidad";
-        }else{
-          document.getElementById('cantidadUnidad').style.display='block';
-          document.getElementById('cantidadUnidad').value = null;
-          document.getElementById('cantidadMedida').placeholder ="Contenido";
-        }
+    if(x == 'unidad'){
+      document.getElementById('divcantidad').style.display='none';
+      document.getElementById('cantidadUnidad').value = 1;
+      document.getElementById('cantidadMedida').placeholder ="Cantidad";
+    }else{
+      document.getElementById('divcantidad').style.display='block';
+      document.getElementById('cantidadUnidad').value = null;
+      document.getElementById('cantidadMedida').placeholder ="Contenido";
+    }
   };
 
   var cont = [true,true,false,false];
@@ -231,6 +287,24 @@ function cambiarCurrent(idInput) {
 };
 
 </script>
+
+<!-- Style para el slider del registro / modificación -->
+<style type="text/css">
+  .carousel{
+      background: #2f4357;
+      margin-top: 20px;
+  }
+  .carousel .item{
+      min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+  }
+  .carousel .item img{
+      margin: 0 auto; /* Align slide image horizontally center */
+  }
+  .bs-example{
+    margin: 20px;
+  }
+</style>
+
 <style type="text/css">
   ::-webkit-scrollbar { 
     display: none; 
