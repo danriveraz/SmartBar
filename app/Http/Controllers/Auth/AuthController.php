@@ -318,6 +318,7 @@ class AuthController extends Controller
 
         $authUser = $this->findOrCreateUser($user, $provider);
         Auth::login($authUser, true);
+        Auth::User()->inicioSesion();// función que se llama para que guarde un nuevo registro en la tabla de registro de inicio y cierre de sesión
         //var_dump($user['gender']);
         return redirect($this->redirectTo);
     }
@@ -390,7 +391,7 @@ class AuthController extends Controller
         $admin->username = $auxiliarUsername;
         $admin->provider = $provider;
         $admin->provider_id = $user->getId();
-        $admin->sexo = $user['gender'];
+        //$admin->sexo = $user->gender;
         $admin->save();
 
 
