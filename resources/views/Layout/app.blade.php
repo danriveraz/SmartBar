@@ -39,7 +39,7 @@
     {!!Html::style('stylesheets\color\orange.css')!!}
     {!!Html::style('stylesheets\color\magenta.css')!!}
     {!!Html::style('stylesheets\color\gray.css')!!}
-    
+
     -->
 
 
@@ -70,7 +70,7 @@
     });
 });
 </script>
-    
+
 {!!Html::script("javascripts\bootstrap.min.js")!!}
 {!!Html::script("javascripts/bootstrap-select.js")!!}
 {!!Html::script("javascripts\jquery.bootstrap.wizard.js")!!}
@@ -263,17 +263,17 @@
                   <li><a id="proveedor" nombre="barraNavegacion" href="{{route('proveedor.index')}}">
                     <i aria-hidden="true" class="fa fa-500px pull-left"></i>Mis Proveedores</a>
                   </li>
-                  <li class="dropdown">
-                    <a id="mesas" nombre="barraNavegacion" href="{{route('mesas.index')}}">
-                    <i aria-hidden="true" class="fa fa-hospital-o pull-left"></i>Mesas</a>
-                  </li>
                 </ul>
-              </li>              
+              </li>
+              <li class="dropdown">
+                <a id="mesas" nombre="barraNavegacion" href="{{route('mesas.index')}}">
+                <span aria-hidden="true" class="fa fa-hospital-o"></span>Mesas</a>
+              </li>
               <li class="dropdown">
                 <a id="cajero" nombre="barraNavegacion" href="{{url('cajero/')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-sliders"></span>Control</a>
               </li>
-             
+
               <li class="dropdown">
               <a id="Estadisticas" nombre="barraNavegacion" href="{{url('Estadisticas/')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-bar-chart-o"></span>Estadisticas</a>
@@ -295,7 +295,7 @@
               <div class="widget-content">
                 <div class="form-group">
                    <!-- Add this css File in head tag-->
-                  <!--  
+                  <!--
                   If you want to change #bootstrap-touch-slider id then you have to change Carousel-indicators and Carousel-Control  #bootstrap-touch-slider slide as well
                   Slide effect: slide, fade
                   Text Align: slide_style_center, slide_style_left, slide_style_right
@@ -304,13 +304,13 @@
                 <div id="bootstrap-touch-slider" class="carousel bs-slider fade  control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="5000" >
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
-                        <?php if( Auth::User()->estadoTut == 13){ ?> 
+                        <?php if( Auth::User()->estadoTut == 13){ ?>
                           <li data-target="#bootstrap-touch-slider" data-slide-to="0" class="active"></li>
                           <li data-target="#bootstrap-touch-slider" data-slide-to="1"></li>
                           <li data-target="#bootstrap-touch-slider" data-slide-to="2"></li>
                           <li data-target="#bootstrap-touch-slider" data-slide-to="3"></li>
                           <li data-target="#bootstrap-touch-slider" data-slide-to="4"></li>
-                          <li data-target="#bootstrap-touch-slider" data-slide-to="5"></li> 
+                          <li data-target="#bootstrap-touch-slider" data-slide-to="5"></li>
                         <?php }?>
                     </ol>
                   <!-- Wrapper For Slides -->
@@ -340,7 +340,7 @@
                         <div class="slide-text slide_style_left">
                           <h1 data-animation="animated zoomInRight">Registro</h1>
                           <p data-animation="animated fadeInLeft">Acá va una descripción sobre el registro de proveedores con imagen de fondo explicativa de donde se deben registrar etc...</p>
-                          <a class="btn btn-default" data-animation="animated fadeInUp" data-dismiss="modal" > 
+                          <a class="btn btn-default" data-animation="animated fadeInUp" data-dismiss="modal" >
                           Entendido</a>
                           <a href="{{route('usuarios.tutorial')}}"  class="btn btn-default" data-animation="animated fadeInUp">Ir</a>
                         </div>
@@ -348,7 +348,7 @@
                     <?php }?>
                     <!-- End of Slide -->
                     <!-- Second Slide -->
-                    <?php if( Auth::User()->estadoTut == 2){ ?> 
+                    <?php if( Auth::User()->estadoTut == 2){ ?>
                     <div class="item active">
                         <!-- Slide Background -->
                         <img src="https://images.pexels.com/photos/207990/pexels-photo-207990.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" alt="Bootstrap Touch Slider"  class="slide-image"/>
@@ -368,7 +368,7 @@
                         <div class="slide-text slide_style_left">
                           <h1 data-animation="animated zoomInRight">Registro</h1>
                           <p data-animation="animated fadeInLeft">Acá va una descripción sobre el registro de categorías con imagen de fondo explicativa de donde se deben registrar etc...</p>
-                          <a class="btn btn-default" data-animation="animated fadeInUp" data-dismiss="modal" > 
+                          <a class="btn btn-default" data-animation="animated fadeInUp" data-dismiss="modal" >
                           Entendido</a>
                           <a href="{{route('usuarios.tutorial')}}"  class="btn btn-default" data-animation="animated fadeInUp">Ir</a>
                         </div>
@@ -376,7 +376,7 @@
                     <?php }?>
                     <!-- End of Slide -->
                     <!-- Third Slide -->
-                    <?php if( Auth::User()->estadoTut == 4){ ?> 
+                    <?php if( Auth::User()->estadoTut == 4){ ?>
                     <div class="item active">
                         <img src="https://images.pexels.com/photos/207990/pexels-photo-207990.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" alt="Bootstrap Touch Slider"  class="slide-image"/>
                         <div class="bs-slider-overlay"></div>
@@ -395,14 +395,14 @@
                         <div class="slide-text slide_style_left">
                           <h1 data-animation="animated zoomInRight">Registro</h1>
                           <p data-animation="animated fadeInLeft">Acá va una descripción sobre el registro del inventario con imagen de fondo explicativa de donde se deben registrar etc...</p>
-                          <a class="btn btn-default" data-animation="animated fadeInUp" data-dismiss="modal" > 
+                          <a class="btn btn-default" data-animation="animated fadeInUp" data-dismiss="modal" >
                           Entendido</a>
                           <a href="{{route('usuarios.tutorial')}}"  class="btn btn-default" data-animation="animated fadeInUp">Ir</a>
                         </div>
                     </div>
                     <?php }?>
                     <!-- End of Slide -->
-                    <?php if( Auth::User()->estadoTut == 6){ ?> 
+                    <?php if( Auth::User()->estadoTut == 6){ ?>
                     <div class="item active">
                         <!-- Slide Background -->
                         <!-- Slide Background -->
@@ -423,7 +423,7 @@
                         <div class="slide-text slide_style_left">
                           <h1 data-animation="animated zoomInRight">Registro</h1>
                           <p data-animation="animated fadeInLeft">Acá va una descripción sobre el registro de productos con imagen de fondo explicativa de donde se deben registrar etc...</p>
-                          <a class="btn btn-default" data-animation="animated fadeInUp" data-dismiss="modal" > 
+                          <a class="btn btn-default" data-animation="animated fadeInUp" data-dismiss="modal" >
                           Entendido</a>
                           <a href="{{route('usuarios.tutorial')}}"  class="btn btn-default" data-animation="animated fadeInUp">Ir</a>
                         </div>
@@ -436,12 +436,12 @@
                         <div class="slide-text slide_style_left">
                           <h1 data-animation="animated zoomInRight">Registro</h1>
                           <p data-animation="animated fadeInLeft">Acá va una descripción sobre el registro de insumos al producto con imagen de fondo explicativa de donde se deben registrar etc...</p>
-                          <a class="btn btn-default" data-animation="animated fadeInUp" data-dismiss="modal" > 
+                          <a class="btn btn-default" data-animation="animated fadeInUp" data-dismiss="modal" >
                           Entendido</a>
                         </div>
                     </div>
                     <?php }?>
-                    <?php if( Auth::User()->estadoTut == 9){ ?> 
+                    <?php if( Auth::User()->estadoTut == 9){ ?>
                     <div class="item active">
                         <!-- Slide Background -->
                         <!-- Slide Background -->
@@ -462,13 +462,13 @@
                         <div class="slide-text slide_style_left">
                           <h1 data-animation="animated zoomInRight">Registro</h1>
                           <p data-animation="animated fadeInLeft">Acá va una descripción sobre el registro de usuarios con imagen de fondo explicativa de donde se deben registrar etc...</p>
-                          <a class="btn btn-default" data-animation="animated fadeInUp" data-dismiss="modal" > 
+                          <a class="btn btn-default" data-animation="animated fadeInUp" data-dismiss="modal" >
                           Entendido</a>
                           <a href="{{route('usuarios.tutorial')}}"  class="btn btn-default" data-animation="animated fadeInUp">Ir</a>
                         </div>
                     </div>
                     <?php }?>
-                    <?php if( Auth::User()->estadoTut == 11){ ?> 
+                    <?php if( Auth::User()->estadoTut == 11){ ?>
                     <div class="item active">
                         <!-- Slide Background -->
                         <!-- Slide Background -->
@@ -489,7 +489,7 @@
                         <div class="slide-text slide_style_left">
                           <h1 data-animation="animated zoomInRight">Registro</h1>
                           <p data-animation="animated fadeInLeft">Acá va una descripción sobre el registro de mesas con imagen de fondo explicativa de donde se deben registrar etc...</p>
-                          <a class="btn btn-default" data-animation="animated fadeInUp" data-dismiss="modal" > 
+                          <a class="btn btn-default" data-animation="animated fadeInUp" data-dismiss="modal" >
                           Entendido</a>
                           <a href="{{route('usuarios.tutorial')}}"  class="btn btn-default" data-animation="animated fadeInUp">Ir</a>
                         </div>
@@ -578,19 +578,19 @@
                         <span class="sr-only">Next</span>
                     </a>
                     <?php }?>
-                  </div> <!-- End  bootstrap-touch-slider Slider -->        
+                  </div> <!-- End  bootstrap-touch-slider Slider -->
                 </div>
               </div>
             </div>
             </div>
           </div>
         <div class="modal-footer">
-        
+
         </div>
       </div>
     </div>
 
-  
+
     <div class="">
       @yield('content')
     </div>
@@ -601,7 +601,7 @@
   </body>
 
 <script type="text/javascript">
-  
+
   $(document).ready(function(){
     if({{Auth::User()->estadoTut}} <= 12){
       $('#tutModal').modal('show');
@@ -611,7 +611,7 @@
 </script>
 
 <style type="text/css">
-  
+
   .bs-slider{
       overflow: hidden;
       max-height: 700px;
@@ -807,11 +807,11 @@
       position: absolute;
       text-align: left;
       padding: 10px 85px;
-      
+
   }
 
   .slide-text > h1 {
-      
+
       padding: 0;
       color: #ffffff;
       font-size: 70px;
@@ -933,7 +933,7 @@
           line-height: 18px;
           margin-bottom: 10px;
       }
-      .slide-text > a.btn-default, 
+      .slide-text > a.btn-default,
       .slide-text > a.btn-primary {
           font-size: 10px;
           line-height: 10px;
@@ -963,4 +963,3 @@ Credits: Bootstrap, jQuery, TouchSwipe, Animate.css, FontAwesome
 </script>
 
 </html>
-
