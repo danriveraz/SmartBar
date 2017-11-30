@@ -270,15 +270,28 @@
                 <span aria-hidden="true" class="fa fa-hospital-o"></span>Mesas</a>
               </li>
               <li class="dropdown">
-                <a id="cajero" nombre="barraNavegacion" href="{{url('cajero/')}}">
-                <span aria-hidden="true" class="fa fa-fw fa-sliders"></span>Control</a>
+                <a data-toggle="dropdown" href=#>
+                <span aria-hidden="true" class="fa fa-fw fa-sliders"></span>Control<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a id="bartender" nombre="barraNavegacion" href={{url("bartender/")}}>
+                    <i aria-hidden="true" class="fa fa-imdb pull-left"></i>Bartenders</a>
+                  </li>
+                  <li><a id="mesero" nombre="barraNavegacion" href="{{url('mesero/')}}" >
+                    <i aria-hidden="true" class="fa fa-houzz"></i>Meseros</a>
+                  </li>
+                  <li><a id="cajero" nombre="barraNavegacion" href="{{url('cajero/')}}">
+                    <i aria-hidden="true" class="fa fa-wpbeginner pull-left"></i>Cajeros</a>
+                  </li>
+                </ul>
               </li>
 
               <li class="dropdown">
               <a id="Estadisticas" nombre="barraNavegacion" href="{{url('Estadisticas/')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-bar-chart-o"></span>Estadisticas</a>
               </li>
-              <li><a href="gallery.htm">
+              <li>
+                <a id="Tienda" nombre="barraNavegacion" href="{{url('Tienda/')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-cart-plus "></span>Tienda</a>
               </li>
             </ul>
