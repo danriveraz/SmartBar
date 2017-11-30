@@ -274,75 +274,56 @@
 @foreach($usuarios as $usuario)
 <div class="modal fade" id="ModalMsg{{$usuario->id}}">
   <div class="modal-body">
-    <div class="col-lg-8" style="background-color:#FFFFFF">
+    <div class="col-lg-7" style="background-color:#FFFFFF">
       <div class="modal-header">
           <button aria-hidden="true" class=" close " data-dismiss="modal" type="button">&times;</button>
           <h4 class="modal-title text-center"> Mensaje para {{$usuario->nombrePersona}} </h4>
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="heading">
-            <i class=" pocketMorado fa fa-shield"></i>&nbsp;Nuevo Empleado
-          </div>
-          <!-- Login Screen -->
-          {!! Form::open(['route' => ['Auth.usuario.update',$usuario], 'method' => 'PUT','enctype' => 'multipart/form-data']) !!}
-          {{ csrf_field() }}
-            <div class="row">
-              <div class="col-md-3">
+
+            <div class="col">
+              <div class="col-md-5">
                 <div class="form-group">
                   <div class="row">
-                    <label class="control-label col-md-2"></label>
+
                     <div class="col-md-9">
                       <div class="widget-content ">
                         <div class="gallery-container">
-                          <a class="gallery-item filter1 fancybox" href="#fancybox-example" rel="">
+                          <a class="gallery-item filter1 fancybox" href="#" rel="">
                           <img src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
-                          <div class="actions">
-                             <i class="fa fa-pencil"></i>
-                          </div></a>
+                          </a>
                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input name="nombrePersona" class="form-control" value="{{$usuario->nombrePersona}}" placeholder="Username" type="text" disabled>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                    <input name="username" class="form-control" value="{{$usuario->username}}"  placeholder="Username" type="text" disabled>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                    <input name="email" class="form-control" value="{{$usuario->email}}"  placeholder="Email" type="text" disabled>
-                  </div>
-                </div>
-                <a class="pull-right" href="#">Mirar Calendario De Trabajo</a>
+
+                <!--<a class="pull-right" href="#">Mirar Calendario De Trabajo</a>-->
               </div>
-              <div class="col-md-4">
-
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span><textarea name="mensaje" class="form-control" style="margin=0px; width:300px; height:100px"></textarea>
+              <div class="col">
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                      <input name="email" class="form-control" value="{{$usuario->email}}"  placeholder="Email" type="text" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-envelope"></i></span><textarea name="mensaje" class="form-control" style="margin=0px; width:300px; height:100px"></textarea>
+                    </div>
                   </div>
                 </div>
-
               </div>
             </div>
             <div class="row">
-              <div  class="col-md-3 col-md-offset-5">
+              <div  class="col-md-2 col-md-offset-4">
                 <button class="btn btn-bitbucket" type="submit">
                   <i class="fa fa-send"></i>Enviar mensaje
                 </button>
               </div>
             </div>
-          </form>
         </div>
       </div>
     </div>
