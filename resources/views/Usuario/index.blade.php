@@ -274,6 +274,7 @@
 @foreach($usuarios as $usuario)
 <div class="modal fade" id="ModalMsg{{$usuario->id}}">
   <div class="modal-body">
+    <div class="col-lg-8" style="background-color:#FFFFFF">
       <div class="modal-header">
           <button aria-hidden="true" class=" close " data-dismiss="modal" type="button">&times;</button>
           <h4 class="modal-title text-center"> Mensaje para {{$usuario->nombrePersona}} </h4>
@@ -287,6 +288,7 @@
           {!! Form::open(['route' => ['Auth.usuario.update',$usuario], 'method' => 'PUT','enctype' => 'multipart/form-data']) !!}
           {{ csrf_field() }}
             <div class="row">
+              <div class="col-md-3">
                 <div class="form-group">
                   <div class="row">
                     <label class="control-label col-md-2"></label>
