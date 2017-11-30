@@ -278,7 +278,7 @@
               <a id="Estadisticas" nombre="barraNavegacion" href="{{url('Estadisticas/')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-bar-chart-o"></span>Estadisticas</a>
               </li>
-              <li><a href="gallery.htm">
+              <li><a id="Tienda" nombre="barraNavegacion" href="{{url('Tienda/')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-cart-plus "></span>Tienda</a>
               </li>
             </ul>

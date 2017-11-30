@@ -111,5 +111,8 @@ Route::get('RegistroLogin/{id}', 'RegistroLoginController@show');// registrar el
 
 Route::get('Tutorial' , ['uses' => 'UsuariosController@tutorial', 'as' => 'usuarios.tutorial']);
 
+Route::resource('Tienda', 'TiendaController');
+
+
 
 

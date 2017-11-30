@@ -1,0 +1,57 @@
+div.sp-categories {
+  margin: 0; }
+  div.sp-categories .content-box {
+    margin-bottom: 30px; }
+    div.sp-categories .content-box .image-cat {
+      position: relative;
+      margin-bottom: 10px; }
+      div.sp-categories .content-box .image-cat .viewmore {
+        font-size: 10px;
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: 700;
+        line-height: 20px;
+        padding: 0 10px;
+        position: absolute;
+        left: 20px;
+        bottom: 35px; }
+        div.sp-categories .content-box .image-cat .viewmore:hover {
+          background: #444; }
+    div.sp-categories .content-box h4.cat-title {
+      margin: 0;
+      padding: 0 10px 5px; }
+      div.sp-categories .content-box h4.cat-title a {
+        font-size: 14px;
+        color: #444;
+        font-weight: 700; }
+    div.sp-categories .content-box .child-cat {
+      padding: 0; }
+      div.sp-categories .content-box .child-cat .child-cat-title {
+        padding: 0 10px; }
+        div.sp-categories .content-box .child-cat .child-cat-title a {
+          transition: 0.2s all ease 0s;
+          position: relative;
+          padding: 0 10px; }
+          div.sp-categories .content-box .child-cat .child-cat-title a:before {
+            content: "";
+            display: block;
+            height: 4px;
+            width: 4px;
+            background: #444;
+            position: absolute;
+            left: 0;
+            top: 7px; }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  div.sp-categories .content-box .image-cat .viewmore {
+    bottom: 25px;
+    left: 17px; } }
+@media (min-width: 767px) and (max-width: 991px) {
+  div.sp-categories .content-box .image-cat .viewmore {
+    bottom: 25px;
+    left: 17px; } }
+@media all and (max-width: 480px) {
+  div.sp-categories .content-box {
+    width: 100%; }
+    div.sp-categories .content-box img {
+      width: 100%; } }

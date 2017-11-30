@@ -1,0 +1,80 @@
+#newsletter_block_home {
+  margin: 30px 0 0;
+  background: url(../../../img/icon/bg_newsletter.jpg) no-repeat 0px 0px;
+  background-size: 100% 100%;
+  overflow: hidden;
+  padding: 40px 20px; }
+  #newsletter_block_home .title-block {
+    font-size: 26px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 0 0 17px; }
+  #newsletter_block_home p {
+    margin-bottom: 25px;
+    font-size: 12px;
+    font-family: Arial;
+    color: #fff; }
+  #newsletter_block_home .block_content {
+    width: 100%; }
+  #newsletter_block_home form {
+    margin: 0;
+    display: block;
+    width: 100%; }
+  #newsletter_block_home .form-group {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background: transparent; }
+    #newsletter_block_home .form-group .button {
+      height: 100%;
+      width: 47px;
+      text-align: center;
+      font-size: 17px;
+      text-transform: uppercase;
+      font-weight: 600;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 0;
+      text-align: center; }
+    #newsletter_block_home .form-group .newsletter-input {
+      padding: 0 57px 0 10px;
+      border: none;
+      height: 40px;
+      line-height: 40px;
+      background-color: #fff;
+      color: #999;
+      font-size: 13px;
+      width: 100%;
+      font-weight: normal;
+      font-family: Arial; }
+    #newsletter_block_home .form-group ::-webkit-input-placeholder {
+      color: #acacac;
+      opacity: 1; }
+    #newsletter_block_home .form-group :-moz-placeholder {
+      /* Firefox 18- */
+      color: #acacac;
+      opacity: 1; }
+    #newsletter_block_home .form-group ::-moz-placeholder {
+      /* Firefox 19+ */
+      color: #acacac;
+      opacity: 1; }
+    #newsletter_block_home .form-group :-ms-input-placeholder {
+      color: #acacac;
+      opacity: 1; }
+
+/* ************************************************************************************************
+	RESPONSIVE
+************************************************************************************************ */
+@media (min-width: 992px) and (max-width: 1199px) {
+  #newsletter_block_home {
+    padding: 20px; }
+    #newsletter_block_home p {
+      margin-bottom: 17px; }
+    #newsletter_block_home .title-block {
+      font-size: 22px;
+      padding-bottom: 10px; } }
+@media (max-width: 992px) {
+  #newsletter_block_home {
+    display: none; } }
