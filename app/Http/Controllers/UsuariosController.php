@@ -476,4 +476,5 @@ class UsuariosController extends Controller
       return response()->json(['success' => false,'message' => 'Ya no está logueado']);
     }
   }
+
 }

@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+
 <html>
   <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -197,24 +197,19 @@
                   </li>
                 </ul>
               </li>
+
               <li class="dropdown messages hidden-xs">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="mensajes"><span aria-hidden="true" class="hightop-envelope"></span>
-                  <div class="sr-only">
-                    Mensajes
-                  </div>
-                  <p class="counter">
-                    3
-                  </p>
+                <a id="mensajes" class="dropdown-toggle" data-toggle="dropdown" href="#" title="mensajes"><span aria-hidden="true" class="hightop-envelope"></span>
+								      <div class="sr-only">
+                            Mensajes
+                          </div>
+                          <p class="counter">
+                            <?php echo ''.Auth::User()->id;?>
+                          </p>
                 </a>
                 <ul class="dropdown-menu">
                   <li><a href="#">
-                    <img width="34" height="34" src="../images\avatar-male2.png">Podriá entrar 30 minutos tarde?...</a>
-                  </li>
-                  <li><a href="#">
-                    <img width="34" height="34" src="../images\avatar-female.png">me encuentro incapacitado...</a>
-                  </li>
-                  <li><a href="#">
-                    <img width="34" height="34" src="../images\avatar-male2.png">Podría cambiar mi turno con otro empleado</a>
+                    <img width="34" height="34" src="../images\avatar-male2.png">Hola</a>
                   </li>
                 </ul>
               </li>

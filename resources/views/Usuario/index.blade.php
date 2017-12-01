@@ -108,9 +108,6 @@
 
 
                     <i class="fa fa-envelope-o" data-toggle="modal" href="#ModalMsg{{$usuario->id}}"><a class="dg btn btn-pocket">Mensaje</a></i>
-
-
-
               </div>
             </div>
           </div>
@@ -278,23 +275,24 @@
       <div class="modal-header">
           <button aria-hidden="true" class=" close " data-dismiss="modal" type="button">&times;</button>
           <h4 class="modal-title text-center"> Mensaje para {{$usuario->nombrePersona}} </h4>
+
       </div>
       <div class="modal-body">
+        {!! Form::open(['method' => 'POST', 'action' => 'MensajeController@store']) !!}
         <div class="row">
-
             <div class="col">
               <div class="col-md-5">
                 <div class="form-group">
                   <div class="row">
-
-                    <div class="col-md-9">
-                      <div class="widget-content ">
-                        <div class="gallery-container">
-                          <a class="gallery-item filter1 fancybox" href="#" rel="">
-                          <img src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
-                          </a>
-                       </div>
-                      </div>
+                    <input name='id_receptor' type="hidden" class="form-control" value="{{$usuario->id}}">
+                      <div class="col-md-9">
+                        <div class="widget-content ">
+                          <div class="gallery-container">
+                            <a class="gallery-item filter1 fancybox" href="#" rel="">
+                            <img src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
+                            </a>
+                         </div>
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -302,29 +300,30 @@
                 <!--<a class="pull-right" href="#">Mirar Calendario De Trabajo</a>-->
               </div>
               <div class="col">
-                <div class="col-md-5">
+                <div class="col-md-6">
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                      <input name="email" class="form-control" value="{{$usuario->email}}"  placeholder="Email" type="text" disabled>
+                      <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
+                      <input name="asunto" class="form-control" type="text" placeholder="Asunto" required="true">
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="fa fa-envelope"></i></span><textarea name="mensaje" class="form-control" style="margin=0px; width:300px; height:100px"></textarea>
+                      <span class="input-group-addon"><i class="fa fa-envelope"></i></span><textarea name="descripcion" class="form-control"  placeholder="Mensaje..." required="true" style="margin=0px; width:300px; height:100px"></textarea>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div  class="col-md-2 col-md-offset-4">
+              <div  class="modal-footer">
                 <button class="btn btn-bitbucket" type="submit">
                   <i class="fa fa-send"></i>Enviar mensaje
                 </button>
               </div>
             </div>
         </div>
+        {!! Form::close() !!}
       </div>
     </div>
   </div>

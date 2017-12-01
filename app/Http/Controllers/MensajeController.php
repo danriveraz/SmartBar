@@ -3,28 +3,31 @@
 namespace PocketByR\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use PocketByR\Http\Requests;
+use PocketByR\Mensaje;
 use PocketByR\Http\Controllers\Controller;
+use Laracasts\Flash\Flash;
+use Auth;
 
 class MensajeController extends Controller
 {
+  public function __construct()
+  {
+
+  }
+
+  public function store(Request $request){
+    $userActual = Auth::user()->id;
+    $mensaje = new Mensaje;
+    $mensaje->id_emisor = $userActual;
+    $mensaje->id_receptor = $request->id_receptor;
+    $mensaje->asunto = $request->asunto;
+    $mensaje->descripcion = $request->descripcion;
+
+    $mensaje->save();
 
 
-
-    public function store(Request $request){
-      /*$userActual = Auth::user();
-      $categoria = new Categoria;
-      $categoria->nombre = $request->nombre;
-      $categoria->precio = $request->precio;
-      $categoria->idEmpresa = $userActual->idEmpresa;
-      $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
-                               lists('nombre','id');
-      if(sizeof($categorias) == 0){
-        $userActual->estadoTut += 1;
-        $userActual->save();
-      }
-      $categoria->save();*/
-      Flash::success("La categoria se ha registrado satisfactoriamente")->important();
-  	}
+    Flash::success("El mensaje se ha enviado satisfactoriamente")->important();
+    return redirect()->route('Auth.usuario.index');
+  }
 }
