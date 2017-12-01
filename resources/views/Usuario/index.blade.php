@@ -2,7 +2,7 @@
 @section('content')
 <!--Barra de título y botones de busqueda-->
 <div id="page-content">
-  <div class="container">                   
+  <div class="container">
     <div class="row">
       <div class="col-lg-12">
         <div class="row invoice-header">
@@ -37,7 +37,7 @@
                 </li>
               </ul>
             </div>
-          </div>                
+          </div>
         </div>
       </div>
     </div>
@@ -48,12 +48,12 @@
 <div class="container-fluid main-content">
   <div class="social-wrapper">
     <div id="social-container"></div>
-      <div id="hidden-items"> 
+      <div id="hidden-items">
         @foreach($usuarios as $usuario)
           <div class=" item row widget-container fluid-height
                  @if($usuario->esAdmin == 1) Administrador
-                 @else 
-                   @if($usuario->esMesero != 0) Mesero 
+                 @else
+                   @if($usuario->esMesero != 0) Mesero
                    @endif
                    @if($usuario->esBartender != 0) Bartender
                    @endif
@@ -62,7 +62,7 @@
                  @endif
                  @if($usuario->estado == 1) Habilitado
                  @else Deshabilitado
-                 @endif"> 
+                 @endif">
             <div class="heading">
               <i class="pocketMorado fa fa-times pull-right"></i>
               <i class="pocketMorado fa fa-eye pull-right" data-toggle="modal" href="#myModal{{$usuario->id}}"></i>
@@ -74,8 +74,8 @@
                   <div class="profile-details">
                     <strong><a class="pocketMorado user-name" >{{$usuario->nombrePersona}}</a></strong><br>
                       @if($usuario->esAdmin == 1) Administrador
-                      @else 
-                        @if($usuario->esMesero != 0) Mesero 
+                      @else
+                        @if($usuario->esMesero != 0) Mesero
                         @endif
                         @if($usuario->esBartender != 0) Bartender
                         @endif
@@ -98,7 +98,7 @@
                       <a href="#"><i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a>
                     </li>
                     <li>
-                      <a href="#"><i class="fa fa-money pull-left"></i>Salario</a>
+                      <a href="{{url('Salario')}}"><i class="fa fa-money pull-left"></i>Salario</a>
                     </li>
                     <li>
                       <a href="{{route('Auth.usuario.cambiarEstado',$usuario->id) }}" onclick="return confirm('¿Estas seguro que deseas cambiar el estado de este suario?')">
@@ -112,14 +112,14 @@
                   <button class="dg btn btn-pocket"><i class="fa fa-envelope-o"></i>Mensaje</button>
               </div>
             </div>
-          </div>        
+          </div>
         @endforeach
       </div>
   </div>
 </div>
 <!--Fin de los items de usuarios -->
 
-<!--Inicio modal ver más datos-->    
+<!--Inicio modal ver más datos-->
 @foreach($usuarios as $usuario)
 <div class="modal fade" id="myModal{{$usuario->id}}">
   <div class="modal-body">
@@ -131,8 +131,8 @@
       <div class="modal-body">
         <div class="row">
           <div class="heading">
-            <i class=" pocketMorado fa fa-shield"></i>&nbsp;Nuevo Empleado      
-          </div>  
+            <i class=" pocketMorado fa fa-shield"></i>&nbsp;Nuevo Empleado
+          </div>
           <!-- Login Screen -->
           {!! Form::open(['route' => ['Auth.usuario.update',$usuario], 'method' => 'PUT','enctype' => 'multipart/form-data']) !!}
           {{ csrf_field() }}
@@ -148,7 +148,7 @@
                           <img src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
                           <div class="actions">
                              <i class="fa fa-pencil"></i>
-                          </div></a>            
+                          </div></a>
                        </div>
                       </div>
                     </div>
@@ -222,22 +222,22 @@
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
                     <select id="selectPermisos" name="Permisos[]"class="form-control select2able" multiple="multiple">
                       <option value="Administrador"
-                        @if($usuario->esAdmin == 1) 
+                        @if($usuario->esAdmin == 1)
                           selected="selected"
-                        @endif 
+                        @endif
                       >Administrador</option>
                       <option value="Mesero" selected="selected"
-                          @if($usuario->esMesero != 0) 
-                            selected="selected" 
+                          @if($usuario->esMesero != 0)
+                            selected="selected"
                           @endif
                       >Mesero</option>
-                      <option value="Bartender" 
+                      <option value="Bartender"
                           @if($usuario->esBartender != 0)
                             selected="selected"
                           @endif
                       >Bartender</option>
                       <option value="Cajero"
-                          @if($usuario->esCajero != 0) 
+                          @if($usuario->esCajero != 0)
                             selected="selected"
                           @endif
                       >Cajero</option>
@@ -246,9 +246,9 @@
                 </div>
                 <div class="text-center">
                   <label class="checkbox">{!! Form::checkbox('Obsequiar', 'Obsequiar', $usuario->obsequio) !!}<span>Activar Para Obsequiar</span></label>
-                </div>      
+                </div>
               </div>
-              <div class="col-md-4">            
+              <div class="col-md-4">
                 <div class="form-group">
                   <input id="file-4" style="background-color: #4f0157;" type="file" class="file" data-upload-url="#">
                 </div>
@@ -283,7 +283,7 @@
             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
             <fieldset>
             <div class="row">
-              <div class="col-md-4">  
+              <div class="col-md-4">
                 <div class="form-group">
                   <label class="control-label col-md-2"></label>
                   <div class="col-md-9">
@@ -304,7 +304,7 @@
                         <input type="file" class="form-control" name="imagenPerfil"  id="imagenPerfil"></span>
                         <a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Eliminar</a>
                       </div>
-                      
+
                     </div>
                   </div>
                 </div>
@@ -370,13 +370,13 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                    <input class="form-control" placeholder="Salario Diario" type="number"><span class="input-group-addon">.00</span>          
+                    <input class="form-control" placeholder="Salario Diario" type="number"><span class="input-group-addon">.00</span>
                   </div>
                 </div>
                 <div class="text-center">
                   <label class="checkbox">{{ Form::checkbox('regalar') }}<span>Activar Para Obsequiar</span></label>
                 </div>
-              </div>  
+              </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <input id="file-4" type="file" class="file" data-upload-url="#">
@@ -494,7 +494,7 @@ $("#registrarUsuario").click(function(){
            }if(usuarioNuevo.esCajero){
               permisoQueTiene += ' Cajero';
            }
-           var $link = $('<div class=" item row widget-container fluid-height"> <div class="heading"><i class="fa fa-times pull-right"></i><i class="fa fa-eye  pull-right" data-toggle="modal" href="#myModal'+usuarioNuevo.id+'"></i><a href="http://localhost/PocketByR/public/Auth/usuario/'+usuarioNuevo.id+'/edit"><i class="fa fa-gear  pull-right"></i></a></div><div class="widget-container fluid-height clearfix "><div class="profile-info clearfix padded3"><img width="70" height="70" class="social-avatar pull-left" src="http://localhost/PocketByR/public/images/admins/'+usuarioNuevo.imagenPerfil+'"><div class="profile-details"><strong><a class="user-name" >'+usuarioNuevo.nombrePersona+'</a></strong><br>'+permisoQueTiene+'<br><em><i class="fa fa-list-alt "></i>'+usuarioNuevo.cedula+'</em>&nbsp&nbsp<em><i class="fa fa-phone "></i>'+usuarioNuevo.telefono+'</em></div></div><div class="widget-content padded2 colorpocket"><div class="dg btn-group dropup"><button class="btn btn-pocket dropdown-toggle" data-toggle="dropdown">Control<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#"><i class="fa fa-clock-o pull-left"></i>Horas Ingreso</a></li><li><a href="#"><i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a></li><li><a href="#"><i class="fa fa-money pull-left"></i>Salario</a></li></ul></div><button class="dg btn btn-pocket"><i class="fa fa-calendar-o"></i>Agenda</button><button class="dg btn btn-pocket"><i class="fa fa-envelope-o"></i>Mensaje</button></div></div></div>');  
+           var $link = $('<div class=" item row widget-container fluid-height"> <div class="heading"><i class="fa fa-times pull-right"></i><i class="fa fa-eye  pull-right" data-toggle="modal" href="#myModal'+usuarioNuevo.id+'"></i><a href="http://localhost/PocketByR/public/Auth/usuario/'+usuarioNuevo.id+'/edit"><i class="fa fa-gear  pull-right"></i></a></div><div class="widget-container fluid-height clearfix "><div class="profile-info clearfix padded3"><img width="70" height="70" class="social-avatar pull-left" src="http://localhost/PocketByR/public/images/admins/'+usuarioNuevo.imagenPerfil+'"><div class="profile-details"><strong><a class="user-name" >'+usuarioNuevo.nombrePersona+'</a></strong><br>'+permisoQueTiene+'<br><em><i class="fa fa-list-alt "></i>'+usuarioNuevo.cedula+'</em>&nbsp&nbsp<em><i class="fa fa-phone "></i>'+usuarioNuevo.telefono+'</em></div></div><div class="widget-content padded2 colorpocket"><div class="dg btn-group dropup"><button class="btn btn-pocket dropdown-toggle" data-toggle="dropdown">Control<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#"><i class="fa fa-clock-o pull-left"></i>Horas Ingreso</a></li><li><a href="#"><i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a></li><li><a href="#"><i class="fa fa-money pull-left"></i>Salario</a></li></ul></div><button class="dg btn btn-pocket"><i class="fa fa-calendar-o"></i>Agenda</button><button class="dg btn btn-pocket"><i class="fa fa-envelope-o"></i>Mensaje</button></div></div></div>');
            $("#social-container").isotope('insert', $link);// añadir al isotope de usuarios
            $("#nombrePersona").val("");
            $("#cedula").val("");
@@ -503,7 +503,7 @@ $("#registrarUsuario").click(function(){
            /*document.getElementById('sexo').checked = false;
            document.getElementById('sexo1').checked = false;
            for (i=0;i<a.length;i++){
-              a[i].checked=0 
+              a[i].checked=0
            }
            for (i=0;i<document.querySelectorAll("input.Obsequio:checked").length;i++){
                 document.querySelectorAll("input.Obsequio:checked")[i].checked = 0;
@@ -515,9 +515,9 @@ $("#registrarUsuario").click(function(){
               return $(".style-selector").animate({
                 "right": "-80%"
               }, 250);
-            } 
+            }
         }, error: function(xhr,status, response) {
-              var error = jQuery.parseJSON(xhr.responseText);  
+              var error = jQuery.parseJSON(xhr.responseText);
                 for(var k in error.message){
                     if(error.message.hasOwnProperty(k)){
                         error.message[k].forEach(function(val){

@@ -25,7 +25,7 @@ class MesasController extends Controller
     }
     public function index(Request $request){
     	return view('Mesas.inicio');
-    } 
+    }
     public function create(Request $request){
         $userActual = Auth::user();
         $cantidadActualMesas = Mesa::calculaCantidad($userActual->idEmpresa);
@@ -44,12 +44,12 @@ class MesasController extends Controller
           }
         $mesa->save();
         return redirect('mesas');
-    }    
+    }
     public function createNMesas(Request $request){
         $userActual = Auth::user();
         $cantidadActualMesas = Mesa::calculaCantidad($userActual->idEmpresa);
         if(!is_int($cantidadActualMesas)) $cantidadActualMesas = 0;
-        for ($i=0; $i < $request->cantidad; $i++) { 
+        for ($i=0; $i < $request->cantidad; $i++) {
             $cantidadActualMesas++;
             $mesa = new Mesa;
             $mesa->idMesa = $cantidadActualMesas;
@@ -60,13 +60,13 @@ class MesasController extends Controller
         }
         $mesas = Mesa::mesasAdmin($userActual->idEmpresa)->get();
         return redirect('mesas')->with('mesas',$mesas);
-    }    
+    }
     public function modificar(Request $request){
         $mesa = Mesa::find($request->id);
         $mesa->nombreMesa = $request->nombre;
         $mesa->estado = $request->estado;
         $mesa->save();
-    }  
+    }
 
     public function listall(Request $request){
         $userActual = Auth::user();
@@ -88,6 +88,6 @@ class MesasController extends Controller
     public function eliminar(Request $request){
       $mesa = Mesa::find($request->id);
       $mesa->delete();
-    }    
+    }
 
 }
