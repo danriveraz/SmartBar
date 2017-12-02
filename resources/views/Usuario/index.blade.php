@@ -100,14 +100,15 @@
 
                     </li>
                     <li>
-                      <a href="#"><i class="fa fa-money pull-left"></i>Salario</a>
+                      <a href="{{url('Salario/')}}"><i class="fa fa-money pull-left"></i>Salario</a>
                     </li>
                   </ul>
                 </div>
-                  <a href="{{ route('AgendaTrabajadores.create') }}" class="dg btn btn-pocket"><i class="fa fa-calendar-o"></i>Agenda</a>
+                  <a href="{{ url('Agenda/') }}" class="dg btn btn-pocket"><i class="fa fa-calendar-o"></i>Agenda</a>
 
-
-                    <i class="fa fa-envelope-o" data-toggle="modal" href="#ModalMsg{{$usuario->id}}"><a class="dg btn btn-pocket">Mensaje</a></i>
+                  <div class="dg btn btn-pocket" data-toggle="modal" href="#ModalMsg{{$usuario->id}}">
+                    <i class="fa fa-envelope-o"><a class="dg btn btn-pocket">Mensaje</a></i>
+                  </div>
               </div>
             </div>
           </div>

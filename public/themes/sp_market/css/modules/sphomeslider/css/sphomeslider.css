@@ -1,0 +1,40 @@
+/******************************************************************************
+	Home Page Slider
+*******************************************************************************/
+.sphomepage-slider .owl-nav .owl-prev, .sphomepage-slider .owl-nav .owl-next {
+  position: absolute;
+  top: calc(50% - 25px);
+  height: 50px;
+  width: 30px;
+  transition: 0.3s all ease 0s;
+  text-align: center;
+  line-height: 46px;
+  color: #fff;
+  font-size: 26px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.2); }
+  .sphomepage-slider .owl-nav .owl-prev:hover, .sphomepage-slider .owl-nav .owl-next:hover {
+    background: #444; }
+.sphomepage-slider .owl-nav .owl-prev {
+  left: 0; }
+.sphomepage-slider .owl-nav .owl-next {
+  right: 0; }
+.sphomepage-slider .owl-dots {
+  width: 100%;
+  display: block !important;
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  z-index: 9999;
+  right: 0;
+  text-align: center; }
+  .sphomepage-slider .owl-dots .owl-dot {
+    width: 9px;
+    height: 9px;
+    background: #fff;
+    margin: 0 12px 0 0;
+    display: inline-block;
+    border-radius: 0; }
+
+.rtl .sphomepage-slider {
+  direction: ltr; }

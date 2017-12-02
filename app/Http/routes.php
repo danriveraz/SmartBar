@@ -96,6 +96,7 @@ Route::resource('WelcomeAdmin', 'welcomeAdmin', ['only' => [
 Route::resource('WelcomeTrabajador', 'WelcomeTrabajadorController', ['only' => [
     'index']]);
 
+Route::resource('Agenda', 'AgendaTrabajadoresController');
 Route::resource('AgendaTrabajadores', 'AgendaTrabajadoresController');
 
 Route::get('Auth/{provider}', 'Auth\AuthController@redirectToProvider');
@@ -116,3 +117,4 @@ Route::resource('/usuario', 'MensajeController@store');
 Route::resource('/usuario', 'MensajeController');
 
 Route::resource('Tienda', 'TiendaController');
+Route::resource('Salario','SalarioController');

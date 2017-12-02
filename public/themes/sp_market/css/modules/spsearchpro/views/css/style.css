@@ -1,0 +1,506 @@
+/*begin css for content module*/
+.sp_searchpro .spr-container {
+  padding: 0; }
+  .sp_searchpro .spr-container .icon-search {
+    display: none; }
+.sp_searchpro .sprsearch-form {
+  position: relative; }
+
+.moduletable h3 {
+  margin: 10px 0; }
+
+.pretext.search-pro {
+  margin: 10px 15px; }
+
+.postext.search-pro {
+  clear: both;
+  padding: 0 15px; }
+
+.title-module-search-pro {
+  clear: both;
+  font-size: 17px;
+  padding: 20px 10px 10px 15px;
+  text-transform: uppercase;
+  color: #444444;
+  margin: 20px 0;
+  font-weight: bold; }
+
+.spr-container {
+  padding: 0 10px 10px 15px;
+  display: block; }
+
+.spr-container .sprsearch-form {
+  width: 100%;
+  margin: 0;
+  padding: 0; }
+
+.spr-container .spr-loading {
+  position: absolute;
+  z-index: 10;
+  background: url(../img/loading.gif) no-repeat scroll center center #FFF;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 45px; }
+
+.spr-container.spr-preload {
+  position: relative;
+  overflow: hidden; }
+
+.spr-container .spr_selector {
+  position: relative;
+  outline-style: none;
+  outline-color: #fff; }
+
+.spr-container .lbel_spr_select {
+  display: none; }
+
+.spr-container .spr_select::-ms-expand {
+  display: none; }
+
+.spr-container .spr_select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  border: none;
+  box-sizing: border-box;
+  display: block;
+  margin: 0;
+  transition: all 0.2s ease-out 0.2s;
+  -moz-transition: all 0.2s ease-out 0.2s;
+  -o-transition: all 0.2s ease-out 0.2s;
+  -webkit-transition: all 0.2s ease-out 0.2s;
+  vertical-align: middle;
+  width: 100%;
+  outline-style: none;
+  outline-color: #fff; }
+
+.spr-container .spr_select option {
+  transition: all 0.2s ease-out 0.2s;
+  -moz-transition: all 0.2s ease-out 0.2s;
+  -o-transition: all 0.2s ease-out 0.2s;
+  -webkit-transition: all 0.2s ease-out 0.2s; }
+
+.spr-container .spr_selector label {
+  position: absolute;
+  right: 3px;
+  top: 7px;
+  font-size: 0;
+  display: block;
+  width: 10px;
+  height: 25px;
+  pointer-events: none;
+  margin: 0;
+  background: url(../../../../../img/icon/search.png) center center no-repeat; }
+
+.spr-container .spr_selector label:hover {
+  cursor: pointer; }
+
+.spr-container.msie9 .spr_select {
+  background: none; }
+
+.spr-container .spr_select option {
+  padding: 5px 15px;
+  background: transparent;
+  font-size: 12px; }
+
+.spr-container .spr_select:focus {
+  outline-style: none;
+  outline-color: #fff; }
+
+.spr-container .spr_select:hover {
+  cursor: pointer; }
+
+select {
+  /*filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=-1, OffY=-1,color=#eee) progid:DXImageTransform.Microsoft.dropshadow(OffX=1, OffY=1,color=#eee);*/ }
+
+.spr-container .spr-search-button:hover {
+  cursor: pointer; }
+
+.spr-container .spr_select.active {
+  display: block; }
+
+.spr-container .spr-query {
+  width: 100%;
+  border: none;
+  vertical-align: middle;
+  margin: 0;
+  box-sizing: border-box;
+  border: none; }
+
+.spr-container .text-search {
+  position: relative; }
+
+::-webkit-input-placeholder {
+  color: #b7b7b7;
+  opacity: 1; }
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #b7b7b7;
+  opacity: 1; }
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #b7b7b7;
+  opacity: 1; }
+
+:-ms-input-placeholder {
+  color: #b7b7b7;
+  opacity: 1; }
+
+.spr-container .spr-search-button {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border: none;
+  cursor: pointer; }
+
+/*end css for content module*/
+/*css overide global.css*/
+.content_sortPagiBar .sortPagiBar.instant_search #productsSortForm {
+  display: block; }
+
+.ac_results {
+  width: 520px !important;
+  box-shadow: 0 3px 3px #999;
+  margin: 0; }
+
+.ac_over {
+  background: #6bf7f2; }
+
+.ac_results li {
+  cursor: pointer;
+  border-bottom: solid 1px #eee;
+  padding: 5px; }
+
+/*rlt*/
+/*css for device*/
+@media all and (max-width: 479px) {
+  .sp_searchpro .spr-container {
+    width: 100%; }
+
+  .ac_results ul {
+    width: 43%; }
+
+  .ac_results {
+    border: none; }
+
+  .spr-container .spr_selector label {
+    right: 8%; }
+
+  ::-webkit-input-placeholder {
+    color: #999999;
+    opacity: 1; }
+
+  :-moz-placeholder {
+    /* Firefox 18- */
+    color: #999999;
+    opacity: 1; }
+
+  ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #999999;
+    opacity: 1; }
+
+  :-ms-input-placeholder {
+    color: #999999;
+    opacity: 1; } }
+@media all and (min-width: 480px) and (max-width: 767px) {
+  .ac_results {
+    width: 429px !important; }
+
+  ::-webkit-input-placeholder {
+    color: #999999;
+    opacity: 1; }
+
+  :-moz-placeholder {
+    /* Firefox 18- */
+    color: #999999;
+    opacity: 1; }
+
+  ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #999999;
+    opacity: 1; }
+
+  :-ms-input-placeholder {
+    color: #999999;
+    opacity: 1; }
+
+  .spr-container .spr_selector label {
+    right: 6%; } }
+.spr-container.msie9 {
+  width: 70% !important; }
+
+.ac_results {
+  text-align: left;
+  padding: 0px;
+  border: 1px solid #ddd;
+  background-color: white;
+  overflow: hidden;
+  z-index: 99999;
+  margin-left: -1px;
+  margin-top: 1px; }
+
+.ac_results ul {
+  width: 100%;
+  list-style-position: outside;
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+.ac_results li {
+  margin: 0px;
+  padding: 2px 5px;
+  cursor: default;
+  display: block;
+  /* 
+  if width will be 100% horizontal scrollbar will apear 
+  when scroll mode will be used
+  */
+  /*width: 100%;*/
+  font: menu;
+  font-size: 12px;
+  /* 
+  it is very important, if line-height not setted or setted 
+  in relative units scroll will be broken in firefox
+  */
+  line-height: 16px;
+  overflow: hidden; }
+
+.ac_results li .fa {
+  font-size: 13px;
+  padding: 0 10px; }
+
+.rtl .ac_results li .fa.fa-angle-right:before {
+  content: "\f104"; }
+.rtl .ac_results li img {
+  float: right; }
+.rtl .ac_results li span, .rtl .ac_results li .fa {
+  float: right;
+  margin: 15px 0 0; }
+
+/*
+.ac_loading {
+	background: white url('indicator.gif') right center no-repeat;
+}
+*/
+.ac_odd {
+  background-color: #eee; }
+
+.ac_over {
+  background-color: #0A246A;
+  color: white; }
+
+.sp_searchpro .sprsearch-form {
+  border: solid 1px #dddddd;
+  height: 34px; }
+  .sp_searchpro .sprsearch-form .spr_selector {
+    width: 150px;
+    float: left;
+    background: #eeeeee;
+    height: 100%;
+    border-right: solid 1px #ddd;
+    position: relative; }
+    .sp_searchpro .sprsearch-form .spr_selector:after {
+      content: "\f0d7";
+      font-family: Fontawesome;
+      color: #444;
+      height: 34px;
+      width: 34px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      cursor: pointer;
+      pointer-events: none;
+      background: transparent;
+      z-index: 2;
+      font-size: 12px;
+      line-height: 34px;
+      text-align: center; }
+    .sp_searchpro .sprsearch-form .spr_selector .spr_select {
+      height: 100%;
+      background: transparent;
+      padding: 0 35px 0 15px;
+      font-size: 12px;
+      color: #444;
+      position: relative;
+      z-index: 1; }
+  .sp_searchpro .sprsearch-form .text-search {
+    width: calc(100% - 150px);
+    float: left;
+    height: 100%; }
+    .sp_searchpro .sprsearch-form .text-search .spr-query {
+      height: 100%;
+      font-size: 12px;
+      color: #444;
+      padding: 0 35px 0 15px;
+      line-height: 34px;
+      border-radius: 0; }
+  .sp_searchpro .sprsearch-form .spr-search-button {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    background: #666666;
+    color: #fff;
+    height: 34px;
+    width: 34px;
+    z-index: 2; }
+    .sp_searchpro .sprsearch-form .spr-search-button .fa {
+      line-height: 34px;
+      font-size: 20px; }
+
+.searchmobile {
+  display: none; }
+
+.header_v2 .sp_searchpro {
+  padding: 8px 0 0; }
+  .header_v2 .sp_searchpro .sprsearch-form .spr-search-button {
+    background: transparent; }
+    .header_v2 .sp_searchpro .sprsearch-form .spr-search-button .fa {
+      font-size: 17px; }
+
+.content-v2 .ac_results {
+  width: 720px !important; }
+
+.header_v3 .sp_searchpro {
+  padding: 8px 0 0; }
+  .header_v3 .sp_searchpro .sprsearch-form .spr-search-button {
+    background: transparent; }
+    .header_v3 .sp_searchpro .sprsearch-form .spr-search-button .fa {
+      font-size: 17px; }
+  .header_v3 .sp_searchpro .sprsearch-form .spr_selector {
+    width: 135px;
+    background: #fff; }
+  .header_v3 .sp_searchpro .sprsearch-form .text-search {
+    width: calc(100% - 135px); }
+    .header_v3 .sp_searchpro .sprsearch-form .text-search .spr-query {
+      color: #999; }
+
+.content-v3 .ac_results {
+  width: 235px !important; }
+
+.header_v4 .sp_searchpro {
+  padding: 8px 0 0; }
+  .header_v4 .sp_searchpro .sprsearch-form {
+    border-radius: 3px;
+    overflow: hidden;
+    border: none; }
+    .header_v4 .sp_searchpro .sprsearch-form .spr-search-button {
+      background: #aaa;
+      width: 45px;
+      top: 0;
+      right: 0;
+      border-bottom: solid 2px #999; }
+      .header_v4 .sp_searchpro .sprsearch-form .spr-search-button .fa {
+        font-size: 14px; }
+    .header_v4 .sp_searchpro .sprsearch-form .spr_selector {
+      width: 135px;
+      background: #fff; }
+    .header_v4 .sp_searchpro .sprsearch-form .text-search {
+      width: calc(100% - 135px); }
+      .header_v4 .sp_searchpro .sprsearch-form .text-search .spr-query {
+        color: #999;
+        padding: 0 45px 0 15px; }
+
+.content-v4 .ac_results {
+  width: 535px !important; }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .ac_results {
+    width: 305px !important; }
+
+  .content-v2 .ac_results {
+    width: 547px !important; }
+
+  .content-v3 .ac_results {
+    width: 158px !important; }
+
+  .content-v4 .ac_results {
+    width: 321px !important; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .ac_results {
+    width: 195px !important; }
+
+  .content-v2 .ac_results {
+    width: 320px !important; }
+
+  .content-v3 .ac_results {
+    width: 397px !important; }
+
+  .content-v4 .ac_results {
+    width: 336px !important; } }
+@media (max-width: 767px) {
+  .sp_searchpro .spr-container .icon-search {
+    display: block;
+    background: #666666;
+    color: #fff;
+    height: 34px;
+    width: 37px;
+    cursor: pointer; }
+    .sp_searchpro .spr-container .icon-search .fa {
+      line-height: 34px;
+      font-size: 20px;
+      display: block;
+      text-align: center; }
+
+  .sp_searchpro .sprsearch-form {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: -36px;
+    z-index: 2;
+    width: 465px; }
+
+  .sp_searchpro .sprsearch-form .spr-search-button {
+    width: 37px; }
+
+  .searchmobile {
+    display: block;
+    float: right;
+    margin: 0 36px 0 0;
+    border-left: solid 1px #777;
+    position: relative; }
+
+  .ac_results, .content-v2 .ac_results {
+    width: 315px !important; }
+
+  .header_v2 .sp_searchpro {
+    padding: 0; }
+
+  .header_v3 .searchmobile {
+    padding: 0;
+    margin-top: -1px; }
+
+  .content-v3 .ac_results {
+    width: 330px !important; }
+
+  .header_v4 .sp_searchpro {
+    padding: 0; }
+    .header_v4 .sp_searchpro .sprsearch-form {
+      border: solid 1px #ddd;
+      border-radius: 0; }
+
+  .content-v4 .ac_results {
+    width: 330px !important; }
+
+  .rtl .searchmobile {
+    float: left;
+    margin: 0 0 0 36px;
+    border-right: solid 1px #777;
+    border-left: none; }
+  .rtl .sp_searchpro .sprsearch-form {
+    right: auto;
+    left: -36px; }
+  .rtl .header_v3 .searchmobile {
+    margin-top: -1px; } }
+@media (max-width: 479px) {
+  .sp_searchpro .sprsearch-form {
+    width: 290px; }
+
+  .ac_results, .content-v2 .ac_results, .content-v3 .ac_results, .content-v4 .ac_results {
+    width: auto !important;
+    left: 16px !important;
+    right: 15px !important; } }
