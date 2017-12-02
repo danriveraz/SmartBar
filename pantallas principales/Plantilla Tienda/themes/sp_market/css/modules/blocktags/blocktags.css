@@ -1,0 +1,15 @@
+.tags_block .block_content {
+  overflow: hidden; }
+  .tags_block .block_content a {
+    display: block;
+    font-size: 12px;
+    padding: 5px 20px;
+    float: left;
+    border-radius: 3px;
+    color: #444;
+    background: #eee;
+    margin: 0 5px 5px 0;
+    transition: 0.3s all ease 0s; }
+
+.content_v3 #tags_block_left {
+  display: none; }

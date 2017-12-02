@@ -95,8 +95,14 @@
                       <a href="{{url('RegistroLogin/'.$usuario->id)}}"><i class="fa fa-clock-o pull-left"></i>Horas Ingreso</a>
                     </li>
                     <li>
+
                       <a id="Estadisticas" nombre="barraNavegacion" href="{{url('Estadisticas/')}}">
                       <i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a>
+
+
+                      <a href="#"><i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a>
+                    </li>
+                    <li>
 
                     </li>
                     <li>

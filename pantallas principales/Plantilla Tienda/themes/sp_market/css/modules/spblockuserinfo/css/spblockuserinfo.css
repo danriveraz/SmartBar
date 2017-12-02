@@ -1,0 +1,210 @@
+#user_infoblock-top {
+  position: relative;
+  float: right; }
+  #user_infoblock-top ul {
+    font-size: 0;
+    height: 34px; }
+    #user_infoblock-top ul li {
+      display: inline-block;
+      line-height: 34px;
+      border-left: solid 1px #ddd;
+      font-size: 12px;
+      overflow: hidden;
+      text-align: center;
+      height: 34px;
+      padding: 0;
+      transition: 0.3s all ease 0s;
+      overflow: hidden; }
+      #user_infoblock-top ul li a {
+        padding: 0 12px; }
+        #user_infoblock-top ul li a:before {
+          content: "";
+          display: inline-block;
+          height: 13px;
+          width: 13px;
+          background-image: url(../../../../img/icon/icon_userinfo.png);
+          background-repeat: no-repeat;
+          font-size: 12px;
+          position: relative;
+          top: 1px;
+          transition: 0.3s all ease 0s; }
+        #user_infoblock-top ul li a span {
+          padding: 0 7px;
+          display: none; }
+      #user_infoblock-top ul li.login, #user_infoblock-top ul li.logout {
+        border-right: solid 1px #ddd; }
+      #user_infoblock-top ul li.account {
+        width: auto; }
+        #user_infoblock-top ul li.account a {
+          color: #fff; }
+          #user_infoblock-top ul li.account a span {
+            display: inline-block; }
+          #user_infoblock-top ul li.account a:before {
+            background-position: -2px -19px; }
+      #user_infoblock-top ul li.wishlist a:before {
+        background-position: -18px 0; }
+      #user_infoblock-top ul li.checkout a:before {
+        background-position: -33px 0; }
+      #user_infoblock-top ul li.logout a:before {
+        background-position: -48px 0; }
+      #user_infoblock-top ul li.login a:before {
+        background-position: -48px 0; }
+    #user_infoblock-top ul:hover li {
+      background: transparent; }
+      #user_infoblock-top ul:hover li.account {
+        background: transparent; }
+        #user_infoblock-top ul:hover li.account a:before {
+          background-position: -2px 0; }
+      #user_infoblock-top ul:hover li a span {
+        display: none; }
+      #user_infoblock-top ul:hover li:hover {
+        width: auto; }
+        #user_infoblock-top ul:hover li:hover a {
+          color: #fff; }
+          #user_infoblock-top ul:hover li:hover a span {
+            display: inline-block; }
+      #user_infoblock-top ul:hover li.account:hover a:before {
+        background-position: -2px -19px; }
+      #user_infoblock-top ul:hover li.wishlist:hover a:before {
+        background-position: -18px -19px; }
+      #user_infoblock-top ul:hover li.checkout:hover a:before {
+        background-position: -33px -19px; }
+      #user_infoblock-top ul:hover li.logout:hover a:before {
+        background-position: -48px -19px; }
+      #user_infoblock-top ul:hover li.login:hover a:before {
+        background-position: -48px -19px; }
+
+.header_v2 #user_infoblock-top ul li, .header_v3 #user_infoblock-top ul li {
+  border: none; }
+  .header_v2 #user_infoblock-top ul li a span, .header_v3 #user_infoblock-top ul li a span {
+    display: inline-block; }
+  .header_v2 #user_infoblock-top ul li.login, .header_v2 #user_infoblock-top ul li.logout, .header_v3 #user_infoblock-top ul li.login, .header_v3 #user_infoblock-top ul li.logout {
+    display: none; }
+  .header_v2 #user_infoblock-top ul li.account, .header_v3 #user_infoblock-top ul li.account {
+    width: auto;
+    background: transparent; }
+    .header_v2 #user_infoblock-top ul li.account a, .header_v3 #user_infoblock-top ul li.account a {
+      color: #666; }
+      .header_v2 #user_infoblock-top ul li.account a span, .header_v3 #user_infoblock-top ul li.account a span {
+        display: inline-block; }
+      .header_v2 #user_infoblock-top ul li.account a:before, .header_v3 #user_infoblock-top ul li.account a:before {
+        background-position: -2px 0; }
+  .header_v2 #user_infoblock-top ul li.wishlist a:before, .header_v3 #user_infoblock-top ul li.wishlist a:before {
+    background-position: -18px 0; }
+  .header_v2 #user_infoblock-top ul li.checkout a:before, .header_v3 #user_infoblock-top ul li.checkout a:before {
+    background-position: -33px 0; }
+  .header_v2 #user_infoblock-top ul li.logout a:before, .header_v3 #user_infoblock-top ul li.logout a:before {
+    background-position: -48px 0; }
+  .header_v2 #user_infoblock-top ul li.login a:before, .header_v3 #user_infoblock-top ul li.login a:before {
+    background-position: -48px 0; }
+.header_v2 #user_infoblock-top ul:hover li a span, .header_v3 #user_infoblock-top ul:hover li a span {
+  display: inline-block; }
+.header_v2 #user_infoblock-top ul:hover li:hover, .header_v3 #user_infoblock-top ul:hover li:hover {
+  width: auto; }
+  .header_v2 #user_infoblock-top ul:hover li:hover a, .header_v3 #user_infoblock-top ul:hover li:hover a {
+    color: #fff; }
+    .header_v2 #user_infoblock-top ul:hover li:hover a span, .header_v3 #user_infoblock-top ul:hover li:hover a span {
+      display: inline-block; }
+
+.header_v4 #user_infoblock-top {
+  overflow: hidden; }
+  .header_v4 #user_infoblock-top ul {
+    margin: 0 -10px; }
+    .header_v4 #user_infoblock-top ul li {
+      border: none;
+      position: relative; }
+      .header_v4 #user_infoblock-top ul li:before {
+        content: "";
+        display: block;
+        height: 12px;
+        width: 1px;
+        background: #444;
+        position: absolute;
+        right: 0;
+        top: 12px; }
+      .header_v4 #user_infoblock-top ul li a {
+        padding: 0 5px;
+        color: #444; }
+        .header_v4 #user_infoblock-top ul li a:before {
+          display: none; }
+      .header_v4 #user_infoblock-top ul li a span {
+        display: inline-block; }
+      .header_v4 #user_infoblock-top ul li.login, .header_v4 #user_infoblock-top ul li.logout {
+        display: none; }
+      .header_v4 #user_infoblock-top ul li.account {
+        width: auto;
+        background: transparent; }
+        .header_v4 #user_infoblock-top ul li.account a {
+          color: #444; }
+          .header_v4 #user_infoblock-top ul li.account a span {
+            display: inline-block; }
+      .header_v4 #user_infoblock-top ul li.checkout:before {
+        display: none; }
+    .header_v4 #user_infoblock-top ul:hover li a span {
+      display: inline-block; }
+    .header_v4 #user_infoblock-top ul:hover li:hover {
+      width: auto;
+      background: #fff; }
+      .header_v4 #user_infoblock-top ul:hover li:hover a span {
+        display: inline-block; }
+
+@media (min-width: 480px) and (max-width: 768px) {
+  .header_v2 #user_infoblock-top, .header_v3 #user_infoblock-top {
+    float: none;
+    display: inline-block;
+    vertical-align: top; }
+
+  .header_v4 #user_infoblock-top {
+    float: none; }
+
+  .rtl .header_v2 #user_infoblock-top, .rtl .header_v3 #user_infoblock-top {
+    float: none; } }
+@media (max-width: 480px) {
+  #user_infoblock-top {
+    width: 100%; }
+    #user_infoblock-top ul li {
+      width: 25%;
+      border-left: none;
+      border-right: solid 1px #ddd; }
+      #user_infoblock-top ul li.account {
+        width: 25%; }
+        #user_infoblock-top ul li.account a span {
+          display: none; }
+    #user_infoblock-top ul:hover li a span {
+      display: none; }
+    #user_infoblock-top ul:hover li:hover {
+      width: 25%; }
+      #user_infoblock-top ul:hover li:hover a {
+        color: #fff; }
+        #user_infoblock-top ul:hover li:hover a span {
+          display: none; }
+
+  .header_v2 #user_infoblock-top ul li, .header_v3 #user_infoblock-top ul li {
+    width: 33.3333%; }
+    .header_v2 #user_infoblock-top ul li a span, .header_v3 #user_infoblock-top ul li a span {
+      display: none; }
+    .header_v2 #user_infoblock-top ul li.account, .header_v3 #user_infoblock-top ul li.account {
+      width: 33.3333%; }
+      .header_v2 #user_infoblock-top ul li.account a span, .header_v3 #user_infoblock-top ul li.account a span {
+        display: none; }
+  .header_v2 #user_infoblock-top ul:hover li a span, .header_v3 #user_infoblock-top ul:hover li a span {
+    display: none; }
+  .header_v2 #user_infoblock-top ul:hover li:hover, .header_v3 #user_infoblock-top ul:hover li:hover {
+    width: 33.3333%; }
+    .header_v2 #user_infoblock-top ul:hover li:hover a, .header_v3 #user_infoblock-top ul:hover li:hover a {
+      color: #fff; }
+      .header_v2 #user_infoblock-top ul:hover li:hover a span, .header_v3 #user_infoblock-top ul:hover li:hover a span {
+        display: none; }
+
+  .header_v4 #user_infoblock-top ul li {
+    width: auto; }
+  .header_v4 #user_infoblock-top ul:hover li:hover {
+    width: auto; }
+
+  .rtl #user_infoblock-top ul li {
+    border-right: none;
+    border-left: solid 1px #ddd; }
+  .rtl .header_v2 #user_infoblock-top ul li, .rtl .header_v3 #user_infoblock-top ul li {
+    border: none; }
+  .rtl .header_v4 #user_infoblock-top ul li {
+    border: none; } }
