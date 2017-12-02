@@ -33,7 +33,7 @@
                   <a data-filter=".Mesero"><i class="fa fa-houzz"></i>Meseros</a>
                 </li>
                 <li>
-                  <a data-filter=".Cajero"><i class="fa fa-wpbeginner"></i>Cajeros</a>
+                  <a data-filter=".Cajero"><i class="fa fa-wpbeginner pull-left"></i>Cajeros</a>
                 </li>
               </ul>
             </div>
@@ -64,7 +64,7 @@
                  @else Deshabilitado
                  @endif">
             <div class="heading">
-              <i class="pocketMorado fa fa-times pull-right"></i>
+              <!--<i class="pocketMorado fa fa-times pull-right"></i>-->
               <i class="pocketMorado fa fa-eye pull-right" data-toggle="modal" href="#myModal{{$usuario->id}}"></i>
               <!--<a href="{{url('Auth/usuario/'.$usuario->id.'/edit')}}"><i class="fa fa-gear  pull-right"></i></a>-->
             </div>
@@ -95,21 +95,26 @@
                       <a href="{{url('RegistroLogin/'.$usuario->id)}}"><i class="fa fa-clock-o pull-left"></i>Horas Ingreso</a>
                     </li>
                     <li>
+
+                      <a id="Estadisticas" nombre="barraNavegacion" href="{{url('Estadisticas/')}}">
+                      <i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a>
+
+
                       <a href="#"><i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a>
                     </li>
                     <li>
-                      <a href="{{url('Salario')}}"><i class="fa fa-money pull-left"></i>Salario</a>
+
                     </li>
                     <li>
-                      <a href="{{route('Auth.usuario.cambiarEstado',$usuario->id) }}" onclick="return confirm('¿Estas seguro que deseas cambiar el estado de este suario?')">
-                      @if($usuario->estado == 1) <i class="fa fa-toggle-on pull-left"></i>Desactivar
-                      @else <i class="fa fa-toggle-off pull-left"></i> Activar
-                      @endif</a>
+                      <a href="{{url('Salario/')}}"><i class="fa fa-money pull-left"></i>Salario</a>
                     </li>
                   </ul>
                 </div>
-                  <a href="{{ route('AgendaTrabajadores.create') }}" class="dg btn btn-pocket"><i class="fa fa-calendar-o"></i>Agenda</a>
-                  <button class="dg btn btn-pocket"><i class="fa fa-envelope-o"></i>Mensaje</button>
+                  <a href="{{ url('Agenda/') }}" class="dg btn btn-pocket"><i class="fa fa-calendar-o"></i>Agenda</a>
+
+                  <div class="dg btn btn-pocket" data-toggle="modal" href="#ModalMsg{{$usuario->id}}">
+                    <i class="fa fa-envelope-o"><a class="dg btn btn-pocket">Mensaje</a></i>
+                  </div>
               </div>
             </div>
           </div>
@@ -269,6 +274,69 @@
 </div>
 @endforeach
 <!-- Fin de modal ver más datos-->
+<!--inicio modal mensajes-->
+@foreach($usuarios as $usuario)
+<div class="modal fade" id="ModalMsg{{$usuario->id}}">
+  <div class="modal-body">
+    <div class="col-lg-7" style="background-color:#FFFFFF">
+      <div class="modal-header">
+          <button aria-hidden="true" class=" close " data-dismiss="modal" type="button">&times;</button>
+          <h4 class="modal-title text-center"> Mensaje para {{$usuario->nombrePersona}} </h4>
+
+      </div>
+      <div class="modal-body">
+        {!! Form::open(['method' => 'POST', 'action' => 'MensajeController@store']) !!}
+        <div class="row">
+            <div class="col">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <div class="row">
+                    <input name='id_receptor' type="hidden" class="form-control" value="{{$usuario->id}}">
+                      <div class="col-md-9">
+                        <div class="widget-content ">
+                          <div class="gallery-container">
+                            <a class="gallery-item filter1 fancybox" href="#" rel="">
+                            <img src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
+                            </a>
+                         </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!--<a class="pull-right" href="#">Mirar Calendario De Trabajo</a>-->
+              </div>
+              <div class="col">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
+                      <input name="asunto" class="form-control" type="text" placeholder="Asunto" required="true">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-envelope"></i></span><textarea name="descripcion" class="form-control"  placeholder="Mensaje..." required="true" style="margin=0px; width:300px; height:100px"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div  class="modal-footer">
+                <button class="btn btn-bitbucket" type="submit">
+                  <i class="fa fa-send"></i>Enviar mensaje
+                </button>
+              </div>
+            </div>
+        </div>
+        {!! Form::close() !!}
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+<!--Fin modal mensaje-->
 <!-- inicio de slider de agregar usuario -->
 <div class="style-selector" >
   <div class="style-selector-container">

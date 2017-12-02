@@ -19,7 +19,7 @@ class UsuariosController extends Controller
     $this->middleware('guardarAccionUser');// solo con colocar este middleware aquí, ya en todas las vistas se le va a estar actualizando las horas de las actividades que ha estado haciendo, esto se debe a en todas las vistas hay un ajax que verifica que el usuario esté logueado y hace un llamado a este controlador, por lo tanto en las todas las vistas se está ejecutando este middleware
     $this->middleware('Permisos:Admin')->except(['edit','update']);
     $this->middleware('PermisoEditarUsuario')->only(['edit','update']);
-  }  
+  }
 
   public function index(){
     $usuarios = User::where('idEmpresa',Auth::User()->idEmpresa)->orderBy('id','ASC')->paginate(10);
@@ -91,7 +91,7 @@ class UsuariosController extends Controller
     if ($validator->fails()){
         return redirect()->route('Auth.usuario.create')->withErrors($validator)->withInput();
       }else{
-        
+
         $Permisos = $request['Permisos'];
           $usuario = new User;
           $usuario->nombrePersona = $request->nombrePersona;
@@ -142,7 +142,7 @@ class UsuariosController extends Controller
             //obtenemos el nombre del archivo
             $nombre = $file->getClientOriginalName();
             //indicamos que queremos guardar un nuevo archivo en el disco local
-            \Storage::disk('local')->put($nombre,  \File::get($file));        
+            \Storage::disk('local')->put($nombre,  \File::get($file));
             $usuario->imagenPerfil = $nombre;// guarda la imagen en la base de datos
           }
 
@@ -188,7 +188,7 @@ class UsuariosController extends Controller
   }
 
   public function update(Request $request, $id){
-    
+
     $rules = [
         'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
         'imagenPerfil' => 'image',
@@ -198,16 +198,16 @@ class UsuariosController extends Controller
         $rules += ['Permisos' => 'required',];
     }
     if($request->username!=$usuario->username){// agrega la regla si el username ha sido modificado
-      $rules += ['username'=> 'required|min:3|max:40|alpha_dash|unique:usuario,username']; 
-    }    
+      $rules += ['username'=> 'required|min:3|max:40|alpha_dash|unique:usuario,username'];
+    }
     if($request->cedula!=$usuario->cedula){// agrega la regla si la cedula ha sido modificada
-      $rules += ['cedula' => 'required|min:1|max:9999999999|numeric']; 
+      $rules += ['cedula' => 'required|min:1|max:9999999999|numeric'];
     }
     if ($request->password!=null) {// agrega la regla si el password ha sido modificado
       $rules += ['password' => 'required|min:6|max:18|confirmed'];
     }
     if($request->telefono!=$usuario->telefono){ // agrega la regla si el telefomo ha sido modificado
-      $rules += ['telefono' => 'required|min:1|max:9999999999|numeric']; 
+      $rules += ['telefono' => 'required|min:1|max:9999999999|numeric'];
     }
 
     $messages = [
@@ -226,8 +226,8 @@ class UsuariosController extends Controller
       }
       if($request->username!=$usuario->username){
         $usuario->username=$request->username;
-      } 
-      if($request->telefono!=$usuario->telefono){ 
+      }
+      if($request->telefono!=$usuario->telefono){
         $usuario->telefono=$request->telefono;
       }
       $usuario->nombrePersona = $request->nombrePersona;
@@ -240,7 +240,7 @@ class UsuariosController extends Controller
         //obtenemos el nombre del archivo
         $nombre = $file->getClientOriginalName();
         //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('local')->put($nombre,  \File::get($file));        
+        \Storage::disk('local')->put($nombre,  \File::get($file));
         $usuario->imagenPerfil = $nombre;// guarda la imagen en la base de datos
       }
 
@@ -374,7 +374,7 @@ class UsuariosController extends Controller
             //obtenemos el nombre del archivo
             $nombre = $file->getClientOriginalName();
             //indicamos que queremos guardar un nuevo archivo en el disco local
-            \Storage::disk('local')->put($nombre,  \File::get($file));        
+            \Storage::disk('local')->put($nombre,  \File::get($file));
             $usuario->imagenPerfil = $nombre;// guarda la imagen en la base de datos
           }
 
@@ -406,7 +406,7 @@ class UsuariosController extends Controller
             $userActual->save();
           }
           $usuario->save();// guardar el usuario
-          
+
           // enviar mail
           $data = ['user'=>$usuario, 'contrasena' => $contrasena];
           Mail::send('Emails.confirmacionDatosTrabajador', ['data' => $data], function($mail) use($data){
@@ -416,10 +416,11 @@ class UsuariosController extends Controller
           $user = User::all()->last()->toJson();
           return response()->json(['success' => true,'message' => 'record updated', 'user' => $user], 200);
           Flash::success("El usuario se ha registrado satisfactoriamente")->important();
+          return redirect()->route('Auth.usuario.index');
 
-        }if ($validator->fails()) { 
+        }if ($validator->fails()) {
             $errors = $validator->errors();
-            $errors =  json_decode($errors); 
+            $errors =  json_decode($errors);
             return response()->json(['success' => false,'message' => $errors], 422);
         }
       }
@@ -441,7 +442,7 @@ class UsuariosController extends Controller
     $empresa =  Auth::User()->empresa;
     $user =  User::find($empresa->usuario_id);
     if($request->telefono!=$empresa->telefono){
-      $rules += ['telefono' => 'required|min:1|max:9999999999|numeric']; 
+      $rules += ['telefono' => 'required|min:1|max:9999999999|numeric'];
     }
     $validator = Validator::make($request->all(), $rules);
     if ($validator->fails()){
@@ -454,7 +455,7 @@ class UsuariosController extends Controller
         $nombre = $file->getClientOriginalName();
 
         //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('local')->put($nombre,  \File::get($file));        
+        \Storage::disk('local')->put($nombre,  \File::get($file));
         $user->imagenNegocio = $nombre;
       }
 
@@ -475,4 +476,5 @@ class UsuariosController extends Controller
       return response()->json(['success' => false,'message' => 'Ya no está logueado']);
     }
   }
+
 }
