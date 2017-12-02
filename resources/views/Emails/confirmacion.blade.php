@@ -6,4 +6,4 @@
 
 <a href="{{url('/')}}/Auth/confirm/email/{{$data->email}}/confirm_token/{{$data->confirm_token}}">
 Confirmar mi cuenta</a>
-<img src="{{asset('/images/Correo.jpeg')}}">
+<img src="{{asset('/images/Correo.jpeg')}}" width="600" height="500">

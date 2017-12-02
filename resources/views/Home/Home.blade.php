@@ -110,9 +110,9 @@
                                 <div class="description wow fadeInLeftBig">
                                     <p><b>Logueate usando redes sociales</b></p>
                                 </div>
-     <a class="btn btn-link-1 btn-social-icon btn-twitter scroll-link" href="#pricing"><span class="fa fa-twitter"></span></a>
-     <a class="btn btn-link-1 btn-social-icon btn-facebook scroll-link" href="#pricing"><span class="fa fa-facebook"></span></a>
-     <a class="btn btn-link-1 btn-social-icon btn-google scroll-link" href="#pricing"><span class="fa fa-google"></span></a>
+     <a class="btn btn-link-1 btn-social-icon btn-twitter " href="#pricing"><span class="fa fa-twitter"></span></a>
+     <a class="btn btn-link-1 btn-social-icon btn-facebook " href="{{ url('/Auth/facebook') }}"><span class="fa fa-facebook"></span></a>
+     <a class="btn btn-link-1 btn-social-icon btn-google " href="{{ url('/Auth/google') }}"><span class="fa fa-google"></span></a>
 
                             </div>
                         </div>
@@ -145,6 +145,12 @@
 			                        	<div class="text-danger">{{$errors->first('name')}}</div>
 			                        </div>
 			                        <div class="form-group">
+								        <select id="sexo"  name="sexo" class="form-last-name form-control"  required>
+					                      <option value="Masculino">Masculino</option>
+					                      <option value="Femenino">Femenino</option>
+					                    </select>
+			                        </div>
+			                        <div class="form-group">
 			                        	
 			                        	<input type="text"  name="email" value="{{ old('email') }}" placeholder="Email..." class="form-email form-control" id="form-email">
 			                        	<div class="text-danger">{{$errors->first('email')}}</div>
@@ -158,18 +164,18 @@
 			                        </div>
 
                                 <div class="form-group">
-                                    <div class="left-w3-agile">
-                                    <select id="idCiudad" name="idCiudad" class="form-email form-control" id="form-email" required>
-                                    	<option></option>  
-                                    </select>
-                                	</div>
-									<div class="right-agileits">
+									<div class="left-w3-agile"  >
                                     <select name="idDepto" class="form-last-name form-control" id="idDepto" required>
 										@foreach($departamentos as $departamento)
 	                                  		<option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
 	                                 	@endforeach
                                     </select>
 									</div>
+                                    <div class="right-agileits">
+                                    <select id="idCiudad" name="idCiudad" class="form-email form-control" id="form-email" required>
+                                    	<option></option>  
+                                    </select>
+                                	</div>
                                 </div>
 
 

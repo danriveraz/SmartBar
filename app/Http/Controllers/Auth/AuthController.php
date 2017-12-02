@@ -77,7 +77,7 @@ class AuthController extends Controller
             'email' => 'required|email|max:255',
             //'cedula' => 'required|min:1|max:9999999999|numeric',
             'password' => 'required|min:6|max:18',
-            //'sexo' => 'required',
+            'sexo' => 'required',
             //'telefono' => 'required|min:1|max:9999999999|numeric',
         ];
          
@@ -105,8 +105,14 @@ class AuthController extends Controller
             $admin->ciudad = Ciudad::find($request->idCiudad)->nombre;
             $admin->confirmoEmail = 0;
             $admin->estado = true;
-            $admin->imagenPerfil = "perfil.jpg";
-            $admin->imagenNegocio = "perfil.jpg";
+            $admin->sexo = $request->sexo;
+            if($request->sexo == "Femenino"){
+                $admin->imagenPerfil = "perfil.jpg";
+                $admin->imagenNegocio = "perfil.jpg";         
+            }else{
+                $admin->imagenPerfil = "perfilhombre.png";
+                $admin->imagenNegocio = "perfilhombre.png";   
+            }
             $admin->password = bcrypt($request->password);
             $admin->remember_token = str_random(100);
             $admin->confirm_token = str_random(100);
@@ -132,12 +138,14 @@ class AuthController extends Controller
             $auxiliarBool = true;
             $auxiliarUser;
             $auxiliarUsername;
+            $pos = strpos($request->nombrePersona, ' ');// posicíon del primer espacio en el nombre para recortar hasta ahí 
+            $nombreInicial = substr($request->nombrePersona,0,$pos);// tiene solo el primer nombre 
             while ($auxiliarBool) {
                 if($numeroRepetido==0){
-                    $auxiliarUsername = str_replace(' ','',$request->nombrePersona).'-'.str_replace(' ','',$request->nombreEstablecimiento);
+                    $auxiliarUsername = str_replace(' ','',$nombreInicial).'-'.str_replace(' ','',$request->nombreEstablecimiento);
                     $auxiliarUser = User::where('username', $auxiliarUsername)->first();
                 }else{
-                    $auxiliarUsername = str_replace(' ','',$request->nombrePersona).'-'.str_replace(' ','',$request->nombreEstablecimiento).$numeroRepetido;
+                    $auxiliarUsername = str_replace(' ','',$nombreInicial).'-'.str_replace(' ','',$request->nombreEstablecimiento).$numeroRepetido;
                     $auxiliarUser = User::where('username', $auxiliarUsername)->first();
                 }
                 if($auxiliarUser==null){
