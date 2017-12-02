@@ -45,10 +45,10 @@
                                     <nav class="side-menu">
                                         <ul class="nav">
                                           <li class="active"><a data-toggle="tab" href="#tab1"><span class="fa fa-user"></span> Perfil</a></li>
-                                          <li><a data-toggle="tab" href="#tab2"><span class="fa fa-gear"></span> Configuracion</a></li>
-                                          <li><a data-toggle="tab" href="#tab3"><span class="fa fa-pencil-square-o"></span> Mesas</a></li>
-                                          <li><a data-toggle="tab" href="#tab4"><span class="fa fa-envelope"></span> Categoria</a></li>
-                                          <li><a data-toggle="tab" href="#tab5"><p><span class="fa fa-envelope"></span> Factura</p></a></li>
+                                          <li><a id="conf" data-toggle="tab" href="#tab2"><span class="fa fa-gear"></span> Configuracion</a></li>
+                                          <li><a id="mesa" data-toggle="tab" href="#tab3"><span class="fa fa-pencil-square-o"></span> Mesas</a></li>
+                                          <li><a id="cat" data-toggle="tab" href="#tab4"><span class="fa fa-envelope"></span> Categoria</a></li>
+                                          <li><a id="fac" data-toggle="tab" href="#tab5"><p><span class="fa fa-envelope"></span> Factura</p></a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -245,16 +245,132 @@
                                       </div>
 
                                       <div class="tab-pane" id="tab2">
-                                       numero 2
+
                                       </div>
 
                                       <div class="tab-pane" id="tab3">
-                                      numero 3
+                                        <div class="col-sm-offset-2 col-sm-8">
+                                        <div class="panel-tittle" align="center">
+                                              <h3><b>MIS MESAS</b></h3>
+                                          </div>
+                                          <div class="navbar-form navbar-left" >
+                                            <div class="form-group" align="left">
+                                                <a href="#addModal" class="btn btn-default" data-toggle="modal">
+                                                    <i class="fa fa-plus"></i> Nueva mesa &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                                                </a>
+                                            </div>
+                                          </div >
+                                          <div class="navbar-form navbar-right" >
+                                            <div class="form-group" align="right">
+                                              <div class="icon-addon addon-md">
+                                                  <input  id="nombreInput" type="text" size="40" maxlength="30" placeholder="Buscar..." class="form-control" />
+                                                  <label for="nombreInput" class="glyphicon glyphicon-search" rel="tooltip" title="nombreInput"></label>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                        <div class="modal fade in" id="addModal" >
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <form name="formulario" autocomplete="on" method="post" action="{{url('mesas/create')}}">
+                                                    {{csrf_field()}}
+                                                  <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+                                                  <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                                                    <h4 class="modal-title">
+                                                    Nuevo Mesa
+                                                    </h4>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <div class="" >
+                                                    <div class="widget-content">
+                                                      <div class="form-group">
+                                                        <div class="form-group">
+                                                            <input type="text" name="nombre" class="form-control" placeholder="Nombre de la mesa" required="true"/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <select name="estado"  class="form-control">
+                                                              <option value="Disponible">Disponible</option>
+                                                              <option value="Ocupada">Ocupada</option>
+                                                              <option value="Reservada">Reservada</option>
+                                                            </select>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
+                                                  </div>
+                                                </form>
+                                            </div>
+                                           </div>
+                                          </div>
+                                        </div>
+                                        <div id="list-prov" class="col-sm-offset-2 col-sm-8">
+                                        </div>
                                       </div>
 
                                       <div class="tab-pane" id="tab4">
-                                      numero 4
+                                        <div class="col-sm-offset-2 col-sm-8">
+                                        <div class="panel-tittle" align="center">
+                                            <h3><b>MIS CATEGORIAS</b></h3>
+                                        </div>
+                                        @include('flash::message')
+                                        <form class="navbar-form navbar-left">
+                                          <div class="form-group" align="left">
+                                              <a href="#addModal" class="btn btn-default" data-toggle="modal">
+                                                  <i class="fa fa-plus"></i> Nueva categoría &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                                              </a>
+                                          </div>
+                                        </form >
+                                        <div id="busqueda" name="busqueda" class="navbar-form navbar-right">
+                                          <div class="form-group" align="right">
+                                            <div class="icon-addon addon-md">
+                                                <input  id="nombreInput" type="text" size="40" maxlength="30" placeholder="Buscar..." class="form-control" />
+                                                <label for="nombreInput" class="glyphicon glyphicon-search" rel="tooltip" title="nombreInput"></label>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="modal fade in" id="addModal" >
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                              {!! Form::open(['method' => 'POST', 'action' => 'CategoriaController@store']) !!}
+                                                <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+                                                <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                                                  <h4 class="modal-title">
+                                                  Nueva Categoría
+                                                  </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                  <div class="" >
+                                                  <div class="widget-content">
+                                                    <div class="form-group">
+                                                      <div class="form-group">
+                                                          <input type="text" name="nombre" class="form-control" placeholder="Nombre" required="true" required="true" />
+                                                      </div>
+                                                      <br>
+                                                      <div class="form-group">
+                                                          <input type="number" min="0" step="any" name="precio" placeholder="Precio" class="form-control" />
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
+                                                </div>
+                                              {!! Form::close() !!}
+                                          </div>
+                                         </div>
+                                        </div>
+                                        <div class="panel-body">
+                                          <div id="list-cat" class="col-sm-offset-2 col-sm-8"></div>
+                                        </div>
                                       </div>
+                                      </div>
+
+
 
                                       <div class="tab-pane" id="tab5">
                                       Numero 5
@@ -276,6 +392,102 @@
          {!! Form::close() !!}
     </div>
   </div>
-  @if(Auth::User()->esAdmin)
-    @endsection
-  @endif
+
+                                        <script type="text/javascript">
+
+                                          $(document).ready(function(){
+                                            listprov();
+                                            $("#nombreInput").keyup(function(e){
+                                                var dato = $("#nombreInput").val();
+                                                var url = "catlistall?nombre=";
+                                                var urlf = url+dato;
+                                                sleep(100);
+                                                $.ajax({
+                                                  type:'get',
+                                                  url:urlf,
+                                                  success: function(data){
+                                                    $("#list-cat").empty().html(data);
+                                                  }
+                                                });
+                                            });
+                                          });
+
+                                          function sleep(milliseconds) {
+                                            var start = new Date().getTime();
+                                            for (var i = 0; i < 1e7; i++) {
+                                              if ((new Date().getTime() - start) > milliseconds){
+                                                break;
+                                              }
+                                            }
+                                          }
+
+                                          $(document).on("click",".pagination li a",function(e){
+                                            e.preventDefault();
+                                            var url = $(this).attr("href");
+                                            $.ajax({
+                                              type:'get',
+                                              url:url,
+                                              success: function(data){
+                                                $("#list-cat").empty().html(data);
+                                              }
+                                            });
+                                          });
+
+                                          var listprov = function()
+                                          {
+                                            $.ajax({
+                                              type:'get',
+                                              url: '{{url('catlistall')}}',
+                                              success:  function(data){
+                                                $('#list-cat').empty().html(data);
+                                              }
+                                            });
+                                          }
+
+                                        </script>
+
+                                        <script>
+                                        $(document).ready(function(){
+                                            listprov();
+                                            cambiarCurrent("#mesas");
+                                            $("#nombreInput").keyup(function(e){
+                                                var dato = $("#nombreInput").val();
+                                                var url = "mesaslistall?nombre=";
+                                                var urlf = url+dato;
+                                                sleep(100);
+                                                $.ajax({
+                                                  type:'get',
+                                                  url:urlf,
+                                                  success: function(data){
+                                                      $("#list-prov").empty().html(data);
+                                                  }
+                                                });
+                                            });
+                                        });
+                                         function sleep(milliseconds) {
+                                          var start = new Date().getTime();
+                                          for (var i = 0; i < 1e7; i++) {
+                                            if ((new Date().getTime() - start) > milliseconds){
+                                              break;
+                                            }
+                                          }
+                                        }
+                                        var listprov = function()
+                                          {
+                                            $.ajax({
+                                              type:'get',
+                                              url: '{{url('mesaslistall')}}',
+                                              success:  function(data){
+                                                $("#list-prov").empty().html(data);
+                                              }
+                                            });
+                                          }
+                                        function cambiarCurrent(idInput) {
+                                          $(".current").removeClass("current");
+                                          $(idInput).addClass("current");
+                                        };
+
+                                        </script>
+                                        @if(Auth::User()->esAdmin)
+                                          @endsection
+                                        @endif

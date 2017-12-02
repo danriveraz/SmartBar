@@ -261,10 +261,6 @@
                 </ul>
               </li>
               <li class="dropdown">
-                <a id="mesas" nombre="barraNavegacion" href="{{route('mesas.index')}}">
-                <span aria-hidden="true" class="fa fa-hospital-o"></span>Mesas</a>
-              </li>
-              <li class="dropdown">
                 <a data-toggle="dropdown" href=#>
                 <span aria-hidden="true" class="fa fa-fw fa-sliders"></span>Control<b class="caret"></b></a>
                 <ul class="dropdown-menu">
