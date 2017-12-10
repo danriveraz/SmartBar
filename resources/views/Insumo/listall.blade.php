@@ -15,8 +15,8 @@
               <th width="15%">Nombre</th>
               <th width="15%">Marca</th>
               <th width="15%">Proveedor</th>
-              <th width="10%">Compra</th>
-              <th width="10%">Venta</th>
+              <th width="10%">Compra $</th>
+              <th width="10%">Venta $</th>
               <th width="10%">Disponible</th>
               <th width="10%">Medida</th>
               <th></th>
@@ -192,7 +192,7 @@
                                     </div>
 
                                      <div class="form-group">
-                                      <label for="tipo" class="control-label"> ¿Vender por botella?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                      <label for="tipo" class="control-label"> Añadir a mi carta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                       <label> 
                                       <input type="checkbox" name="tipo" id="stipo{{$insumo->id}}" <?php if($insumo->tipo == "1") echo "checked";?> onchange="showContent({{$insumo->id}})" />
                                       <span></span>

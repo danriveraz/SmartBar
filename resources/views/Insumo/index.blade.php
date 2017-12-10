@@ -1,11 +1,6 @@
 @extends('Layout.app')
 @section('content')
 <div class="container main-content">
-  <div class="page-title">
-    <h2 class="">
-      <B> Mi Inventario </B>
-    </h2>
-  </div>
   @include('flash::message')
   <!-- <div id="busqueda" name="busqueda" class="navbar-form navbar-right">
     <div class="form-group" align="right">
@@ -37,7 +32,7 @@
           <div class="">
             <div class="">
               <div class="heading">
-                <i class="fa fa-shield"></i>&nbsp;Nuevo Insumo</div>
+                <i class="fa fa-shield"></i>&nbsp;Nuevo Producto</div>
               <div class="widget-content padded">
                 {!! Form::open(['method' => 'POST', 'action' => 'InsumoController@store']) !!}
                   <fieldset>
@@ -101,7 +96,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="tipo" class="control-label"> ¿Vender por botella?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <label for="tipo" class="control-label"> Añadir a la carta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                         <label> 
                         <input type="checkbox" name="tipo" id="stipo" value="1" onchange="showContent('')"/>
                           <span></span>
