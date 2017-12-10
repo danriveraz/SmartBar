@@ -3,7 +3,7 @@
   <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
-      Pocket SMARTBAR
+      SMARTBAR
     </title>
     <link rel="shortcut icon" href={{ asset('images/icon.png') }}>
     <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
@@ -262,29 +262,29 @@
               </li>
               <li class="dropdown">
                 <a data-toggle="dropdown" href=#>
-                <span aria-hidden="true" class="fa fa-fw fa-sliders"></span>Control<b class="caret"></b></a>
+                <span aria-hidden="true" class="fa fa-fw fa-sliders"></span>Bolsillo<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li>
                     <a id="bartender" nombre="barraNavegacion" href={{url("bartender/")}}>
-                    <i aria-hidden="true" class="fa fa-imdb pull-left"></i>Bartenders</a>
+                    <i aria-hidden="true" class="fa fa-imdb pull-left"></i>Mis Preparadores</a>
                   </li>
                   <li><a id="mesero" nombre="barraNavegacion" href="{{url('mesero/')}}" >
-                    <i aria-hidden="true" class="fa fa-houzz"></i>Meseros</a>
+                    <i aria-hidden="true" class="fa fa-houzz"></i>Mis Ordenes</a>
                   </li>
                   <li><a id="cajero" nombre="barraNavegacion" href="{{url('cajero/')}}">
-                    <i aria-hidden="true" class="fa fa-wpbeginner pull-left"></i>Cajeros</a>
+                    <i aria-hidden="true" class="fa fa-wpbeginner pull-left"></i>Mi Facturación</a>
                   </li>
                 </ul>
               </li>
 
               <li class="dropdown">
                 <a id="Estadisticas" nombre="barraNavegacion" href="{{url('Estadisticas/')}}">
-                  <span aria-hidden="true" class="fa fa-fw fa-bar-chart-o"></span>Estadisticas</a>
+                  <span aria-hidden="true" class="fa fa-fw fa-bar-chart-o"></span>Mi Información</a>
               </li>
 
               <li>
                 <a id="Tienda" nombre="barraNavegacion" href="{{url('Tienda/')}}">
-                <span aria-hidden="true" class="fa fa-fw fa-cart-plus "></span>Tienda</a>
+                <span aria-hidden="true" class="fa fa-fw fa-cart-plus "></span>SmartShop</a>
               </li>
             </ul>
           </div>
@@ -329,7 +329,7 @@
                         <div class="bs-slider-overlay"></div>
                         <!-- Slide Text Layer -->
                         <div class="slide-text slide_style_left">
-                          <h1 data-animation="animated zoomInRight">Proveedores</h1>
+                          <h1 data-animation="animated zoomInRight">Mis Proveedores</h1>
                           <p data-animation="animated fadeInLeft">Acá va una descripción</p>
                           <a href="{{route('usuarios.tutorial')}}"  class="btn btn-default" data-animation="animated fadeInUp">Ir</a>
                         </div>

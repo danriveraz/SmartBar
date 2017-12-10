@@ -3,7 +3,7 @@
   <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
-      Pocket SMARTBAR
+      SMARTBAR
     </title>
     <link rel="shortcut icon" href={{ asset('images/icon.png') }}>
     {!!Html::style('stylesheets/bootstrap.min.css')!!}
@@ -89,7 +89,7 @@
               <li class="dropdown notifications hidden-xs">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="Notificaciones"><span aria-hidden="true" class="hightop-flag"></span>
                   <div class="sr-only">
-                    Notificaciones
+                    Mis Notificaciones
                   </div>
                   <p class="counter">
                     4
@@ -137,7 +137,7 @@
               <li class="dropdown messages hidden-xs">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="mensajes"><span aria-hidden="true" class="hightop-envelope"></span>
                   <div class="sr-only">
-                    Mensajes
+                    Mis Mensajes
                   </div>
                   <p class="counter">
                   2
@@ -178,7 +178,7 @@
               @if(Auth::User()->esMesero)
                 <li>
                   <a id="mesero" href="{{url('mesero/')}}">
-                  <span aria-hidden="true" class="fa fa-fw fa-group"></span>Mesero</a>
+                  <span aria-hidden="true" class="fa fa-fw fa-group"></span>Mesas</a>
                 </li>
               @endif
               @if(Auth::User()->esBartender)
@@ -190,13 +190,10 @@
               @if(Auth::User()->esCajero)
               <li class="dropdown">
               <a id="cajero" href="{{url('cajero/')}}">
-                <span aria-hidden="true" class="fa fa-fw fa-list"></span>Cajero</a>
+                <span aria-hidden="true" class="fa fa-fw fa-list"></span>Caja</a>
               </li>
               @endif
-              <li class="dropdown">
-              <a href="{{url('/Auth/logout')}}">
-                <span aria-hidden="true" class="fa fa-fw fa-sign-out"></span>Salir</a>
-              </li>
+            
             </ul>
           </div>
         </div>

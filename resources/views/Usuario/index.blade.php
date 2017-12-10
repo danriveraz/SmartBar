@@ -92,11 +92,11 @@
                   <button class="btn btn-pocket dropdown-toggle" data-toggle="dropdown">Control<span class="caret"></span></button>
                   <ul class="dropdown-menu">
                     <li>
-                      <a href="{{url('RegistroLogin/'.$usuario->id)}}"><i class="fa fa-clock-o pull-left"></i>Horas Ingreso</a>
+                      <a href="{{url('RegistroLogin/'.$usuario->id)}}"><i class="fa fa-clock-o pull-left"></i>Tiempo</a>
                     </li>
                     <li>
                       <a id="Estadisticas" nombre="barraNavegacion" href="{{url('Estadisticas/')}}">
-                      <i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a>
+                      <i class="fa fa-bar-chart-o pull-left"></i>Informes</a>
                     </li>
                     <li>
 
@@ -106,10 +106,10 @@
                     </li>
                   </ul>
                 </div>
-                  <a href="{{ url('Agenda/') }}" class="dg btn btn-pocket"><i class="fa fa-calendar-o"></i>Agenda</a>
+                  <a href="{{ url('Agenda/') }}" class="dg btn btn-pocket"><i class="fa fa-calendar-o"></i></a>
 
                   <div class="dg btn btn-pocket" data-toggle="modal" href="#ModalMsg{{$usuario->id}}">
-                    <i class="fa fa-envelope-o"><a class="dg btn btn-pocket">Mensaje</a></i>
+                    <i class="fa fa-envelope-o"><a class="dg btn btn-pocket"></a></i>
                   </div>
               </div>
             </div>

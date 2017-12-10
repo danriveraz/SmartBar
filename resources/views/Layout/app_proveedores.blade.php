@@ -3,7 +3,7 @@
   <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
-      Pocket SMARTBAR
+      SMARTBAR
     </title>
     <link rel="shortcut icon" href={{ asset('images/icon.png') }}>
     {!!Html::style('stylesheets/bootstrap.min.css')!!}
@@ -137,7 +137,7 @@
               <li class="dropdown messages hidden-xs">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="mensajes"><span aria-hidden="true" class="hightop-envelope"></span>
                   <div class="sr-only">
-                    Mensajes
+                    Mis Mensajes
                   </div>
                   <p class="counter">
                   2
@@ -156,10 +156,10 @@
                 {{ HTML::image('images/admins/'.Auth::User()->imagenPerfil , 'avatar', array( 'width' => '34', 'height'=>'34')) }} {{Auth::User()->nombrePersona}}<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="{{url('Auth/usuario/'.Auth::id().'/edit')}}">
-                    <i class="fa fa-user"></i>Perfil</a>
+                    <i class="fa fa-user"></i>Mi Perfil</a>
                   </li>
                   <li><a href="#">
-                    <i class="fa fa-gear"></i>Configuracion</a>
+                    <i class="fa fa-gear"></i>Mi Configuracion</a>
                   </li>
                   <li><a href="{{url('/Auth/logout')}}">
                     <i class="fa fa-sign-out"></i>Salir</a>
@@ -177,7 +177,7 @@
             <ul class="nav">
               <li>
                 <a id="" href="">
-                <span aria-hidden="true" class="fa fa-fw fa-group"></span>Productos</a>
+                <span aria-hidden="true" class="fa fa-fw fa-group"></span>Mis Productos</a>
               </li>
             </ul>
           </div>

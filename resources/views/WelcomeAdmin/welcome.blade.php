@@ -5,7 +5,7 @@
 @if(Auth::User()->empresa->nombreEstablecimiento=='')
 	<div class='alert alert-warning alert-important'>
 		<p>Completa tu perfil aquí
-			<a href="{{url('Auth/modificarEmpresa')}}"><i class="fa fa-gear"></i>Ajustes</a>
+			<a href="{{url('Auth/modificarEmpresa')}}"><i class="fa fa-gear"></i>Mis Ajustes</a>
 		</p>
 	</div>
 @endif
