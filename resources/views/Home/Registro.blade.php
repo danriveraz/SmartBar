@@ -5,7 +5,7 @@
 <link rel="shortcut icon" href="images/icon.png">
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-<title>PocketByR</title>
+<title>SMARTBAR</title>
 
 	<!-- Meta-Tags -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,8 +54,8 @@
                             <h1 class="color2">Formulario de Registro</h1>
                             <div class="description color1">
                             	<p>
-	                            	Ingresa los datos correspodientes en los campos del formulario, ingresa al mundo de PocketByR y este en su bar todo el tiempo, sin estar en el!
-	                            	si ya estas registraso da <a href="" target="_blank"><strong class="color2">clik aqui</strong></a>
+	                            	Ingresa los datos correspodientes en los campos del formulario, ingresa al mundo de SMARTBAR y este en su bar todo el tiempo, sin estar en el!
+	                            	si ya estas registraso <a href="" target="_blank"><strong class="color2">clik aqui</strong></a>
                             	</p>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
 					<a class="hiddenanchor w3layouts agileits" id="toregister"></a>
 					<div id="wrapper">
 						<div id="login" class="animate w3layouts agileits form">
-							<h2 class="w3layouts agileits">Iniciar Seción</h2>
+							<h2 class="w3layouts agileits">Iniciar Sesión</h2>
 							<form  action="#" autocomplete="on" method="post">
 								<label>E-mail</label>
 								<input type="text" Name="Email o SubName" required="">
