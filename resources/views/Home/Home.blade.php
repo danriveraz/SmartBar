@@ -96,8 +96,16 @@
             <div class="inner-bg">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-7 text">
+
+                        <div class="col-sm-2 text"></div>
+
+
+                        <div class="col-sm-5 text">
                               <div class="description wow fadeInLeftBig">
+                              	  <h2 style="color: #fff; font-size: 35px; letter-spacing:-2px;"class="wow fadeInLeftBig"><strong>Haciendo tu vida más fácil</strong>
+                              	  	
+                            </h2>
+                           <h3 style="color: #fff;"> creamos mejores momentos<br></h3>
                             	</div>
                             <div class="top-big-link wow fadeInUp">
                                 <div class="description wow fadeInLeftBig">
