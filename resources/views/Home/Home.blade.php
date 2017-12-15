@@ -102,10 +102,10 @@
 
                         <div class="col-sm-5 text">
                               <div class="description wow fadeInLeftBig">
-                              	  <h2 style="color: #fff; font-size: 35px; letter-spacing:-2px;"class="wow fadeInLeftBig"><strong>Haciendo tu vida más fácil</strong>
+                              	  <h2 style="color: #fff; font-size: 35px; letter-spacing:-2px;"class="wow fadeInLeftBig"><strong>Creamos mejores momentos</strong>
                               	  	
                             </h2>
-                           <h3 style="color: #fff;"> creamos mejores momentos<br></h3>
+                           <h3 style="color: #fff;"> haciendo tu vida, más fácil <br></h3>
                             	</div>
                             <div class="top-big-link wow fadeInUp">
                                 <div class="description wow fadeInLeftBig">
@@ -311,8 +311,8 @@
 		                    <div class="pricing-box-features">
 		                    	<ul>
 		                    		<li>Uso del programa = 1 mes</li>
+		                    		<li>Promociones unicas en Smartshop</li>
 		                    		<li>Sin clausulas, ni recargos.</li>
-		                    		<li></li>
 		                    		<li></li>
 		                    		<li></li>
 		                    		<li></li>
@@ -332,14 +332,15 @@
 			                		<span aria-hidden="true" class="typcn typcn-star"></span>
 			                	</div>
 		                	</div>
-		                    <h3>INFINITA</h3>
-		                    <h4>POR SIEMPRE</h4>
+		                    <h3>MASTER</h3>
+		                    <h4>5 Años</h4>
 		                    <div class="pricing-box-features">
 		                    	<ul>
 
-		                    		<li>Uso del programa = Por siempre.</li>
-		                    		<li>Nunca más tendra que pagar por el.</li>
+		                    		<li>Uso del programa = 5 Años</li>
+		                    		<li>Olvidate de pagos por 1.825 días</li>
 		                    		<li>Membresia por tiempo limitado.</li>
+		                    		<li>Promociones master en Smartshop</li>
 		                    		<li>Sin clausulas, ni recargos.</li>
 
 		                    	</ul>
@@ -359,6 +360,7 @@
 		                    	<ul>
 		                    	<li>Uso del programa = 12 Meses.</li>
 		                    		<li>Ahorro de $ 268.000 Cop.</li>
+		                    		<li>Promociones especiales en Smartshop</li>
 		                    		<li>Sin clausulas, ni recargos.</li>
 		                    		<li></li>
 		                    		<li></li>
