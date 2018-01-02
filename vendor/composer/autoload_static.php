@@ -360,9 +360,10 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'AddPersimoRegalar' => __DIR__ . '/../..' . '/database/migrations/2017_08_14_174017_add_persimo_regalar.php',
         'Addrecetaproducto' => __DIR__ . '/../..' . '/database/migrations/2017_07_20_004051_addrecetaproducto.php',
         'Addunidadinsumo' => __DIR__ . '/../..' . '/database/migrations/2017_07_18_222822_addunidadinsumo.php',
+        'Addvartutusuario' => __DIR__ . '/../..' . '/database/migrations/2017_09_18_200312_addvartutusuario.php',
         'AgregarColumnasUsuario' => __DIR__ . '/../..' . '/database/migrations/2017_07_27_144627_agregar_columnas_usuario.php',
         'AlterTableVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_214105_alterTableVenta.php',
-        'AltertableVenta' => __DIR__ . '/../..' . '/database/migrations/2017_08_19_210706_altertableVenta.php',
+        'AltertableVenta2' => __DIR__ . '/../..' . '/database/migrations/2017_08_19_210706_altertableVenta.php',
         'Altertableadminimagenes' => __DIR__ . '/../..' . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
         'Altertablecategoria' => __DIR__ . '/../..' . '/database/migrations/2017_08_02_170443_altertablecategoria.php',
         'Altertablecontiene' => __DIR__ . '/../..' . '/database/migrations/2017_07_14_161041_altertablecontiene.php',
@@ -390,6 +391,8 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'DeleteTotalFactura' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_113401_deleteTotalFactura.php',
         'DeleteUniqueCedulaCorreo' => __DIR__ . '/../..' . '/database/migrations/2017_08_13_234303_delete_unique_cedula_correo.php',
+        'DroUsernameCreateUniqueEmail' => __DIR__ . '/../..' . '/database/migrations/2018_01_02_095041_dro_username_create_unique_email.php',
+        'EmpresaAgregarNuevosDatos' => __DIR__ . '/../..' . '/database/migrations/2018_01_02_103819_empresa_agregar_nuevos_datos.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
@@ -911,6 +914,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
         'TimestampsTablaEmpresa' => __DIR__ . '/../..' . '/database/migrations/2017_07_27_155029_timestamps_tabla_empresa.php',
+        'UsuarioCrearCampoDinamico' => __DIR__ . '/../..' . '/database/migrations/2018_01_02_103355_usuario_crear_campo_dinamico.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
