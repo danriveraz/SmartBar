@@ -85,7 +85,7 @@ class AuthController extends Controller
         $departamentos = Departamento::All();
         $ciudades = Ciudad::all();
         if ($validator->fails()){
-            return redirect("Auth/register")
+            return redirect("")
             ->withErrors($validator)
             ->withInput()
             ->with('departamentos',$departamentos)
@@ -123,6 +123,7 @@ class AuthController extends Controller
             $admin->obsequio = true;
             $admin->cedula= $request->email; // coloco el email aquí temporalmente mientras se crea, unas lineas más adelante lo actualizo
             $admin->idEmpresa = $empresa->id; // id de la empresa para saber a quién pertenece
+            $admin->empresaActual =  $empresa->id;
             $admin->save();// guarda el usuario registrado 
             
             $empresa->usuario_id = $admin->id;// obtiene el id del usuario que creo la empres apara saber la referencia 
@@ -304,6 +305,10 @@ class AuthController extends Controller
         $user = Socialite::driver($provider)->user();
 
         $authUser = $this->findOrCreateUser($user, $provider);
+        if($authUser == null){
+            return redirect("/")
+            ->with("message", "El correo electrónico ya se encuentra asociado a una cuenta");  
+        }
         Auth::login($authUser, true);
         Auth::User()->inicioSesion();// función que se llama para que guarde un nuevo registro en la tabla de registro de inicio y cierre de sesión
         //var_dump($user['gender']);
@@ -323,45 +328,50 @@ class AuthController extends Controller
         if ($authUser) {
             return $authUser;
         }
-
-        $empresa = new Empresa;
-        $empresa->nombreEstablecimiento = '';
-        $empresa->save();// crea la empresa con el nombre del establecimiento 
-
-
-        $admin = new User;
-        $admin->nombrePersona = $user->name;
-        $admin->email = $user->email;
-        $admin->pais= "Colombia";
-        $admin->departamento = '';
-        $admin->ciudad = '';
-        $admin->confirmoEmail = 1;
-        $admin->estado = true;
-        $admin->imagenPerfil = "perfil.jpg";
-        $admin->imagenNegocio = "perfil.jpg";
-        $admin->password = bcrypt(str_random(8));
-        $admin->remember_token = str_random(100);
-        $admin->confirm_token = str_random(100);
-        $admin->esAdmin = true;
-        $admin->esCajero = true;
-        $admin->esBartender = true;
-        $admin->esMesero = true;
-        $admin->obsequio = true;
-        $admin->cedula= ''; 
-        $admin->idEmpresa = $empresa->id;
-        $admin->empresaActual =  $empresa->id;// id de la empresa para saber a quién pertenece
-        $admin->save();// guarda el usuario registrado 
-        
-        $empresa->usuario_id = $admin->id;// obtiene el id del usuario que creo la empres apara saber la referencia 
-        $empresa->save();// guarda los cambios 
-
-        $admin->provider = $provider;
-        $admin->provider_id = $user->getId();
-        //$admin->sexo = $user->gender;
-        $admin->save();
+        $the_user = User::where('email', '=', $user->email)->first();
+        if ($the_user == null){
+            $empresa = new Empresa;
+            $empresa->nombreEstablecimiento = '';
+            $empresa->save();// crea la empresa con el nombre del establecimiento 
 
 
-        return $admin;
+            $admin = new User;
+            $admin->nombrePersona = $user->name;
+            $admin->email = $user->email;
+            $admin->pais= "Colombia";
+            $admin->departamento = '';
+            $admin->ciudad = '';
+            $admin->confirmoEmail = 1;
+            $admin->estado = true;
+            $admin->imagenPerfil = "perfil.jpg";
+            $admin->imagenNegocio = "perfil.jpg";
+            $admin->password = bcrypt(str_random(8));
+            $admin->remember_token = str_random(100);
+            $admin->confirm_token = str_random(100);
+            $admin->esAdmin = true;
+            $admin->esCajero = true;
+            $admin->esBartender = true;
+            $admin->esMesero = true;
+            $admin->obsequio = true;
+            $admin->cedula= ''; 
+            $admin->idEmpresa = $empresa->id;
+            $admin->empresaActual =  $empresa->id;// id de la empresa para saber a quién pertenece
+            $admin->save();// guarda el usuario registrado 
+            
+            $empresa->usuario_id = $admin->id;// obtiene el id del usuario que creo la empres apara saber la referencia 
+            $empresa->save();// guarda los cambios 
+
+            $admin->provider = $provider;
+            $admin->provider_id = $user->getId();
+            //$admin->sexo = $user->gender;
+            $admin->save();
+
+
+            return $admin;
+        }   
+        else{
+            return null; 
+        }
     }
 
 }

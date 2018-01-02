@@ -22,7 +22,7 @@ class UsuariosController extends Controller
   }
 
   public function index(){
-    $usuarios = User::where('idEmpresa',Auth::User()->idEmpresa)->orderBy('id','ASC')->paginate(10);
+    $usuarios = User::where('idEmpresa',Auth::User()->empresaActual)->orderBy('id','ASC')->paginate(10);
     return view('Usuario.index')->with('usuarios',$usuarios);
   }
 
