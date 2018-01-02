@@ -123,7 +123,6 @@ class AuthController extends Controller
             $admin->obsequio = true;
             $admin->cedula= $request->email; // coloco el email aquí temporalmente mientras se crea, unas lineas más adelante lo actualizo
             $admin->idEmpresa = $empresa->id; // id de la empresa para saber a quién pertenece
-            $admin->username = str_random(100);
             $admin->save();// guarda el usuario registrado 
             
             $empresa->usuario_id = $admin->id;// obtiene el id del usuario que creo la empres apara saber la referencia 
@@ -134,29 +133,6 @@ class AuthController extends Controller
             
             // parte del código para generar el username inicial
             $admin->cedula = $admin->id;
-            $numeroRepetido = 0; // numero que se agregará al username por si ya hay alguno parecido y poderlo diferenciar
-            $auxiliarBool = true;
-            $auxiliarUser;
-            $auxiliarUsername;
-            $pos = strpos($request->nombrePersona, ' ');// posicíon del primer espacio en el nombre para recortar hasta ahí 
-            $nombreInicial = substr($request->nombrePersona,0,$pos);// tiene solo el primer nombre 
-            while ($auxiliarBool) {
-                if($numeroRepetido==0){
-                    $auxiliarUsername = str_replace(' ','',$nombreInicial).'-'.str_replace(' ','',$request->nombreEstablecimiento);
-                    $auxiliarUser = User::where('username', $auxiliarUsername)->first();
-                }else{
-                    $auxiliarUsername = str_replace(' ','',$nombreInicial).'-'.str_replace(' ','',$request->nombreEstablecimiento).$numeroRepetido;
-                    $auxiliarUser = User::where('username', $auxiliarUsername)->first();
-                }
-                if($auxiliarUser==null){
-                    $auxiliarBool= false;
-                }
-                $numeroRepetido++;
-
-            }
-            $admin->username = $auxiliarUsername;
-            $admin->save();
-            // guarda el username
 
             $data = $admin;
             Mail::send('Emails.confirmacion', ['data' => $data], function($mail) use($data){
@@ -370,33 +346,11 @@ class AuthController extends Controller
         $admin->obsequio = true;
         $admin->cedula= ''; 
         $admin->idEmpresa = $empresa->id; // id de la empresa para saber a quién pertenece
-        $admin->username = str_random(100);
         $admin->save();// guarda el usuario registrado 
         
         $empresa->usuario_id = $admin->id;// obtiene el id del usuario que creo la empres apara saber la referencia 
         $empresa->save();// guarda los cambios 
 
-        
-        // parte del código para generar el username inicial
-        $numeroRepetido = 0; // numero que se agregará al username por si ya hay alguno parecido y poderlo diferenciar
-        $auxiliarBool = true;
-        $auxiliarUser;
-        $auxiliarUsername;
-        while ($auxiliarBool) {
-            if($numeroRepetido==0){
-                $auxiliarUsername = str_replace(' ','',$user->name);
-                $auxiliarUser = User::where('username', $auxiliarUsername)->first();
-            }else{
-                $auxiliarUsername = str_replace(' ','',$user->name).'-'.$numeroRepetido;
-                $auxiliarUser = User::where('username', $auxiliarUsername)->first();
-            }
-            if($auxiliarUser==null){
-                $auxiliarBool= false;
-            }
-            $numeroRepetido++;
-
-        }
-        $admin->username = $auxiliarUsername;
         $admin->provider = $provider;
         $admin->provider_id = $user->getId();
         //$admin->sexo = $user->gender;
