@@ -154,8 +154,11 @@ class AuthController extends Controller
            $user->where('email', '=', $email)
            ->update(['confirmoEmail' => $confirmoEmail, 'confirm_token' => $confirm_token]);
            
-           return redirect('Auth/login')
-           ->with('message', 'Bienvenido ' . $the_user[0]['nombrePersona'] . ' ya puede iniciar sesión');
+           /*return redirect('Auth/login')
+           ->with('message', 'Bienvenido ' . $the_user[0]['nombrePersona'] . ' ya puede iniciar sesión');*/
+            Auth::login($the_user, true);
+            Auth::User()->inicioSesion();
+            return redirect()->intended($this->redirectPath());
         }else{
            return redirect('');
         }
@@ -345,7 +348,8 @@ class AuthController extends Controller
         $admin->esMesero = true;
         $admin->obsequio = true;
         $admin->cedula= ''; 
-        $admin->idEmpresa = $empresa->id; // id de la empresa para saber a quién pertenece
+        $admin->idEmpresa = $empresa->id;
+        $admin->empresaActual =  $empresa->id;// id de la empresa para saber a quién pertenece
         $admin->save();// guarda el usuario registrado 
         
         $empresa->usuario_id = $admin->id;// obtiene el id del usuario que creo la empres apara saber la referencia 
