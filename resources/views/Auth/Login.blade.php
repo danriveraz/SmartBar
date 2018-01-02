@@ -120,7 +120,7 @@
 		 </div>        
 		<div class="form-group">
 			<div class="input-group">
-				<span class="input-group-addon"><i class="fa fa-envelope"></i></span><input class="form-control" placeholder="Username" type="text" name="username" value="{{Input::old('username')}}" required>
+				<span class="input-group-addon"><i class="fa fa-envelope"></i></span><input class="form-control" placeholder="Email" type="text" name="email" value="{{Input::old('email')}}" required>
 			</div>
         </div>
         <div class="form-group">

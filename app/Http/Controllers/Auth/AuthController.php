@@ -189,7 +189,7 @@ class AuthController extends Controller
 
         if (Auth::attempt(
                 [
-                    'username' => $request->username,
+                    'email' => $request->email,
                     'password' => $request->password,
                     'confirmoEmail' => 1,
                     'estado' => true
@@ -199,25 +199,25 @@ class AuthController extends Controller
             Auth::User()->inicioSesion();// función que se llama para que guarde un nuevo registro en la tabla de registro de inicio y cierre de sesión
             return redirect()->intended($this->redirectPath());
         }if (Auth::attempt([
-                    'username' => $request->username,
+                    'email' => $request->email,
                     'password' => $request->password,
                     'confirmoEmail' => 0
                 ], $request->has('remember'))){            
             return $this->volverLogin('Por favor activa tu cuenta primero');
         }
         if(Auth::attempt([
-                    'username' => $request->username,
+                    'email' => $request->email,
                     'password' => $request->password,
                     'estado' => false
                 ], $request->has('remember'))){
             return $this->volverLogin('Ha sido desactivado, por favor contacte con el administrador');
         }else{
             $rules = [
-                'username' => 'required',
+                'email' => 'email',
                 'password' => 'required',
             ];
             $messages = [
-                'username.required' => 'El campo Username es requerido',
+                'email.required' => 'El campo Email es requerido',
                 'password.required' => 'El campo password es requerido',
             ];
             $validator = Validator::make($request->all(), $rules, $messages);

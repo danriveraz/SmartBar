@@ -70,8 +70,8 @@
                                    				{{csrf_field()}}
 						                        <fieldset id="body">
 						                            <fieldset>
-						                                <label for="email">Username</label>
-						                                <input type="text1" name="username" placeholder="Username">
+						                                <label for="email">Email</label>
+						                                <input type="text1" name="Email" placeholder="Username">
 						                            </fieldset>
 						                            <fieldset>
 						                                <label for="password">Contraseña</label>
