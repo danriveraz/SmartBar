@@ -110,31 +110,7 @@ class UsuariosController extends Controller
           $usuario->imagenNegocio = "perfil.jpg";
           $usuario->remember_token = str_random(100);
           $usuario->confirm_token = str_random(100);
-          $usuario->idEmpresa = Auth::user()->idEmpresa; // id de la empresa para saber a quién pertenece
-
-          //asignar username
-          // parte del código para generar el username inicial
-          $numeroRepetido = 0; // numero que se agregará al username por si ya hay alguno parecido y poderlo diferenciar
-          $auxiliarBool = true;
-          $auxiliarUser;
-          $auxiliarUsername;
-          while ($auxiliarBool) {
-              if($numeroRepetido==0){
-                  $auxiliarUsername = str_replace(' ','',$request->nombrePersona).'-'.str_replace(' ','',Auth::User()->empresa->nombreEstablecimiento);
-                  $auxiliarUser = User::where('username', $auxiliarUsername)->first();
-              }else{
-                  $auxiliarUsername = str_replace(' ','',$request->nombrePersona).'-'.str_replace(' ','',Auth::User()->empresa->nombreEstablecimiento).$numeroRepetido;
-                  $auxiliarUser = User::where('username', $auxiliarUsername)->first();
-              }
-              if($auxiliarUser==null){
-                  $auxiliarBool= false;
-              }
-              $numeroRepetido++;
-
-          }
-          $usuario->username = $auxiliarUsername;
-
-
+          $usuario->idEmpresa = Auth::user()->idEmpresa; // id de la empresa para saber a quien pertenece
           //Guardar imagen
           //obtenemos el campo file definido en el formulario
           $file = $request->file('imagenPerfil');
@@ -197,9 +173,6 @@ class UsuariosController extends Controller
     if(Auth::User()->esAdmin){ // validar que cuadno sea admin el que modifica, los usuarios deben de quedar con permisos
         $rules += ['Permisos' => 'required',];
     }
-    if($request->username!=$usuario->username){// agrega la regla si el username ha sido modificado
-      $rules += ['username'=> 'required|min:3|max:40|alpha_dash|unique:usuario,username'];
-    }
     if($request->cedula!=$usuario->cedula){// agrega la regla si la cedula ha sido modificada
       $rules += ['cedula' => 'required|min:1|max:9999999999|numeric'];
     }
@@ -223,9 +196,6 @@ class UsuariosController extends Controller
       }
       if($request->password!=null){
         $usuario->password = bcrypt($request->password);
-      }
-      if($request->username!=$usuario->username){
-        $usuario->username=$request->username;
       }
       if($request->telefono!=$usuario->telefono){
         $usuario->telefono=$request->telefono;
@@ -323,7 +293,7 @@ class UsuariosController extends Controller
             'Permisos' => 'required'
          ]);
 
-      if($validator->passes()){
+        if($validator->passes()){
           $Permisos = $request['Permisos'];
           $usuario = new User;
           $usuario->nombrePersona = $request->nombrePersona;
@@ -343,29 +313,6 @@ class UsuariosController extends Controller
           $usuario->remember_token = str_random(100);
           $usuario->confirm_token = str_random(100);
           $usuario->idEmpresa = Auth::user()->idEmpresa; // id de la empresa para saber a quién pertenece
-
-          //asignar username
-          // parte del código para generar el username inicial
-          $numeroRepetido = 0; // numero que se agregará al username por si ya hay alguno parecido y poderlo diferenciar
-          $auxiliarBool = true;
-          $auxiliarUser;
-          $auxiliarUsername;
-          while ($auxiliarBool) {
-              if($numeroRepetido==0){
-                  $auxiliarUsername = str_replace(' ','',$request->nombrePersona).'-'.str_replace(' ','',Auth::User()->empresa->nombreEstablecimiento);
-                  $auxiliarUser = User::where('username', $auxiliarUsername)->first();
-              }else{
-                  $auxiliarUsername = str_replace(' ','',$request->nombrePersona).'-'.str_replace(' ','',Auth::User()->empresa->nombreEstablecimiento).$numeroRepetido;
-                  $auxiliarUser = User::where('username', $auxiliarUsername)->first();
-              }
-              if($auxiliarUser==null){
-                  $auxiliarBool= false;
-              }
-              $numeroRepetido++;
-
-          }
-          $usuario->username = $auxiliarUsername;
-
 
           //Guardar imagen
           //obtenemos el campo file definido en el formulario
@@ -399,8 +346,7 @@ class UsuariosController extends Controller
             $usuario->obsequio = 1;
           }
           $userActual = Auth::user();
-          $usuarios = User::where('idEmpresa' , $userActual->idEmpresa)->
-                                lists('id');
+          $usuarios = User::where('idEmpresa' , $userActual->idEmpresa)->lists('id');
           if(sizeof($usuarios) == 1){
             $userActual->estadoTut += 1;
             $userActual->save();
