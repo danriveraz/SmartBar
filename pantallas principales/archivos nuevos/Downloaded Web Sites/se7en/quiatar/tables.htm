@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html>
+<html><head>
+    <title>
+      hightop - Dashboard
+    </title>
+    <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\bootstrap.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\font-awesome.min.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\hightop-font.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\isotope.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\jquery.fancybox.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\fullcalendar.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\wizard.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\select2.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\morris.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\datatables.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\datepicker.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\timepicker.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\colorpicker.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\bootstrap-switch.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\bootstrap-editable.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\daterange-picker.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\typeahead.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\summernote.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\ladda-themeless.min.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\social-buttons.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\jquery.fileupload-ui.css" media="screen" rel="stylesheet" type="text/css"><link href="stylesheets\dropzone.css" media="screen" rel="stylesheet" type="text/css"><link href="stylesheets\nestable.css" media="screen" rel="stylesheet" type="text/css"><link href="stylesheets\pygments.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\style.css" media="all" rel="stylesheet" type="text/css"><link href="stylesheets\color\green.css" media="all" rel="alternate stylesheet" title="green-theme" type="text/css"><link href="stylesheets\color\orange.css" media="all" rel="alternate stylesheet" title="orange-theme" type="text/css"><link href="stylesheets\color\magenta.css" media="all" rel="alternate stylesheet" title="magenta-theme" type="text/css"><link href="stylesheets\color\gray.css" media="all" rel="alternate stylesheet" title="gray-theme" type="text/css"><script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script><script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script><script src="javascripts\bootstrap.min.js" type="text/javascript"></script><script src="javascripts\raphael.min.js" type="text/javascript"></script><script src="javascripts\selectivizr-min.js" type="text/javascript"></script><script src="javascripts\jquery.mousewheel.js" type="text/javascript"></script><script src="javascripts\jquery.vmap.min.js" type="text/javascript"></script><script src="javascripts\jquery.vmap.sampledata.js" type="text/javascript"></script><script src="javascripts\jquery.vmap.world.js" type="text/javascript"></script><script src="javascripts\jquery.bootstrap.wizard.js" type="text/javascript"></script><script src="javascripts\fullcalendar.min.js" type="text/javascript"></script><script src="javascripts\gcal.js" type="text/javascript"></script><script src="javascripts\jquery.dataTables.js" type="text/javascript"></script><script src="javascripts\datatable-editable.js" type="text/javascript"></script><script src="javascripts\jquery.easy-pie-chart.js" type="text/javascript"></script><script src="javascripts\excanvas.min.js" type="text/javascript"></script><script src="javascripts\jquery.isotope.min.js" type="text/javascript"></script><script src="javascripts\isotope_extras.js" type="text/javascript"></script><script src="javascripts\modernizr.custom.js" type="text/javascript"></script><script src="javascripts\jquery.fancybox.pack.js" type="text/javascript"></script><script src="javascripts\select2.js" type="text/javascript"></script><script src="javascripts\styleswitcher.js" type="text/javascript"></script><script src="javascripts\wysiwyg.js" type="text/javascript"></script><script src="javascripts\typeahead.js" type="text/javascript"></script><script src="javascripts\summernote.min.js" type="text/javascript"></script><script src="javascripts\jquery.inputmask.min.js" type="text/javascript"></script><script src="javascripts\jquery.validate.js" type="text/javascript"></script><script src="javascripts\bootstrap-fileupload.js" type="text/javascript"></script><script src="javascripts\bootstrap-datepicker.js" type="text/javascript"></script><script src="javascripts\bootstrap-timepicker.js" type="text/javascript"></script><script src="javascripts\bootstrap-colorpicker.js" type="text/javascript"></script><script src="javascripts\bootstrap-switch.min.js" type="text/javascript"></script><script src="javascripts\typeahead.js" type="text/javascript"></script><script src="javascripts\spin.min.js" type="text/javascript"></script><script src="javascripts\ladda.min.js" type="text/javascript"></script><script src="javascripts\moment.js" type="text/javascript"></script><script src="javascripts\mockjax.js" type="text/javascript"></script><script src="javascripts\bootstrap-editable.min.js" type="text/javascript"></script><script src="javascripts\xeditable-demo-mock.js" type="text/javascript"></script><script src="javascripts\xeditable-demo.js" type="text/javascript"></script><script src="javascripts\address.js" type="text/javascript"></script><script src="javascripts\daterange-picker.js" type="text/javascript"></script><script src="javascripts\date.js" type="text/javascript"></script><script src="javascripts\morris.min.js" type="text/javascript"></script><script src="javascripts\skycons.js" type="text/javascript"></script><script src="javascripts\fitvids.js" type="text/javascript"></script><script src="javascripts\jquery.sparkline.min.js" type="text/javascript"></script><script src="javascripts\dropzone.js" type="text/javascript"></script><script src="javascripts\jquery.nestable.js" type="text/javascript"></script><script src="javascripts\main.js" type="text/javascript"></script><script src="javascripts\respond.js" type="text/javascript"></script>
+    
+    
+<style type="text/css">
+.carousel{
+    background: #2f4357;
+    margin-top: 20px;
+}
+.carousel .item{
+    min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+}
+.carousel .item img{
+    margin: 0 auto; /* Align slide image horizontally center */
+}
+.bs-example{
+	margin: 20px;
+}
+</style>
+    
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  </head>
+  <body class="page-header-fixed bg-1">
+    <div class="modal-shiftfix">
+      <!-- Navigation -->
+      <div class="navbar navbar-fixed-top scroll-hide">
+        <div class="container-fluid top-bar">
+          <div class="pull-right">
+            <ul class="nav navbar-nav pull-right">
+              <li class="dropdown notifications hidden-xs">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span aria-hidden="true" class="hightop-flag"></span>
+                  <div class="sr-only">
+                    Notifications
+                  </div>
+                  <p class="counter">
+                    4
+                  </p>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">
+                    <div class="notifications label label-info">
+                      New
+                    </div>
+                    <p>
+                      New user added: Jane Smith
+                    </p></a>
+                    
+                  </li>
+                  <li><a href="#">
+                    <div class="notifications label label-info">
+                      New
+                    </div>
+                    <p>
+                      Sales targets available
+                    </p></a>
+                    
+                  </li>
+                  <li><a href="#">
+                    <div class="notifications label label-info">
+                      New
+                    </div>
+                    <p>
+                      New performance metric added
+                    </p></a>
+                    
+                  </li>
+                  <li><a href="#">
+                    <div class="notifications label label-info">
+                      New
+                    </div>
+                    <p>
+                      New growth data available
+                    </p></a>
+                    
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown messages hidden-xs">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span aria-hidden="true" class="hightop-envelope"></span>
+                  <div class="sr-only">
+                    Messages
+                  </div>
+                  <p class="counter">
+                    3
+                  </p>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">
+                    <img width="34" height="34" src="images\avatar-male2.png">Could we meet today? I wanted...</a>
+                  </li>
+                  <li><a href="#">
+                    <img width="34" height="34" src="images\avatar-female.png">Important data needs your analysis...</a>
+                  </li>
+                  <li><a href="#">
+                    <img width="34" height="34" src="images\avatar-male2.png">Buy Se7en today, it's a great theme...</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown user hidden-xs"><a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <img width="34" height="34" src="images\avatar-male.jpg">John Smith<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">
+                    <i class="fa fa-user"></i>Mi Perfil</a>
+                  </li>
+                  <li><a href="#">
+                    <i class="fa fa-gear"></i>Ajuster</a>
+                  </li>
+                  <li><a href="login1.htm">
+                    <i class="fa fa-question"></i>Ayuda</a>
+                  </li>
+                  <li><a href="login1.htm">
+                    <i class="fa fa-sign-out"></i>Cerrar Secion</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+ 			<button class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><div class="logo">
+           <a href="http://localhost/PocketByR/public"><img src="http://localhost/PocketByR/public/images/logo.png"></a>
+          </div>
+        </div>
+        
+        <div class="container-fluid main-nav clearfix">
+          <div class="nav-collapse">
+            <ul class="nav">
+
+              <li class="dropdown"><a data-toggle="dropdown" href="#">
+                <span aria-hidden="true" class="glyphicon glyphicon-folder-open"></span>Blackandwhite <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="#"><i class="fa fa-users pull-left"></i>Mi Personal</a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-newspaper-o  pull-left"></i>Mi Carta</a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-list pull-left"></i>Mi Inventario</a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-truck pull-left"></i>Mis Provedores</a>
+                  </li>
+                </ul>
+              </li>         
+              <li><a href="charts.htm">
+                <span aria-hidden="true" class="fa fa-line-chart  fa-usd"></span>Caja</a>
+              </li>
+              <li><a href="charts.htm">
+                <span aria-hidden="true" class="fa fa-fw fa-sliders"></span>Control</a>
+              </li>
+              <li><a href="gallery.htm">
+                <span aria-hidden="true" class="fa fa-fw fa-bar-chart-o"></span>Estadisticas</a>
+              </li>
+              <li><a href="gallery.htm">
+                <span aria-hidden="true" class="fa fa-fw fa-cart-plus "></span>Tienda</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>      <!-- End Navigation -->
+      <div class="container-fluid main-content">
+        <div class="page-title">
+          <h1>
+            Basic Tables
+          </h1>
+        </div>
+          <!-- end Condensed Table -->
+        <div class="row">
+          <!-- Hover Row Table -->
+          <div class="col-lg-3">
+          <div  class="text-center"><a class="btn btn-bitbucket" onclick=""><i class="fa fa-send"></i>Ir Atras</a></div>
+          </div>
+          <!-- end Hover Row Table --><!-- Responsive Table -->
+          <div class="col-lg-6">
+        <div class=" text-center page-title">
+          <h2>
+			<input class="Titulo-css" placeholder="Ingrese Nombre" />
+          </h2>
+        </div>          
+            <div class="widget-container fluid-height clearfix" style="box-shadow: none;">
+              <div class="heading">
+                <i class=" pocketMorado fa fa-table"></i><a class="pocketMorado">Productos</a>
+              </div>
+              <div class="widget-content padded clearfix">
+                <table class="table table-striped">
+                  <thead>
+                    <th>
+                      Nombre
+                    </th>
+                    <th class="text-center">
+                      Cantidad
+                    </th>
+                    <th class="text-center">
+                      Medida
+                    </th>
+                    <th></th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        Tequila Jose Cuervo
+                      </td>
+                      <td class="text-center">
+                        1 1/2
+                      </td>
+                      <td class="text-center">
+                        <span class="label label-Pocket"><b>Onza</b></span>
+                      </td>
+                      <td>
+                        <div class="action-buttons">
+                     	<a class="table-actions pocketMorado"><i class="fa fa-window-close" title="Cancelar"></i></a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Triple Seco
+                      </td>
+                      <td class="text-center">
+                        1/2
+                      </td>
+                      <td class="text-center">
+                        <span class="label label-Pocket"><b>Onza</b></span>
+                      </td>
+                      <td>
+                        <div class="action-buttons">
+                    	<a class="table-actions pocketMorado"><i class="fa fa-window-close" title="Cancelar"></i></a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+           </div>
+          
+          <div class="col-lg-3">
+          <div  class="text-center"><a class="btn btn-bitbucket" onclick=""><i class="fa fa-send"></i>Guardar</a></div>
+          </div>          <!-- end Responsive Table -->
+        </div>
+      </div>
+    </div>
+    <div class="style-selector">
+      <div class="style-selector-container">
+        <h2>
+          Layout Style
+        </h2>
+        <select name="layout"><option value="fluid">Fluid<option value="boxed">Boxed</select>
+        <h2>
+          Navigation Style
+        </h2>
+        <select name="nav"><option value="top">Top<option value="left">Left</select>
+        <h2>
+          Color Options
+        </h2>
+        <ul class="color-options clearfix">
+          <li>
+            <a class="blue" href="javascript:chooseStyle('none', 30)"></a>
+          </li>
+          <li>
+            <a class="green" href="javascript:chooseStyle('green-theme', 30)"></a>
+          </li>
+          <li>
+            <a class="orange" href="javascript:chooseStyle('orange-theme', 30)"></a>
+          </li>
+          <li>
+            <a class="magenta" href="javascript:chooseStyle('magenta-theme', 30)"></a>
+          </li>
+          <li>
+            <a class="gray" href="javascript:chooseStyle('gray-theme', 30)"></a>
+          </li>
+        </ul>
+        <h2>
+          Background Patterns
+        </h2>
+        <ul class="pattern-options clearfix">
+          <li>
+            <a class="active" href="#" id="bg-1"></a>
+          </li>
+          <li>
+            <a href="#" id="bg-2"></a>
+          </li>
+          <li>
+            <a href="#" id="bg-3"></a>
+          </li>
+          <li>
+            <a href="#" id="bg-4"></a>
+          </li>
+          <li>
+            <a href="#" id="bg-5"></a>
+          </li>
+        </ul>
+        <div class="style-toggle closed">
+          <span aria-hidden="true" class="hightop-gear"></span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
