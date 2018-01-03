@@ -239,14 +239,14 @@
               </a>
                 <ul class="dropdown-menu">
                   <li>
-                    <a href="#">
+                    <a href="{{url('Auth/usuario/'.Auth::id().'/edit')}}">
                     <i class="fa fa-user-circle">
                     </i>Mi Perfil</a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="{{url('Auth/modificarEmpresa')}}">
                     <i class="fa fa-gear">
-                    </i>Ajuster</a>
+                    </i>Ajustes</a>
                   </li>
                   <li>
                     <a href="login1.htm">
@@ -254,7 +254,7 @@
                     </i>Ayuda</a>
                   </li>
                   <li>
-                    <a href="login1.htm">
+                    <a href='{{url("/Auth/logout")}}'>
                     <i class="fa fa-sign-out">
                     </i>Cerrar Secion</a>
                   </li>
@@ -280,28 +280,27 @@
         <div class="container-fluid main-nav clearfix">
           <div class="nav-collapse">
             <ul class="nav">
-             <li class="dropdown">
-              <a data-toggle="dropdown" href="#">
+             <li class="dropdown">  
+              <a data-toggle="dropdown" href="">
                 <span aria-hidden="true" class="fa fa-5x fa-reorder">
-                </span>Shikoba <b class="caret">
+                </span>{{Auth::User()->EmpresaActual->nombreEstablecimiento}} <b class="caret">
                 </b>
               </a>
                 <ul class="dropdown-menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-reorder pull-left">
-                    </i>Black and white</a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-reorder pull-left">
-                    </i>Fresa</a>
-                  </li>
+                  @foreach( Auth::User()->empresas  as $empresa)
+                    @if($empresa->nombreEstablecimiento != Auth::User()->EmpresaActual->nombreEstablecimiento)
+                    <li>
+                        <a onclick="cambiarBar({{$empresa->id}});" valor="">
+                          <i class="fa fa-reorder pull-left"></i>{{$empresa->nombreEstablecimiento}}
+                        </a>
+                    </li>
+                    @endif
+                  @endforeach
                 </ul>
               </li> 
               
               <li>
-                <a id="miPersonal"  href="#">
+                <a id="miPersonal" href={{url("/Auth/usuario")}}>
                   <span aria-hidden="true" class="fa fa-fw fa-users">
                   </span>Mi Personal</a>
               </li>
@@ -335,8 +334,12 @@
         </div>
       </div>
       <!-- fin de la navegación -->
-
-
+      <form action="{{url('/Auth/cambiarBar')}}" name="form" method="get">
+        {{csrf_field()}}
+          <input name="campo" type="number" id="campo"  value=0 hidden="">
+          <input type="text" name="redireccionar" value="" id="redireccionar" hidden="">
+      </form>
+       
     <div class="">
       @yield('content')
     </div>
@@ -345,4 +348,12 @@
 <div class="footer">
 </div>
   </body>
+  <script type="text/javascript">
+    function cambiarBar(valor) {
+        $("#campo").val(valor);
+        var pathname = window.location.pathname.split("public/");
+        $("#redireccionar").val(pathname[1]);
+        document.form.submit();
+    }
+  </script>
 </html>

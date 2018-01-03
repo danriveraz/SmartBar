@@ -17,6 +17,8 @@ Route::get('/home', 'HomeController@home');
 Route::get('Auth/register', 'Auth\AuthController@getRegister');
 Route::post('Auth/register', 'Auth\AuthController@postRegister');
 
+Route::get('Auth/cambiarBar', 'Auth\AuthController@cambiarBar');
+
 Route::get('Auth/confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\AuthController@confirmRegister');
 
 

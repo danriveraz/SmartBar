@@ -69,6 +69,11 @@ class AuthController extends Controller
                 ->with('ciudades', $ciudades);
     }
 
+    public function cambiarBar(Request $request){
+        Auth::User->empresaActual = $request->campo;
+        return redirect($request->redireccionar);
+    }
+
     public function postRegister(Request $request){
 
         $rules = [

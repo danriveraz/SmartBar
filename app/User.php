@@ -36,6 +36,10 @@ class User extends Authenticatable
       return $this->belongsTo('PocketByR\Empresa', 'empresaActual', 'id');
     }
 
+    public function empresas(){
+      return $this->hasmany('PocketByR\Empresa', 'usuario_id', 'id');
+    }
+
     public function AgendaTrabajadores(){
       return $this->hasmany('PocketByR\AgendaTrabajadores', 'idUsuario', 'id');
     }
