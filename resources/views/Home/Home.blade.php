@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -61,9 +61,9 @@
 					</div>
 						<div class="menu">
 						    <ul>
-						    	<li><a href="{{url('RegistrarProveedor')}}" class="">Eres Proveedor</a></li>
+						    	<li><a href="{{url('RegistrarProveedor')}}" class="">Registrar como Proveedor</a></li>
 						    	<li class="current"><a  class="scroll">Ayuda</a></li>
-								<li><a class="scroll">Contactanos</a></li>
+								<li><a class="scroll">Contactos</a></li>
 								<li class="login" >
 									<div id="loginContainer" ><a href="#" id="loginButton"><span>Iniciar Sesión</span></a>
 						                <div id="loginBox">
@@ -71,8 +71,8 @@
                                    				{{csrf_field()}}
 						                        <fieldset id="body">
 						                            <fieldset>
-						                                <label for="email">Email</label>
-						                                <input type="text1" name="email" placeholder="Email">
+						                                <label for="email">Username</label>
+						                                <input type="text1" name="username" placeholder="Username">
 						                            </fieldset>
 						                            <fieldset>
 						                                <label for="password">Contraseña</label>
@@ -96,20 +96,19 @@
             <div class="inner-bg">
                 <div class="container">
                     <div class="row">
-
-                        <div class="col-sm-2 text"></div>
-
-
-                        <div class="col-sm-5 text">
-                              <div class="description wow fadeInLeftBig">
-                              	  <h2 style="color: #fff; font-size: 35px; letter-spacing:-2px;"class="wow fadeInLeftBig"><strong>Creamos mejores momentos</strong>
-                              	  	
-                            </h2>
-                           <h3 style="color: #fff;"> haciendo tu vida, más fácil <br></h3>
-                            	</div>
+                        <div class="col-sm-7 text">
+                              <h1 class="wow fadeInLeftBig">La nueva herramienta que hará <br>
+                            <strong> MÁS FACIL TU VIDA</strong></h1>
+                            <div class="description wow fadeInLeftBig">
+                            	<p>
+	                            	Manten el control de tu negocio, tus empleados, tu contabilidad, tu inventario,<br
+	                            >
+	                            	y la eficiencia y todo al alcance de tu celular.
+                            	</p>
+                            </div>
                             <div class="top-big-link wow fadeInUp">
                                 <div class="description wow fadeInLeftBig">
-                                    <p><b>Entra usando tus redes sociales</b></p>
+                                    <p><b>Logueate usando redes sociales</b></p>
                                 </div>
      <a class="btn btn-link-1 btn-social-icon btn-twitter " href="#pricing"><span class="fa fa-twitter"></span></a>
      <a class="btn btn-link-1 btn-social-icon btn-facebook " href="{{ url('/Auth/facebook') }}"><span class="fa fa-facebook"></span></a>
@@ -120,8 +119,8 @@
                         <div class="col-sm-5 form-box wow fadeInUp">
                         	<div class="form-top">
                         		<div class="form-top-left">
-                        			<h3>Registrate</h3>
-                                    <p>Para contar con tu compañero inseparable</p>
+                        			<h3>Registro</h3>
+                                    <p>Ahora serás dueño de un negocio inteligente.</p>
                         		</div>
                         		<div class="form-top-right">
                         			<span aria-hidden="true" class="typcn typcn-pencil"></span>
@@ -215,14 +214,14 @@
 	                	<div class="features-box-icon">
 	                		<span aria-hidden="true" class="fa fa-picture-o"></span>
 	                	</div>
-	                    <h3>Descuentos y Recomendaciones</h3>
-	                    <p>Descuentos especiales, recomendaciòn de productos y proveedores, que mejoraràn los costos de tus productos, generando mayor utilidad.</p>
+	                    <h3>Diseño sobrio e intuitivo</h3>
+	                    <p>Sólo una pequeña guia que le mostrar el orden en que debe hacer el fácil proceso de volver su negocio inteligente.</p>
                     </div>
                     <div class="col-sm-4 features-box features-box-gray wow fadeInUp">
 	                	<div class="features-box-icon">
 	                		<span aria-hidden="true" class="fa fa-gears"></span>
 	                	</div>
-	                    <h3>Bolsillo</h3>
+	                    <h3>Sistema de Ordenes</h3>
 	                    <p>Sistema, rápido, sencillo, que hace el control de los pedidos muy eficiente.</p>
                     </div>
 	            </div>
@@ -239,14 +238,14 @@
 	                		<span aria-hidden="true" class="fa fa-tablet"></span>
 	                	</div>
 	                    <h3>Cualquier Dispositivo</h3>
-	                    <p>Funcionamos directamente en la nube, viendonos en cualquier dispositivo en cualquier momento, sólo se necesita una conexión a internet, sin instalaciones de programas complejos, ni servicio técnico obsoleto</p>
+	                    <p>Funcionamos directamente en la nube, viendonos en cualquier dispositivo en cualquier momento, sólo se necesita una conexión a internet.</p>
                     </div>
                     <div class="col-sm-4 features-box wow fadeInUp">
 	                	<div class="features-box-icon">
 	                		<span aria-hidden="true" class="fa fa-sitemap"></span>
 	                	</div>
-	                    <h3>Manejo simultaneo de varios negocios</h3>
-	                    <p>Desde tu misma pàgina puedes manejar varios negocios, simultaneamente y en tiempo real.</p>
+	                    <h3>Enorme Comunidad de Empresarios</h3>
+	                    <p>Los mejores precios en licor, donde conseguirlo, acceso a todas las recetas y nuevas recetas y mucho más...</p>
                     </div>
 	            </div>
 	            </div>
@@ -258,7 +257,7 @@
 	        <div class="container">
 	            <div class="row">
 	                <div class="col-sm-12 more-features section-description wow fadeIn">
-	                    <h2>Actualizaciones</h2>
+	                    <h2>Actualizaciones...</h2>
 	                    <div class="divider-1 wow fadeInUp"><span></span></div>
 	                </div>
 	            </div>
@@ -271,18 +270,18 @@
 	                    	<div class="more-features-box-text-icon">
 	                    		<span aria-hidden="true" class="typcn typcn-attachment"></span>
 	                    	</div>
-	                    	<h3>Agencia de Empleo </h3>
+	                    	<h3>Tienda Virtual </h3>
 	                    	<div class="more-features-box-text-description">
-	                    		Donde podrà encontrar el mejor personal para sus negocios.
+	                    		Podrá comprar todo lo relacionado a su negocio, dosificadores, mezcladores, cubiertos, cristalería y más... muy pronto...
 	                    	</div>
 	                    </div>
 	                    <div class="more-features-box-text">
 	                    	<div class="more-features-box-text-icon">
 	                    		<span aria-hidden="true" class="typcn typcn-user"></span>
 	                    	</div>
-	                    	<h3>Licores ùnicos y exclusivos</h3>
+	                    	<h3>Servicios Extra</h3>
 	                    	<div class="more-features-box-text-description">
-	                    		Tendrà acceso a licores nunca antes vistos y que no se pueden conseguir por otros medios.<br> Muy pronto...
+	                    		Podrá contratar personal, inscrito en nuestra plataforma y más...<br> Muy pronto...
 	                    	</div>
 	                    </div>
 	                </div>
@@ -290,29 +289,76 @@
 	        </div>
         </div>
 
-        
+        <!-- Negocio Inteligente en  pasos -->
+        <div class="how-it-works-container section-container section-container-image-bg">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-sm-12 how-it-works section-description wow fadeIn">
+	                    <h2>Tu Negocio inteligente en 4 pasos</h2>
+	                    <div class="divider-1 wow fadeInUp"><span></span></div>
+	                </div>
+	            </div>
+	            <div class="row">
+                	<div class="col-sm-4 col-sm-offset-1 how-it-works-box wow fadeInUp">
+	                	<div class="how-it-works-box-icon">
+	                		<span aria-hidden="true" class="fa fa-pencil"></span>
+	                		<span aria-hidden="true" class="how-it-works-step">1</span>
+	                	</div>
+	                    <h3>Registro y Membresía</h3>
+	                    <p>Registrate con tus datos personales y los de tu negocio, escoge la mejor membresía y felicitaciones por hacer tu vida más facil con Pocket SMARTBAR.</p>
+                    </div>
+                    <div class="col-sm-4 col-sm-offset-2 how-it-works-box wow fadeInDown">
+	                	<div class="how-it-works-box-icon">
+	                		<span aria-hidden="true" class="fa fa-truck"></span>
+	                		<span aria-hidden="true" class="how-it-works-step">2</span>
+	                	</div>
+	                    <h3>Proveedores</h3>
+	                    <p>Agrega tus proveedores y toda su información con el fin que la plataforma pueda ayudarte hacer tus pedidos y tener tu información a la manos más facil y rápido.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-sm-offset-1 how-it-works-box wow fadeInUp">
+	                	<div class="how-it-works-box-icon">
+	                		<span aria-hidden="true" class="fa fa-list-ol"></span>
+	                		<span aria-hidden="true" class="how-it-works-step">3</span>
+	                	</div>
+	                    <h3>Inventario</h3>
+	                    <p>Agrega tus productos al inventario y crea tu menú con el fin que siempre estes informado sobre la cantidad de productos que tienes, sus costos, marcas y rentabilidad.</p>
+                    </div>
+                    <div class="col-sm-4 col-sm-offset-2 how-it-works-box wow fadeInDown">
+	                	<div class="how-it-works-box-icon">
+	                		<span aria-hidden="true" class="fa fa-user"></span>
+	                		<span aria-hidden="true" class="how-it-works-step">4</span>
+	                	</div>
+	                    <h3>Personal</h3>
+	                    <p>Agrega la información de tu personal y los permisos de uso de plataforma, con el fin que tu sistema sea más fácil y rápido, sin perder el control.</p>
+                    </div>
+	            </div>
+	            </div>
+	        </div>
+        </div>
 
 		<!-- Pricing -->
         <div class="pricing-container section-container">
 	        <div class="container">
 	            <div class="row">
 	                <div class="col-sm-12 pricing section-description wow fadeIn">
-	                    <h2>PocketClub</h2>
+	                    <h2>Membresia</h2>
 	                    <div class="divider-1 wow fadeInUp"><span></span></div>
 	                </div>
 	            </div>
 	            <div class="row">
                 	<div class="col-sm-4 pricing-box wow fadeInUp">
                 		<div class="pricing-box-inner">
-		                	<div class="pricing-box-price"><span>$ </span><strong>89.990</strong><span> / Cop</span>
+		                	<div class="pricing-box-price"><span>$ </span><strong>89.000</strong><span> / Cop</span>
 		                	</div>
 		                    <h3>UNICA</h3>
 		                    <h4>Mensual</h4>
 		                    <div class="pricing-box-features">
 		                    	<ul>
 		                    		<li>Uso del programa = 1 mes</li>
-		                    		<li>Promociones unicas en Smartshop</li>
 		                    		<li>Sin clausulas, ni recargos.</li>
+		                    		<li></li>
 		                    		<li></li>
 		                    		<li></li>
 		                    		<li></li>
@@ -327,20 +373,19 @@
                     </div>
                     <div class="col-sm-4 pricing-box pricing-box-best wow fadeInDown">
                     	<div class="pricing-box-inner">
-		                	<div class="pricing-box-price"><span>$ </span><strong>2.999.900</strong><span> / Cop</span>
+		                	<div class="pricing-box-price"><span>$ </span><strong>2.000.000</strong><span> / Cop</span>
 		                		<div class="pricing-box-icon">
 			                		<span aria-hidden="true" class="typcn typcn-star"></span>
 			                	</div>
 		                	</div>
-		                    <h3>MASTER</h3>
-		                    <h4>5 Años</h4>
+		                    <h3>INFINITA</h3>
+		                    <h4>POR SIEMPRE</h4>
 		                    <div class="pricing-box-features">
 		                    	<ul>
 
-		                    		<li>Uso del programa = 5 Años</li>
-		                    		<li>Olvidate de pagos por 1.825 días</li>
+		                    		<li>Uso del programa = Por siempre.</li>
+		                    		<li>Nunca más tendra que pagar por el.</li>
 		                    		<li>Membresia por tiempo limitado.</li>
-		                    		<li>Promociones master en Smartshop</li>
 		                    		<li>Sin clausulas, ni recargos.</li>
 
 		                    	</ul>
@@ -352,7 +397,7 @@
                     </div>
                     <div class="col-sm-4 pricing-box wow fadeInUp">
                     	<div class="pricing-box-inner">
-		                	<div class="pricing-box-price"><span>$ </span><strong>799.900</strong><span> / Cop</span></div>
+		                	<div class="pricing-box-price"><span>$ </span><strong>800.000</strong><span> / Cop</span></div>
 		                    <h3>ESPECIAL</h3>
 		                    <h4>ANUAL</h4>
 
@@ -360,7 +405,6 @@
 		                    	<ul>
 		                    	<li>Uso del programa = 12 Meses.</li>
 		                    		<li>Ahorro de $ 268.000 Cop.</li>
-		                    		<li>Promociones especiales en Smartshop</li>
 		                    		<li>Sin clausulas, ni recargos.</li>
 		                    		<li></li>
 		                    		<li></li>
@@ -381,16 +425,17 @@
 	        <div class="container">
 	            <div class="row">
 	                <div class="col-sm-12 call-to-action section-description wow fadeInLeftBig">
-	                    <h2>Conoce Nuestra SmartShop</h2>
+	                    <h2>¿Quieres una membresía única Gratis?</h2>
 	                    <div class="divider-1 wow fadeInUp"><span></span></div>
 	                    <p>
-	                    	Obtèn productos especializados para tu negocio, a un gran precio, de una forma fácil y rápida.
+	                    	"Registrate, llenando todos los campos del formulario y obtén una membresía por un mes"<br>
+	                    	"Hazlo yá, quedán pocas membresías únicas de obsequio"
 	                    </p>
 	                </div>
 	            </div>
 	            <div class="row">
 	            	<div class="col-sm-12 section-bottom-button wow fadeInUp">
-                        <a class="btn btn-link-1 scroll-link" href="#top-content">Entrar</a>
+                        <a class="btn btn-link-1 scroll-link" href="#top-content">Registrate</a>
 	            	</div>
 	            </div>
 	        </div>
@@ -401,7 +446,7 @@
 	        <div class="container">
 	            <div class="row">
 	                <div class="col-sm-12 about-us section-description wow fadeIn">
-	                    <h2>SOCIOS SMARTBAR</h2>
+	                    <h2>CONOCE NUESTROS SOCIOS SMARTBAR</h2>
 	                    <div class="divider-1 wow fadeInUp"><span></span></div>
 	                </div>
 	            </div>
@@ -472,8 +517,8 @@
 	                				</div>
 	                				<div class="testimonial-text">
 		                                <p>
-		                                	"Definitivamente tener el control de tu negocio de una forma tan fácil y rapido como esta, es lo mejor! ya que tengo más tiempo para otras cosas, mientras gano más dinero y mis empleados estan más felices"<br>
-		                                	<a href="#">www.pocketsmartbar.com</a>
+		                                	"Definitivamente tener el control de tu negocio de una forma tan fácil y rapido como esta, es lo mejor! ya que tengo más timepo para otras cosas, mientras gano más dinero y mis empleados estan más felices"<br>
+		                                	<a href="#">www.smartbar.com</a>
 		                                </p>
 	                                </div>
 	                			</div>
@@ -487,7 +532,7 @@
 	                				<div class="testimonial-text">
 		                                <p>
 		                                	"Rápido, y fácil poner toda la información de tu bar en esta página de internet y ella te dice donde comprar licor y productos, como preparar tus cócteles y comidas, y me recomienda los mejores productos para mi negocio, me encanta."<br>
-		                                	<a href="#">www.pocketsmartbar.com</a>
+		                                	<a href="#">www.smartbar.com</a>
 		                                </p>
 	                                </div>
 	                			</div>
@@ -500,8 +545,8 @@
 	                				</div>
 	                				<div class="testimonial-text">
 		                                <p>
-		                                	"Por fin puedo dormir a la hora que quiera, mientras mi aplicativo, me informa de todo lo que sucede en mis negocios, definitivamente un compañero inseparable!"<br>
-		                                	<a href="#">www.poketsmartbar.com</a>
+		                                	"Por fin puedo dormir a la hora que quiera!"<br>
+		                                	<a href="#">www.smartbar.com</a>
 		                                </p>
 	                                </div>
 	                			</div>
@@ -514,8 +559,8 @@
 	                				</div>
 	                				<div class="testimonial-text">
 		                                <p>
-		                                	"Mis empleados son más eficientes, mis entregas y mis productos son mejores, nunca olvido comprar nada, porque tengo quien me lo recuerde, mi compañero inseparable."<br>
-		                                	<a href="#">www.pocketsmartbar.com</a>
+		                                	"Mis empleados son más eficientes, mis entregas y mis productos son mejores, nunca olvido comprar nada, porque tengo quien me lo recuerde, gracias."<br>
+		                                	<a href="#">www.smartbar.com</a>
 		                                </p>
 	                                </div>
 	                			</div>
