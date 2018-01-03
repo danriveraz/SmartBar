@@ -1,5 +1,5 @@
 
-@extends('Layout.app')
+@extends('Layout.app_administradores')
 @section('content')
 
 
@@ -135,7 +135,7 @@
   
   $(document).ready(function(){
     listprov();
-    cambiarCurrent("#productos");
+    cambiarCurrent("#miCarta");
     var p = 0;
     cats = eval(<?php echo json_encode($cats);?>);
     p = cats[0].precio;

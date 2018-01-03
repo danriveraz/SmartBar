@@ -11577,7 +11577,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLengthMenu": "Mostrar _MENU_ ",
+			"sLengthMenu": "<i class='fa fa-sliders'></i> _MENU_ ",
 	
 	
 			/**
@@ -11657,7 +11657,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "Buscar:",
+			"sSearch": "<i class='fa fa-search'></i>",
 	
 	
 			/**

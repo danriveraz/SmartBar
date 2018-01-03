@@ -1,0 +1,167 @@
+table {
+  background-color: white;
+  width: 100%;
+}
+
+table th, table td{
+  font-size: 14px;
+  text-align: center;
+}
+
+#tablaProductos thead, #tablaProductos tbody {
+  display: block;
+}
+#tablaProductos tbody {
+  width: 100%;
+  overflow-y: scroll;
+}
+
+#tablaProductos tr{
+  width: 100%;
+}
+#tablaProductos tbody::-webkit-scrollbar {
+  width: 0px;  /* remove scrollbar space */
+  background: transparent;  /* optional: just make scrollbar invisible */
+  display: none;
+}
+
+#contenedorProductos::-webkit-scrollbar {
+  width: 0px;  /* remove scrollbar space */
+  background: transparent;  /* optional: just make scrollbar invisible */
+  display: none;
+}
+
+.social-widget {
+  height: 120px;
+  padding-top: 14px;
+  background: white;
+}
+
+.social-data{
+  padding-top: 15px;
+  vertical-align: middle;
+}
+
+.social-widget .social-data h1 {
+  margin-left: -10px;
+  color: rgb(45,0,49);
+  font-weight: 300;
+  font-size: 24px;
+  text-align: center;
+}
+
+.social-widget > a{
+  color: rgb(45,0,49);
+  text-decoration: none;
+}
+
+.p{
+  text-align : justify;
+}
+
+.social-wrapper #social-container .item {
+  border-radius: 8px;
+  width: 160px;
+  height: 80px;
+  margin-bottom: 20px;
+  box-shadow: 2px 2px 3px 2px rgba(153, 153, 153, 0.5);
+  margin-left: 20px;
+}
+
+#estadoMesa{
+  display: flex;
+  justify-content: center;
+  margin-left: -8%;
+}
+
+#nombreMesa{
+  width: 20%;
+  height: 50px;
+  font-size: 16px;
+  background-color: rgb(45,0,49);
+  color: white;
+  margin-left: 40%;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+#contenedor{
+  overflow: hidden;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+#contenedorCategorias{
+  width: 30%;
+  background-color: rgba(255, 255, 255, 0.9);
+  float: left;
+}
+
+#contenedorProductos{
+  width: 70%;
+  display: block;
+  overflow-x: scroll;
+  background-color: rgba(255, 255, 255, 0.9);
+  float: left;
+}
+
+#categoria{
+  border-radius: 8px;
+  background: rgb(45,0,49);
+  color: white;
+  height: 50px;
+  margin-bottom: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#productos{
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+#mesaDisponible {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  float:left;
+  margin-top: -14px;
+  width: 15px;
+  height: 82px;
+  background: #5df000;
+}
+
+#mesaOcupada {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  float:left;
+  margin-top: -14px;
+  width: 15px;
+  height: 82px;
+  background: #ff0012;
+}
+
+#mesaReservada {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  float:left;
+  margin-top: -14px;
+  width: 15px;
+  height: 82px;
+  background: rgb(45,0,49);
+}
+
+#botonEnviar {
+  background-color: #330033;
+  float: right;
+}
+
+#botonAtras {
+  background-color: #330033;
+  width: 100px;
+}

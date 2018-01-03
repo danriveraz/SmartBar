@@ -1,0 +1,18 @@
+#categories_block_left h3.title_block {
+  margin: 0; }
+#categories_block_left ul li.last {
+  margin-top: 13px;
+  position: relative; }
+#categories_block_left ul li ul li {
+  position: relative;
+  padding: 0; }
+  #categories_block_left ul li ul li.last {
+    margin: 0; }
+#categories_block_left ul li a {
+  display: block;
+  position: relative;
+  padding: 5px 0;
+  font-size: 12px;
+  transition: 0.3s all ease 0s;
+  color: #444;
+  font-family: Arial; }
