@@ -1,0 +1,253 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Responsive Tabs Demo</title>
+    <link rel="stylesheet" href="stylesheets/bootstrap.css" /> 
+</head>
+
+<body>
+    
+  
+    
+    
+    
+    <div class="container">
+        
+        <h1 class="page-header">Bootstrap Responsive Tabs Demo</h1>
+        <p class="lead">
+        </p>
+
+        
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#yorkminster" aria-controls="home" role="tab" data-toggle="tab">Contenido de Producto</a></li>
+            <li role="presentation"><a href="#yorkcastle" aria-controls="profile" role="tab" data-toggle="tab">Preparación</a></li>
+            <!--<li role="presentation"><a href="#yorkmuseumgardens" aria-controls="profile" role="tab" data-toggle="tab">York Museum Gardens</a></li>-->
+
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="yorkminster">
+
+
+
+ <div class="container-fluid main-content">
+        <!--<div class="page-title">
+          <h1>
+            Basic Tables
+          </h1>
+        </div>-->
+        <p></p>
+          <!-- end Condensed Table -->
+        <div class="row">
+          <!-- Hover Row Table -->
+          <div class="col-lg-3">
+          <div  class="text-center"><a class="btn btn-bitbucket" onclick=""><i class="fa fa-arrow-left"></i>Ir Atras</a></div>
+          </div>
+          <!-- end Hover Row Table --><!-- Responsive Table -->
+          <div class="col-lg-6">
+        <div class=" text-center page-title">
+          <h2>
+			<input class="Titulo-css" placeholder="Ingrese Nombre" />
+          </h2>
+        </div>          
+            <div class="widget-container fluid-height clearfix" style="box-shadow: none;">
+              <div class="heading">
+                <i class=" pocketMorado fa fa-table"></i><a class="pocketMorado">Productos Selecionados</a>
+              </div>
+              <div class="widget-content padded clearfix">
+                <table class="table table-striped">
+                  <thead>
+                    <th>
+                      Nombre
+                    </th>
+                    <th class="text-center">
+                      Cantidad
+                    </th>
+                    <th class="text-center">
+                      Medida
+                    </th>
+                    <th></th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        Tequila Jose Cuervo
+                      </td>
+                      <td class="text-center">
+                        1 1/2
+                      </td>
+                      <td class="text-center">
+                        <span class="label label-Pocket"><b>Onza</b></span>
+                      </td>
+                      <td>
+                        <div class="action-buttons">
+                     	<a class="table-actions pocketMorado"><i class="fa fa-window-close" title="Cancelar"></i></a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Triple Seco
+                      </td>
+                      <td class="text-center">
+                        1/2
+                      </td>
+                      <td class="text-center">
+                        <span class="label label-Pocket"><b>Onza</b></span>
+                      </td>
+                      <td>
+                        <div class="action-buttons">
+                    	<a class="table-actions pocketMorado"><i class="fa fa-window-close" title="Cancelar"></i></a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+           </div>
+          
+          <div class="col-lg-3">
+          <div  class="text-center"><a class="btn btn-bitbucket" onclick=""><i class="fa fa-send"></i>Guardar</a></div>
+          </div>          <!-- end Responsive Table -->
+        </div>
+      </div>      
+      
+      
+      
+      
+      <div class="container main-content">
+        <!-- DataTables Example -->         
+        <div class="row"> 
+ <!-- fin de la tabla de selecion de productos-->      
+          <div class="col-lg-12">
+            <div class="widget-container fluid-height clearfix">
+              <div class="heading">
+                <i class="pocketMorado fa fa-check-square-o"></i><a class="pocketMorado">Mis Insumos Disponible</a>
+              </div>
+              <div class="widget-content padded clearfix">
+                <table class="table table-bordered table-striped" id="dataTable1">
+                  <thead>
+                    <th width="30%">
+                      Nombre
+                    </th>
+                    <th width="25%">
+                      Marca
+                    </th>
+                    <th width="15%">
+                      Cantidad
+                    </th>
+                   <th width="15%" class="text-center">
+                      En Inventario
+                    </th>
+                   <th width="15%" class="text-center">
+                      Medida
+                    </th>
+
+                   <th width="5%" class="text-center">
+                      Opciones
+                    </th>
+                  </thead>
+                  <tbody>
+                    <tr data-toggle="modal">
+                      <td>
+                        Ron Viejo del caldas                        
+                      </td>
+                      <td>
+                        Bavaria
+                      </td>
+                      <td>
+                        1100
+                      </td>
+                      <td class="text-center">
+                        20
+                      </td> 
+                      <td class="text-center">
+                        <span class="label label-Pocket"><b>Mililitro</b></span>
+                      </td>                     
+                      <td class="text-center actions">
+                        <div class="action-buttons">
+                          <a class="table-actions pocketMorado" href=""><i class="fa fa-pencil" data-toggle="modal" href="#myModal" title="Editar Insumo"></i></a>
+                          <a class="table-actions pocketMorado" href=""><i class="fa fa-trash-o" title="Eliminar Insumo"></i></a>
+                        </div>
+                      </td>
+                    </tr> 
+                                        <tr data-toggle="modal">
+                      <td>
+                        Ron Viejo del caldas                        
+                      </td>
+                      <td>
+                        Bavaria
+                      </td>
+                      <td>
+                        1100
+                      </td>
+                      <td class="text-center">
+                        20
+                      </td> 
+                      <td class="text-center">
+                        <span class="label label-Pocket"><b>Mililitro</b></span>
+                      </td>                     
+                      <td class="text-center actions">
+                        <div class="action-buttons">
+                          <a class="table-actions pocketMorado" href=""><i class="fa fa-pencil" data-toggle="modal" href="#myModal" title="Editar Insumo"></i></a>
+                          <a class="table-actions pocketMorado" href=""><i class="fa fa-trash-o" title="Eliminar Insumo"></i></a>
+                        </div>
+                      </td>
+                    </tr>                                      
+                  </tbody>
+                </table>
+              </div>
+            </div>                      
+          </div>          
+        </div> 
+        <!-- end DataTables Example -->
+      </div> 
+    
+
+
+            </div>
+            
+            
+            
+            
+            <div role="tabpanel" class="tab-pane" id="yorkcastle">
+                <h3>York Castle</h3>
+                <p><strong>York Castle</strong> in the city of York, England, is a fortified complex comprising, over 
+                    the last nine centuries, a sequence of castles, prisons, law courts and other buildings on the 
+                    south side of the River Foss. The now-ruinous keep of the medieval Norman castle is commonly 
+                    referred to as <strong>Clifford's Tower</strong>. Built originally on the orders of William I to 
+                    dominate the former Viking city of York, the castle suffered a tumultuous early history before 
+                    developing into a major fortification with extensive water defences. After a major explosion in 
+                    1684 rendered the remaining military defences uninhabitable, York Castle continued to be used as 
+                    a jail and prison until 1929.</p>
+            </div>
+            <!--<div role="tabpanel" class="tab-pane" id="yorkmuseumgardens">
+                <h3>York Museum Gardens</h3>
+                <p>The <strong>York Museum Gardens</strong> are botanic gardens in the centre of York, England, beside 
+                    the River Ouse. They cover an area of 10 acres (4.0 ha) of the former grounds of St Mary's Abbey, 
+                    and were created in the 1830s by the Yorkshire Philosophical Society along with the Yorkshire 
+                    Museum which they contain.</p>
+            </div>  -->          
+        </div>
+        
+
+        
+    </div>    
+    
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.rawgit.com/InventPartners/bootstrap-responsive-tabs/master/jquery.responsivetabs.js"></script>
+    <script>
+        $(function() {
+            $('.nav-tabs').responsiveTabs();
+        });
+    </script>
+</body>
+</html>
