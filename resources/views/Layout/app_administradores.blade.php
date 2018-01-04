@@ -121,13 +121,16 @@
 {!!Html::script('javascripts\xeditable-demo-mock.js')!!}
 {!!Html::script('javascripts\xeditable-demo.js')!!}
 {!!Html::script('javascripts\address.js')!!}
+<!-- errores croppie -->
+<!-- 
 {!!Html::script('croppie/croppie.js')!!}
-{!!Html::script('croppie/upload.js')!!}
+{!!Html::script('croppie/upload.js')!!} -->
 {!!Html::script('javascripts/upload/plugins/sortable.js')!!}
 {!!Html::script('javascripts/upload/fileinput.js')!!}
 {!!Html::script('javascripts/upload/locales/fr.js')!!}
 {!!Html::script('javascripts/upload/locales/es.js')!!}
 {!!Html::script('javascripts/upload/theme.js')!!}
+
 {!!Html::style('croppie/croppie.css')!!}
 {!!Html::style('stylesheets/upload/fileinput.css')!!}
 {!!Html::style('stylesheets/upload/theme.css')!!}
@@ -138,6 +141,20 @@
 {!!Html::script('javascripts/menu/bootstrap-submenu.min.js')!!}
 
 <!-- ascrip y css de menu -->
+
+<!-- para el perfil -->
+{!!Html::style('stylesheets/profile.css')!!}
+{!!Html::style('assets/vendor/linearicons/style.css')!!}
+{!!Html::style('assets/vendor/metisMenu/metisMenu.css')!!}
+{!!Html::style('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')!!}
+
+<!-- MAIN CSS -->
+{!!Html::style('assets/css/main.css')!!}
+<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+
+
+{!!Html::style('stylesheetspropio\stylePropio.css')!!}
+<!-- fin -->
 
 
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
@@ -221,15 +238,15 @@
                 <ul class="dropdown-menu">
                   <li>
                     <a href="#">
-                    <img width="34" height="34" src="images\avatar-male2.png">Could we meet today? I wanted...</a>
+                    <img width="34" height="34" src="../../../images\avatar-male2.png">Could we meet today? I wanted...</a>
                   </li>
                   <li>
                     <a href="#">
-                    <img width="34" height="34" src="images\avatar-female.png">Important data needs your analysis...</a>
+                    <img width="34" height="34" src="../../../images\avatar-female.png">Important data needs your analysis...</a>
                   </li>
                   <li>
                     <a href="#">
-                    <img width="34" height="34" src="images\avatar-male2.png">Buy Se7en today, it's a great theme...</a>
+                    <img width="34" height="34" src="../../../images\avatar-male2.png">Buy Se7en today, it's a great theme...</a>
                   </li>
                 </ul>
               </li>
