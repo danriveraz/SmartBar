@@ -140,18 +140,31 @@
                       </div>
                     </div>
                     <div class="form-group">
-                        <label>Nit</label>
-                        <div>
-                            <input type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx">
-                        </div>
+                      <label>Nit</label>
+                      <div>
+                          <input type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Departamento</label>
+                      <div>
+                          <input type="text" class="form-control" value="{{$usuario->departamento}}" disabled>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Ciudad</label>
+                      <div>
+                          <input type="text" class="form-control" value="{{$usuario->ciudad}}" disabled>
+                      </div>
                     </div>
                   </div>
                   <!-- END RIGHT SECTION -->
                 </div>
-                <p class="margin-top-30">
-              <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
-                
-                </p>
+                <div class="form-group" align="center">
+                  <p class="margin-top-30">
+                    <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
+                  </p>
+                </div>
               </div>
             </div>
             <!-- END MY PROFILE -->
