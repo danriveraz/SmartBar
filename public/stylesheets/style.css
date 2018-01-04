@@ -451,7 +451,7 @@ body.login2 {
         .navbar .container-fluid.top-bar .nav > li.open > a, .navbar .container-fluid.top-bar .nav > li.active > a, .navbar .container-fluid.top-bar .nav > li.open.active > a {
           background-color: #eeeeee; }
           .navbar .container-fluid.top-bar .nav > li.open > a span, .navbar .container-fluid.top-bar .nav > li.active > a span, .navbar .container-fluid.top-bar .nav > li.open.active > a span {
-            color: #007aff; }
+            color: #2d0031; }
         .navbar .container-fluid.top-bar .nav > li.settings .settings-link span {
           width: 20px;
           height: 20px;
@@ -526,11 +526,11 @@ body.login2 {
               margin-right: -6px;
               border-top-color: #999999; }
             .navbar .container-fluid.main-nav .nav-collapse .nav > li > a.current {
-              color: #007aff; }
+              color: #2d0031; }
               .navbar .container-fluid.main-nav .nav-collapse .nav > li > a.current span {
-                color: #007aff; }
+                color: #2d0031; }
               .navbar .container-fluid.main-nav .nav-collapse .nav > li > a.current .caret {
-                border-top-color: #007aff; }
+                border-top-color: #2d0031; }
             .navbar .container-fluid.main-nav .nav-collapse .nav > li > a:hover {
               background: #f8f8f8;
               background: rgba(0, 0, 0, 0.04); }
@@ -619,8 +619,8 @@ body.sidebar-nav {
               float: right;
               margin: 20px 15px 0 0; }
             body.sidebar-nav .navbar .container-fluid.main-nav .nav-collapse .nav > li > a.current {
-              color: #007aff;
-              border-bottom-color: #007aff; }
+              color: #2d0031;
+              border-bottom-color: #2d0031; }
               body.sidebar-nav .navbar .container-fluid.main-nav .nav-collapse .nav > li > a.current span {
                 background-position: left -28px; }
               body.sidebar-nav .navbar .container-fluid.main-nav .nav-collapse .nav > li > a.current .caret {
@@ -3530,8 +3530,8 @@ body.fourofour {
               margin-left: 15px;
               color: #777777; }
               .navbar .container-fluid.main-nav .nav-collapse .nav > li > .dropdown-menu li a.current {
-                border-bottom-color: #007aff;
-                color: #007aff; }
+                border-bottom-color: #2d0031;
+                color: #2d0031; }
               .navbar .container-fluid.main-nav .nav-collapse .nav > li > .dropdown-menu li a:hover, .navbar .container-fluid.main-nav .nav-collapse .nav > li > .dropdown-menu li a:active {
                 color: black;
                 border-bottom-color: black; }
@@ -3557,12 +3557,12 @@ body.fourofour {
               float: right;
               margin: 20px 15px 0 0; }
             .navbar .container-fluid.main-nav .nav-collapse .nav > li > a.current {
-              color: #007aff;
-              border-bottom-color: #007aff; }
+              color: #2d0031;
+              border-bottom-color: #2d0031; }
               .navbar .container-fluid.main-nav .nav-collapse .nav > li > a.current span {
                 background-position: left -28px; }
               .navbar .container-fluid.main-nav .nav-collapse .nav > li > a.current .caret {
-                border-top-color: #007aff; }
+                border-top-color: #2d0031; }
             .navbar .container-fluid.main-nav .nav-collapse .nav > li > a:hover {
               background: #eeeeee;
               background: rgba(0, 0, 0, 0.04); }
