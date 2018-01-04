@@ -271,8 +271,7 @@
       </span>
     </button>
       <div class="logo">
-           <a href="http://localhost/PocketByR/public">
-            <img src="http://localhost/PocketByR/public/images/logo.png">
+            <a href="{{url('/')}}">{{ HTML::image('images/logo2.png') }}</a>
          </a>
           </div>
         </div>
