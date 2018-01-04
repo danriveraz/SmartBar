@@ -29,6 +29,11 @@
               <nav class="side-menu">
                   <ul class="nav">
                     <li class="active"><a data-toggle="tab" href="#tab1"><span class="fa fa-user"></span> Perfil</a></li>
+                    <li><a data-toggle="tab" href="#tab2"><span class="fa fa-envelope"></span> Categoria</a></li>
+                    <li><a data-toggle="tab" href="#tab3"><p><span class="fa fa-envelope"></span> Factura</p></a></li>
+                    <li><a data-toggle="tab" href="#tab4"><p><span class="fa fa-envelope"></span> Mesas</p></a></li>
+                    <li><a data-toggle="tab" href="#tab5"><span class="fa fa-gear"></span> Reportes</a></li>
+
                   </ul>    
               </nav>
           </div>
@@ -42,7 +47,6 @@
           <li class="active"><a href="#myprofile" role="tab" data-toggle="tab">Perfil</a></li>
           <li><a href="#account" role="tab" data-toggle="tab">Cuenta</a></li>
           <li><a href="#billings" role="tab" data-toggle="tab">PocketClub</a></li>
-          <li><a href="#mesas" role="tab" data-toggle="tab">Mesas</a></li>
           <li><a href="#preferences" role="tab" data-toggle="tab">Bolsillo</a></li>
         </ul>
         <form>
@@ -50,45 +54,39 @@
             <!-- MY PROFILE -->
             <div class="tab-pane fade in active" id="myprofile">
               <div class="profile-section">
-                <h2 class="profile-heading">Información General</h2>
                 <div class="clearfix">
                   <!-- LEFT SECTION -->
                   <div class="left">
+                    <h2>Información General</h2>
                     <div class="form-group">
-                     <div class="page-nav">
-                        <div class="btn-group" role="group">
-                          <div class="btn-group" >
-                            <button id="btn-misnego" class="btn  dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Mis Negocios<span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                              <li> <a href="#"><i class="fa fa-plus"></i> Bar 1</a> </li>
-                              <li> <a href="#"><i class="fa fa-edit"></i> Bar 2</a> </li>
-                              <li> <a href="#"><i class="fa fa-trash-o"></i> Bar 3</a> </li>
-                            </ul>
-                          </div>
-                          <button id="btn-masnego" class="btn btn-bitbucket" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="List View" id="drive-list-toggle"><i class="fa fa-plus"></i></button>
-                        </div>
+                      <label>Nombres</label>
+                      <input type="text" name="nombrePersona" class="form-control" value="{{$usuario->nombrePersona}}"/>
+                      <div class="bg-danger text-white">{{$errors->first('nombrePersona')}}</div>
+                    </div>
+                    <div class="form-group">
+                      <label>Documento</label>
+                      <select class="form-control">
+                        <option value="Category 1">Tipo De Documento</option>
+                          <option value="Category 1">T.I</option>
+                          <option value="Category 3">C.C</option>
+                      </select>
+                      <br>
+                      <div>
+                        <input type="number" name="cedula" placeholder="Cedula" class="form-control" value="{{$usuario->cedula}}">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label>Nombres</label>
-                      <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                      <label>Apellidos</label>
-                      <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
                       <label>Sexo</label>
-                      <div>
-                        <label class="fancy-radio">
+                      <div style="margin-left: 5%;">
+                        <label>
                           <input name="gender2" value="male" type="radio" checked>
                           <span><i></i>Masculino</span>
                         </label>
-                        <label class="fancy-radio">
+                        <label>
                           <input name="gender2" value="female" type="radio">
                           <span><i></i>Femenino</span>
                         </label>
-                        <label class="fancy-radio">
+                        <label>
                           <input name="gender2" value="female" type="radio">
                           <span><i></i>Otro</span>
                         </label>
@@ -98,28 +96,54 @@
                       <label>Fecha de Nacimiento</label>
                       <div class="input-group date" data-date-autoclose="true" data-provide="datepicker">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input type="text" class="form-control">
+                        <input type="date" name="fechaNacimiento" class="form-control" value='{{$usuario->fechaNacimiento}}'>
+                        <div class="bg-danger text-white">{{$errors->first('fechaNacimiento')}}</div>
                       </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Telefono</label>
+                      <div>
+                        <input type="text" class="form-control" placeholder="Telefono o Celular" value="{{$usuario->telefono}}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <div>
+                            <input type="email" class="form-control" placeholder="Correo Electronico" value="{{$usuario->email}}"/>
+                        </div>
                     </div>
                   </div>
                   <!-- END LEFT SECTION -->
                   <!-- RIGHT SECTION -->
                   <div class="right">
+                    <h2> Información Bar</h2>
+                    <div class="form-group">
+                      <label>Nombre</label>
+                      <input type="text" class="form-control" placeholder="Nombre del Establecimiento">
+                    </div>
                     <div class="form-group">
                       <label>Dirección</label>
-                      <input type="text" class="form-control">
+                      <input type="text" class="form-control" placeholder="Dirección">
                     </div>
                     <div class="form-group">
-                      <label>Indicaciones extra</label>
-                      <input type="text" class="form-control">
+                      <label>Teléfono</label>
+                      <input type="text" class="form-control" placeholder="Teléfono o celular">
                     </div>
                     <div class="form-group">
-                      <label>Ciudad</label>
-                      <input type="text" class="form-control">
+                      <label>Regimen</label>
+                      <div>
+                        <select class="form-control">
+                            <option value="Category 1">Tipo de Regimen</option>
+                            <option value="Category 1">Regimen Comun</option>
+                            <option value="Category 3">Regimen Simplificado</option>
+                        </select>
+                      </div>
                     </div>
                     <div class="form-group">
-                      <label>Departamento</label>
-                      <input type="text" class="form-control">
+                        <label>Nit</label>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx">
+                        </div>
                     </div>
                   </div>
                   <!-- END RIGHT SECTION -->
@@ -271,15 +295,6 @@
               </div>
             </div>
             <!-- END BILLINGS -->
-            <div class="tab-pane fade" id="mesas">
-              <div class="clearfix">
-                <div class="left">
-                  <div class="profile-section">
-                    <h3>MIS MESAS</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
             <!-- PREFERENCES -->
             <div class="tab-pane fade" id="preferences">
               <div class="clearfix">
