@@ -1,4 +1,3 @@
-
 <html>
   <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -139,6 +138,23 @@
 
 <!-- ascrip y css de menu -->
 
+<!-- para el perfil -->
+{!!Html::style('stylesheets/profile.css')!!}
+{!!Html::style('assets/vendor/font-awesome/css/font-awesome.min.css')!!}
+{!!Html::style('assets/vendor/linearicons/style.css')!!}
+{!!Html::style('assets/vendor/metisMenu/metisMenu.css')!!}
+{!!Html::style('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')!!}
+
+<!-- MAIN CSS -->
+{!!Html::style('assets/css/main.css')!!}
+<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+<!-- GOOGLE FONTS -->
+<!-- ICONS -->
+{!!Html::style('assets/img/apple-icon.png')!!}
+{!!Html::style('assets/img/favicon.png')!!}
+
+{!!Html::style('stylesheetspropio\stylePropio.css')!!}
+<!-- fin -->  
 
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   </head>

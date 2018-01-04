@@ -90,7 +90,7 @@ body{
 }
 
 .view-account .side-bar .side-menu .nav>li.active a {
-    color: #40babd;
+    color: rgb(79,0,85);
     border-bottom: 2px solid #40babd;
     background: none;
     border-right: none
