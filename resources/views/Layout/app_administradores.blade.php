@@ -271,7 +271,7 @@
       </span>
     </button>
       <div class="logo">
-            <a href="{{url('/')}}">{{ HTML::image('images/logo2.png') }}</a>
+            <a href="{{url('/')}}">{{ HTML::image('images/logo.png') }}</a>
          </a>
           </div>
         </div>
