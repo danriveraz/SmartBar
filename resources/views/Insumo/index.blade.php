@@ -1,4 +1,4 @@
-@extends('Layout.app')
+@extends('Layout.app_administradores')
 @section('content')
 <div class="container main-content">
   @include('flash::message')
@@ -169,7 +169,7 @@
   
   $(document).ready(function(){
     listprov();
-    cambiarCurrent("#insumos");
+    cambiarCurrent("#miInventario");
     $("#nombreInput").keyup(function(e){
         var dato = $("#nombreInput").val();
         var url = "inslistall?nombre=";

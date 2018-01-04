@@ -1,4 +1,4 @@
-@extends('Layout.app')
+@extends('Layout.app_administradores')
 @section('content')
 
     <div class="modal-shiftfix">
@@ -284,3 +284,12 @@
         </div>
       </div>
     </div>
+
+<script type="text/javascript">
+  
+  $(document).ready(function(){
+   
+    cambiarCurrent("#miInventario");
+  });
+</script>
+@endsection

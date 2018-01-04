@@ -1,4 +1,4 @@
-@extends('Layout.app')
+@extends('Layout.app_administradores')
 @section('content')
 <!--Barra de título y botones de busqueda-->
 <div id="page-content">
@@ -478,6 +478,8 @@
 <script type="text/javascript">
  $(document).ready(function(){
 
+    cambiarCurrent("#miPersonal");
+
     $("#file-4").fileinput({
         uploadExtraData: {kvId: '10'}
     });
@@ -493,7 +495,7 @@
         $("#file-4").fileinput('refresh', {previewClass: 'bg-info'});
     });
 
-    cambiarCurrent("#usuario");
+    
 
     //Filtros del isotope
     $('#filters a').click(function(){

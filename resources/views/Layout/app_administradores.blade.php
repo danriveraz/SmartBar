@@ -306,19 +306,19 @@
               </li>
               
               <li>
-                <a id="miCarta" class="current" href="#">
+                <a id="miCarta" href="{{route('producto.index')}}">
                   <span aria-hidden="true" class="fa fa-fw fa-square">
                   </span>Mi Carta</a>
               </li>
               
               <li>
-                <a id="miInventario" href="#">
+                <a id="miInventario" href="{{route('insumo.index')}}">
                   <span aria-hidden="true" class="fa fa-fw fa-scribd">
                   </span>Mi Inventario</a>
               </li>              
 
               <li>
-                <a id="informacion" href="">
+                <a id="informacion" href="{{url('Estadisticas/')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-bar-chart-o">
                 </span>Informacion</a>
               </li>
