@@ -59,7 +59,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => ['getLogout','profile','updateProfile' , 'editProfile']]);
+        $this->middleware($this->guestMiddleware(), ['except' => ['getLogout','profile','updateProfile' , 'editProfile','cambiarBar']]);
     }
     
     public function getRegister(Request $request){
@@ -70,7 +70,9 @@ class AuthController extends Controller
     }
 
     public function cambiarBar(Request $request){
-        Auth::User->empresaActual = $request->campo;
+        $usuario  = Auth::User();
+        $usuario->empresaActual = $request->campo;
+        $usuario->save();
         return redirect($request->redireccionar);
     }
 
