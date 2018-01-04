@@ -91,7 +91,17 @@ input:-webkit-autofill{-webkit-animation-name:autofill;-webkit-animation-fill-mo
 	.button-circle:hover{background:#f2f2f2}
 	}
 	
-	.user-access{text-align:center}.user-access input:not([type=checkbox]):not([type=radio]){width:100%;height:50px;font-size:18px;margin-top:15px;border-radius:4px;outline:0;padding:10px 10px;transition:background-color .2s ease}
+	.user-access{text-align:center}
+	.user-access input:not([type=checkbox]):not([type=radio]){
+		width:100%;
+		height:50px;
+		font-size:18px;
+		margin-top:15px;
+		border-radius:4px;
+		outline:0;
+		padding:10px 10px;
+		transition:background-color .2s ease
+		}
 
 .user-access input[type="submit"],.user-access input[type="button"]{
 	color:white;
