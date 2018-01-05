@@ -1718,7 +1718,7 @@ th:active {
   background:#2d0038;
  }
   .gallery-item img {
-    width: 100%;
+    width: 180px;
     -webkit-transition: opacity 0.3s;
     -moz-transition: opacity 0.3s;
     transition: opacity 0.3s; }

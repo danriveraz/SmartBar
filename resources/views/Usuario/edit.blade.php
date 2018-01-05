@@ -6,8 +6,9 @@
       <div class="module-inner">
         {!! Form::open(['route' => ['Auth.usuario.update',$usuario], 'method' => 'PUT','enctype' => 'multipart/form-data']) !!}
         {{ csrf_field() }}
-          <div class="side-bar">
+          <div class="side-bar" >
               <div class="user-info">
+                <div align="center">
                   <a id="perfil" class="gallery-item filter1 fancybox" href="../../../../public/images/admins/{{$usuario->imagenPerfil}}" rel="gallery1" title="Imagen perfil">
                     @if($usuario->imagenPerfil!='')
                       {!! Html::image('images/admins/'.$usuario->imagenPerfil,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo')) !!}
@@ -20,11 +21,13 @@
                       <i class="fa fa-pencil"></i>
                     </div>
                   </a>
-                  <ul class="meta list list-unstyled">
-                      <li class="name">{{$usuario->nombrePersona}}
-                          <label class="label label-info pocketColor" style=" margin: 5px 5px 5px 5px; padding:.3em .9em .3em;"><b>Admin</b></label>
-                      </li>
-                  </ul>
+                </div>
+                <ul class="meta list list-unstyled">
+                    <li class="name">{{$usuario->nombrePersona}}
+                        <br>
+                        <label class="label label-info pocketColor" style=" margin: 5px 5px 5px 5px; padding:.3em .9em .3em;"><b>Admin</b></label>
+                    </li>
+                </ul>
               </div>
               <nav class="side-menu">
                   <ul class="nav">
@@ -350,26 +353,4 @@
     margin-left: 5%;
   }
 </style>
-
-
-
-<!-- 
-   <div class="user-account">
-    <a id="perfil" class="gallery-item filter1 fancybox" href="../../../../public/images/admins/{{$usuario->imagenPerfil}}" rel="gallery1" title="Imagen perfil">
-      @if($usuario->imagenPerfil!='')
-        {!! Html::image('images/admins/'.$usuario->imagenPerfil,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo')) !!}
-      @else
-        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
-      @endif
-      <div class="actions">
-        <i class="fa fa-trash-o"></i>
-        <i class="fa fa-search-plus"></i>
-        <i class="fa fa-pencil"></i>
-      </div>
-    </a>
-    <div class="dropdown">
-      <a href="#" class="dropdown-toggle user-name" data-toggle="dropdown">Hola, <strong>{{$usuario->nombrePersona}}</strong></a>
-  
-    </div>
-  </div>
-                -->
+@endsection
