@@ -33,8 +33,8 @@
               <nav class="side-menu">
                   <ul class="nav">
                     <li><a data-toggle="tab" href="#tab1"><span class="fa fa-user"></span> Perfil</a></li>
-                    <li><a data-toggle="tab" href="#tab2"><span class="fa fa-envelope"></span> Categoria</a></li>
-                    <li><a data-toggle="tab" href="#tab3"><p><span class="fa fa-envelope"></span> Factura</p></a></li>
+                    <li><a data-toggle="tab" href="#tab2"><span class="fa fa-bars"></span> Categoria</a></li>
+                    <li><a data-toggle="tab" href="#tab3"><p><span class="fa fa-newspaper-o"></span> Factura</p></a></li>
                     <li><a data-toggle="tab" href="#tab4"><p><span class="fa fa-pencil-square-o"></span> Mesas</p></a></li>
                     <li class="active"><a data-toggle="tab" href="#tab5"><span class="fa fa-fw fa-bar-chart-o"></span> Reportes</a></li>
                   </ul>    
@@ -357,7 +357,7 @@
                 <div class="navbar-form navbar-left" >
                   <div class="form-group" align="left">
                       <a href="#addModal" class="btn btn-default" data-toggle="modal">
-                          <i class="fa fa-plus"></i> Nueva mesa &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                          <i class="fa fa-plus"></i> Crear mesas &ensp;&ensp;&ensp;&ensp;&ensp;
                       </a>
                   </div>
                 </div >
@@ -386,14 +386,10 @@
                           <div class="widget-content">
                             <div class="form-group">
                               <div class="form-group">
-                                  <input type="text" name="nombre" class="form-control" placeholder="Nombre de la mesa" required="true"/>
+                                  <input type="number" name="numero" class="form-control" placeholder="Numero de mesas" required="true"/>
                               </div>
                               <div class="form-group">
-                                  <select name="estado"  class="form-control">
-                                    <option value="Disponible">Disponible</option>
-                                    <option value="Ocupada">Ocupada</option>
-                                    <option value="Reservada">Reservada</option>
-                                  </select>
+                                  <input type="text" name="estado" class="form-control" value="Disponible" disabled />
                               </div>
                             </div>
                           </div>
