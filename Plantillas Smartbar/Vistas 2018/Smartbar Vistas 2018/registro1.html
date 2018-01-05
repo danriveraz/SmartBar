@@ -6,7 +6,8 @@
                     <meta http-equiv="X-UA-Compatible" content="chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Login - Pocket SmartBar</title>        
+        <title>Regsitro - Pocket SmartBar</title>        
+        <meta name="description" content="Ingresa a Alegra para hacer crecer tu empresa, Ganas Tiempo y Tranquilidad" >                                         <link href="" rel="canonical" >                        
         <!-- Estilos y Fuentes -->
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:300,400" rel="stylesheet">
         <link rel="stylesheet" href="assets/styles/normalize.css" type="text/css" />
@@ -18,37 +19,72 @@
     </head>
 <div class="main-container">
     <!-- Sidebar Access -->
-    <aside class="sidebar-large1">
+    <aside class="sidebar-large">
         <div class="user-access">
             <div class="user-access-header">
                 <a href="#" class="logo"><img src="assets/images/logo.png"></a>
-                <p class="intro-title colorMorado">Tu Amigo Inseparable</p>
+                <p class="intro-title">Creamos mejores momentos</p>
                 <p class="intro-summary">haciendo tu vida, más fácil</p>
             </div>
             <div class="user-access-form">         
                 <form  method="post">
                     <div class="input-wrapper">
-                        <input type="text" name="email" id="email" value="" class="email" placeholder="Correo/Usuario">
+                        <input type="text" class="empresa" Name="nombreEmpresa" required placeholder="Empresa">
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="text" class="nombre" Name="nombre" required placeholder="Nombre">
+                    </div>
+                    <div class="input-wrapper">
+                        <select id="sexo"  name="sexo" required>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                        </select>
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="text" name="email" id="email" value="" class="email" placeholder="Correo">
                     </div>
                     <div class="input-wrapper">
                         <input type="password" name="password" id="password" value="" class="clave" placeholder="Contraseña">
                     </div>
-                    <input type="submit" name="submit" id="submit" value="INGRESAR" class="enviar">
-                </form>
-            </div> 
-            <div class="colorGris user-access-footer">
-                <p><a href="/user/remember-password">¿Olvidaste tu contraseña?</a></p>
-                <hr />
-                <a class="btn btn-social-icon btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-facebook']);"><span class="fa fa-facebook"></span></a>
-                <p>¿Aún no tienes una cuenta? <a href="/user/register">CREAR CUENTA</a></p>
+                    <div class="input-wrapper" style="float: left; width:49%">
+                        <select id="ciudad"  name="ciudad" required>
+                            <option>Departamento</option>
+                        </select>
+                    </div>
+                    <div class="input-wrapper" style="float: right; width:49%">
+                        <select id="departamento"  name="departamento" required>
+                            <option>Ciudad</option>
+                        </select>
+                    </div>
+    <div class="input-wrapper" style="display: none;">
+        
+<input type="text" name="coupon" id="coupon" value="" class="coupon" placeholder="Código promocional" disabled="disabled">        <span class="close">&times;</span>
             </div>
+        
+<input type="submit" name="submit" id="submit" value="CREAR CUENTA" class="enviar">    <div class="terms">
+        Al crear tu cuenta aceptas nuestros
+        <a href="http://www.alegra.com/terminos-y-condiciones" target="_blank">Términos y Condiciones</a> y <a href="http://www.alegra.com/terminos-y-condiciones" target="_blank">Política de Tratamiento de Datos</a>.
+    </div>
+    
+    <div class="input-wrapper share-data" style="display: none;">
+        <div>
+            
+<input type="hidden" name="canShareData" value="no"><input type="checkbox" name="canShareData" id="canShareData" value="yes" style="display: none;">            <div style="display: inline-block; width: 8%;">
+                <img id="checkbox-image">
+            </div>
+            <div style="display: inline-block; width: 90%; text-align: left;">
+                <label style="font-size: 12px;" for="canShareData" id="canShareData-label">Compartir información con Bancolombia para recibir ofertas personalizadas de productos y servicios.</label>
+            </div>
+        </div>
+            </div>                </form>
+            </div> 
+
         </div>
     </aside>
     <!-- Content Slideshow  -->
     <section class="content">
-        <div class="hero-login bg-cover" style="background-image: url('assets/images/login-slide-4.jpg');">
-
-   
+        <div class="hero-login bg-cover" style="background-image: url('assets/images/login-slide-5.jpg');">
+  
             <p class="quote">
                 Cada semana tenemos nuevas características<br>
                 <small>Síguenos en nuestras redes sociales</small><br> 
