@@ -1,0 +1,136 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,700,500,900,100);@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300);[class*='tm-logo'] svg path,
+[class*='tm-logo'] path,
+[class*='tm-logo'] rect{fill:#374355;}
+body:not(.tm-navbar-bg) [class*='tm-block-primary'] .tm-navbar:not(.tm-navbar-attached) [class*='tm-logo'] svg path,
+body:not(.tm-navbar-bg) [class*='tm-block-primary'] .tm-navbar:not(.tm-navbar-attached)[class*='tm-logo'] path,
+body:not(.tm-navbar-bg) [class*='tm-block-primary'] .tm-navbar:not(.tm-navbar-attached) [class*='tm-logo'] rect{fill:#fff;}
+.tm-block-header.tm-contrast div.tm-block-texture,
+.tm-block-bottom-d.tm-contrast div.tm-block-texture{background:url('../images/texture/noise.png') 50% 50% repeat;}
+.tm-block-bottom-e > div{background-image:none;}
+.tm-block-bottom-e .uk-panel .uk-panel svg path,
+.tm-block-bottom-e .uk-panel .uk-panel path{fill:#374355;opacity:1;-webkit-transition:all 0.1s ease-in-out;transition:all 0.1s ease-in-out;}
+.tm-block-bottom-e .uk-panel .uk-panel:hover svg path,
+.tm-block-bottom-e .uk-panel .uk-panel:hover path{opacity:0.4;}
+body{}
+a.boton-azul{text-align:center;margin:10px;padding:12px 40px;font-weight:500;font-size:22px;letter-spacing:2px;border-radius:8px;color:#fff;transition:all .5s;background-color:#10b396;border:1px solid #10b396;}
+a.boton-azul:hover{text-decoration:none;background-color:#becd3b;border:1px solid #becd3b;}
+a.boton-light{margin:10px;padding:12px 40px;font-weight:500;font-size:22px;letter-spacing:2px;border-radius:8px;color:#fff;transition:all .5s;border:1px solid #fff;}
+a.boton-light:hover{text-decoration:none;background-color:#becd3b;border:1px solid #becd3b;}
+p, a{font-weight:300 !important;}
+p strong, a strong{font-weight:500;}
+.uk-button-success{transition:all .5s;}
+.uk-button-success:hover, .uk-button-success:focus{border:1px solid #becd3b;background:#becd3b;}
+.uk-button{transition:all .5s;}
+.uk-button-primary:hover, .uk-button-primary:focus{background-color:#f37053;color:#ffffff;border:1px solid #f37053;}
+.alegra-slider-header{text-align:center;}
+.alegra-slider-header h1{margin-top:100px;text-shadow:1px 1px 2px #000;font-weight:500;font-size:55px;}
+.alegra-slider-header h2{font-weight:400;text-shadow:1px 1px 2px #000;margin-bottom:45px;}
+.alegra-destacado-home{display:table-cell;vertical-align:middle;height:436px;}
+.alegra-destacado-home h1{font-size:40px;line-height:120%;font-weight:300;}
+.alegra-destacado-home h1 strong{font-weight:500;color:#10b396;}
+.alegra-destacado-home h3{line-height:120%;font-weight:300;color:#10b396;}
+.alegra-iconos h1{text-align:center;font-weight:300;font-size:40px;line-height:120%;margin-bottom:5px;}
+.alegra-iconos h1 strong{font-weight:500;}
+.alegra-iconos p{text-align:center;font-weight:400;margin:0;margin-bottom:15px;}
+.alegra-iconos p strong{font-weight:600;}
+.alegra-iconos .uk-margin h3.uk-panel-title{margin-bottom:5px;font-weight:700;color:#58585c;}
+.alegra-iconos .tm-icon{transition:all .5s;}
+.alegra-iconos .tm-grid-icons-helios .uk-panel:hover .tm-icon{background:#f37053;}
+.alegra-iconos .tm-grid-icons-helios .uk-panel:hover h3{color:#10b396;}
+.alegra-iconos .uk-panel{transition:all .5s;}
+.alegra-iconos .uk-panel-hover:hover{background:rgba(255, 255, 255, 1);border-color:#10b396;}
+.alegra-planes{text-align:center;}
+.alegra-planes .uk-text-muted{font-weight:600 !important;font-size:30px !important;color:#becd3b !important;}
+.alegra-planes .uk-panel h3{font-weight:500;}
+.alegra-empieza{text-align:center;}
+.alegra-testimonios{text-align:center;}
+.alegra-testimonios .uk-panel-box h3{font-weight:300;color:#10b396;}
+.alegra-testimonios .uk-panel-box a{font-weight:300;font-size:14px;padding:5px 15px;background:#becd3b;border-radius:8px;color:#fff;transition:all .5s;}
+.alegra-testimonios .uk-panel-box a:hover{text-decoration:none;background:#f99d33;}
+.alegra-testimonios .uk-grid-width-1-1{margin-bottom:50px;}
+.alegra-caracteristicas-gastos h4{margin:0;font-weight:300;color:#becd3b;}
+.alegra-caracteristicas-gastos p{margin:0;margin-bottom:20px;}
+.alegra-caracteristicas-gastos img{margin-bottom:40px !important;clear:both;}
+.alegra-caracteristicas-gastos .uk-panel{border:none;}
+.alegra-caracteristicas-pag article h1{text-align:center;}
+.alegra-caracteristicas-funciones h2{text-align:center;margin-top:30px;}
+.alegra-caracteristicas-funciones .soporte{text-align:center;padding:0 20%;}
+.alegra-gastos-verde h2{margin:0;}
+.alegra-gastos-verde h3{margin:0;margin-top:10px;font-weight:500;font-size:22px;}
+.alegra-gastos-verde p{margin:0;}
+.alegra-empieza-interno{text-align:center;}
+.alegra-empieza-interno .tm-grid-icons-helios .uk-panel:hover .tm-icon{background:#becd3b;}
+.alegra-empieza-interno .tm-grid-icons-helios .tm-icon{transform:all .5s;}
+.alegra-planes-pag article h1, .alegra-planes-pag article h3, .alegra-planes-pag article h4, .alegra-planes-pag article p{text-align:center;}
+.alegra-planes-pag article .uk-text-muted{font-weight:600 !important;font-size:30px !important;color:#becd3b !important;}
+.alegra-planes-pag article .uk-panel h3{font-weight:500;}
+.alegra-planes-pag article .alegra-precios{margin-bottom:50px;}
+.alegra-planes-pag .planes-preguntas p{text-align:justify;}
+.alegra-planes-pag .planes-preguntas .uk-panel-box{padding:35px;}
+.alegra-planes-pag .planes-preguntas h5{font-size:22px;font-weight:500;}
+.alegra-testimonios-pag h1{text-align:center;}
+.alegra-contacto-preguntas .sp-accordion.sp-accordion-style1 .toggler, .sp-accordion.sp-accordion-style1 .toggler span, .sp-accordion.sp-accordion-style1 .toggler span span{background:none;font-weight:300;font-size:18px;padding:5px 5px;}
+.alegra-contacto-preguntas .uk-panel >:not(.uk-panel-title):last-child{padding-bottom:20px;}
+.alegra-contacto-preguntas .uk-panel-box-secondary{background:none;border:none;}
+.alegra-contacto-preguntas .sp-accordion.sp-accordion-style1 .sp-accordion-inner{background:none;}
+#alegra-caracteristicas-textos{text-align:center;}
+#alegra-caracteristicas-textos h1{font-family:'Roboto Slab', serif;font-weight:700;color:#00B19C;font-size:32px;line-height:130%;margin-bottom:10px;}
+#alegra-caracteristicas-textos h2{font-family:'Roboto Slab', serif;font-weight:300;color:#00525D;font-size:24px;line-height:130%;}
+#alegra-caracteristicas-textos h2 strong{font-weight:700;}
+#alegra-caracteristicas-contenedor{position:relative;padding:2%;}
+#alegra-caracteristicas-contenedor h3{font-family:'Roboto Slab', serif;font-weight:700;}
+#alegra-caracteristicas-contenedor p{font-family:'Roboto', sans serif;font-weight:300;color:#58595E;}
+#alegra-caracteristicas-contenedor a{display:block;width:100px;margin:20px auto 0 auto;border-radius:4px;font-family:'Roboto', sans serif;font-weight:500;letter-spacing:2px;font-size:12px;color:#fff;text-decoration:none;background:#00B19C;padding:10px;transition:all .3s;}
+#alegra-caracteristicas-contenedor a:hover{background:#00525D;color:#BECC30;width:120px;}
+.alegra-caracteristica{position:relative;width:33.3333%;float:left;min-height:340px;}
+@media only screen and (max-width:1023px){.alegra-caracteristica{width:50%;float:left;}
+}
+@media only screen and (max-width:768px){.alegra-caracteristica{width:100%;float:left;}
+}
+.alegra-caracteristica-contenido{border:1px solid #E3ECE9;text-align:center;padding:20px;margin:10px;min-height:340px;}
+.alegra-caracteristica-contenido img{background:#E3ECE9;border-radius:50%;transition:all .5s;}
+.alegra-caracteristica-contenido:hover img{background:#BECC30;border-radius:50%;}
+.alegra-caracteristica-contenido h3{text-transform:uppercase;letter-spacing:0px;font-size:20px;transition:all .5s;}
+.alegra-caracteristica-contenido:hover h3{color:#00525D;letter-spacing:2px;}
+.alegra-caracteristica-contenido h3{color:#00B19C;}
+.uk-width-1-1 p{color:#000;}
+.fs-navigation-overlay-nav.fs-navigation-open{z-index:10;}
+#carvajal{border-top:1px dotted #00B19C;padding:40px;}
+#carvajal-titulo img{width:600px;height:auto;}
+#carvajal-titulo{width:100%;margin:0 auto;text-align:center;}
+#carvajal-titulo h1{font-family:'Roboto Slab', serif;font-weight:300;font-size:32px;color:#00B19C;}
+#carvajal-titulo h1 strong{font-weight:700;}
+#carvajal-titulo h2{font-family:'Roboto Slab', serif;font-weight:300;font-size:24px;color:#00525D;}
+#carvajal-titulo h2 strong{font-weight:700;}
+#carvajal-beneficios .conocer-mas-boton{clear:both;text-align:center;padding-top:24px;}
+#carvajal-beneficios a{font-size:16px;text-decoration:none;padding:10px 10px;letter-spacing:2px;text-transform:uppercase;font-weight:400;color:#fff;background:#00B19C;border-radius:6px;transition:all .5s;}
+#carvajal-titulo a:hover{background:#BECC30;}
+#carvajal-contenido{width:100%;max-width:800px;margin:0 auto;}
+#carvajal-contenido p{text-align:justify;}
+#carvajal-contenido img{display:block;margin:0 auto;}
+#carvajal-contenido h3{font-family:'Roboto Slab', serif;font-weight:700;font-size:20px;color:#00B19C;display:block;max-width:600px;margin:0 auto;text-align:center;line-height:120%;}
+#carvajal-frase1 img{margin-bottom:10px;}
+#carvajal-frase1 h2{font-family:'Roboto Slab', serif;font-weight:300;font-size:24px;color:#00525D;display:block;max-width:600px;margin:0 auto;text-align:center;line-height:120%;}
+#carvajal-frase1 h2 strong{font-weight:700;}
+#carvajal-frase1{margin-top:30px;padding:30px;}
+#carvajal-beneficios{max-width:800px;margin:30px auto;}
+#carvajal-beneficios ul{display:block;width:auto;border:solid #BECC30 1px;padding:20px 20px 20px 40px;float:left;margin-left:20px;}
+#carvajal-beneficios ul li{line-height:19px !important;}
+#carvajal-beneficios h3{font-family:'Roboto Slab', serif;font-weight:700;font-size:20px;color:#00B19C;display:block;max-width:600px;margin:0 auto;text-align:center;line-height:120%;}
+#carvajal-beneficios img{margin-top:30px;float:left;margin-left:110px;}
+#alegra-hecho{float:left;margin-right:20px;}
+#alegra-footer-logos img{margin-right:20px;padding-top:5px;-webkit-filter:grayscale(100%);filter:grayscale(100%);opacity:.5;transition:all .3s;}
+#alegra-footer-logos img:hover{-webkit-filter:grayscale(0%);filter:grayscale(0%);opacity:1;}
+.alegra-hecho-para{font-family:'Roboto', sans-serif;font-size:14px;font-weight:700;padding:15px 5px 15px 60px;display:block;margin-top:10px;background-repeat:no-repeat;color:#58595e;border:2px solid rgba(0,177,156,.3);background-position:10px;border-radius:5px;text-decoration:none;transition:all .3s;}
+#alegra-hecho{float:left;margin-right:20px;}
+#alegra-footer-logos img{margin-right:20px;padding-top:5px;-webkit-filter:grayscale(100%);filter:grayscale(100%);opacity:.5;transition:all .3s;}
+#alegra-footer-logos img:hover{-webkit-filter:grayscale(0%);filter:grayscale(0%);opacity:1;}
+.alegra-hecho-para{font-family:'Roboto', sans-serif;font-size:14px;font-weight:700;padding:15px 5px 15px 60px;display:block;margin-top:10px;background-repeat:no-repeat;color:#58595e;border:2px solid rgba(0,177,156,.3);background-position:10px;border-radius:5px;text-decoration:none;transition:all .3s;}
+.alegra-hecho-para:hover{background-color:rgba(0,177,156,1);color:#fff;}
+.alegra-hecho-para:hover i{color:#fff;}
+.alegra-hecho-para i{color:#e96f53;transition:all .3s;}
+.alegra-para-colombia{background-image:url(https://cdn2.alegra.com/website/banderas/alegra-colombia-40x40.png);width:110px;}
+div.div-politica-privacidad{padding-left: 50px;padding-bottom: 10px;margin-bottom: 10px;border-bottom: 1px dotted #00b19d;}
+p.titulo-politica-privacidad{padding-top: 10px;border-top: 1px dotted #00b19d;}
+div.div-politica-privacidad{padding-left: 50px;border-left: solid 1px #0db497;}
+.list-terms li p{margin-bottom: 0 !important;}

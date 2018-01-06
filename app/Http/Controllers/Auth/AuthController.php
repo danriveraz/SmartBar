@@ -92,7 +92,7 @@ class AuthController extends Controller
         $departamentos = Departamento::All();
         $ciudades = Ciudad::all();
         if ($validator->fails()){
-            return redirect("")
+            return redirect("Auth/register")
             ->withErrors($validator)
             ->withInput()
             ->with('departamentos',$departamentos)

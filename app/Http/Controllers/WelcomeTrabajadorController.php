@@ -12,9 +12,6 @@ class WelcomeTrabajadorController extends Controller
 
 	public function __construct(){
 		$this->middleware('auth');
-		if(Auth::User()->esProveedor){
-			return redirect('/WelcomeProveedor')->send();
-		}
 	}  
 
     public function index()
