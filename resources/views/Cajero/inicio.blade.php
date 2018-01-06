@@ -3,309 +3,9 @@
 
 {!!Html::style('css/content-box.css')!!}
 {!!Html::style('stylesheets/invoque/invoice.css')!!}
+{!!Html::style('stylesheets/cajero.css')!!}
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-<style type="text/css">
-      
-.receipt-content .logo a:hover {
-  text-decoration: none;
-}
-
-.receipt-content .invoice-wrapper {
-  background: #FFF;
-  /*border: 1px solid #CDD3E2;*/
-  box-shadow: 0px 0px 1px #CCC;
-  padding: 20px 40px 60px;
-  margin-top: 0px;
-  border-radius: 4px; 
-}
-
-.spanR {
-  display: block;
-}
-.receipt-content .invoice-wrapper .payment-details a {
-  display: inline-block;
-  margin-top: 0px; 
-}
-
-.receipt-content .invoice-wrapper .line-items .print a {
-  display: inline-block;
-  padding: 13px 13px;
-  border-radius: 5px;
-  font-size: 13px;
-  -webkit-transition: all 0.2s linear;
-  -moz-transition: all 0.2s linear;
-  -ms-transition: all 0.2s linear;
-  -o-transition: all 0.2s linear;
-  transition: all 0.2s linear; 
-}
-
-.receipt-content .invoice-wrapper .line-items .print a:hover {
-  text-decoration: none;
-  border-color: #333;
-  color: #333; 
-}
-
-.receipt-content {
-  background: #FFFFFF; 
-}
-
-.numberFact {
-  display: inline-block;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  width: 70%;
-  padding: 3px 10px;
-  border: 1px solid #b7b7b7;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  font: normal 16px/normal "Times New Roman", Times, serif;
-  color: rgba(0,142,198,1);
-  -o-text-overflow: clip;
-  text-overflow: clip;
-  -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
-  -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
-  -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
-  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
-}
-
-.selectFact{
-    width: 30%;
-
-  }
-
-.FactPocket{
-  width: 11.6%;
-  }
-  
-.text1{
-  font-family: "Open Sans", "Helvetica", "Arial", "sans-serif";
-  font-size:20px;
-  }
-  
-.text2{
-  font-family: 'Roboto', sans-serif;
-
-  font-size:20px;
-  }
-  
-.factBot{
-  margin:0 5px 5px 0;
-  
-  }
-
-.factspace{
-  margin-top: 20px;
-  
-  }
-.factspace1{
-  margin-top: 30px; 
-  }
-
-.factspace3{
-  margin-top: 10px;
-  
-  }
-  
-      .plegable{
-        height:0;
-        overflow:hidden;
-      }
-@media (min-width: 1200px) {
-  .receipt-content .container {width: 900px; } 
-}
-
-.receipt-content .logo {
-  text-align: center;
-  margin-top: 50px; 
-}
-
-.receipt-content .logo a {
-  font-family: Myriad Pro, Lato, Helvetica Neue, Arial;
-  font-size: 36px;
-  letter-spacing: .1px;
-  color: #555;
-  font-weight: 300;
-  -webkit-transition: all 0.2s linear;
-  -moz-transition: all 0.2s linear;
-  -ms-transition: all 0.2s linear;
-  -o-transition: all 0.2s linear;
-  transition: all 0.2s linear; 
-}
-
-.receipt-content .invoice-wrapper .intro {
-  line-height: 25px;
-  color: #444; 
-}
-
-.receipt-content .invoice-wrapper .payment-info {
-  margin-top: 25px;
-  padding-top: 15px; 
-}
-
-.receipt-content .invoice-wrapper .payment-info span {
-  color: #A9B0BB; 
-}
-
-.receipt-content .invoice-wrapper .payment-info strong {
-  display: block;
-  color: #444;
-  margin-top: 3px; 
-}
-
-/* css de la imagen redonda*/
-.cover-img {
-    display: block;
-    min-height: 100%;
-    margin: 0 auto;
-}
-
-.cover-avatar.size-md {
-    width: 150px;
-    height: 150px;
-border: 5px solid #f0f0f0;
-    margin: 0px auto 0;
-  }
-
-.cover-inside * {
-    line-height: 2;
-}
-.cover-avatar {
-    display: block;
-}
-.img-round {
-border-radius: 100px 100px 100px 100px;
--moz-border-radius: 100px 100px 100px 100px;
--webkit-border-radius: 100px 100px 100px 100px;
-}
-/* fin de css de la imagen redonda*/
-
-
-
-
-@media (max-width: 767px) {
-  .receipt-content .invoice-wrapper .payment-info .text-right {
-  text-align: left;
-  margin-top: 20px; } 
-}
-.receipt-content .invoice-wrapper .payment-details {
-  margin-top: 0px;
-  padding-top: 0px;
-  line-height: 22px; 
-}
-
-
-@media (max-width: 767px) {
-  .receipt-content .invoice-wrapper .payment-details .text-right {
-  text-align: left;
-  margin-top: 20px; } 
-}
-.receipt-content .invoice-wrapper .line-items {
-  margin-top: 20px; 
-}
-.receipt-content .invoice-wrapper .line-items .headers {
-  color: #A9B0BB;
-  font-size: 13px;
-  letter-spacing: .3px;
-  border-bottom: 2px solid #EBECEE;
-  padding-bottom: 4px; 
-}
-.receipt-content .invoice-wrapper .line-items .items {
-  margin-top: 8px;
-  border-bottom: 2px solid #EBECEE;
-  padding-bottom: 8px; 
-}
-.receipt-content .invoice-wrapper .line-items .items .item {
-  padding: 0px 0;
-  color: #696969;
-  font-size: 15px; 
-}
-@media (max-width: 767px) {
-  .receipt-content .invoice-wrapper .line-items .items .item {
-  font-size: 13px; } 
-}
-.receipt-content .invoice-wrapper .line-items .items .item .amount {
-  letter-spacing: 0.1px;
-  color: #84868A;
-  font-size: 16px;
- }
-@media (max-width: 767px) {
-  .receipt-content .invoice-wrapper .line-items .items .item .amount {
-  font-size: 13px; } 
-}
-
-.receipt-content .invoice-wrapper .line-items .total {
-  margin-top: 30px; 
-}
-
-.receipt-content .invoice-wrapper .line-items .total .extra-notes {
-  float: left;
-  width: 65%;
-  text-align: left;
-  font-size: 13px;
-  color: #7A7A7A;
-  line-height: 20px; 
-}
-
-@media (max-width: 767px) {
-  .receipt-content .invoice-wrapper .line-items .total .extra-notes {
-  width: 100%;
-  margin-bottom: 30px;
-  float: none; } 
-}
-
-.receipt-content .invoice-wrapper .line-items .total .extra-notes strong {
-  display: block;
-  margin-bottom: 5px;
-  color: #454545; 
-}
-
-.receipt-content .invoice-wrapper .line-items .total .field {
-  margin-bottom: 7px;
-  font-size: 14px;
-  color: #555; 
-}
-
-.receipt-content .invoice-wrapper .line-items .total .field.grand-total {
-  margin-top: 10px;
-  font-size: 16px;
-  font-weight: 500; 
-}
-
-.receipt-content .invoice-wrapper .line-items .total .field.grand-total span {
-  color: #20A720;
-  font-size: 16px; 
-}
-
-.receipt-content .invoice-wrapper .line-items .total .field span {
-  display: inline-block;
-  margin-left: 20px;
-  min-width: 85px;
-  color: #84868A;
-  font-size: 15px; 
-}
-
-.receipt-content .invoice-wrapper .line-items .print {
-  margin-top: 50px;
-  text-align: center; 
-}
-
-
-
-.receipt-content .invoice-wrapper .line-items .print a i {
-  margin-right: 3px;
-  font-size: 14px; 
-}
-
-.receipt-content .footer {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-size: 12px;
-  color: #969CAD; 
-}                    
-    </style> 
 
 <div class="container">                   
   <div class="row">
@@ -333,13 +33,12 @@ border-radius: 100px 100px 100px 100px;
 
               <div class="factspace text-center">
                 <strong class=" text1">
-                  {{$facturas[0]->empresa->nombreEstablecimiento}}
+                  {{$user->EmpresaActual->nombreEstablecimiento}}
                 </strong>
-                <span class="spanR">Nit: {{$facturas[0]->empresa->nit}}</span>
+                <span class="spanR">Nit: {{$user->EmpresaActual->nit}}</span>
                 <p>
-                  {{$facturas[0]->empresa->direccion}} {{$facturas[0]->empresa->ciudad}} {{$facturas[0]->empresa->departamento}} <br>
-                  {{$facturas[0]->empresa->telefono}} <br>
-
+                  {{$user->EmpresaActual->direccion}} {{$user->EmpresaActual->ciudad}} {{$user->EmpresaActual->departamento}} <br>
+                  {{$user->EmpresaActual->telefono}} <br>
                 </p>
               </div>
           </div>
@@ -347,26 +46,43 @@ border-radius: 100px 100px 100px 100px;
 
               <div class="factspace text-right" >
                 <strong class=" text1 text-danger" style="color: #2d0031;" id="mesaActual">
-                  Factura No. #{{$facturas[0]->idBar}}
+                  Factura No. #
+                  @if(sizeof($facturas) == 0)
+                    0
+                  @else
+                  {{$facturas[0]->idBar}}
+                  @endif
                 </strong>
                 <p>
-                                <strong>Mesa:</strong>
-                                    <select class="selectFact numberFact">
-                                       @foreach($facturas as $factura)
-                                        @if(sizeof($factura->ventasHechas)>0)
-                                          <option value="{{$factura->mesa->id}}" id="mesas{{$factura->mesa->id}}">{{$factura->mesa->nombreMesa}} </option>
-                                        @endif
-                                      @endforeach
-                                    </select>
-                                    <br>
-                                <span class="spanR"> 
-                                <?php   
-                                  $date = new DateTime($factura->fecha);
-                                  echo $date->format('M d, Y');
-                                  echo " - ". $date->format('g:i A');
-                                   ?></span>
-                                <span class="label label-danger">Pendiente</span>
-                                    </p>
+                    <strong>Mesa:</strong>
+                        <select class="selectFact numberFact" onchange="cambiarFactura(this.value);">
+                           @foreach($facturas as $factura)
+                            @if(sizeof($factura->ventasHechas)>0)
+                              <option data-idMesaBar="{{$factura->idBar}}" value="{{$factura->mesa->id}}" id="mesas{{$factura->mesa->id}}"
+                                data-fecha="<?php  $date = new DateTime($factura->fecha);
+                        echo $date->format('M d, Y');
+                        ?>" data-hora="<?php echo  $date->format('g:i A'); 
+                        ?>"
+                        data-mesero="{{$factura->ventasHechas[0]->mesero->nombrePersona}}"
+                        data-cajero="{{$factura->ventasHechas[0]->cajero->nombrePersona}}"
+                        data-bartender="{{$factura->ventasHechas[0]->bartender->nombrePersona}}">{{$factura->mesa->nombreMesa}} </option>
+                            @endif
+                          @endforeach
+                        </select>
+                        <a class="recarga"  title="recargar" href=""><span class="fa fa-fw fa-repeat" title="recargar"></span></a>
+                        <br>
+                    <span class="spanR" id="fecha"> 
+                    <?php   
+                      if(sizeof($facturas)!=0){
+                        $date = new DateTime($facturas[0]->fecha);
+                        echo $date->format('M d, Y');
+                        echo " - ". $date->format('g:i A'); 
+                      }else{
+                        echo "<br>";
+                      }
+                      ?></span>
+                    <span class="label label-danger">Pendiente</span>
+                        </p>
                    <div id="contenedorMesas">
                   @foreach($facturas as $factura)
                     @if(sizeof($factura->ventasHechas)>0)
@@ -380,8 +96,7 @@ border-radius: 100px 100px 100px 100px;
         </div>        
         
 
-    <div class="divider factspace3"></div>
-
+<div class="divider factspace3"></div>
 <div class="row" id="toggle">
 <div class="col-md-12 text-center">
   <a class="invoice-client mrg10T pocketMorado" >Información deL Cliente:</a>
@@ -445,19 +160,27 @@ border-radius: 100px 100px 100px 100px;
           
               <div class="col-md-4 text-center">
                 <div class="heading" style="color:#9F9F9F;">
-                  <i class="fa fa-houzz"></i>Mesero:<span> Diego A Fajardo</span>
+                  <i class="fa fa-houzz"></i>Mesero:<span id="mesero">         
+                    @if(sizeof($facturas) != 0)
+                      {{$facturas[0]->ventasHechas[0]->mesero->nombrePersona}}
+                    @endif</span>
                 </div>
           <div class="factspace3"></div>
               </div>
               <div class="col-md-4 text-center">
                 <div class="heading"  style="color:#9F9F9F;">
-                  <i class="fa fa-imdb"></i>Bartender:<span> Tatiana Hurtado</span>
+                  <i class="fa fa-imdb"></i>Bartender:<span id="bartender"> 
+                   @if(sizeof($facturas) != 0)
+                      {{$facturas[0]->ventasHechas[0]->bartender->nombrePersona}}
+                    @endif</span>
                 </div>
           <div class="factspace3"></div>
               </div>
               <div class="col-md-4 text-center">
                 <div class="heading"  style="color:#9F9F9F;">
-                  <i class="fa fa-imdb"></i>Cajero:<span> Alvaro J Diaz</span>
+                  <i class="fa fa-imdb"></i>Cajero:<span id="cajero">  @if(sizeof($facturas) != 0)
+                      {{$facturas[0]->ventasHechas[0]->cajero->nombrePersona}}
+                    @endif</span>
                 </div>
           <div class="factspace3"></div>
               </div>
@@ -615,6 +338,23 @@ border-radius: 100px 100px 100px 100px;
       }
     })
   })
+
+var cambiarFactura = function(id){
+  $("#mesaActual").html("Factura No. # "+$("#mesas"+id).data('idmesabar'));
+  $("#fecha").html($("#mesas"+id).data('fecha')+" - "+$("#mesas"+id).data('hora'));
+  $("#mesero").html(" "+$("#mesas"+id).data('mesero'));
+  $("#cajero").html(" "+$("#mesas"+id).data('cajero'));
+  $("#bartender").html(" "+$("#mesas"+id).data('bartender'));
+  JSONproductos = eval(<?php 
+    $datos = array();
+    for($i = 0; $i < sizeof($facturas);$i++){
+      $datos[$i] = $facturas[$i]->ventasHechas;
+    }
+    echo json_encode($datos);
+    ?>);
+  alert(JSONproductos[0][0]);
+       
+};
 </script>          
 
 @endsection

@@ -26,14 +26,14 @@ class CajeroController extends Controller
     }
     public function index(Request $request){
         $userActual = Auth::user();
-        $idFacturas = Factura::listarFacturaDia($userActual->idEmpresa)->get();
+        $idFacturas = Factura::listarFacturaDia($userActual->empresaActual)->get();
         $ventas = Venta::vendido($idFacturas)->get();
         $totalVentas = 0;
         foreach ($ventas as $venta ) {
             $totalVentas = $totalVentas + ($venta->producto->precio * $venta->cantidad);
         }
-        $facturas = Factura::buscarFacturas(Auth::user()->idEmpresa)->get();     
-    	return view('Cajero.inicio')->with('totalVentas',$totalVentas)->with('facturas',$facturas);
+        $facturas = Factura::buscarFacturas(Auth::user()->empresaActual)->get();   
+    	return view('Cajero.inicio')->with('totalVentas',$totalVentas)->with('facturas',$facturas)->with('user',$userActual);
     }
     public function store(Request $request){
     	$nombre = $request->nombre;
