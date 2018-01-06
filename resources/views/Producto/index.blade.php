@@ -1,135 +1,294 @@
-
 @extends('Layout.app_administradores')
 @section('content')
 
+<div class="container main-content">
+        <div class="page-title"> <p>
+        </p> </div>
+        <!-- DataTables Example -->
+        <div class="row">
+  <div class="col-lg-12">
+    <div class="widget-container fluid-height clearfix">
+      <div class="widget-content padded clearfix">
+        <table class="table table-bordered table-striped" id="dataTable1">
+            <thead>
+              <th width="10%">Nombre</th>
+              <th width="10%">Precio</th>
+              <th width="18%">Categoria</th>
+              <th width="4%">Opciones</th>
+            </thead>
+            <tbody>
+              @foreach($productos as $producto)
+                <tr id="{{$producto->id}}">
+                  <td id="{{$producto->id}}" class="seleccionar">{{$producto->nombre}}</td>
+                  <td id="{{$producto->id}}" class="seleccionar">{{$producto->precio}}</td>
+                  <td id="{{$producto->id}}" class="seleccionar">{{$categorias[$producto->idCategoria]}}</td>
+                  <td>
+                    <div>
+                      <a class="table-actions pocketMorado" href="">
+                        <i class="fa fa-book" data-toggle="modal" href="#myModal"  title="Preparación"></i>
+                      </a>
+                      <a class="table-actions pocketMorado" href="">
+                        <i class="fa fa-pencil" title="Editar"></i>
+                      </a>
+                      <a class="table-actions pocketMorado" href="">
+                        <i class="fa fa-trash-o" title="Eliminar"></i>
+                      </a>
+                      <a class="table-actions pocketMorado" href="">
+                        <i class="fa fa-500px" title="Tienda"></i>
+                      </a>
+                        
+                        </div>
+                  </td>
+                </tr>
+                <!--Modal para editar -->
+              <div class="modal fade" id="editModal{{$producto->id}}" role="dialog">
+                <div class=" modal-body">
+                  <div class="" style="background-color:#FFFFFF">
+                    <div class="modal-header">
+                      <button aria-hidden="true" class=" close " data-dismiss="modal" type="button">&times;</button>
+                       <h4 class="modal-title text-center">
+                         Editar Producto
+                       </h4>
+                      </div>
+                    <div class="modal-body">
+                    <!-- Login Screen -->
+                    <div class="row">
+                      <div class="widget-content padded">
+                        {!! Form::open() !!}
+                          <fieldset>
+                            <div class="row">
+                              <div class="col-md-4">
+                                <div class="bs-example">
+                                  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                    <!-- Carousel indicators -->
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                                    </ol>   
+                                    <!-- Wrapper for carousel items -->
+                                    <div class="carousel-inner">
+                                        <div class="item active">
+                                            <img src="/examples/images/slide1.png" alt="First Slide">
+                                        </div>
+                                        <div class="item">
+                                            <img src="/examples/images/slide2.png" alt="Second Slide">
+                                        </div>
+                                        <div class="item">
+                                            <img src="/examples/images/slide3.png" alt="Third Slide">
+                                        </div>
+                                    </div>
+                                    <!-- Carousel controls 
+                                    <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                    </a>
+                                    <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                    </a>
+                                    -->
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-4 ">
+                                  <div class=" bs-example">
+                                    
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class=" bs-example">
+                                    
+                                  </div>
+                                  <div class="modal-footer" style="text-align: center;">
+                                    <button class="btn btn-default" data-dismiss="modal" onclick="modificar({{$producto->id}},{{$categorias}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >
+                                    Guardar
+                                    </button>
+                                  </div>                
+                                </div> 
+                              </div>
+                            </fieldset>
+                          {!! Form::close() !!} 
+                        </div>
+                      </div>
+                      <!-- End Login Screen -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- fin de modal para editar-->  
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+  {!!$productos->appends(Request::all())->render() !!}
+        <!-- end DataTables Example -->
 
-<div class="col-sm-offset-2 col-sm-8">
-    <div class="panel-tittle" align="center">
-        <h3><b> MIS CATEGORIAS </b></h3>
-    </div>
-    @include('flash::message')
-    <div class="navbar-form navbar-right" style="width: 600px; height: 50px;">
-      {!! Form::select('categorias', $categorias, null, ['class' => 'form-control', 'placeholder' => 'Mis categorías', 'id' => 'buscarCategoria']) !!}
-    </div>
-    <div class="navbar-form navbar-left">
-      <td><a href="#addModal" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(187,187,187); color:white"> 
-          <span class="glyphicon glyphicon-plus" aria-hidden="true">
-          </span> Añadir categoría
-            </a> 
-       </td>
-        <td ><a href="{{ route('categoria.index') }}" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
-            <span class="fa fa-pencil" aria-hidden="true">
-            </span>
-            </a>
-        </td>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="panel-tittle" align="center">
-        <h3><b> MIS PRODUCTOS</b></h3>
-    </div>
-    <form class="navbar-form navbar-left">
-    <div class="form-group" align="left">
-        <a href="#addPModal" class="btn btn-default" data-toggle="modal">
-            <i class="fa fa-plus"></i> Nuevo producto &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-        </a>
-    </div>
-  </form >
-    <div id="busqueda" name="busqueda" class="navbar-form navbar-right">
-      <div class="form-group" align="right">
-        <div class="icon-addon addon-md">
-            <input  id="nombreInput" type="text" size="70" maxlength="30" placeholder="Buscar..." class="form-control" />
-            <label for="nombreInput" class="glyphicon glyphicon-search" rel="tooltip" title="nombreInput"></label>
+        <!-- inicio cambios pocket -->
+  <div class="style-selector" >
+      <div class="style-selector-container">
+    <!-- inidio de slider de agregar usuario -->
+        <div class="row">
+          <div class="">
+            <div class="">
+              <div class="heading">
+                <i class="fa fa-shield"></i>&nbsp;Nuevo Producto</div>
+              <div class="widget-content padded">
+                {!! Form::open(['method' => 'POST', 'action' => 'ProductoController@store']) !!}
+                  <fieldset>
+                    <div class="row">
+                      <div class="col-md-4">
+                      <div class="bs-example">
+                          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                              <!-- Carousel indicators -->
+                              <ol class="carousel-indicators">
+                                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                              </ol>   
+                              <!-- Wrapper for carousel items -->
+                              <div class="carousel-inner">
+                                  <div class="item active">
+                                      <img src="/examples/images/slide1.png" alt="First Slide">
+                                  </div>
+                                  <div class="item">
+                                      <img src="/examples/images/slide2.png" alt="Second Slide">
+                                  </div>
+                                  <div class="item">
+                                      <img src="/examples/images/slide3.png" alt="Third Slide">
+                                  </div>
+                              </div>
+                              <!-- Carousel controls 
+                              <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                                  <span class="glyphicon glyphicon-chevron-left"></span>
+                              </a>
+                              <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                                  <span class="glyphicon glyphicon-chevron-right"></span>
+                              </a>
+                              -->
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-4 ">
+                    <div class=" bs-example">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
+                          <input type="text" name="nombre" class="form-control" placeholder="Nombre" placeholder="Nombre" required="true"/>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                          <input type="number" name="precio" class="form-control" placeholder="Precio"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class=" bs-example">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                          {!! Form::select('categorias', $categorias, null, ['class' => 'select2able', 'placeholder' => 'Categorias', 'required' => 'true']) !!}
+                        </div>
+                      </div>
+                    </div>
+                    <div  class="text-center">
+                      <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >
+                          Guardar
+                      </button>
+                    </div>      
+                  </div> 
+                </div>
+              </fieldset>
+            {!! Form::close() !!}
+          </div>
         </div>
       </div>
     </div>
-    @include('flash::message')
-
-    <div class="modal fade" id="addPModal" >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        {!! Form::open(['method' => 'POST', 'action' => 'ProductoController@store']) !!}
-          <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
-          <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
-            <h4 class="modal-title">
-            Nuevo Producto
-            </h4>
-          </div>
-          <div class="modal-body">
-            <div class="" >
-            <div class="widget-content">
-              <div class="form-group">
-                <div class="form-group">
-                    <input type="text" name="nombreProducto" class="form-control" placeholder="Nombre" required="true" />
-                    </div><br>
-                <div class="form-group">
-                    {!! Form::select('categorias', $categorias, null, ['class' => 'form-control', 'onchange' => 'mostrarValor(this.value);']) !!}
-                </div><br>
-                <div class="form-group">
-                    
-                    <input id="precio" value="" type="number" min="0" step="any" name="precio" class="form-control" required="true" placeholder="Precio" />
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="receta" class="control-label">Receta</label>
-                    <br>
-                    <textarea name="receta" class="form-control"></textarea>
-                </div>
-                
-              </div>
-            </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-default" onclick = "return confirm ('¿Está seguro de registrar el producto?')" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
-            
-          </div>
-        {!! Form::close() !!}
-      </div>
-     </div>
+    <!-- fin de slider de agregar usuario -->
+    <div class="style-toggle closed">
+      <span aria-hidden="true" class="pocketMorado fa fa-fw fa-plus-circle"></span>
     </div>
-
-    <div class="modal fade" id="addModal" >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        {!! Form::open(['method' => 'POST', 'action' => 'CategoriaController@store']) !!}
-          <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
-          <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
-            <h4 class="modal-title">
-            Nueva Categoria
-            </h4>
-          </div>
-          <div class="modal-body">
-            <div class="" >
-            <div class="widget-content">
-              <div class="form-group">
-                <div class="form-grup">
-                    
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre" required="true" placeholder="Nombre" />
-                </div>
-                <br>
-                <div class="form-grup">
-                    
-                    <input type="number" min="0" step="any" name="precio" class="form-control" placeholder="Precio" />
-                </div>
-              </div>
-            </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
-            
-          </div>
-        {!! Form::close() !!}
-      </div>
-     </div>
-    </div>
-  <div class="panel-body">
-      <div id="list-prod"></div>
   </div>
-</div>
+</div>  
+<!-- fin cambios pocket -->
+      </div>
+    </div>
+
+<script>
+  var routeModificar = "http://localhost/PocketByR/public//producto/modificar";
+  var routeEliminar = "http://localhost/PocketByR/public//producto/eliminar";
+
+  var editarValor = function(x, idProducto){
+    var p = 0;
+    cats = eval(<?php echo json_encode($cats);?>);
+    for (var i=0; i< cats.length; i++){   
+      if(x == cats[i].id){
+        p = cats[i].precio;
+      }   
+    }
+    document.getElementById("nPrecio"+idProducto).value = p;
+  };
+
+  function modificar(idProducto,categorias){
+    var nombre = $("#nombre"+idProducto).val();
+    var categoria = $("#categoria"+idProducto).val();
+    var precio = $("#nPrecio"+idProducto).val();
+    var receta = $("#receta"+idProducto).val();
+    $.ajax({
+      url: routeModificar,
+      type: 'GET',
+      data: {
+        id: idProducto,
+        nombre: nombre,
+        categoria: categoria,
+        precio: precio,
+        receta: receta
+      },
+      success: function(){
+        $("#"+idProducto).children("td").each(function (indextd){
+          if(indextd == 0){
+            $(this).text(nombre);
+          }else if(indextd == 2){
+            $(this).text(categorias[categoria]);
+          }else if(indextd == 1){
+            $(this).text(precio);
+          }
+        });
+      },
+      error: function(data){
+        alert('Error al modificar producto');
+      }
+    });       
+  }
+
+  function eliminar(idProducto){
+    if(confirm('¿Desea eliminar este Producto?')){
+      $.ajax({
+        url: routeEliminar,
+        type: 'GET',
+        data: {
+          id: idProducto
+        },
+        success: function(){
+            $("#"+idProducto).remove();
+        },
+        error: function(data){
+          alert('No se puede eliminar el producto, ya que existe historial de ventas del mismo.');
+        }
+      });
+    }
+  }
+  $(".seleccionar").click(function(){
+    var idElegido = $(this).attr("id");
+    var palabra = "#editModal";
+    var id = palabra.concat(idElegido);
+    $(id).modal();
+});
+</script>  
 
 <script type="text/javascript">
   

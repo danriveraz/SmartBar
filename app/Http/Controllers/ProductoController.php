@@ -32,7 +32,12 @@ class ProductoController extends Controller
     $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                              lists('nombre','id');
     $cats = Categoria::where('idEmpresa',$userActual->idEmpresa)->get();
-    return view('Producto.index',compact('categorias'))->with('cats', $cats);
+    $productos = Producto::Search($request->nombre)->
+                           Category($request->categorias)->
+                           where('idEmpresa' , $userActual->idEmpresa)->
+                           orderBy('nombre','ASC')->
+                           paginate(1000);
+    return view('Producto.index',compact('categorias'))->with('productos',$productos)->with('cats', $cats);
   }
 
   function modificar(Request $request){
