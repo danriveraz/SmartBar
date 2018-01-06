@@ -341,9 +341,9 @@ class UsuariosController extends Controller
         }
       }
 
-      //$usuario->save();
-      //flash::warning('El usuario ha sido modificado satisfactoriamente')->important();
-      //return redirect()->route('Auth.usuario.index');
+      $usuario->save();
+      flash::warning('El usuario ha sido modificado satisfactoriamente')->important();
+      return redirect()->route('Auth.usuario.index');
     }
   }
 
