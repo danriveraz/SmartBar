@@ -2,48 +2,45 @@
 @section('content')
 <!--Barra de título y botones de busqueda-->
 <div id="page-content">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="row invoice-header">
-          <div class="col-md-8">
-            <h2>Mis Empleados</h2>
-            @include('flash::message')
-          </div>
-          <div class="col-md-4 float-right">
-            <div class=" btn1 pull-right">
-              <a class=" dropdown-toggle" data-toggle="dropdown"><i class="pocketMorado fa fa-2x fa-sliders" ></i></a>
-              <ul id="filters" class="dropdown-menu">
-                <li>
-                  <a data-filter="*"><i class="fa fa-plus"></i>Todos</a>
-                </li>
-                <li>
-                  <a data-filter=".Habilitado"><i class="fa fa-check"></i>Habilitados</a>
-                </li>
-                <li>
-                  <a data-filter=".Deshabilitado"><i class="fa fa-times"></i>Deshabilitados</a>
-                </li>
-                <li>
-                  <a data-filter=".Administrador"><i class="fa fa-imdb"></i>Administradores</a>
-                </li>
-                <li>
-                  <a data-filter=".Bartender"><i class="fa fa-imdb"></i>Bartenders</a>
-                </li>
-                <li>
-                  <a data-filter=".Mesero"><i class="fa fa-houzz"></i>Meseros</a>
-                </li>
-                <li>
-                  <a data-filter=".Cajero"><i class="fa fa-wpbeginner pull-left"></i>Cajeros</a>
-                </li>
-              </ul>
-            </div>
-          </div>
+  <div class="col-lg-12">
+    <div class="row invoice-header">
+      <div class="col-md-4">
+        <div class=" btn1 pull-left">
+          <!--<button class="btn btn-default-outline dropdown-toggle" data-toggle="dropdown">-->
+          <a class=" dropdown-toggle" data-toggle="dropdown"><i class="pocketMorado fa fa-2x fa-sliders" ></i></a>
+            <ul id="filters" class="dropdown-menu">
+              <li>
+                <a data-filter="*"><i class="fa fa-plus"></i>Todos</a>
+              </li>
+              <li>
+                <a data-filter=".Habilitado"><i class="fa fa-check"></i>Habilitados</a>
+              </li>
+              <li>
+                <a data-filter=".Deshabilitado"><i class="fa fa-times"></i>Deshabilitados</a>
+              </li>
+              <li>
+                <a data-filter=".Administrador"><i class="fa fa-imdb"></i>Administradores</a>
+              </li>
+              <li>
+                <a data-filter=".Bartender"><i class="fa fa-imdb"></i>Bartenders</a>
+              </li>
+              <li>
+                <a data-filter=".Mesero"><i class="fa fa-houzz"></i>Meseros</a>
+              </li>
+              <li>
+                <a data-filter=".Cajero"><i class="fa fa-wpbeginner pull-left"></i>Cajeros</a>
+              </li>
+            </ul>
         </div>
-      </div>
+      </div>                
     </div>
   </div>
 </div>
 <!--Fin Barra de título y botones de busqueda-->
+
+
+
+
 <!--Inicio de los items de usuarios -->
 <div class="container-fluid main-content">
   <div class="social-wrapper">
@@ -65,12 +62,15 @@
                  @endif">
             <div class="heading">
               <!--<i class="pocketMorado fa fa-times pull-right"></i>-->
-              <i class="pocketMorado fa fa-eye pull-right" data-toggle="modal" href="#myModal{{$usuario->id}}"></i>
+              <a href="{{url('usuario/'.$usuario->id.'/active')}}"><i class="pocketMorado fa fa-times pull-right" ></i></a>
+              <i class="pocketMorado fa fa-edit pull-right" data-toggle="modal" href="#myModal{{$usuario->id}}"></i>
               <!--<a href="{{url('Auth/usuario/'.$usuario->id.'/edit')}}"><i class="fa fa-gear  pull-right"></i></a>-->
             </div>
             <div class="widget-container fluid-height clearfix ">
               <div class="profile-info clearfix padded3">
-                <img width="70" height="70" class="social-avatar pull-left" src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
+                <div class="social-avatar">
+                  <img width="70" height="70" class="avatar" src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
+                </div>
                   <div class="profile-details">
                     <strong><a class="pocketMorado user-name" >{{$usuario->nombrePersona}}</a></strong><br>
                       @if($usuario->esAdmin == 1) Administrador
@@ -83,34 +83,19 @@
                         @endif
                       @endif
                     <br>
-                    <em><i class="fa fa-list-alt "></i>{{$usuario->cedula}}</em>&nbsp&nbsp
-                    <em><i class="fa fa-phone "></i>{{$usuario->telefono}}</em>
+                    <i class="fa fa-check-circle"></i>{{$usuario->salario}}
                   </div>
               </div>
               <div class="widget-content padded2 colorpocket">
-                <div class="dg btn-group dropup">
-                  <button class="btn btn-pocket dropdown-toggle" data-toggle="dropdown">Control<span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="{{url('RegistroLogin/'.$usuario->id)}}"><i class="fa fa-clock-o pull-left"></i>Tiempo</a>
-                    </li>
-                    <li>
-                      <a id="Estadisticas" nombre="barraNavegacion" href="{{url('Estadisticas/')}}">
-                      <i class="fa fa-bar-chart-o pull-left"></i>Informes</a>
-                    </li>
-                    <li>
-
-                    </li>
-                    <li>
-                      <a href="{{url('Salario/')}}"><i class="fa fa-money pull-left"></i>Salario</a>
-                    </li>
-                  </ul>
-                </div>
-                  <a href="{{ url('Agenda/') }}" class="dg btn btn-pocket"><i class="fa fa-calendar-o"></i></a>
-
-                  <div class="dg btn btn-pocket" data-toggle="modal" href="#ModalMsg{{$usuario->id}}">
-                    <i class="fa fa-envelope-o"><a class="dg btn btn-pocket"></a></i>
+                <div class="col-md-offset-4 col-md-8 colorpocket">    
+                  <div class="headingPocket">
+                    <a href="{{url('RegistroLogin/'.$usuario->id)}}" ><i class="fa fa-clock-o pull-right"></i></a>  
+                    <a href="{{ url('Agenda/') }}" ><i class="fa fa-calendar-check-o pull-right"></i></a>
+                    <a href="{{url('Salario/')}}" ><i class="fa fa-money pull-right"></i></a>
+                    <a id="Estadisticas" nombre="barraNavegacion" href="{{url('Estadisticas/')}}" ><i class="fa fa-bar-chart pull-right"></i></a>
+                    <div data-toggle="modal" href="#ModalMsg{{$usuario->id}}"><i class="fa fa-comments pull-right"></i></div>
                   </div>
+                </div>  
               </div>
             </div>
           </div>
@@ -221,7 +206,7 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                    <select id="selectPermisos" name="Permisos[]"class="form-control select2able" multiple="multiple">
+                    <select  name="Permisos[]"class="form-control select2able" multiple="multiple">
                       <option value="Administrador"
                         @if($usuario->esAdmin == 1)
                           selected="selected"
@@ -251,7 +236,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <input id="file-4" style="background-color: #4f0157;" type="file" class="file" data-upload-url="#">
+                  <input  style="background-color: #4f0157;" type="file" class="file" data-upload-url="#">
                 </div>
               </div>
             </div>
@@ -423,7 +408,7 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                        <select id="selectPermisos" name="Permisos[]" class="form-control select2able" multiple="multiple">
+                        <select id="selectPermisosAjax" name="Permisos[]" class="form-control select2able" multiple="multiple">
                           <option value="Mesero">Mesero</option>
                           <option value="Bartender">Bartender</option>
                           <option value="Cajero">Cajero</option>
@@ -472,11 +457,18 @@
 <!-- Para notificaciones con ajax -->
 {!!Html::style('css/notificaciones/ns-default.css')!!}
 {!!Html::style('css/notificaciones/ns-style-growl.css')!!}
-{!!Html::script('javascripts/notificaciones/classie.js')!!}
 {!!Html::script('javascripts/notificaciones/modernizr.custom.js')!!}
 {!!Html::script('javascripts/notificaciones/notificationFx.js')!!}
 <script type="text/javascript">
  $(document).ready(function(){
+
+    //Filtros del isotope
+    $('#filters a').click(function(){
+      var $container = $('#social-container');
+      var selector = $(this).attr('data-filter');
+      $container.isotope({ filter: selector });
+      return false;
+    });
 
     cambiarCurrent("#miPersonal");
 
@@ -497,13 +489,6 @@
 
     
 
-    //Filtros del isotope
-    $('#filters a').click(function(){
-      var $container = $('#social-container');
-      var selector = $(this).attr('data-filter');
-      $container.isotope({ filter: selector });
-      return false;
-    });
 
 
   });
@@ -522,7 +507,7 @@ $("#registrarUsuario").click(function(){
     var image = $('#imagenPerfil')[0].files[0];// la imagen de perfil
     var token = $("#token").val();
     var type = "POST";
-    var selectPermisos = $('#selectPermisos').val();
+    var selectPermisos = $('#selectPermisosAjax').val();
     selectPermisos.forEach(function(element) {
         console.log(element);
     });

@@ -130,8 +130,9 @@
 {!!Html::script('javascripts/upload/locales/fr.js')!!}
 {!!Html::script('javascripts/upload/locales/es.js')!!}
 {!!Html::script('javascripts/upload/theme.js')!!}
-
+<!-- 
 {!!Html::style('croppie/croppie.css')!!}
+-->
 {!!Html::style('stylesheets/upload/fileinput.css')!!}
 {!!Html::style('stylesheets/upload/theme.css')!!}
 
