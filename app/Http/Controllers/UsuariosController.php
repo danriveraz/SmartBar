@@ -160,11 +160,13 @@ class UsuariosController extends Controller
 
   public function edit($id){
     $usuario = User::find($id);
-    return view('Usuario.edit')->with('usuario',$usuario);
+    $Empresa = Empresa::find($usuario->idEmpresa);
+    return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa);;
   }
 
-  public function update(Request $request, $id){
-
+  public function updateProfile(Request $request, $id){
+    dd("hola");
+    /*
     $rules = [
         'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
         'imagenPerfil' => 'image',
@@ -189,6 +191,7 @@ class UsuariosController extends Controller
 
     $validator = Validator::make($request->all(), $rules,$messages);
     if ($validator->fails()){
+      dd($usuario);
       return redirect()->route('Auth.usuario.edit',$id)->withErrors($validator)->withInput();
     }else{
       if($request->cedula!=$usuario->cedula){
@@ -249,9 +252,102 @@ class UsuariosController extends Controller
         }
       }
 
-      $usuario->save();
-      flash::warning('El usuario ha sido modificado satisfactoriamente')->important();
-      return redirect()->route('Auth.usuario.index');
+      //$usuario->save();
+      //flash::warning('El usuario ha sido modificado satisfactoriamente')->important();
+      //return redirect()->route('Auth.usuario.index');
+    }
+    */
+  }
+
+  public function update(Request $request, $id){
+    $rules = [
+        'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+        'imagenPerfil' => 'image',
+        ];
+    $usuario = User::find($id);
+    if(Auth::User()->esAdmin){ // validar que cuadno sea admin el que modifica, los usuarios deben de quedar con permisos
+        $rules += ['Permisos' => 'required',];
+    }
+    if($request->cedula!=$usuario->cedula){// agrega la regla si la cedula ha sido modificada
+      $rules += ['cedula' => 'required|min:1|max:9999999999|numeric'];
+    }
+    if ($request->password!=null) {// agrega la regla si el password ha sido modificado
+      $rules += ['password' => 'required|min:6|max:18|confirmed'];
+    }
+    if($request->telefono!=$usuario->telefono){ // agrega la regla si el telefomo ha sido modificado
+      $rules += ['telefono' => 'required|min:1|max:9999999999|numeric'];
+    }
+
+    $messages = [
+      'Permisos.required' => 'Debe tener asignado por lo menos un Permiso',
+    ];
+
+    $validator = Validator::make($request->all(), $rules,$messages);
+    if ($validator->fails()){
+      dd($usuario);
+      return redirect()->route('Auth.usuario.edit',$id)->withErrors($validator)->withInput();
+    }else{
+      if($request->cedula!=$usuario->cedula){
+        $usuario->cedula = $request->cedula;
+      }
+      if($request->password!=null){
+        $usuario->password = bcrypt($request->password);
+      }
+      if($request->telefono!=$usuario->telefono){
+        $usuario->telefono=$request->telefono;
+      }
+      $usuario->nombrePersona = $request->nombrePersona;
+      $usuario->sexo = $request->sexo;
+      $usuario->fechaNacimiento = $request->fechaNacimiento;
+
+      //obtenemos el campo file definido en el formulario
+      $file = $request->file('imagenPerfil');
+      if($file!=null){// verifica que se haya subido una imagen nueva
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+        $usuario->imagenPerfil = $nombre;// guarda la imagen en la base de datos
+      }
+
+
+      if(Auth::User()->esAdmin&&Auth::id()!=$usuario->id){// si es admin asigna los permisos
+        $usuario->esMesero = 0;
+        $usuario->esBartender = 0;
+        $usuario->esCajero = 0;
+        $usuario->esAdmin = 0;
+        $usuario->obsequio = 0;
+
+        if($request['Obsequiar']=='Obsequiar'){
+          $usuario->obsequio = 1;
+        }
+
+        $Permisos = $request['Permisos'];
+
+        foreach ($Permisos as $key => $value) {
+          if($value=='Administrador'){
+            $usuario->esMesero = 1;
+            $usuario->esBartender = 1;
+            $usuario->esCajero = 1;
+            $usuario->esAdmin = 1;
+            $usuario->obsequio = 1;
+          }else{
+            if($value=='Mesero'){
+              $usuario->esMesero = 1;
+            }
+            if($value=='Cajero'){
+              $usuario->esCajero = 1;
+            }
+            if($value=='Bartender'){
+              $usuario->esBartender = 1;
+            }
+          }
+        }
+      }
+
+      //$usuario->save();
+      //flash::warning('El usuario ha sido modificado satisfactoriamente')->important();
+      //return redirect()->route('Auth.usuario.index');
     }
   }
 

@@ -4,11 +4,10 @@
 <div class="view-account">
   <div class="module">
       <div class="module-inner">
+        <div class="container main-content">
           <div class="side-bar" >
               <div class="user-info">
                 <div align="center">
-                  {!! Form::open(['route' => ['Auth.usuario.update',$usuario], 'method' => 'PUT','enctype' => 'multipart/form-data']) !!}
-                  {{ csrf_field() }}
                   <a id="perfil" class="gallery-item filter1 fancybox" href="../../../../public/images/admins/{{$usuario->imagenPerfil}}" rel="gallery1" title="Imagen perfil">
                     @if($usuario->imagenPerfil!='')
                       {!! Html::image('images/admins/'.$usuario->imagenPerfil,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo')) !!}
@@ -21,7 +20,6 @@
                       <i class="fa fa-pencil"></i>
                     </div>
                   </a>
-                  {!! Form::close() !!}
                 </div>
                 <ul class="meta list list-unstyled">
                     <li class="name">{{$usuario->nombrePersona}}
@@ -42,7 +40,7 @@
           </div>
           <!-- MAIN CONTENT -->
           <div class="tab-content">
-            <div class="tab-pane" id="tab1">
+            <div class="tab-pane active" id="tab1">
               <div id="main-content">
                 <div class="container-fluid">
                   <div class="section-heading">
@@ -54,9 +52,10 @@
                     <li><a href="#billings" role="tab" data-toggle="tab">PocketClub</a></li>
                     <li><a href="#preferences" role="tab" data-toggle="tab">Bolsillo</a></li>
                   </ul>
-                  <form>
                     <div class="tab-content content-profile">
                       <!-- MY PROFILE -->
+                      {!! Form::open(['route' => ['Auth.usuario.editUsuario',$usuario], 'method' => 'POST','enctype' => 'multipart/form-data']) !!}
+                      {{ csrf_field() }}
                       <div class="tab-pane fade in active" id="myprofile">
                         <div class="profile-section">
                           <div class="clearfix">
@@ -65,43 +64,34 @@
                               <h2>Información General</h2>
                               <div class="form-group">
                                 <label>Nombres</label>
-                                <input type="text" name="nombrePersona" class="form-control" value="{{$usuario->nombrePersona}}"/>
-                                <div class="bg-danger text-white">{{$errors->first('nombrePersona')}}</div>
+                                <input name="nombrePersona" class="form-control" value="{{$usuario->nombrePersona}}" placeholder="Nombre completo" type="text" >
                               </div>
                               <div class="form-group">
                                 <label>Documento</label>
-                                <select class="form-control">
-                                  <option value="Category 1">Tipo De Documento</option>
-                                    <option value="Category 1">T.I</option>
-                                    <option value="Category 3">C.C</option>
-                                </select>
-                                <br>
                                 <div>
-                                  <input type="number" name="cedula" placeholder="Cedula" class="form-control" value="{{$usuario->cedula}}">
+                                  <input name="cedula" class="form-control" value="{{$usuario->cedula}}"  placeholder="Identificacion" type="text">
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label>Sexo</label>
-                                <div style="margin-left: 5%;">
-                                  <label>
-                                    <input name="gender2" value="male" type="radio" checked>
-                                    <span><i></i>Masculino</span>
-                                  </label>
-                                  <label>
-                                    <input name="gender2" value="female" type="radio">
-                                    <span><i></i>Femenino</span>
-                                  </label>
-                                  <label>
-                                    <input name="gender2" value="female" type="radio">
-                                    <span><i></i>Otro</span>
-                                  </label>
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
+                                    <select name='sexo' class="form-control" placeholder="Tipo De Sexo">
+                                      @if($usuario->sexo=='Femenino')
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Femenino" selected="selected">Femenino</option>
+                                      @else
+                                        <option value="Masculino" selected="selected">Masculino</option>
+                                        <option value="Femenino" >Femenino</option>
+                                      @endif
+                                    </select>
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label>Fecha de Nacimiento</label>
                                 <div class="input-group date" data-date-autoclose="true" data-provide="datepicker">
                                   <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                  <input type="date" name="fechaNacimiento" class="form-control" value='{{$usuario->fechaNacimiento}}'>
+                                  <input  value="{{$usuario->fechaNacimiento}}" class="form-control datepicker" data-date-autoclose="true" placeholder="Fecha de Nacimiento" type="text">
                                   <div class="bg-danger text-white">{{$errors->first('fechaNacimiento')}}</div>
                                 </div>
                               </div>
@@ -114,7 +104,7 @@
                               <div class="form-group">
                                   <label>Email</label>
                                   <div>
-                                      <input type="email" class="form-control" placeholder="Correo Electronico" value="{{$usuario->email}}"/>
+                                      <input name="email" class="form-control" value="{{$usuario->email}}"  placeholder="Email" type="text">
                                   </div>
                               </div>
                             </div>
@@ -124,15 +114,15 @@
                               <h2> Información Bar</h2>
                               <div class="form-group">
                                 <label>Nombre</label>
-                                <input type="text" class="form-control" placeholder="Nombre del Establecimiento">
+                                <input type="text" class="form-control" placeholder="Nombre del Establecimiento" value="{{$empresa->nombreEstablecimiento}}">
                               </div>
                               <div class="form-group">
                                 <label>Dirección</label>
-                                <input type="text" class="form-control" placeholder="Dirección">
+                                <input type="text" class="form-control" placeholder="Dirección" value="{{$empresa->direccion}}">
                               </div>
                               <div class="form-group">
                                 <label>Teléfono</label>
-                                <input type="text" class="form-control" placeholder="Teléfono o celular">
+                                <input type="text" class="form-control" placeholder="Teléfono o celular" value="{{$empresa->telefono}}">
                               </div>
                               <div class="form-group">
                                 <label>Regimen</label>
@@ -147,19 +137,19 @@
                               <div class="form-group">
                                 <label>Nit</label>
                                 <div>
-                                    <input type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx">
+                                    <input type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx" value="{{$empresa->nit}}">
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label>Departamento</label>
                                 <div>
-                                    <input type="text" class="form-control" value="{{$usuario->departamento}}" disabled>
+                                    <input type="text" class="form-control" value="{{$empresa->departamento}}" disabled>
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label>Ciudad</label>
                                 <div>
-                                    <input type="text" class="form-control" value="{{$usuario->ciudad}}" disabled>
+                                    <input type="text" class="form-control" value="{{$empresa->ciudad}}" disabled>
                                 </div>
                               </div>
                             </div>
@@ -167,11 +157,14 @@
                           </div>
                           <div class="form-group" align="center">
                             <p class="margin-top-30">
-                              <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
+                              <button class="btn btn-bitbucket" type="submit">
+                                <i class="fa fa-send"></i>Guardar
+                              </button>
                             </p>
                           </div>
                         </div>
                       </div>
+                      {!! Form::close() !!}
                       <!-- END MY PROFILE -->
                       <!-- ACCOUNT -->
                       <div class="tab-pane fade" id="account">
@@ -323,7 +316,6 @@
                       </div>
                       <!-- END PREFERENCES -->
                     </div>
-                  </form>
             </div>
           </div>
         </div>
@@ -357,7 +349,7 @@
                 <div class="navbar-form navbar-left" >
                   <div class="form-group" align="left">
                       <a href="#addModal" class="btn btn-default" data-toggle="modal">
-                          <i class="fa fa-plus"></i> Crear mesas &ensp;&ensp;&ensp;&ensp;&ensp;
+                          <i class="fa fa-plus"></i> Crear mesas &ensp;&ensp;
                       </a>
                   </div>
                 </div >
@@ -409,7 +401,7 @@
           </div>
         </div>
         
-        <div class="tab-pane active" id="tab5">
+        <div class="tab-pane" id="tab5">
           <div id="main-content">
             <div class="container-fluid">
               <div class="section-heading">
@@ -423,6 +415,7 @@
     <div class="clearfix"></div>
 
       </div>
+    </div>
     </div>
   </div>
       

@@ -131,6 +131,7 @@ class AuthController extends Controller
             $admin->cedula= $request->email; // coloco el email aquí temporalmente mientras se crea, unas lineas más adelante lo actualizo
             $admin->idEmpresa = $empresa->id; // id de la empresa para saber a quién pertenece
             $admin->empresaActual =  $empresa->id;
+            $admin->estadoTut = 13;
             $admin->save();// guarda el usuario registrado 
             
             $empresa->usuario_id = $admin->id;// obtiene el id del usuario que creo la empres apara saber la referencia 
