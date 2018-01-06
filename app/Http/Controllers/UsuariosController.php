@@ -165,8 +165,6 @@ class UsuariosController extends Controller
   }
 
   public function updateProfile(Request $request, $id){
-    dd("hola");
-    /*
     $rules = [
         'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
         'imagenPerfil' => 'image',
@@ -256,7 +254,6 @@ class UsuariosController extends Controller
       //flash::warning('El usuario ha sido modificado satisfactoriamente')->important();
       //return redirect()->route('Auth.usuario.index');
     }
-    */
   }
 
   public function update(Request $request, $id){
@@ -284,7 +281,6 @@ class UsuariosController extends Controller
 
     $validator = Validator::make($request->all(), $rules,$messages);
     if ($validator->fails()){
-      dd($usuario);
       return redirect()->route('Auth.usuario.edit',$id)->withErrors($validator)->withInput();
     }else{
       if($request->cedula!=$usuario->cedula){
