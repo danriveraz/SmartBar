@@ -339,7 +339,7 @@
             </ul>
         </div>
         <div class="col">
-            <h3>Versiones</h3>
+            <h3>Plataformas</h3>
             <ul>
               <li><a href="index.html">Colombia</a></li>
               <li><a href="index.html">Ecuador (Próximamente)</a></li>
