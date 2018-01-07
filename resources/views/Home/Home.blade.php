@@ -61,8 +61,8 @@
           <h1 class="h1Prin" style="color:#2d0031;" >¡Tranquilidad!</h1>
           <p style="color:#4D4D4D;">La tienes con tu amigo inseparable, Smartbar</p>
           <!-- Buttons -->
-          <a class="button large" href="https://app.alegra.com/user/register/country/colombia" target="_blank" rel="nofollow">CREAR CUENTA GRATIS</a>
-          <a class="link-block uppercase" style="color:#4D4D4D;" href="http://ayuda.alegra.com/hc/es/articles/211568506" target="_blank" >Cuenta con tu amigo inseparable por:</a>
+          <a class="button large" href="" target="_blank" rel="nofollow">CREAR CUENTA GRATIS</a>
+          <a class="link-block uppercase" style="color:#4D4D4D;" href="" target="_blank" >Cuenta con tu amigo inseparable por:</a>
           <span class="textpar" style="color:#4D4D4D;">30 DIAS MAS</span>
         </div>
       </div>
@@ -85,7 +85,7 @@
           <br>30 días sin limitaciones.</strong></span></p>
         </div>
         <div class="col">
-          <div class="device-laptop" style="background: url('../../cdn2.alegra.com/website/assets/images/device-laptop.png') center no-repeat;">
+          <div class="device-laptop">
             <iframe width="463" height="294" src="https://www.youtube.com/embed/6XB0yItV0js?rel=0&amp;vq=hd720&amp;showinfo=0&amp;modestbranding=1&amp;color=white" allowfullscreen=""></iframe> 
           </div>
         </div>
@@ -217,9 +217,9 @@
       </div>
     </div>
     <p><img class="plan-payment" src="assetsNew/images/logos-payment-col.png" alt="Métodos de pago"/></p>
-    <p><a class="button large" href="https://app.alegra.com/user/register/country/colombia" target="_blank" rel="alternate">UNIRTE A <strong>POCKETCLUB</strong></a></p>
+    <p><a class="button large" href="" target="_blank" rel="alternate">UNIRTE A <strong>POCKETCLUB</strong></a></p>
     <hr>
-    <h4 class="text-gris">Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas. <a href="http://www.alegra.com/fundaciones" target="_blank" rel="alternate">¿Que es PocketClub?</a></h4>
+    <h4 class="text-gris">Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas. <a href="" target="_blank" rel="alternate">¿Que es PocketClub?</a></h4>
     <hr>
   </div>
 </section>
@@ -302,17 +302,17 @@
 
 
         <div class="col center-mobile">
-          <a title="Twitter" class="button-circle" href="https://twitter.com/AlegraWeb" target="_blank">
+          <a title="Twitter" class="button-circle" href="" target="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
                 <path fill="#00B19D" d="M35,17.9949748 C34.2270821,18.3335138 33.3977523,18.563107 32.5263881,18.6656082 C33.4161102,18.1389582 34.0971701,17.3036174 34.4199598,16.3113025 C33.58538,16.7990143 32.6641579,17.1531556 31.6825779,17.3451334 C30.8965521,16.516271 29.7785062,16 28.5384061,16 C26.1592944,16 24.2302765,17.9067872 24.2302765,20.2571923 C24.2302765,20.5905417 24.2683305,20.9161238 24.3418306,21.2274602 C20.762011,21.0497281 17.5876774,19.3543879 15.4631396,16.7782562 C15.0917616,17.4060847 14.8804916,18.1376354 14.8804916,18.9185372 C14.8804916,20.3959861 15.6416056,21.6996035 16.7964016,22.4622912 C16.0903956,22.4389554 15.4263896,22.2469776 14.8450798,21.9278739 L14.8450798,21.9810578 C14.8450798,24.0434962 16.3305577,25.764784 18.3002374,26.1565408 C17.9393594,26.2525297 17.5588195,26.3057137 17.1651375,26.3057137 C16.8869557,26.3057137 16.6179357,26.2784772 16.3541656,26.2265822 C16.9026714,27.9193446 18.4931495,29.1503089 20.3775594,29.1840577 C18.9038855,30.3255454 17.0457256,31.0039461 15.0274919,31.0039461 C14.679756,31.0039461 14.3372358,30.983188 14,30.9455726 C15.9067139,32.1558128 18.1703598,32.8614499 20.6032755,32.8614499 C28.5279747,32.8614499 32.8597465,26.3731772 32.8597465,20.7462268 L32.8453004,20.1949521 C33.6916841,19.5982268 34.4239059,18.8484959 35,17.9949748 Z"/>
               </svg>
           </a>
-          <a title="Facebook" class="button-circle" href="https://www.facebook.com/alegra.web" target="_blank">
+          <a title="Facebook" class="button-circle" href="" target="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
                 <path fill="#00B19D" d="M25.4913914,33.257811 L25.4913914,24.4740625 L28.4385481,24.4740625 L28.8807085,21.0498641 L25.4913914,21.0498641 L25.4913914,18.8640127 C25.4913914,17.8729378 25.7654762,17.1975322 27.1882844,17.1975322 L29,17.1967874 L29,14.1340632 C28.6866893,14.0933477 27.6112042,14 26.3594508,14 C23.7455902,14 21.9560943,15.5954766 21.9560943,18.5248824 L21.9560943,21.0498641 L19,21.0498641 L19,24.4740625 L21.9560943,24.4740625 L21.9560943,33.257811 L25.4913914,33.257811 Z"/>
               </svg>
           </a>
-          <a title="Instagram" class="button-circle" href="https://www.instagram.com/alegraweb" target="_blank">
+          <a title="Instagram" class="button-circle" href="" target="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
                 <g fill="#00B19D" transform="translate(14 14)">
                   <path d="M14.4007059,0 L5.48870588,0 C2.46223529,0 0,2.46235294 0,5.48882353 L0,14.4008235 C0,17.4274118 2.46223529,19.8896471 5.48870588,19.8896471 L14.4007059,19.8896471 C17.4274118,19.8896471 19.8896471,17.4272941 19.8896471,14.4008235 L19.8896471,5.48882353 C19.8897647,2.46235294 17.4274118,0 14.4007059,0 Z M18.1250588,14.4008235 C18.1250588,16.4543529 16.4543529,18.1249412 14.4008235,18.1249412 L5.48870588,18.1249412 C3.43529412,18.1250588 1.76470588,16.4543529 1.76470588,14.4008235 L1.76470588,5.48882353 C1.76470588,3.43541176 3.43529412,1.76470588 5.48870588,1.76470588 L14.4007059,1.76470588 C16.4542353,1.76470588 18.1249412,3.43541176 18.1249412,5.48882353 L18.1249412,14.4008235 L18.1250588,14.4008235 Z"/>
@@ -377,10 +377,9 @@
 
 
 <!-- SCRIPTS -->
-<script src="../../cdn2.alegra.com/website/assets/scripts/classList.min.js" type="text/javascript" async></script>
-<script src="../../cdn2.alegra.com/website/assets/scripts/chat.js" type="text/javascript" async></script>
-<script src="../../cdn2.alegra.com/website/assets/scripts/setRefererCookie.js" type="text/javascript" async></script>
-<script src="../../cdn2.alegra.com/website/assets/scripts/smile.js" type="text/javascript" async></script>
+<script src="assetsNew/scripts/classList.min.js" type="text/javascript" async></script>
+<script src="assetsNew/scripts/setRefererCookie.js" type="text/javascript" async></script>
+<script src="assetsNew/scripts/smile.js" type="text/javascript" async></script>
 
 <script>
     // Topbar background
