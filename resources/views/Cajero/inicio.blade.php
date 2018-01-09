@@ -58,14 +58,15 @@
                         <select class="selectFact numberFact" onchange="cambiarFactura(this.value);">
                            @foreach($facturas as $factura)
                             @if(sizeof($factura->ventasHechas)>0)
-                              <option data-idMesaBar="{{$factura->idBar}}" value="{{$factura->mesa->id}}" id="mesas{{$factura->mesa->id}}"
+                              <option data-idFactura="{{$factura->id}}"  data-idMesaBar="{{$factura->idBar}}" value="{{$factura->mesa->id}}" id="mesas{{$factura->mesa->id}}"
                                 data-fecha="<?php  $date = new DateTime($factura->fecha);
                         echo $date->format('M d, Y');
                         ?>" data-hora="<?php echo  $date->format('g:i A'); 
                         ?>"
                         data-mesero="{{$factura->ventasHechas[0]->mesero->nombrePersona}}"
                         data-cajero="{{$factura->ventasHechas[0]->cajero->nombrePersona}}"
-                        data-bartender="{{$factura->ventasHechas[0]->bartender->nombrePersona}}">{{$factura->mesa->nombreMesa}} </option>
+                        data-bartender="{{$factura->ventasHechas[0]->bartender->nombrePersona}}"
+                        data-idFactura="{{$facturas[0]->id}}">{{$factura->mesa->nombreMesa}} </option>
                             @endif
                           @endforeach
                         </select>
@@ -203,28 +204,22 @@
                                 <div class="FactPocket col-xs-2 text-center">Total</div>
               </div>
             </div>
-            <div class="items">
-              <div class="row item">
-                              <div class="col-xs-5 desc" >Cerveza club colombia negra</div>
-                <div class="FactPocket col-xs-2 text-center" >3</div>
-                <div class="FactPocket col-xs-2 amount text-center">2</div>
-                                <div class="FactPocket col-xs-2 amount text-center">
-                                     <input type="number" class="numberFact">
+            <div class="items" id="tabla">
+              @foreach($productos as $producto)
+                @if($producto[0] == $facturas[0]->id)
+                <div class="row item">
+                                <div class="col-xs-5 desc" >{{$producto[2]}}</div>
+                  <div class="FactPocket col-xs-2 text-center" >{{$producto[3]}}</div>
+                  <div class="FactPocket col-xs-2 amount text-center">{{$producto[6]}}</div>
+                                  <div class="FactPocket col-xs-2 amount text-center">
+                                       <input type="number" class="numberFact">
+                  </div>
+                                  <div class="FactPocket col-xs-2 amount text-center">$ <?php echo number_format($producto[4],0,",","."); ?></div>
+                                  <div class="FactPocket col-xs-2 amount text-right">$10.000</div>
                 </div>
-                                <div class="FactPocket col-xs-2 amount text-center">$5000</div>
-                                <div class="FactPocket col-xs-2 amount text-right">$10.000</div>
-              </div>
 
-              <div class="row item">
-                              <div class="col-xs-5 desc" >Cerveza club colombia negra</div>
-                <div class="FactPocket col-xs-2 text-center" >3</div>
-                <div class="FactPocket col-xs-2 amount text-center">2</div>
-                                <div class="FactPocket col-xs-2 amount text-center">
-                                     <input type="number" class="numberFact">
-                </div>
-                                <div class="FactPocket col-xs-2 amount text-center">$5000</div>
-                                <div class="FactPocket col-xs-2 amount text-right">$10.000</div>
-              </div>
+                @endif
+              @endforeach
 
             </div>
             <div class="total text-right">
@@ -313,6 +308,7 @@
 </div>
 
 <script>
+  var JSONproductos = eval(<?php echo json_encode($productos); ?>);
   jQuery.fn.animateAuto = function(prop, speed, callback){
     var elem, height, width;
     return this.each(function(i, el){
@@ -330,6 +326,8 @@
     });  
   }
   $(window).ready(function(){
+    //aqui
+
   $('#toggle').on('click',function(){
       if($(this).next().hasClass('desplegado')){
         $(this).next().removeClass('desplegado').animate({height:0},500);
@@ -344,17 +342,41 @@ var cambiarFactura = function(id){
   $("#fecha").html($("#mesas"+id).data('fecha')+" - "+$("#mesas"+id).data('hora'));
   $("#mesero").html(" "+$("#mesas"+id).data('mesero'));
   $("#cajero").html(" "+$("#mesas"+id).data('cajero'));
-  $("#bartender").html(" "+$("#mesas"+id).data('bartender'));
-  JSONproductos = eval(<?php 
-    $datos = array();
-    for($i = 0; $i < sizeof($facturas);$i++){
-      $datos[$i] = $facturas[$i]->ventasHechas;
-    }
-    echo json_encode($datos);
-    ?>);
-  alert(JSONproductos[0][0]);
-       
+  $("#bartender").html(" "+$("#mesas"+id).data('bartender'));  
+  refrescarTabla(id);
 };
+
+function refrescarTabla(id) {
+  var capa = $("#tabla");
+  capa.empty();
+  var idFactura = $("#mesas"+id).data('idfactura');
+  for(i=0; i < JSONproductos.length; i++){
+    if(JSONproductos[i][0] == idFactura){
+      $("#tabla").append('<div class="row item"><div class="col-xs-5 desc" >'+JSONproductos[i][2]+'</div><div class="FactPocket col-xs-2 text-center" >'+JSONproductos[i][3]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ JSONproductos[i][6]+'</div><div class="FactPocket col-xs-2 amount text-center"><input type="number" class="numberFact"></div><div class="FactPocket col-xs-2 amount text-center">$' +formatNumber.new(JSONproductos[i][4])+ ' </div> <div class="FactPocket col-xs-2 amount text-right">$10.000</div></div>');
+    }
+   // 
+  }
+
+}
+var formatNumber = {
+ separador: ".", // separador para los miles
+ sepDecimal: ',', // separador para los decimales
+ formatear:function (num){
+ num +='';
+ var splitStr = num.split('.');
+ var splitLeft = splitStr[0];
+ var splitRight = splitStr.length > 1 ? this.sepDecimal + splitStr[1] : '';
+ var regx = /(\d+)(\d{3})/;
+ while (regx.test(splitLeft)) {
+ splitLeft = splitLeft.replace(regx, '$1' + this.separador + '$2');
+ }
+ return this.simbol + splitLeft +splitRight;
+ },
+ new:function(num, simbol){
+ this.simbol = simbol ||'';
+ return this.formatear(num);
+ }
+}
 </script>          
 
 @endsection

@@ -32,8 +32,15 @@ class CajeroController extends Controller
         foreach ($ventas as $venta ) {
             $totalVentas = $totalVentas + ($venta->producto->precio * $venta->cantidad);
         }
-        $facturas = Factura::buscarFacturas(Auth::user()->empresaActual)->get();   
-    	return view('Cajero.inicio')->with('totalVentas',$totalVentas)->with('facturas',$facturas)->with('user',$userActual);
+        $facturas = Factura::buscarFacturas(Auth::user()->empresaActual)->get(); 
+        $productos = array();
+        for($i=0; $i < sizeof($facturas); $i++){
+            $ventasHechas = $facturas[$i]->ventasHechas;
+            for($j=0; $j < sizeof($ventasHechas); $j++){
+                array_push($productos, array(($facturas[$i]->id), $ventasHechas[$j]->id, $ventasHechas[$j]->producto->nombre, $ventasHechas[$j]->cantidad, $ventasHechas[$j]->producto->precio, $ventasHechas[$j]->estadoMesero, $ventasHechas[$j]->estadoCajero)); 
+            }
+        }
+    	return view('Cajero.inicio')->with('totalVentas',$totalVentas)->with('facturas',$facturas)->with('user',$userActual)->with('productos',$productos);
     }
     public function store(Request $request){
     	$nombre = $request->nombre;
