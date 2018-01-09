@@ -89,11 +89,11 @@
               <div class="widget-content padded2 colorpocket">
                 <div class="col-md-offset-4 col-md-8 colorpocket">    
                   <div class="headingPocket">
-                    <a href="{{url('RegistroLogin/'.$usuario->id)}}" ><i class="fa fa-clock-o pull-right"></i></a>  
+                    <div data-toggle="modal" href="#ModalMsg{{$usuario->id}}"><i class="fa fa-comments pull-right"></i></div>
                     <a href="{{ url('Agenda/') }}" ><i class="fa fa-calendar-check-o pull-right"></i></a>
                     <a href="{{url('Salario/')}}" ><i class="fa fa-money pull-right"></i></a>
-                    <a id="Estadisticas" nombre="barraNavegacion" href="{{url('Estadisticas/')}}" ><i class="fa fa-bar-chart pull-right"></i></a>
-                    <div data-toggle="modal" href="#ModalMsg{{$usuario->id}}"><i class="fa fa-comments pull-right"></i></div>
+                    <a href="{{url('Estadisticas/')}}" ><i class="fa fa-bar-chart pull-right"></i></a>
+                    <a href="{{url('RegistroLogin/'.$usuario->id)}}" ><i class="fa fa-clock-o pull-right"></i></a>  
                   </div>
                 </div>  
               </div>
@@ -116,9 +116,10 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="heading">
-            <i class=" pocketMorado fa fa-shield"></i>&nbsp;Nuevo Empleado
-          </div>
+        <div class="heading">
+          <i class=" pocketMorado fa fa-shield"></i>
+          &nbsp; Nuevo Empleado      
+        </div>
           <!-- Login Screen -->
           {!! Form::open(['route' => ['Auth.usuario.update',$usuario], 'method' => 'PUT','enctype' => 'multipart/form-data']) !!}
           {{ csrf_field() }}
@@ -325,7 +326,7 @@
       <div class="">
         <div class="">
           <div class="heading">
-            <i class="fa fa-shield"></i>Nuevo empleado
+            <i class=" pocketMorado fa fa-shield"></i>&nbsp;Nuevo Empleado
           </div>
           <div class="widget-content padded">
             <form id="checkbox">
@@ -337,37 +338,35 @@
                   <label class="control-label col-md-2"></label>
                   <div class="col-md-9">
                     <div class="widget-content fileupload fileupload-new" data-provides="fileupload">
-                      <div class="gallery-container fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
-                        <a class="gallery-item filter1 fancybox" href="#fancybox-example" rel="">
-                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
-                        <div class="actions">
-                           <i class="fa fa-pencil"></i>
-                        </div></a>
+                      <div class="gallery-container fileupload-new img-thumbnail" >
+                        <div class="gallery-item filter1" rel="">
+                          <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
+                          <div class="actions">
+                            <span class="btn-file">
+                            <span class="fileupload-new"><i class="fa fa-pencil"></i></span>
+                            <span class="fileupload-exists">editar</span>
+                            <input type="file" class="form-control" name="imagenPerfil"  id="imagenPerfil"></span>
+                            <a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Eliminar</a>
+                          </div>
+                        </div>
                       </div>
-                      <div class="fileupload-preview fileupload-exists img-thumbnail" style="width: 200px; max-height: 150px">
-                      </div>
-                      <div>
-                        <span class="btn btn-default btn-file">
-                        <span class="fileupload-new">Cargar Imagen</span>
-                        <span class="fileupload-exists">editar</span>
-                        <input type="file" class="form-control" name="imagenPerfil"  id="imagenPerfil"></span>
-                        <a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Eliminar</a>
+                      <div class="gallery-item fileupload-preview fileupload-exists img-thumbnail" >
                       </div>
 
                     </div>
                   </div>
                 </div>
-                <div  style="margin-top: 70%;"></div>
+                <div  style="margin-top: 61%;"></div>
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input class="form-control" id="nombrePersona" name="nombrePersona" placeholder="Nombre Del Empleado" type="text">
+                    <input class="form-control" id="nombrePersona" name="nombrePersona" placeholder="Nombre" type="text">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
-                    <input class="form-control" placeholder="Telefono de Contato" type="text">
+                    <input class="form-control" placeholder="Teléfono" type="text">
                   </div>
                 </div>
                 <div class="form-group">
@@ -387,7 +386,7 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-map"></i></span>
-                    <input class="form-control" placeholder="Dirección De Recidencia" type="text">
+                    <input class="form-control" placeholder="Dirección" type="text">
                   </div>
                 </div>
                 <div class="form-group"> <!-- OJO esto dará error -->
@@ -423,7 +422,7 @@
                   </div>
                 </div>
                 <div class="text-center">
-                  <label class="checkbox">{{ Form::checkbox('regalar') }}<span>Activar Para Obsequiar</span></label>
+                  <label class="checkbox">{{ Form::checkbox('regalar') }}<span>Obsequiar Productos</span></label>
                 </div>
               </div>
               <div class="col-md-4">
@@ -433,11 +432,9 @@
               </div>
             </div>
             <div  class="col-md-3 col-md-offset-5">
-              <div  class="col-md-3 col-md-offset-5">
-                <a id='registrarUsuario' class="btn btn-bitbucket" type="submit">
-                  <i class="fa fa-send"></i>Guardar
-                </a>
-              </div>
+              <a id='registrarUsuario' class="btn btn-bitbucket" type="submit">
+                <i class="fa fa-send"></i>Guardar
+              </a>
             </div>
             </fieldset>
           </form>

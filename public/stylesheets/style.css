@@ -70,7 +70,7 @@
 	}
 	
 .pocketMorado{
-	color:#2f0033;
+	color:#2f0033 !important;
 	}
 
 .pocketGris{
@@ -86,7 +86,8 @@ html {
 
 body {
   font-family: "Lato", sans-serif !important;
-  color: #2f0033;
+  color: #2f0033 ;
+  font-size: 14px !important;
   min-height: 100%; }
   body.page-header-fixed {
     padding-top: 140px; }
@@ -1718,7 +1719,7 @@ th:active {
   background:#2d0038;
  }
   .gallery-item img {
-    width: 180px;
+    width: 100%;
     -webkit-transition: opacity 0.3s;
     -moz-transition: opacity 0.3s;
     transition: opacity 0.3s; }
@@ -2103,7 +2104,7 @@ fieldset {
   padding: 0; }
 
 label {
-  font-weight: normal; }
+  font-weight: normal !important; }
   label.error {
     color: #d9534f;
     margin-top: 5px; }
@@ -3962,4 +3963,8 @@ border-radius: 200px 200px 200px 200px;
         opacity: 1; }
 /*----------------------------------------------------------------------------------- */
 /*  Widget-Container fin pocket*/
-/*----------------------------------------------------------------------------------- */    
+/*----------------------------------------------------------------------------------- */   
+
+.form-control{
+  background-color: #ffffff !important;
+} 
