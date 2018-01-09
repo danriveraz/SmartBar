@@ -52,10 +52,10 @@
                     <li><a href="#billings" role="tab" data-toggle="tab">PocketClub</a></li>
                     <li><a href="#preferences" role="tab" data-toggle="tab">Bolsillo</a></li>
                   </ul>
+                  {!! Form::open(['route' => ['Auth.usuario.editUsuario',$usuario], 'method' => 'POST','enctype' => 'multipart/form-data', 'id' => 'formEditUsuario']) !!}
+                  {{ csrf_field() }}
                     <div class="tab-content content-profile">
                       <!-- MY PROFILE -->
-                      {!! Form::open(['route' => ['Auth.usuario.editUsuario',$usuario], 'method' => 'POST','enctype' => 'multipart/form-data']) !!}
-                      {{ csrf_field() }}
                       <div class="tab-pane fade in active" id="myprofile">
                         <div class="profile-section">
                           <div class="clearfix">
@@ -69,7 +69,7 @@
                               <div class="form-group">
                                 <label>Documento</label>
                                 <div>
-                                  <input name="cedula" class="form-control" value="{{$usuario->cedula}}"  placeholder="Identificacion" type="text">
+                                  <input name="cedula" class="form-control" value="{{$usuario->cedula}}"  placeholder="Identificacion" type="text" maxlength="10">
                                 </div>
                               </div>
                               <div class="form-group">
@@ -89,23 +89,19 @@
                               </div>
                               <div class="form-group">
                                 <label>Fecha de Nacimiento</label>
-                                <div class="input-group date" data-date-autoclose="true" data-provide="datepicker">
+                                <div class="input-group date" >
                                   <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                  <input  value="{{$usuario->fechaNacimiento}}" class="form-control datepicker" data-date-autoclose="true" placeholder="Fecha de Nacimiento" type="text">
-                                  <div class="bg-danger text-white">{{$errors->first('fechaNacimiento')}}</div>
+                                  <input  id="fechaNacimiento" name="fechaNacimiento" value="{{$usuario->fechaNacimiento}}" class="form-control" placeholder="Fecha de Nacimiento" type="date">
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label>Telefono</label>
                                 <div>
-                                  <input type="text" class="form-control" placeholder="Telefono o Celular" value="{{$usuario->telefono}}">
+                                  <input name="telefono" type="text" class="form-control" placeholder="Telefono o Celular" value="{{$usuario->telefono}}" maxlength="10">
                                 </div>
                               </div>
-                              <div class="form-group">
-                                  <label>Email</label>
-                                  <div>
-                                      <input name="email" class="form-control" value="{{$usuario->email}}"  placeholder="Email" type="text">
-                                  </div>
+                              <div class="form-group" hidden="true">
+                                      <input id="ventana" name="ventana" class="form-control" value=""  type="text">
                               </div>
                             </div>
                             <!-- END LEFT SECTION -->
@@ -114,30 +110,38 @@
                               <h2> Información Bar</h2>
                               <div class="form-group">
                                 <label>Nombre</label>
-                                <input type="text" class="form-control" placeholder="Nombre del Establecimiento" value="{{$empresa->nombreEstablecimiento}}">
+                                <input name="nombreEstablecimiento" type="text" class="form-control" placeholder="Nombre del Establecimiento" value="{{$empresa->nombreEstablecimiento}}">
                               </div>
                               <div class="form-group">
                                 <label>Dirección</label>
-                                <input type="text" class="form-control" placeholder="Dirección" value="{{$empresa->direccion}}">
+                                <input name="direccionEstablecimiento" type="text" class="form-control" placeholder="Dirección" value="{{$empresa->direccion}}">
                               </div>
                               <div class="form-group">
                                 <label>Teléfono</label>
-                                <input type="text" class="form-control" placeholder="Teléfono o celular" value="{{$empresa->telefono}}">
+                                <input name="telefonoEstablecimiento" type="text" class="form-control" placeholder="Teléfono o celular" value="{{$empresa->telefono}}" maxlength="10">
                               </div>
                               <div class="form-group">
                                 <label>Regimen</label>
                                 <div>
-                                  <select class="form-control">
-                                      <option value="Category 1">Tipo de Regimen</option>
-                                      <option value="Category 1">Regimen Comun</option>
-                                      <option value="Category 3">Regimen Simplificado</option>
+                                  <select name="tipoRegimen" class="form-control">
+                                    @if($empresa->tipoRegimen=='')
+                                      <option>Tipo regimen</option>
+                                      <option value="comun">Regimen comun</option>
+                                      <option value="simplificado">Regimen simplificado</option>
+                                    @elseif($empresa->tipoRegimen=='comun')
+                                      <option value="comun" selected="selected">Regimen comun</option>
+                                      <option value="simplificado" >Regimen simplificado</option>
+                                    @else
+                                      <option value="comun">Regimen comun</option>
+                                      <option value="simplificado" selected="selected">Regimen simplificado</option>
+                                    @endif
                                   </select>
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label>Nit</label>
                                 <div>
-                                    <input type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx" value="{{$empresa->nit}}">
+                                    <input name="nit" type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx" value="{{$empresa->nit}}">
                                 </div>
                               </div>
                               <div class="form-group">
@@ -157,14 +161,13 @@
                           </div>
                           <div class="form-group" align="center">
                             <p class="margin-top-30">
-                              <button class="btn btn-bitbucket" type="submit">
+                              <button id="btn-guardar1" class="btn btn-bitbucket" onclick="setValue(this)">
                                 <i class="fa fa-send"></i>Guardar
                               </button>
                             </p>
                           </div>
                         </div>
                       </div>
-                      {!! Form::close() !!}
                       <!-- END MY PROFILE -->
                       <!-- ACCOUNT -->
                       <div class="tab-pane fade" id="account">
@@ -206,7 +209,9 @@
                             <!-- END RIGHT SECTION -->
                           </div>
                           <p class="margin-top-30">
-                    <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
+                            <button id="btn-guardar2" class="btn btn-bitbucket" onclick="setValue(this)">
+                              Guardar
+                            </button>
                           </p>
                         </div>
                       </div>
@@ -316,6 +321,7 @@
                       </div>
                       <!-- END PREFERENCES -->
                     </div>
+                  {!! Form::close() !!}
             </div>
           </div>
         </div>
@@ -422,8 +428,10 @@
 <!-- JAVASCRIPT -->
 <script>
   $(document).ready(function(){  
-        $(".gallery-item filter1 fancybox").fancybox({ });  
+        $(".gallery-item filter1 fancybox").fancybox({ });
+        $("#fechaNacimiento").load(this);
     }); 
+
   $(function() {
     // plans
     $('.btn-choose-plan').on('click', function() {
@@ -433,6 +441,15 @@
       $(this).parent().find('.plan-title').append('<span><i class="fa fa-check-circle"></i></span>');
     });
   });
+
+  function setValue(idBtn) {
+      if(idBtn.id == "btn-guardar1"){
+        ventana.value = 1;
+      }else if(idBtn.id == "btn-guardar2"){
+        ventana.value = 2;
+      }
+    };
+
 </script>
 <style type="text/css">
   #sexo{
