@@ -216,7 +216,44 @@ class UsuariosController extends Controller
       return redirect('Auth/usuario/'.$usuario->id.'/edit');
     }
     }else if($request->ventana == 2){
-      
+      $rules = [
+        'email' => 'required|email|max:255',
+      ];
+      $messages = [
+        'email.required' => 'Debe tener un email',
+      ];
+      if($request->password!=null){
+        $rules += ['password' => 'required|min:6|max:18',];
+        $messages += ['password.required' => 'Debe tener una contraseña',
+        ];
+      }
+      $validator = Validator::make($request->all(), $rules,$messages);
+      $usuario = User::find($id);
+      $emailaux = $usuario->email;
+      if ($validator->fails()){
+        return redirect()->route('Auth.usuario.edit',$id)->withErrors($validator)->withInput();
+      }else{
+        if($request->password !=null){
+          $usuario->password = bcrypt($request->password);
+        }
+        $email = $request->email;
+        $usuarioaux = User::search($email)->get();
+        if(sizeof($usuarioaux) == 0 ){
+          $usuario->email = $email;
+          $usuario->save();
+          flash::warning('El usuario ha sido modificado satisfactoriamente')->important();
+          return redirect('Auth/usuario/'.$usuario->id.'/edit');
+        }else{
+          if($usuarioaux[0]->email == $emailaux){
+            $usuario->save();
+            flash::warning('El usuario ha sido modificado satisfactoriamente')->important();
+            return redirect('Auth/usuario/'.$usuario->id.'/edit');
+          }else{
+            flash::warning('Correo en uso')->important();
+            return redirect('Auth/usuario/'.$usuario->id.'/edit');
+          }
+        }        
+      }
     }
   }
 

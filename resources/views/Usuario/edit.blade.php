@@ -175,18 +175,10 @@
                           <div class="clearfix">
                             <!-- LEFT SECTION -->
                             <div class="left">
-                              <h2 class="profile-heading">Informaciòn de la cuenta</h2>
-                              <div class="form-group">
-                                <label>Username</label>
-                                <input type="text" class="form-control" value="austinhoffman" disabled>
-                              </div>
+                              <h2 class="profile-heading">Información de la cuenta</h2>
                               <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" class="form-control" value="austin.hoffman@yourdomain.com">
-                              </div>
-                              <div class="form-group">
-                                <label>Celular</label>
-                                <input type="text" class="form-control">
+                                <input name="email" type="text" class="form-control" value="{{$usuario->email}}">
                               </div>
                             </div>
                             <!-- END LEFT SECTION -->
@@ -194,24 +186,20 @@
                             <div class="right">
                               <h2 class="profile-heading">Cambiar contraseña</h2>
                               <div class="form-group">
-                                <label>Contraseña Actual</label>
-                                <input type="password" class="form-control">
-                              </div>
-                              <div class="form-group">
                                 <label>Contraseña Nueva</label>
-                                <input type="password" class="form-control">
+                                <input id="password" name="password" type="password" class="form-control">
                               </div>
                               <div class="form-group">
                                 <label>Confirmar Contraseña</label>
-                                <input type="password" class="form-control">
+                                <input id="passwordC" name="" type="password" class="form-control">
                               </div>
                             </div>
                             <!-- END RIGHT SECTION -->
                           </div>
                           <p class="margin-top-30">
-                            <button id="btn-guardar2" class="btn btn-bitbucket" onclick="setValue(this)">
+                            <a href="#" id="btn-guardar2" class="btn btn-bitbucket" onclick="setValue(this)">
                               Guardar
-                            </button>
+                            </a>
                           </p>
                         </div>
                       </div>
@@ -446,7 +434,12 @@
       if(idBtn.id == "btn-guardar1"){
         ventana.value = 1;
       }else if(idBtn.id == "btn-guardar2"){
-        ventana.value = 2;
+        if(password.value == passwordC.value) {
+          ventana.value = 2;
+          formEditUsuario.submit();
+        }else{
+          alert("Las contraseña no coinciden");
+        }
       }
     };
 

@@ -55,4 +55,8 @@ class User extends Authenticatable
     public function registros(){
         return $this->hasmany('PocketByR\RegistroLogin','idUsuario');
     }
+
+    public function scopeSearch($query, $email){
+      return $query->where('email','LIKE',"%$email%");
+    }
 }
