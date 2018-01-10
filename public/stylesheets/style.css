@@ -444,7 +444,7 @@ body.login2 {
             min-width: 18px;
             padding: 0 5px;
             border-radius: 9px;
-            background: #e62828;
+            background: #635964;
             text-align: center;
             line-height: 17px;
             color: white;
@@ -1498,9 +1498,10 @@ th:active {
   margin: 0 auto;
   max-width: 100%; }
   .social-wrapper #social-container .item {
-    width: 350px;
+ width: 350px;
     margin-bottom: 20px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);*/
+	border: 1px solid #e4e4e4;
     margin: 10px;
     float: left; }
   .social-wrapper #social-container .item-hidden {

@@ -45,8 +45,10 @@
 <div class="container-fluid main-content">
   <div class="social-wrapper">
     <div id="social-container"></div>
+
       <div id="hidden-items">
         @foreach($usuarios as $usuario)
+
           <div class=" item row widget-container fluid-height
                  @if($usuario->esAdmin == 1) Administrador
                  @else
@@ -60,13 +62,17 @@
                  @if($usuario->estado == 1) Habilitado
                  @else Deshabilitado
                  @endif">
+
+
+
+            <div class="widget-container fluid-height clearfix ">
+
             <div class="heading">
               <!--<i class="pocketMorado fa fa-times pull-right"></i>-->
               <a href="{{url('usuario/'.$usuario->id.'/active')}}"><i class="pocketMorado fa fa-times pull-right" ></i></a>
-              <i class="pocketMorado fa fa-edit pull-right" data-toggle="modal" href="#myModal{{$usuario->id}}"></i>
               <!--<a href="{{url('Auth/usuario/'.$usuario->id.'/edit')}}"><i class="fa fa-gear  pull-right"></i></a>-->
             </div>
-            <div class="widget-container fluid-height clearfix ">
+              
               <div class="profile-info clearfix padded3">
                 <div class="social-avatar">
                   <img width="70" height="70" class="avatar" src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
@@ -89,11 +95,10 @@
               <div class="widget-content padded2 colorpocket">
                 <div class="col-md-offset-4 col-md-8 colorpocket">    
                   <div class="headingPocket">
-                    <div data-toggle="modal" href="#ModalMsg{{$usuario->id}}"><i class="fa fa-comments pull-right"></i></div>
-                    <a href="{{ url('Agenda/') }}" ><i class="fa fa-calendar-check-o pull-right"></i></a>
-                    <a href="{{url('Salario/')}}" ><i class="fa fa-money pull-right"></i></a>
-                    <a href="{{url('Estadisticas/')}}" ><i class="fa fa-bar-chart pull-right"></i></a>
-                    <a href="{{url('RegistroLogin/'.$usuario->id)}}" ><i class="fa fa-clock-o pull-right"></i></a>  
+                    <div data-toggle="modal" href="#ModalMsg{{$usuario->id}}">
+                      <i style="float: center;" class="fa fa-comments pull-right"></i>
+                      <i style="float: center;" class="fa fa-calendar-check-o pull-right"></i>
+                      <i style="float: center;" class="fa fa-bar-chart pull-right"></i>
                   </div>
                 </div>  
               </div>
