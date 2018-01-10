@@ -96,7 +96,8 @@
           </div>
         </div>        
         
-
+<form name="formulario" autocomplete="on" method="post" action="{{url('cajero/edit')}}">
+              {{csrf_field()}}
 <div class="divider factspace3"></div>
 <div class="row" id="toggle">
 <div class="col-md-12 text-center">
@@ -212,10 +213,20 @@
                   <div class="FactPocket col-xs-2 text-center" >{{$producto[3]}}</div>
                   <div class="FactPocket col-xs-2 amount text-center">{{$producto[6]}}</div>
                                   <div class="FactPocket col-xs-2 amount text-center">
-                                       <input type="number" class="numberFact">
+                                    @if($producto[5] != "Cancelado")
+                                       <input type="number" class="numberFact" max="{{$producto[3] - $producto[6]}}" min="0" id="cantidad{{$producto[1]}}" step="1" onkeyup="validarMinMax('#cantidad{{$producto[1]}}');"  value="{{($producto[3] - $producto[6])}}" data-idVenta="{{$producto[1]}}" data-precio="{{$producto[4]}}">
+                                    @else
+                                      <input type="number" class="numberFact" max="0" min="0" value="0" disabled="" placeholder="Pedido cancelado">
+                                    @endif
                   </div>
-                                  <div class="FactPocket col-xs-2 amount text-center">$ <?php echo number_format($producto[4],0,",","."); ?></div>
-                                  <div class="FactPocket col-xs-2 amount text-right">$10.000</div>
+                                  <div class="FactPocket col-xs-2 amount text-center">$<?php echo number_format($producto[4],0,",","."); ?></div>
+                                   @if($producto[5] != "Cancelado")
+                                        <div class="FactPocket col-xs-2 amount text-right" id="total{{$producto[1]}}" data-valor="{{$producto[4] * ($producto[3] - $producto[6])}}">$<?php echo number_format($producto[4] * ($producto[3] - $producto[6]
+                                    ),0,",","."); ?></div>
+                                    @else
+                                     <div class="FactPocket col-xs-2 amount text-right" id="total{{$producto[1]}}" data-valor="0">$<?php echo number_format(0,0,",","."); ?></div>
+                                    @endif
+                                 
                 </div>
 
                 @endif
@@ -228,13 +239,13 @@
                 Vive la Vida "a cada instante como si fuera el ultimo de tu vida... Porque la felicidad no llega de afuera, nace desde adentro..."
               </p>
               <div class="field">
-                Subtotal <span>$379.00</span>
+                Subtotal <span id="subtotal">$379.00</span>
               </div>
               <div class="field">
-                Iva 19% <span>$0.00</span>
+                Iva 19% <span id="iva">$0.00</span>
               </div>
               <div class="field grand-total">
-                Total <span>$312.00</span>
+                Total <span id="total">$312.00</span>
               </div>
             </div>
 </div>
@@ -265,7 +276,7 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                    <input class="form-control" placeholder="Efectivo" type="text">
+                    <input class="form-control" placeholder="Efectivo" onkeyup="validarEfectivo();" type="text" id="efectivo">
                   </div>
                 </div>            
               </div>
@@ -274,7 +285,7 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-refresh"></i></span>
-                    <input class="form-control" placeholder="Cambio" type="text">
+                    <input class="form-control" disabled="" placeholder="Cambio" type="text">
                   </div>
                 </div>            
               </div>
@@ -293,7 +304,7 @@
           </div>
           </div>
         </div>
-
+</form>
         <div class="footer">
           Copyright © 2018. Pocket Smartbar
         </div>
@@ -326,8 +337,7 @@
     });  
   }
   $(window).ready(function(){
-    //aqui
-
+    actualizarTotal();
   $('#toggle').on('click',function(){
       if($(this).next().hasClass('desplegado')){
         $(this).next().removeClass('desplegado').animate({height:0},500);
@@ -352,31 +362,54 @@ function refrescarTabla(id) {
   var idFactura = $("#mesas"+id).data('idfactura');
   for(i=0; i < JSONproductos.length; i++){
     if(JSONproductos[i][0] == idFactura){
-      $("#tabla").append('<div class="row item"><div class="col-xs-5 desc" >'+JSONproductos[i][2]+'</div><div class="FactPocket col-xs-2 text-center" >'+JSONproductos[i][3]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ JSONproductos[i][6]+'</div><div class="FactPocket col-xs-2 amount text-center"><input type="number" class="numberFact"></div><div class="FactPocket col-xs-2 amount text-center">$' +formatNumber.new(JSONproductos[i][4])+ ' </div> <div class="FactPocket col-xs-2 amount text-right">$10.000</div></div>');
+      var string = "#cantidad"+JSONproductos[i][1];
+      $("#tabla").append('<div class="row item"><div class="col-xs-5 desc" >'+JSONproductos[i][2]+'</div><div class="FactPocket col-xs-2 text-center" >'+JSONproductos[i][3]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ JSONproductos[i][6]+'</div><div class="FactPocket col-xs-2 amount text-center"><input type="number" class="numberFact" onchange="cambio();" max="'+(JSONproductos[i][3] - JSONproductos[i][6])+'" min="0" id="cantidad'+JSONproductos[i][1]+'" step="1" onkeyup="validarMinMax('+String.fromCharCode(39)+string+String.fromCharCode(39)+');"  value="'+ (JSONproductos[i][3] - JSONproductos[i][6])+'" data-idVenta="'+JSONproductos[i][1]+'" data-precio="'+JSONproductos[i][4]+'"></div><div class="FactPocket col-xs-2 amount text-center">$' +Intl.NumberFormat().format(JSONproductos[i][4])+ ' </div><div class="FactPocket col-xs-2 amount text-right" id="total'+JSONproductos[i][1]+'" data-valor="'+(JSONproductos[i][4]*(JSONproductos[i][3] - JSONproductos[i][6]))+'">$'+Intl.NumberFormat().format(JSONproductos[i][4]*(JSONproductos[i][3] - JSONproductos[i][6]))+'</div></div>');
     }
-   // 
   }
+  actualizarTotal();
+}
 
+ function validarMinMax(idInput) {
+    var valor = parseInt($(idInput).val());
+    var max = parseInt($(idInput).attr("max"));
+    if(valor > max) {
+        $(idInput).val(max);
+    } 
+    if (valor < 0){
+        $(idInput).val(0);
+    }
+    if(isNaN(valor)){
+      $(idInput).val(0);
+      valor = 0;
+    }
+};
+$("body").on("change",".numberFact",function(event){
+    var valor = $(this).val();
+    var idNumber = $(this).attr("id");
+    var precio = $("#"+idNumber).data('precio');
+    var idVenta = $("#"+idNumber).data('idventa');
+    $("#total"+idVenta).html("$" + Intl.NumberFormat().format(valor*precio));
+    document.getElementById("total"+idVenta).dataset.valor = (valor*precio);
+    actualizarTotal();
+});
+
+function validarEfectivo() {
+    alert($("#efectivo").val());
+    alert($("#total").val());
 }
-var formatNumber = {
- separador: ".", // separador para los miles
- sepDecimal: ',', // separador para los decimales
- formatear:function (num){
- num +='';
- var splitStr = num.split('.');
- var splitLeft = splitStr[0];
- var splitRight = splitStr.length > 1 ? this.sepDecimal + splitStr[1] : '';
- var regx = /(\d+)(\d{3})/;
- while (regx.test(splitLeft)) {
- splitLeft = splitLeft.replace(regx, '$1' + this.separador + '$2');
- }
- return this.simbol + splitLeft +splitRight;
- },
- new:function(num, simbol){
- this.simbol = simbol ||'';
- return this.formatear(num);
- }
+
+function actualizarTotal() {
+  var totales = document.getElementsByClassName("FactPocket col-xs-2 amount text-right");
+  var acumulador = 0;
+  for (i = 0; i < totales.length; i++) {
+    acumulador = acumulador + parseInt(totales[i].dataset.valor);
+  }
+  $("#subtotal").html("$" + Intl.NumberFormat().format(acumulador));
+  var iva = acumulador*0.19;
+  var total = iva+acumulador;
+  $("#iva").html("$" + Intl.NumberFormat().format(iva));
+  $("#total").html("$" + Intl.NumberFormat().format(total));
 }
-</script>          
+</script>        
 
 @endsection
