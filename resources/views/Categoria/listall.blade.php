@@ -5,9 +5,9 @@
       <div class="widget-content padded clearfix">
         <table class="table table-bordered table-striped" id="dataTable1">
             <thead>
-              <th width="80%">Nombre</th>
-              <th width="80%">Precio</th>
-              <th width="5%"></th>
+              <th width="45%">Nombre</th>
+              <th width="45%">Precio</th>
+              <th width="10%">Opciones</th>
             </thead>
             <tbody>
               @foreach($categorias as $categoria)

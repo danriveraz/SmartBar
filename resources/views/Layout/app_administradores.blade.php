@@ -161,7 +161,7 @@
 {!!Html::script('assets/vendor/chartist-plugin-legend-latest/chartist-plugin-legend.js')!!}
 {!!Html::script('assets/vendor/toastr/toastr.js')!!}
 <!-- MAIN CSS -->
-{!!Html::style('assets/css/main.css')!!}
+
 <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
 
 

@@ -1,6 +1,7 @@
 @extends(Auth::User()->esAdmin ? 'Layout.app_administradores' : 'Layout.app_empleado')
 @section('content')
 @include('flash::message')
+{!!Html::style('assets/css/main.css')!!}
 <div class="view-account">
   <div class="module">
       <div class="module-inner">
@@ -316,13 +317,11 @@
           <div id="main-content">
             <div class="container-fluid">
               <div class="section-heading">
-                <h1 class="page-title">Mis categorías</h1>
-              </div>
-                <div class="form-group" align="left" style="margin-left: 3%;">
+                <h2>Mis categorías</h2>
                     <a href="#addModalCategoria" class="btn btn-default" data-toggle="modal">
-                        <i class="fa fa-plus"></i> Crear &ensp;
+                        <i class="fa fa-plus"></i>
                     </a>
-                </div>
+              </div>
               <div class="panel-body">
                 <div id="list-cat"></div>
               </div>
