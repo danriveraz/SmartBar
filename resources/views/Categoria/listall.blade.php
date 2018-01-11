@@ -5,8 +5,8 @@
       <div class="widget-content padded clearfix">
         <table class="table table-bordered table-striped" id="dataTable1">
             <thead>
-              <th width="40%">Nombre</th>
-              <th width="40%">Precio</th>
+              <th width="80%">Nombre</th>
+              <th width="80%">Precio</th>
               <th width="5%"></th>
             </thead>
             <tbody>
@@ -123,7 +123,6 @@
   }
 
   $(".seleccionar").click(function(){
-    alert("has apachurrado el mouse");
     var idElegido = $(this).attr("id");
     var palabra = "#editModal";
     var id = palabra.concat(idElegido);
