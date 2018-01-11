@@ -2158,13 +2158,8 @@ input[type="text"] {
     border-radius: 3px;
     border: 1px solid #c8c8c8; }
 .opacity input[type="checkbox"]:checked + span:before {
-<<<<<<< HEAD
   background: #2d0031 url("../images/checkmark.png") no-repeat center center;
   border-color: #2d0031; }
-=======
-  background: rgb(79,0,85) url("../images/checkmark.png") no-repeat center center;
-  border-color: rgb(79,0,85); }
->>>>>>> origin/master
   @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
     .opacity input[type="checkbox"]:checked + span:before {
       background-image: url("../images/checkmark@2x.png");
@@ -3965,7 +3960,10 @@ border-radius: 200px 200px 200px 200px;
 /*----------------------------------------------------------------------------------- */
 /*  Widget-Container fin pocket*/
 /*----------------------------------------------------------------------------------- */   
-
+/*colorblanco en el fondo del formulario*/
 .form-control{
   background-color: #ffffff !important;
 } 
+
+/*color blanco en los links ya visitados*/
+.botonBlanco:visited {color: #ffffff}

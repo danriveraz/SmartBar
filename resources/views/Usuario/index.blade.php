@@ -69,7 +69,7 @@
 
             <div class="heading">
               <!--<i class="pocketMorado fa fa-times pull-right"></i>-->
-              <a href="{{url('usuario/'.$usuario->id.'/active')}}"><i class="pocketMorado fa fa-times pull-right" ></i></a>
+              <a href="{{url('Auth/usuario/'.$usuario->id.'/active')}}"><i class="pocketMorado fa fa-times pull-right" ></i></a>
               <!--<a href="{{url('Auth/usuario/'.$usuario->id.'/edit')}}"><i class="fa fa-gear  pull-right"></i></a>-->
             </div>
               
@@ -95,10 +95,9 @@
               <div class="widget-content padded2 colorpocket">
                 <div class="col-md-offset-4 col-md-8 colorpocket">    
                   <div class="headingPocket">
-                    <div data-toggle="modal" href="#ModalMsg{{$usuario->id}}">
-                      <i style="float: center;" class="fa fa-comments pull-right"></i>
-                      <i style="float: center;" class="fa fa-calendar-check-o pull-right"></i>
-                      <i style="float: center;" class="fa fa-bar-chart pull-right"></i>
+                    <div data-toggle="modal" href="#ModalMsg{{$usuario->id}}"><i class="fa fa-comments pull-right"></i></div>
+                    <a href="{{ url('Agenda/') }}" class="botonBlanco" ><i class="fa fa-calendar-check-o pull-right"></i></a>
+                    <a href="{{url('Estadisticas/')}}"  class="botonBlanco" ><i class="fa fa-bar-chart pull-right"></i></a>
                   </div>
                 </div>  
               </div>
@@ -345,19 +344,31 @@
                     <div class="widget-content fileupload fileupload-new" data-provides="fileupload">
                       <div class="gallery-container fileupload-new img-thumbnail" >
                         <div class="gallery-item filter1" rel="">
-                          <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
+                          <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" >
                           <div class="actions">
-                            <span class="btn-file">
-                            <span class="fileupload-new"><i class="fa fa-pencil"></i></span>
-                            <span class="fileupload-exists">editar</span>
-                            <input type="file" class="form-control" name="imagenPerfil"  id="imagenPerfil"></span>
-                            <a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Eliminar</a>
+                            <a onclick="$('#eliminarImagen').click()">
+                              <i class="fa fa-trash-o"></i>
+                            </a>
+                            <a  id="modalImagen" href="http://www.pocketsmartbar.com/images/logo.png" title="Sin imagen">
+                              <img src="http://www.pocketsmartbar.com/images/logo.png" hidden>
+                              <i class="fa fa-search-plus"></i>
+                            </a>
+                            <a onclick="$('#imagenPerfil').click()">
+                              <i class="fa fa-pencil"></i>
+                            </a>
                           </div>
                         </div>
                       </div>
                       <div class="gallery-item fileupload-preview fileupload-exists img-thumbnail" >
                       </div>
-
+                      <div hidden>
+                        <span class=" btn-file" id="subirImagen">
+                          <span class="fileupload-new"><i class="fa fa-pencil"></i></span>
+                          <span class="fileupload-exists"><i class="fa fa-search-plus"></i></span>
+                          <input type="file" class="form-control" name="imagenPerfil"  id="imagenPerfil">
+                        </span>
+                        <a class="btn btn-default fileupload-exists" data-dismiss="fileupload" id="eliminarImagen"><i class="fa fa-trash-o"></i></a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -462,7 +473,20 @@
 {!!Html::script('javascripts/notificaciones/modernizr.custom.js')!!}
 {!!Html::script('javascripts/notificaciones/notificationFx.js')!!}
 <script type="text/javascript">
+
+  $(document).ready(function() { // función para elfancybox, o sea lo que carga la imagen en un modal
+      $("#modalImagen").fancybox({
+            helpers: {
+                title : {
+                    type : 'float'
+                }
+            }
+        });
+
+  });
+
  $(document).ready(function(){
+
 
     //Filtros del isotope
     $('#filters a').click(function(){
@@ -507,6 +531,7 @@ $("#registrarUsuario").click(function(){
     // si tiene el permiso de obsequio
     var Obsequio = $(document.querySelectorAll("input.Obsequio:checked")[0]).val();
     var image = $('#imagenPerfil')[0].files[0];// la imagen de perfil
+    console.log(image)
     var token = $("#token").val();
     var type = "POST";
     var selectPermisos = $('#selectPermisosAjax').val();

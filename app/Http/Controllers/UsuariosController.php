@@ -369,7 +369,7 @@ class UsuariosController extends Controller
           $usuario -> save();
       }
 
-    Flash::success('El estado del usuario cambió satisfactoriamente')->important();
+    flash::success('El estado del usuario ha sido modificado satisfactoriamente')->important();
     return redirect()->route('Auth.usuario.index');
   }
 

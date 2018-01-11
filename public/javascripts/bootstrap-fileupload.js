@@ -87,7 +87,7 @@
     console.log(preview.css('max-height'));
     
         reader.onload = function(e) {
-          preview.html('<img src="' + e.target.result + '" class="img-responsive" />')
+          preview.html('<img src="' + e.target.result + '" class="img-responsive" /> <div class="actions"><a onclick="$(\'#eliminarImagen\').click()"><i class="fa fa-trash-o"></i></a><a  id="modalImagen" href="' + e.target.result + '" title="Imagen de perfil"><img src="' + e.target.result + '" hidden><i class="fa fa-search-plus"></i></a><a onclick="$(\'#imagenPerfil\').click()"><i class="fa fa-pencil"></i></a></div>')
           element.addClass('fileupload-exists').removeClass('fileupload-new')
           $(element).trigger('imagechange')
         }
