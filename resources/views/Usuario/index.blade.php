@@ -1,3 +1,12 @@
+<style type="text/css">
+  .PocketA {
+  color: #E9E9E9; }
+  .PocketA:hover {
+    color: #FFFFFF;
+    text-decoration: none; }
+</style>
+
+
 @extends('Layout.app_administradores')
 @section('content')
 <!--Barra de título y botones de busqueda-->
@@ -92,13 +101,18 @@
                     <i class="fa fa-check-circle"></i>{{$usuario->salario}}
                   </div>
               </div>
-              <div class="widget-content padded2 colorpocket">
-                <div class="col-md-offset-4 col-md-8 colorpocket">    
+              <div class="widget-content padded3 colorpocket">
+
+            <div class="col-md-4 colorpocket"></div>
+                <div class="col-md-8 colorpocket"> 
+
                   <div class="headingPocket">
-                    <div data-toggle="modal" href="#ModalMsg{{$usuario->id}}"><i class="fa fa-comments pull-right"></i></div>
-                    <a href="{{ url('Agenda/') }}" class="botonBlanco" ><i class="fa fa-calendar-check-o pull-right"></i></a>
-                    <a href="{{url('Estadisticas/')}}"  class="botonBlanco" ><i class="fa fa-bar-chart pull-right"></i></a>
+                    <div data-toggle="modal" href="#ModalMsg{{$usuario->id}}">
+                      <a class="PocketA"><i class="fa fa-comments pull-right"></i></a></div>
+                      <a class="PocketA" href="{{ url('Agenda/') }}"><i class="fa fa-calendar-check-o pull-right"></i></a>
+                      <a class="PocketA" href="{{url('Estadisticas/')}}"><i class="fa fa-bar-chart pull-right"></i></a>
                   </div>
+
                 </div>  
               </div>
             </div>

@@ -125,7 +125,13 @@ strong {
 a {
   color: #2d0031; }
   a:hover {
-    color: ##2f0033;
+    color: #2f0033;
+    text-decoration: none; }
+
+.headingPocket a {
+  color: #E9E9E9; }
+  a:hover {
+    color: #FFFFFF;
     text-decoration: none; }
 
 ul.no-style {
