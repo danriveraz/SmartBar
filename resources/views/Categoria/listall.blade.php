@@ -1,8 +1,3 @@
-<script src="javascripts\jquery.dataTables.js" type="text/javascript"></script>
-<script src="javascripts\main2.js" type="text/javascript"></script>
-<script src="javascripts\respond.js" type="text/javascript"></script>
-
-
 
 <div class="row">
   <div class="col-lg-12">
@@ -74,6 +69,10 @@
     </div>
   </div>
 </div>
+
+<script src="../../../javascripts\jquery.dataTables.js" type="text/javascript"></script>
+<script src="../../../javascripts\main2.js" type="text/javascript"></script>
+<script src="../../../javascripts\respond.js" type="text/javascript"></script> 
 
 <script type="text/javascript">
   var routeModificar = "http://localhost/PocketByR/public//categoria/modificar";
