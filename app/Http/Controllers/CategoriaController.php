@@ -53,7 +53,7 @@ class CategoriaController extends Controller
       }
       $categoria->save();
       Flash::success("La categoria se ha registrado satisfactoriamente")->important();
-      return redirect()->route('categoria.index');
+      return redirect('Auth/usuario/'.$userActual->id.'/edit');
   	}
 
    	public function edit($id){

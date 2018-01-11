@@ -1,6 +1,6 @@
 @extends(Auth::User()->esAdmin ? 'Layout.app_administradores' : 'Layout.app_empleado')
 @section('content')
-      
+@include('flash::message')
 <div class="view-account">
   <div class="module">
       <div class="module-inner">
@@ -40,7 +40,7 @@
           </div>
           <!-- MAIN CONTENT -->
           <div class="tab-content">
-            <div class="tab-pane active" id="tab1">
+            <div class="tab-pane" id="tab1">
               <div id="main-content">
                 <div class="container-fluid">
                   <div class="section-heading">
@@ -319,6 +319,59 @@
               <div class="section-heading">
                 <h1 class="page-title">Categoría</h1>
               </div>
+              <div class="col-sm-offset-2 col-sm-8">
+                <div class="navbar-form navbar-left" >
+                  <div class="form-group" align="left">
+                      <a href="#addModalCategoria" class="btn btn-default" data-toggle="modal">
+                          <i class="fa fa-plus"></i> Crear categoría &ensp;
+                      </a>
+                  </div>
+                </div >
+                <div class="navbar-form navbar-right" >
+                  <div class="form-group" align="right">
+                    <div class="icon-addon addon-md">
+                        <input  id="nombreInput" type="text" size="40" maxlength="30" placeholder="Buscar..." class="form-control" />
+                        <label for="nombreInput" class="glyphicon glyphicon-search" rel="tooltip" title="nombreInput"></label>
+                    </div>
+                  </div>
+                </div>
+
+              <div class="modal fade in" id="addModalCategoria" >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    {!! Form::open(['method' => 'POST', 'action' => 'CategoriaController@store']) !!}
+                      <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+                      <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title">
+                        Nueva Categoría
+                        </h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="" >
+                        <div class="widget-content">
+                          <div class="form-group">
+                            <div class="form-group">
+                                <input type="text" name="nombre" class="form-control" placeholder="Nombre" required="true" required="true" />
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input type="number" min="0" step="any" name="precio" placeholder="Precio" class="form-control" />
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
+                      </div>
+                    {!! Form::close() !!}
+                </div>
+               </div>
+              </div>
+              </div>
+              <div class="panel-body">
+                <div id="list-cat"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -342,7 +395,7 @@
               <div class="col-sm-offset-2 col-sm-8">
                 <div class="navbar-form navbar-left" >
                   <div class="form-group" align="left">
-                      <a href="#addModal" class="btn btn-default" data-toggle="modal">
+                      <a href="#addModalMesas" class="btn btn-default" data-toggle="modal">
                           <i class="fa fa-plus"></i> Crear mesas &ensp;&ensp;
                       </a>
                   </div>
@@ -356,7 +409,7 @@
                   </div>
                 </div>
 
-              <div class="modal fade in" id="addModal" >
+              <div class="modal fade in" id="addModalMesas" >
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <form name="formulario" autocomplete="on" method="post" action="{{url('mesas/create')}}">
@@ -395,7 +448,7 @@
           </div>
         </div>
         
-        <div class="tab-pane" id="tab5">
+        <div class="tab-pane active" id="tab5">
           <div id="main-content">
             <div class="container-fluid">
               <div class="section-heading">
@@ -416,8 +469,10 @@
 <!-- JAVASCRIPT -->
 <script>
   $(document).ready(function(){  
+        listcat();
         $(".gallery-item filter1 fancybox").fancybox({ });
         $("#fechaNacimiento").load(this);
+
     }); 
 
   $(function() {
@@ -431,17 +486,28 @@
   });
 
   function setValue(idBtn) {
-      if(idBtn.id == "btn-guardar1"){
-        ventana.value = 1;
-      }else if(idBtn.id == "btn-guardar2"){
-        if(password.value == passwordC.value) {
-          ventana.value = 2;
-          formEditUsuario.submit();
-        }else{
-          alert("Las contraseña no coinciden");
-        }
+    if(idBtn.id == "btn-guardar1"){
+      ventana.value = 1;
+    }else if(idBtn.id == "btn-guardar2"){
+      if(password.value == passwordC.value) {
+        ventana.value = 2;
+        formEditUsuario.submit();
+      }else{
+        alert("Las contraseña no coinciden");
       }
-    };
+    }
+  };
+
+  var listcat = function()
+  {
+    $.ajax({
+      type:'get',
+      url: '{{url('catlistall')}}',
+      success:  function(data){
+        $('#list-cat').empty().html(data);
+      }
+    });
+  }
 
 </script>
 <style type="text/css">
