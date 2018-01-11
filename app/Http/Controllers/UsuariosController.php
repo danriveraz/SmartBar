@@ -212,7 +212,7 @@ class UsuariosController extends Controller
       
       $empresa->save();
       $usuario->save();
-      flash::warning('El usuario ha sido modificado satisfactoriamente')->important();
+      flash::success('El usuario ha sido modificado satisfactoriamente')->important();
       return redirect('Auth/usuario/'.$usuario->id.'/edit');
     }
     }else if($request->ventana == 2){
@@ -241,12 +241,12 @@ class UsuariosController extends Controller
         if(sizeof($usuarioaux) == 0 ){
           $usuario->email = $email;
           $usuario->save();
-          flash::warning('El usuario ha sido modificado satisfactoriamente')->important();
+          flash::success('El usuario ha sido modificado satisfactoriamente')->important();
           return redirect('Auth/usuario/'.$usuario->id.'/edit');
         }else{
           if($usuarioaux[0]->email == $emailaux){
             $usuario->save();
-            flash::warning('El usuario ha sido modificado satisfactoriamente')->important();
+            flash::success('El usuario ha sido modificado satisfactoriamente')->important();
             return redirect('Auth/usuario/'.$usuario->id.'/edit');
           }else{
             flash::warning('Correo en uso')->important();
