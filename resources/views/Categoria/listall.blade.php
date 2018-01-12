@@ -10,9 +10,9 @@
         <table class="table table-bordered table-striped" id="dataTable1">
             <thead>
               <th width="1%"> </th>
-              <th width="100%">Nombre</th>
-              <th width="100%">Precio</th>
-              <th width="1%">Opciones</th>
+              <th width="45%">Nombre</th>
+              <th width="45%">Precio</th>
+              <th width="9%">Opciones</th>
             </thead>
             <tbody>
               @foreach($categorias as $categoria)
@@ -22,7 +22,7 @@
                   <td id="{{$categoria->id}}" class="seleccionar">{{$categoria->precio}}</td>
                   <td>
                     <a class="table-actions pocketMorado" href="">
-                      <i class="fa fa-pencil" data-toggle="modal" href="#editModal{{$categoria->id}}" title="Editar categoría"></i>
+                      <i class="fa fa-pencil" data-toggle="modal" href="#editModalCategoria{{$categoria->id}}" title="Editar categoría"></i>
                     </a>
                     <a class="table-actions pocketMorado" href="#" onclick="eliminar({{$categoria->id}})">
                       <i class="fa fa-trash-o" title="Eliminar categoría"></i>
@@ -30,7 +30,7 @@
                   </td>
                 </tr>
                 <!-- MODAL EDIT -->
-                <div class="modal fade" id="editModal{{$categoria->id}}" role="dialog" >
+                <div class="modal fade" id="editModalCategoria{{$categoria->id}}" role="dialog" >
                   <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
@@ -95,15 +95,15 @@
       },
       success: function(){
         $("#"+idCategoria).children("td").each(function (indextd){
-          if(indextd == 0){
+          if(indextd == 1){
             $(this).text(nombre);
-          }else if(indextd == 1){
+          }else if(indextd == 2){
             $(this).text(precio);
           }
         });
       },
       error: function(data){
-        alert('Error al modificar producto');
+        alert('Error al modificar categoria');
       }
     });       
   }
@@ -128,7 +128,7 @@
 
   $(".seleccionar").click(function(){
     var idElegido = $(this).attr("id");
-    var palabra = "#editModal";
+    var palabra = "#editModalCategoria";
     var id = palabra.concat(idElegido);
     $(id).modal();
   });
