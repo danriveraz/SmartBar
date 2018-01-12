@@ -1,75 +1,73 @@
-
 <script src="..\..\..\javascripts\jquery.dataTables.js" type="text/javascript"></script>
 <script src="..\..\..\javascripts\main2.js" type="text/javascript"></script>
-<script src="..\..\..\javascripts\respond.js" type="text/javascript"></script> 
 
 <div class="row">
   <div class="col-sm-12">
     <div class="widget-container fluid-height clearfix">
       <div class="widget-content padded clearfix">
         <table class="table table-bordered table-striped" id="dataTable1">
-            <thead>
-              <th width="1%"> </th>
-              <th width="45%">Nombre</th>
-              <th width="45%">Precio</th>
-              <th width="9%">Opciones</th>
-            </thead>
-            <tbody>
-              @foreach($categorias as $categoria)
-                <tr id="{{$categoria->id}}">
-                  <td> </td>
-                  <td id="{{$categoria->id}}" class="seleccionar">{{$categoria->nombre}}</td>
-                  <td id="{{$categoria->id}}" class="seleccionar">{{$categoria->precio}}</td>
-                  <td>
-                    <a class="table-actions pocketMorado" href="">
-                      <i class="fa fa-pencil" data-toggle="modal" href="#editModalCategoria{{$categoria->id}}" title="Editar categoría"></i>
-                    </a>
-                    <a class="table-actions pocketMorado" href="#" onclick="eliminar({{$categoria->id}})">
-                      <i class="fa fa-trash-o" title="Eliminar categoría"></i>
-                    </a>
-                  </td>
-                </tr>
-                <!-- MODAL EDIT -->
-                <div class="modal fade" id="editModalCategoria{{$categoria->id}}" role="dialog" >
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
-                          <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
-                          <h4 class="modal-title">
-                          Editar categoría
-                          </h4>
-                        </div>
-                        <div class="modal-body">
-                          <div class="row">
-                            <div class="widget-content padded">
-                              {!! Form::open() !!}
-                                <fieldset>
-                                  <div class="row">       
-                                    <div class="widget-content">
+          <thead>
+            <th width="1%"> </th>
+            <th width="45%">Nombre</th>
+            <th width="45%">Precio</th>
+            <th width="9%">Opciones</th>
+          </thead>
+          <tbody>
+            @foreach($categorias as $categoria)
+              <tr id="{{$categoria->id}}">
+                <td> </td>
+                <td id="{{$categoria->id}}" class="seleccionar">{{$categoria->nombre}}</td>
+                <td id="{{$categoria->id}}" class="seleccionar">{{$categoria->precio}}</td>
+                <td>
+                  <a class="table-actions pocketMorado" href="">
+                    <i class="fa fa-pencil" data-toggle="modal" href="#editModalCategoria{{$categoria->id}}" title="Editar categoría"></i>
+                  </a>
+                  <a class="table-actions pocketMorado" href="#" onclick="eliminar({{$categoria->id}})">
+                    <i class="fa fa-trash-o" title="Eliminar categoría"></i>
+                  </a>
+                </td>
+              </tr>
+              <!-- MODAL EDIT -->
+              <div class="modal fade" id="editModalCategoria{{$categoria->id}}" role="dialog" >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+                        <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title">
+                        Editar categoría
+                        </h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="widget-content padded">
+                            {!! Form::open() !!}
+                              <fieldset>
+                                <div class="row">       
+                                  <div class="widget-content">
+                                    <div class="form-group">
                                       <div class="form-group">
-                                        <div class="form-group">
-                                          <input type="text" id="nombre{{$categoria->id}}" placeholder="Nombre" class="form-control" value="{{$categoria->nombre}}" required="true" />
-                                        </div>
-                                        <div class="form-grup">
-                                            <input type="number" placeholder="Precio" min="0" step="any" id="precio{{$categoria->id}}" class="form-control" value="{{$categoria->precio}}"/>
-                                        </div>
+                                        <input type="text" id="nombre{{$categoria->id}}" placeholder="Nombre" class="form-control" value="{{$categoria->nombre}}" required="true" />
+                                      </div>
+                                      <div class="form-grup">
+                                          <input type="number" placeholder="Precio" min="0" step="any" id="precio{{$categoria->id}}" class="form-control" value="{{$categoria->precio}}"/>
                                       </div>
                                     </div>
-                                    <div class="modal-footer">
-                                      <button class="btn btn-default" data-dismiss="modal" onclick="modificar({{$categoria->id}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
-                                    </div>
                                   </div>
-                                </fieldset>
-                              {!! Form::close() !!} 
-                            </div>
+                                  <div class="modal-footer">
+                                    <button class="btn btn-default" data-dismiss="modal" onclick="modificar({{$categoria->id}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
+                                  </div>
+                                </div>
+                              </fieldset>
+                            {!! Form::close() !!} 
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-              <!-- FIN MODAL EDIT -->
-              @endforeach
-            </tbody>
+                </div>
+            <!-- FIN MODAL EDIT -->
+            @endforeach
+          </tbody>
         </table>
       </div>
     </div>

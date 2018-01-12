@@ -2,6 +2,9 @@
 @section('content')
 @include('flash::message')
 {!!Html::style('assets/css/main.css')!!}
+{!!Html::script('javascripts\jquery.dataTables.js')!!}
+{!!Html::script('javascripts\main2.js')!!}
+
 <div class="view-account">
   <div class="module">
       <div class="module-inner">
@@ -377,26 +380,17 @@
           <div id="main-content">
             <div class="container-fluid">
               <div class="section-heading">
-                <h1 class="page-title">Mesas</h1>
+                <h2>Mis mesas &ensp;
+                  <a href="#addModalMesas" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+                      <i class="fa fa-plus"></i>
+                  </a>
+                </h2> 
+              </div>
+              <div class="col-sm-offset-1 col-sm-10" style="align-content: center;">
+                <div id="list-mesas"> </div>
               </div>
               <div class="col-sm-offset-2 col-sm-8">
-                <div class="navbar-form navbar-left" >
-                  <div class="form-group" align="left">
-                      <a href="#addModalMesas" class="btn btn-default" data-toggle="modal">
-                          <i class="fa fa-plus"></i> Crear mesas &ensp;&ensp;
-                      </a>
-                  </div>
-                </div >
-                <div class="navbar-form navbar-right" >
-                  <div class="form-group" align="right">
-                    <div class="icon-addon addon-md">
-                        <input  id="nombreInputMesas" type="text" size="40" maxlength="30" placeholder="Buscar..." class="form-control" />
-                        <label for="nombreInputMesas" class="glyphicon glyphicon-search" rel="tooltip" title="nombreInput"></label>
-                    </div>
-                  </div>
-                </div>
-
-              <div class="modal fade in" id="addModalMesas" >
+                <div class="modal fade in" id="addModalMesas" >
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <form name="formulario" autocomplete="on" method="post" action="{{url('mesas/create')}}">
@@ -425,8 +419,6 @@
                   </div>
                  </div>
                 </div>
-              </div>
-              <div id="list-mesas" class="col-sm-offset-2 col-sm-8">
               </div>
             </div>
           </div>
