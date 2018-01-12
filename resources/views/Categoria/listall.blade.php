@@ -1,19 +1,25 @@
 
+<script src="..\..\..\javascripts\jquery.dataTables.js" type="text/javascript"></script>
+<script src="..\..\..\javascripts\main2.js" type="text/javascript"></script>
+<script src="..\..\..\javascripts\respond.js" type="text/javascript"></script> 
+
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-sm-12">
     <div class="widget-container fluid-height clearfix">
       <div class="widget-content padded clearfix">
         <table class="table table-bordered table-striped" id="dataTable1">
             <thead>
-              <th width="45%">Nombre</th>
-              <th width="45%">Precio</th>
-              <th width="10%">Opciones</th>
+              <th width="1%"> </th>
+              <th width="100%">Nombre</th>
+              <th width="100%">Precio</th>
+              <th width="1%">Opciones</th>
             </thead>
             <tbody>
               @foreach($categorias as $categoria)
                 <tr id="{{$categoria->id}}">
-                  <td  id="{{$categoria->id}}" class="seleccionar">{{$categoria->nombre}}</td>
-                  <td  id="{{$categoria->id}}" class="seleccionar">{{$categoria->precio}}</td>
+                  <td> </td>
+                  <td id="{{$categoria->id}}" class="seleccionar">{{$categoria->nombre}}</td>
+                  <td id="{{$categoria->id}}" class="seleccionar">{{$categoria->precio}}</td>
                   <td>
                     <a class="table-actions pocketMorado" href="">
                       <i class="fa fa-pencil" data-toggle="modal" href="#editModal{{$categoria->id}}" title="Editar categoría"></i>
@@ -70,9 +76,7 @@
   </div>
 </div>
 
-<script src="../../../javascripts\jquery.dataTables.js" type="text/javascript"></script>
-<script src="../../../javascripts\main2.js" type="text/javascript"></script>
-<script src="../../../javascripts\respond.js" type="text/javascript"></script> 
+
 
 <script type="text/javascript">
   var routeModificar = "http://localhost/PocketByR/public//categoria/modificar";

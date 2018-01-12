@@ -5,6 +5,7 @@
 <div class="view-account">
   <div class="module">
       <div class="module-inner">
+        <div class="container main-content">
           <div class="side-bar" >
               <div class="user-info">
                 <div align="center">
@@ -317,12 +318,13 @@
           <div id="main-content">
             <div class="container-fluid">
               <div class="section-heading">
-                <h2>Mis categorías</h2>
-                    <a href="#addModalCategoria" class="btn btn-default" data-toggle="modal">
-                        <i class="fa fa-plus"></i>
-                    </a>
+                <h2>Mis categorías &ensp;
+                  <a href="#addModalCategoria" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+                    <i class="fa fa-plus"></i>
+                  </a>
+                </h2>    
               </div>
-              <div class="panel-body">
+              <div class="col-sm-offset-1 col-sm-10" style="align-content: center;">
                 <div id="list-cat"></div>
               </div>
               <div class="modal fade in" id="addModalCategoria" >
@@ -777,11 +779,10 @@
             </div>
           </div>
         </div>
-
       </div>
     <!-- END MAIN CONTENT -->
       <div class="clearfix"></div>
-
+      </div>
     </div>
   </div>
 </div>
@@ -1029,6 +1030,10 @@
   });
   </script>
 <style type="text/css">
+  
+  #main-content {
+    padding-top: 5%;
+  }
   #sexo{
     margin-left: 5%;
   }
