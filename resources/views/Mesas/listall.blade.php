@@ -1,3 +1,5 @@
+{!!Html::script('javascripts\jquery.dataTables.js')!!}
+{!!Html::script('javascripts\main2.js')!!}
 <div class="row">
   <div class="col-sm-12">
     <div class="widget-container fluid-height clearfix">
@@ -19,7 +21,7 @@
                   <a class="table-actions pocketMorado" href="">
                     <i class="fa fa-pencil" data-toggle="modal" href="#editModalMesas{{$mesa->id}}" title="Editar mesa"></i>
                   </a>
-                  <a class="table-actions pocketMorado" href="#" onclick="eliminar({{$mesa->id}})">
+                  <a class="table-actions pocketMorado" href="#" onclick="eliminarMesa({{$mesa->id}})">
                     <i class="fa fa-trash-o" title="Eliminar mesa"></i>
                   </a>
                 </td>
@@ -59,7 +61,7 @@
                         </div>
                       </div>
                       <div class="modal-footer">
-                        <button class="btn btn-primary" data-dismiss="modal"  style="BACKGROUND-COLOR: rgb(79,0,85); color:white" onclick="modificar({{$mesa->id}})">Guardar</button>
+                        <button class="btn btn-primary" data-dismiss="modal"  style="BACKGROUND-COLOR: rgb(79,0,85); color:white" onclick="modificarMesa({{$mesa->id}})">Guardar</button>
                       </div>
                     </div>
                   </div>
@@ -75,14 +77,14 @@
 
 <script type="text/javascript">
   
-  var routeModificar = "http://localhost/PocketByR/public/mesas/modificar";
-  var routeEliminar = "http://localhost/PocketByR/public/mesas/eliminar";
+  var routeModificarMesas = "http://localhost/PocketByR/public/mesas/modificar";
+  var routeEliminarMesas = "http://localhost/PocketByR/public/mesas/eliminar";
 
-  function modificar(idMesa) {
+  function modificarMesa(idMesa) {
     var nombre = $("#nombreMesa"+idMesa).val();
     var estado = $("#estadoMesa"+idMesa).val();
     $.ajax({
-      url: routeModificar,
+      url: routeModificarMesas,
       type: 'GET',
       data: {
         id: idMesa,
@@ -104,16 +106,16 @@
     });
   }
 
-  function eliminar(idMesa){
+  function eliminarMesa(idMesa){
     if(confirm('¿Desea eliminar esta mesa?')){
       $.ajax({
-        url: routeEliminar,
+        url: routeEliminarMesas,
         type: 'GET',
         data: {
           id: idMesa
         },
         success: function(){
-          $("#"+idMesa).remove();
+          $("#mesa"+idMesa).remove();
         },
         error: function(data){
           alert('No se puede eliminar la mesa, debido a que se está utilizando.');

@@ -2,8 +2,6 @@
 @section('content')
 @include('flash::message')
 {!!Html::style('assets/css/main.css')!!}
-{!!Html::script('javascripts\jquery.dataTables.js')!!}
-{!!Html::script('javascripts\main2.js')!!}
 
 <div class="view-account">
   <div class="module">

@@ -1,5 +1,3 @@
-<script src="..\..\..\javascripts\jquery.dataTables.js" type="text/javascript"></script>
-<script src="..\..\..\javascripts\main2.js" type="text/javascript"></script>
 
 <div class="row">
   <div class="col-sm-12">
@@ -14,15 +12,15 @@
           </thead>
           <tbody>
             @foreach($categorias as $categoria)
-              <tr id="{{$categoria->id}}">
+              <tr id="categoria{{$categoria->id}}">
                 <td> </td>
-                <td id="{{$categoria->id}}" class="seleccionar">{{$categoria->nombre}}</td>
-                <td id="{{$categoria->id}}" class="seleccionar">{{$categoria->precio}}</td>
+                <td id="categoria{{$categoria->id}}" class="seleccionar">{{$categoria->nombre}}</td>
+                <td id="categoria{{$categoria->id}}" class="seleccionar">{{$categoria->precio}}</td>
                 <td>
                   <a class="table-actions pocketMorado" href="">
                     <i class="fa fa-pencil" data-toggle="modal" href="#editModalCategoria{{$categoria->id}}" title="Editar categoría"></i>
                   </a>
-                  <a class="table-actions pocketMorado" href="#" onclick="eliminar({{$categoria->id}})">
+                  <a class="table-actions pocketMorado" href="#" onclick="eliminarCategoria({{$categoria->id}})">
                     <i class="fa fa-trash-o" title="Eliminar categoría"></i>
                   </a>
                 </td>
@@ -46,15 +44,15 @@
                                   <div class="widget-content">
                                     <div class="form-group">
                                       <div class="form-group">
-                                        <input type="text" id="nombre{{$categoria->id}}" placeholder="Nombre" class="form-control" value="{{$categoria->nombre}}" required="true" />
+                                        <input type="text" id="nombreCategoria{{$categoria->id}}" placeholder="Nombre" class="form-control" value="{{$categoria->nombre}}" required="true" />
                                       </div>
                                       <div class="form-grup">
-                                          <input type="number" placeholder="Precio" min="0" step="any" id="precio{{$categoria->id}}" class="form-control" value="{{$categoria->precio}}"/>
+                                          <input type="number" placeholder="Precio" min="0" step="any" id="precioCategoria{{$categoria->id}}" class="form-control" value="{{$categoria->precio}}"/>
                                       </div>
                                     </div>
                                   </div>
                                   <div class="modal-footer">
-                                    <button class="btn btn-default" data-dismiss="modal" onclick="modificar({{$categoria->id}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
+                                    <button class="btn btn-default" data-dismiss="modal" onclick="modificarCategoria({{$categoria->id}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
                                   </div>
                                 </div>
                               </fieldset>
@@ -77,45 +75,49 @@
 
 
 <script type="text/javascript">
-  var routeModificar = "http://localhost/PocketByR/public//categoria/modificar";
-  var routeEliminar = "http://localhost/PocketByR/public//categoria/eliminar";
 
-  function modificar(idCategoria){
-    var nombre = $("#nombre"+idCategoria).val();
-    var precio = $("#precio"+idCategoria).val();
+  var routeModificarCategoria = "http://localhost/PocketByR/public//categoria/modificar";
+  var routeEliminarCategoria = "http://localhost/PocketByR/public//categoria/eliminar";
+
+  function modificarCategoria(idCategoria){
+    var nombre = $("#nombreCategoria"+idCategoria).val();
+    var precio = $("#precioCategoria"+idCategoria).val();
+
     $.ajax({
-      url: routeModificar,
+      url: routeModificarCategoria,
       type: 'GET',
       data: {
         id: idCategoria,
         nombre: nombre,
         precio: precio
       },
+
       success: function(){
-        $("#"+idCategoria).children("td").each(function (indextd){
+        $("#categoria"+idCategoria).children("td").each(function (indextd){
           if(indextd == 1){
             $(this).text(nombre);
           }else if(indextd == 2){
             $(this).text(precio);
           }
         });
+        
       },
       error: function(data){
-        alert('Error al modificar categoria');
+        alert('Error al modificar');
       }
     });       
   }
 
-   function eliminar(idCategoria){
+   function eliminarCategoria(idCategoria){
     if(confirm('¿Desea eliminar esta categoria?')){
       $.ajax({
-        url: routeEliminar,
+        url: routeEliminarCategoria,
         type: 'GET',
         data: {
           id: idCategoria
         },
         success: function(){
-            $("#"+idCategoria).remove();
+            $("#categoria"+idCategoria).remove();
         },
         error: function(data){
           alert('No se puede eliminar la categoria, ya que existe historial de productos del mismo.');
@@ -126,6 +128,7 @@
 
   $(".seleccionar").click(function(){
     var idElegido = $(this).attr("id");
+    idElegido = idElegido.slice(9);
     var palabra = "#editModalCategoria";
     var id = palabra.concat(idElegido);
     $(id).modal();
