@@ -243,7 +243,11 @@
                 Subtotal <span id="subtotal">$379.00</span>
               </div>
               <div class="field">
-                Iva 19% <span id="iva">$0.00</span>
+                @if($user->EmpresaActual->tipoRegimen == "comun")
+                Iva 19% <span id="iva" data-regimen="comun">$0.00</span>
+                @else
+                <span id="iva" data-regimen="simplificado"></span>
+                @endif                
               </div>
               <div class="field grand-total">
                 Total <span id="total" data-total="0">$312.00</span>
@@ -260,12 +264,13 @@
             <div class="col-lg-12">
              
              
-             <div class="col-md-6">
+             <div class="col-md-4">
              
           <div class="form-group">
-            <label class="control-label col-md-4 pull-left">Metodo Pago:</label>
+           
             <div class="col-md-8  pull-right">
-              <div class="toggle-switch text-toggle-switch" data-off-label="Tarjeta" data-on="primary" data-on-label="Efectivo" style="width:150px; height: 30px">
+               <label>Método de Pago:</label>
+              <div class="toggle-switch text-toggle-switch" data-off-label="Tarjeta" data-on="primary" data-on-label="Efectivo" style="width:110px; height: 30px">
                 <input checked="" type="checkbox">
               </div>
             </div>
@@ -273,6 +278,15 @@
                       
               </div>             
              
+             <div class="col-md-2"> 
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                    <input class="form-control" placeholder="Propina" onkeyup="validarPropina();" type="text" value="" id="propina" data-propina="0" data-modificacion="false">
+                  </div>
+                </div>            
+              </div>
+
              <div class="col-md-3"> 
                 <div class="form-group">
                   <div class="input-group">
@@ -374,6 +388,7 @@ function refrescarTabla(id) {
     }
   }
   $('[data-toggle="popover"]').popover(); 
+  document.getElementById("propina").dataset.modificacion="false";
   actualizarTotal();
 }
 
@@ -448,6 +463,12 @@ function validarEfectivo() {
     
 }
 
+function validarPropina() {
+    document.getElementById("propina").dataset.modificacion= "true";
+    document.getElementById("propina").dataset.propina = document.getElementById("propina").value;
+    actualizarTotal();
+}
+
 function actualizarTotal() {
   var totales = document.getElementsByClassName("FactPocket col-xs-2 amount text-right");
   var acumulador = 0;
@@ -455,11 +476,24 @@ function actualizarTotal() {
     acumulador = acumulador + parseInt(totales[i].dataset.valor);
   }
   $("#subtotal").html("$" + Intl.NumberFormat().format(acumulador));
+  var campoIva = document.getElementById("iva").dataset.regimen;
   var iva = acumulador*0.19;
   var total = iva+acumulador;
-  $("#iva").html("$" + Intl.NumberFormat().format(iva));
-  $("#total").html("$" + Intl.NumberFormat().format(total));
+  if(campoIva == "comun"){
+    $("#iva").html("$" + Intl.NumberFormat().format(iva));  
+  }else{
+    total = total-iva;
+  }
+  var propina = document.getElementById("propina");
+  if(propina.dataset.modificacion == "false"){
+    propina.dataset.propina = total*.10;
+    propina.value= total*.10;
+    total= total+total*.10;
+  }else if(propina.value != ""){
+    total= total+parseInt(propina.value);
+  }
   document.getElementById("total").dataset.total = (total);
+  $("#total").html("$" + Intl.NumberFormat().format(total));
   validarEfectivo();
 }
 </script>        
