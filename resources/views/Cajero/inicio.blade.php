@@ -278,18 +278,18 @@
                       
               </div>             
              
-             <div class="col-md-2"> 
-                <div class="form-group">
-                  <div class="input-group">
+             <div class="col-md-2" style="padding-left: 0px;"> 
+                <div class="form-group" style="padding-top: 25px;">
+                  <div class="input-group" >
                     <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                    <input class="form-control" placeholder="Propina" onkeyup="validarPropina();" type="text" value="" id="propina" data-propina="0" data-modificacion="false">
+                    <input class="form-control" placeholder="Propina" onkeyup="validarPropina();" type="text" value="" id="propina" data-propina="0" data-modificacion="false" style="paddin">
                   </div>
                 </div>            
               </div>
 
              <div class="col-md-3"> 
                 <div class="form-group">
-                  <div class="input-group">
+                  <div class="input-group" style="padding-top: 25px;">
                     <span class="input-group-addon"><i class="fa fa-money"></i></span>
                     <input class="form-control" placeholder="Efectivo" onkeyup="validarEfectivo();" type="text" id="efectivo">
                   </div>
@@ -297,7 +297,7 @@
               </div>
              
              <div class="col-md-3"> 
-                <div class="form-group">
+                <div class="form-group" style="padding-top: 25px;">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-refresh"></i></span>
                     <input class="form-control" id="cambio" disabled="" placeholder="Cambio" type="text">
