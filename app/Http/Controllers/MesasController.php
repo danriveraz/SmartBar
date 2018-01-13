@@ -7,6 +7,7 @@ use Auth;
 use PocketByR\Mesa;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
+use Laracasts\Flash\Flash;
 
 class MesasController extends Controller
 {
@@ -58,9 +59,11 @@ class MesasController extends Controller
             $mesa->idEmpresa = $userActual->idEmpresa;
             $mesa->save();
         }
-        $mesas = Mesa::mesasAdmin($userActual->idEmpresa)->get();
-        return redirect('mesas')->with('mesas',$mesas);
+        //return redirect('mesas')->with('mesas',$mesas);
+        flash::success('Mesas creadas satisfactoriamente')->important();
+        return redirect('Auth/usuario/'.$userActual->id.'/edit');
     }
+
     public function modificar(Request $request){
         $mesa = Mesa::find($request->id);
         $mesa->nombreMesa = $request->nombre;
