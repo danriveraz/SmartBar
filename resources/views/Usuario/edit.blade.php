@@ -45,9 +45,6 @@
             <div class="tab-pane" id="tab1">
               <div id="main-content">
                 <div class="container-fluid">
-                  <div class="section-heading">
-                    <h1 class="page-title">Perfil</h1>
-                  </div>
                   <ul class="nav nav-tabs" role="tablist">
                     <li class="active"><a href="#myprofile" role="tab" data-toggle="tab">Perfil</a></li>
                     <li><a href="#account" role="tab" data-toggle="tab">Cuenta</a></li>
@@ -319,11 +316,11 @@
           <div id="main-content">
             <div class="container-fluid">
               <div class="section-heading">
-                <h2>Mis categorías &ensp;
+                <div align="right" style="padding-right: 10%;">
                   <a href="#addModalCategoria" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
                     <i class="fa fa-plus"></i>
                   </a>
-                </h2>    
+                </div>
               </div>
               <div class="col-sm-offset-1 col-sm-10" style="align-content: center;">
                 <div id="list-cat"></div>
@@ -378,11 +375,11 @@
           <div id="main-content">
             <div class="container-fluid">
               <div class="section-heading">
-                <h2>Mis mesas &ensp;
+                <div align="right" style="padding-right: 10%;">
                   <a href="#addModalMesas" class="btn btn-default" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
                       <i class="fa fa-plus"></i>
                   </a>
-                </h2> 
+                </div> 
               </div>
               <div class="col-sm-offset-1 col-sm-10" style="align-content: center;">
                 <div id="list-mesas"> </div>
@@ -404,7 +401,7 @@
                           <div class="widget-content">
                             <div class="form-group">
                               <div class="form-group">
-                                  <input type="number" name="numero" class="form-control" placeholder="Numero de mesas" required="true"/>
+                                  <input type="number" name="cantidad" class="form-control" placeholder="Cantidad de mesas" min="0" required="true"/>
                               </div>
                             </div>
                           </div>

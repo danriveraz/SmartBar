@@ -87,10 +87,11 @@ Route::get('mesero/disminuir',  'MeseroController@disminuir');
 Route::get('mesero/agregar',  'MeseroController@agregar');
 Route::resource('mesero', 'MeseroController');
 
+
 Route::get('mesas/eliminar','MesasController@eliminar');
 Route::get('mesas/modificar', 'MesasController@modificar');
 Route::get('mesaslistall/{page?}', 'MesasController@listall');
-Route::post('mesas/create', 'MesasController@create');
+Route::post('mesas/create', 'MesasController@createNMesas');
 Route::resource('mesas', 'MesasController');
 
 Route::resource('WelcomeAdmin', 'welcomeAdmin', ['only' => [
