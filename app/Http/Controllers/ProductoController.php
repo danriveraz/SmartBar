@@ -45,8 +45,7 @@ class ProductoController extends Controller
     $producto->nombre = $request->nombre;
     $producto->precio = $request->precio;
     $producto->idCategoria = $request->categoria;
-    $producto->receta = $request->receta;
-    $producto->save();    
+    $producto->save();
   }
   
   public function eliminar(Request $request){
@@ -81,19 +80,23 @@ class ProductoController extends Controller
 
   public function store(Request $request){
     $userActual = Auth::user();
-    $existe = Producto::Nombre($request->nombreProducto)->first();
+    $existe = Producto::Empresa($userActual->idEmpresa)->Nombre($request->nombre)->first();
     if(is_null($existe)){
       $producto = new Producto;
-      $producto->nombre = $request->nombreProducto;
-      $producto->precio = $request->precio;
+      $producto->nombre = $request->nombre;
       $producto->idCategoria = $_POST['categorias'];
-      $producto->receta = $request->receta;
       $producto->idEmpresa = $userActual->idEmpresa;
       $productos = Producto::where('idEmpresa' , $userActual->idEmpresa)->
                                 lists('nombre','id');
       if(sizeof($productos) == 0){
         $userActual->estadoTut += 1;
         $userActual->save();
+      }
+      if($request->precio!=""){
+        $producto->precio = $request->precio;
+      }else{
+        $cat = Categoria::where('id',$_POST['categorias'])->first();
+        $producto->precio = $cat->precio;
       }
       $producto->save();
       Flash::success("El producto se ha registrado satisfactoriamente")->important();
@@ -106,7 +109,10 @@ class ProductoController extends Controller
       $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                                lists('nombre','id');
       $cats = Categoria::where('idEmpresa',$userActual->idEmpresa)->get();
-      return view('Producto.index',compact('categorias'))->with('cats', $cats);      
+      $productos = Producto::where('idEmpresa' , $userActual->idEmpresa)->
+                           orderBy('nombre','ASC')->
+                           paginate(1000);
+      return view('Producto.index',compact('categorias'))->with('productos',$productos)->with('cats', $cats);
     }
   }
 

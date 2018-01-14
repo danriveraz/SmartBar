@@ -12,9 +12,13 @@ class Producto extends Model
     	return $query->where('nombre','LIKE',"%$nombre%");
     }
 
-public function scopeNombre($query, $nombre){
+    public function scopeNombre($query, $nombre){
         return $query->where('nombre',"$nombre");
-    }    
+    }
+
+    public function scopeEmpresa($query, $empresa){
+        return $query->where('idEmpresa',"$empresa");
+    }
 
     public function scopeCategory($query, $category){
     	if($category != ""){
