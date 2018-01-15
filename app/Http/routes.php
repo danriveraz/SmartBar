@@ -45,7 +45,6 @@ Route::group(['prefix' => 'Auth'], function(){
 
 Route::get('insumo/eliminar', 'InsumoController@eliminar');
 Route::get('insumo/modificar', 'InsumoController@modificar');
-Route::get('inslistall/{page?}', 'InsumoController@listall');
 Route::resource('insumo', 'InsumoController');
 
 Route::get('producto/eliminar', 'ProductoController@eliminar');

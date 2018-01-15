@@ -26,4 +26,8 @@ class Insumo extends Model
     		return $query->where('tipo',"$type");
     	}
     }
+	
+	public function scopeInsumosEmpresa($query, $idEmpresa){
+        return $query->where('idEmpresa', $idEmpresa);
+    }
 }

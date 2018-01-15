@@ -1,0 +1,18 @@
+.carousel{
+	background: #2f4357;
+	margin-top: 20px;
+}
+.carousel .item{
+	min-height: 260px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+	max-height: 360px;
+}
+.carousel .item img{
+	margin: 0 auto; /* Align slide image horizontally center */
+}
+.bs-example{
+	margin: 20px;
+}
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}

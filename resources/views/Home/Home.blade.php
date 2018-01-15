@@ -29,7 +29,7 @@
             <a>&#9776;</a>
           </div>
           <div class="logo">
-           <a href="http://localhost/PocketByR/public"><img width="240" height="50" src="assetsNew/images/logoPrin.png"></a>
+           <a href="{{url('/home')}}"><img width="240" height="50" src="assetsNew/images/logoPrin.png"></a>
 
           </div>
         </div>
@@ -65,7 +65,7 @@
 
           <!-- Buttons -->
 
-          <a class="button large" href="https://app.alegra.com/user/register/country/colombia" target="_blank" rel="nofollow">ADQUIERE AQUI TU AMIGO INSEPARABLE</a><br>
+          <a class="button large" href="{{ url('Auth/register') }}" rel="nofollow">ADQUIERE AQUI TU AMIGO INSEPARABLE</a><br>
            <span class="textpar" style="color:#000000;"><b>30 DIAS GRATIS</b></span>
            <section class="content">
         <div class="hero-login bg-cover" style="background-image: url('../assetsNew/images/login-slide-4.jpg');">

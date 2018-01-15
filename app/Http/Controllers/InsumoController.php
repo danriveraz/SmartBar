@@ -30,14 +30,19 @@ class InsumoController extends Controller
     }
 
     public function index(Request $request){
-      $userActual = Auth::user();
-      $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
-                               lists('nombre','id');
-
+      /*$userActual = Auth::user();
       $proveedores = Proveedor::where('idEmpresa' , $userActual->idEmpresa)->
                                 lists('nombre','id');
 
-      return view('Insumo.index',compact('proveedores'))->with('categorias',$categorias);
+      $insumos = Insumo::where('idEmpresa' , $userActual->idEmpresa)->get();*/
+      $userActual = Auth::user();
+      $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->get();
+
+      $proveedores = Proveedor::where('idEmpresa' , $userActual->idEmpresa)->get();
+
+      $insumos = Insumo::where('idEmpresa' , $userActual->idEmpresa)->get();
+
+      return view('Insumo.index')->with('insumos',$insumos)->with('categorias',$categorias)->with('proveedores',$proveedores);
   }
 
   public function modificar(Request $request){
@@ -54,7 +59,8 @@ class InsumoController extends Controller
 
     
     $insumo->cantidadMedida = $request->cantMedida;
-    $insumo->cantidadRestante = $request->cantMedida;    
+    $insumo->cantidadRestante = $request->cantMedida;
+
 
     if($insumo->tipo != $request->tipo){
       $insumo->tipo = $request->tipo;
@@ -92,6 +98,7 @@ class InsumoController extends Controller
       $producto->save();
     }
     $insumo->save();
+
   }
 
   public function eliminar(Request $request){
@@ -99,29 +106,10 @@ class InsumoController extends Controller
     $insumo->delete();
   }
 
-  public function listall(Request $request){
-
-    $userActual = Auth::user();
-      $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
-                               lists('nombre','id');
-
-      $proveedores = Proveedor::where('idEmpresa' , $userActual->idEmpresa)->
-                                lists('nombre','id');
-
-      $insumos = Insumo::Search($request->nombre,$request->marca)->
-                         Type($request->tipo)->
-                         where('idEmpresa' , $userActual->idEmpresa)->
-                         orderBy('nombre','ASC')->
-                         paginate(1000);
-
-      return view('Insumo.listall',compact('proveedores'))->with('insumos',$insumos)->with('categorias',$categorias);
-  }
-
-
   public function store(Request $request){
       $userActual = Auth::user();
       $insumo = new Insumo;
-      $insumo->idProveedor = $_POST['proveedores'];
+      $insumo->idProveedor = $request->input('proveedores');
       $insumo->nombre = $request->nombre;
       $insumo->cantidadUnidad = $request->cantidadUnidad;
       $insumo->precioUnidad = $request->precioUnidad;
@@ -171,7 +159,7 @@ class InsumoController extends Controller
         $producto = new Producto;
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precioUnidad;
-        $producto->idCategoria = $_POST['categorias'];
+        $producto->idCategoria = $request->input('categorias');
         $producto->idEmpresa = $userActual->idEmpresa;
         $productos = Producto::where('idEmpresa' , $userActual->idEmpresa)->
                                 lists('nombre','id');
