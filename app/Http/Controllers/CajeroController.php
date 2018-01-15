@@ -71,6 +71,16 @@ class CajeroController extends Controller
 
     }
      public function edit(Request $request){
+       /*$imprimir = [ $request->nombre,
+       $request->telefono,
+       $request->mail,
+       $request->nit,
+       $request->direccion,
+       $request->enviarCorreo];
+       //dd($request->productos);
+       //dd($request->estados);
+       //dd($request->productos);
+      */
        $estadoProductos = $request->productos;
        $idProductos = $request->productosId;
        $estados =$request->estados;
@@ -84,8 +94,9 @@ class CajeroController extends Controller
         $arreglo = array($idProductos, $idUsuario, "idCajero");
         Venta::actualizarUsuario($arreglo);
         Factura::actualizarValor($request);
-        $busqueda = Venta::ListarPendientes($request->idFactura)->paginate(20);
-        if (sizeof($busqueda) == 0){
+        $busqueda1 = Venta::ListarPendientesValidacion1($request->idFactura)->get();
+        $busqueda2 = Venta::ListarPendientesValidacion2($request->idFactura)->get();
+        if ((sizeof($busqueda1) == 0) && (sizeof($busqueda2) == 0)){
             Factura::actualizarFactura($request->idFactura);
             $factura = Factura::find($request->idFactura);
             Mesa::actualizarEstado($factura->mesa->id);

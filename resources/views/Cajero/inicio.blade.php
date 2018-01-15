@@ -112,13 +112,13 @@
         <div class="invoice-address col-md-12">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-address-book-o"></i></span>
-            <input class="form-control" placeholder="Nombre" type="text">
+            <input class="form-control" placeholder="Nombre" type="text" name="nombre">
           </div>
         </div> 
         <div class="invoice-address col-md-12">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-address-card-o"></i></span>
-            <input class="form-control" placeholder="Nit o Identificacion" type="text">
+            <input class="form-control" placeholder="Nit o Identificacion" type="text" name="nit">
           </div>
         </div> 
            
@@ -127,13 +127,13 @@
         <div class="invoice-address col-md-12">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-volume-control-phone"></i></span>
-            <input class="form-control" placeholder="Telefono" type="text">
+            <input class="form-control" placeholder="Telefono" type="text" name="telefono">
           </div>
         </div> 
         <div class="invoice-address col-md-12">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input class="form-control" placeholder="Direccion" type="text">
+            <input class="form-control" placeholder="Direccion" type="text" name="direccion">
           </div>
         </div>     
         </div>
@@ -141,13 +141,13 @@
         <div class="invoice-address col-md-12">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-envelope-open-o"></i></span>
-            <input class="form-control" placeholder="Email" type="text">
+            <input class="form-control" placeholder="Email" type="text" name="mail">
           </div>
         </div> 
     
         <div class="invoice-address col-md-12" style="aling-items: center;justify-content: center;">
           <div class="input-group" >
-            <label class="checkbox"><input type="checkbox"><span>Enviar A Correo en Pdf</span></label>
+            <label class="checkbox"><input type="checkbox" name="enviarCorreo"><span>Enviar a correo en Pdf</span></label>
           </div>
         </div>     
     
@@ -214,7 +214,10 @@
                   <div class="FactPocket col-xs-2 amount text-center">{{$producto[6]}}</div>
                                   <div class="FactPocket col-xs-2 amount text-center">
                                     @if($producto[5] != "Cancelado")
-                                       <input type="number" class="numberFact" max="{{$producto[3] - $producto[6]}}" min="0" id="cantidad{{$producto[1]}}" step="1" onkeyup="validarMinMax('#cantidad{{$producto[1]}}');"  value="{{($producto[3] - $producto[6])}}" data-idVenta="{{$producto[1]}}" data-precio="{{$producto[4]}}">
+                                    <input type="text" hidden="" name="productosId[]" value="{{$producto[1]}}">
+                                    <input type="text" hidden="" name="estados[]" id="estado{{$producto[1]}}"
+                                    data-estadoActual="{{$producto[6]}}" value="{{$producto[3]}}">
+                                       <input name="productos[]" type="number" class="numberFact" max="{{$producto[3] - $producto[6]}}" min="0" id="cantidad{{$producto[1]}}" step="1" onkeyup="validarMinMax('#cantidad{{$producto[1]}}');"  value="{{($producto[3] - $producto[6])}}" data-idVenta="{{$producto[1]}}" data-precio="{{$producto[4]}}">
                                     @else
                                       <input  type="number" class="popover-trigger" readonly value="0"  data-content="<div>Pedido cancelado</div>" data-html="true" data-placement="bottom" data-toggle="popover" style="display: inline-block;-webkit-box-sizing: content-box;-moz-box-sizing: content-box;
                                       box-sizing: content-box;width: 70%;padding: 3px 10px;border: 1px solid #b7b7b7;-webkit-border-radius: 3px;border-radius: 3px;font: normal 16px/normal "Times New Roman", Times, serif;color: rgba(0,142,198,1);-o-text-overflow: clip;text-overflow: clip;-webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);-moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);-o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);">
@@ -250,6 +253,7 @@
                 @endif                
               </div>
               <div class="field grand-total">
+                <input type="text" id="valorInput" name="valor" value=0 id="" hidden="" data-valorAntiguo="{{$facturas[0]->total}}"><input type="text" id="idFactura" name="idFactura" value="{{$facturas[0]->id}}" id="" hidden="">
                 Total <span id="total" data-total="0">$312.00</span>
               </div>
             </div>
@@ -312,14 +316,16 @@
           <div class="row">
             <div class="col-lg-12 center">
         <button class="factBot btn btn-bitbucket pull-right"><i class="fa fa-money"></i>Pagar</button>
-        <button class=" factBot btn btn-bitbucket pull-right"><i class="fa fa-print"></i>Imprimir</button>
-        <button class=" factBot btn btn btn-pinterest pull-right" style="background-color: #999999;"><i class="fa fa-close"></i>Volver</button>
+        </form>
+
+        <button class=" factBot btn btn-bitbucket pull-right" onclick="nada();"><i class="fa fa-print"></i>Imprimir</button>
+        <button class=" factBot btn btn btn-pinterest pull-right" onclick="nada();" style="background-color: #999999;"><i class="fa fa-close"></i>Volver</button>
 
             </div>
           </div>
           </div>
         </div>
-</form>
+
         <div class="footer">
           Copyright © 2018. Pocket Smartbar
         </div>
@@ -376,11 +382,12 @@ function refrescarTabla(id) {
   var capa = $("#tabla");
   capa.empty();
   var idFactura = $("#mesas"+id).data('idfactura');
+  $("#idFactura").val(idFactura);
   for(i=0; i < JSONproductos.length; i++){
     if(JSONproductos[i][0] == idFactura){
       var string = "#cantidad"+JSONproductos[i][1];
       if(JSONproductos[i][5] != "Cancelado"){
-      $("#tabla").append('<div class="row item"><div class="col-xs-5 desc" >'+JSONproductos[i][2]+'</div><div class="FactPocket col-xs-2 text-center" >'+JSONproductos[i][3]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ JSONproductos[i][6]+'</div><div class="FactPocket col-xs-2 amount text-center"><input type="number" class="numberFact" onchange="cambio();" max="'+(JSONproductos[i][3] - JSONproductos[i][6])+'" min="0" id="cantidad'+JSONproductos[i][1]+'" step="1" onkeyup="validarMinMax('+String.fromCharCode(39)+string+String.fromCharCode(39)+');"  value="'+ (JSONproductos[i][3] - JSONproductos[i][6])+'" data-idVenta="'+JSONproductos[i][1]+'" data-precio="'+JSONproductos[i][4]+'"></div><div class="FactPocket col-xs-2 amount text-center">$' +Intl.NumberFormat().format(JSONproductos[i][4])+ ' </div><div class="FactPocket col-xs-2 amount text-right" id="total'+JSONproductos[i][1]+'" data-valor="'+(JSONproductos[i][4]*(JSONproductos[i][3] - JSONproductos[i][6]))+'">$'+Intl.NumberFormat().format(JSONproductos[i][4]*(JSONproductos[i][3] - JSONproductos[i][6]))+'</div></div>');
+      $("#tabla").append('<div class="row item"><div class="col-xs-5 desc" >'+JSONproductos[i][2]+'</div><div class="FactPocket col-xs-2 text-center" >'+JSONproductos[i][3]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ JSONproductos[i][6]+'</div><div class="FactPocket col-xs-2 amount text-center"><input type="text" hidden="" name="productosId[]" value="'+JSONproductos[i][1]+'"><input type="text" hidden="" name="estados[]" id="estado'+JSONproductos[i][1]+'" data-estadoActual = "'+JSONproductos[i][5]+'" value="'+ JSONproductos[i][3]+'"><input type="number" class="numberFact" onchange="cambio();" max="'+(JSONproductos[i][3] - JSONproductos[i][6])+'" min="0" id="cantidad'+JSONproductos[i][1]+'" step="1" onkeyup="validarMinMax('+String.fromCharCode(39)+string+String.fromCharCode(39)+');"  value="'+ (JSONproductos[i][3] - JSONproductos[i][6])+'" data-idVenta="'+JSONproductos[i][1]+'" data-precio="'+JSONproductos[i][4]+'"></div><div class="FactPocket col-xs-2 amount text-center">$' +Intl.NumberFormat().format(JSONproductos[i][4])+ ' </div><div class="FactPocket col-xs-2 amount text-right" id="total'+JSONproductos[i][1]+'" data-valor="'+(JSONproductos[i][4]*(JSONproductos[i][3] - JSONproductos[i][6]))+'">$'+Intl.NumberFormat().format(JSONproductos[i][4]*(JSONproductos[i][3] - JSONproductos[i][6]))+'</div></div>');
       }
       else{
         $("#tabla").append('<div class="row item"><div class="col-xs-5 desc" >'+JSONproductos[i][2]+'</div><div class="FactPocket col-xs-2 text-center" >'+JSONproductos[i][3]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ JSONproductos[i][6]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ '<input  type="number" class="popover-trigger" readonly value="0"  data-content="<div>Pedido cancelado</div>" data-html="true" data-placement="bottom" data-toggle="popover" style="display: inline-block;-webkit-box-sizing: content-box;-moz-box-sizing: content-box; box-sizing: content-box;width: 70%;padding: 3px 10px;border: 1px solid #b7b7b7;-webkit-border-radius: 3px;border-radius: 3px;font: normal 16px/normal "Times New Roman", Times, serif;color: rgba(0,142,198,1);-o-text-overflow: clip;text-overflow: clip;-webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);-moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);-o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);">'+'</div><div class="FactPocket col-xs-2 amount text-center">$' +Intl.NumberFormat().format(JSONproductos[i][4])+ ' </div><div class="FactPocket col-xs-2 amount text-right" id="total{{$producto[1]}}" data-valor="0">$'+Intl.NumberFormat().format(0)+'</div></div>');
@@ -434,6 +441,9 @@ $("body").on("change",".numberFact",function(event){
     var idNumber = $(this).attr("id");
     var precio = $("#"+idNumber).data('precio');
     var idVenta = $("#"+idNumber).data('idventa');
+    var idEstadoCajero = "estado"+idVenta;
+    var estadoActual = document.getElementById(idEstadoCajero).dataset.estadoactual;
+    $("#"+idEstadoCajero).val(parseInt(valor)+ parseInt(estadoActual));
     $("#total"+idVenta).html("$" + Intl.NumberFormat().format(valor*precio));
     document.getElementById("total"+idVenta).dataset.valor = (valor*precio);
     actualizarTotal();
@@ -478,11 +488,9 @@ function actualizarTotal() {
   $("#subtotal").html("$" + Intl.NumberFormat().format(acumulador));
   var campoIva = document.getElementById("iva").dataset.regimen;
   var iva = acumulador*0.19;
-  var total = iva+acumulador;
+  var total = acumulador;
   if(campoIva == "comun"){
     $("#iva").html("$" + Intl.NumberFormat().format(iva));  
-  }else{
-    total = total-iva;
   }
   var propina = document.getElementById("propina");
   if(propina.dataset.modificacion == "false"){
@@ -492,6 +500,8 @@ function actualizarTotal() {
   }else if(propina.value != ""){
     total= total+parseInt(propina.value);
   }
+  var totalInput = document.getElementById("valorInput");
+  totalInput.value = parseInt(totalInput.dataset.valorantiguo) + total;
   document.getElementById("total").dataset.total = (total);
   $("#total").html("$" + Intl.NumberFormat().format(total));
   validarEfectivo();

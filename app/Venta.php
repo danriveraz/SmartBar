@@ -36,17 +36,19 @@ class Venta extends Model
             ->select('nombre', 'cantidad', 'precio', 'venta.id');
       return $query;
   }
-  public function scopeListarPendientes($query, $idFactura){
-      $query->where([
+  public function scopeListarPendientesValidacion1($query, $idFactura){
+        return $query->where([
                   ['idFactura', $idFactura],
-                  ['estadoMesero', '<>', 'Cancelado']
-              ]);
-
-       return $query->whereColumn('estadoCajero', '<>', 'cantidad')
-              ->orWhere([
                   ['estadoMesero', '<>', 'Cancelado'],
                   ['estadoBartender', 'Por atender']
               ]);
+  }
+
+  public function scopeListarPendientesValidacion2($query, $idFactura){
+        return $query->where([
+                  ['idFactura', $idFactura],
+                  ['estadoMesero', '<>', 'Cancelado'],
+              ])->whereColumn('estadoCajero', '<>', 'cantidad');
   }
 
   public function scopePedidoActualMesa($query, $idFactura){
