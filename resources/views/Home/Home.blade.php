@@ -396,8 +396,18 @@
       }
     };
 </script>
+<!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = '3a7eda45afb7eb3d94232e55012471c2d2a9a883';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+  c.type='text/javascript';c.charset='utf-8';c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+</script>
 
 </body>
 
-<!-- Mirrored from www.alegra.com/colombia/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 02 Jan 2018 03:10:23 GMT -->
 </html>
