@@ -11626,11 +11626,11 @@
 	
 	
 			/**
-			 * Details the actions that will be taken when the user types into the
-			 * filtering input text box. The variable "_INPUT_", if used in the string,
-			 * is replaced with the HTML text box for the filtering input allowing
-			 * control over where it appears in the string. If "_INPUT_" is not given
-			 * then the input box is appended to the string automatically.
+			  Detalla las acciones que se tomarán cuando el usuario escriba en el
+			* filtrado de cuadro de texto de entrada. La variable "_INPUT_", si se usa en la cadena,
+			* se reemplaza con el cuadro de texto HTML para la entrada de filtrado que permite
+			* control sobre dónde aparece en la cadena. Si no se proporciona "_INPUT_"
+			* entonces el cuadro de entrada se agrega a la cadena automáticamente.
 			 *  @type string
 			 *  @default Search:
 			 *

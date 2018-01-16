@@ -7,6 +7,54 @@
  */
 
 
+/* inicio botones de catewgorias */
+
+.btn-Categor {
+  font-family: 'Roboto', sans-serif;
+  margin: 0 5px 5px 0;
+  width: 15%;
+  height: 20%;
+  color: #ffffff;
+  background-color: #2f0033;
+}
+
+.btn-Categor:hover,
+.btn-Categor:focus,
+.btn-Categor:active,
+.btn-Categor.active,
+.open .dropdown-toggle.btn-Categor {
+  color: #ffffff;
+  background-color: #4f0157;
+}
+
+.btn-Categor:active,
+.btn-Categor.active,
+.open .dropdown-toggle.btn-Categor {
+  background-image: none;
+}
+
+.btn-Categor.disabled,
+.btn-Categor[disabled],
+fieldset[disabled] .btn-Categor,
+.btn-Categor.disabled:hover,
+.btn-Categor[disabled]:hover,
+fieldset[disabled] .btn-Categor:hover,
+.btn-Categor.disabled:focus,
+.btn-Categor[disabled]:focus,
+fieldset[disabled] .btn-Categor:focus,
+.btn-Categor.disabled:active,
+.btn-Categor[disabled]:active,
+fieldset[disabled] .btn-Categor:active,
+.btn-Categor.disabled.active,
+.btn-Categor[disabled].active,
+fieldset[disabled] .btn-Categor.active {
+  background-color: #2d5f9c;
+}
+/* fin botones de categorias */
+
+
+
+
 .btn-facebook {
   color: #ffffff;
   background-color: #133783;
@@ -313,6 +361,9 @@ fieldset[disabled] .btn-dropbox.active {
   background-color: #37a3eb;
 }
 
+
+/* inicio botones de pocket */
+
 .btn-bitbucket {
   color: #ffffff;
   background-color: #2f0033;
@@ -350,6 +401,7 @@ fieldset[disabled] .btn-bitbucket:active,
 fieldset[disabled] .btn-bitbucket.active {
   background-color: #2d5f9c;
 }
+/* fin botones de pocket */
 
 .btn-dribbble {
   color: #ffffff;
