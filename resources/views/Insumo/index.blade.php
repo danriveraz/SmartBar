@@ -51,7 +51,7 @@
 		                  <td id="{{$insumo->id}}" class="seleccionar">{{number_format($insumo->cantidadMedida,3)}}</td>
 		                  <td id="{{$insumo->id}}" class="seleccionar">
 		                  	<span class="label label-Pocket">
-		                  		<b><?php if($insumo->medida == "0"){echo "Oz";}else{echo "Unidad";} ?></b>
+		                  		<b><?php if($insumo->medida == "0"){echo "Oz";}else{echo "Unidad";}?></b>
 		                  	</span>
 		                  </td>
 		                  <td>
@@ -132,7 +132,7 @@
 		                                      </div>
 		                                    </div>
 		                                   
-		                                    <div class="form-group">
+		                                    <div class="form-group text-center">
 	                                    	  <label> 
 			                                      <input type="checkbox" name="tipo" id="stipo{{$insumo->id}}" <?php if($insumo->tipo == "1") echo "checked";?> onchange="showContent({{$insumo->id}})" />
 			                                      <span></span>
@@ -345,6 +345,15 @@
 <script>
   var routeModificar = "http://localhost/PocketByR/public/insumo/modificar";
   var routeEliminar = "http://localhost/PocketByR/public/insumo/eliminar";
+ 
+ $(document).ready(function(){
+  cambiarCurrent("#miInventario");
+ });
+
+  function cambiarCurrent(idInput) {
+	$(".current").removeClass("current");
+	$(idInput).addClass("current");
+  };
 
   function showContent(idInsumo) {
     element = document.getElementById("scontent"+idInsumo);

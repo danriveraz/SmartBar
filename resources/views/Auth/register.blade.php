@@ -3,16 +3,17 @@
     <head>
 
             <!-- End Google Tag Manager -->
-                    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Regsitro - SmartBar</title>        
-        <meta name="description" content="Ingresa a Alegra para hacer crecer tu empresa, Ganas Tiempo y Tranquilidad" >                                         <link href="" rel="canonical" >                        
+        <title>Registro - SmartBar</title>        
+        <meta name="description" content="Ingresa a Alegra para hacer crecer tu empresa, Ganas Tiempo y Tranquilidad" >               <link href="" rel="canonical" >                        
         <!-- Estilos y Fuentes -->
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:300,400" rel="stylesheet">
         <link rel="stylesheet" href="../assetsNew/styles/normalize.css" type="text/css" />
         <link rel="stylesheet" href="../assetsNew/styles/styles-login-min.css" type="text/css" />
-        <link type="image/x-icon" rel="shortcut icon" href="../assetsNew/images/icon.png"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
     </head>
     <body id="">
 		<div class="main-container">
@@ -67,9 +68,7 @@
 							</div>
 							<div class="input-wrapper" style="float: right; width:49%">
 								<select id="idCiudad" name="idCiudad" required>
-									@foreach($ciudades as $ciudad)
-	                                  	<option value="{{$ciudad->id}}">{{$ciudad->nombre}}</option>
-	                                @endforeach
+									<option></option>
 								</select>
 							</div>
 							<div class="input-wrapper" style="display: none;">
@@ -124,26 +123,26 @@
 					</p>                                                  
 				</div>
 			</section>
-		</div>    
-	</body>
-	<script>
-		$('#idDepto').on('change', function (event) {
-		    var id = $(this).find('option:selected').val();
-		    $('#idCiudad').empty();
-		    $('#idCiudad').append($('<option>', {
-					    value: 0,
-					    text: 'Elija una opción'
-					}));
-		    JSONCiudades = eval(<?php echo json_encode($ciudades);?>);
-		    JSONCiudades.forEach(function(currentValue,index,arr) {
-			    if(currentValue.idDepartamento == id){
-			    	$('#idCiudad').append($('<option>', {
-					    value: currentValue.id,
-					    text: currentValue.nombre
-					}));
-			    }
+		</div>
+		<script>
+			$('#idDepto').on('change', function (event) {
+			    var id = $(this).find('option:selected').val();
+			    $('#idCiudad').empty();
+			    $('#idCiudad').append($('<option>', {
+						    value: 0,
+						    text: 'Elija una opción'
+						}));
+			    JSONCiudades = eval(<?php echo json_encode($ciudades);?>);
+			    JSONCiudades.forEach(function(currentValue,index,arr) {
+				    if(currentValue.idDepartamento == id){
+				    	$('#idCiudad').append($('<option>', {
+						    value: currentValue.id,
+						    text: currentValue.nombre
+						}));
+				    }
+				});
+				 
 			});
-			 
-		});
-	</script>
+		</script>   
+	</body>
 </html>

@@ -666,7 +666,8 @@ body.sidebar-nav {
       text-align: center;
       border: 1px solid #dddddd;
       border-right: 0;
-      cursor: pointer; }
+      cursor: pointer;
+      margin-top: 15px; }
 	  
     .style-selector .style-selector-container .style-toggle1 {
       position: absolute;
@@ -1107,7 +1108,8 @@ th:active {
   .label.label-success {
     background-color: #60c560; }
   .label.label-Pocket {
-    background-color: #2d0031; }
+    background-color: #2d0031;
+    width: 52px; }
 
 .label-container {
   min-height: 160px !important; }
