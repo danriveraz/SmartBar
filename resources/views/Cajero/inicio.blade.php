@@ -112,13 +112,13 @@
         <div class="invoice-address col-md-12">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-address-book-o"></i></span>
-            <input class="form-control" placeholder="Nombre" type="text" name="nombre">
+            <input id="nombre" class="form-control" placeholder="Nombre" type="text" name="nombre">
           </div>
         </div> 
         <div class="invoice-address col-md-12">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-address-card-o"></i></span>
-            <input class="form-control" placeholder="Nit o Identificacion" type="text" name="nit">
+            <input id="nit" class="form-control" placeholder="Nit o Identificacion" type="text" name="nit">
           </div>
         </div> 
            
@@ -127,13 +127,13 @@
         <div class="invoice-address col-md-12">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-volume-control-phone"></i></span>
-            <input class="form-control" placeholder="Telefono" type="text" name="telefono">
+            <input id="telefono" class="form-control" placeholder="Telefono" type="text" name="telefono">
           </div>
         </div> 
         <div class="invoice-address col-md-12">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input class="form-control" placeholder="Direccion" type="text" name="direccion">
+            <input id="direccion" class="form-control" placeholder="Direccion" type="text" name="direccion">
           </div>
         </div>     
         </div>
@@ -141,13 +141,13 @@
         <div class="invoice-address col-md-12">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-envelope-open-o"></i></span>
-            <input class="form-control" placeholder="Email" type="text" name="mail">
+            <input id="mail" class="form-control" placeholder="Email" type="text" name="mail">
           </div>
         </div> 
     
         <div class="invoice-address col-md-12" style="aling-items: center;justify-content: center;">
           <div class="input-group" >
-            <label class="checkbox"><input type="checkbox" name="enviarCorreo"><span>Enviar a correo en Pdf</span></label>
+            <label class="checkbox"><input id="check" type="checkbox" name="enviarCorreo" onchange="activarRequired();"><span>Enviar a correo en Pdf</span></label>
           </div>
         </div>     
     
@@ -219,8 +219,7 @@
                                     data-estadoActual="{{$producto[6]}}" value="{{$producto[3]}}">
                                        <input name="productos[]" type="number" class="numberFact" max="{{$producto[3] - $producto[6]}}" min="0" id="cantidad{{$producto[1]}}" step="1" onkeyup="validarMinMax('#cantidad{{$producto[1]}}');"  value="{{($producto[3] - $producto[6])}}" data-idVenta="{{$producto[1]}}" data-precio="{{$producto[4]}}">
                                     @else
-                                      <input  type="number" class="popover-trigger" readonly value="0"  data-content="<div>Pedido cancelado</div>" data-html="true" data-placement="bottom" data-toggle="popover" style="display: inline-block;-webkit-box-sizing: content-box;-moz-box-sizing: content-box;
-                                      box-sizing: content-box;width: 70%;padding: 3px 10px;border: 1px solid #b7b7b7;-webkit-border-radius: 3px;border-radius: 3px;font: normal 16px/normal "Times New Roman", Times, serif;color: rgba(0,142,198,1);-o-text-overflow: clip;text-overflow: clip;-webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);-moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);-o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);">
+                                      <input  type="number" class="popover-trigger" readonly value="0"  data-content="<div>Pedido cancelado</div>" data-html="true" data-placement="bottom" data-toggle="popover" style="">
                                     @endif
                   </div>
                                   <div class="FactPocket col-xs-2 amount text-center">$<?php echo number_format($producto[4],0,",","."); ?></div>
@@ -390,7 +389,7 @@ function refrescarTabla(id) {
       $("#tabla").append('<div class="row item"><div class="col-xs-5 desc" >'+JSONproductos[i][2]+'</div><div class="FactPocket col-xs-2 text-center" >'+JSONproductos[i][3]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ JSONproductos[i][6]+'</div><div class="FactPocket col-xs-2 amount text-center"><input type="text" hidden="" name="productosId[]" value="'+JSONproductos[i][1]+'"><input type="text" hidden="" name="estados[]" id="estado'+JSONproductos[i][1]+'" data-estadoActual = "'+JSONproductos[i][5]+'" value="'+ JSONproductos[i][3]+'"><input type="number" class="numberFact" onchange="cambio();" max="'+(JSONproductos[i][3] - JSONproductos[i][6])+'" min="0" id="cantidad'+JSONproductos[i][1]+'" step="1" onkeyup="validarMinMax('+String.fromCharCode(39)+string+String.fromCharCode(39)+');"  value="'+ (JSONproductos[i][3] - JSONproductos[i][6])+'" data-idVenta="'+JSONproductos[i][1]+'" data-precio="'+JSONproductos[i][4]+'"></div><div class="FactPocket col-xs-2 amount text-center">$' +Intl.NumberFormat().format(JSONproductos[i][4])+ ' </div><div class="FactPocket col-xs-2 amount text-right" id="total'+JSONproductos[i][1]+'" data-valor="'+(JSONproductos[i][4]*(JSONproductos[i][3] - JSONproductos[i][6]))+'">$'+Intl.NumberFormat().format(JSONproductos[i][4]*(JSONproductos[i][3] - JSONproductos[i][6]))+'</div></div>');
       }
       else{
-        $("#tabla").append('<div class="row item"><div class="col-xs-5 desc" >'+JSONproductos[i][2]+'</div><div class="FactPocket col-xs-2 text-center" >'+JSONproductos[i][3]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ JSONproductos[i][6]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ '<input  type="number" class="popover-trigger" readonly value="0"  data-content="<div>Pedido cancelado</div>" data-html="true" data-placement="bottom" data-toggle="popover" style="display: inline-block;-webkit-box-sizing: content-box;-moz-box-sizing: content-box; box-sizing: content-box;width: 70%;padding: 3px 10px;border: 1px solid #b7b7b7;-webkit-border-radius: 3px;border-radius: 3px;font: normal 16px/normal "Times New Roman", Times, serif;color: rgba(0,142,198,1);-o-text-overflow: clip;text-overflow: clip;-webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);-moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);-o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);">'+'</div><div class="FactPocket col-xs-2 amount text-center">$' +Intl.NumberFormat().format(JSONproductos[i][4])+ ' </div><div class="FactPocket col-xs-2 amount text-right" id="total{{$producto[1]}}" data-valor="0">$'+Intl.NumberFormat().format(0)+'</div></div>');
+        $("#tabla").append('<div class="row item"><div class="col-xs-5 desc" >'+JSONproductos[i][2]+'</div><div class="FactPocket col-xs-2 text-center" >'+JSONproductos[i][3]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ JSONproductos[i][6]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ '<input  type="number" class="popover-trigger" readonly value="0"  data-content="<div>Pedido cancelado</div>" data-html="true" data-placement="bottom" data-toggle="popover">'+'</div><div class="FactPocket col-xs-2 amount text-center">$' +Intl.NumberFormat().format(JSONproductos[i][4])+ ' </div><div class="FactPocket col-xs-2 amount text-right" id="total{{$producto[1]}}" data-valor="0">$'+Intl.NumberFormat().format(0)+'</div></div>');
       }
     }
   }
@@ -448,6 +447,22 @@ $("body").on("change",".numberFact",function(event){
     document.getElementById("total"+idVenta).dataset.valor = (valor*precio);
     actualizarTotal();
 });
+
+$("body").on("change",".infoClinte",function(event){
+    var datos = document.getElementsByClassName("form-control");
+    alert(datos.length);
+});
+
+function activarRequired(){
+    var check = document.getElementById("check");
+    if(check.checked){
+      document.getElementById("nombre").required;
+    }else{
+
+    }
+}
+
+
 function mostrarMensaje(campo, num) {
     //var clase = document.getElementsByClassName("btn btn btn-default popover-trigger");
     //alert(clase.length);

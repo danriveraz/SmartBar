@@ -7,6 +7,7 @@ use Auth;
 use PocketByR\Factura;
 use PocketByR\Venta;
 use PocketByR\Mesa;
+use PocketByR\CLiente;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 
@@ -81,6 +82,16 @@ class CajeroController extends Controller
        //dd($request->estados);
        //dd($request->productos);
       */
+       if($request->nombre != "" && $request->nit != "" && $request->telefono != "" && $request->mail != "" && $request->direccion != ""){
+           $cliente = new Cliente();
+           $cliente->nombre = $request->nombre;
+           $cliente->nit = $request->nit;
+           $cliente->telefono = $request->telefono;
+           $cliente->email = $request->mail;
+           $cliente->direccion = $request->direccion;
+           $cliente->save();
+       }
+
        $estadoProductos = $request->productos;
        $idProductos = $request->productosId;
        $estados =$request->estados;
