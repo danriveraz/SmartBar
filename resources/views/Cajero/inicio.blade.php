@@ -393,6 +393,7 @@ function refrescarTabla(id) {
       }
     }
   }
+  
   $('[data-toggle="popover"]').popover(); 
   document.getElementById("propina").dataset.modificacion="false";
   actualizarTotal();

@@ -186,7 +186,7 @@
      *   DataTables
      * =============================================================================
      */
-    $("#dataTable1,#dataTable2").dataTable({
+    $("#dataTable1").dataTable({
       "sPaginationType": "full_numbers",
       aoColumnDefs: [
         {

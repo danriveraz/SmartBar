@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use PocketByR\Categoria;
+use PocketByR\Producto;
 use Laracasts\Flash\Flash;
 use Auth;
 
@@ -36,7 +37,19 @@ class CategoriaController extends Controller
       $arreglo = array($nombre,$idEmpresa);
       $categorias = Categoria::Search($arreglo)->
                                 get();
-      return view('Categoria.listall')->with('categorias',$categorias);
+      $productos = Producto::where('idCategoria' , $userActual->idEmpresa)->get();
+
+      $arregloProductos[] = array();
+      //dd($categorias);
+      //dd($arregloProductos);
+      //dd(is_array($arregloProductos));
+      for ($i=0; $i < sizeof($categorias); $i++) { 
+          array_push($arregloProductos, Producto::where('idCategoria' , $categorias[$i]->id)->get());
+          //
+      }
+      array_shift($arregloProductos);
+      //dd(sizeof($arregloProductos[0]));
+      return view('Categoria.listall')->with('categorias',$categorias)->with('arregloProductos',$arregloProductos);
     }
 
   	public function store(Request $request){

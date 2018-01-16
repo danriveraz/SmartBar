@@ -586,6 +586,7 @@ body{
 }
 .module {
     border: 1px solid #f3f3f3;
+    border-bottom-color: #FFF;
     border-bottom-width: 2px;
     background: #fff;
     margin-bottom: 30px;

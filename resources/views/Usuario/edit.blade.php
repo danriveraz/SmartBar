@@ -34,8 +34,8 @@
                   <ul class="nav">
                     <li><a data-toggle="tab" href="#tab1"><span class="fa fa-user"></span> Perfil</a></li>
                     <li><a data-toggle="tab" href="#tab2"><span class="fa fa-bars"></span> Categoria</a></li>
-                    <li><a data-toggle="tab" href="#tab3"><p><span class="fa fa-newspaper-o"></span> Factura</p></a></li>
-                    <li><a data-toggle="tab" href="#tab4"><p><span class="fa fa-pencil-square-o"></span> Mesas</p></a></li>
+                    <li><a data-toggle="tab" href="#tab3"><span class="fa fa-newspaper-o"></span> Factura</a></li>
+                    <li><a data-toggle="tab" href="#tab4"><span class="fa fa-pencil-square-o"></span> Mesas</a></li>
                     <li class="active"><a data-toggle="tab" href="#tab5"><span class="fa fa-fw fa-bar-chart-o"></span> Reportes</a></li>
                   </ul>    
               </nav>
@@ -781,7 +781,13 @@
         listmesas();
         $(".gallery-item filter1 fancybox").fancybox({ });
         $("#fechaNacimiento").load(this);
-
+        $('[data-toggle="popover"]').popover();
+        function update(){
+          document.getElementById('no.').style.width = '10%';
+          document.getElementById('opcionesMesas').style.width = '5%';
+          document.getElementById('opcionesCategorias').style.width = '5%';
+        }
+        setInterval(update, 100);
     }); 
 
   $(function() {
@@ -1015,6 +1021,8 @@
 
     // notification popup
   });
+
+
   </script>
 <style type="text/css">
   

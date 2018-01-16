@@ -1,20 +1,18 @@
-{!!Html::script('javascripts\jquery.dataTables.js')!!}
-{!!Html::script('javascripts\main2.js')!!}
 <div class="row">
   <div class="col-sm-12">
     <div class="widget-container fluid-height clearfix">
       <div class="widget-content padded clearfix">
-        <table class="table table-bordered table-striped" id="dataTable1">
+        <table class="table table-bordered table-striped" id="dataTable2">
           <thead>
-            <th width="1%"> </th>
+            <th width="1%" hidden="true"> </th>
             <th width="45%">Nombre</th>
             <th width="45%">Estado</th>
-            <th width="9%">Opciones</th>
+            <th width="9%" id="opcionesMesas">Opciones</th>
           </thead>
           <tbody>
           	@foreach($mesas as $mesa)
             	<tr id="mesa{{$mesa->id}}">
-                <td> </td>
+                <td hidden="true"> </td>
             		<td id="mesa{{$mesa->id}}" class="seleccionar">{{$mesa->nombreMesa}}</td>
             		<td id="mesa{{$mesa->id}}" class="seleccionar">{{$mesa->estado}}</td>
                 <td align="right" >
@@ -131,5 +129,40 @@
       var id = palabra.concat(idElegido);
       $(id).modal();
   });
+
+  $("#dataTable2").dataTable({
+      "sPaginationType": "full_numbers",
+      aoColumnDefs: [
+        {
+          bSortable: false,
+          aTargets: [0, -1]
+        }
+      ]
+    });
+
+    $('.table').each(function() {
+      return $(".table #checkAll").click(function() {
+        if ($(".table #checkAll").is(":checked")) {
+          return $(".table input[type=checkbox]").each(function() {
+            return $(this).prop("checked", true);
+          });
+        } else {
+          return $(".table input[type=checkbox]").each(function() {
+            return $(this).prop("checked", false);
+          });
+        }
+      });
+    });
 </script>
+
+<style type="text/css">
+
+  #dataTable2.thead.tr.th{
+    width: 800px;
+  }
+  
+  .th.sorting_disabled{
+    width: 800px;
+  }
+</style>
 

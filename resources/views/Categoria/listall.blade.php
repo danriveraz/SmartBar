@@ -1,19 +1,25 @@
-
+{!!Html::script('javascripts\main2.js')!!}
 <div class="row">
   <div class="col-sm-12">
     <div class="widget-container fluid-height clearfix">
       <div class="widget-content padded clearfix">
         <table class="table table-bordered table-striped" id="dataTable1">
           <thead>
-            <th width="1%"> </th>
+            <th width="1%" id="no.">No.</th>
             <th width="45%">Nombre</th>
             <th width="45%">Precio</th>
-            <th width="9%">Opciones</th>
+            <th width="9%" id="opcionesCategorias">Opciones</th>
           </thead>
           <tbody>
             @foreach($categorias as $categoria)
               <tr id="categoria{{$categoria->id}}">
-                <td> </td>
+                <div>
+                  <td id="categoria{{$categoria->id}}">
+                    <a class="popover-trigger" readonly value="0"  data-content="Cantidad de productos que pertenecen a esta categoría" data-html="true" data-placement="bottom" data-toggle="popover" style="width: 100%; color: #5A5A5A;">0
+                    </a>
+                  </td>
+                <!--onmouseover="showdiv(event);" onmousemove="showdiv(event);" onmouseout="javascript:document.getElementById('flotante').style.display='none';"-->
+                </div>
                 <td id="categoria{{$categoria->id}}" class="seleccionar">{{$categoria->nombre}}</td>
                 <td id="categoria{{$categoria->id}}" class="seleccionar">{{$categoria->precio}}</td>
                 <td>
@@ -72,9 +78,52 @@
   </div>
 </div>
 
-
+<style type="text/css">
+  #flotante
+  {
+    position: absolute;
+    display:none;
+    font-family:Arial;
+    font-size:0.8em;
+    border:1px solid #808080;
+    background-color:#f1f1f1;
+  }
+</style>
 
 <script type="text/javascript">
+  var JSONproductos = eval(<?php echo json_encode($arregloProductos); ?>);
+
+  for(var i = 0; i < JSONproductos.length; i++){
+    if(JSONproductos[i][0] != null){
+      $("#categoria"+JSONproductos[i][0].idCategoria).children("td").children("a").each(function (indextd){
+      if(indextd == 0){
+        $(this).text(JSONproductos[i].length);
+      }
+    });
+    }
+  }
+
+  $("body").on("mouseenter",".popover-trigger",function(event){
+    var num = 1;
+    var campoOculto = document.getElementsByClassName("popover fade bottom in");
+      if((num == 1 && campoOculto.length == 0) || (num == 2 && campoOculto.length == 1)){
+        $(this).click();
+      }else{
+        $(this).click();
+        $(this).click();
+      }
+  });
+
+  $("body").on("mouseleave",".popover-trigger",function(event){
+    var num = 2;
+    var campoOculto = document.getElementsByClassName("popover fade bottom in");
+      if((num == 1 && campoOculto.length == 0) || (num == 2 && campoOculto.length == 1)){
+        $(this).click();
+      }else{
+        $(this).click();
+        $(this).click();
+      }
+  });
 
   var routeModificarCategoria = "http://localhost/PocketByR/public//categoria/modificar";
   var routeEliminarCategoria = "http://localhost/PocketByR/public//categoria/eliminar";
