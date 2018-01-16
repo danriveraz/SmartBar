@@ -456,9 +456,17 @@ $("body").on("change",".infoClinte",function(event){
 function activarRequired(){
     var check = document.getElementById("check");
     if(check.checked){
-      document.getElementById("nombre").required;
+      document.getElementById("nombre").setAttribute("required", "");
+      document.getElementById("nit").setAttribute("required", "");
+      document.getElementById("telefono").setAttribute("required", "");
+      document.getElementById("direccion").setAttribute("required", "");
+      document.getElementById("mail").setAttribute("required", "");
     }else{
-
+      document.getElementById("nombre").removeAttribute("required");
+      document.getElementById("nit").removeAttribute("required");
+      document.getElementById("telefono").removeAttribute("required");
+      document.getElementById("direccion").removeAttribute("required");
+      document.getElementById("mail").removeAttribute("required");
     }
 }
 
