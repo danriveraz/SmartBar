@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Auth;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
+use PocketByR\Producto;
+use PocketByR\Contiene;
+use PocketByR\Categoria;
+use PocketByR\Factura;
 
 class welcomeAdmin extends Controller
 { 
@@ -29,7 +33,14 @@ class welcomeAdmin extends Controller
      */
     public function index()
     {   
-        return View('WelcomeAdmin/welcome');
+        $categorias = Factura::todasLasVentas(Auth::user()->empresaActual)->get();
+        //dd($categoriasMasVendidas)->get();
+        $categoriasMasVendidas = array();
+        foreach ($categorias as $key => $categoria) {
+            array_push($categoriasMasVendidas,Categoria::find($categoria->idCategoria));
+        }
+        //dd($categoriasMasVendidas);
+        return View('WelcomeAdmin/welcome')->with('categoriasMasVendidas',$categoriasMasVendidas);
     }
 
     /**

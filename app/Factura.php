@@ -1,6 +1,7 @@
 <?php
 
 namespace PocketByR;
+use DB;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,6 +38,17 @@ class Factura extends Model
                     ['venta.estadoMesero', '<>','Cancelado'],
                     ['factura.idEmpresa', $idEmpresa]
                     ]);
+    }
+
+    //Función para los reportes de las categorias más vendidas
+    public function scopeTodasLasVentas($query, $idEmpresa){
+      return $query->where([['factura.estado', 'Finalizada'],['factura.idEmpresa', $idEmpresa]])
+                    ->join('venta', 'factura.id', '=', 'venta.idFactura')
+                    ->join('producto', 'venta.idProducto', '=', 'producto.id')
+                    ->join('categoria', 'producto.idCategoria', '=', 'categoria.id')
+                    ->select(DB::raw('SUM(`cantidad`) as total'),'idCategoria')
+                    ->groupBy('idCategoria')
+                    ->orderBy('total', 'DESC');
     }
 
     public function scopeListar($query, $idEmpresa){
