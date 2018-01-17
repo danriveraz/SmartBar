@@ -252,13 +252,13 @@
                 @endif                
               </div>
               <div class="field grand-total">
-                <input type="text" id="valorInput" name="valor" value=0 id="" hidden="" data-valorAntiguo="{{$facturas[0]->total}}"><input type="text" id="idFactura" name="idFactura" value="{{$facturas[0]->id}}" id="" hidden="">
-                Total <span id="total" data-total="0">$312.00</span>
+                  @if(sizeof($facturas) > 0)
+                    <input type="text" id="valorInput" name="valor" value=0 id="" hidden="" data-valorAntiguo="{{$facturas[0]->total}}"><input type="text" id="idFactura" name="idFactura" value="{{$facturas[0]->id}}" id="" hidden="">
+                  @endif
+                Total <span id="total" data-total="0">$0</span>
               </div>
             </div>
 </div>
-
-
 
 
           <div class="factspace1"></div>
@@ -314,11 +314,18 @@
           
           <div class="row">
             <div class="col-lg-12 center">
-        <button class="factBot btn btn-bitbucket pull-right"><i class="fa fa-money"></i>Pagar</button>
+              @if(sizeof($facturas) > 0)
+              <button class="factBot btn btn-bitbucket pull-right"><i class="fa fa-money"></i>Pagar</button>
+              <button class=" factBot btn btn-bitbucket pull-right" onclick="nada();"><i class="fa fa-print"></i>Imprimir</button>
+              @else
+                <button class="factBot btn btn-bitbucket pull-right" disabled=""><i class="fa fa-money"></i>Pagar</button>
+                <button class=" factBot btn btn-bitbucket pull-right" onclick="nada();" disabled=""><i class="fa fa-print"></i>Imprimir</button>
+              @endif
         </form>
-
-        <button class=" factBot btn btn-bitbucket pull-right" onclick="nada();"><i class="fa fa-print"></i>Imprimir</button>
-        <button class=" factBot btn btn btn-pinterest pull-right" onclick="nada();" style="background-color: #999999;"><i class="fa fa-close"></i>Volver</button>
+        <form name="formulario" autocomplete="on" method="post" action="{{url('cajero/historial')}}">
+          {{csrf_field()}}
+          <button class=" factBot btn btn btn-pinterest pull-right" onclick="nada();" style="background-color: #999999;"><i class="fa fa-close"></i>Historial</button>
+        </form>
 
             </div>
           </div>
@@ -389,7 +396,7 @@ function refrescarTabla(id) {
       $("#tabla").append('<div class="row item"><div class="col-xs-5 desc" >'+JSONproductos[i][2]+'</div><div class="FactPocket col-xs-2 text-center" >'+JSONproductos[i][3]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ JSONproductos[i][6]+'</div><div class="FactPocket col-xs-2 amount text-center"><input type="text" hidden="" name="productosId[]" value="'+JSONproductos[i][1]+'"><input type="text" hidden="" name="estados[]" id="estado'+JSONproductos[i][1]+'" data-estadoActual = "'+JSONproductos[i][5]+'" value="'+ JSONproductos[i][3]+'"><input type="number" class="numberFact" onchange="cambio();" max="'+(JSONproductos[i][3] - JSONproductos[i][6])+'" min="0" id="cantidad'+JSONproductos[i][1]+'" step="1" onkeyup="validarMinMax('+String.fromCharCode(39)+string+String.fromCharCode(39)+');"  value="'+ (JSONproductos[i][3] - JSONproductos[i][6])+'" data-idVenta="'+JSONproductos[i][1]+'" data-precio="'+JSONproductos[i][4]+'"></div><div class="FactPocket col-xs-2 amount text-center">$' +Intl.NumberFormat().format(JSONproductos[i][4])+ ' </div><div class="FactPocket col-xs-2 amount text-right" id="total'+JSONproductos[i][1]+'" data-valor="'+(JSONproductos[i][4]*(JSONproductos[i][3] - JSONproductos[i][6]))+'">$'+Intl.NumberFormat().format(JSONproductos[i][4]*(JSONproductos[i][3] - JSONproductos[i][6]))+'</div></div>');
       }
       else{
-        $("#tabla").append('<div class="row item"><div class="col-xs-5 desc" >'+JSONproductos[i][2]+'</div><div class="FactPocket col-xs-2 text-center" >'+JSONproductos[i][3]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ JSONproductos[i][6]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ '<input  type="number" class="popover-trigger" readonly value="0"  data-content="<div>Pedido cancelado</div>" data-html="true" data-placement="bottom" data-toggle="popover">'+'</div><div class="FactPocket col-xs-2 amount text-center">$' +Intl.NumberFormat().format(JSONproductos[i][4])+ ' </div><div class="FactPocket col-xs-2 amount text-right" id="total{{$producto[1]}}" data-valor="0">$'+Intl.NumberFormat().format(0)+'</div></div>');
+        $("#tabla").append('<div class="row item"><div class="col-xs-5 desc" >'+JSONproductos[i][2]+'</div><div class="FactPocket col-xs-2 text-center" >'+JSONproductos[i][3]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ JSONproductos[i][6]+'</div><div class="FactPocket col-xs-2 amount text-center">'+ '<input  type="number" class="popover-trigger" readonly value="0"  data-content="<div>Pedido cancelado</div>" data-html="true" data-placement="bottom" data-toggle="popover">'+'</div><div class="FactPocket col-xs-2 amount text-center">$' +Intl.NumberFormat().format(JSONproductos[i][4])+ ' </div><div class="FactPocket col-xs-2 amount text-right" id="total'+JSONproductos[i][1]+'" data-valor="0">$'+Intl.NumberFormat().format(0)+'</div></div>');
       }
     }
   }
