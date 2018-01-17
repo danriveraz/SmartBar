@@ -372,7 +372,7 @@
                   </div>
                   <div class="col-md-9" id="notasAdicionales">
                     <label style="display: block;">Notas adicionales</label>
-                    <textarea id="notas" name="notas" class="form-control" rows="4" cols="100" maxlength="140" placeholder="Pon tu mensaje aquí" style="resize: none;">{{$empresa->notas}}</textarea>
+                    <textarea id="notas" name="notas" class="form-control" rows="4" cols="100" maxlength="140" placeholder="Pon tu mensaje aquí" style="resize: none;">{{$empresa->notas}} </textarea>
                   </div>
                 </div>
               </div>
