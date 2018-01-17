@@ -64,24 +64,14 @@ class CajeroController extends Controller
         }
     	return view('Cajero.inicio')->with('mesas',$mesas)->with('totalVentas',$totalVentas);;
     }
-    public function recibo(Request $request){
-        $factura = Factura::find($request->id);
-        return view('Cajero.recibo')->with('factura',$factura);
+    public function historial(Request $request){
+      dd(23);
+       return view('Cajero.historial');
     }
     public function show($id){
 
     }
      public function edit(Request $request){
-       /*$imprimir = [ $request->nombre,
-       $request->telefono,
-       $request->mail,
-       $request->nit,
-       $request->direccion,
-       $request->enviarCorreo];
-       //dd($request->productos);
-       //dd($request->estados);
-       //dd($request->productos);
-      */
        if($request->nombre != "" && $request->nit != "" && $request->telefono != "" && $request->mail != "" && $request->direccion != ""){
            $cliente = new Cliente();
            $cliente->nombre = $request->nombre;

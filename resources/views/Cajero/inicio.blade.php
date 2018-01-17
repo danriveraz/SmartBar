@@ -1,4 +1,4 @@
-@extends(Auth::User()->esAdmin ? 'Layout.app_administradores' : 'Layout.app_empleado');
+@extends(Auth::User()->esAdmin ? 'Layout.app_administradores' : 'Layout.app_empleado')
 @section('content')
 
 {!!Html::style('css/content-box.css')!!}
@@ -322,10 +322,7 @@
                 <button class=" factBot btn btn-bitbucket pull-right" onclick="nada();" disabled=""><i class="fa fa-print"></i>Imprimir</button>
               @endif
         </form>
-        <form name="formulario" autocomplete="on" method="post" action="{{url('cajero/historial')}}">
-          {{csrf_field()}}
-          <button class=" factBot btn btn btn-pinterest pull-right" onclick="nada();" style="background-color: #999999;"><i class="fa fa-close"></i>Historial</button>
-        </form>
+          <a class=" factBot btn btn btn-pinterest pull-right" href="{{ url('cajero/historial') }}" style="background-color: #999999;"><i class="fa fa-file-text-o"></i>Historial</a>
 
             </div>
           </div>
