@@ -263,9 +263,9 @@
                       </i>Mi Perfil</a>
                     </li>
                     <li>
-                      <a href="{{url('Auth/modificarEmpresa')}}">
-                      <i class="fa fa-gear">
-                      </i>Ajustes</a>
+                      <a href="{{url('cajero/historial')}}">
+                      <i class="fa fa-file-text-o">
+                      </i>Facturación</a> 
                     </li>
                     <li>
                       <a href="login1.htm">

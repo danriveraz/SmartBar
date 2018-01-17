@@ -43,30 +43,10 @@ class CajeroController extends Controller
         }
     	return view('Cajero.inicio')->with('totalVentas',$totalVentas)->with('facturas',$facturas)->with('user',$userActual)->with('productos',$productos);
     }
-    public function store(Request $request){
-    	$nombre = $request->nombre;
-        $idEmpresa = Auth::user()->idEmpresa;
-        $arreglo = array($nombre, $idEmpresa);
-    	if($request->verFacturas == 'on'){
-    		$mesas = Factura::buscarMesa($arreglo)
-    					->get();
-    	}
-    	else{
-    		$mesas = Factura::buscarMesaEnProceso($arreglo)
-    					->get();
-    	}
-        $userActual = Auth::user();
-        $idFacturas = Factura::listarFacturaDia($userActual->idEmpresa)->get();
-        $ventas = Venta::vendido($idFacturas)->get();
-        $totalVentas = 0;
-        foreach ($ventas as $venta ) {
-            $totalVentas = $totalVentas + ($venta->producto->precio * $venta->cantidad);
-        }
-    	return view('Cajero.inicio')->with('mesas',$mesas)->with('totalVentas',$totalVentas);;
-    }
+    
     public function historial(Request $request){
-      dd(23);
-       return view('Cajero.historial');
+      $facturas = Factura::listarTodas(Auth::user()->empresaActual)->get();
+      return view('Cajero.historial')->with('facturas',$facturas);
     }
     public function show($id){
 

@@ -77,9 +77,10 @@ Route::resource('bartender', 'BartenderController');
 
 Route::resource('Estadisticas', 'EstadisticasController');
 
-Route::resource('cajero', 'CajeroController');
 Route::post('cajero/edit', 'CajeroController@edit');
+Route::get('cajero/', 'CajeroController@index');
 Route::get('cajero/historial', 'CajeroController@historial');
+
 
 Route::get('mesero/venta',  'MeseroController@venta');
 Route::get('mesero/disminuir',  'MeseroController@disminuir');

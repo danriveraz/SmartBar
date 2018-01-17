@@ -138,4 +138,9 @@ class Factura extends Model
               ->where('factura.estado','En proceso');
         return $query;
       }
+    public function scopeListarTodas($query, $idEmpresa){
+        $query->where('factura.idEmpresa', $idEmpresa)
+        ->where('factura.estado','Finalizada');
+        return $query;
+    }
 }

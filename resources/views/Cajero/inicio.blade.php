@@ -159,12 +159,13 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="widget-container fluid-height clearfix">
-          
               <div class="col-md-4 text-center">
                 <div class="heading" style="color:#9F9F9F;">
                   <i class="fa fa-houzz"></i>Mesero:<span id="mesero">         
-                    @if(sizeof($facturas) != 0)
-                      {{$facturas[0]->ventasHechas[0]->mesero->nombrePersona}}
+                    @if(sizeof($facturas) > 0)
+                      @if(sizeof($facturas[0]->ventasHechas) > 0)
+                        {{$facturas[0]->ventasHechas[0]->mesero->nombrePersona}}
+                      @endif
                     @endif</span>
                 </div>
           <div class="factspace3"></div>
@@ -172,16 +173,21 @@
               <div class="col-md-4 text-center">
                 <div class="heading"  style="color:#9F9F9F;">
                   <i class="fa fa-imdb"></i>Bartender:<span id="bartender"> 
-                   @if(sizeof($facturas) != 0)
-                      {{$facturas[0]->ventasHechas[0]->bartender->nombrePersona}}
+                   @if(sizeof($facturas) > 0)
+                      @if(sizeof($facturas[0]->ventasHechas) > 0)
+                        {{$facturas[0]->ventasHechas[0]->bartender->nombrePersona}}
+                      @endif
                     @endif</span>
                 </div>
           <div class="factspace3"></div>
               </div>
               <div class="col-md-4 text-center">
                 <div class="heading"  style="color:#9F9F9F;">
-                  <i class="fa fa-imdb"></i>Cajero:<span id="cajero">  @if(sizeof($facturas) != 0)
-                      {{$facturas[0]->ventasHechas[0]->cajero->nombrePersona}}
+                  <i class="fa fa-imdb"></i>Cajero:<span id="cajero">  
+                    @if(sizeof($facturas) > 0)
+                      @if(sizeof($facturas[0]->ventasHechas) > 0)
+                        {{$facturas[0]->ventasHechas[0]->cajero->nombrePersona}}
+                      @endif                        
                     @endif</span>
                 </div>
           <div class="factspace3"></div>
