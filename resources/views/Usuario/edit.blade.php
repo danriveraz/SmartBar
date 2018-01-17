@@ -100,7 +100,7 @@
                                 </div>
                               </div>
                               <div class="form-group" hidden="true">
-                                      <input id="ventana" name="ventana" class="form-control" value=""  type="text">
+                                  <input id="ventana" name="ventana" class="form-control" value=""  type="text">
                               </div>
                             </div>
                             <!-- END LEFT SECTION -->
@@ -122,7 +122,7 @@
                               <div class="form-group">
                                 <label>Regimen</label>
                                 <div>
-                                  <select name="tipoRegimen" class="form-control">
+                                  <select id="tipoRegimen" name="tipoRegimen" class="form-control">
                                     @if($empresa->tipoRegimen=='')
                                       <option>Tipo regimen</option>
                                       <option value="comun">Regimen comun</option>
@@ -161,7 +161,7 @@
                           <div class="form-group" align="center">
                             <p class="margin-top-30">
                               <button id="btn-guardar1" class="btn btn-bitbucket" onclick="setValue(this)">
-                                <i class="fa fa-send"></i>Guardar
+                                Guardar
                               </button>
                             </p>
                           </div>
@@ -363,11 +363,43 @@
 
         <div class="tab-pane" id="tab3">
           <div id="main-content">
-            <div class="container-fluid">
-              <div class="section-heading">
-                <h1 class="page-title">Factura</h1>
+            {!! Form::open(['route' => ['Auth.usuario.editUsuario',$usuario], 'method' => 'POST','enctype' => 'multipart/form-data', 'id' => 'formEditFactura']) !!}
+              {{ csrf_field() }}
+              <div class="container-fluid">
+                <div class="cover-inside">
+                  <div class="col-md-3">
+                    <img class="cover-avatar size-md img-round" src="{{'../../../images/bar.png'}}" alt="profile">
+                  </div>
+                  <div class="col-md-9" id="notasAdicionales">
+                    <label style="display: block;">Notas adicionales</label>
+                    <textarea id="notas" name="notas" class="form-control" rows="4" cols="100" maxlength="140" placeholder="Pon tu mensaje aquí" style="resize: none;">{{$empresa->notas}}</textarea>
+                  </div>
+                </div>
               </div>
-            </div>
+
+              <div id="divComun" class="form-group"  style="display: none;" <?php if($empresa->tipoRegimen == "asdas")echo'style="display:block;"' ?>>
+                <label class="control-label col-md-2"></label>
+                <div class="fileupload fileupload-new" data-provides="fileupload">
+                  <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
+                    @if($empresa->imagenResolucionFacturacion!='')
+                      {!! Html::image('images/admins/'.$empresa->imagenResolucionFacturacion , 'resolución') !!}
+                    @else
+                      <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
+                    @endif
+                  </div>
+                  <div class="fileupload-preview fileupload-exists img-thumbnail" style="width: 200px; max-height: 150px"></div>
+                  <div align="center">
+                    <span class="btn btn-default btn-file"><span class="fileupload-new">Cargar</span><span class="fileupload-exists">Cambiar</span><input type="file" class="form-control" name="imagenEstablecimiento" ></span><a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Eliminar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" hidden="true">
+                  <input id="ventanaFactura" name="ventanaFactura" class="form-control" value=""  type="text">
+              </div>
+              <div class="form-group" style="text-align: center;">
+                <button id="btn-guardar3" class="btn btn-bitbucket" onclick="setValue(this)" style="margin-top: 30px;">Guardar</button>
+              </div>
+            {!! Form::close() !!}
           </div>
         </div>
         
@@ -787,7 +819,7 @@
           document.getElementById('opcionesMesas').style.width = '5%';
           document.getElementById('opcionesCategorias').style.width = '5%';
         }
-        setInterval(update, 100);
+        setTimeout(update, 1000);
     }); 
 
   $(function() {
@@ -810,6 +842,8 @@
       }else{
         alert("Las contraseña no coinciden");
       }
+    }else if(idBtn.id == "btn-guardar3"){
+      ventanaFactura.value = 3;
     }
   };
 
@@ -1024,7 +1058,34 @@
 
 
   </script>
+
 <style type="text/css">
+
+  .cover-img {
+      display: block;
+      min-height: 100%;
+      margin: 0 auto;
+  }
+
+  .cover-avatar.size-md {
+      width: 170px;
+      height: 170px;
+      border: 5px solid #f0f0f0;
+    }
+
+  .cover-inside * {
+      line-height: 2;
+  }
+
+  .img-round {
+  border-radius: 100px 100px 100px 100px;
+  -moz-border-radius: 100px 100px 100px 100px;
+  -webkit-border-radius: 100px 100px 100px 100px;
+  }
+
+  #notasAdicionales{
+
+  }
   
   #main-content {
     padding-top: 5%;

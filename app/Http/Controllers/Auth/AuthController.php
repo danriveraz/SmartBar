@@ -137,6 +137,7 @@ class AuthController extends Controller
             $empresa->usuario_id = $admin->id;// obtiene el id del usuario que creo la empres apara saber la referencia 
             $empresa->departamento = $departamentos[($request->idDepto) -1]->nombre;
             $empresa->ciudad = $ciudades[($request->idCiudad) -1]->nombre;
+            $empresa->notas = "Felicidad es saber que cuentas con un compañero inseparable como SMARTBAR.";
             $empresa->save();// guarda los cambios 
 
             

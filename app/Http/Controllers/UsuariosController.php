@@ -255,6 +255,14 @@ class UsuariosController extends Controller
         }        
       }
     }
+    if($request->ventanaFactura == 3){
+      $usuario = User::find($id);
+      $empresa =  Auth::User()->empresa;
+      $empresa->notas = $request->notas;
+      $empresa->save();
+      flash::success('La empresa ha sido modificada satisfactoriamente')->important();
+      return redirect('Auth/usuario/'.$usuario->id.'/edit');
+    }
   }
 
   public function update(Request $request, $id){
