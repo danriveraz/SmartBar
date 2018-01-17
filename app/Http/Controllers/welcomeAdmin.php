@@ -10,6 +10,8 @@ use PocketByR\Producto;
 use PocketByR\Contiene;
 use PocketByR\Categoria;
 use PocketByR\Factura;
+use DB;
+use Carbon\Carbon;
 
 class welcomeAdmin extends Controller
 { 
@@ -33,14 +35,33 @@ class welcomeAdmin extends Controller
      */
     public function index()
     {   
-        $categorias = Factura::todasLasVentas(Auth::user()->empresaActual)->get();
-        //dd($categoriasMasVendidas)->get();
-        $categoriasMasVendidas = array();
+        $categorias = Factura::todasLasVentas(Auth::user()->empresaActual)->get();// obtiene el id de las 4 categorias más vendidas
+        $categoriasMasVendidas = array();// arreglo donde se guarda el objeto categoria de las 4 más vendidas
         foreach ($categorias as $key => $categoria) {
             array_push($categoriasMasVendidas,Categoria::find($categoria->idCategoria));
         }
-        //dd($categoriasMasVendidas);
-        return View('WelcomeAdmin/welcome')->with('categoriasMasVendidas',$categoriasMasVendidas);
+
+        $carbon = new \Carbon\Carbon();
+
+        $sumaVentasDeCadaCategoria = array(); // arreglo donde se guardar la suma de las ventas de cada categoria 
+        foreach ($categorias as $key => $categoria) {
+
+            $fechaInicioEstadisticas = $carbon->now()->subWeek(5)->startOfWeek();// fecha del lunes, de la sexta semana anterior
+
+            $sumas = array();// arreglo para las ventas de cada semana
+            for ($i=0; $i <6 ; $i++) { 
+                $fechaInit = $fechaInicioEstadisticas->toDateTimeString();//inicio de semana
+                $fechaFin = $fechaInicioEstadisticas->addWeek(1)->toDateTimeString();//Fin desemana
+                $suma =  $ventasDespuesDe = Factura::ventasEntreFechas($categoria->idCategoria,$fechaInit,$fechaFin)
+                        ->select(DB::raw('SUM(`cantidad`) as total'))
+                        ->first();// todas las ventas de la categoria después de la fecha de inicio de la sexta semana anterior
+                array_push($sumas, $suma->total);
+            } 
+            array_push($sumaVentasDeCadaCategoria, $sumas); 
+        }
+        //dd($sumaVentasDeCadaCategoria);
+
+        return View('WelcomeAdmin/welcome')->with('categoriasMasVendidas',$categoriasMasVendidas)->with('sumaVentasDeCadaCategoria',$sumaVentasDeCadaCategoria);
     }
 
     /**

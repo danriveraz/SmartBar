@@ -2,6 +2,7 @@
 
 namespace PocketByR;
 use DB;
+use Carbon\Carbon;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -40,7 +41,7 @@ class Factura extends Model
                     ]);
     }
 
-    //Función para los reportes de las categorias más vendidas
+    //Función para los reportes de las categorias más vendidas, hace un groupby por las categorias, suma todas las ventas y las ordena descendentemente para que la más vendida quede arriba y lo limita a 4
     public function scopeTodasLasVentas($query, $idEmpresa){
       return $query->where([['factura.estado', 'Finalizada'],['factura.idEmpresa', $idEmpresa]])
                     ->join('venta', 'factura.id', '=', 'venta.idFactura')
@@ -48,7 +49,17 @@ class Factura extends Model
                     ->join('categoria', 'producto.idCategoria', '=', 'categoria.id')
                     ->select(DB::raw('SUM(`cantidad`) as total'),'idCategoria')
                     ->groupBy('idCategoria')
-                    ->orderBy('total', 'DESC');
+                    ->orderBy('total', 'DESC')
+                    ->limit(4);
+    }
+
+    public function scopeVentasEntreFechas($query,$idCategoria,$fechaInicio,$fechaFinal){
+      return $query->where([['factura.estado', 'Finalizada'],['factura.fecha','>=',$fechaInicio],['factura.fecha','<',$fechaFinal]])
+                    ->join('venta', 'factura.id', '=', 'venta.idFactura')
+                    ->join('producto', 'venta.idProducto', '=', 'producto.id')
+                    ->join('categoria', 'producto.idCategoria', '=', 'categoria.id')
+                    ->where('categoria.id', $idCategoria);
+                    //->select(DB::raw('SUM(`cantidad`) as total'),'idCategoria');
     }
 
     public function scopeListar($query, $idEmpresa){

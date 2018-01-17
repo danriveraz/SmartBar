@@ -109,7 +109,14 @@
                 <div class="col-md-3 col-sm-6">
                   <div class="number-chart">
                     <div class="mini-stat">
-                      <div id="number-chart{{$key+1}}" class="inlinesparkline">0,0,0,0</div>
+                      <div id="number-chart{{$key+1}}" class="inlinesparkline">
+                        {{$sumaVentasDeCadaCategoria[$key][0]}},
+                        {{$sumaVentasDeCadaCategoria[$key][1]}},
+                        {{$sumaVentasDeCadaCategoria[$key][2]}},
+                        {{$sumaVentasDeCadaCategoria[$key][3]}},
+                        {{$sumaVentasDeCadaCategoria[$key][4]}},
+                        {{$sumaVentasDeCadaCategoria[$key][5]}}
+                      </div>
                       <p class="text-muted"><i class="fa fa-pause text-success"></i> 0% Comparado a la semana pasada</p>
                     </div>
                     <div class="number"><span>${{$categoria->precio}}</span> <span>{{$categoria->nombre}}</span></div>
