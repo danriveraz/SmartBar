@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Validator;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use PocketByR\User;
+use PocketByR\Departamento;
+use PocketByR\Ciudad;
 use Auth;
 use Mail;
 use Laracasts\Flash\Flash;
@@ -159,9 +161,12 @@ class UsuariosController extends Controller
   }
 
   public function edit($id){
+    $departamentos = Departamento::all();
+    $ciudades = Ciudad::all();
     $usuario = User::find($id);
     $Empresa = Empresa::find($usuario->idEmpresa);
-    return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa);
+    return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)
+                ->with('ciudades', $ciudades);;
   }
 
   public function updateProfile(Request $request, $id){
@@ -254,8 +259,11 @@ class UsuariosController extends Controller
           }
         }        
       }
+    }else if($request->ventana == 3){
+      dd("jiji");
     }
-    if($request->ventanaFactura == 3){
+
+    if($request->ventanaFactura == 4){
       $usuario = User::find($id);
       $empresa =  Auth::User()->empresa;
       $empresa->notas = $request->notas;

@@ -213,7 +213,7 @@
           <ul>
               <li>Hasta 20 Empleados</li>
               <li>Asesoria de Lunes a Sábado (✓)</li>
-              <li>Hasta 3 negocios</li>
+              <li>Hasta 2 negocios</li>
               <li>Promociones Únicas y especiales SmartShop</li>
               <li>Uso del programa por 6 meses</li>
               <li>Información segura hasta por 1 año</li>
@@ -222,7 +222,7 @@
               <li>Ahorra hasta $ 100.000 Cop</li>
               
           </ul>
-          <h3 class="plan-price">$ 499.500 COP/Mes</h3>
+          <h3 class="plan-price">$ 499.500 COP</h3>
           <p>
             10% descuento en pago anual.
           </p>
@@ -232,7 +232,7 @@
           <ul>
               <li>Empleados infinitos</li>
               <li>Asesoria de 24/7, 365 días al año (✓)</li>
-              <li>Hasta 10 Negocios</li>
+              <li>Hasta 4 Negocios</li>
               <li>Todas las promociones SmartShop</li>
               <li>Uso del programa por 3 años</li>
               <li>Información segura hasta por 5 años</li>
@@ -240,7 +240,7 @@
               <li>El mes 1, 12,24 y 36 son GRATIS</li>
               <li>Ahorra hasta $ 400.000 Cop</li>
           </ul>
-          <h3 class="plan-price">$ 2.998.800 COP/Mes</h3>
+          <h3 class="plan-price">$ 2.998.800 COP</h3>
           <p>
             Descuento en membresia de $ 198.000 Cop
           </p>

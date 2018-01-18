@@ -209,38 +209,67 @@
                           <div class="left">
                             <div class="profile-section">
                               <h2 class="profile-heading">Membresia</h2>
-                              <div class="plan selected-plan">
-                                <h3 class="plan-title">Única <span> (Actualmente) <i class="fa fa-check-circle"></i></span></h3>
+
+                              <div id="plan1" class="plan">
+                                <h3 class="plan-title">Única<span><i id="check1" class=""></i></span></h3>
                                 <ul class="list-unstyled list-plan-details">
-                                  <li>Uso del programa = 1 Mes</li>
-                                  <li>Promociones únicas SmartShop</li>
-                                  <li>Protección de información = 1 Mes extra</li>
+                                  <li>Hasta 7 empleados</li>
+                                  <li>Asesoria de Lunes a Viernes(✓)</li>
+                                  <li>1 sólo negocio</li>
+                                  <li>Promociones Únicas SmartShop</li>
+                                  <li>Uso del programa por 30 días</li>
+                                  <li>Información segura hasta por 90 días</li>
+                                  <li>Acceso al 100% de las utilidades SmartBar</li>
+                                  <li>No aplica mes GRATIS</li>
+                                  <li>0% de ahorro</li>
+                                  <li><h4><strong>$ 99.900 COP/Mes</strong></h4></li>
+                                  <li>10% descuento en pago trimestral.</li>
                                 </ul>
-                                <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Unirte al Club</button>
+                                <div>
+                                  <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Unirte al Club</button>
+                                </div>
                               </div>
-                              <div class="plan">
-                                <h3 class="plan-title">Especial</h3>
+
+                              <div id="plan2" class="plan">
+                                <h3 class="plan-title">Especial<span><i id="check2" class=""></i></span></h3>
                                 <ul class="list-unstyled list-plan-details">
-                                  <li>Uso del programa = 12 Meses</li>
-                                  <li>Promociones especiales y únicas SmartShop</li>
-                                  <li>Ahorro de $268.000</li>
-                                  <li>Protección información = 3 Meses extra</li>
-                                  <li>Sin clausulas, Ni recargos</li>
+                                  <li>Hasta 20 empleados</li>
+                                  <li>Asesoria de Lunes a Sábado(✓)</li>
+                                  <li>Hasta 2 negocios</li>
+                                  <li>Promociones Únicas y especiales SmartShop</li>
+                                  <li>Uso del programa por 6 meses</li>
+                                  <li>Información segura hasta por 1 año</li>
+                                  <li>Acceso al 100% de las utilidades SmartBar</li>
+                                  <li>El mes 6 es GRATIS</li>
+                                  <li>Ahorra hasta  $ 100.000 Cop</li>
+                                  <li><h4><strong>$ 499.500 COP</strong></h4></li>
+                                  <li>10% descuento en pago anual.</li>
                                 </ul>
-                                <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Unirte al Club</button>
+                                <div>
+                                  <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Unirte al Club</button>
+                                </div>
                               </div>
-                              <div class="plan">
-                                <h3 class="plan-title">Master</h3>
+
+                              <div id="plan3" class="plan">
+                                <h3 class="plan-title">Élite<span><i id="check3" class=""></i></span></h3>
                                 <ul class="list-unstyled list-plan-details">
-                                  <li>Uso del Programa = 60 Meses</li>
-                                  <li>Todas las promociones Smartshop</li>
-                                  <li>Ahorro de $ 2.400.000</li>
-                                  <li>Protecciòn de la información = 6 Meses Extra</li>
-                                  <li>Membresia con Descuento especial, por tiempo limitado</li>
-                                  <li>Sin clausulas, ni recargos</li>
+                                  <li>Empleados infinitos</li>
+                                  <li>Asesoria de 24/7, 365 días al año (✓)</li>
+                                  <li>Hasta 4 negocios</li>
+                                  <li>Todas las promociones SmartShop</li>
+                                  <li>Uso del programa por 3 años</li>
+                                  <li>Información segura hasta por 5 años</li>
+                                  <li>Acceso al 100% de las utilidades SmartBar</li>
+                                  <li>El mes 1, 12,24 y 36 son GRATIS</li>
+                                  <li>Ahorra hasta $ 400.000 Cop</li>
+                                  <li><h4><strong>$ 2.998.800 COP</strong></h4></li>
+                                  <li>Descuento en membresia de $ 198.000 Cop</li>
                                 </ul>
-                                <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Unirte al Club</button>
+                                <div>
+                                  <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Unirte al Club</button>
+                                </div>
                               </div>
+
                             </div>
                           </div>
                           <div class="right">
@@ -299,10 +328,74 @@
                       <!-- END BILLINGS -->
                       <!-- PREFERENCES -->
                       <div class="tab-pane fade" id="preferences">
-                        <div class="clearfix">
-                          <div class="left">
-                            <div class="profile-section">
+                        <div class="profile-section">
+                          <div id="mensajeGratis" class="form-group" style="display: none;">
+                            <strong><h3>Para acceder a esta opción adquiere una membresía <a href="">aquí</a></h3></strong>
+                          </div>
+                          <div id="mensajeClub" class="form-group" style="display: none;">
+                            <strong><h3>Tu membresía única solo cuenta con almacenamiento suficiente para un solo negocio, mejora tu 
+                                        membresía <a href="">aquí</a></h3></strong>
+                          </div>
+                          <div id="bolsillo" class="clearfix">
+                            <h2> Información Bar</h2>
+                            <div class="left">
+                              <div class="form-group">
+                                <label>Nombre</label>
+                                <input name="nombreEstablecimientoNBar" type="text" class="form-control" placeholder="Nombre del Establecimiento">
+                              </div>
+                              <div class="form-group">
+                                <label>Dirección</label>
+                                <input name="direccionEstablecimientoNBar" type="text" class="form-control" placeholder="Dirección">
+                              </div>
+                              <div class="form-group">
+                                <label>Teléfono</label>
+                                <input name="telefonoEstablecimientoNBar" type="text" class="form-control" placeholder="Teléfono o celular"
+                                maxlength="10">
+                              </div>
+                              <div class="form-group">
+                                <label>Regimen</label>
+                                <div>
+                                  <select name="tipoRegimenNBar" class="form-control">
+                                      <option>Tipo regimen</option>
+                                      <option value="comun">Regimen comun</option>
+                                      <option value="simplificado">Regimen simplificado</option>
+                                  </select>
+                                </div>
+                              </div>
                             </div>
+                            <div class="right">
+                              <div class="form-group">
+                                <label>Nit</label>
+                                <div>
+                                    <input name="nitNBar" type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label>Departamento</label>
+                                <div>
+                                  <select id="idDepto"  name="idDepto" required class="form-control">
+                                    @foreach($departamentos as $departamento)
+                                      <option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
+                                    @endforeach
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label>Ciudad</label>
+                                <div>
+                                  <select id="idCiudad" name="idCiudad" required class="form-control">
+                                    <option></option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group" align="center">
+                            <p class="margin-top-30">
+                              <button id="btn-guardar3" class="btn btn-bitbucket" onclick="setValue(this)">
+                                Guardar
+                              </button>
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -397,7 +490,7 @@
                   <input id="ventanaFactura" name="ventanaFactura" class="form-control" value=""  type="text">
               </div>
               <div class="form-group" style="text-align: center;">
-                <button id="btn-guardar3" class="btn btn-bitbucket" onclick="setValue(this)" style="margin-top: 30px;">Guardar</button>
+                <button id="btn-guardar4" class="btn btn-bitbucket" onclick="setValue(this)" style="margin-top: 30px;">Guardar</button>
               </div>
             {!! Form::close() !!}
           </div>
@@ -808,19 +901,56 @@
       
 <!-- JAVASCRIPT -->
 <script>
-  $(document).ready(function(){  
-        listcat();
-        listmesas();
-        $(".gallery-item filter1 fancybox").fancybox({ });
-        $("#fechaNacimiento").load(this);
-        $('[data-toggle="popover"]').popover();
-        function update(){
-          document.getElementById('no.').style.width = '10%';
-          document.getElementById('opcionesMesas').style.width = '5%';
-          document.getElementById('opcionesCategorias').style.width = '5%';
+  var JSONusuario = eval(<?php echo json_encode($usuario); ?>);
+  
+  $(document).ready(function(){
+      listcat();
+      listmesas();
+      $(".gallery-item filter1 fancybox").fancybox({ });
+      $("#fechaNacimiento").load(this);
+      $('[data-toggle="popover"]').popover();
+      function update(){
+        document.getElementById('no.').style.width = '10%';
+        document.getElementById('opcionesMesas').style.width = '5%';
+        document.getElementById('opcionesCategorias').style.width = '5%';
+      }
+      setTimeout(update, 1000);
+      if (JSONusuario.membresia == 0) {
+        document.getElementById("bolsillo").style.display = 'none';
+        document.getElementById("btn-guardar3").style.display = 'none';
+        document.getElementById("mensajeGratis").style.display = 'block';
+      }else if(JSONusuario.membresia == 1){
+        document.getElementById("plan1").className = "plan selected-plan";
+        document.getElementById("check1").className = "fa fa-check-circle";
+        document.getElementById("bolsillo").style.display = 'none';
+        document.getElementById("btn-guardar3").style.display = 'none';
+        document.getElementById("mensajeClub").style.display = 'block';
+      }else if(JSONusuario.membresia == 2){
+        document.getElementById("plan2").className = "plan selected-plan";
+        document.getElementById("check2").className = "fa fa-check-circle";
+      }else if(JSONusuario.membresia == 3){
+        document.getElementById("plan3").className = "plan selected-plan";
+        document.getElementById("check3").className = "fa fa-check-circle";
+      }
+  });
+
+  $('#idDepto').on('change', function (event) {
+      var id = $(this).find('option:selected').val();
+      $('#idCiudad').empty();
+      $('#idCiudad').append($('<option>', {
+            value: 0,
+            text: 'Elija una opción'
+        }));
+      JSONCiudades = eval(<?php echo json_encode($ciudades);?>);
+      JSONCiudades.forEach(function(currentValue,index,arr) {
+        if(currentValue.idDepartamento == id){
+          $('#idCiudad').append($('<option>', {
+            value: currentValue.id,
+            text: currentValue.nombre
+        }));
         }
-        setTimeout(update, 1000);
     }); 
+  });
 
   $(function() {
     // plans
@@ -843,7 +973,9 @@
         alert("Las contraseña no coinciden");
       }
     }else if(idBtn.id == "btn-guardar3"){
-      ventanaFactura.value = 3;
+      ventana.value = 3;
+    }else if(idBtn.id == "btn-guardar4"){
+      ventanaFactura.value = 4;
     }
   };
 
