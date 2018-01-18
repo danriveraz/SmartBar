@@ -18,7 +18,7 @@
 						</thead>
 						<tbody>
 							@foreach($facturas as $factura)
-		                    	<tr data-info="1">
+		                    	<tr data-info="{{$factura->id}}">
 		                    		<td class="details-control">{{$factura->idBar}}</td>
 		                    		<td class="details-control">
 		                    			<?php  $date = new DateTime($factura->fecha);
@@ -44,37 +44,57 @@
 		</div>
 	</div>
 </div>
+
 <script type="text/javascript">
+	//#32bf32
+	var JSONproductos = eval(<?php echo json_encode($productos); ?>);   	
+
+//<a class="popover-trigger" readonly value="0"  data-content="Cantidad de productos que pertenecen a esta categoría" data-html="true" data-placement="bottom" data-toggle="popover" style="width: 100%; color: #5A5A5A;">0</a>
 	function format ( d ) {
-    // `d` is the original data object for the row
-    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+   	var datos = "";
+   	var color = " style='color:black;'";
+   		for(i = 0; i < JSONproductos.length; i++){
+   	 		if(JSONproductos[i][0] == d){
+	   			if(JSONproductos[i][4]== "Cancelado"){
+	   				datos+='<tr style="text-align: center; color:red;" class="fila"><td><a class="popover-trigger" readonly  data-content="<div'+color+'>Este pedido fue cancelado</div>" data-html="true" data-placement="bottom" data-toggle="popover" style="width: 100%; color:red;">'+JSONproductos[i][1]+'</a></td><td>'+JSONproductos[i][2] +'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3])+'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3]*JSONproductos[i][1])+'</td></tr>';
+	   			}else if(JSONproductos[i][5] == 1){
+	   				datos+='<tr style="text-align: center; color:#32bf32;" class="fila"><td><a class="popover-trigger" readonly  data-content="<div'+color+'>Este producto fue obsequiado</div>" data-html="true" data-placement="bottom" data-toggle="popover" style="width: 100%; color:#32bf32;">'+JSONproductos[i][1]+'</a></td><td>'+JSONproductos[i][2] +'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3])+'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3]*JSONproductos[i][1])+'</td></tr>';
+	   			}else{
+	   				datos+='<tr style="text-align: center;"><td>'+JSONproductos[i][1]+'</td><td>'+JSONproductos[i][2] +'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3])+'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3]*JSONproductos[i][1])+'</td></tr>';
+	   			}
+   		}
+   	}
+    return '<div class="col-md-6 col-md-offset-3"><table class="table table-bordered table-striped"><thead>'+
         '<tr>'+
-            '<td>Full name:</td>'+
-            '<td> assas'+'</td>'+
-            '<td>Full name:</td>'+
-            '<td> assas'+'</td>'+
-            '<td>Full name:</td>'+
-            '<td> assas'+'</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Extension number:</td>'+
-            '<td> assa'+'</td>'+
-            '<td>Extension number:</td>'+
-            '<td> assa'+'</td>'+
-            '<td>Extension number:</td>'+
-            '<td> assa'+'</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Extra info:</td>'+
-            '<td>And any further details here (images etc)...</td>'+
-            '<td>Extra info:</td>'+
-            '<td>And any further details here (images etc)...</td>'+
-            '<td>Extra info:</td>'+
-            '<td>And any further details here (images etc)...</td>'+
-        '</tr>'+
-    '</table>';
+            '<th style="text-align: center;">Cantidad</th>'+
+            '<th style="text-align: center;">Nombre</th>'+
+            '<th style="text-align: center;">Unidad</th>'+
+            '<th style="text-align: center;">Total</th>'+
+        '</thead>'+datos +'</table></div>';
+
 }
- 
+
+$("body").on("mouseenter",".fila",function(event){
+	var num = 1;
+    var campoOculto = document.getElementsByClassName("popover fade bottom in");
+      if((num == 1 && campoOculto.length == 0) || (num == 2 && campoOculto.length == 1)){
+        $(this).find( "a" ).click();
+      }else{
+        $(this).find( "a" ).click();
+        $(this).find( "a" ).click();
+      }
+});
+
+$("body").on("mouseleave",".fila",function(event){
+	var num = 2;
+    var campoOculto = document.getElementsByClassName("popover fade bottom in");
+      if((num == 1 && campoOculto.length == 0) || (num == 2 && campoOculto.length == 1)){
+        $(this).find( "a" ).click();
+      }else{
+        $(this).find( "a" ).click();
+        $(this).find( "a" ).click();
+      }
+});
 
 $(document).ready(function() {
      
@@ -88,8 +108,9 @@ $(document).ready(function() {
             tr.removeClass('shown');
         }
         else {
-            row.child( format(1) ).show();
+            row.child( format(tr.data("info")) ).show();
             tr.addClass('shown');
+             $('[data-toggle="popover"]').popover();
         }
     } );
 } );

@@ -18,6 +18,13 @@
   text-decoration: none;
 }
 
+.tablita{
+  padding-left: 20%;
+  margin-left: 20%;
+  text-align: center;
+  width: 60%;
+}
+
 .receipt-content .invoice-wrapper {
   background: #FFF;
   /*border: 1px solid #CDD3E2;*/

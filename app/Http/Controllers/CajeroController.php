@@ -46,7 +46,14 @@ class CajeroController extends Controller
     
     public function historial(Request $request){
       $facturas = Factura::listarTodas(Auth::user()->empresaActual)->get();
-      return view('Cajero.historial')->with('facturas',$facturas);
+      $productos = array();
+       for($i=0; $i < sizeof($facturas); $i++){
+            $ventasHechas = $facturas[$i]->ventasHechas;
+            for($j=0; $j < sizeof($ventasHechas); $j++){
+                array_push($productos, array(($facturas[$i]->id), $ventasHechas[$j]->cantidad, $ventasHechas[$j]->producto->nombre, $ventasHechas[$j]->producto->precio, $ventasHechas[$j]->estadoMesero, $ventasHechas[$j]->obsequio)); 
+            }
+        }
+      return view('Cajero.historial')->with('facturas',$facturas)->with('productos',$productos);
     }
     public function show($id){
 
