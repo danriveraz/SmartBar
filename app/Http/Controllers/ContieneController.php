@@ -26,6 +26,7 @@ public function __construct()
         }
     }  
   public function index(Request $request){
+    $userActual = Auth::user();
     session_start();
     $idProducto = $_SESSION['idProducto'];
     $nombre = $_SESSION['nombre'];
@@ -36,10 +37,17 @@ public function __construct()
                            orderBy('idInsumo','ASC')->
                            paginate(50);
 
+    $insumosDisponibles = Insumo::Search($request->nombre)->
+                          where('idEmpresa' , $userActual->idEmpresa)->
+                          Type($request->tipo)->
+                          orderBy('nombre','ASC')->
+                          paginate(1000);    
+
     return view('Contiene.index')->with('insumos',$insumos)->
                                    with('contienen',$contienen)->
                                    with('idProducto',$idProducto)->
-                                   with('nombre',$nombre);
+                                   with('nombre',$nombre)->
+                                   with('insumosDisponibles',$insumosDisponibles);;
   }
 
   public function listall(Request $request){

@@ -47,6 +47,7 @@ Route::get('insumo/eliminar', 'InsumoController@eliminar');
 Route::get('insumo/modificar', 'InsumoController@modificar');
 Route::resource('insumo', 'InsumoController');
 
+Route::get('producto/ingredientes', 'ProductoController@ingredientes');
 Route::get('producto/eliminar', 'ProductoController@eliminar');
 Route::get('producto/modificar', 'ProductoController@modificar');
 Route::resource('producto', 'ProductoController');

@@ -1,10 +1,6 @@
 @extends('Layout.app_administradores')
 @section('content')
 
-<script src="javascripts\jquery.dataTables.js" type="text/javascript"></script>
-<script src="javascripts\main2.js" type="text/javascript"></script>
-<script src="javascripts\respond.js" type="text/javascript"></script>
-
 <div class="container main-content">
   <div class="page-title"></div>
   <div class="row">
@@ -27,12 +23,12 @@
                   <td>
                     <div>
                       <a class="table-actions pocketMorado" href="">
-                        <i class="fa fa-book" data-toggle="modal" href="#modalReceta{{$producto->id}}"  title="Preparación"></i>
+                        <i class="fa fa-book" data-toggle="modal" href="#modalReceta{{$producto->id}}"  title="Preparación"  onclick="ingredientes({{$producto->id}})"></i>
                       </a>
                       <a class="table-actions pocketMorado" href="">
                         <i class="fa fa-pencil" data-toggle="modal" href="#editModal{{$producto->id}}" title="Editar"></i>
                       </a>
-                      <a class="table-actions pocketMorado" href="#" onclick="eliminar({{$producto->id}})">
+                      <a class="table-actions pocketMorado" href="" onclick="eliminar({{$producto->id}})">
                         <i class="fa fa-trash-o" title="Eliminar"></i>
                       </a>
                       <a class="table-actions pocketMorado" href="">
@@ -88,18 +84,9 @@
                                     <div class="col-md-7">
                                       <div class=" bs-example">
                                         <h3><a class="pocketMorado">{{$producto->nombre}}</a></h3>
-                                        <i class="padded5 fa fa-caret-right"></i>
-                                        <a class="padded pocketMorado">1 1/2 oz de tequila</a><br>
-                                        <i class="padded5 fa fa-caret-right"></i>
-                                        <a class="padded pocketMorado">1/2 oz de triple seco</a><br>
-                                        <i class="padded5 fa fa-caret-right"></i>
-                                        <a class="padded pocketMorado">2 oz de jugo natural de limón</a><br>
-                                        <i class="padded5 fa fa-caret-right"></i>
-                                        <a class="padded pocketMorado">1 oz de jugo natural de lima</a><br>
-                                        <i class="padded5 fa fa-caret-right"></i>
-                                        <a class="padded pocketMorado">1 rodaja de lima</a><br>
-                                        <i class="padded5 fa fa-caret-right"></i>
-                                        <a class="padded pocketMorado">Hielo</a><br><br>
+                                        <div class="true"  id="ingredientes{{$producto->id}}">
+                                          
+                                        </div>
                                         <div class="">
                                           <strong><a class="pocketMorado">Elaboración</a><br></strong>
                                           <p>
@@ -316,12 +303,41 @@
 <script>
   var routeModificar = "http://localhost/PocketByR/public/producto/modificar";
   var routeEliminar = "http://localhost/PocketByR/public/producto/eliminar";
+  var routeIngredientes = "http://localhost/PocketByR/public/producto/ingredientes";
+
+  function ingredientes(idProducto){
+    if(document.getElementById("ingredientes"+idProducto).className == "true"){
+      $.ajax({
+        url: routeIngredientes,
+        type: 'GET',
+        data: {
+          id: idProducto
+        },
+        success: function(data){
+          var contiene = $.parseJSON(data);
+          var lista = "";
+          for (var i = 0; i < contiene.length; i++) {
+            lista += '<i class="padded5 fa fa-caret-right"></i><a class="padded pocketMorado">'
+                  + contiene[i][0]
+                  + ' oz de '
+                  + contiene[i][1]
+                  + '</a><br>';
+          }
+          lista += '<br>';
+          $("#ingredientes"+idProducto).before(lista);
+          document.getElementById("ingredientes"+idProducto).className = "false"
+        },
+        error: function(data){
+          
+        }
+      });
+    }
+  }
 
   function modificar(idProducto,categorias){
     var nombre = $("#nombre"+idProducto).val();
     var categoria = $("#categoria"+idProducto).val();
     var precio = $("#precio"+idProducto).val();
-    alert(categorias);
     $.ajax({
       url: routeModificar,
       type: 'GET',
@@ -345,7 +361,7 @@
       error: function(data){
         alert('Error al modificar producto');
       }
-    });       
+    });
   }
 
   function eliminar(idProducto){

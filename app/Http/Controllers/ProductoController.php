@@ -8,6 +8,7 @@ use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use PocketByR\Producto;
+use PocketByR\Insumo;
 use PocketByR\Contiene;
 use PocketByR\Categoria;
 use Laracasts\Flash\Flash; 
@@ -31,13 +32,31 @@ class ProductoController extends Controller
     $userActual = Auth::user();
     $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                              lists('nombre','id');
-    $cats = Categoria::where('idEmpresa',$userActual->idEmpresa)->get();
     $productos = Producto::Search($request->nombre)->
                            Category($request->categorias)->
                            where('idEmpresa' , $userActual->idEmpresa)->
                            orderBy('nombre','ASC')->
                            paginate(1000);
-    return view('Producto.index',compact('categorias'))->with('productos',$productos)->with('cats', $cats);
+    $contenido = Contiene::where('idEmpresa', $userActual->idEmpresa);
+    return view('Producto.index',compact('categorias'))->with('productos',$productos)->with('contenido', $contenido);
+  }
+
+  function ingredientes(Request $request){
+    $userActual = Auth::user();
+    $contenido = Contiene::where('idEmpresa',$userActual->idEmpresa)->IdProducto($request->id)->get();
+    $datos = array();
+    $count = 0;
+    foreach ($contenido as $contiene) {
+      $insumo = Insumo::find($contiene->idInsumo);
+      $datos = array_add($datos, $count,[$contiene->cantidad, $insumo->nombre]);
+      $count++;
+    }
+    return json_encode($datos);
+  }
+
+  function ingrediente($idInsumo){
+    $insumo = Insumo::where('id', $idInsumo);
+    return $insumo->nombre;
   }
 
   function modificar(Request $request){
