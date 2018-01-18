@@ -1,14 +1,5 @@
 @extends(Auth::User()->esAdmin ? 'Layout.app_administradores' : 'Layout.app_empleado')
 @section('content')
-<style type="text/css">
-	td.details-control {
-    background: url('../resources/details_open.png') no-repeat center center;
-    cursor: pointer;
-}
-tr.shown td.details-control {
-    background: url('../resources/details_close.png') no-repeat center center;
-}
-</style>
 <div class="container main-content">
 	<div class="row">
 		<div class="col-lg-12">
@@ -16,7 +7,6 @@ tr.shown td.details-control {
 				<div class="widget-content padded clearfix">
 					<table  class="table table-bordered table-striped" id="dataTable1">
 						<thead>
-							<th></th>
 							<th>No.</th>
 							<th>Fecha</th>
 							<th>Hora</th>
@@ -29,21 +19,20 @@ tr.shown td.details-control {
 						<tbody>
 							@foreach($facturas as $factura)
 		                    	<tr data-info="1">
-		                    		<td class="details-control">clic</td>
-		                    		<td>{{$factura->idBar}}</td>
-		                    		<td>
+		                    		<td class="details-control">{{$factura->idBar}}</td>
+		                    		<td class="details-control">
 		                    			<?php  $date = new DateTime($factura->fecha);
                        					echo $date->format('d M Y'); ?>
 									</td>
-									<td>
+									<td class="details-control">
 										<?php  $date = new DateTime($factura->fecha);
                        					echo $date->format('g:i A'); ?>
 									</td>
-		                    		<td>{{$factura->mesa->nombreMesa}}</td>
-		                    		<td>{{$factura->ventasHechas[0]->mesero->nombrePersona}}</td>
-		                    		<td>{{$factura->ventasHechas[0]->bartender->nombrePersona}}</td>
-		                    		<td>{{$factura->ventasHechas[0]->cajero->nombrePersona}}</td>
-		                    		<td>
+		                    		<td class="details-control">{{$factura->mesa->nombreMesa}}</td>
+		                    		<td class="details-control">{{$factura->ventasHechas[0]->mesero->nombrePersona}}</td>
+		                    		<td class="details-control">{{$factura->ventasHechas[0]->bartender->nombrePersona}}</td>
+		                    		<td class="details-control">{{$factura->ventasHechas[0]->cajero->nombrePersona}}</td>
+		                    		<td class="details-control">
 		                    			$<?php echo number_format($factura->total,0,",","."); ?>
 		                    		</td>
 		                    	</tr> 
@@ -61,13 +50,25 @@ tr.shown td.details-control {
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
         '<tr>'+
             '<td>Full name:</td>'+
-            '<td>'+'</td>'+
+            '<td> assas'+'</td>'+
+            '<td>Full name:</td>'+
+            '<td> assas'+'</td>'+
+            '<td>Full name:</td>'+
+            '<td> assas'+'</td>'+
         '</tr>'+
         '<tr>'+
             '<td>Extension number:</td>'+
-            '<td>'+'</td>'+
+            '<td> assa'+'</td>'+
+            '<td>Extension number:</td>'+
+            '<td> assa'+'</td>'+
+            '<td>Extension number:</td>'+
+            '<td> assa'+'</td>'+
         '</tr>'+
         '<tr>'+
+            '<td>Extra info:</td>'+
+            '<td>And any further details here (images etc)...</td>'+
+            '<td>Extra info:</td>'+
+            '<td>And any further details here (images etc)...</td>'+
             '<td>Extra info:</td>'+
             '<td>And any further details here (images etc)...</td>'+
         '</tr>'+
@@ -79,19 +80,17 @@ $(document).ready(function() {
      
     $('#dataTable1 tbody').on('click', 'td.details-control', function () {
         var tr = $(this).closest('tr');
- 		 alert(tr.child.isShown());
-       /*if ( row.child.isShown() ) {
-            // This row is already open - close it
+        var table = $('#dataTable1').DataTable();
+        var row = table.row(tr);
+        //alert(tr.data("info"));
+       if (tr.hasClass("shown")) {
             row.child.hide();
             tr.removeClass('shown');
-            alert(tr.data("info"));
         }
         else {
-        	alert(tr.data("info"));
-            // Open this row
-            row.child( format(tr.data("info")) ).show();
+            row.child( format(1) ).show();
             tr.addClass('shown');
-        }*/
+        }
     } );
 } );
 
