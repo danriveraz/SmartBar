@@ -144,10 +144,8 @@ class ProductoController extends Controller
     $producto = Producto::find($id);
     $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->
                              lists('nombre','id');
-    $cats = Categoria::all()->where('idEmpresa',$userActual->idEmpresa);
-    
-    return view('Producto.edit',compact('categorias'))->with('producto',$producto)
-    ->with('cats',$cats);
+    //return redirect()->route('contiene.index');
+    return view('Contiene.index',compact('categorias'))->with('producto',$producto);
   }
 
   public function update(Request $request,$id){

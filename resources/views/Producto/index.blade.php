@@ -25,8 +25,8 @@
                       <a class="table-actions pocketMorado" href="">
                         <i class="fa fa-book" data-toggle="modal" href="#modalReceta{{$producto->id}}"  title="Preparación"  onclick="ingredientes({{$producto->id}})"></i>
                       </a>
-                      <a class="table-actions pocketMorado" href="">
-                        <i class="fa fa-pencil" data-toggle="modal" href="#editModal{{$producto->id}}" title="Editar"></i>
+                      <a class="table-actions pocketMorado" href="{{route('producto.insumoedit', $producto->id)}}">
+                        <i class="fa fa-pencil" title="Editar"></i>
                       </a>
                       <a class="table-actions pocketMorado" href="" onclick="eliminar({{$producto->id}})">
                         <i class="fa fa-trash-o" title="Eliminar"></i>
@@ -107,97 +107,7 @@
                       </div>
                     </div>
                   </div>
-                </tr>
-                <!--Modal para editar -->
-                <div class="modal fade" id="editModal{{$producto->id}}" role="dialog">
-                  <div class=" modal-body">
-                    <div class="" style="background-color:#FFFFFF">
-                      <div class="modal-header">
-                        <button aria-hidden="true" class=" close " data-dismiss="modal" type="button">&times;</button>
-                         <h4 class="modal-title text-center">Editar Producto</h4>
-                      </div>
-                      <div class="modal-body">
-                      <!-- Login Screen -->
-                        <div class="row">
-                          <div class="widget-content padded">
-                            {!! Form::open() !!}
-                              <fieldset>
-                                <div class="row">
-                                  <div class="col-md-4">
-                                    <div class="bs-example">
-                                      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                                      <!-- Carousel indicators -->
-                                        <ol class="carousel-indicators">
-                                          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                          <li data-target="#myCarousel" data-slide-to="1"></li>
-                                          <li data-target="#myCarousel" data-slide-to="2"></li>
-                                        </ol>   
-                                        <!-- Wrapper for carousel items -->
-                                        <div class="carousel-inner">
-                                          <div class="item active">
-                                            <img src="/examples/images/slide1.png" alt="First Slide">
-                                          </div>
-                                          <div class="item">
-                                            <img src="/examples/images/slide2.png" alt="Second Slide">
-                                          </div>
-                                          <div class="item">
-                                            <img src="/examples/images/slide3.png" alt="Third Slide">
-                                          </div>
-                                        </div>
-                                        <!-- Carousel controls 
-                                        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
-                                        <span class="glyphicon glyphicon-chevron-left"></span>
-                                          </a>
-                                        <a class="carousel-control right" href="#myCarousel" data-slide="next">
-                                            <span class="glyphicon glyphicon-chevron-right"></span>
-                                        </a>
-                                        -->
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-4 ">
-                                    <div class=" bs-example">
-                                      <div class="form-group">
-                                        <div class="input-group">
-                                          <span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
-                                          <input type="text" id="nombre{{$producto->id}}" name="nombre" placeholder="Nombre" class="form-control" value="{{$producto->nombre}}" required="" />
-                                        </div>
-                                      </div>
-                                      <div class="form-group">
-                                        <div class="input-group">
-                                          <span class="input-group-addon"><i class="fa fa-commenting-o"></i></span>
-                                          <input type="number" id="precio{{$producto->id}}" name="precio" placeholder="Precio" class="form-control" value="{{$producto->precio}}"/>
-                                        </div>
-                                      </div>
-                                      <br>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-4">
-                                    <div class=" bs-example">
-                                      <div class="form-group">
-                                        <div class="input-group">
-                                          <span class="input-group-addon"><i class="fa fa-500px"></i></span>
-                                          {!! Form::select('Categorias', $categorias, $producto->idCategoria, ['class' => 'form-control', 'id'=>'categoria'.$producto->id]) !!}
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="modal-footer" style="text-align: center;">
-                                      <button class="btn btn-default" data-dismiss="modal" onclick="modificar({{$producto->id}},{{$categorias}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >
-                                        Guardar
-                                      </button>
-                                    </div>                
-                                  </div> 
-                                </div>
-                              </fieldset>
-                            {!! Form::close() !!} 
-                          </div>
-                        </div>
-                        <!-- End Login Screen -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- fin de modal para editar-->
+                </tr>                
               @endforeach
             </tbody>
           </table>
@@ -210,93 +120,14 @@
 
         <!-- inicio cambios pocket -->
   <div class="style-selector" >
-    <div class="style-selector-container">
-    <!-- inidio de slider de agregar usuario -->
-      <div class="row">
-        <div class="">
-          <div class="">
-            <div class="heading">
-              <i class="fa fa-shield"></i>&nbsp;Nuevo Producto
-            </div>
-            <div class="widget-content padded">
-              {!! Form::open(['method' => 'POST', 'action' => 'ProductoController@store']) !!}
-                <fieldset>
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="bs-example">
-                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                          <!-- Carousel indicators -->
-                          <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                            <li data-target="#myCarousel" data-slide-to="2"></li>
-                          </ol>   
-                          <!-- Wrapper for carousel items -->
-                          <div class="carousel-inner">
-                            <div class="item active">
-                              <img src="/examples/images/slide1.png" alt="First Slide">
-                            </div>
-                            <div class="item">
-                              <img src="/examples/images/slide2.png" alt="Second Slide">
-                            </div>
-                            <div class="item">
-                              <img src="/examples/images/slide3.png" alt="Third Slide">
-                            </div>
-                          </div>
-                          <!-- Carousel controls 
-                          <a class="carousel-control left" href="#myCarousel" data-slide="prev">
-                          <span class="glyphicon glyphicon-chevron-left"></span>
-                          </a>
-                          <a class="carousel-control right" href="#myCarousel" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                          </a>-->
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 ">
-                      <div class=" bs-example">
-                        <div class="form-group">
-                          <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
-                            <input type="text" name="nombre" class="form-control" placeholder="Nombre" placeholder="Nombre" required="true"/>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                            <input type="number" name="precio" class="form-control" placeholder="Precio"/>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class=" bs-example">
-                        <div class="form-group">
-                          <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-list"></i></span>
-                            {!! Form::select('categorias', $categorias, null, ['class' => 'select2able', 'placeholder' => 'Categorias', 'required' => 'true']) !!}
-                          </div>
-                        </div>
-                      </div>
-                      <div  class="text-center">
-                        <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >
-                          Guardar
-                        </button>
-                      </div>      
-                    </div> 
-                  </div>
-                </fieldset>
-              {!! Form::close() !!}
-            </div>
-          </div>
+      <div class="style-selector-container">
+        <div class="style-toggle1">
+          <a class="table-actions pocketMorado" href="{{route('producto.insumoedit', $producto->id)}}">
+            <span class="pocketMorado fa fa-fw fa-plus-circle"></span>
+          </a>
         </div>
       </div>
-      <!-- fin de slider de agregar usuario -->
-      <div class="style-toggle closed">
-        <span aria-hidden="true" class="pocketMorado fa fa-fw fa-plus-circle"></span>
-      </div>
     </div>
-  </div>  
   <!-- fin cambios pocket -->
 </div>
 

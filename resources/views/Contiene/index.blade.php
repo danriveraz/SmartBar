@@ -1,112 +1,296 @@
-@extends('Layout.app')
+@extends('Layout.app_administradores')
 @section('content')
 
-<div class="col-sm-offset-2 col-sm-8"> 
-  <div class="panel-tittle" align="center">
-      <h3><b>{{$nombre}}<b></h3>
-  </div>
-  <div class="panel">
-    <div class="panel-heading">
-      <div class="panel-title">
-        <a class="accordion-toggle" data-parent="#accordion" data-toggle="collapse" href="#collapseOne">
-          <div class="caret pull-right"></div>Insumos del producto</a>
-      </div>
-    </div>
-    <div class="panel-collapse collapse in" id="collapseOne">
-      <div class="panel-body">
-        <table class="table table-hover" id="insumoAgregados">
-          <thead>
-            <th style="display: none;">#</th>
-            <th>Insumo</th>
-            <th>Cantidad de onzas/unidades</th>
-          </thead>
-          <tbody>
-            @foreach($contienen as $contiene)
-              <tr id="fila{{$contiene->idInsumo}}">
-                <td style="display: none;">{{$contiene->idInsumo}}</td>
-                <td>{{$insumos[$contiene->idInsumo]}}</td>
-                <td>{{$contiene->cantidad}}</td>
-                <td>
-                  <button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},{{$contiene->idInsumo}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                  </button>
-                </td>
-              </tr>
-            @endforeach
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div>
-      <h3>Insumos disponibles</h3>
-    </div>
-    <div id="busqueda" name="busqueda" class="navbar-form navbar-right">
-    <div class="form-group" align="right">
-      <div class="icon-addon addon-md">
-          <input  id="nombreInput" type="text" size="40" maxlength="30" placeholder="Buscar..." class="form-control" />
-          <label for="nombreInput" class="glyphicon glyphicon-search" rel="tooltip" title="nombreInput"></label>
-      </div>
-      <br>
-      <div align="right">
-        <select id="buscarTipo" name="buscarTipo" class="form-control">
-          <option value="">Seleccione un tipo</option>
-          <option value="1">A la venta</option> 
-          <option value="0">No a la venta</option>   
-        </select>
-      </div>
-    </div>
-  </div>
-    
-    <div class="panel-body">
-      <table class="table table-hover" id="insumosDisponibles">
-      <thead>
-        <th style="display: none;">#</th>
-        <th>Nombre</th>
-        <th>Marca</th>
-        <th>A la venta</th>
-        <th>Cantidad</th>
-        <th>Medida</th>
-        <th>
+<!-- Nav tabs nombre de la lista -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#yorkminster" aria-controls="home" role="tab" data-toggle="tab" class="pocketMorado">Contenido del Producto</a></li>
+            <li role="presentation"><a class="pocketMorado" href="#yorkcastle" aria-controls="profile" role="tab" data-toggle="tab">Preparación</a></li>
+            <!--<li role="presentation"><a href="#yorkmuseumgardens" aria-controls="profile" role="tab" data-toggle="tab">York Museum Gardens</a></li>-->
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="yorkminster">
+ <div class="container-fluid main-content">
+        <!--<div class="page-title">
+          <h1>
+            Basic Tables
+          </h1>
+        </div>-->
+        <p></p>
+        <p></p>
+
+          <!-- end Condensed Table -->
+        <div class="row">
+          <!-- Hover Row Table -->
+          <div class="col-lg-3">
+          <div  class="text-center"><a class="btn btn-bitbucket" onclick=""><i class="fa fa-arrow-left"></i>Ir Atras</a></div>
+          </div>
+          <!-- end Hover Row Table --><!-- Responsive Table -->
+          <div class="col-lg-6">
+        <div class=" text-center page-title">
+
+            <div class="row">
+              <div class="col-lg-6">
+        <div>
+          <h2>
+      <input class="Titulo-css2" placeholder="Ingrese Nombre" />
+          </h2>
+        </div> 
+
+              </div>
+              <div class="col-lg-6">
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-object-group"></i></span>
+          <select class="select2able">
+                    <option value="Category 1">Categoria</option>
+                    <option value="Category 2">Femenino</option>
+                    </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                <input class="form-control" placeholder="Precio del Producto " type="text">
+              </div>
+            </div>
+             </div>
+            </div>
+
+        </div>          
+            <div class="widget-container fluid-height clearfix" style="box-shadow: none;">
+              <div class="heading">
+                <i class=" pocketMorado fa fa-table"></i><a class="pocketMorado">Productos Selecionados</a>
+              </div>
+              <div class="widget-content padded clearfix">
+                <table class="table table-striped">
+                  <thead>
+                    <th>
+                      Nombre
+                    </th>
+                    <th class="text-center">
+                      Cantidad
+                    </th>
+                    <th class="text-center">
+                      Medida
+                    </th>
+                    <th></th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        Tequila Jose Cuervo
+                      </td>
+                      <td class="text-center">
+                        1 1/2
+                      </td>
+                      <td class="text-center">
+                        <span class="label label-Pocket"><b>Onza</b></span>
+                      </td>
+                      <td>
+                        <div class="action-buttons">
+                      <a class="table-actions pocketMorado"><i class="fa fa-window-close" title="Cancelar"></i></a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Triple Seco
+                      </td>
+                      <td class="text-center">
+                        1/2
+                      </td>
+                      <td class="text-center">
+                        <span class="label label-Pocket"><b>Onza</b></span>
+                      </td>
+                      <td>
+                        <div class="action-buttons">
+                      <a class="table-actions pocketMorado"><i class="fa fa-window-close" title="Cancelar"></i></a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+           </div>
+          
+          <div class="col-lg-3">
+          <div  class="text-center"><a class="btn btn-bitbucket" href="#yorkcastle" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-arrow-right"></i>Preparación</a></div>
+          </div>          <!-- end Responsive Table -->
+        </div>
+      </div>      
+      
+      
+      
+      
+      <div class="container main-content">
+        <!-- DataTables Example -->         
+        <div class="row"> 
+ <!-- fin de la tabla de selecion de productos-->      
+          <div class="col-lg-12">
+            <div class="widget-container fluid-height clearfix">
+              <div class="heading">
+                <i class="pocketMorado fa fa-check-square-o"></i><a class="pocketMorado">Mi Inventario</a>
+              </div>
+              <div class="widget-content padded clearfix">
+                <table class="table table-bordered table-striped" id="dataTable1">
+                  <thead>
+                    <th width="30%">
+                      Nombre
+                    </th>
+                    <th width="25%">
+                      Marca
+                    </th>
+                    <th width="15%">
+                      Cantidad
+                    </th>
+                   <th width="15%" class="text-center">
+                      En Inventario
+                    </th>
+                   <th width="15%" class="text-center">
+                      Medida
+                    </th>
+
+                   <th width="5%" class="text-center">
+                      Opciones
+                    </th>
+                  </thead>
+                  <tbody>
+                    <tr data-toggle="modal">
+                      <td>
+                        Ron Viejo del caldas                        
+                      </td>
+                      <td>
+                        Bavaria
+                      </td>
+                      <td>
+                        <input type="number" class="Titulo-css" placeholder="Ingrese Cantidad" />
+                      </td>
+                      <td class="text-center">
+                        20
+                      </td> 
+                      <td class="text-center">
+                        <span class="label label-Pocket"><b>Mililitro</b></span>
+                      </td>                     
+                      <td class="text-center actions">
+                        <div class="action-buttons">
+                          <a class="table-actions pocketMorado" href=""><i class="fa fa-pencil" data-toggle="modal" href="#myModal" title="Editar Insumo"></i></a>
+                          <a class="table-actions pocketMorado" href=""><i class="fa fa-trash-o" title="Eliminar Insumo"></i></a>
+                        </div>
+                      </td>
+                    </tr> 
+                                        <tr data-toggle="modal">
+                      <td>
+                        Ron Viejo del caldas                        
+                      </td>
+                      <td>
+                        Bavaria
+                      </td>
+                      <td>
+                        <input type="number"  class="Titulo-css" placeholder="Ingrese Cantidad" />
+                      </td>
+                      <td class="text-center">
+                        20
+                      </td> 
+                      <td class="text-center">
+                        <span class="label label-Pocket"><b>Mililitro</b></span>
+                      </td>                     
+                      <td class="text-center actions">
+                        <div class="action-buttons">
+                          <a class="table-actions pocketMorado" href=""><i class="fa fa-pencil" data-toggle="modal" href="#myModal" title="Editar Insumo"></i></a>
+                          <a class="table-actions pocketMorado" href=""><i class="fa fa-trash-o" title="Eliminar Insumo"></i></a>
+                        </div>
+                      </td>
+                    </tr>                                      
+                  </tbody>
+                </table>
+              </div>
+            </div> 
+            
+          </div> 
+         
+        </div> 
         
-          <button type="submit" class="btn btn-dufault" style="BACKGROUND-COLOR: rgb(187,187,187); color:white" onclick="adicionarTodo()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> A&ntildeadir seleccionados
-          </button>          
-        </th>
-      </thead>
-      <tbody>
-        @foreach($insumosDisponibles as $insumo)
-          <tr>
-            <td style="display: none;">{{$insumo->id}}</td>
-            <td>{{$insumo->nombre}}</td>
-            <td>{{$insumo->marca}}</td>
-            <td align="center">
-              <label> <input type="checkbox" disabled="disabled" name="tipo" id="tipo" <?php if($insumo->tipo == "1") echo "checked";?>/><span></span></label>
-            </td>
-            <td><input type="number" onkeypress="tecla(event,{{$insumo}})" id="{{$insumo->id}}" step="any" min="0.1" name="cantidad" class="form-control"></td>
-            <td>
-              {!! Form::select('medida', ['0'=>'oz','2'=>'ml','3'=>'cm3','1'=>'unidad'], $insumo->medida, ['class'=>'form-control', 'id'=>'medida'.$insumo->id]) !!}
-            </td>
-            <td align="center">
-              <button type="submit" class="btn btn-dufault" onclick="adicionarInsumo({{$insumo}})" style="BACKGROUND-COLOR: rgb(187,187,187); color:white">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              </button>
-            </td>
-            <td align="center">
-              <button type="submit" class="btn btn-dufault" onclick="modificarInsumo({{$insumo}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-              </button>
-            </td>            
-          </tr>
-        @endforeach
-      </tbody>
-    </table>
-    {!!$insumosDisponibles->appends(Request::all())->render() !!}
-   <div align="right">
-     <button onclick="enviarDatos({{$idProducto}})" class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><i class="glyphicon glyphicon-ok"></i> Guardar</button>
-   </div>
-  </div>
-</div>
+        
+             <div class="text-center"><a class="btn btn-bitbucket" onclick=""><i class="fa fa-send"></i>Guardar Producto</a></div>                                 
+
+        <!-- end DataTables Example -->
+      </div> 
+    
+
+
+            </div>
+            
+            
+            
+            
+            <div role="tabpanel" class="tab-pane" id="yorkcastle">            
+              <div class="container main-content">
+                <!-- DataTables Example -->         
+                <div class="row"> 
+         <!-- fin de la tabla de selecion de productos-->      
+                  <div class="col-lg-12">
+
+              <div class="col-lg-4">                 
+                <div class="bs-example">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Carousel indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>   
+                        <!-- Wrapper for carousel items -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="/examples/images/slide1.png" alt="First Slide">
+                            </div>
+                            <div class="item">
+                                <img src="/examples/images/slide2.png" alt="Second Slide">
+                            </div>
+                            <div class="item">
+                                <img src="/examples/images/slide3.png" alt="Third Slide">
+                            </div>
+                        </div>
+                        <!-- Carousel controls 
+                        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                        -->
+                    </div>
+                </div>
+                
+         <!--<div class="text-center"><a class="btn btn-bitbucket" onclick=""><i class="fa fa-send"></i>Guardar Producto</a></div>-->
+                                            
+              </div> <!-- fin del modal 1-->
+              
+              <div class="col-lg-8">
+              <div class="widget-content padded">
+                <div id="summernote">
+                  Ingresa La Preparacion del Producto
+                </div>
+              </div>
+              </div> <!-- fin del modal 2-->             
+                    
+                    </div>
+                  </div>  
+               </div>     
+            </div>
+            <!--<div role="tabpanel" class="tab-pane" id="yorkmuseumgardens">
+                <h3>York Museum Gardens</h3>
+                <p>The <strong>York Museum Gardens</strong> are botanic gardens in the centre of York, England, beside 
+                    the River Ouse. They cover an area of 10 acres (4.0 ha) of the former grounds of St Mary's Abbey, 
+                    and were created in the 1830s by the Yorkshire Philosophical Society along with the Yorkshire 
+                    Museum which they contain.</p>
+            </div>  -->          
+        </div>
+
+
 
 
 @endsection
