@@ -56,7 +56,7 @@
                 <p>
                     <strong>Mesa:</strong>
                         <select class="selectFact numberFact" onchange="cambiarFactura(this.value);">
-                           @foreach($facturas as $factura)
+                           @foreach($facturas as $factura) 
                             @if(sizeof($factura->ventasHechas)>0)
                               <option data-idFactura="{{$factura->id}}"  data-idMesaBar="{{$factura->idBar}}" value="{{$factura->mesa->id}}" id="mesas{{$factura->mesa->id}}"
                                 data-fecha="<?php  $date = new DateTime($factura->fecha);
@@ -321,11 +321,16 @@
           <div class="row">
             <div class="col-lg-12 center">
               @if(sizeof($facturas) > 0)
-              <button class="factBot btn btn-bitbucket pull-right"><i class="fa fa-money"></i>Pagar</button>
-              <button class=" factBot btn btn-bitbucket pull-right" onclick="nada();"><i class="fa fa-print"></i>Imprimir</button>
-              @else
-                <button class="factBot btn btn-bitbucket pull-right" disabled=""><i class="fa fa-money"></i>Pagar</button>
-                <button class=" factBot btn btn-bitbucket pull-right" onclick="nada();" disabled=""><i class="fa fa-print"></i>Imprimir</button>
+                @if(sizeof($facturas[0]->ventasHechas) > 0)
+                  <button class="factBot btn btn-bitbucket pull-right"><i class="fa fa-money"></i>Pagar</button>
+                  <button class=" factBot btn btn-bitbucket pull-right" onclick="nada();"><i class="fa fa-print"></i>Imprimir</button>
+                  @else
+                    <button class="factBot btn btn-bitbucket pull-right" disabled=""><i class="fa fa-money"></i>Pagar</button>
+                    <button class=" factBot btn btn-bitbucket pull-right" onclick="nada();" disabled=""><i class="fa fa-print"></i>Imprimir</button>
+                @endif
+                @else
+                    <button class="factBot btn btn-bitbucket pull-right" disabled=""><i class="fa fa-money"></i>Pagar</button>
+                    <button class=" factBot btn btn-bitbucket pull-right" onclick="nada();" disabled=""><i class="fa fa-print"></i>Imprimir
               @endif
         </form>
           <a class=" factBot btn btn btn-pinterest pull-right" href="{{ url('cajero/historial') }}" style="background-color: #999999;"><i class="fa fa-file-text-o"></i>Historial</a>

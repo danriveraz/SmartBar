@@ -64,7 +64,17 @@
 	   			}
    		}
    	}
-    return '<div class="col-md-6 col-md-offset-3"><table class="table table-bordered table-striped"><thead>'+
+    return    '<div class="col-md-6"  style="padding-left: 50px; padding-top:15px;"> <div class="heading"><i class="fa fa-tags"></i>'+
+    			'Información de factura </div>'+
+                '<div class="widget-content padded"><dl><div class="row">'+
+				'<div class="col-md-6">'+
+					'<dt>Nombre</dt><dd>Diergo Alejandro Fajardo</dd>'+
+                   '<dt>Direccion</dt><dd>Calle 6 No 22-35 B/saman del norte</dd></div>'+
+              	'<div class="col-md-6" style="padding-left:35px;">'+
+                    '<dt>Nit</dt><dd>1116256943-9</dd><dt>Telefono</dt><dd>3012638327</dd>'+
+                '</div></div><dt>Direccion</dt><dd>Calle 6 No 22-35 B/saman del norte</dd>'+
+                  '</dl></div></div>'+
+          	'</div><div class="col-md-6" style="padding-rigth: 25px; padding-top:25px;"><table class="table table-bordered table-striped"><thead>'+
         '<tr>'+
             '<th style="text-align: center;">Cantidad</th>'+
             '<th style="text-align: center;">Nombre</th>'+
@@ -73,6 +83,8 @@
         '</thead>'+datos +'</table></div>';
 
 }
+
+//</div>
 
 $("body").on("mouseenter",".fila",function(event){
 	var num = 1;
