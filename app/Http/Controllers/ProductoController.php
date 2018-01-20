@@ -160,11 +160,9 @@ class ProductoController extends Controller
     return redirect()->route('producto.index');
   }
 
-  public function insumoedit($id){
+  public function contenido($id){
     session_start();
-    $producto = Producto::find($id);
-    $_SESSION['idProducto'] = $id;
-    $_SESSION['nombre'] = $producto->nombre;
+    $_SESSION['id'] = $id;
     return redirect()->route('contiene.index');
   }
 

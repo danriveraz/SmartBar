@@ -8,6 +8,7 @@ use PocketByR\Http\Controllers\Controller;
 use PocketByR\Insumo;
 use PocketByR\Producto;
 use PocketByR\Contiene;
+use PocketByR\Categoria;
 use Laracasts\Flash\Flash;
 use Auth;
 
@@ -28,26 +29,42 @@ public function __construct()
   public function index(Request $request){
     $userActual = Auth::user();
     session_start();
-    $idProducto = $_SESSION['idProducto'];
-    $nombre = $_SESSION['nombre'];
-
-    $insumos = Insumo::lists('nombre','id');
-
-    $contienen = Contiene::IdProducto($idProducto)->
-                           orderBy('idInsumo','ASC')->
-                           paginate(50);
-
+    $id = $_SESSION['id'];
+    $categorias = Categoria::where('idEmpresa', $userActual->idEmpresa)->
+                             lists('nombre','id');
     $insumosDisponibles = Insumo::Search($request->nombre)->
                           where('idEmpresa' , $userActual->idEmpresa)->
                           Type($request->tipo)->
                           orderBy('nombre','ASC')->
-                          paginate(1000);    
-
-    return view('Contiene.index')->with('insumos',$insumos)->
+                          paginate(1000);
+    if($id != 0){
+      $insumos = Insumo::lists('nombre','id');
+      $medidas = Insumo::lists('medida', 'id');
+      $contienen = Contiene::IdProducto($id)->
+                             orderBy('idInsumo','ASC')->
+                             paginate(50);
+      $producto = Producto::find($id);
+      return view('Contiene.index')->with('insumos',$insumos)->
                                    with('contienen',$contienen)->
-                                   with('idProducto',$idProducto)->
-                                   with('nombre',$nombre)->
-                                   with('insumosDisponibles',$insumosDisponibles);;
+                                   with('producto',$producto)->
+                                   with('insumosDisponibles',$insumosDisponibles)->
+                                   with('categorias', $categorias)->
+                                   with('medidas', $medidas);
+    }else{
+      $producto = new Producto;
+      $producto->nombre = "";
+      $producto->precio = "";
+      $contienen = [];
+      $insumos = [];
+      $medidas = [];
+
+      return view('Contiene.index')->with('insumos',$insumos)->
+                                   with('contienen',$contienen)->
+                                   with('producto',$producto)->
+                                   with('insumosDisponibles',$insumosDisponibles)->
+                                   with('categorias', $categorias)->
+                                   with('medidas', $medidas);
+    }
   }
 
   public function listall(Request $request){

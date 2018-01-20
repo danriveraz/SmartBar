@@ -33,7 +33,7 @@
               <div class="col-lg-6">
         <div>
           <h2>
-      <input class="Titulo-css2" placeholder="Ingrese Nombre" />
+      <input class="Titulo-css2" placeholder="Ingrese Nombre" value="{{$producto->nombre}}" />
           </h2>
         </div> 
 
@@ -42,17 +42,14 @@
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-object-group"></i></span>
-          <select class="select2able">
-                    <option value="Category 1">Categoria</option>
-                    <option value="Category 2">Femenino</option>
-                    </select>
+                {!! Form::select('categorias', $categorias, null, ['class'=>'select2able', 'placeholder' => 'Categorias']) !!}
               </div>
             </div>
             
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                <input class="form-control" placeholder="Precio del Producto " type="text">
+                <input class="form-control" placeholder="Precio del Producto" type="text" value="{{$producto->precio}}">
               </div>
             </div>
              </div>
@@ -78,15 +75,18 @@
                     <th></th>
                   </thead>
                   <tbody>
+                    @foreach($contienen as $contiene)
                     <tr>
                       <td>
-                        Tequila Jose Cuervo
+                        {{$insumos[$contiene->idInsumo]}}
                       </td>
                       <td class="text-center">
-                        1 1/2
+                        {{$contiene->cantidad}}
                       </td>
                       <td class="text-center">
-                        <span class="label label-Pocket"><b>Onza</b></span>
+                        <span class="label label-Pocket">
+                          <b><?php if($medidas[$contiene->idInsumo] == 0) echo "Onza"; else echo "Unidad";?></b>
+                        </span>
                       </td>
                       <td>
                         <div class="action-buttons">
@@ -94,31 +94,12 @@
                         </div>
                       </td>
                     </tr>
-                    <tr>
-                      <td>
-                        Triple Seco
-                      </td>
-                      <td class="text-center">
-                        1/2
-                      </td>
-                      <td class="text-center">
-                        <span class="label label-Pocket"><b>Onza</b></span>
-                      </td>
-                      <td>
-                        <div class="action-buttons">
-                      <a class="table-actions pocketMorado"><i class="fa fa-window-close" title="Cancelar"></i></a>
-                        </div>
-                      </td>
-                    </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
             </div>
            </div>
-          
-          <div class="col-lg-3">
-          <div  class="text-center"><a class="btn btn-bitbucket" href="#yorkcastle" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-arrow-right"></i>Preparación</a></div>
-          </div>          <!-- end Responsive Table -->
         </div>
       </div>      
       
@@ -158,21 +139,24 @@
                     </th>
                   </thead>
                   <tbody>
+                    @foreach($insumosDisponibles as $insumo)
                     <tr data-toggle="modal">
                       <td>
-                        Ron Viejo del caldas                        
+                        {{$insumo->nombre}}
                       </td>
                       <td>
-                        Bavaria
+                        {{$insumo->marca}}
                       </td>
                       <td>
                         <input type="number" class="Titulo-css" placeholder="Ingrese Cantidad" />
                       </td>
                       <td class="text-center">
-                        20
-                      </td> 
+                        {{$insumo->cantidadRestante}}
+                      </td>
                       <td class="text-center">
-                        <span class="label label-Pocket"><b>Mililitro</b></span>
+                        <span class="label label-Pocket">
+                          <b>{!! Form::select('medida', ['0'=>'oz','2'=>'ml','3'=>'cm3','1'=>'unidad'], $insumo->medida, ['class'=>'', 'id'=>'medida'.$insumo->id]) !!}</b>
+                        </span>
                       </td>                     
                       <td class="text-center actions">
                         <div class="action-buttons">
@@ -180,30 +164,8 @@
                           <a class="table-actions pocketMorado" href=""><i class="fa fa-trash-o" title="Eliminar Insumo"></i></a>
                         </div>
                       </td>
-                    </tr> 
-                                        <tr data-toggle="modal">
-                      <td>
-                        Ron Viejo del caldas                        
-                      </td>
-                      <td>
-                        Bavaria
-                      </td>
-                      <td>
-                        <input type="number"  class="Titulo-css" placeholder="Ingrese Cantidad" />
-                      </td>
-                      <td class="text-center">
-                        20
-                      </td> 
-                      <td class="text-center">
-                        <span class="label label-Pocket"><b>Mililitro</b></span>
-                      </td>                     
-                      <td class="text-center actions">
-                        <div class="action-buttons">
-                          <a class="table-actions pocketMorado" href=""><i class="fa fa-pencil" data-toggle="modal" href="#myModal" title="Editar Insumo"></i></a>
-                          <a class="table-actions pocketMorado" href=""><i class="fa fa-trash-o" title="Eliminar Insumo"></i></a>
-                        </div>
-                      </td>
-                    </tr>                                      
+                    </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
@@ -394,8 +356,8 @@
           });
         }
       else{
-        var fila = '<tr id="fila'+insumo.id+'"><td style="display: none;">'+insumo.id+'</td><td>'+insumo.nombre+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},'+insumo.id+')" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>';
-        $("#insumoAgregados").append(fila);       
+        var fila = '<tr id="fila'+insumo.id+'"><td style="display: none;">'+insumo.id+'</td><td>'+insumo.nombre+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$producto->id}},'+insumo.id+')" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>';
+        $("#insumoAgregados").append(fila);
       }
       $("#"+insumo.id).val('');
       $("#medida"+insumo.id).val(insumo.medida);
@@ -455,8 +417,8 @@
             });            
           }
           else{
-            var fila = '<tr id="fila'+insumos[i]+'"><td  style="display: none;">'+insumos[i]+'</td><td>'+nombres[i]+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$idProducto}},'+insumos[i]+')" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>';
-            $("#insumoAgregados").append(fila);
+            /*var fila = '<tr id="fila'+insumos[i]+'"><td  style="display: none;">'+insumos[i]+'</td><td>'+nombres[i]+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$producto->id}},'+insumos[i]+')" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>';
+            $("#insumoAgregados").append(fila);*/
           }
           $("#"+insumos[i]).val('');
           $("#medida"+insumos[i]).val(medida[i]);

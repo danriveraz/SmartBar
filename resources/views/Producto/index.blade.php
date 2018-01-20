@@ -25,7 +25,7 @@
                       <a class="table-actions pocketMorado" href="">
                         <i class="fa fa-book" data-toggle="modal" href="#modalReceta{{$producto->id}}"  title="Preparación"  onclick="ingredientes({{$producto->id}})"></i>
                       </a>
-                      <a class="table-actions pocketMorado" href="{{route('producto.insumoedit', $producto->id)}}">
+                      <a class="table-actions pocketMorado" href="{{route('producto.contenido', $producto->id)}}">
                         <i class="fa fa-pencil" title="Editar"></i>
                       </a>
                       <a class="table-actions pocketMorado" href="" onclick="eliminar({{$producto->id}})">
@@ -122,7 +122,7 @@
   <div class="style-selector" >
       <div class="style-selector-container">
         <div class="style-toggle1">
-          <a class="table-actions pocketMorado" href="{{route('producto.insumoedit', $producto->id)}}">
+          <a class="table-actions pocketMorado" href="{{route('producto.contenido', 0)}}">
             <span class="pocketMorado fa fa-fw fa-plus-circle"></span>
           </a>
         </div>

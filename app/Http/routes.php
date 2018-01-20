@@ -52,7 +52,7 @@ Route::get('producto/eliminar', 'ProductoController@eliminar');
 Route::get('producto/modificar', 'ProductoController@modificar');
 Route::resource('producto', 'ProductoController');
 Route::get('prodlistall', 'ProductoController@listall');
-Route::get('producto/{id}/insumoedit', ['uses' => 'ProductoController@insumoedit', 'as' => 'producto.insumoedit']);
+Route::get('producto/{id}/contenido', ['uses' => 'ProductoController@contenido', 'as' => 'producto.contenido']);
 
 Route::get('contiene/eliminar', 'ContieneController@eliminar');
 Route::get('contiene/guardar', 'ContieneController@guardar');
