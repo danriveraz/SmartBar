@@ -336,6 +336,13 @@
                             <strong><h3>Tu membresía única solo cuenta con almacenamiento suficiente para un solo negocio, mejora tu 
                                         membresía <a href="">aquí</a></h3></strong>
                           </div>
+                          <div id="mensajeClubEspecial" class="form-group" style="display: none;">
+                            <strong><h3>Tu membresía especial solo cuenta con almacenamiento suficiente para un dos negocios, mejora tu 
+                                        membresía <a href="">aquí</a></h3></strong>
+                          </div>
+                          <div id="mensajeClubElite" class="form-group" style="display: none;">
+                            <strong><h3>¡Has llegado al número máximo de negocios!</h3></strong>
+                          </div>
                           <div id="bolsillo" class="clearfix">
                             <h2> Información Bar</h2>
                             <div class="left">
@@ -902,10 +909,13 @@
 <!-- JAVASCRIPT -->
 <script>
   var JSONusuario = eval(<?php echo json_encode($usuario); ?>);
-  
+  var JSONempresa = eval(<?php echo json_encode($empresas); ?>);
   $(document).ready(function(){
       listcat();
       listmesas();
+      if(JSONempresa.length == 2 && JSONusuario.membresia == 1){
+        alert("hola");
+      }
       $(".gallery-item filter1 fancybox").fancybox({ });
       $("#fechaNacimiento").load(this);
       $('[data-toggle="popover"]').popover();
@@ -925,10 +935,22 @@
         document.getElementById("bolsillo").style.display = 'none';
         document.getElementById("btn-guardar3").style.display = 'none';
         document.getElementById("mensajeClub").style.display = 'block';
-      }else if(JSONusuario.membresia == 2){
+      }else if(JSONusuario.membresia == 2 && JSONempresa.length == 2){
         document.getElementById("plan2").className = "plan selected-plan";
         document.getElementById("check2").className = "fa fa-check-circle";
-      }else if(JSONusuario.membresia == 3){
+        document.getElementById("bolsillo").style.display = 'none';
+        document.getElementById("btn-guardar3").style.display = 'none';
+        document.getElementById("mensajeClubEspecial").style.display = 'block';
+      }else if(JSONusuario.membresia == 2 && JSONempresa.length < 2){
+        document.getElementById("plan2").className = "plan selected-plan";
+        document.getElementById("check2").className = "fa fa-check-circle";
+      }else if(JSONusuario.membresia == 3 && JSONempresa.length == 4){
+        document.getElementById("plan3").className = "plan selected-plan";
+        document.getElementById("check3").className = "fa fa-check-circle";
+        document.getElementById("bolsillo").style.display = 'none';
+        document.getElementById("btn-guardar3").style.display = 'none';
+        document.getElementById("mensajeClubElite").style.display = 'block';
+      }else if(JSONusuario.membresia == 3 && JSONempresa.length < 4){
         document.getElementById("plan3").className = "plan selected-plan";
         document.getElementById("check3").className = "fa fa-check-circle";
       }

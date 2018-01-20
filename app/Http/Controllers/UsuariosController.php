@@ -164,9 +164,10 @@ class UsuariosController extends Controller
     $departamentos = Departamento::all();
     $ciudades = Ciudad::all();
     $usuario = User::find($id);
-    $Empresa = Empresa::find($usuario->idEmpresa);
+    $Empresa = Empresa::find($usuario->empresaActual);
+    $empresas = Empresa::where('usuario_id' , $usuario->id)->get();
     return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)
-                ->with('ciudades', $ciudades);;
+                ->with('ciudades', $ciudades)->with('empresas', $empresas);
   }
 
   public function updateProfile(Request $request, $id){
@@ -260,7 +261,44 @@ class UsuariosController extends Controller
         }        
       }
     }else if($request->ventana == 3){
-      dd("jiji");
+      $usuario = User::find($id);
+      $empresas = Empresa::where('usuario_id' , $usuario->id)->get();
+      if($usuario->membresia == 0){
+        flash::warning('Adquiere una membresia')->important();
+        return redirect('Auth/usuario/'.$usuario->id.'/edit');
+      }else if($usuario->membresia == 1){
+        flash::warning('Almacenamiento suficiente para un solo negocio')->important();
+        return redirect('Auth/usuario/'.$usuario->id.'/edit');
+      }else if($usuario->membresia == 2 && sizeof($empresas) == 2){
+        flash::warning('Almacenamiento suficiente para dos negocios')->important();
+        return redirect('Auth/usuario/'.$usuario->id.'/edit');
+      }else if($usuario->membresia == 3 && sizeof($empresas) == 4){
+        flash::warning('Número máximo de negocios alcanzado')->important();
+        return redirect('Auth/usuario/'.$usuario->id.'/edit');
+      }else{
+        $rules = [
+        'nombreEstablecimiento' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+        'telefono' => 'required|min:1|max:9999999999|numeric',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()){
+          return redirect()->route('Auth.usuario.edit',$id)->withErrors($validator)->withInput();
+        }else{
+          $empresa = new Empresa;
+          $empresa->nombreEstablecimiento = $request->nombreEstablecimientoNBar;
+          $empresa->direccion = $request->direccionEstablecimientoNBar;
+          $empresa->telefono = $request->telefonoEstablecimientoNBar;
+          $empresa->tipoRegimen = $request->tipoRegimenNBar;
+          $empresa->nit = $request->nitNBar;
+          $empresa->departamento = $request->idDepto;
+          $empresa->ciudad = $request ->idCiudad;
+          $empresa->notas = "Felicidad es saber que cuentas con un compañero inseparable como SMARTBAR.";
+          $empresa->usuario_id = $usuario->id;
+          $empresa->save();
+          flash::success('El negocio ha sido creado satisfactoriamente')->important();
+          return redirect('Auth/usuario/'.$usuario->id.'/edit');
+        } 
+      }
     }
 
     if($request->ventanaFactura == 4){
