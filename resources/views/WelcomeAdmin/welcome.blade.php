@@ -117,15 +117,42 @@
                         {{$sumaVentasDeCadaCategoria[$key][4]}},
                         {{$sumaVentasDeCadaCategoria[$key][5]}}
                       </div>
-                      <p class="text-muted"><i class="fa fa-pause text-success"></i> 0% Comparado a la semana pasada</p>
+                      <p class="text-muted"><i class="{{$sumaVentasDeCadaCategoria[$key][7]}}"></i> {{$sumaVentasDeCadaCategoria[$key][6]}}% Comparado a la semana pasada</p>                    
                     </div>
-                    <div class="number"><span>${{$categoria->precio}}</span> <span>{{$categoria->nombre}}</span></div>
+                    <div class="number"> <!--<span>${{$categoria->precio}}</span>--> <span>{{$categoria->nombre}}</span></div>
                   </div>
                 </div>
             @endforeach
           </div>
         </div>
         <div class="row">
+          <div class="col-md-4">
+            <div class="panel-content">
+              <!-- BROWSERS -->
+              <h2 class="heading"><i class="fa fa-square"></i> Meseros Más Vendedores</h2>
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                    <tr>
+                      <th>Nombre </th>
+                      <th>Venta</th>
+                      <th>%</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($meserosMasVendedores as $key => $mesero)
+                      <tr>
+                        <td>{{$mesero->nombrePersona}}</td>
+                        <td>{{$mesero->total}}</td>
+                        <td>{{$mesero->porcentaje}}%</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <!-- END BROWSERS -->
+            </div>
+          </div>
           <div class="col-md-4">
             <!-- TRAFFIC SOURCES -->
             <div class="panel-content">
@@ -167,61 +194,7 @@
             </div>
             <!-- END REFERRALS -->
           </div>
-          <div class="col-md-4">
-            <div class="panel-content">
-              <!-- BROWSERS -->
-              <h2 class="heading"><i class="fa fa-square"></i> Browsers</h2>
-              <div class="table-responsive">
-                <table class="table no-margin">
-                  <thead>
-                    <tr>
-                      <th>Browsers</th>
-                      <th>Sessions</th>
-                      <th>%Sessions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Chrome</td>
-                      <td>1,756</td>
-                      <td>23%</td>
-                    </tr>
-                    <tr>
-                      <td>Firefox</td>
-                      <td>1,379</td>
-                      <td>14%</td>
-                    </tr>
-                    <tr>
-                      <td>Safari</td>
-                      <td>1,100</td>
-                      <td>17%</td>
-                    </tr>
-                    <tr>
-                      <td>Edge</td>
-                      <td>982</td>
-                      <td>25%</td>
-                    </tr>
-                    <tr>
-                      <td>Opera</td>
-                      <td>967</td>
-                      <td>19%</td>
-                    </tr>
-                    <tr>
-                      <td>IE</td>
-                      <td>896</td>
-                      <td>12%</td>
-                    </tr>
-                    <tr>
-                      <td>Android Browser</td>
-                      <td>752</td>
-                      <td>27%</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- END BROWSERS -->
-            </div>
-          </div>
+
         </div>
       </div>
     <!-- END ALGO -->

@@ -418,7 +418,7 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-map"></i></span>
-                    <input class="form-control" placeholder="Dirección" type="text">
+                    <input class="form-control" name="direccion" placeholder="Dirección" type="text">
                   </div>
                 </div>
                 <div class="form-group"> <!-- OJO esto dará error -->
@@ -450,7 +450,7 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                    <input class="form-control" placeholder="Salario Diario" type="number"><span class="input-group-addon">.00</span>
+                    <input class="form-control" name="salario" placeholder="Salario Diario" type="number"><span class="input-group-addon">.00</span>
                   </div>
                 </div>
                 <div class="text-center">
@@ -459,7 +459,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <input id="file-4" type="file" class="file" data-upload-url="#">
+                  <input id="file-4" name="hojaDeVida" type="file" class="file" data-upload-url="#">
                 </div>
               </div>
             </div>

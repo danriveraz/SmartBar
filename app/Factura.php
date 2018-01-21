@@ -52,7 +52,7 @@ class Factura extends Model
                     ->orderBy('total', 'DESC')
                     ->limit(4);
     }
-
+    // función para los reportes de las categorias más vendidas, trae las ventas hechas entre una fecha específica
     public function scopeVentasEntreFechas($query,$idCategoria,$fechaInicio,$fechaFinal){
       return $query->where([['factura.estado', 'Finalizada'],['factura.fecha','>=',$fechaInicio],['factura.fecha','<',$fechaFinal]])
                     ->join('venta', 'factura.id', '=', 'venta.idFactura')
@@ -60,6 +60,26 @@ class Factura extends Model
                     ->join('categoria', 'producto.idCategoria', '=', 'categoria.id')
                     ->where('categoria.id', $idCategoria);
                     //->select(DB::raw('SUM(`cantidad`) as total'),'idCategoria');
+    }
+
+    // Función para los reportes de los meseros que más han vendido, esto sería para todos los tiempo, si se queire se puede colocar un rango de fecha para acotar la busqueda
+    public function scopeVentasMesero($query,$idEmpresa,$totalVentas){
+      return $query->where([['factura.estado', 'Finalizada'],['factura.idEmpresa', $idEmpresa]])
+                          ->join('venta', 'factura.id', '=', 'venta.idFactura')
+                          ->join('producto', 'venta.idProducto', '=', 'producto.id')
+                          ->join('usuario', 'venta.idMesero', '=', 'usuario.id')
+                          ->select(DB::raw('SUM(`precio`*`cantidad`) as total'),'idMesero','nombrePersona',DB::raw('((SUM(`precio`*`cantidad`)*100)/'.$totalVentas.') as porcentaje'))
+                          ->groupBy('idMesero')
+                          ->orderBy('total', 'DESC')
+                          ->limit(10);
+    }
+
+    //el precio de todas las ventas, productos por cantidad
+    public function scopeTotalEnTodasLasVentas($query,$idEmpresa){
+       return $query->where([['factura.estado', 'Finalizada'],['factura.idEmpresa', $idEmpresa]])
+                          ->join('venta', 'factura.id', '=', 'venta.idFactura')
+                          ->join('producto', 'venta.idProducto', '=', 'producto.id')
+                          ->select(DB::raw('SUM(`precio`*`cantidad`) as totalVentas'));
     }
 
     public function scopeListar($query, $idEmpresa){

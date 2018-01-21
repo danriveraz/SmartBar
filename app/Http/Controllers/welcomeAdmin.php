@@ -35,33 +35,14 @@ class welcomeAdmin extends Controller
      */
     public function index()
     {   
-        $categorias = Factura::todasLasVentas(Auth::user()->empresaActual)->get();// obtiene el id de las 4 categorias más vendidas
-        $categoriasMasVendidas = array();// arreglo donde se guarda el objeto categoria de las 4 más vendidas
-        foreach ($categorias as $key => $categoria) {
-            array_push($categoriasMasVendidas,Categoria::find($categoria->idCategoria));
-        }
+        $categoriasMasVendidas = $this->categoriasMasVendidas();// llamado a la función queretorna un arreglo con dos valores
 
-        $carbon = new \Carbon\Carbon();
+        $ventaTotal = Factura::totalEnTodasLasVentas(Auth::user()->empresaActual)->first();
+        $meserosMasVendedores =  Factura::ventasMesero(Auth::user()->empresaActual,$ventaTotal->totalVentas)->get();
 
-        $sumaVentasDeCadaCategoria = array(); // arreglo donde se guardar la suma de las ventas de cada categoria 
-        foreach ($categorias as $key => $categoria) {
-
-            $fechaInicioEstadisticas = $carbon->now()->subWeek(5)->startOfWeek();// fecha del lunes, de la sexta semana anterior
-
-            $sumas = array();// arreglo para las ventas de cada semana
-            for ($i=0; $i <6 ; $i++) { 
-                $fechaInit = $fechaInicioEstadisticas->toDateTimeString();//inicio de semana
-                $fechaFin = $fechaInicioEstadisticas->addWeek(1)->toDateTimeString();//Fin desemana
-                $suma =  $ventasDespuesDe = Factura::ventasEntreFechas($categoria->idCategoria,$fechaInit,$fechaFin)
-                        ->select(DB::raw('SUM(`cantidad`) as total'))
-                        ->first();// todas las ventas de la categoria después de la fecha de inicio de la sexta semana anterior
-                array_push($sumas, $suma->total);
-            } 
-            array_push($sumaVentasDeCadaCategoria, $sumas); 
-        }
-        //dd($sumaVentasDeCadaCategoria);
-
-        return View('WelcomeAdmin/welcome')->with('categoriasMasVendidas',$categoriasMasVendidas)->with('sumaVentasDeCadaCategoria',$sumaVentasDeCadaCategoria);
+        return View('WelcomeAdmin/welcome')->with('categoriasMasVendidas',$categoriasMasVendidas['categoriasMasVendidas'])
+                    ->with('sumaVentasDeCadaCategoria',$categoriasMasVendidas['sumaVentasDeCadaCategoria'])
+                    ->with('meserosMasVendedores',$meserosMasVendedores);
     }
 
     /**
@@ -128,5 +109,54 @@ class welcomeAdmin extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function categoriasMasVendidas(){//Función auxiliar para la consulta de las categorias más vendidas 
+
+        $categorias = Factura::todasLasVentas(Auth::user()->empresaActual)->get();// obtiene el id de las 4 categorias más vendidas
+        $categoriasMasVendidas = array();// arreglo donde se guarda el objeto categoria de las 4 más vendidas
+        foreach ($categorias as $key => $categoria) {
+            array_push($categoriasMasVendidas,Categoria::find($categoria->idCategoria));
+        }
+
+        $carbon = new \Carbon\Carbon();
+
+        $sumaVentasDeCadaCategoria = array(); // arreglo donde se guardar la suma de las ventas de cada categoria 
+        foreach ($categorias as $key => $categoria) {
+
+            $fechaInicioEstadisticas = $carbon->now()->subWeek(5)->startOfWeek();// fecha del lunes, de la sexta semana anterior
+
+            $sumas = array();// arreglo para las ventas de cada semana
+            for ($i=0; $i <6 ; $i++) { 
+                $fechaInit = $fechaInicioEstadisticas->toDateTimeString();//inicio de semana
+                $fechaFin = $fechaInicioEstadisticas->addWeek(1)->toDateTimeString();//Fin desemana
+                $suma =  $ventasDespuesDe = Factura::ventasEntreFechas($categoria->idCategoria,$fechaInit,$fechaFin)
+                        ->select(DB::raw('SUM(`cantidad`) as total'))
+                        ->first();// todas las ventas de la categoria después de la fecha de inicio de la sexta semana anterior
+                array_push($sumas, $suma->total);
+            }
+            $ventaSemanaActual= intval(end($sumas));
+            $ventaSemanaPasada = intval(prev($sumas));
+            if (($ventaSemanaPasada == 0) && ($ventaSemanaActual != 0 )) {
+                $porcentaje = 100;
+            } elseif(($ventaSemanaPasada == 0) && ($ventaSemanaActual == 0 )){
+                $porcentaje = 0;
+            } else {
+                $porcentaje = ($ventaSemanaActual*100)/($ventaSemanaPasada)-100;
+            }
+            
+            $classEtiqueta = "fa fa-pause text-success";
+            if ($porcentaje<0) {
+                   $classEtiqueta = "fa fa-caret-down text-danger";
+               } elseif($porcentaje>0) {
+                   $classEtiqueta = "fa fa-caret-up text-success";
+               }
+            array_push($sumas, $porcentaje);
+            array_push($sumas, $classEtiqueta);
+
+            array_push($sumaVentasDeCadaCategoria, $sumas); 
+        }
+
+        return array('categoriasMasVendidas' => $categoriasMasVendidas, 'sumaVentasDeCadaCategoria' => $sumaVentasDeCadaCategoria);
     }
 }

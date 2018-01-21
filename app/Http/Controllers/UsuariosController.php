@@ -451,8 +451,11 @@ class UsuariosController extends Controller
           $usuario->sexo = $request->sexo;
           $usuario->fechaNacimiento = $request->fechaNacimiento;
           $usuario->pais= "Colombia";
+          $usuario->direccion = $request->direccion;
+          $usuario->salario = $request->salario;
           $usuario->departamento= Auth::user()->departamento;
           $usuario->ciudad= Auth::user()->ciudad;
+          $usuario->empresaActual= Auth::user()->empresaActual;
           $usuario->confirmoEmail = 1;
           $usuario->estado = true;
           $usuario->imagenPerfil = "perfil.jpg";
