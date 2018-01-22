@@ -23,7 +23,7 @@
         <div class="row">
           <!-- Hover Row Table -->
           <div class="col-lg-3">
-          <div  class="text-center"><a class="btn btn-bitbucket" onclick=""><i class="fa fa-arrow-left"></i>Ir Atras</a></div>
+          <div  class="text-center"><a class="btn btn-bitbucket" href="{{route('producto.index')}}"><i class="fa fa-arrow-left"></i>Ir Atras</a></div>
           </div>
           <!-- end Hover Row Table --><!-- Responsive Table -->
           <div class="col-lg-6">
@@ -33,7 +33,7 @@
               <div class="col-lg-6">
         <div>
           <h2>
-      <input class="Titulo-css2" placeholder="Ingrese Nombre" value="{{$producto->nombre}}" />
+      <input class="Titulo-css2" id="nombre" placeholder="Ingrese Nombre" value="{{$producto->nombre}}"/>
           </h2>
         </div> 
 
@@ -42,14 +42,14 @@
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-object-group"></i></span>
-                {!! Form::select('categorias', $categorias, null, ['class'=>'select2able', 'placeholder' => 'Categorias']) !!}
+                {!! Form::select('categorias', $categorias, $producto->idCategoria, ['class'=>'select2able', 'placeholder' => 'Categorias', 'id' => 'categoria']) !!}
               </div>
             </div>
             
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                <input class="form-control" placeholder="Precio del Producto" type="text" value="{{$producto->precio}}">
+                <input class="form-control" id="precio" placeholder="Precio del Producto" type="text" value="{{$producto->precio}}">
               </div>
             </div>
              </div>
@@ -61,8 +61,9 @@
                 <i class=" pocketMorado fa fa-table"></i><a class="pocketMorado">Productos Selecionados</a>
               </div>
               <div class="widget-content padded clearfix">
-                <table class="table table-striped">
+                <table class="table table-striped" id="insumoAgregados">
                   <thead>
+                    <th style="display: none;"></th>
                     <th>
                       Nombre
                     </th>
@@ -76,7 +77,8 @@
                   </thead>
                   <tbody>
                     @foreach($contienen as $contiene)
-                    <tr>
+                    <tr id="fila{{$contiene->idInsumo}}">
+                      <td style="display: none;">{{$contiene->idInsumo}}</td>
                       <td>
                         {{$insumos[$contiene->idInsumo]}}
                       </td>
@@ -90,7 +92,7 @@
                       </td>
                       <td>
                         <div class="action-buttons">
-                      <a class="table-actions pocketMorado"><i class="fa fa-window-close" title="Cancelar"></i></a>
+                      <a class="table-actions pocketMorado"><i class="fa fa-window-close" title="Cancelar" onclick="eliminarInsumo({{$producto->id}},{{$contiene->idInsumo}})"></i></a>
                         </div>
                       </td>
                     </tr>
@@ -148,20 +150,19 @@
                         {{$insumo->marca}}
                       </td>
                       <td>
-                        <input type="number" class="Titulo-css" placeholder="Ingrese Cantidad" />
+                        <input type="number" class="Titulo-css" id="{{$insumo->id}}" placeholder="Ingrese Cantidad" />
                       </td>
                       <td class="text-center">
                         {{$insumo->cantidadRestante}}
                       </td>
                       <td class="text-center">
                         <span class="label label-Pocket">
-                          <b>{!! Form::select('medida', ['0'=>'oz','2'=>'ml','3'=>'cm3','1'=>'unidad'], $insumo->medida, ['class'=>'', 'id'=>'medida'.$insumo->id]) !!}</b>
+                          <b>{!! Form::select('medida', ['0'=>'Onza','2'=>'Mililitro','3'=>'cm3','1'=>'Unidad'], $insumo->medida, ['class'=>'', 'id'=>'medida'.$insumo->id]) !!}</b>
                         </span>
                       </td>                     
                       <td class="text-center actions">
                         <div class="action-buttons">
-                          <a class="table-actions pocketMorado" href=""><i class="fa fa-pencil" data-toggle="modal" href="#myModal" title="Editar Insumo"></i></a>
-                          <a class="table-actions pocketMorado" href=""><i class="fa fa-trash-o" title="Eliminar Insumo"></i></a>
+                          <a class="table-actions pocketMorado"><i class="fa fa-plus" onclick="adicionarInsumo({{$insumo}})" title="Adicionar Insumo"></i></a>
                         </div>
                       </td>
                     </tr>
@@ -176,7 +177,7 @@
         </div> 
         
         
-             <div class="text-center"><a class="btn btn-bitbucket" onclick=""><i class="fa fa-send"></i>Guardar Producto</a></div>                                 
+             <div class="text-center"><a class="btn btn-bitbucket" onclick="enviarDatos({{$producto->id}})"><i class="fa fa-send"></i>Guardar Producto</a></div>                                 
 
         <!-- end DataTables Example -->
       </div> 
@@ -234,7 +235,7 @@
               <div class="col-lg-8">
               <div class="widget-content padded">
                 <div id="summernote">
-                  Ingresa La Preparacion del Producto
+                  {{$producto->receta}}
                 </div>
               </div>
               </div> <!-- fin del modal 2-->             
@@ -258,75 +259,6 @@
 @endsection
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
-
-  $(document).ready(function(){
-    listprov();
-    $("#nombreInput").keyup(function(e){
-        var dato = $("#nombreInput").val();
-        var url = "contlistall?nombre=";
-        var tipo = $("#buscarTipo").val();
-        var urlf = url+dato+'&tipo='+tipo;
-        sleep(50);
-        $.ajax({
-          type:'get',
-          url:urlf,
-          success: function(data){
-            $("#list-cont").empty().html(data);
-          }
-        });
-    });
-  });
-
-  function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-      if ((new Date().getTime() - start) > milliseconds){
-        break;
-      }
-    }
-  }
-
-  $(document).on("change", '#buscarTipo',function(e){
-    e.preventDefault();
-    var dato = $("#nombreInput").val();
-    var tipo = $("#buscarTipo").val();
-    var url = "inslistall?nombre=";
-    var urlf = url+dato+'&tipo='+tipo;
-    sleep(50);
-    $.ajax({
-      type:'get',
-      url:urlf,
-      success: function(data){
-        $("#list-cont").empty().html(data);
-      }
-    });
-  });
-
-  $(document).on("click",".pagination li a",function(e){
-    e.preventDefault();
-    var url = $(this).attr("href");
-    $.ajax({
-      type:'get',
-      url:url,
-      success: function(data){
-        $("#list-cont").empty().html(data);
-      }
-    });
-  });
-
-  var listprov = function()
-  {
-    $.ajax({
-      type:'get',
-      url: '{{url('contlistall')}}',
-      success:  function(data){
-        $('#list-cont').empty().html(data);
-      }
-    });
-  }
-
-</script>
 <script>
 
   var routeEliminar = "http://localhost/PocketByR/public/contiene/eliminar";
@@ -345,6 +277,10 @@
       var cantidadAux = cantidad/30;
       cantidad = cantidadAux;
     }
+    var medidaInsumo = "Onza";
+    if(medida== 4){
+      medidaInsumo = "Unidad";
+    }
     if(cantidad>0){
       if(document.getElementById("fila"+insumo.id)!=null){
         $("#fila"+insumo.id).children("td").each(function (indextd)
@@ -356,7 +292,7 @@
           });
         }
       else{
-        var fila = '<tr id="fila'+insumo.id+'"><td style="display: none;">'+insumo.id+'</td><td>'+insumo.nombre+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$producto->id}},'+insumo.id+')" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>';
+        var fila = '<tr id="fila'+insumo.id+'"><td style="display: none;">'+insumo.id+'</td><td>'+insumo.nombre+'</td><td class="text-center">'+cantidad+'</td><td class="text-center"><span class="label label-Pocket"><b>'+medidaInsumo+'</b></span></td><td><div class="action-buttons"><a class="table-actions pocketMorado"><i class="fa fa-window-close" title="Cancelar" onclick="eliminarInsumo({{$producto->id}},'+insumo.id+')"></i></a></div></td></tr>';
         $("#insumoAgregados").append(fila);
       }
       $("#"+insumo.id).val('');
@@ -389,7 +325,7 @@
     var insumos = [];
     var nombres = [];
     var medida = [];
-      $("table#insumosDisponibles tr").each(function() {
+      $("table#dataTable1 tr").each(function() {
         $(this).children("td").each(function (indextd)
           {
             if(indextd == 0){
@@ -447,6 +383,10 @@
 
   function enviarDatos(idProducto){
     if(confirm('¿Desea Guardar todos los insumos agregados?')){
+      var nombre = $("#nombre").val();
+      var precio = $("#precio").val();
+      var categoria = $("#categoria").val();
+      var receta = "";//$("#receta").val();
       var idInsumos = [];
       var cantidades = [];
       $("table#insumoAgregados tr").each(function() {
@@ -454,8 +394,9 @@
           {
             if(indextd == 0){
               idInsumos.push($(this).text());
-            }else if(indextd == 2)
+            }else if(indextd == 2){
               cantidades.push($(this).text());
+            }
         })
       });
       $.ajax({
@@ -463,6 +404,10 @@
           type: 'GET',
           data:{
             idProducto: idProducto,
+            nombre: nombre,
+            precio: precio,
+            categoria: categoria,
+            receta: receta,
             insumos: idInsumos,
             cantidades: cantidades
           },

@@ -52,6 +52,7 @@ public function __construct()
                                    with('medidas', $medidas);
     }else{
       $producto = new Producto;
+      $producto->id = 0;
       $producto->nombre = "";
       $producto->precio = "";
       $contienen = [];
@@ -109,7 +110,27 @@ public function __construct()
 
   public function guardar(Request $request){
     $userActual = Auth::user();
-    $idProducto = $request->idProducto;
+    $idProducto = null;
+    if($request->idProducto != 0){
+      $idProducto = $request->idProducto;
+      $producto = Producto::find($idProducto);
+      $producto->nombre = $request->nombre;
+      $producto->precio = $request->precio;
+      $producto->idCategoria = $request->categoria;
+      $producto->receta = $request->receta;
+      $producto->save();
+    }else{
+      $producto = new Producto;
+      $producto->nombre = $request->nombre;
+      $producto->precio = $request->precio;
+      $producto->idCategoria = $request->categoria;
+      $producto->receta = $request->receta;
+      $producto->idEmpresa = $userActual->idEmpresa;
+      $producto->save();
+      $producto = Producto::Nombre($request->nombre)->Category($request->categoria)->first();
+      $idProducto = $producto->id;
+    }
+
     $idInsumos = $request->insumos;
     $cantidades = $request->cantidades;
 
