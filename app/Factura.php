@@ -74,7 +74,33 @@ class Factura extends Model
                           ->limit(10);
     }
 
-    //el precio de todas las ventas, productos por cantidad
+    // Función para los reportes de los Bartender que más han vendido, esto sería para todos los tiempo, si se queire se puede colocar un rango de fecha para acotar la busqueda
+    public function scopeVentasBartender($query,$idEmpresa,$totalVentas){
+      return $query->where([['factura.estado', 'Finalizada'],['factura.idEmpresa', $idEmpresa]])
+                          ->join('venta', 'factura.id', '=', 'venta.idFactura')
+                          ->join('producto', 'venta.idProducto', '=', 'producto.id')
+                          ->join('usuario', 'venta.idBartender', '=', 'usuario.id')
+                          ->select(DB::raw('SUM(`precio`*`cantidad`) as total'),'idBartender','nombrePersona',DB::raw('((SUM(`precio`*`cantidad`)*100)/'.$totalVentas.') as porcentaje'))
+                          ->groupBy('idBartender')
+                          ->orderBy('total', 'DESC')
+                          ->limit(10);
+    }
+
+
+    // Función para los reportes de los Bartender que más han vendido, esto sería para todos los tiempo, si se queire se puede colocar un rango de fecha para acotar la busqueda
+    public function scopeVentasCajero($query,$idEmpresa,$totalVentas){
+      return $query->where([['factura.estado', 'Finalizada'],['factura.idEmpresa', $idEmpresa]])
+                          ->join('venta', 'factura.id', '=', 'venta.idFactura')
+                          ->join('producto', 'venta.idProducto', '=', 'producto.id')
+                          ->join('usuario', 'venta.idCajero', '=', 'usuario.id')
+                          ->select(DB::raw('SUM(`precio`*`cantidad`) as total'),'idCajero','nombrePersona',DB::raw('((SUM(`precio`*`cantidad`)*100)/'.$totalVentas.') as porcentaje'))
+                          ->groupBy('idCajero')
+                          ->orderBy('total', 'DESC')
+                          ->limit(10);
+    }
+
+
+    //la cantidad total de todas las ventas, productos por cantidad
     public function scopeTotalEnTodasLasVentas($query,$idEmpresa){
        return $query->where([['factura.estado', 'Finalizada'],['factura.idEmpresa', $idEmpresa]])
                           ->join('venta', 'factura.id', '=', 'venta.idFactura')

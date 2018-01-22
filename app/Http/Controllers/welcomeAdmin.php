@@ -39,10 +39,14 @@ class welcomeAdmin extends Controller
 
         $ventaTotal = Factura::totalEnTodasLasVentas(Auth::user()->empresaActual)->first();
         $meserosMasVendedores =  Factura::ventasMesero(Auth::user()->empresaActual,$ventaTotal->totalVentas)->get();
+        $bartenderMasVendedores =  Factura::ventasBartender(Auth::user()->empresaActual,$ventaTotal->totalVentas)->get();
+        $cajeroMasVendedores =  Factura::ventasCajero(Auth::user()->empresaActual,$ventaTotal->totalVentas)->get();
 
         return View('WelcomeAdmin/welcome')->with('categoriasMasVendidas',$categoriasMasVendidas['categoriasMasVendidas'])
                     ->with('sumaVentasDeCadaCategoria',$categoriasMasVendidas['sumaVentasDeCadaCategoria'])
-                    ->with('meserosMasVendedores',$meserosMasVendedores);
+                    ->with('meserosMasVendedores',$meserosMasVendedores)
+                    ->with('bartenderMasVendedores',$bartenderMasVendedores)
+                    ->with('cajeroMasVendedores',$cajeroMasVendedores);
     }
 
     /**

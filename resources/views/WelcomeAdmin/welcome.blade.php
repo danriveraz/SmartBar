@@ -92,7 +92,7 @@
 
 
  <!--Inicio de las gráficas-->
-<div id="main-content">
+<div id="">
     <div class="container-fluid">
       <div class="section-heading">
         <h1 class="page-title">Reportes</h1>
@@ -128,7 +128,7 @@
         <div class="row">
           <div class="col-md-4">
             <div class="panel-content">
-              <!-- BROWSERS -->
+              <!-- Meseros -->
               <h2 class="heading"><i class="fa fa-square"></i> Meseros Más Vendedores</h2>
               <div class="table-responsive">
                 <table class="table no-margin">
@@ -143,16 +143,72 @@
                     @foreach($meserosMasVendedores as $key => $mesero)
                       <tr>
                         <td>{{$mesero->nombrePersona}}</td>
-                        <td>{{$mesero->total}}</td>
+                        <td>${{$mesero->total}}</td>
                         <td>{{$mesero->porcentaje}}%</td>
                       </tr>
                     @endforeach
                   </tbody>
                 </table>
               </div>
-              <!-- END BROWSERS -->
+              <!-- END meseros -->
             </div>
           </div>
+          <div class="col-md-4">
+            <div class="panel-content">
+              <!-- bartemder -->
+              <h2 class="heading"><i class="fa fa-square"></i> Bartender Más Vendedores</h2>
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                    <tr>
+                      <th>Nombre </th>
+                      <th>Venta</th>
+                      <th>%</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($bartenderMasVendedores as $key => $bartender)
+                      <tr>
+                        <td>{{$bartender->nombrePersona}}</td>
+                        <td>${{$bartender->total}}</td>
+                        <td>{{$bartender->porcentaje}}%</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <!-- END bartender -->
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="panel-content">
+              <!-- cajero -->
+              <h2 class="heading"><i class="fa fa-square"></i> Cajeros Más Vendedores</h2>
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                    <tr>
+                      <th>Nombre </th>
+                      <th>Venta</th>
+                      <th>%</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($cajeroMasVendedores as $key => $cajero)
+                      <tr>
+                        <td>{{$cajero->nombrePersona}}</td>
+                        <td>${{$cajero->total}}</td>
+                        <td>{{$cajero->porcentaje}}%</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <!-- END cajero -->
+            </div>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-md-4">
             <!-- TRAFFIC SOURCES -->
             <div class="panel-content">
@@ -193,8 +249,7 @@
               </ul>
             </div>
             <!-- END REFERRALS -->
-          </div>
-
+          </div> 
         </div>
       </div>
     <!-- END ALGO -->
