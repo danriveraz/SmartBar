@@ -24,7 +24,7 @@ class AgendaTrabajadoresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-      return view('AgendaTrabajadores.agenda');
+      return view('AgendaTrabajadores.index');
     }
 
     /**

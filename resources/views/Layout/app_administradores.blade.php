@@ -318,7 +318,7 @@
                 </li> 
                 
                 <li>
-                  <a id="miPersonal" href={{url("/Auth/usuario")}}>
+                  <a id="miPersonal" href="{{route('AgendaTrabajadores.index')}}">
                     <span aria-hidden="true" class="fa fa-fw fa-users">
                     </span>Mi Personal</a>
                 </li>
