@@ -2,6 +2,38 @@
 
  */
  
+ 
+/* contraer texto red more*/
+
+.read-more-state {
+  display: none;
+}
+
+.read-more-target {
+	cursor: pointer;
+  opacity: 0;
+  max-height: 0;
+  font-size: 0;
+  transition: .25s ease;
+}
+
+.read-more-state:checked ~ .read-more-wrap .read-more-target {
+  opacity: 1;
+  font-size: inherit;
+  max-height: 999em;
+}
+
+.read-more-trigger:before {
+  content: 'Ver Mas';
+}
+
+.read-more-trigger {
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 500;
+}
+ 
+ 
  .pocketPadin{
 padding: 0px 0px 0px 0px !important;
 	 }
