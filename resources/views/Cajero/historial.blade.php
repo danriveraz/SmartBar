@@ -1,5 +1,32 @@
-@extends(Auth::User()->esAdmin ? 'Layout.app_administradores' : 'Layout.app_empleado')
+@extends(Auth::User()->esAdmin ? 'Layout.app_administradoresOptimizado' : 'Layout.app_empleado')
 @section('content')
+
+
+ {!!Html::style('stylesheets\datatables.css')!!}
+  {!!Html::script("javascripts\select2.js")!!}
+  {!!Html::script("javascripts\datatable-editable.js")!!}
+  {!!Html::script("javascripts\jquery.dataTables.js")!!}
+  {!!Html::script("javascripts\bootstrap.min.js")!!}<!-- ya esta -->
+  {!!Html::script("javascripts\jquery.bootstrap.wizard.js")!!}
+  {!!Html::script("javascripts\jquery.dataTables.min.js")!!}
+  {!!Html::script("javascripts/fullcalendar.min.js")!!}
+  {!!Html::script("javascripts\jquery.easy-pie-chart.js")!!}<!-- ya esta -->
+  {!!Html::script("javascripts\jquery.isotope.min.js")!!}
+  {!!Html::script("javascripts\jquery.fancybox.pack.js")!!}
+  {!!Html::script("javascripts\jquery.inputmask.min.js")!!}
+  {!!Html::script("javascripts\jquery.validate.js")!!}
+  {!!Html::script("javascripts\bootstrap-timepicker.js")!!}
+  {!!Html::script("javascripts\bootstrap-colorpicker.js")!!}
+  {!!Html::script("javascripts\ladda.min.js")!!}
+  {!!Html::script("javascripts\mockjax.js")!!}
+  {!!Html::script("javascripts\daterange-picker.js")!!}
+  {!!Html::script("javascripts\date.js")!!}  
+  {!!Html::script("javascripts/fitvids.js")!!}
+  {!!Html::script("javascripts\jquery.sparkline.min.js")!!}<!-- ya esta -->
+  {!!Html::script("javascripts\dropzone.js")!!}
+  {!!Html::script("javascripts\jquery.nestable.js")!!}
+  {!!Html::script('javascripts\main.js')!!}<!-- ya esta -->
+  
 <div class="container main-content">
 	<div class="row">
 		<div class="col-lg-12">

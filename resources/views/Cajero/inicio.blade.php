@@ -1,11 +1,13 @@
-@extends(Auth::User()->esAdmin ? 'Layout.app_administradores' : 'Layout.app_empleado')
+@extends(Auth::User()->esAdmin ? 'Layout.app_administradoresOptimizado' : 'Layout.app_empleado')
 @section('content')
 
 {!!Html::style('css/content-box.css')!!}
+{!!Html::style('stylesheets\social-buttons.css')!!}
 {!!Html::style('stylesheets/invoque/invoice.css')!!}
 {!!Html::style('stylesheets/cajero.css')!!}
+{!!Html::style('stylesheets\bootstrap-switch.css')!!}
+{!!Html::script("javascripts\bootstrap-switch.min.js")!!}
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
 
 <div class="container">                   
   <div class="row">
