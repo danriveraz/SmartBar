@@ -6,8 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddClienteFactura' => $baseDir . '/database/migrations/2018_01_22_095030_add_cliente_factura.php',
     'AddColumnaUsername' => $baseDir . '/database/migrations/2017_08_13_235105_add_columna_username.php',
     'AddDoubleFactura' => $baseDir . '/database/migrations/2017_07_26_113414_addDoubleFactura.php',
+    'AddEmpresaCliente' => $baseDir . '/database/migrations/2018_01_22_095634_add_empresa_cliente.php',
     'AddEstadoCajeroTableVenta' => $baseDir . '/database/migrations/2017_07_26_214219_addEstadoCajeroTableVenta.php',
     'AddEstadosVenta' => $baseDir . '/database/migrations/2017_07_26_112257_addEstadosVenta.php',
     'AddForeignKeyCategoria' => $baseDir . '/database/migrations/2017_07_29_112002_addForeignKeyCategoria.php',
@@ -22,6 +24,7 @@ return array(
     'AddMedidaInsumo' => $baseDir . '/database/migrations/2017_08_22_220235_addMedidaInsumo.php',
     'AddPerfilProveedorUsuarios' => $baseDir . '/database/migrations/2017_09_05_144059_addPerfilProveedorUsuarios.php',
     'AddPersimoRegalar' => $baseDir . '/database/migrations/2017_08_14_174017_add_persimo_regalar.php',
+    'AddSalarioDireccionUsuarios' => $baseDir . '/database/migrations/2018_01_06_170003_add_salario_direccion_usuarios.php',
     'Addrecetaproducto' => $baseDir . '/database/migrations/2017_07_20_004051_addrecetaproducto.php',
     'Addunidadinsumo' => $baseDir . '/database/migrations/2017_07_18_222822_addunidadinsumo.php',
     'Addvartutusuario' => $baseDir . '/database/migrations/2017_09_18_200312_addvartutusuario.php',
@@ -37,6 +40,7 @@ return array(
     'Altertableproductos' => $baseDir . '/database/migrations/2017_07_05_100014_altertableproductos.php',
     'CambioNombreTablaAdmin' => $baseDir . '/database/migrations/2017_07_26_233304_cambio_nombre_tabla_admin.php',
     'CambiosTablaUsuarios' => $baseDir . '/database/migrations/2017_07_26_235518_cambios_tabla_usuarios.php',
+    'CorreccionCliente' => $baseDir . '/database/migrations/2018_01_22_113728_correccion_cliente.php',
     'CreateAgendatrabajadoresTable' => $baseDir . '/database/migrations/2017_09_06_185140_create_agendatrabajadores_table.php',
     'CreateCategoriaTable' => $baseDir . '/database/migrations/2017_07_01_183643_create_categoria_table.php',
     'CreateCiudadesTable' => $baseDir . '/database/migrations/2017_07_13_103015_create_ciudades_table.php',
@@ -58,6 +62,7 @@ return array(
     'DeleteUniqueCedulaCorreo' => $baseDir . '/database/migrations/2017_08_13_234303_delete_unique_cedula_correo.php',
     'DroUsernameCreateUniqueEmail' => $baseDir . '/database/migrations/2018_01_02_095041_dro_username_create_unique_email.php',
     'EmpresaAgregarNuevosDatos' => $baseDir . '/database/migrations/2018_01_02_103819_empresa_agregar_nuevos_datos.php',
+    'EmpresaNotasAdicionales' => $baseDir . '/database/migrations/2018_01_17_121055_empresa_notasAdicionales.php',
     'FacturaAgregarIdFacturaLocal' => $baseDir . '/database/migrations/2018_01_04_120125_factura_agregar_idFacturaLocal.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
@@ -133,6 +138,7 @@ return array(
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
     'Insertpkcontiene' => $baseDir . '/database/migrations/2017_07_19_205814_insertpkcontiene.php',
     'LoginRedesSociales' => $baseDir . '/database/migrations/2017_08_11_012709_login_redes_sociales.php',
+    'MebresiaUsuario' => $baseDir . '/database/migrations/2018_01_18_103432_mebresiaUsuario.php',
     'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
     'PHPUnit\\Framework\\AssertionFailedError' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/AssertionFailedError.php',
     'PHPUnit\\Framework\\BaseTestListener' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',

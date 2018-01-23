@@ -43,17 +43,26 @@ class CajeroController extends Controller
         }
     	return view('Cajero.inicio')->with('totalVentas',$totalVentas)->with('facturas',$facturas)->with('user',$userActual)->with('productos',$productos);
     }
-    
+  
     public function historial(Request $request){
       $facturas = Factura::listarTodas(Auth::user()->empresaActual)->get();
       $productos = array();
+      $clientes = array();
+      //dd($facturas[0]->cliente->nombre);
        for($i=0; $i < sizeof($facturas); $i++){
             $ventasHechas = $facturas[$i]->ventasHechas;
             for($j=0; $j < sizeof($ventasHechas); $j++){
-                array_push($productos, array(($facturas[$i]->id), $ventasHechas[$j]->cantidad, $ventasHechas[$j]->producto->nombre, $ventasHechas[$j]->producto->precio, $ventasHechas[$j]->estadoMesero, $ventasHechas[$j]->obsequio)); 
+                $idCLiente = 0;
+                if($facturas[$i]->cliente != null){
+                  $idCLiente = $facturas[$i]->cliente->id;
+                }
+                array_push($productos, array(($facturas[$i]->id), $ventasHechas[$j]->cantidad, $ventasHechas[$j]->producto->nombre, $ventasHechas[$j]->producto->precio, $ventasHechas[$j]->estadoMesero, $ventasHechas[$j]->obsequio, $idCLiente)); 
+            }
+            if($facturas[$i]->cliente != null){
+               array_push($clientes, array($facturas[$i]->cliente->id, $facturas[$i]->cliente->nombre, $facturas[$i]->cliente->nit, $facturas[$i]->cliente->telefono, $facturas[$i]->cliente->email, $facturas[$i]->cliente->direccion1));
             }
         }
-      return view('Cajero.historial')->with('facturas',$facturas)->with('productos',$productos);
+      return view('Cajero.historial')->with('facturas',$facturas)->with('productos',$productos)->with('clientes',$clientes);
     }
     public function show($id){
 

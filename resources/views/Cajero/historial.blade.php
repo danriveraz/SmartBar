@@ -48,31 +48,51 @@
 <script type="text/javascript">
 	//#32bf32
 	var JSONproductos = eval(<?php echo json_encode($productos); ?>);   	
+	var JSONclientes = eval(<?php echo json_encode($clientes); ?>);   	
 
 //<a class="popover-trigger" readonly value="0"  data-content="Cantidad de productos que pertenecen a esta categoría" data-html="true" data-placement="bottom" data-toggle="popover" style="width: 100%; color: #5A5A5A;">0</a>
 	function format ( d ) {
    	var datos = "";
    	var color = " style='color:black;'";
-   		for(i = 0; i < JSONproductos.length; i++){
-   	 		if(JSONproductos[i][0] == d){
-	   			if(JSONproductos[i][4]== "Cancelado"){
-	   				datos+='<tr style="text-align: center; color:red;" class="fila"><td><a class="popover-trigger" readonly  data-content="<div'+color+'>Este pedido fue cancelado</div>" data-html="true" data-placement="bottom" data-toggle="popover" style="width: 100%; color:red;">'+JSONproductos[i][1]+'</a></td><td>'+JSONproductos[i][2] +'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3])+'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3]*JSONproductos[i][1])+'</td></tr>';
-	   			}else if(JSONproductos[i][5] == 1){
-	   				datos+='<tr style="text-align: center; color:#32bf32;" class="fila"><td><a class="popover-trigger" readonly  data-content="<div'+color+'>Este producto fue obsequiado</div>" data-html="true" data-placement="bottom" data-toggle="popover" style="width: 100%; color:#32bf32;">'+JSONproductos[i][1]+'</a></td><td>'+JSONproductos[i][2] +'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3])+'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3]*JSONproductos[i][1])+'</td></tr>';
-	   			}else{
-	   				datos+='<tr style="text-align: center;"><td>'+JSONproductos[i][1]+'</td><td>'+JSONproductos[i][2] +'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3])+'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3]*JSONproductos[i][1])+'</td></tr>';
-	   			}
-   		}
+   	var cliente = [];
+   	var idCliente = 0;
+	for(i = 0; i < JSONproductos.length; i++){
+ 		if(JSONproductos[i][0] == d){
+			if(JSONproductos[i][4]== "Cancelado"){
+				idCliente = JSONproductos[i][6];
+				datos+='<tr style="text-align: center; color:red;" class="fila"><td><a class="popover-trigger" readonly  data-content="<div'+color+'>Este pedido fue cancelado</div>" data-html="true" data-placement="bottom" data-toggle="popover" style="width: 100%; color:red;">'+JSONproductos[i][1]+'</a></td><td>'+JSONproductos[i][2] +'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3])+'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3]*JSONproductos[i][1])+'</td></tr>';
+			}else if(JSONproductos[i][5] == 1){
+				datos+='<tr style="text-align: center; color:#32bf32;" class="fila"><td><a class="popover-trigger" readonly  data-content="<div'+color+'>Este producto fue obsequiado</div>" data-html="true" data-placement="bottom" data-toggle="popover" style="width: 100%; color:#32bf32;">'+JSONproductos[i][1]+'</a></td><td>'+JSONproductos[i][2] +'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3])+'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3]*JSONproductos[i][1])+'</td></tr>';
+			}else{
+				datos+='<tr style="text-align: center;"><td>'+JSONproductos[i][1]+'</td><td>'+JSONproductos[i][2] +'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3])+'</td><td>$'+Intl.NumberFormat().format(JSONproductos[i][3]*JSONproductos[i][1])+'</td></tr>';
+			}
+		}
    	}
+   	for(i = 0; i < JSONclientes.length; i++){
+   		cliente[0]= "-";
+   		cliente[1]= "-";
+   		cliente[2]= "-";
+   		cliente[3]= "-";
+   		cliente[4]= "-";
+   		cliente[5]= "-";
+	   	if(JSONclientes[i][0] == idCliente){
+	 			cliente[0]= JSONclientes[i][1];
+	 			cliente[1]= JSONclientes[i][2];
+	 			cliente[2]= JSONclientes[i][3];
+	 			cliente[3]= JSONclientes[i][4];
+	 			cliente[4]= JSONclientes[i][5];
+
+	 	}
+	 }
     return    '<div class="col-md-6"  style="padding-left: 50px; padding-top:15px;"> <div class="heading"><i class="fa fa-tags"></i>'+
     			'Información de factura </div>'+
                 '<div class="widget-content padded"><dl><div class="row">'+
 				'<div class="col-md-6">'+
-					'<dt>Nombre</dt><dd>Diergo Alejandro Fajardo</dd>'+
-                   '<dt>Direccion</dt><dd>Calle 6 No 22-35 B/saman del norte</dd></div>'+
+					'<dt>Nombre</dt><dd>'+cliente[0]+'</dd>'+
+                   '<dt>Direccion</dt><dd>'+cliente[4]+'</dd></div>'+
               	'<div class="col-md-6" style="padding-left:35px;">'+
-                    '<dt>Nit</dt><dd>1116256943-9</dd><dt>Telefono</dt><dd>3012638327</dd>'+
-                '</div></div><dt>Direccion</dt><dd>Calle 6 No 22-35 B/saman del norte</dd>'+
+                    '<dt>Nit</dt><dd>'+cliente[1]+'</dd><dt>Telefono</dt><dd>'+cliente[2]+'</dd>'+
+                '</div></div><dt>Email</dt><dd>'+cliente[3]+'</dd>'+
                   '</dl></div></div>'+
           	'</div><div class="col-md-6" style="padding-rigth: 25px; padding-top:25px;"><table class="table table-bordered table-striped"><thead>'+
         '<tr>'+

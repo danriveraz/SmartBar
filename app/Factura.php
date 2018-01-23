@@ -25,6 +25,9 @@ class Factura extends Model
     public function empresa(){
       return $this->belongsTo('PocketByR\Empresa', 'idEmpresa', 'id');
     }
+    public function cliente(){
+      return $this->hasOne('PocketByR\Cliente', 'id', 'idCliente');
+    }
     public function ventasHechas(){
       return $this->hasMany('PocketByR\Venta', 'idFactura', 'id');
     }

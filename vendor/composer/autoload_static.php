@@ -342,8 +342,10 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
     );
 
     public static $classMap = array (
+        'AddClienteFactura' => __DIR__ . '/../..' . '/database/migrations/2018_01_22_095030_add_cliente_factura.php',
         'AddColumnaUsername' => __DIR__ . '/../..' . '/database/migrations/2017_08_13_235105_add_columna_username.php',
         'AddDoubleFactura' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_113414_addDoubleFactura.php',
+        'AddEmpresaCliente' => __DIR__ . '/../..' . '/database/migrations/2018_01_22_095634_add_empresa_cliente.php',
         'AddEstadoCajeroTableVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_214219_addEstadoCajeroTableVenta.php',
         'AddEstadosVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_112257_addEstadosVenta.php',
         'AddForeignKeyCategoria' => __DIR__ . '/../..' . '/database/migrations/2017_07_29_112002_addForeignKeyCategoria.php',
@@ -358,6 +360,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'AddMedidaInsumo' => __DIR__ . '/../..' . '/database/migrations/2017_08_22_220235_addMedidaInsumo.php',
         'AddPerfilProveedorUsuarios' => __DIR__ . '/../..' . '/database/migrations/2017_09_05_144059_addPerfilProveedorUsuarios.php',
         'AddPersimoRegalar' => __DIR__ . '/../..' . '/database/migrations/2017_08_14_174017_add_persimo_regalar.php',
+        'AddSalarioDireccionUsuarios' => __DIR__ . '/../..' . '/database/migrations/2018_01_06_170003_add_salario_direccion_usuarios.php',
         'Addrecetaproducto' => __DIR__ . '/../..' . '/database/migrations/2017_07_20_004051_addrecetaproducto.php',
         'Addunidadinsumo' => __DIR__ . '/../..' . '/database/migrations/2017_07_18_222822_addunidadinsumo.php',
         'Addvartutusuario' => __DIR__ . '/../..' . '/database/migrations/2017_09_18_200312_addvartutusuario.php',
@@ -373,6 +376,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'Altertableproductos' => __DIR__ . '/../..' . '/database/migrations/2017_07_05_100014_altertableproductos.php',
         'CambioNombreTablaAdmin' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_233304_cambio_nombre_tabla_admin.php',
         'CambiosTablaUsuarios' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_235518_cambios_tabla_usuarios.php',
+        'CorreccionCliente' => __DIR__ . '/../..' . '/database/migrations/2018_01_22_113728_correccion_cliente.php',
         'CreateAgendatrabajadoresTable' => __DIR__ . '/../..' . '/database/migrations/2017_09_06_185140_create_agendatrabajadores_table.php',
         'CreateCategoriaTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_01_183643_create_categoria_table.php',
         'CreateCiudadesTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_13_103015_create_ciudades_table.php',
@@ -394,6 +398,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'DeleteUniqueCedulaCorreo' => __DIR__ . '/../..' . '/database/migrations/2017_08_13_234303_delete_unique_cedula_correo.php',
         'DroUsernameCreateUniqueEmail' => __DIR__ . '/../..' . '/database/migrations/2018_01_02_095041_dro_username_create_unique_email.php',
         'EmpresaAgregarNuevosDatos' => __DIR__ . '/../..' . '/database/migrations/2018_01_02_103819_empresa_agregar_nuevos_datos.php',
+        'EmpresaNotasAdicionales' => __DIR__ . '/../..' . '/database/migrations/2018_01_17_121055_empresa_notasAdicionales.php',
         'FacturaAgregarIdFacturaLocal' => __DIR__ . '/../..' . '/database/migrations/2018_01_04_120125_factura_agregar_idFacturaLocal.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
@@ -469,6 +474,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'IlluminateQueueClosure' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
         'Insertpkcontiene' => __DIR__ . '/../..' . '/database/migrations/2017_07_19_205814_insertpkcontiene.php',
         'LoginRedesSociales' => __DIR__ . '/../..' . '/database/migrations/2017_08_11_012709_login_redes_sociales.php',
+        'MebresiaUsuario' => __DIR__ . '/../..' . '/database/migrations/2018_01_18_103432_mebresiaUsuario.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
         'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/AssertionFailedError.php',
         'PHPUnit\\Framework\\BaseTestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
