@@ -8,11 +8,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="HTML5">
   <title>SMARTBAR</title>
-        <link type="image/x-icon" rel="shortcut icon" href="assetsNew/images/icon.png"/>
+        <link type="image/x-icon" rel="shortcut icon" href={{ asset('assetsNew/images/icon.png') }}>
+
+        
   
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab%7CRoboto:300,400" rel="stylesheet">     
-  <link href="assetsNew/styles/smile.min.css" rel="stylesheet">
+  <link href="assetsNew/styles/stylePocket.css" rel="stylesheet">
 
   <link href="assetsNew/styles/custom.css" rel="stylesheet"> 
   <!-- Etiquetas de idioma y ubicación -->
@@ -57,27 +59,26 @@
       <div class="hero-message">
         <div class="hero-text-right">
           <!-- Text -->
-          <h1 class="h1Prin" style="color:#2d0031;" ><b>¡Felicidad!</b></h1>
-          <p style="color:#000000;"><b>Es tener un amigo inseparable Smartbar,<br>
+          <h1 class="h1Prin"><b>¡Felicidad!</b></h1>
+          <p class="P1Prin"><b>Es tener un amigo inseparable Smartbar,<br>
             para hacer mil cosas por ti...</b>
           </p>
 
           <!-- Buttons -->
 
           <a class="button large" href="{{ url('Auth/register') }}" rel="nofollow">REGISTRATE</a><br>
-           <span class="textpar" style="color:#000000;"><b>7 DIAS GRATIS</b></span>
+           <span class="textpar"><b>7 DIAS GRATIS</b></span>
            <section class="content">
-        <div class="hero-login bg-cover" style="background-image: url('../assetsNew/images/login-slide-4.jpg');">
+        <div class="hero-login bg-cover">
 
    <br>
-            <p class="quote">
-               <small style="color:#000000;">Síguenos en nuestras redes sociales</small><br> 
+            <p class="P1Prin">
+               <small class="socialRed">Síguenos en nuestras redes sociales</small><br> 
                 <a title="Twitter" style="background-color:#ffff;" class="button-circle" href="https://twitter.com" target="_blank">
-                    <!--<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
                         <path fill="#00B19D" d="M35,17.9949748 C34.2270821,18.3335138 33.3977523,18.563107 32.5263881,18.6656082 C33.4161102,18.1389582 34.0971701,17.3036174 34.4199598,16.3113025 C33.58538,16.7990143 32.6641579,17.1531556 31.6825779,17.3451334 C30.8965521,16.516271 29.7785062,16 28.5384061,16 C26.1592944,16 24.2302765,17.9067872 24.2302765,20.2571923 C24.2302765,20.5905417 24.2683305,20.9161238 24.3418306,21.2274602 C20.762011,21.0497281 17.5876774,19.3543879 15.4631396,16.7782562 C15.0917616,17.4060847 14.8804916,18.1376354 14.8804916,18.9185372 C14.8804916,20.3959861 15.6416056,21.6996035 16.7964016,22.4622912 C16.0903956,22.4389554 15.4263896,22.2469776 14.8450798,21.9278739 L14.8450798,21.9810578 C14.8450798,24.0434962 16.3305577,25.764784 18.3002374,26.1565408 C17.9393594,26.2525297 17.5588195,26.3057137 17.1651375,26.3057137 C16.8869557,26.3057137 16.6179357,26.2784772 16.3541656,26.2265822 C16.9026714,27.9193446 18.4931495,29.1503089 20.3775594,29.1840577 C18.9038855,30.3255454 17.0457256,31.0039461 15.0274919,31.0039461 C14.679756,31.0039461 14.3372358,30.983188 14,30.9455726 C15.9067139,32.1558128 18.1703598,32.8614499 20.6032755,32.8614499 C28.5279747,32.8614499 32.8597465,26.3731772 32.8597465,20.7462268 L32.8453004,20.1949521 C33.6916841,19.5982268 34.4239059,18.8484959 35,17.9949748 Z"/>
-                    </svg>-->
+                    </svg>
 
-                    <img src="{{ asset('images/icon.png') }}">
                 </a>
                 <a title="Facebook" style="background-color:#ffff;"  class="button-circle" href="https://www.facebook.com" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
@@ -373,7 +374,7 @@
 
 <!-- Copyright -->
 <div class="block bg-gris-Cla">
-  <div class="block-content text-center pad-small">
+  <div class="pocketPadin block-content text-center ">
       <p>COPYRIGHT © 2017 Pocket Company S.A.</p>
   </div>
 </div>
@@ -381,8 +382,6 @@
 
 
 <!-- SCRIPTS -->
-<script src="assetsNew/scripts/classList.min.js" type="text/javascript" async></script>
-<script src="assetsNew/scripts/setRefererCookie.js" type="text/javascript" async></script>
 <script src="assetsNew/scripts/smile.js" type="text/javascript" async></script>
 
 <script>
@@ -397,6 +396,7 @@
       }
     };
 </script>
+
 <!-- Smartsupp Live Chat script -->
 <script type="text/javascript">
 var _smartsupp = _smartsupp || {};
