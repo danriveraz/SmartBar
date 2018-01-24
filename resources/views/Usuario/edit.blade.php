@@ -22,7 +22,7 @@
                     </div>
                   </a>
                 </div>
-                <ul class="meta list list-unstyled">
+                <ul class="meta list list-unstyled" style="padding-top: 15%; margin-bottom: -20%;">
                     <li class="name">{{$usuario->nombrePersona}}
                         <br>
                         <label class="label label-info pocketColor" style=" margin: 5px 5px 5px 5px; padding:.3em .9em .3em;"><b>Admin</b></label>
@@ -1311,7 +1311,7 @@
   }
   
   #main-content {
-    padding-top: 5%;
+    padding-top: 4%;
   }
   #sexo{
     margin-left: 5%;
