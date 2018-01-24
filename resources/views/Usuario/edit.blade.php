@@ -17,7 +17,6 @@
                       <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
                     @endif
                     <div class="actions">
-                      <i class="fa fa-trash-o"></i>
                       <i class="fa fa-search-plus"></i>
                       <i class="fa fa-pencil"></i>
                     </div>
@@ -226,7 +225,7 @@
                                   <li>10% descuento en pago trimestral.</li>
                                 </ul>
                                 <div>
-                                  <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Unirte al Club</button>
+                                  <button id="btn-guardar5" class="btn btn-bitbucket" onclick="setValue(this)" >Unirte al Club</button>
                                 </div>
                               </div>
 
@@ -246,7 +245,7 @@
                                   <li>10% descuento en pago anual.</li>
                                 </ul>
                                 <div>
-                                  <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Unirte al Club</button>
+                                  <button id="btn-guardar6" class="btn btn-bitbucket" onclick="setValue(this)" >Unirte al Club</button>
                                 </div>
                               </div>
 
@@ -266,7 +265,7 @@
                                   <li>Descuento en membresia de $ 198.000 Cop</li>
                                 </ul>
                                 <div>
-                                  <button class="btn btn-default" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Unirte al Club</button>
+                                  <button id="btn-guardar7" class="btn btn-bitbucket" onclick="setValue(this)" >Unirte al Club</button>
                                 </div>
                               </div>
 
@@ -468,7 +467,66 @@
               <div class="container-fluid">
                 <div class="cover-inside">
                   <div class="col-md-3">
-                    <img class="cover-avatar size-md img-round" src="{{'../../../images/bar.png'}}" alt="profile">
+<!--                    
+                    <div class="widget-content fileupload fileupload-new" data-provides="fileupload">
+                        <div id="negocio" class="gallery-item filter1" href="../../../../public/images/{{$empresa->imagenPerfilNegocio}}"  title="Imagen perfil">
+                          @if($empresa->imagenPerfilNegocio!='')
+                            {!! Html::image('images/'.$empresa->imagenPerfilNegocio,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo')) !!}
+                          @else
+                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
+                          @endif
+                          <div class="actions">
+                            <i class="fa fa-search-plus"></i>
+                            <i class="fa fa-pencil" onclick="$('#imagenPerfilNegocio').click()"></i>
+                          </div>
+                      </div>
+                      <div class="gallery-item fileupload-preview fileupload-exists img-thumbnail" >
+                        hola
+                      </div>
+                      <div hidden>
+                        <span class=" btn-file" id="subirImagenNegocio">
+                          <span class="fileupload-new"><i class="fa fa-pencil"></i></span>
+                          <span class="fileupload-exists"><i class="fa fa-search-plus"></i></span>
+                          <input type="file" class="form-control" name="imagenPerfilNegocio"  id="imagenPerfilNegocio">
+                        </span>
+                        <a class="btn btn-default fileupload-exists" data-dismiss="fileupload" id="eliminarImagen"><i class="fa fa-trash-o"></i></a>
+                      </div>
+                    </div>
+-->
+                  <div class="widget-content fileupload fileupload-new" data-provides="fileupload">
+                    <div class="gallery-container fileupload-new img-thumbnail" >
+                      <div class="gallery-item filter1" rel="">
+                        @if($empresa->imagenPerfilNegocio!='')
+                          {!! Html::image('images/'.$empresa->imagenPerfilNegocio,  'imagen de perfil') !!}
+                          <!-- clase circular -> , array('class' => 'img-responsive img-circle user-photo') -->
+                        @else
+                          <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
+                        @endif
+                        <div class="actions">
+                          <a  id="modalImagen" href="../../../../public/images/{{$empresa->imagenPerfilNegocio}}" title="Imagen negocio">
+                            <img src="images/{{$empresa->imagenPerfilNegocio}}" hidden>
+                            <i class="fa fa-search-plus"></i>
+                          </a>
+                          <a onclick="$('#imagenPerfil').click()">
+                            <i class="fa fa-pencil"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="gallery-item fileupload-preview fileupload-exists img-thumbnail">
+                      
+                    </div>
+                    <div hidden>
+                      <span class=" btn-file" id="subirImagenNegocio">
+                        <span class="fileupload-new"><i class="fa fa-pencil"></i></span>
+                        <span class="fileupload-exists"><i class="fa fa-search-plus"></i></span>
+                        <input type="file" class="form-control" name="imagenPerfilNegocio"  id="imagenPerfil">
+                      </span>
+                      <a class="btn btn-default fileupload-exists" data-dismiss="fileupload" id="eliminarImagen"><i class="fa fa-trash-o"></i></a>
+                    </div>
+                  </div>
+
+                  <!-- <img class="cover-avatar size-md img-round" src="{{'../../../images/bar.png'}}" alt="profile"> -->
                   </div>
                   <div class="col-md-9" id="notasAdicionales">
                     <label style="display: block;">Notas adicionales</label>
@@ -910,13 +968,19 @@
 <script>
   var JSONusuario = eval(<?php echo json_encode($usuario); ?>);
   var JSONempresa = eval(<?php echo json_encode($empresas); ?>);
+
   $(document).ready(function(){
       listcat();
       listmesas();
-      if(JSONempresa.length == 2 && JSONusuario.membresia == 1){
-        alert("hola");
-      }
-      $(".gallery-item filter1 fancybox").fancybox({ });
+      $("#modalImagen").fancybox({
+            helpers: {
+                title : {
+                    type : 'float'
+                }
+            }
+        });
+     // $(".gallery-item filter1 fancybox").fancybox({ });
+
       $("#fechaNacimiento").load(this);
       $('[data-toggle="popover"]').popover();
       function update(){
@@ -998,6 +1062,15 @@
       ventana.value = 3;
     }else if(idBtn.id == "btn-guardar4"){
       ventanaFactura.value = 4;
+    }else if(idBtn.id == "btn-guardar5"){
+      ventana.value = 5;
+      formEditUsuario.submit();
+    }else if(idBtn.id == "btn-guardar6"){
+      ventana.value = 6;
+      formEditUsuario.submit();
+    }else if(idBtn.id == "btn-guardar7"){
+      ventana.value = 7;
+      formEditUsuario.submit();
     }
   };
 
@@ -1235,10 +1308,6 @@
   border-radius: 100px 100px 100px 100px;
   -moz-border-radius: 100px 100px 100px 100px;
   -webkit-border-radius: 100px 100px 100px 100px;
-  }
-
-  #notasAdicionales{
-
   }
   
   #main-content {

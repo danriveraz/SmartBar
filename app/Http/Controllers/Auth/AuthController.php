@@ -3,6 +3,7 @@ namespace PocketByR\Http\Controllers\Auth;
 
 use PocketByR\User;
 use PocketByR\Empresa;
+use PocketByR\Categoria;
 use PocketByR\Departamento;
 use PocketByR\Ciudad;
 use Validator;
@@ -140,6 +141,95 @@ class AuthController extends Controller
             $empresa->notas = "Felicidad es saber que cuentas con un compañero inseparable como SMARTBAR.";
             $empresa->save();// guarda los cambios 
 
+            $categoria1 = new Categoria;
+            $categoria1->nombre = "Cervezas";
+            $categoria1->idEmpresa = $empresa->id;
+            $categoria1->save();
+
+            $categoria2 = new Categoria;
+            $categoria2->nombre = "Bebidas";
+            $categoria2->idEmpresa = $empresa->id;
+            $categoria2->save();
+
+            $categoria3 = new Categoria;
+            $categoria3->nombre = "Carnes";
+            $categoria3->idEmpresa = $empresa->id;
+            $categoria3->save();
+
+            $categoria4 = new Categoria;
+            $categoria4->nombre = "Desgranados";
+            $categoria4->idEmpresa = $empresa->id;
+            $categoria4->save();
+
+            $categoria5 = new Categoria;
+            $categoria5->nombre = "Hamburguesas";
+            $categoria5->idEmpresa = $empresa->id;
+            $categoria5->save();
+
+            $categoria6 = new Categoria;
+            $categoria6->nombre = "Hot Dogs";
+            $categoria6->idEmpresa = $empresa->id;
+            $categoria6->save();
+
+            $categoria7 = new Categoria;
+            $categoria7->nombre = "Sandwich";
+            $categoria7->idEmpresa = $empresa->id;
+            $categoria7->save();
+
+            $categoria8 = new Categoria;
+            $categoria8->nombre = "Entradas";
+            $categoria8->idEmpresa = $empresa->id;
+            $categoria8->save();
+
+            $categoria9 = new Categoria;
+            $categoria9->nombre = "Licores";
+            $categoria9->idEmpresa = $empresa->id;
+            $categoria9->save();
+
+            $categoria10 = new Categoria;
+            $categoria10->nombre = "Cocteles";
+            $categoria10->idEmpresa = $empresa->id;
+            $categoria10->save();
+
+            $categoria11 = new Categoria;
+            $categoria11->nombre = "Shots";
+            $categoria11->idEmpresa = $empresa->id;
+            $categoria11->save();
+
+            $categoria12 = new Categoria;
+            $categoria12->nombre = "Pizzas";
+            $categoria12->idEmpresa = $empresa->id;
+            $categoria12->save();
+
+            $categoria13 = new Categoria;
+            $categoria13->nombre = "Pastas";
+            $categoria13->idEmpresa = $empresa->id;
+            $categoria13->save();
+
+            $categoria14 = new Categoria;
+            $categoria14->nombre = "Mariscos";
+            $categoria14->idEmpresa = $empresa->id;
+            $categoria14->save();
+
+            $categoria15 = new Categoria;
+            $categoria15->nombre = "Adiciones";
+            $categoria15->idEmpresa = $empresa->id;
+            $categoria15->save();
+
+            $categoria16 = new Categoria;
+            $categoria16->nombre = "Especiales";
+            $categoria16->idEmpresa = $empresa->id;
+            $categoria16->save();
+
+            $categoria17 = new Categoria;
+            $categoria17->nombre = "Postres";
+            $categoria17->idEmpresa = $empresa->id;
+            $categoria17->save();
+
+            $categoria18 = new Categoria;
+            $categoria18->nombre = "Otros";
+            $categoria18->idEmpresa = $empresa->id;
+            $categoria18->save();
             
             // parte del código para generar el username inicial
             $admin->cedula = $admin->id;

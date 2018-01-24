@@ -8,6 +8,7 @@ use PocketByR\Http\Controllers\Controller;
 use PocketByR\User;
 use PocketByR\Departamento;
 use PocketByR\Ciudad;
+use PocketByR\Categoria;
 use Auth;
 use Mail;
 use Laracasts\Flash\Flash;
@@ -276,18 +277,11 @@ class UsuariosController extends Controller
         flash::warning('Número máximo de negocios alcanzado')->important();
         return redirect('Auth/usuario/'.$usuario->id.'/edit');
       }else{
-        $rules = [
-        'nombreEstablecimiento' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-        'telefono' => 'required|min:1|max:9999999999|numeric',
-        ];
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()){
-          return redirect()->route('Auth.usuario.edit',$id)->withErrors($validator)->withInput();
-        }else{
           $empresa = new Empresa;
           $empresa->nombreEstablecimiento = $request->nombreEstablecimientoNBar;
           $empresa->direccion = $request->direccionEstablecimientoNBar;
           $empresa->telefono = $request->telefonoEstablecimientoNBar;
+          $empresa->imagenPerfilNegocio = "bar.png";
           $empresa->tipoRegimen = $request->tipoRegimenNBar;
           $empresa->nit = $request->nitNBar;
           $empresa->departamento = $request->idDepto;
@@ -295,10 +289,109 @@ class UsuariosController extends Controller
           $empresa->notas = "Felicidad es saber que cuentas con un compañero inseparable como SMARTBAR.";
           $empresa->usuario_id = $usuario->id;
           $empresa->save();
+
+          $categoria1 = new Categoria;
+          $categoria1->nombre = "Cervezas";
+          $categoria1->idEmpresa = $empresa->id;
+          $categoria1->save();
+
+          $categoria2 = new Categoria;
+          $categoria2->nombre = "Bebidas";
+          $categoria2->idEmpresa = $empresa->id;
+          $categoria2->save();
+
+          $categoria3 = new Categoria;
+          $categoria3->nombre = "Carnes";
+          $categoria3->idEmpresa = $empresa->id;
+          $categoria3->save();
+
+          $categoria4 = new Categoria;
+          $categoria4->nombre = "Desgranados";
+          $categoria4->idEmpresa = $empresa->id;
+          $categoria4->save();
+
+          $categoria5 = new Categoria;
+          $categoria5->nombre = "Hamburguesas";
+          $categoria5->idEmpresa = $empresa->id;
+          $categoria5->save();
+
+          $categoria6 = new Categoria;
+          $categoria6->nombre = "Hot Dogs";
+          $categoria6->idEmpresa = $empresa->id;
+          $categoria6->save();
+
+          $categoria7 = new Categoria;
+          $categoria7->nombre = "Sandwich";
+          $categoria7->idEmpresa = $empresa->id;
+          $categoria7->save();
+
+          $categoria8 = new Categoria;
+          $categoria8->nombre = "Entradas";
+          $categoria8->idEmpresa = $empresa->id;
+          $categoria8->save();
+
+          $categoria9 = new Categoria;
+          $categoria9->nombre = "Licores";
+          $categoria9->idEmpresa = $empresa->id;
+          $categoria9->save();
+
+          $categoria10 = new Categoria;
+          $categoria10->nombre = "Cocteles";
+          $categoria10->idEmpresa = $empresa->id;
+          $categoria10->save();
+
+          $categoria11 = new Categoria;
+          $categoria11->nombre = "Shots";
+          $categoria11->idEmpresa = $empresa->id;
+          $categoria11->save();
+
+          $categoria12 = new Categoria;
+          $categoria12->nombre = "Pizzas";
+          $categoria12->idEmpresa = $empresa->id;
+          $categoria12->save();
+
+          $categoria13 = new Categoria;
+          $categoria13->nombre = "Pastas";
+          $categoria13->idEmpresa = $empresa->id;
+          $categoria13->save();
+
+          $categoria14 = new Categoria;
+          $categoria14->nombre = "Mariscos";
+          $categoria14->idEmpresa = $empresa->id;
+          $categoria14->save();
+
+          $categoria15 = new Categoria;
+          $categoria15->nombre = "Adiciones";
+          $categoria15->idEmpresa = $empresa->id;
+          $categoria15->save();
+
+          $categoria16 = new Categoria;
+          $categoria16->nombre = "Especiales";
+          $categoria16->idEmpresa = $empresa->id;
+          $categoria16->save();
+
+          $categoria17 = new Categoria;
+          $categoria17->nombre = "Postres";
+          $categoria17->idEmpresa = $empresa->id;
+          $categoria17->save();
+
+          $categoria18 = new Categoria;
+          $categoria18->nombre = "Otros";
+          $categoria18->idEmpresa = $empresa->id;
+          $categoria18->save();
+
           flash::success('El negocio ha sido creado satisfactoriamente')->important();
           return redirect('Auth/usuario/'.$usuario->id.'/edit');
-        } 
       }
+    }else if($request->ventana == 5){
+      $plan = 1;
+      return view('Usuario.pocketclub')->with('plan',$plan);
+    }else if($request->ventana == 6){
+      $plan = 2;
+      return view('Usuario.pocketclub')->with('plan',$plan);
+    }else if($request->ventana == 7){
+      $plan = 3;
+      return view('Usuario.pocketclub')->with('plan',$plan);
     }
 
     if($request->ventanaFactura == 4){
@@ -309,6 +402,7 @@ class UsuariosController extends Controller
       flash::success('La empresa ha sido modificada satisfactoriamente')->important();
       return redirect('Auth/usuario/'.$usuario->id.'/edit');
     }
+
   }
 
   public function update(Request $request, $id){

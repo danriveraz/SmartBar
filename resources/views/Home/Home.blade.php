@@ -203,7 +203,6 @@
               <li>Acceso al 100% de las utilidades SmartBar</li>
               <li>No aplica mes GRATIS</li>
               <li>0% de ahorro</li>
-              
           </ul>
           <h3 class="plan-price"> $ 99.900 COP/Mes</h3>
           <p>
