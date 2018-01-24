@@ -13,6 +13,7 @@
 
 Route::get('/', 'HomeController@home');
 Route::get('/home', 'HomeController@home');
+Route::get('/zohoverify/verifyforzoho.html', 'HomeController@prueba');
 
 Route::get('Auth/register', 'Auth\AuthController@getRegister');
 Route::post('Auth/register', 'Auth\AuthController@postRegister');

@@ -26,7 +26,7 @@
                 <p class="intro-summary">Por favor, introduzca su dirección de correo electrónico</p>
             </div>
             <div class="user-access-form">         
-                <form  autocomplete="on" method="post" action="{{url('Auth/login')}}">
+                <form  autocomplete="on" method="post" action="{{url('/password/reset')}}">
                     {{ csrf_field() }}
                     <div class="input-wrapper">
                         <input type="text" name="email" id="email" value="" class="email" placeholder="E-mail">

@@ -21,4 +21,7 @@ class HomeController extends Controller
         return View('Home.Home')->with('departamentos',$departamentos)
                 ->with('ciudades', $ciudades);
     }
+    public function prueba(){
+    	return view('Zohoverify.verifyforzoho');
+    }
 }
