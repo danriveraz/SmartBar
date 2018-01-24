@@ -1,3 +1,111 @@
+/*
+ * =============================================================================
+ *   Reportes Welcome Admin
+ * =============================================================================
+ */
+
+$(function() {
+
+    // sparkline charts PAra las categorias más vendidas
+    var sparklineNumberChart = function() {
+
+      var params = {
+        width: '140px',
+        height: '30px',
+        lineWidth: '2',
+        lineColor: '#20B2AA',
+        fillColor: false,
+        spotRadius: '2',
+        spotColor: false,
+        minSpotColor: false,
+        maxSpotColor: false,
+        disableInteraction: false
+      };
+
+      $('#number-chart1').sparkline('html', params); // llama al primer cuadro
+      $('#number-chart2').sparkline('html', params); // llama alsegundo cuadro
+      $('#number-chart3').sparkline('html', params); // tercero
+      $('#number-chart4').sparkline('html', params); // cuarto 
+    };
+
+    sparklineNumberChart(); // ejecutala función
+
+
+
+    // Gráficas de las ventas de la semana
+    var sparklineSalesPerformance = function() {
+
+      var lastWeekData = [142, 164, 298, 384, 232, 269, 211];
+      var currentWeekData = [352, 267, 373, 222, 533, 111, 60];
+
+      $('#chart-sales-performance').sparkline(lastWeekData, {
+        fillColor: 'rgba(90, 90, 90, 0.1)',
+        lineColor: '#5A5A5A',
+        width: '' + $('#chart-sales-performance').innerWidth() + '',
+        height: '100px',
+        lineWidth: '2',
+        spotColor: false,
+        minSpotColor: false,
+        maxSpotColor: false,
+        chartRangeMin: 0,
+        chartRangeMax: 1000,
+        tooltipFormat: '<span style="font-size: 16px; color: {{color}}">&#9679;</span><span style="font-size: 16px;">  {{offset:dias}} de la Semana Pasada: {{y}} Ventas </span>',
+        tooltipValueLookups: {
+            'dias': {
+                0: 'Lunes',
+                1: 'Martes',
+                2: 'Miércoles',
+                3: 'Jueves',
+                4: 'Viernes',
+                5: 'Sábado',
+                6 : 'Domingo',
+            }
+        }
+      });
+
+      $('#chart-sales-performance').sparkline(currentWeekData, {
+        composite: true,
+        fillColor: 'rgba(60, 137, 218, 0.1)',
+        lineColor: '#3C89DA',
+        lineWidth: '2',
+        spotColor: false,
+        minSpotColor: false,
+        maxSpotColor: false,
+        chartRangeMin: 0,
+        chartRangeMax: 1000,
+        tooltipFormat: '<span style="font-size: 16px; color: {{color}}">&#9679;</span><span style="font-size: 16px;"> {{offset:dias}} de la Semana Actual: {{y}} Ventas</span>',
+        tooltipValueLookups: {
+            'dias': {
+                0: 'Lunes',
+                1: 'Martes',
+                2: 'Miércoles',
+                3: 'Jueves',
+                4: 'Viernes',
+                5: 'Sábado',
+                6 : 'Domingo',
+            }
+        }
+      });
+    }
+
+    sparklineSalesPerformance();
+
+    var sparkResize;
+    $(window).on('resize', function() {
+      clearTimeout(sparkResize);
+      sparkResize = setTimeout(sparklineSalesPerformance, 200);
+    });
+
+  });
+
+
+
+ /*
+ * =============================================================================
+ *   Fin Reportes Welcome Admin
+ * =============================================================================
+ */
+
 
 /*
  * =============================================================================

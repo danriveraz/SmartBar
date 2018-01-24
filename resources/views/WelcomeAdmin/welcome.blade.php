@@ -97,11 +97,68 @@
       <div class="section-heading">
         <h1 class="page-title">Reportes</h1>
       </div>
+      <!-- SALES SUMMARY -->
+      <div class="dashboard-section">
+        <div class="section-heading clearfix">
+          <h2 class="section-title"><i class="fa fa-shopping-basket"></i> Ventas </h2>
+          <a href="{{url('Estadisticas/')}}" class="right">Ver Todos los Reportes de Ventas</a>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="panel-content">
+              <h3 class="heading"><i class="fa fa-square"></i>Ventas de Hoy</h3>
+              <ul class="list-unstyled list-justify large-number">
+                <li class="clearfix">Dinero <span>$215</span></li>
+                <li class="clearfix">Ventas <span>47</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="panel-content">
+              <h3 class="heading"><i class="fa fa-square"></i> Rendimiento de ventas</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>&nbsp;</th>
+                        <th>Última Semana</th>
+                        <th>Esta Semana</th>
+                        <th>Cambio</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>Dinero</th>
+                        <td>$2752</td>
+                        <td><span class="text-info">$3854</span></td>
+                        <td><span class="text-success">40.04%</span></td>
+                      </tr>
+                      <tr>
+                        <th>Ventas</th>
+                        <td>243</td>
+                        <td>
+                          <div class="text-info">322</div>
+                        </td>
+                        <td><span class="text-success">32.51%</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-md-6">
+                  <div id="chart-sales-performance">Loading ...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END SALES SUMMARY -->
       <!--ALGO -->
       <div class="dashboard-section">
         <div class="section-heading clearfix">
           <h2 class="section-title"><i class="fa fa-pie-chart"></i> Categorias más vendidas </h2>
-          <a href="{{url('Estadisticas/')}}" class="right">Ver más Estadísticas</a>
+          <a href="{{url('Estadisticas/')}}" class="right">Ver más Reportes</a>
         </div>
         <div class="panel-content">
           <div class="row">
@@ -252,62 +309,8 @@
           </div> 
         </div>
       </div>
-    <!-- END ALGO -->
-    <!-- SALES SUMMARY -->
-      <div class="dashboard-section">
-        <div class="section-heading clearfix">
-          <h2 class="section-title"><i class="fa fa-shopping-basket"></i> Sales Summary</h2>
-          <a href="#" class="right">View Sales Reports</a>
-        </div>
-        <div class="row">
-          <div class="col-md-3">
-            <div class="panel-content">
-              <h3 class="heading"><i class="fa fa-square"></i> Today</h3>
-              <ul class="list-unstyled list-justify large-number">
-                <li class="clearfix">Earnings <span>$215</span></li>
-                <li class="clearfix">Sales <span>47</span></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-9">
-            <div class="panel-content">
-              <h3 class="heading"><i class="fa fa-square"></i> Sales Performance</h3>
-              <div class="row">
-                <div class="col-md-6">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>&nbsp;</th>
-                        <th>Last Week</th>
-                        <th>This Week</th>
-                        <th>Change</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th>Earnings</th>
-                        <td>$2752</td>
-                        <td><span class="text-info">$3854</span></td>
-                        <td><span class="text-success">40.04%</span></td>
-                      </tr>
-                      <tr>
-                        <th>Sales</th>
-                        <td>243</td>
-                        <td>
-                          <div class="text-info">322</div>
-                        </td>
-                        <td><span class="text-success">32.51%</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="col-md-6">
-                  <div id="chart-sales-performance">Loading ...</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- END ALGO -->
+      <div>
         <div class="row">
           <div class="col-md-8">
             <div class="panel-content">
@@ -372,8 +375,7 @@
           </div>
         </div>
       </div>
-        <!-- END SALES SUMMARY -->
-        <!-- CAMPAIGN -->
+      <!-- CAMPAIGN -->
       <div class="dashboard-section">
         <div class="section-heading clearfix">
           <h2 class="section-title"><i class="fa fa-flag-checkered"></i> Campaign</h2>
@@ -463,29 +465,7 @@
 <script>
   $(function() {
 
-    // sparkline charts
-    var sparklineNumberChart = function() {
 
-      var params = {
-        width: '140px',
-        height: '30px',
-        lineWidth: '2',
-        lineColor: '#20B2AA',
-        fillColor: false,
-        spotRadius: '2',
-        spotColor: false,
-        minSpotColor: false,
-        maxSpotColor: false,
-        disableInteraction: false
-      };
-
-      $('#number-chart1').sparkline('html', params);
-      $('#number-chart2').sparkline('html', params);
-      $('#number-chart3').sparkline('html', params);
-      $('#number-chart4').sparkline('html', params);
-    };
-
-    sparklineNumberChart();
 
 
     // traffic sources
@@ -563,45 +543,7 @@
     new Chartist.Line('#demo-line-chart', data, options);
 
 
-    // sales performance chart
-    var sparklineSalesPerformance = function() {
 
-      var lastWeekData = [142, 164, 298, 384, 232, 269, 211];
-      var currentWeekData = [352, 267, 373, 222, 533, 111, 60];
-
-      $('#chart-sales-performance').sparkline(lastWeekData, {
-        fillColor: 'rgba(90, 90, 90, 0.1)',
-        lineColor: '#5A5A5A',
-        width: '' + $('#chart-sales-performance').innerWidth() + '',
-        height: '100px',
-        lineWidth: '2',
-        spotColor: false,
-        minSpotColor: false,
-        maxSpotColor: false,
-        chartRangeMin: 0,
-        chartRangeMax: 1000
-      });
-
-      $('#chart-sales-performance').sparkline(currentWeekData, {
-        composite: true,
-        fillColor: 'rgba(60, 137, 218, 0.1)',
-        lineColor: '#3C89DA',
-        lineWidth: '2',
-        spotColor: false,
-        minSpotColor: false,
-        maxSpotColor: false,
-        chartRangeMin: 0,
-        chartRangeMax: 1000
-      });
-    }
-
-    sparklineSalesPerformance();
-
-    var sparkResize;
-    $(window).on('resize', function() {
-      clearTimeout(sparkResize);
-      sparkResize = setTimeout(sparklineSalesPerformance, 200);
-    });
 
 
     // top products
