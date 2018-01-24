@@ -29,4 +29,16 @@ class HomeController extends Controller
         return view('Home.preguntasFrecuentes');
     }
 
+    public function AmigoInseparable(){
+        return view('Home.AmigoInseparable');
+    }
+
+        public function PocketClub(){
+        return view('Home.PocketClub');
+    }
+        public function politicas(){
+        return view('Home.politicas');
+    }
+
+
 }

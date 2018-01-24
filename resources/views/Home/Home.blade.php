@@ -37,8 +37,8 @@
         </div>
         <div class="topbar-section">
 		<nav id="nav-main" class="nav">
-            <a class="nav-item " href="caracteristicas">¿Por que somos tu amigo inseparable?</a>
-            <a class="nav-item " href="precios">PocketClub</a>
+            <a class="nav-item " href="{{ url('AmigoInseparable') }}">¿Por que somos tu amigo inseparable?</a>
+            <a class="nav-item " href="{{ url('PocketClub') }}">PocketClub</a>
             <div id="nav-toggle-close" class="nav-toggle-close">
               <a>X</a>
             </div>
@@ -357,7 +357,7 @@
             <ul>
               <li><a href="">Contáctanos</a></li>
               <li><a href="{{ url('preguntasFrecuentes') }}">Preguntas Frecuentes</a></li>
-              <li><a href="">Politicas de Privacidad</a></li>
+              <li><a href="{{ url('politicas') }}">Politicas de Privacidad</a></li>
             </ul>
         </div>
         <div class="col">

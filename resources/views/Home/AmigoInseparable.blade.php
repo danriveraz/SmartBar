@@ -36,9 +36,9 @@
           </div>
         </div>
         <div class="topbar-section">
-    <nav id="nav-main" class="nav">
-            <a class="nav-item " href="{{ url('AmigoInseparable') }}">¿Por que somos tu amigo inseparable?</a>
-            <a class="nav-item " href="{{ url('PocketClub') }}">PocketClub</a>
+		<nav id="nav-main" class="nav">
+            <a class="nav-item " href="caracteristicas">¿Por que somos tu amigo inseparable?</a>
+            <a class="nav-item " href="precios">PocketClub</a>
             <div id="nav-toggle-close" class="nav-toggle-close">
               <a>X</a>
             </div>
@@ -173,7 +173,7 @@ También lo puedes usar desde tu celular descargando la aplicación móvil para 
     <div class="block-content footer-nav">
       <div class="row">
         <div class="col">
-            <h3>Conéctate</h3>
+            <h3>Siguenos En:</h3>
             <ul>
               <li><a href="" target="_blank">Facebook</a></li>
               <li><a href="" target="_blank">Twitter</a></li>
@@ -182,7 +182,7 @@ También lo puedes usar desde tu celular descargando la aplicación móvil para 
             </ul>
         </div>
         <div class="col">
-            <h3>Versiones</h3>
+            <h3>Plataformas</h3>
             <ul>
               <li><a href="index.html">Colombia</a></li>
               <li><a href="index.html">Ecuador (Próximamente)</a></li>
@@ -192,9 +192,8 @@ También lo puedes usar desde tu celular descargando la aplicación móvil para 
             <h3>Soporte</h3>
             <ul>
               <li><a href="">Contáctanos</a></li>
-              <li><a href="" target="_blank"> Te asesoramos</a></li>
               <li><a href="{{ url('preguntasFrecuentes') }}">Preguntas Frecuentes</a></li>
-              <li><a href="">Politicas de Privacidad</a></li>
+              <li><a href="{{ url('politicas') }}">Politicas de Privacidad</a></li>
             </ul>
         </div>
         <div class="col">

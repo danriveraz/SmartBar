@@ -17,6 +17,12 @@ Route::get('/zohoverify/verifyforzoho.html', 'HomeController@prueba');
 
 Route::get('/preguntasFrecuentes', 'HomeController@preguntasFrecuentes');
 
+Route::get('/AmigoInseparable', 'HomeController@AmigoInseparable');
+
+Route::get('/PocketClub', 'HomeController@PocketClub');
+
+Route::get('/politicas', 'HomeController@politicas');
+
 Route::get('Auth/register', 'Auth\AuthController@getRegister');
 Route::post('Auth/register', 'Auth\AuthController@postRegister');
 

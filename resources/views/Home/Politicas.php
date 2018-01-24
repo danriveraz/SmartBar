@@ -7,15 +7,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="HTML5">
-  <title>SmartBar</title>
-        <link type="image/x-icon" rel="shortcut icon" href="assets/images/icon.png"/>
-        
-    <!-- Datos meta Graph -->
+  <title>SMARTBAR</title>
+        <link type="image/x-icon" rel="shortcut icon" href="assetsNew/images/icon.png">
 
+        
   
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab%7CRoboto:300,400" rel="stylesheet">     
-  <link href="assets/styles/smile.min.css" rel="stylesheet">
+  <link href="assetsNew/styles/stylePocket.css" rel="stylesheet">
+
+  <link href="assetsNew/styles/custom.css" rel="stylesheet"> 
   <!-- Etiquetas de idioma y ubicación -->
 </head>
 <body>
@@ -30,26 +31,25 @@
             <a>&#9776;</a>
           </div>
           <div class="logo">
-           <a href="assets/images/logoPrin.png"><img width="240" height="50" src="assets/images/logoPrin.png"></a>
+           <a href="{{url('/home')}}"><img width="240" height="50" src="assetsNew/images/logoPrin.png"></a>
 
           </div>
         </div>
         <div class="topbar-section">
-		<nav id="nav-main" class="nav">
-            <a class="nav-item " href="caracteristicas">¿Por que somos tu amigo inseparable?</a>
-            <a class="nav-item " href="precios">PocketClub</a>
+    <nav id="nav-main" class="nav">
+            <a class="nav-item " href="{{ url('AmigoInseparable') }}">¿Por que somos tu amigo inseparable?</a>
+            <a class="nav-item " href="{{ url('PocketClub') }}">PocketClub</a>
             <div id="nav-toggle-close" class="nav-toggle-close">
               <a>X</a>
             </div>
           </nav>
           <div class="nav-access">
-            <a class="nav-access-item button outline rounded" href="http://localhost/PocketByR/public/Auth/login">INGRESAR</a>
+            <a class="nav-access-item button outline rounded" href="{{ url('Auth/login') }}">INGRESAR</a>
           </div>
         </div>
       </div>
   </div>
 </header>
-
 
 <!-- PÁGINA ACTUAL -->
 
@@ -62,7 +62,6 @@
     
 <br>
 <br>
-<br> 
 <section class="container">
        			<div class="modal-body">
         				<h3>1.Politicas de Privacidad</h3>
@@ -108,7 +107,7 @@
     <div class="block-content footer-nav">
       <div class="row">
         <div class="col">
-            <h3>Conéctate</h3>
+            <h3>Siguenos En:</h3>
             <ul>
               <li><a href="" target="_blank">Facebook</a></li>
               <li><a href="" target="_blank">Twitter</a></li>
@@ -117,7 +116,7 @@
             </ul>
         </div>
         <div class="col">
-            <h3>Versiones</h3>
+            <h3>Plataformas</h3>
             <ul>
               <li><a href="index.html">Colombia</a></li>
               <li><a href="index.html">Ecuador (Próximamente)</a></li>
@@ -127,9 +126,8 @@
             <h3>Soporte</h3>
             <ul>
               <li><a href="">Contáctanos</a></li>
-              <li><a href="" target="_blank"> Te asesoramos</a></li>
-              <li><a href="preguntas-frecuentes">Preguntas Frecuentes</a></li>
-              <li><a href="">Politicas de Privacidad</a></li>
+              <li><a href="{{ url('preguntasFrecuentes') }}">Preguntas Frecuentes</a></li>
+              <li><a href="{{ url('politicas') }}">Politicas de Privacidad</a></li>
             </ul>
         </div>
         <div class="col">
