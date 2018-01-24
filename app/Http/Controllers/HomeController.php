@@ -24,4 +24,9 @@ class HomeController extends Controller
     public function prueba(){
     	return view('Zohoverify.verifyforzoho');
     }
+
+    public function preguntasFrecuentes(){
+        return view('Home.preguntasFrecuentes');
+    }
+
 }

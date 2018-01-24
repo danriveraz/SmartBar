@@ -356,7 +356,7 @@
             <h3>Soporte</h3>
             <ul>
               <li><a href="">Contáctanos</a></li>
-              <li><a href="preguntas-frecuentes">Preguntas Frecuentes</a></li>
+              <li><a href="{{ url('preguntasFrecuentes') }}">Preguntas Frecuentes</a></li>
               <li><a href="">Politicas de Privacidad</a></li>
             </ul>
         </div>

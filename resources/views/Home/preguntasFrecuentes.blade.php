@@ -7,17 +7,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="HTML5">
-  <title>SmartBar</title>
-        <link type="image/x-icon" rel="shortcut icon" href="assets/images/icon.png"/>
-        
-    <!-- Datos meta Graph -->
+  <title>SMARTBAR</title>
+        <link type="image/x-icon" rel="shortcut icon" href="assetsNew/images/icon.png">
 
+        
   
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab%7CRoboto:300,400" rel="stylesheet">     
-  <link href="assets/styles/smile.min.css" rel="stylesheet">
+  <link href="assetsNew/styles/stylePocket.css" rel="stylesheet">
 
-  <link href="assets/styles/custom.css" rel="stylesheet"> 
+  <link href="assetsNew/styles/custom.css" rel="stylesheet"> 
   <!-- Etiquetas de idioma y ubicación -->
 </head>
 <body>
@@ -32,7 +31,7 @@
             <a>&#9776;</a>
           </div>
           <div class="logo">
-           <a href="assets/images/logoPrin.png"><img width="240" height="50" src="assets/images/logoPrin.png"></a>
+           <a href="{{url('/home')}}"><img width="240" height="50" src="assetsNew/images/logoPrin.png"></a>
 
           </div>
         </div>
@@ -45,7 +44,7 @@
             </div>
           </nav>
           <div class="nav-access">
-            <a class="nav-access-item button outline rounded" href="http://localhost/PocketByR/public/Auth/login">INGRESAR</a>
+            <a class="nav-access-item button outline rounded" href="{{ url('Auth/login') }}">INGRESAR</a>
           </div>
         </div>
       </div>
@@ -62,7 +61,7 @@
         <div class="head-small ">        
         <!-- div que esconde cuando es muy chiquito para mobiles-->
         <div class="hide-mobile">
-          <img class="head-small-icon" src="assets/images/head-character.png" alt="¿Tienes dudas?" title="Soporte">
+          <img class="head-small-icon" src="assetsNew/images/head-character.png" alt="¿Tienes dudas?" title="Soporte">
           <div class="head-small-text">
             <h3 class="serif margin-tiny">¿Tienes dudas?</h3>
             <p class="serif margin-tiny">Como tu amigo inseparable, siempre estamos presente para brindarte la mejor asesoria, darte un consejo y solucionar cualquier inquietud o inconveniente, es <span class="bold">Gratis</span>, e Ilimitado.</p>
@@ -162,7 +161,7 @@ También lo puedes usar desde tu celular descargando la aplicación móvil para 
     <div class="block-content text-center">
         <h2 class="margin-tiny">Empieza tus <strong>7 Dias gratis</strong></h2>
         <h4 class="margin-tiny">Prueba todas las características de SmartBar sin limitaciones</h4>
-      <p><a class="button large" href="usuarios.html" rel="alternate"><strong>INGRESA YA!</strong></a></p>
+      <p><a class="button large" href="{{ url('Auth/register') }}" rel="alternate"><strong>INGRESA YA!</strong></a></p>
     </div>
 </section>
 
@@ -194,7 +193,7 @@ También lo puedes usar desde tu celular descargando la aplicación móvil para 
             <ul>
               <li><a href="">Contáctanos</a></li>
               <li><a href="" target="_blank"> Te asesoramos</a></li>
-              <li><a href="preguntas-frecuentes">Preguntas Frecuentes</a></li>
+              <li><a href="{{ url('preguntasFrecuentes') }}">Preguntas Frecuentes</a></li>
               <li><a href="">Politicas de Privacidad</a></li>
             </ul>
         </div>
