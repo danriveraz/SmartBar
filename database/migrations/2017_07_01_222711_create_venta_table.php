@@ -21,6 +21,7 @@ class CreateVentaTable extends Migration
             $table->foreign('idFactura')->references('id')->on('factura');
             $table->integer('idProducto')->unsigned();;
             $table->foreign('idProducto')->references('idProducto')->on('producto');
+            $table->string('obsequio');
             $table->integer('idMesero')->unsigned();;
             $table->foreign('idMesero')->references('id')->on('usuario');
             $table->integer('idBartender')->unsigned();;
