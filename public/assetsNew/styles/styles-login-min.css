@@ -86,7 +86,9 @@ input:-webkit-autofill{-webkit-animation-name:autofill;-webkit-animation-fill-mo
 	padding:100px 80px;
 	background-color:#FFF}
 @media screen and (max-width:480px){
-	.sidebar-large{display:block;width:100%;padding:40px 40px}}
+	.sidebar-large{display:block;width:100%;padding:40px 40px}
+	.sidebar-large1{display:block;width:100%;padding: 40px 10px;}
+	}
 
 .hero-login{height:100%}
 
