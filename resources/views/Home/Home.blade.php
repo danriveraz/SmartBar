@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="HTML5">
   <title>SMARTBAR</title>
-        <link type="image/x-icon" rel="shortcut icon" href={{ asset('assetsNew/images/icon.png') }}>
+        <link type="image/x-icon" rel="shortcut icon" href="assetsNew/images/icon.png">
 
         
   

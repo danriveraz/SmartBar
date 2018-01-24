@@ -6,8 +6,10 @@
         <meta http-equiv="X-UA-Compatible" content="chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Registro - SmartBar</title>        
-        <meta name="description" content="Ingresa a Alegra para hacer crecer tu empresa, Ganas Tiempo y Tranquilidad" >               <link href="" rel="canonical" >                        
+        <title>Registro - SmartBar</title> 
+        <link type="image/x-icon" rel="shortcut icon" href="../assetsNew/images/icon.png">
+        <meta name="description" content="" >
+        <link href="" rel="canonical" >                        
         <!-- Estilos y Fuentes -->
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:300,400" rel="stylesheet">
         <link rel="stylesheet" href="../assetsNew/styles/normalize.css" type="text/css" />
@@ -78,7 +80,8 @@
 							<input type="submit" name="submit" id="submit" value="CREAR CUENTA" class="enviar">    
 							<div class="terms">
 								Al crear tu cuenta aceptas nuestros
-								<a href="http://www.alegra.com/terminos-y-condiciones" target="_blank">Términos, Condiciones</a> y <a href="http://www.alegra.com/terminos-y-condiciones" target="_blank">Política de Tratamiento de Datos</a>.
+								<a href="" target="_blank">Términos, Condiciones</a> y 
+								<a href="" target="_blank">Política de Tratamiento de Datos</a>.
 							</div>
 							<div class="input-wrapper share-data" style="display: none;">
 								<div>
