@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
 
@@ -9,9 +9,9 @@
         <title>Login - SmartBar</title>        
         <!-- Estilos y Fuentes -->
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:300,400" rel="stylesheet">
-        <link rel="stylesheet" href="assets/styles/normalize.css" type="text/css" />
-        <link rel="stylesheet" href="assets/styles/styles-login-min.css" type="text/css" />
-        <link type="image/x-icon" rel="shortcut icon" href="assets/images/icon.png"/>
+        <link rel="stylesheet" href="../assetsNew/styles/normalize.css" type="text/css" />
+        <link rel="stylesheet" href="../assetsNew/styles/styles-login-min.css" type="text/css" />
+        <link type="image/x-icon" rel="shortcut icon" href="../assetsNew/images/icon.png"/>
     </head>
     <body id="">
 
@@ -21,12 +21,13 @@
     <aside class="sidebar-large1">
         <div class="user-access">
             <div class="user-access-header">
-                <a href="#" class="logo"><img src="assets/images/logo.png"></a>
+                <a href="#" class="logo"><img src="../assetsNew/images/logo.png"></a>
                 <p class="intro-title colorMorado">¿Olvidaste tu contraseña?</p>
                 <p class="intro-summary">Por favor, introduzca su dirección de correo electrónico</p>
             </div>
             <div class="user-access-form">         
-                <form  method="post">
+                <form  autocomplete="on" method="post" action="{{url('Auth/login')}}">
+                    {{ csrf_field() }}
                     <div class="input-wrapper">
                         <input type="text" name="email" id="email" value="" class="email" placeholder="E-mail">
                     </div>
@@ -44,7 +45,7 @@
     
     <!-- Content Slideshow  -->
     <section class="content">
-        <div class="hero-login bg-cover" style="background-image: url('assets/images/login-slide-6.jpg');">  
+        <div class="hero-login bg-cover" style="background-image: url('../assetsNew/images/login-slide-6.jpg');">  
                            
         </div>
     </section>

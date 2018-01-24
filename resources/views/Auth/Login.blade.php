@@ -41,7 +41,7 @@
 				</form>
 			</div> 
 			<div class="colorGris user-access-footer">
-				<p><a href="/user/remember-password">¿Olvidaste tu contraseña?</a></p>
+				<p><a href="{{url('Auth/resetpassword')}}">¿Olvidaste tu contraseña?</a></p>
 				<hr />
 				<a class="btn btn-social-icon btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-facebook']);"><span class="fa fa-facebook"></span></a>
 				<p>¿Aún no tienes una cuenta? <a href="{{url('Auth/register')}}">CREAR CUENTA</a></p>

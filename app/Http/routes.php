@@ -27,7 +27,7 @@ Route::post('Auth/login', 'Auth\AuthController@postLogin');
 Route::get('Auth/logout', 'Auth\AuthController@getLogout');
 
 
-
+Route::get('Auth/resetpassword', 'Auth\AuthController@resetpassword');
 Route::get('Auth/profile', 'Auth\AuthController@profile');
 Route::get('Auth/editProfile' , 'Auth\AuthController@editProfile');
 Route::post('Auth/updateProfile', 'Auth\AuthController@updateProfile');

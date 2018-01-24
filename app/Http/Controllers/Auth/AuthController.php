@@ -77,6 +77,10 @@ class AuthController extends Controller
         return redirect($request->redireccionar);
     }
 
+    public function resetpassword(){
+        return view("Auth/resetpassword");
+    }
+
     public function postRegister(Request $request){
 
         $rules = [
