@@ -1,4 +1,4 @@
-@extends('Layout.app_administradores')
+@extends(Auth::User()->esAdmin ? 'Layout.app_administradores' : 'Layout.app_empleado')
 @section('content')
 
 <div class="container main-content">
@@ -10,16 +10,12 @@
           <table class="table table-bordered table-striped" id="dataTable1">
             <thead>
               <th width="10%">Nombre</th>
-              <th width="10%">Precio</th>
-              <th width="18%">Categoria</th>
               <th width="4%">Opciones</th>
             </thead>
             <tbody>
               @foreach($productos as $producto)
                 <tr id="{{$producto->id}}">
                   <td id="{{$producto->id}}" class="seleccionar">{{$producto->nombre}}</td>
-                  <td id="{{$producto->id}}" class="seleccionar">{{$producto->precio}}</td>
-                  <td id="{{$producto->id}}" class="seleccionar">{{$categorias[$producto->idCategoria]}}</td>
                   <td>
                     <div>
                       <a class="table-actions pocketMorado" href="">
@@ -30,9 +26,6 @@
                       </a>
                       <a class="table-actions pocketMorado" href="" onclick="eliminar({{$producto->id}})">
                         <i class="fa fa-trash-o" title="Eliminar"></i>
-                      </a>
-                      <a class="table-actions pocketMorado" href="{{route('Tienda.index')}}">
-                        <i class="fa fa-500px" title="Tienda"></i>
                       </a>
                     </div>
                   </td>
@@ -128,11 +121,15 @@
     </div>
   <!-- fin cambios pocket -->
 </div>
-
-<script>
-  var routeModificar = "http://localhost/PocketByR/public/producto/modificar";
-  var routeEliminar = "http://localhost/PocketByR/public/producto/eliminar";
-  var routeIngredientes = "http://localhost/PocketByR/public/producto/ingredientes";
+						</tbody>
+					</table>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+var routeIngredientes = "http://localhost/PocketByR/public/producto/ingredientes";
 
   function ingredientes(idProducto){
     if(document.getElementById("ingredientes"+idProducto).className == "true"){
@@ -161,39 +158,9 @@
         }
       });
     }
-  }
+  }	
 
-  function modificar(idProducto,categorias){
-    var nombre = $("#nombre"+idProducto).val();
-    var categoria = $("#categoria"+idProducto).val();
-    var precio = $("#precio"+idProducto).val();
-    $.ajax({
-      url: routeModificar,
-      type: 'GET',
-      data: {
-        id: idProducto,
-        nombre: nombre,
-        categoria: categoria,
-        precio: precio
-      },
-      success: function(){
-        $("#"+idProducto).children("td").each(function (indextd){
-          if(indextd == 0){
-            $(this).text(nombre);
-          }else if(indextd == 2){
-            $(this).text(categorias[categoria]);
-          }else if(indextd == 1){
-            $(this).text(precio);
-          }
-        });
-      },
-      error: function(data){
-        alert('Error al modificar producto');
-      }
-    });
-  }
-
-  function eliminar(idProducto){
+function eliminar(idProducto){
     if(confirm('¿Desea eliminar este Producto?')){
       $.ajax({
         url: routeEliminar,
@@ -210,14 +177,93 @@
       });
     }
   }
-  $(".seleccionar").click(function(){
-    var idElegido = $(this).attr("id");
-    var palabra = "#editModal";
-    var id = palabra.concat(idElegido);
-    $(id).modal();
-});
-</script>  
+</script>
 <style>
+    .center-block {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .input-group .icon-addon .form-control {
+        border-radius: 0;
+    }
+    
+    .icon-addon {
+        position: relative;
+        color: rgb(79,0,85);
+        display: block;
+    }
+    
+    .icon-addon:after,
+    .icon-addon:before {
+        display: table;
+        content: " ";
+    }
+    
+    .icon-addon:after {
+        clear: both;
+    }
+    
+    .icon-addon.addon-md .glyphicon,
+    .icon-addon .glyphicon, 
+    .icon-addon.addon-md .fa,
+    .icon-addon .fa {
+        position: absolute;
+        z-index: 2;
+        left: 10px;
+        font-size: 14px;
+        width: 20px;
+        margin-left: -2.5px;
+        text-align: center;
+        padding: 10px 0;
+        top: 1px
+    }
+    
+    .icon-addon.addon-lg .form-control {
+        line-height: 1.33;
+        height: 46px;
+        font-size: 18px;
+        padding: 10px 16px 10px 40px;
+    }
+    
+    .icon-addon.addon-sm .form-control {
+        height: 30px;
+        padding: 5px 10px 5px 28px;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    .icon-addon.addon-lg .fa,
+    .icon-addon.addon-lg .glyphicon {
+        font-size: 18px;
+        margin-left: 0;
+        left: 11px;
+        top: 4px;
+    }
+    
+    .icon-addon.addon-md .form-control,
+    .icon-addon .form-control {
+        padding-left: 30px;
+        float: left;
+        font-weight: normal;
+    }
+    
+    .icon-addon.addon-sm .fa,
+    .icon-addon.addon-sm .glyphicon {
+        margin-left: 0;
+        font-size: 12px;
+        left: 5px;
+        top: -1px
+    }
+    
+    .icon-addon .form-control:focus + .glyphicon,
+    .icon-addon:hover .glyphicon,
+    .icon-addon .form-control:focus + .fa,
+    .icon-addon:hover .fa {
+        color: rgb(79,0,85);
+    }
+  </style><style>
     .center-block {
         float: none;
         margin-left: auto;

@@ -87,7 +87,7 @@
                       </td>
                       <td class="text-center">
                         <span class="label label-Pocket">
-                          <b><?php if($medidas[$contiene->idInsumo] == 0) echo "Onza"; else echo "Unidad";?></b>
+                          <b><?php if($medidas[$contiene->idInsumo] == 1) echo "Unidad"; else echo "Onza";?></b>
                         </span>
                       </td>
                       <td>
@@ -157,7 +157,7 @@
                       </td>
                       <td class="text-center">
                         <span class="label label-Pocket">
-                          <b>{!! Form::select('medida', ['0'=>'Onza','2'=>'Mililitro','3'=>'cm3','1'=>'Unidad'], $insumo->medida, ['class'=>'', 'id'=>'medida'.$insumo->id]) !!}</b>
+                          <b><?php if($insumo->medida == 1) echo "Unidad"; else echo "Onza";?></b>
                         </span>
                       </td>                     
                       <td class="text-center actions">
@@ -208,13 +208,13 @@
                         <!-- Wrapper for carousel items -->
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img src="/examples/images/slide1.png" alt="First Slide">
+                                <img src="images/slider-recetas/B52.png" alt="First Slide">
                             </div>
                             <div class="item">
-                                <img src="/examples/images/slide2.png" alt="Second Slide">
+                                <img src="images/slider-recetas/Alexander.png" alt="Second Slide">
                             </div>
                             <div class="item">
-                                <img src="/examples/images/slide3.png" alt="Third Slide">
+                                <img src="images/slider-recetas/Bacardi Red.png" alt="Third Slide">
                             </div>
                         </div>
                         <!-- Carousel controls 
@@ -234,9 +234,10 @@
               
               <div class="col-lg-8">
               <div class="widget-content padded">
-                <div id="summernote">
+                <textarea class="form-control" id="receta" style="height: 300px" placeholder="Ingrese la preparación del producto">{{$producto->receta}}</textarea>
+                <!--<div id="summernote">
                   {{$producto->receta}}
-                </div>
+                </div>-->
               </div>
               </div> <!-- fin del modal 2-->             
                     
@@ -264,21 +265,21 @@
   var routeEliminar = "http://localhost/PocketByR/public/contiene/eliminar";
   var routeGuardar = "http://localhost/PocketByR/public/contiene/guardar";
 
-  function tecla(e,insumo){
+  /*function tecla(e,insumo){
     if(e.which == 13){
       adicionarInsumo(insumo);
     }
-  }
+  }*/
 
   function adicionarInsumo(insumo){
     var cantidad = $("#"+insumo.id).val();
-    var medida = $("#medida"+insumo.id).val();
-    if(medida == 2 || medida == 3){
+    var medida = insumo.medida;//$("#medida"+insumo.id).val();
+    /*if(medida == 2 || medida == 3){
       var cantidadAux = cantidad/30;
       cantidad = cantidadAux;
-    }
+    }*/
     var medidaInsumo = "Onza";
-    if(medida== 4){
+    if(medida== 1){
       medidaInsumo = "Unidad";
     }
     if(cantidad>0){
@@ -300,7 +301,7 @@
     }
   }
 
-  function modificarInsumo(insumo){
+  /*sfunction modificarInsumo(insumo){
     var cantidad = $("#"+insumo.id).val();
     var medida = $("#medida"+insumo.id).val();
     if(medida == 2 || medida == 3){
@@ -321,7 +322,7 @@
     }
   }  
 
-  function adicionarTodo(){
+  /*function adicionarTodo(){
     var insumos = [];
     var nombres = [];
     var medida = [];
@@ -354,13 +355,13 @@
           }
           else{
             /*var fila = '<tr id="fila'+insumos[i]+'"><td  style="display: none;">'+insumos[i]+'</td><td>'+nombres[i]+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$producto->id}},'+insumos[i]+')" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>';
-            $("#insumoAgregados").append(fila);*/
+            $("#insumoAgregados").append(fila);
           }
           $("#"+insumos[i]).val('');
           $("#medida"+insumos[i]).val(medida[i]);
         }
       }
-  }
+  }*/
 
   function eliminarInsumo(idProducto,idInsumo){
     if(confirm('¿Desea eliminar este insumo?')){
@@ -386,7 +387,7 @@
       var nombre = $("#nombre").val();
       var precio = $("#precio").val();
       var categoria = $("#categoria").val();
-      var receta = "";//$("#receta").val();
+      var receta = $("#receta").val();
       var idInsumos = [];
       var cantidades = [];
       $("table#insumoAgregados tr").each(function() {

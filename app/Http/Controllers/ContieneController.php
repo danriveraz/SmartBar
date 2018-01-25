@@ -34,7 +34,6 @@ public function __construct()
                              lists('nombre','id');
     $insumosDisponibles = Insumo::Search($request->nombre)->
                           where('idEmpresa' , $userActual->idEmpresa)->
-                          Type($request->tipo)->
                           orderBy('nombre','ASC')->
                           paginate(1000);
     if($id != 0){

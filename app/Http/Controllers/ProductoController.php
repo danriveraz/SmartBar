@@ -41,7 +41,7 @@ class ProductoController extends Controller
     return view('Producto.index',compact('categorias'))->with('productos',$productos)->with('contenido', $contenido);
   }
 
-  function ingredientes(Request $request){
+  public function ingredientes(Request $request){
     $userActual = Auth::user();
     $contenido = Contiene::where('idEmpresa',$userActual->idEmpresa)->IdProducto($request->id)->get();
     $datos = array();
@@ -54,12 +54,16 @@ class ProductoController extends Controller
     return json_encode($datos);
   }
 
-  function ingrediente($idInsumo){
-    $insumo = Insumo::where('id', $idInsumo);
-    return $insumo->nombre;
-  }
+  public function recetas(Request $request){
+    $userActual = Auth::user();
+    $productos = Producto::Search($request->nombre)->
+                           where('idEmpresa' , $userActual->idEmpresa)->
+                           orderBy('nombre','ASC')->
+                           paginate(1000);
+    return view('Producto.recetas')->with('productos', $productos);
+  }  
 
-  function modificar(Request $request){
+  public function modificar(Request $request){
     $producto = Producto::find($request->id);
     $producto->nombre = $request->nombre;
     $producto->precio = $request->precio;
