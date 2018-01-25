@@ -14,8 +14,9 @@
 <link rel="stylesheet" href="http://cdn.bootcss.com/animate.css/3.5.1/animate.min.css">
  {!!Html::style('css/sliderAdmin.css')!!}
 
+@if(!isset($categoriasMasVendidas))
  <!-- Inicio del carusel -->
-<div id="first-slider" hidden>
+<div id="first-slider" >
     <div id="carousel-example-generic" class="carousel slide carousel-fade">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -90,7 +91,7 @@
 </div>
  <!-- Fin del carusel -->
 
-
+@else
  <!--Inicio de las gráficas-->
 <div id="">
     <div class="container-fluid">
@@ -108,8 +109,8 @@
             <div class="panel-content">
               <h3 class="heading"><i class="fa fa-square"></i>Ventas de Hoy</h3>
               <ul class="list-unstyled list-justify large-number">
-                <li class="clearfix">Dinero <span>$215</span></li>
-                <li class="clearfix">Ventas <span>47</span></li>
+                <li class="clearfix">Dinero <span>${{$ventasDelDia}}</span></li>
+                <li class="clearfix">Ventas <span>{{$cantidadVentas}}</span></li>
               </ul>
             </div>
           </div>
@@ -130,15 +131,15 @@
                     <tbody>
                       <tr>
                         <th>Dinero</th>
-                        <td>$2752</td>
-                        <td><span class="text-info">$3854</span></td>
+                        <td>${{$ventasSemana['ventaSemanaAnterior']}}</td>
+                        <td><span class="text-info">${{$ventasSemana['ventaSemanaActual']}}</span></td>
                         <td><span class="text-success">40.04%</span></td>
                       </tr>
                       <tr>
                         <th>Ventas</th>
-                        <td>243</td>
+                        <td>{{$ventasSemana['cantidadVentasSemanaAnterior']}}</td>
                         <td>
-                          <div class="text-info">322</div>
+                          <div class="text-info">{{$ventasSemana['cantidadVentasSemanaActual']}}</div>
                         </td>
                         <td><span class="text-success">32.51%</span></td>
                       </tr>
@@ -450,7 +451,7 @@
     </div>
 </div>
  <!--Fin de las gráficas-->
-
+@endif
 <footer>
     <div class="container">
         <div class="col-md-10 col-md-offset-1 text-center">

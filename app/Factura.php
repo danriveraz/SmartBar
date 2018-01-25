@@ -90,6 +90,7 @@ class Factura extends Model
     }
 
 
+
     // Función para los reportes de los Bartender que más han vendido, esto sería para todos los tiempo, si se queire se puede colocar un rango de fecha para acotar la busqueda
     public function scopeVentasCajero($query,$idEmpresa,$totalVentas){
       return $query->where([['factura.estado', 'Finalizada'],['factura.idEmpresa', $idEmpresa]])
@@ -110,6 +111,38 @@ class Factura extends Model
                           ->join('producto', 'venta.idProducto', '=', 'producto.id')
                           ->select(DB::raw('SUM(`precio`*`cantidad`) as totalVentas'));
     }
+
+    //Dinero de las Ventas de un día en concreto
+    public function scopeVentaDelDia($query,$idEmpresa,$fecha){
+      return $query->where([['factura.estado', 'Finalizada'],['factura.idEmpresa', $idEmpresa]])
+                ->whereDate('factura.fecha','=',$fecha)
+                ->select(DB::raw('SUM(`total`) as totalVentas'));
+    }
+
+    //Cantidad de ventas hechas en un día en concreto
+    public function scopeCantidadVentasDelDia($query,$idEmpresa,$fecha){
+      return $query->where([['factura.estado', 'Finalizada'],['factura.idEmpresa', $idEmpresa]])
+                ->whereDate('factura.fecha','=',$fecha)
+                ->join('venta', 'factura.id', '=', 'venta.idFactura')
+                ->select(DB::raw('count(*) as cantidadVentas'));
+    }
+
+
+    //Dinero de las Ventas de una semana en concreto
+    public function scopeVentaSemana($query,$idEmpresa,$fechaInicio){
+      return $query->where([['factura.estado', 'Finalizada'],['factura.idEmpresa', $idEmpresa],['factura.fecha','>=',$fechaInicio->startOfWeek()->toDateTimeString()],['factura.fecha','<',$fechaInicio->endOfWeek()]])
+                ->select(DB::raw('SUM(`total`) as totalVentas'));
+    }
+
+    //Cantidad de ventas hechas en una semana en concreto
+    public function scopeCantidadVentasSemana($query,$idEmpresa,$fechaInicio){
+      //dd($fechaInicio->startOfWeek()->toDateTimeString(),$fechaInicio->endOfWeek());
+      return $query->where([['factura.estado', 'Finalizada'],['factura.idEmpresa', $idEmpresa],['factura.fecha','>=',$fechaInicio->startOfWeek()->toDateTimeString()],['factura.fecha','<',$fechaInicio->endOfWeek()]])
+                ->join('venta', 'factura.id', '=', 'venta.idFactura')
+                ->select(DB::raw('count(*) as cantidadVentas'));
+    }
+
+
 
     public function scopeListar($query, $idEmpresa){
       return $query->join('mesa', 'factura.idMesa', '=', 'mesa.id')

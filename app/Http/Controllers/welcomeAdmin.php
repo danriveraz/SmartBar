@@ -35,18 +35,32 @@ class welcomeAdmin extends Controller
      */
     public function index()
     {   
-        $categoriasMasVendidas = $this->categoriasMasVendidas();// llamado a la función queretorna un arreglo con dos valores
+        if(Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual]])->first()!= null) {
+            $categoriasMasVendidas = $this->categoriasMasVendidas();// llamado a la función queretorna un arreglo con dos valores
 
-        $ventaTotal = Factura::totalEnTodasLasVentas(Auth::user()->empresaActual)->first();
-        $meserosMasVendedores =  Factura::ventasMesero(Auth::user()->empresaActual,$ventaTotal->totalVentas)->get();
-        $bartenderMasVendedores =  Factura::ventasBartender(Auth::user()->empresaActual,$ventaTotal->totalVentas)->get();
-        $cajeroMasVendedores =  Factura::ventasCajero(Auth::user()->empresaActual,$ventaTotal->totalVentas)->get();
+            $ventaTotal = Factura::totalEnTodasLasVentas(Auth::user()->empresaActual)->first();// la venta en todos los tiempo, para poder sacar el porcentaje de ventas
+            $meserosMasVendedores =  Factura::ventasMesero(Auth::user()->empresaActual,$ventaTotal->totalVentas)->get();//Top 10meseros
+            $bartenderMasVendedores =  Factura::ventasBartender(Auth::user()->empresaActual,$ventaTotal->totalVentas)->get();//Top 10 Bartender
+            $cajeroMasVendedores =  Factura::ventasCajero(Auth::user()->empresaActual,$ventaTotal->totalVentas)->get(); // top 10 cajeros
 
-        return View('WelcomeAdmin/welcome')->with('categoriasMasVendidas',$categoriasMasVendidas['categoriasMasVendidas'])
+            $ventasDelDia = $this->ventaDelDia();// llamado a la función para obtener lo que se ha vendido en el día
+
+            $cantidadVentasDelDia = $this->cantidadVentasDelDia(); // llamado a la función para obtener la cantidad de ventas del día
+
+            $ventasSemana  = $this->VentasSemana();// Lamado a la función que ontener los datos de la semana actual y la semana anterior, para la tabla de comparación
+
+            return View('WelcomeAdmin/welcome')->with('categoriasMasVendidas',$categoriasMasVendidas['categoriasMasVendidas'])
                     ->with('sumaVentasDeCadaCategoria',$categoriasMasVendidas['sumaVentasDeCadaCategoria'])
                     ->with('meserosMasVendedores',$meserosMasVendedores)
                     ->with('bartenderMasVendedores',$bartenderMasVendedores)
-                    ->with('cajeroMasVendedores',$cajeroMasVendedores);
+                    ->with('cajeroMasVendedores',$cajeroMasVendedores)
+                    ->with('ventasDelDia',$ventasDelDia)
+                    ->with('cantidadVentas',$cantidadVentasDelDia)
+                    ->with('ventasSemana', $ventasSemana);
+            
+        } else {
+            return View('WelcomeAdmin/welcome');
+        }
     }
 
     /**
@@ -113,6 +127,34 @@ class welcomeAdmin extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function VentasSemana(){
+        $carbon = new \Carbon\Carbon();
+        $fechaHoy = $carbon->today();
+        $ventaSemanaActual  = Factura::ventaSemana(Auth::user()->empresaActual,$fechaHoy)->first();
+        $cantidadVentasSemanaActual = Factura::cantidadVentasSemana(Auth::user()->empresaActual,$fechaHoy)->first();
+        $ventaSemanaAnterior  = Factura::ventaSemana(Auth::user()->empresaActual,$fechaHoy->subWeek(1))->first();
+        $cantidadVentasSemanaAnterior = Factura::cantidadVentasSemana(Auth::user()->empresaActual,$fechaHoy)->first();
+        return array( 'ventaSemanaActual' => $ventaSemanaActual->totalVentas,
+                      'cantidadVentasSemanaActual' => $cantidadVentasSemanaActual->cantidadVentas,
+                      'ventaSemanaAnterior' => $ventaSemanaAnterior->totalVentas,
+                      'cantidadVentasSemanaAnterior' => $cantidadVentasSemanaAnterior->cantidadVentas);
+
+    }
+
+    public function cantidadVentasDelDia(){ //Cantidad de ventas que se han hecho en el día
+        $carbon = new \Carbon\Carbon();
+        $fechaHoy = $carbon->today()->toDateString();
+        $venta = Factura::CantidadVentasDelDia(Auth::user()->empresaActual,$fechaHoy)->first();
+        return $venta->cantidadVentas;
+    }
+
+    public function ventaDelDia(){
+        $carbon = new \Carbon\Carbon();
+        $fechaHoy = $carbon->today()->toDateString();
+        $venta = Factura::ventaDelDia(Auth::user()->empresaActual,$fechaHoy)->first();
+        return $venta->totalVentas;
     }
 
     public function categoriasMasVendidas(){//Función auxiliar para la consulta de las categorias más vendidas 
