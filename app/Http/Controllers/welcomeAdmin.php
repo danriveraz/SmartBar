@@ -49,6 +49,8 @@ class welcomeAdmin extends Controller
 
             $ventasSemana  = $this->VentasSemana();// Lamado a la función que ontener los datos de la semana actual y la semana anterior, para la tabla de comparación
 
+            $datosVentasComparacionSemanas = $this->ventaCadaDiaSemana();
+
             return View('WelcomeAdmin/welcome')->with('categoriasMasVendidas',$categoriasMasVendidas['categoriasMasVendidas'])
                     ->with('sumaVentasDeCadaCategoria',$categoriasMasVendidas['sumaVentasDeCadaCategoria'])
                     ->with('meserosMasVendedores',$meserosMasVendedores)
@@ -56,7 +58,8 @@ class welcomeAdmin extends Controller
                     ->with('cajeroMasVendedores',$cajeroMasVendedores)
                     ->with('ventasDelDia',$ventasDelDia)
                     ->with('cantidadVentas',$cantidadVentasDelDia)
-                    ->with('ventasSemana', $ventasSemana);
+                    ->with('ventasSemana', $ventasSemana)
+                    ->with('datosVentasComparacionSemanas',$datosVentasComparacionSemanas);
             
         } else {
             return View('WelcomeAdmin/welcome');
@@ -127,6 +130,34 @@ class welcomeAdmin extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function ventaCadaDiaSemana(){
+        $carbon = new \Carbon\Carbon();
+        $fechaHoy = $carbon->today();
+        $ventaSemanaActual  = Factura::ventaCadaDiaSemana(Auth::user()->empresaActual,$fechaHoy)->get()->toArray();
+        $ventaSemanaAnterior = Factura::ventaCadaDiaSemana(Auth::user()->empresaActual,$fechaHoy->subWeek(1))->get()->toArray();
+        $dias = ['Monday', 'Tuesday', 'Wednesday', 'Thursday','Friday','Saturday','Sunday'];
+        $arrayVentaSemanaActual = array();
+        $arrayVentaSemanaAnterior = array();
+        $it1 = $it2 = 0;
+        //dd($ventaSemanaActual[1]);
+        foreach ($dias as $key => $value) {
+            if(current($ventaSemanaActual)['dia'] == $value){
+                array_push($arrayVentaSemanaActual, current($ventaSemanaActual)['totalVentas']);
+                next($ventaSemanaActual);
+            }else{
+                array_push($arrayVentaSemanaActual, 0);
+            }
+            if(current($ventaSemanaAnterior)['dia'] == $value){
+                array_push($arrayVentaSemanaAnterior, current($ventaSemanaAnterior)['totalVentas']);
+                next($ventaSemanaAnterior);
+            }else{
+                array_push($arrayVentaSemanaAnterior,0);
+            }    
+        }
+        $datosSemanas=  [$arrayVentaSemanaActual,$arrayVentaSemanaAnterior];       
+        return $datosSemanas;
     }
 
     public function VentasSemana(){

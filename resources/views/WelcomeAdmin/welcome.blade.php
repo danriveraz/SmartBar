@@ -92,6 +92,12 @@
  <!-- Fin del carusel -->
 
 @else
+<script type="">
+    // cargar los datos de las ventas de la semana actual en comparacion con la anterior
+    var semanaActual = {{json_encode($datosVentasComparacionSemanas[0])}};
+    var semanaAnterior = {{json_encode($datosVentasComparacionSemanas[1])}};
+
+</script>
  <!--Inicio de las gráficas-->
 <div id="">
     <div class="container-fluid">
@@ -465,7 +471,6 @@
 <!-- JS REPORTE -->
 <script>
   $(function() {
-
 
 
 

@@ -20,6 +20,7 @@ class CreateEmpresaTable extends Migration
             $table->string('ciudad');
             $table->string('metodoPago');
             $table->string('tipoRegimen');
+            $table->string('imagenPerfilNegocio');
             $table->string('telefono');
             $table->boolean('estado');
             $table->string('baroRestaurante');

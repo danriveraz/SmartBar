@@ -142,7 +142,12 @@ class Factura extends Model
                 ->select(DB::raw('count(*) as cantidadVentas'));
     }
 
-
+    //Venta de cada día se la semana, de una semana concreta
+    public function scopeVentaCadaDiaSemana($query,$idEmpresa,$fechaInicio){
+      return $query->where([['factura.estado', 'Finalizada'],['factura.idEmpresa', $idEmpresa],['factura.fecha','>=',$fechaInicio->startOfWeek()->toDateTimeString()],['factura.fecha','<',$fechaInicio->endOfWeek()]])
+                ->select(DB::raw('SUM(`total`) as totalVentas'),DB::raw('DAYNAME(`factura`.`fecha`) as dia'))
+                ->groupBy(DB::raw('DAY(`factura`.`fecha`)'));
+    }
 
     public function scopeListar($query, $idEmpresa){
       return $query->join('mesa', 'factura.idMesa', '=', 'mesa.id')
