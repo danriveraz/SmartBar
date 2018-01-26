@@ -260,9 +260,10 @@ class AuthController extends Controller
            
            /*return redirect('Auth/login')
            ->with('message', 'Bienvenido ' . $the_user[0]['nombrePersona'] . ' ya puede iniciar sesión');*/
-            Auth::login($the_user, true);
+           //dd($the_user);
+            Auth::login($the_user[0], true);
             Auth::User()->inicioSesion();
-            return redirect()->intended($this->redirectPath());
+            return redirect()->intended($this->redirectPath());        
         }else{
            return redirect('');
         }
