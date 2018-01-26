@@ -130,6 +130,14 @@
 </div>
 
 <script>
+
+  $(document).ready(function(){
+      cambiarCurrent("#miCarta");
+    });
+  function cambiarCurrent(idInput) {
+    $(".current").removeClass("current");
+    $(idInput).addClass("current");
+  };
   var routeModificar = "http://localhost/PocketByR/public/producto/modificar";
   var routeEliminar = "http://localhost/PocketByR/public/producto/eliminar";
   var routeIngredientes = "http://localhost/PocketByR/public/producto/ingredientes";

@@ -346,13 +346,13 @@
   var routeModificar = "http://localhost/PocketByR/public/insumo/modificar";
   var routeEliminar = "http://localhost/PocketByR/public/insumo/eliminar";
  
- $(document).ready(function(){
-  cambiarCurrent("#miInventario");
- });
 
+  $(document).ready(function(){
+      cambiarCurrent("#miInventario");
+    });
   function cambiarCurrent(idInput) {
-	$(".current").removeClass("current");
-	$(idInput).addClass("current");
+    $(".current").removeClass("current");
+    $(idInput).addClass("current");
   };
 
   function showContent(idInsumo) {
