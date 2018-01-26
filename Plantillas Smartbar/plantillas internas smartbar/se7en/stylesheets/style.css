@@ -137,6 +137,14 @@ a {
   a:hover {
     color: #FFFFFF;
     text-decoration: none; }
+	
+
+.headingPocket2 a {
+  color: #E9E9E9; }
+  a:hover {
+    color: #2d0031;
+    text-decoration: none; }
+
 
 ul.no-style {
   list-style: none;
@@ -1242,6 +1250,27 @@ th:active {
         opacity: 0.85;
         font-size: 1.1em; }
       .widget-container .heading [class^="fa"]:hover, .widget-container .headingPocket [class*="fa"]:hover {
+        cursor: pointer;
+        opacity: 1; }
+		
+/*----------------------------------------------------------------------------------- */
+/*  Widget-Container pocket2*/
+/*----------------------------------------------------------------------------------- */  
+.widget-container .headingPocket2 {
+    padding: 5px 5px;
+	font-size: 16px;
+    width: 100%;
+    font-weight: 400;
+    margin: 0; }
+.widget-container .heading [class^="fa"], .widget-container .headingPocket2 [class*="fa"] {
+      margin-right: 10px;
+      font-size: 22px; }
+      .widget-container .heading [class^="fa"].pull-right, .widget-container .headingPocket2 [class*="fa"].pull-right {
+        margin-right: 0px;
+        margin-left: 20px;
+        opacity: 0.85;
+        font-size: 1.1em; }
+      .widget-container .heading [class^="fa"]:hover, .widget-container .headingPocket2 [class*="fa"]:hover {
         cursor: pointer;
         opacity: 1; }
 /*----------------------------------------------------------------------------------- */
