@@ -398,6 +398,18 @@ class UsuariosController extends Controller
       $usuario = User::find($id);
       $empresa =  Auth::User()->empresa;
       $empresa->notas = $request->notas;
+
+      $path = public_path() . '/images/admins/';
+      $file = $request->file('imagenPerfilNegocio');
+      if($file!=null){// verifica que se haya subido una imagen nueva
+        //obtenemos el nombre del archivo
+        $perfilNombre = 'perfilNegocio_' . time() . '.' . $file->getClientOriginalExtension();
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        $file->move($path, $perfilNombre);
+        $imagenActual = $path . $empresa->imagenPerfilNegocio;
+        unlink($imagenActual);
+        $empresa->imagenPerfilNegocio = $perfilNombre;
+      }
       $empresa->save();
       flash::success('La empresa ha sido modificada satisfactoriamente')->important();
       return redirect('Auth/usuario/'.$usuario->id.'/edit');
