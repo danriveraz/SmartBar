@@ -1,13 +1,17 @@
 @extends(Auth::User()->esAdmin ? 'Layout.app_administradoresOptimizado' : 'Layout.app_empleado')
 @section('content')
 
-{!!Html::style('css/content-box.css')!!}
-{!!Html::style('stylesheets\social-buttons.css')!!}
-{!!Html::style('stylesheets/invoque/invoice.css')!!}
-{!!Html::style('stylesheets/cajero.css')!!}
-{!!Html::style('stylesheets\bootstrap-switch.css')!!}
-{!!Html::script("javascripts\bootstrap-switch.min.js")!!}
- {!!Html::script("javascripts\bootstrap.min.js")!!}
+{!!Html::style('assetsNew/styles/content-box.css')!!}
+{!!Html::style('assetsNew/styles/social-buttons.css')!!}
+{!!Html::style('assetsNew/styles/invoice.css')!!}
+{!!Html::style('assetsNew/styles/cajero.css')!!}
+{!!Html::style('assetsNew/styles/bootstrap-switch.css')!!}
+
+{!!Html::script("assetsNew/scripts/bootstrap-switch.min.js")!!}
+{!!Html::script("assetsNew/scripts/bootstrap.min.js")!!}
+{!!Html::script("assetsNew/scripts/jquery.easy-pie-chart.js")!!}
+{!!Html::script("assetsNew/scripts/jquery.sparkline.min.js")!!}
+
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 <div class="container">                   
@@ -549,5 +553,5 @@ function actualizarTotal() {
   validarEfectivo();
 }
 </script>        
-
+{!!Html::script('assetsNew/scripts/main.js')!!}
 @endsection

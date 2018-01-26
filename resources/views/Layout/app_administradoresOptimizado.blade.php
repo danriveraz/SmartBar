@@ -7,16 +7,17 @@
     </title>
     <link rel="shortcut icon" href={{ asset('images/icon.png') }}>
     <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
-  {!!Html::style('stylesheets\bootstrap.css')!!} <!-- Es necesario :v -->
-  {!!Html::style('stylesheets/font-awesome.min.css')!!}<!-- Desde aqui se cargan los iconos -->
-  {!!Html::style('stylesheets/hightop-font.css')!!}<!-- Carga los iconos de notificaciones y mensajes -->
-  {!!Html::style('stylesheets/style.css')!!}<!-- Es necesario :v -->
+  {!!Html::style('assetsNew/styles/bootstrap.css')!!} <!-- Es necesario :v -->
+  {!!Html::style('assetsNew/styles/font-awesome.min.css')!!}<!-- Desde aqui se cargan los iconos -->
+  {!!Html::style('assetsNew/styles/hightop-font.css')!!}<!-- Carga los iconos de notificaciones y mensajes -->
+  {!!Html::style('assetsNew/styles/style.css')!!}<!-- Es necesario :v -->
    
- 
-  {!!Html::script("javascripts\bootstrap.min.js")!!}<!-- Activa los submenus de todo -->
-  {!!Html::script("javascripts\jquery.easy-pie-chart.js")!!}<!-- Habilita el menu en version  de telefono-->
-  {!!Html::script("javascripts\jquery.sparkline.min.js")!!}<!-- Habilita el menu para version de telefono -->
-  {!!Html::script('javascripts\main.js')!!}<!-- Menu desplegable en version de telefono-->
+  {!!Html::script("assetsNew/scripts/bootstrap.min.js")!!}
+  {!!Html::script("assetsNew/scripts/jquery.easy-pie-chart.js")!!}
+  {!!Html::script("assetsNew/scripts/jquery.sparkline.min.js")!!}
+  {!!Html::script('assetsNew/scripts/main.js')!!}
+  
+
 
   <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script> <!-- Permite que carguen opciones desplegables del menu-->
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script> <!-- se necesita para la funcion onload en cajero -->
