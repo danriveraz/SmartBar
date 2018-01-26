@@ -63,6 +63,7 @@
 							</div>
 							<div class="input-wrapper" style="float: left; width:49%">
 								<select id="idDepto"  name="idDepto" required>
+									<option value="">Elija una opción</option>
 									@foreach($departamentos as $departamento)
 	                                  	<option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
 	                                @endforeach
@@ -70,7 +71,7 @@
 							</div>
 							<div class="input-wrapper" style="float: right; width:49%">
 								<select id="idCiudad" name="idCiudad" required>
-									<option></option>
+									<option value="">Elija una opción</option>
 								</select>
 							</div>
 							<div class="input-wrapper" style="display: none;">
@@ -132,7 +133,7 @@
 			    var id = $(this).find('option:selected').val();
 			    $('#idCiudad').empty();
 			    $('#idCiudad').append($('<option>', {
-						    value: 0,
+						    value: "",
 						    text: 'Elija una opción'
 						}));
 			    JSONCiudades = eval(<?php echo json_encode($ciudades);?>);
