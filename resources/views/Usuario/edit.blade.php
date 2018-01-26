@@ -22,6 +22,9 @@
                     </div>
                   </a>
                 </div>
+                <!-- imagen perfil -->
+                
+                  <!-- fin imagen perfil -->
                 <ul class="meta list list-unstyled" style="padding-top: 15%; margin-bottom: -20%;">
                     <li class="name">{{$usuario->nombrePersona}}
                         <br>
@@ -467,37 +470,12 @@
               <div class="container-fluid">
                 <div class="cover-inside">
                   <div class="col-md-3">
-<!--                    
-                    <div class="widget-content fileupload fileupload-new" data-provides="fileupload">
-                        <div id="negocio" class="gallery-item filter1" href="../../../../public/images/{{$empresa->imagenPerfilNegocio}}"  title="Imagen perfil">
-                          @if($empresa->imagenPerfilNegocio!='')
-                            {!! Html::image('images/'.$empresa->imagenPerfilNegocio,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo')) !!}
-                          @else
-                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
-                          @endif
-                          <div class="actions">
-                            <i class="fa fa-search-plus"></i>
-                            <i class="fa fa-pencil" onclick="$('#imagenPerfilNegocio').click()"></i>
-                          </div>
-                      </div>
-                      <div class="gallery-item fileupload-preview fileupload-exists img-thumbnail" >
-                        hola
-                      </div>
-                      <div hidden>
-                        <span class=" btn-file" id="subirImagenNegocio">
-                          <span class="fileupload-new"><i class="fa fa-pencil"></i></span>
-                          <span class="fileupload-exists"><i class="fa fa-search-plus"></i></span>
-                          <input type="file" class="form-control" name="imagenPerfilNegocio"  id="imagenPerfilNegocio">
-                        </span>
-                        <a class="btn btn-default fileupload-exists" data-dismiss="fileupload" id="eliminarImagen"><i class="fa fa-trash-o"></i></a>
-                      </div>
-                    </div>
--->
+
                   <div class="widget-content fileupload fileupload-new" data-provides="fileupload">
-                    <div class="gallery-container fileupload-new img-thumbnail" >
-                      <div class="gallery-item filter1" rel="">
+                    <div class="gallery-container fileupload-new img-thumbnail">
+                      <div class="gallery-item filter1" rel="" style="border-radius: 50%; width: 150px; height: 150px;">
                         @if($empresa->imagenPerfilNegocio!='')
-                          {!! Html::image('images/'.$empresa->imagenPerfilNegocio,  'imagen de perfil') !!}
+                          {!! Html::image('images/'.$empresa->imagenPerfilNegocio,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo')) !!}
                           <!-- clase circular -> , array('class' => 'img-responsive img-circle user-photo') -->
                         @else
                           <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
@@ -513,7 +491,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="gallery-item fileupload-preview fileupload-exists img-thumbnail">
+                    <div class="gallery-item fileupload-preview fileupload-exists img-thumbnail" style="border-radius: 50%; width: 150px; height: 150px; background: #ffffff;">
                       
                     </div>
                     <div hidden>

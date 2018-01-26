@@ -106,6 +106,7 @@ class AuthController extends Controller
         else{
             $empresa = new Empresa;
             $empresa->nombreEstablecimiento = $request->nombreEstablecimiento;
+            $empresa->imagenPerfilNegocio = "bar.png";
             $empresa->save();// crea la empresa con el nombre del establecimiento 
 
 
