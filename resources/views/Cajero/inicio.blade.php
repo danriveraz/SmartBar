@@ -7,6 +7,7 @@
 {!!Html::style('stylesheets/cajero.css')!!}
 {!!Html::style('stylesheets\bootstrap-switch.css')!!}
 {!!Html::script("javascripts\bootstrap-switch.min.js")!!}
+ {!!Html::script("javascripts\bootstrap.min.js")!!}
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 <div class="container">                   
@@ -526,7 +527,7 @@ function actualizarTotal() {
   for (i = 0; i < totales.length; i++) {
     acumulador = acumulador + parseInt(totales[i].dataset.valor);
   }
-  $("#subtotal").html("$" + Intl.NumberFormat().format(acumulador));
+  $("#subtotal").html("$" + Intl.NumberFormat().format(acumulador-acumulador*0.19));
   var campoIva = document.getElementById("iva").dataset.regimen;
   var iva = acumulador*0.19;
   var total = acumulador;
