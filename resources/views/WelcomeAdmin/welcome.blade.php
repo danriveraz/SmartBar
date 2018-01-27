@@ -139,7 +139,7 @@
                         <th>Dinero</th>
                         <td>${{$ventasSemana['ventaSemanaAnterior']}}</td>
                         <td><span class="text-info">${{$ventasSemana['ventaSemanaActual']}}</span></td>
-                        <td><span class="text-success">40.04%</span></td>
+                        <td><span @if($ventasSemana['porcentajeVentas']>=0) class="text-success" @else class="text-danger" @endif >{{$ventasSemana['porcentajeVentas']}}%</span></td>
                       </tr>
                       <tr>
                         <th>Ventas</th>
@@ -147,7 +147,7 @@
                         <td>
                           <div class="text-info">{{$ventasSemana['cantidadVentasSemanaActual']}}</div>
                         </td>
-                        <td><span class="text-success">32.51%</span></td>
+                        <td><span @if($ventasSemana['porcentajeCantidadVentas']>=0) class="text-success" @else class="text-danger" @endif>{{$ventasSemana['porcentajeCantidadVentas']}}%</span></td>
                       </tr>
                     </tbody>
                   </table>
