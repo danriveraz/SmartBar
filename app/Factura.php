@@ -32,6 +32,10 @@ class Factura extends Model
       return $this->hasMany('PocketByR\Venta', 'idFactura', 'id');
     }
 
+    public function scopeFacturaVigenteMesa($query, $idMesa){
+      return $query->where('factura.idMesa', $idMesa)->where('factura.estado','En Proceso');
+    }
+
     public function scopeListar2($query, $idEmpresa){
          $query->where('factura.estado', 'En proceso')
                   ->join('venta', 'factura.id', '=', 'venta.idFactura');

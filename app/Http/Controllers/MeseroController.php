@@ -37,21 +37,56 @@ class MeseroController extends Controller
 
     public function index()
     {
-        $mesasDisponibles = Mesa::mesasAdminDisponibles(Auth::user()->idEmpresa)->get();
-        $mesasOcupadas =  Mesa::mesasAdminOcupadas(Auth::user()->idEmpresa)->get();
-        $mesasReservadas =  Mesa::mesasAdminReservadas(Auth::user()->idEmpresa)->get();
-        $cantidad = 0;
-        if(sizeOf($mesasDisponibles) > 0){
-          $cantidad = $cantidad+1;
+        $mesas = Mesa::mesasAdmin(Auth::user()->idEmpresa)->get();
+        $categorias = Categoria::categoriasEmpresa(Auth::user()->idEmpresa)->get();
+        $obsequio = Auth::user()->obsequio;
+        return view('Mesero.index')->with('mesas',$mesas)->with('categorias',$categorias)->with('obsequio',$obsequio);
+    }
+
+    public function factura(Request $request){
+        $idMesa = $request->idM;
+        $busqueda = Factura::buscarFacturaId($idMesa)->get()->last();
+
+      if(sizeOf($busqueda) > 0){
+        $ventas = Venta::pedidoProductos($busqueda->id)->get();
+        $respuesta[] = array(
+        'validacion' => true,
+        'idFactura' => $busqueda->id,
+        'ventas' => $ventas
+        );
+        return json_encode($respuesta);
+      }else{
+        $nfactura = new Factura;
+        $nfactura->estado = "En proceso";
+        $nfactura->fecha = date("Y-m-d H:i:s", time());
+        $nfactura->total = 0;
+        $nfactura->idEmpresa = Auth::user()->idEmpresa;
+        $nfactura->idUsuario = Auth::user()->id;
+        $nfactura->idMesa = $idMesa;
+        $nfactura->save();
+        $factura = Factura::buscarFacturaId($idMesa)->get()->last();
+        $respuesta[] = array(
+         'validacion' => false,
+         'idFactura' => $factura
+        );
+        return json_encode($respuesta);
+      }
+    }
+
+    public function contiene(Request $request){
+        $producto = Producto::find($request->idP);
+        $contiene = $producto->contienen;
+        $insumos = [];
+        foreach ($contiene as $unidad) {
+          array_push($insumos, $unidad->insumo);
         }
-        if(sizeOf($mesasOcupadas) > 0){
-          $cantidad = $cantidad+1;
-        }
-        if(sizeOf($mesasReservadas) > 0){
-          $cantidad = $cantidad+1;
-        }
-        return view('Mesero.mesas')->with('mesasDisponibles',$mesasDisponibles)->with('mesasOcupadas',$mesasOcupadas)
-        ->with('mesasReservadas',$mesasReservadas)->with('cantidad',$cantidad);
+        $respuesta[] = array(
+          'nombre' => $producto->nombre,
+          'receta' => $producto->receta,
+          'contiene' => $contiene,
+          'insumos' => $insumos
+        );
+        return json_encode($respuesta);
     }
 
     public function agregar(Request $request){
@@ -211,6 +246,7 @@ class MeseroController extends Controller
             $venta->idCajero = Auth::user()->id;
             $venta->save();
           }
+
           $mesa = Mesa::find($idMesa);
           $mesa->estado = 'Ocupada';
           $mesa->save();
@@ -249,27 +285,6 @@ class MeseroController extends Controller
      */
     public function show($id)
     {
-      $mesa = Mesa::find($id);
-      $categorias = Categoria::categoriasEmpresa(Auth::user()->idEmpresa)->get();
-      $busqueda = Factura::buscarFacturaId($id)->get()->last();
-      $obsequiar = Auth::user()->obsequio;
-      $ventas = null;
-
-      if(sizeOf($busqueda) > 0){
-        $ventas = Venta::pedidoActualMesa($busqueda->id)->get();
-        return view('Mesero.venta')->with('factura',$busqueda)->with('mesa',$mesa)->with('categorias',$categorias)->with('ventas',$ventas)->with('obsequiar', $obsequiar);
-      }else{
-        $nfactura = new Factura;
-        $nfactura->estado = "En proceso";
-        $nfactura->fecha = date("Y-m-d H:i:s", time());
-        $nfactura->total = 0;
-        $nfactura->idEmpresa = Auth::user()->idEmpresa; //Cambiar?
-        $nfactura->idUsuario = Auth::user()->id; //Cambiar?
-        $nfactura->idMesa = $id;
-        $nfactura->save();
-        $facturas = Factura::buscarFacturaId($id)->get()->last();
-        return view('Mesero.venta')->with('factura',$facturas)->with('mesa',$mesa)->with('categorias',$categorias)->with('ventas',$ventas)->with('obsequiar', $obsequiar);
-      }
     }
 
     /**
