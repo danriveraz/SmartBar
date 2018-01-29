@@ -38,7 +38,7 @@
         <div class="topbar-section">
 		<nav id="nav-main" class="nav">
             <a class="nav-item " href="caracteristicas">¿Por que somos tu amigo inseparable?</a>
-            <a class="nav-item " href="precios">PocketClub</a>
+            <a class="nav-item " href="{{ url('PocketClub') }}">PocketClub</a>
             <div id="nav-toggle-close" class="nav-toggle-close">
               <a>X</a>
             </div>
