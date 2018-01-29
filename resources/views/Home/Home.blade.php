@@ -2,11 +2,16 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-
-
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="HTML5">
+  <meta name="application-name" content="SMARTBAR" />
+  <meta name="author" content="Pocket Company" />
+  <meta name="description" content="Aplicativo inteligente online, escencial en Bares, Discotecas y/o Restaurantes, que facilita enormemente el trabajo  de administradores, empleados, proveedores y clientes de estos." />
+  <meta name="generator" content="Laravel 5.2" />
+  <meta name="keywords" content="Compañero inseparable, sistema inteligente de manejo de negocios, bares, restaurantes, discotecas, licores, comidas y cocteles, información almacenada en la nube, datos del negocio en tiempo real" />
+  <meta name="encoding" charset="utf-8" />
+
   <title>SMARTBAR</title>
         <link type="image/x-icon" rel="shortcut icon" href="assetsNew/images/icon.png">
 

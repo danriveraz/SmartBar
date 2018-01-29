@@ -2,11 +2,15 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-
-
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="HTML5">
+  <meta name="application-name" content="SMARTBAR" />
+  <meta name="author" content="Pocket Company" />
+  <meta name="description" content="Aplicativo inteligente online, escencial en Bares, Discotecas y/o Restaurantes, que facilita enormemente el trabajo  de administradores, empleados, proveedores y clientes de estos." />
+  <meta name="generator" content="Laravel 5.2" />
+  <meta name="keywords" content="Compañero inseparable, sistema inteligente de manejo de negocios, bares, restaurantes, discotecas, licores, comidas y cocteles, información almacenada en la nube, datos del negocio en tiempo real" />
+  <meta name="encoding" charset="utf-8" />
   <title>SMARTBAR</title>
         <link type="image/x-icon" rel="shortcut icon" href="assetsNew/images/icon.png">
 
@@ -63,8 +67,8 @@
         <div class="hide-mobile">
           <img class="head-small-icon" src="assetsNew/images/head-character.png" alt="¿Tienes dudas?" title="Soporte">
           <div class="head-small-text">
-            <h3 class="serif margin-tiny">¿Tienes dudas?</h3>
-            <p class="serif margin-tiny">Como tu amigo inseparable, siempre estamos presente para brindarte la mejor asesoria, darte un consejo y solucionar cualquier inquietud o inconveniente, es <span class="bold">Gratis</span>, e Ilimitado.</p>
+            <h3 class="serif margin-tiny">SMARTBAR NO PUEDE FALTAR EN TU NEGOCIO</h3>
+            <p class="serif margin-tiny">Como tu amigo inseparable, siempre estoy presente para hacer la vida de tus empleados, proveedores y clientes mucho más fácil, por ende <span class="bold">ESTAR EN TU NEGOCIO</span>, es lo mejor para todos!</p>
           </div>
           </div>
         <!-- div que esconde cuando es muy chiquito para mobiles-->
@@ -78,14 +82,13 @@
 <!-- PREGUNTAS FRECUENTES -->
 <section class="block" data-name="Faqs">
     <div class="block-content">
-        <h2 class="text-center">Preguntas Frecuentes</h2>
+        <h2 class="text-center">Un Compañero Inseparable</h2>
         <div class="row cards-basic bg-white">
             <div class="col bg-gray-white">
                 <div>
-                    <h3 class="text-green margin-tiny">¿Qué quiere decir que SmartBAr está en la Nube?</h3>
-                    <p class="margin-tiny">La aplicación funciona desde internet, no tienes que preocuparte por instalaciones, servidores, versiones o por copias de seguridad, todo está guardado y protegido por <a href="http://www.pocketSmartbar.com">SmartBar</a>, para acceder sólo necesitas internet. </p>
-                    <p class="margin-tiny">Algunos ejemplos de servicios en la Nube son Dropbox y Facebook.  </p>
-                    <p class="margin-tiny">La Nube es la forma más segura de guardar la información, es mucho más seguro que hacerlo en tu computador o en otros medios locales.  </p>
+                    <h3 class="text-green margin-tiny">Te ayudo a crear un Sistema de Negocio</h3>
+                    <p class="margin-tiny">Cuando emprendes un nuevo negocio siempre tienes la mentalidad, de llegar a un punto en el cual trabajes menos y ganes más dinero, pero para lograr esto, debes crear en tu negocio un sistema, que haga que todo funcione sin que tu estes presente <a href="http://www.pocketSmartbar.com">SmartBar</a>, ayuda a que esta meta, se haga realidad!  </p>
+                    <p class="margin-tiny">Soy el encargado de hacerte la vida, más fácil.</p>
                     <hr>
                 </div>
                 <div>
@@ -99,24 +102,7 @@
                     <p class="margin-tiny">Puedes hacer con Smartbar divertido lo que antes era aburrido y además de esto, Smartbar, te ayudará a llevar el control, haciendo cosas por si solo, contando unicamente con tu aprobación.<a href="">acá</a> o <a href="">crea una cuenta</a>  GRATIS </p>
                     <hr>
                 </div>
-                <div>
-                    <h3 class="text-green margin-tiny">Si tengo dudas con el uso de mi amigo inseparable Smartbar, ¿quién me ayuda?</h3>
-                    <p class="margin-tiny">Nuestro Equipo de Soporte siempre está dispuesto para ayudarte hasta con el mínimo problema, tenemos 5 estrellas de calificación y los usuarios son nuestra prioridad, pruébalo tu mismo <a href="">acá</a>  </p>
-                    <p class="margin-tiny">Conoce cómo contactarnos <a href="">aquí</a>.</p>
-                    <hr>
-                </div>
-                <div>
-                    <h3 class="text-green margin-tiny">¿SmartBar, puede hacer todas las facturas por mi?</h3>
-                    <p class="margin-tiny">SmartBar cumple con todos los requisitos para realizar facturas en Colombia, solo debes solicitar la resolución para facturar por computador a la DIAN si perteneces al régimen común, ya contamos con <a href="">Facturación Electrónica</a> </p>
-                    <p class="margin-tiny">Si eres régimen simplificado también puedes generar cuentas de cobro.</p>
-                    <hr>
-                </div>
-                <div>
-                    <h3 class="text-green margin-tiny">¿Que pasa cuando caduquen mis 7 dias de membresia  gratis?</h3>
-                    <p class="margin-tiny">SmartBar cumple con todos los requisitos para realizar facturas en Colombia, solo debes solicitar la resolución para facturar por computador a la DIAN si perteneces al régimen común, ya contamos con <a href="">Facturación Electrónica</a> </p>
-                    <p class="margin-tiny">Si eres régimen simplificado también puedes generar cuentas de cobro.</p>
-                    <hr>
-                </div>
+                                
             </div>
             <div class="col bg-gray-white">
                 <div>
@@ -125,29 +111,20 @@
                     <hr>
                 </div>
                 <div>
-                    <h3 class="text-green margin-tiny">¿Quién me explica cómo empezar a utilizar SmartBar?</h3>
-                    <p>SamrtBar  es una herramienta sencilla y práctica, no se requiere de conocimientos previos. Dentro de la aplicación cuentas con todas las ayudas y explicaciones necesarias para empezar a usarla. Además, el  <a href="">centro de soporte</a>  está disponible para ti las 24 horas del día.</p>
-                    <p>Si tienes dudas o inconvenientes contáctanos por soporte y te responderemos lo más pronto posible. Escríbenos o solicita que te llamemos en  <a href="123">www.pocketsmartbar.com</a> </p>
+                    <h3 class="text-green margin-tiny">Si tengo dudas con el uso de mi amigo inseparable Smartbar, ¿quién me ayuda?</h3>
+                    <p class="margin-tiny">Nuestro Equipo de Soporte siempre está dispuesto para ayudarte hasta con el mínimo problema, tenemos 5 estrellas de calificación y los usuarios son nuestra prioridad, pruébalo tu mismo <a href="">acá</a>  </p>
+                    <p class="margin-tiny">Conoce cómo contactarnos <a href="">aquí</a>.</p>
                     <hr>
                 </div>
                 <div>
-                    <h3 class="text-green margin-tiny">¿Qué características debe tener mi computador?</h3>
-                    <p>SmartBar funciona en Internet, no hay restricciones y puedes acceder desde cualquier equipo, lo único que necesitas es una conexión a internet.
-También lo puedes usar desde tu celular descargando la aplicación móvil para <a target="_blank" href="">Android</a> o <a target="_blank" href="">iOS</a>. </p>
+                    <h3 class="text-green margin-tiny">Si tengo dudas con el uso de mi amigo inseparable Smartbar, ¿quién me ayuda?</h3>
+                    <p class="margin-tiny">Nuestro Equipo de Soporte siempre está dispuesto para ayudarte hasta con el mínimo problema, tenemos 5 estrellas de calificación y los usuarios son nuestra prioridad, pruébalo tu mismo <a href="">acá</a>  </p>
+                    <p class="margin-tiny">Conoce cómo contactarnos <a href="">aquí</a>.</p>
                     <hr>
                 </div>
-                <div>
-                    <h3 class="text-green margin-tiny">¿Es SmartBar la solución ideal para mi Negocio?</h3>
-                    <p>Tu amigo inseparable Smartbar es un <a href="">sistema inteliegente super completo de gestión,</a> el cual permite, olvidarte para siempre de agendar empleados, de realizar tus pedidos, de descontar d etu inventario los productos que usas, del contrl general d etus empleados y muchas cosas ´más, lo único que tienes que hacer, es analisar la información que te da tu amigo inseparable SmartBar, para tomar las mejores desiciones para tu negocio.</p>
-                    <p>Puedes realizar facturas, llevar el control de gastos, inventarios, empleados, pedidos, compras, varios negocios simultaneamente y mucho más. La mejor forma de descubrirlo es <a href="">crear una cuenta</a> y empezar a probar.</p>
-                    <hr>
                 </div>
-                <div>
-                    <h3 class="text-green margin-tiny">¿Tengo que firmar contrato para empezar a usar mi amigo inseparable SmartBar?</h3>
-                    <p>Para usar <strong>tu amigo inseparable SmartBar</strong> no tienes que firmar ningún contrato, solo aceptar las <a href="">condiciones y términos de uso</a>. Cuando te registras y empiezas a usar la herramienta se entiende que estos términos y condiciones son aceptados por ambas partes, el usuario y el equipo de SmartBar.</p>
-                    <p>Para empezar a usar <strong>SamrtBar</strong> simplemente creas una cuenta <a href="">aquí</a> al entrar al pocketClub con una de nuestras membresias, obtendrás beneficios nunca antes vistos, como descuentos, regalos, productos unicos y todo lo que necesitas para tu negocio al alcance de tu mano. </p>
-                    <hr>
-                </div>
+                
+                
             </div>
         </div>
     </div>
