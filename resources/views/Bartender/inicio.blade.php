@@ -89,9 +89,7 @@
     </div>
 </footer>
 @endif
-<!-- fin slider -->
 
-{!!Html::style('stylesheets\bartender.css')!!}
 <script type="text/javascript">
   $(window).load(function() {
     cambiarCurrent("#bartender");
@@ -104,42 +102,56 @@
       setInterval(update, 15000);      
     });
 
-function cambiarCurrent(idInput) {
-  $(".current").removeClass("current");
-  $(idInput).addClass("current");
-};
+  function cambiarCurrent(idInput) {
+    $(".current").removeClass("current");
+    $(idInput).addClass("current");
+  };
 </script>
-<div class="container-fluid main-content"><div class="social-wrapper">
-  <div id="social-container">
+<link rel="stylesheet" href="stylesheets/styleMesas.css">
+<link rel="stylesheet" href="stylesheets/styleCategorias.css">
+<link rel="stylesheet" href="stylesheets/mesero.css">
+<div class="modal-shiftfix">
+  <div id="page-content">
+    <main id="mesas" class="cd-main-content">
+        <section class="cd-gallery">
+          <ul>
+            @foreach($facturas as $factura)
+              <li class="mix color-2 option3">
+                <a nombre="pedidoMesa" id="{{$factura->mesa->id}}" href="#myModal{{$factura->mesa->id}}" data-toggle="modal" >
+                  <i class="ocupada"><img src="images/mesa.png"></i>
+                  <div class="text-Mesas">{{$factura->mesa->nombreMesa}}<br>Hace
+                      <?php   
+                        $fecha1 = new DateTime();
+                        if(sizeof($factura->ventas)!=0){
+                          $fecha1 = new DateTime($factura->ventas[0]->hora);
+                        }
+                        $fecha2 = new DateTime();//fecha de cierre
+                        $intervalo = $fecha1->diff($fecha2);
+                        $horas = $intervalo->format('%H');
+                        $minutos = $intervalo->format('%i');
+                        echo (($horas*60)+$minutos);
+                      ?>  mins 
+                  </div>
+                </a>
+              </li>
+              <li class="gap" style="width: 0.5%;"></li>
+            @endforeach   
+             <!-- PARA DAR ESPACIO  NO BORRAR-->
+            <li class="gap"></li>
+            <!-- PARA DAR ESPACIO NO BORRAR-->
 
-    <div id="hidden-items"> 
-    @foreach($facturas as $factura)
-        <div class="item social-widget" nombre="pedidoMesa" id="{{$factura->mesa->id}}">
-          <div class="social-data">
-            <h1>
-              {{$factura->mesa->nombreMesa}}
-            </h1>
-            <b>
-            <?php
-              $posiciones = explode(" ", $factura->fecha);
-              $hora = explode(":", $posiciones[1]);
-            ?>
-            {{$hora[0]}}:{{$hora[1]}}<br>{{$posiciones[0]}} 
-            </b>
-          </div>
-        </div>
-        <a class="btn btn-primary btn" data-toggle="modal" href="#myModal{{$factura->mesa->id}}" id="boton{{$factura->mesa->id}}" hidden="true"></a>
-    @endforeach   
-    </div>
+          </ul>
+          <div class="cd-fail-message">No se han encontrado resultados</div>
+        </section> <!-- cd-gallery -->
+      </main>
   </div>
-  </div>
- 
+</div>
 
- @foreach($facturas as $factura)
+@foreach($facturas as $factura)
   <div class="modal fade" id="myModal{{$factura->mesa->id}}">
-    <div class="modal-dialog">
+    <div class="modal-dialog" >
       <div class="modal-content">
-      <form name="formulario" autocomplete="on" method="post" action="{{url('bartender/')}}">
+      <form name="formulario" autocomplete="on" method="post" action="{{url('bartender/edit')}}">
             {{csrf_field()}}
         <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
           <button aria-hidden="true" class="close" data-dismiss="modal" type="button"  style="color:white">&times;</button>
@@ -160,7 +172,7 @@ function cambiarCurrent(idInput) {
                   <th>Categoria</th>
                   <th width="150">Detalles</th>
                   <th>
-                    <div class="btn btn-default"  onclick="seleccionar({{$factura->id}});" style="BACKGROUND-COLOR: rgb(79, 0, 85); color:white" valor="0" id="seleccionarTodos">
+                    <div class="btn btn-default"  onclick="seleccionar({{$factura->id}});" style="BACKGROUND-COLOR: rgb(79, 0, 85); color:white; " valor="0" id="seleccionarTodos">
                     <i class="fa fa-check"></i>
                     </div>
                   </th>
@@ -180,7 +192,7 @@ function cambiarCurrent(idInput) {
                     <p>{{$venta->producto->receta}}</p>
                   </div>"
                   data-placement="bottom" data-toggle="popover">Receta</a></td>
-                  <td>
+                  <td style="padding-left: 20px;">
                   <label>
                   <input type="checkbox" name="pedidos[]" value="{{$venta->id}}" width="25" height="25" class="check{{$factura->id}}" ><span></span></label>
                   </td>
@@ -199,18 +211,13 @@ function cambiarCurrent(idInput) {
     </div>
   </div>
 @endforeach 
- 
 
-</div>
+<script src="javascripts/mesero.js"></script>
+<script src="javascripts/jquery.mixitup.min.js"></script>
+<script src="javascripts/mainMesas.js"></script> 
+<link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
 <script type="text/javascript">
-    $("div[nombre|='pedidoMesa']").click(function(){
-      var idElegido = $(this).attr("id");
-      var palabra = "#boton";
-      var id = palabra.concat(idElegido);
-      $(id).trigger('click');
-    });
-
-    function seleccionar(idMesa){
+  function seleccionar(idMesa){
       var checks = document.getElementsByName("pedidos[]");
       if($("#seleccionarTodos").attr("valor") == "0"){
         for (var i=0; i<checks.length; i++) {
@@ -226,58 +233,4 @@ function cambiarCurrent(idInput) {
       }
     }
 </script>
-
-<link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
-{!!Html::style('stylesheets\font-awesome.min.css')!!}
-{!!Html::style('stylesheets\isotope.css')!!}
-{!!Html::style('stylesheets\fullcalendar.css')!!}
-
-{!!Html::script('javascripts\bootstrap.min.js')!!}
-{!!Html::script('javascripts\jquery.bootstrap.wizard.js')!!}
-{!!Html::script('javascripts\fullcalendar.min.js')!!}
-{!!Html::script('javascripts\jquery.dataTables.min.js')!!}
-{!!Html::script('javascripts\jquery.easy-pie-chart.js')!!}
-{!!Html::script('javascripts\jquery.isotope.min.js')!!}
-{!!Html::script('javascripts\jquery.fancybox.pack.js')!!}
-{!!Html::script('javascripts\select2.js')!!}
-{!!Html::script('javascripts\jquery.sparkline.min.js')!!}
-
-
-<script type="text/javascript">
-  (function( $ ) {
-      //Function to animate slider captions 
-    function doAnimations( elems ) {
-      //Cache the animationend event in a variable
-      var animEndEv = 'webkitAnimationEnd animationend';
-      
-      elems.each(function () {
-        var $this = $(this),
-          $animationType = $this.data('animation');
-        $this.addClass($animationType).one(animEndEv, function () {
-          $this.removeClass($animationType);
-        });
-      });
-    }
-    //Variables on page load 
-    var $myCarousel = $('#carousel-example-generic'),
-      $firstAnimatingElems = $myCarousel.find('.item:first').find("[data-animation ^= 'animated']");
-    //Initialize carousel 
-    $myCarousel.carousel();
-    //Animate captions in first slide on page load 
-    doAnimations($firstAnimatingElems);
-    //Pause carousel  
-    $myCarousel.carousel('pause');
-    //Other slides to be animated on carousel slide event 
-    $myCarousel.on('slide.bs.carousel', function (e) {
-      var $animatingElems = $(e.relatedTarget).find("[data-animation ^= 'animated']");
-      doAnimations($animatingElems);
-    });  
-      $('#carousel-example-generic').carousel({
-          interval:3000,
-          pause: "false"
-      });
-  })(jQuery); 
-
-</script>
-
 @endsection

@@ -82,9 +82,11 @@ Route::get('catlistall', 'CategoriaController@listall');
 Route::get('categoria/{id}/destroy', ['uses' => 'CategoriaController@destroy', 'as' => 'Categoria.destroy']);
 
 
-Route::post('bartender/pedido', 'BartenderController@pedido');
-Route::get('bartender/tabla', 'BartenderController@mostrarTabla');
-Route::resource('bartender', 'BartenderController');
+//Route::post('bartender/pedido', 'BartenderController@pedido');
+//Route::get('bartender/tabla', 'BartenderController@mostrarTabla');
+//Route::resource('bartender', 'BartenderController');
+Route::get('bartender/', 'BartenderController@index');
+Route::post('bartender/edit', 'BartenderController@edit');
 
 Route::resource('Estadisticas', 'EstadisticasController');
 
