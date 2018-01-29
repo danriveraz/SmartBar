@@ -161,6 +161,35 @@ class UsuariosController extends Controller
 
   }
 
+  public function modificarFactura(){
+    $user = User::find(Auth::id());
+    $Empresa = Empresa::find($user->empresaActual);
+    return view('Usuario.factura')->with('user',$user)->with('empresa',$Empresa);
+  }
+
+  public function postmodificarFactura(Request $request){
+    $usuario = User::find(Auth::id());
+    $empresa = Empresa::find($usuario->empresaActual);
+    $empresa->notas = $request->notas;
+    $empresa->propina = $request->propinaSugerida;
+    $path = public_path() . '/images/admins/';
+    $file = $request->file('imagenPerfilNegocio');
+    if($file!=null){// verifica que se haya subido una imagen nueva
+      //obtenemos el nombre del archivo
+      $perfilNombre = 'perfilNegocio_' . time() . '.' . $file->getClientOriginalExtension();
+      //indicamos que queremos guardar un nuevo archivo en el disco local
+      $file->move($path, $perfilNombre);
+      if($empresa->imagenPerfilNegocio != "bar.png"){
+        $imagenActual = $path . $empresa->imagenPerfilNegocio;
+        unlink($imagenActual);
+      }
+      $empresa->imagenPerfilNegocio = $perfilNombre;
+    }
+    $empresa->save();
+    flash::success('La factura ha sido modificada satisfactoriamente')->important();
+    return redirect('Auth/modificarFactura');
+  }
+
   public function edit($id){
     $departamentos = Departamento::all();
     $ciudades = Ciudad::all();
@@ -395,23 +424,22 @@ class UsuariosController extends Controller
     }
 
     if($request->ventanaFactura == 4){
-      $usuario = User::find($id);
-      $empresa =  Auth::User()->empresa;
-      $empresa->notas = $request->notas;
-
+      $usuario = User::find(Auth::id());
       $path = public_path() . '/images/admins/';
-      $file = $request->file('imagenPerfilNegocio');
+      $file = $request->file('imagenPerfil');
       if($file!=null){// verifica que se haya subido una imagen nueva
         //obtenemos el nombre del archivo
-        $perfilNombre = 'perfilNegocio_' . time() . '.' . $file->getClientOriginalExtension();
+        $perfilNombre = 'perfil_' . time() . '.' . $file->getClientOriginalExtension();
         //indicamos que queremos guardar un nuevo archivo en el disco local
         $file->move($path, $perfilNombre);
-        $imagenActual = $path . $empresa->imagenPerfilNegocio;
-        unlink($imagenActual);
-        $empresa->imagenPerfilNegocio = $perfilNombre;
+        if($usuario->imagenPerfil != "perfilhombre.png" && $usuario->imagenPerfil != "perfil.jpg"){
+          $imagenActual = $path . $usuario->imagenPerfil;
+          unlink($imagenActual);
+        }
+        $usuario->imagenPerfil = $perfilNombre;
       }
-      $empresa->save();
-      flash::success('La empresa ha sido modificada satisfactoriamente')->important();
+      $usuario->save();
+      flash::success('La imagen de perfil ha sido modificada satisfactoriamente')->important();
       return redirect('Auth/usuario/'.$usuario->id.'/edit');
     }
 

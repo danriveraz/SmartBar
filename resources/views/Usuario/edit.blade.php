@@ -9,23 +9,51 @@
         <div class="container main-content">
           <div class="side-bar" >
               <div class="user-info">
-                <div align="center">
-                  <a id="perfil" class="gallery-item filter1 fancybox" href="../../../../public/images/admins/{{$usuario->imagenPerfil}}" rel="gallery1" title="Imagen perfil">
-                    @if($usuario->imagenPerfil!='')
-                      {!! Html::image('images/admins/'.$usuario->imagenPerfil,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo')) !!}
-                    @else
-                      <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
-                    @endif
-                    <div class="actions">
-                      <i class="fa fa-search-plus"></i>
-                      <i class="fa fa-pencil"></i>
+                {!! Form::open(['route' => ['Auth.usuario.editUsuario',$usuario], 'method' => 'POST','enctype' => 'multipart/form-data', 'id' => 'formEditFotoPerfil']) !!}
+                {{ csrf_field() }}
+                <div class="widget-content fileupload fileupload-new" data-provides="fileupload" style="margin-left: -15%;margin-bottom: -20%;">
+                  <div class="gallery-container fileupload-new img-thumbnail">
+                    <div class="gallery-item filter1" rel="" style="border-radius: 50%; width: 150px; height: 150px;">
+                      @if($usuario->imagenPerfil!='')
+                        {!! Html::image('images/admins/'.$usuario->imagenPerfil,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo', 'id' => 'imagenPerfilUsuarioCircular')) !!}
+                        <!-- clase circular -> , array('class' => 'img-responsive img-circle user-photo') -->
+                      @else
+                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" class="img-responsive img-circle user-photo">
+                      @endif
+                      <div class="actions">
+                        <a  id="modalImagen" href="{{ asset ('images/admins/'.$usuario->imagenPerfil) }}" title="Imagen negocio">
+                          <img src="images/admins/{{$usuario->imagenPerfil}}" hidden>
+                          <i class="fa fa-search-plus"></i>
+                        </a>
+                        <a onclick="$('#imagenPerfil').click()">
+                          <i class="fa fa-pencil"></i>
+                        </a>
+                      </div>
                     </div>
-                  </a>
+                  </div>
+                  <div class="gallery-item fileupload-preview fileupload-exists img-thumbnail" style="border-radius: 50%; width: 150px; height: 150px; background: #ffffff;">
+                    
+                  </div>
+                  <div hidden>
+                    <span class=" btn-file" id="subirImagenPerfil">
+                      <span class="fileupload-new"><i class="fa fa-pencil"></i></span>
+                      <span class="fileupload-exists"><i class="fa fa-search-plus"></i></span>
+                      <input type="file" value="{{$usuario->imagenPerfil}}" class="form-control" name="imagenPerfil"  id="imagenPerfil">
+                    </span>
+                  </div>
                 </div>
+                <div id="btnImagenPerfil">
+                  <button id="btn-guardarimg" class="btn btn-bitbucket" onclick="setValue(this)"  title="Guardar imagen" style="margin-top: 15%; width: 25%; font-size: 10px; margin-left: -5%"><i class="fa fa-save"></i></button>
+                </div>
+
+                <div hidden>
+                  <input id="ventanaFactura" name="ventanaFactura" class="form-control" value=""  type="text">
+                </div>
+                {!! Form::close() !!}
                 <!-- imagen perfil -->
                 
                   <!-- fin imagen perfil -->
-                <ul class="meta list list-unstyled" style="padding-top: 15%; margin-bottom: -20%;">
+                <ul class="meta list list-unstyled" style="padding-top: 15%; margin-bottom: -20%; margin-left: -5%;">
                     <li class="name">{{$usuario->nombrePersona}}
                         <br>
                         <label class="label label-info pocketColor" style=" margin: 5px 5px 5px 5px; padding:.3em .9em .3em;"><b>Admin</b></label>
@@ -36,7 +64,7 @@
                   <ul class="nav">
                     <li><a data-toggle="tab" href="#tab1"><span class="fa fa-user"></span> Perfil</a></li>
                     <li><a data-toggle="tab" href="#tab2"><span class="fa fa-bars"></span> Categoria</a></li>
-                    <li><a data-toggle="tab" href="#tab3"><span class="fa fa-newspaper-o"></span> Factura</a></li>
+                    <li><a href="{{url('Auth/modificarFactura')}}"><span class="fa fa-newspaper-o"></span> Factura</a></li>
                     <li><a data-toggle="tab" href="#tab4"><span class="fa fa-pencil-square-o"></span> Mesas</a></li>
                     <li class="active"><a data-toggle="tab" href="#tab5"><span class="fa fa-fw fa-bar-chart-o"></span> Reportes</a></li>
                   </ul>    
@@ -464,78 +492,7 @@
         </div>
 
         <div class="tab-pane" id="tab3">
-          <div id="main-content">
-            {!! Form::open(['route' => ['Auth.usuario.editUsuario',$usuario], 'method' => 'POST','enctype' => 'multipart/form-data', 'id' => 'formEditFactura']) !!}
-              {{ csrf_field() }}
-              <div class="container-fluid">
-                <div class="cover-inside">
-                  <div class="col-md-3">
-
-                  <div class="widget-content fileupload fileupload-new" data-provides="fileupload">
-                    <div class="gallery-container fileupload-new img-thumbnail">
-                      <div class="gallery-item filter1" rel="" style="border-radius: 50%; width: 150px; height: 150px;">
-                        @if($empresa->imagenPerfilNegocio!='')
-                          {!! Html::image('images/admins/'.$empresa->imagenPerfilNegocio,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo', 'id' => 'imagenPerfilNegocioCircular')) !!}
-                          <!-- clase circular -> , array('class' => 'img-responsive img-circle user-photo') -->
-                        @else
-                          <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
-                        @endif
-                        <div class="actions">
-                          <a  id="modalImagen" href="{{ asset ('images/admins/'.$empresa->imagenPerfilNegocio) }}" title="Imagen negocio">
-                            <img src="images/admins/{{$empresa->imagenPerfilNegocio}}" hidden>
-                            <i class="fa fa-search-plus"></i>
-                          </a>
-                          <a onclick="$('#imagenPerfil').click()">
-                            <i class="fa fa-pencil"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="gallery-item fileupload-preview fileupload-exists img-thumbnail" style="border-radius: 50%; width: 150px; height: 150px; background: #ffffff;">
-                      
-                    </div>
-                    <div hidden>
-                      <span class=" btn-file" id="subirImagenNegocio">
-                        <span class="fileupload-new"><i class="fa fa-pencil"></i></span>
-                        <span class="fileupload-exists"><i class="fa fa-search-plus"></i></span>
-                        <input type="file" class="form-control" name="imagenPerfilNegocio"  id="imagenPerfil">
-                      </span>
-                    </div>
-                  </div>
-
-                  <!-- <img class="cover-avatar size-md img-round" src="{{'../../../images/bar.png'}}" alt="profile"> -->
-                  </div>
-                  <div class="col-md-9" id="notasAdicionales">
-                    <label style="display: block;">Notas adicionales</label>
-                    <textarea id="notas" name="notas" class="form-control" rows="4" cols="100" maxlength="140" placeholder="Pon tu mensaje aquí" style="resize: none;">{{$empresa->notas}} </textarea>
-                  </div>
-                </div>
-              </div>
-
-              <div id="divComun" class="form-group"  style="display: none;" <?php if($empresa->tipoRegimen == "asdas")echo'style="display:block;"' ?>>
-                <label class="control-label col-md-2"></label>
-                <div class="fileupload fileupload-new" data-provides="fileupload">
-                  <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
-                    @if($empresa->imagenResolucionFacturacion!='')
-                      {!! Html::image('images/admins/'.$empresa->imagenResolucionFacturacion , 'resolución') !!}
-                    @else
-                      <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
-                    @endif
-                  </div>
-                  <div class="fileupload-preview fileupload-exists img-thumbnail" style="width: 200px; max-height: 150px"></div>
-                  <div align="center">
-                    <span class="btn btn-default btn-file"><span class="fileupload-new">Cargar</span><span class="fileupload-exists">Cambiar</span><input type="file" class="form-control" name="imagenEstablecimiento" ></span><a class="btn btn-default fileupload-exists" data-dismiss="fileupload" href="#">Eliminar</a>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group" hidden="true">
-                  <input id="ventanaFactura" name="ventanaFactura" class="form-control" value=""  type="text">
-              </div>
-              <div class="form-group" style="text-align: center;">
-                <button id="btn-guardar4" class="btn btn-bitbucket" onclick="setValue(this)" style="margin-top: 30px;">Guardar</button>
-              </div>
-            {!! Form::close() !!}
-          </div>
+          
         </div>
         
         <div class="tab-pane" id="tab4">
@@ -995,6 +952,7 @@
         document.getElementById("plan3").className = "plan selected-plan";
         document.getElementById("check3").className = "fa fa-check-circle";
       }
+     // setInterval('mostrarBtnImagen()',1000);
   });
 
   $('#idDepto').on('change', function (event) {
@@ -1025,6 +983,10 @@
     });
   });
 
+  function mostrarBtnImagen() {
+    
+  }
+
   function setValue(idBtn) {
     if(idBtn.id == "btn-guardar1"){
       ventana.value = 1;
@@ -1036,8 +998,8 @@
         alert("Las contraseña no coinciden");
       }
     }else if(idBtn.id == "btn-guardar3"){
-      ventana.value = 3;
-    }else if(idBtn.id == "btn-guardar4"){
+      ventana.value = 3;  
+    }else if(idBtn.id == "btn-guardarimg"){
       ventanaFactura.value = 4;
     }else if(idBtn.id == "btn-guardar5"){
       ventana.value = 5;
@@ -1295,6 +1257,11 @@
   }
 
   #imagenPerfilNegocioCircular{
+    width: 150px;
+    height: 150px;
+  }
+
+  #imagenPerfilUsuarioCircular{ 
     width: 150px;
     height: 150px;
   }
