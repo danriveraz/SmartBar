@@ -35,13 +35,11 @@ $(function() {
     // Gráficas de las ventas de la semana
     var sparklineSalesPerformance = function() {
 
-<<<<<<< HEAD
  //     var lastWeekData = semanaActual;
  //     var currentWeekData = semanaAnterior;
  var lastWeekData = [142, 164, 298, 384, 232, 269, 211];
       var currentWeekData = [352, 267, 373, 222, 533, 111, 60];
 
-=======
       if(typeof(semanaActual)!="undefined"){
         var lastWeekData = semanaActual;
         var currentWeekData = semanaAnterior;
@@ -49,7 +47,6 @@ $(function() {
         var lastWeekData = [142, 164, 298, 384, 232, 269, 211];
         var currentWeekData = [352, 267, 373, 222, 533, 111, 60];
       }
->>>>>>> 92bc2d97d71fcba323a30feee706f3a8a312d1d5
       $('#chart-sales-performance').sparkline(lastWeekData, {
         fillColor: 'rgba(90, 90, 90, 0.1)',
         lineColor: '#5A5A5A',
