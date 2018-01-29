@@ -1,6 +1,46 @@
+var idMesa = 0;
+var idFactura = 0;
+var route = "http://localhost/PocketByR/public/mesero/agregar";
+var routeFactura = "http://localhost/PocketByR/public/mesero/factura";
+var routeDisminuir = "http://localhost/PocketByR/public/mesero/disminuir";
+var routeVenta = "http://localhost/PocketByR/public/mesero/venta";
+var routeContiene = "http://localhost/PocketByR/public/mesero/contiene";
+
 $(document).ready(function(){
-  $("#contenedorCategorias a:first-child")[0].click();
-  cambiarCurrent("#mesero");
+  var estado = false;
+  $('#toggle-Mesas').on('click', function(){
+    $('.plegable').slideToggle();
+
+    if (estado == true) {
+      $(this).text("Abrir");
+      $('body').css({
+        "overflow": "auto"
+      });
+      estado = false;
+    } else {
+      $(this).text("Cerrar");
+      $('body').css({
+        "overflow": "hidden"
+      });
+      estado = true;
+    }
+
+    return false;
+  });
+
+  $('#basicDemo li:first-child').addClass('active').click();
+
+});
+
+cambiarCurrent("#mesero");
+
+$('#basicDemo').carousel({
+            interval: false
+        });
+
+$('#basicDemo').bind('slid', function() {
+    var currentIndex = $('li.active').attr('id');
+    
 });
 
 function cambiarCurrent(idInput) {
@@ -8,52 +48,73 @@ function cambiarCurrent(idInput) {
   $(idInput).addClass("current");
 };
 
-function scrollZero(){
-  $('#tablaProductos tbody').scrollTop(0);
+function actualizarCategoria(productos){
+  var table = $('#dataTable1').DataTable();
+  table.clear().draw();
+  for (var i = 0; i < productos.length; i++) {
+    table.row.add( $('<tr><td class="hidden"></td><td onclick="actualizarTabla('+productos[i].id+',0)">'+productos[i].nombre+'</td><td onclick="actualizarTabla('+productos[i].id+',0)">'+productos[i].precio+'</td><td class="" align="center"><div><a class="table-actions pocketMorado" href="#modalReceta" title="Preparación" onclick="receta('+productos[i].id+')"><i class="fa fa-book" data-toggle="modal"></i></a><a class="table-actions pocketMorado" href="" onclick="actualizarTabla('+productos[i].id+',1)"><i class="fa fa-gift" data-toggle="modal"></i></a></div></td></tr>')).draw( false );
+  }
 };
 
-var route = "http://localhost/PocketByR/public/mesero/agregar";
-var routeDisminuir = "http://localhost/PocketByR/public/mesero/disminuir";
-var routeVenta = "http://localhost/PocketByR/public/mesero/venta";
+function receta(productoId){
+  var id = productoId;
+  $.ajax({
+      url: routeContiene,
+      type: 'GET',
+      data:{
+        idP: id
+      },
+      success : function(data) {
+        var contiene = $.parseJSON(data);
+        $('#nombre').html(contiene[0].nombre);
+        var cantidades = contiene[0].contiene;
+        var insumos = contiene[0].insumos;
+        var cadena = '';
+        for (var i = 0; i < cantidades.length; i++) {
+          cadena+= '<li> '+cantidades[i].cantidad+' oz de '+insumos[i].nombre+'</li>';
+        }
+        $('#ingredientes').html('<ul>'+cadena+'</ul>');
+        $('#receta').html(contiene[0].receta);
+        $('#modalReceta').modal('show');
+      },
+      error: function(data){
+        alert('Error al consultar los insumos de un producto');
+      }
+  });
+};
 
-function actualizarTabla(idProducto, idFactura, obsequio){
-  $('#pedidoTabla').css({'display': 'table', 'margin-top': '10px' , 'margin-bottom': '30px'});
+
+function actualizarTabla(idProducto, obsequio){
   $.ajax({
     url: route,
     type: 'GET',
     data:{
-      idP: idProducto,
-      idF: idFactura
+      idP: idProducto
     },
     success : function(data) {
       var producto = $.parseJSON(data);
+      var table2 = $('#dataTable2').DataTable();
       if(producto != null){
           $id = producto.id;
           if(obsequio == 0){
             if($("tr#p"+$id).length){
-              $id = producto.id;
-              var cantidad = $("td#c"+ producto.id).html();
-              var cantidadFinal = ++cantidad;
-              $("td#c"+ producto.id).replaceWith('<td id="c'+producto.id +'" onclick="actualizarCantidad('+$id+','+idFactura+',0)">'+ cantidadFinal +'</td>');
-              $("td#t"+ producto.id).replaceWith('<td id="t'+producto.id +'" onclick="actualizarCantidad('+$id+','+idFactura+',0)">'+ cantidadFinal* producto.precio +'</td>');
+        $cantidad = $("td#c"+ $id).html();
+        $cantidadFinal = ++$cantidad;
+        $precio = $("td#v"+ $id).html();
+        $precioFinal = ($precio*1) + producto.precio;
+        $("td#c"+ $id).replaceWith('<td id="c'+$id+'" onclick="actualizarCantidad('+$id+',0)">'+ $cantidadFinal +'</td>');
+        $("td#v"+ $id).replaceWith('<td id="v'+$id+'" onclick="actualizarCantidad('+$id+',0)">'+ $precioFinal +'</td>');
             }else{
-              $('#pedidoTabla > tbody').append('<tr id="p'+producto.id+'"><td style="display: none;">'+producto.id
-              +'</td><td id="c'+producto.id +'" onclick="actualizarCantidad('+$id+','+idFactura+',0)">'+ 1
-              +'</td><td onclick="actualizarCantidad('+$id+','+idFactura+',0)">'+producto.nombre+'</td><td id="v'+producto.id+'" onclick="actualizarCantidad('+$id+','+idFactura+',0)">'+ producto.precio
-              +'</td><td id="t'+ producto.id+'" onclick="actualizarCantidad('+$id+','+idFactura+',0)">'+ producto.precio + '</td></tr>');
+        table2.row.add( $('<tr id="p'+$id+'"><td class="hidden">'+$id+'</td><td id="c'+$id+'" onclick="actualizarCantidad('+$id+',0)">'+1+'</td><td onclick="actualizarCantidad('+$id+',0)">'+producto.nombre+'</td><td id="v'+$id+'" onclick="actualizarCantidad('+$id+',0)">'+ producto.precio+'</td><td><div><a class="table-actions pocketMorado" href="#modalReceta" onclick="receta('+$id+')"><i class="fa fa-book" data-toggle="modal" title="Preparación"></i></a></div></td></tr>')).draw( false );
             }
           }else{
             if($("tr#p"+$id+"1").length){
-              var cantidad = $("td#c"+ producto.id + "1").html();
-              var cantidadFinal = ++cantidad;
-              $("td#c"+ producto.id + "1").replaceWith('<td id="c'+producto.id +'1" onclick="actualizarCantidad('+$id+','+idFactura+',1)">'+ cantidadFinal +'</td>');
+        $cantidad = $("td#c"+$id+"1").html();
+        $cantidadFinal = ++$cantidad;
+        $("td#c"+$id+"1").replaceWith('<td id="c'+$id+'1" onclick="actualizarCantidad('+$id+',1)">'+ $cantidadFinal +'</td>');
             }else{
-              $('#pedidoTabla > tbody').append('<tr id="p'+producto.id+'1"><td style="display: none;">'+producto.id
-              +'</td><td id="c'+producto.id +'1" onclick="actualizarCantidad('+$id+','+idFactura+',1)">'+ 1
-              +'</td><td onclick="actualizarCantidad('+$id+','+idFactura+',1)">'+producto.nombre+'</td><td id="v'+producto.id+'1" onclick="actualizarCantidad('+$id+','+idFactura+',1)">'+ producto.precio
-              +'</td><td id="t'+ producto.id+'1" onclick="actualizarCantidad('+$id+','+idFactura+',1)">Obsequio</td></tr>');
+              table2.row.add( $('<tr id="p'+$id+'1"><td class="hidden">'+$id+'</td><td id="c'+$id+'1" onclick="actualizarCantidad('+$id+',1)">'+1+'</td><td onclick="actualizarCantidad('+$id+',1)">'+producto.nombre+'</td><td id="v'+$id+'1" onclick="actualizarCantidad('+$id+',1)">Obsequio</td><td><div><a class="table-actions pocketMorado" href="#modalReceta" onclick="receta('+$id+')"><i class="fa fa-book" data-toggle="modal" title="Preparación"></i></a></div></td></tr>')).draw( false );
             }
-
           }
        }else{
          $( "#message" ).load(window.location.href + " #message" );
@@ -65,7 +126,7 @@ function actualizarTabla(idProducto, idFactura, obsequio){
  });
 };
 
-function actualizarCantidad(idProducto, idFactura, obsequio){
+function actualizarCantidad(idProducto, obsequio){
   if(obsequio == 0){
     var cantidad = $("td#c"+ idProducto).html();
     var cantidadFinal = cantidad - 1;
@@ -86,18 +147,22 @@ function actualizarCantidad(idProducto, idFactura, obsequio){
       obsequiar: obsequio
     },
     success : function() {
+
       if(obsequio == 0){
         if(cantidadFinal == 0){
-          $("tr#p"+idProducto).remove();
+      var table2 = $('#dataTable2').DataTable();
+      table2.row("tr#p"+idProducto).remove().draw( false );
         }else{
-          $("td#c"+ idProducto).replaceWith('<td id="c'+idProducto +'" onclick="actualizarCantidad('+idProducto+','+idFactura+',0)">'+ cantidadFinal +'</td>');
-          $("td#t"+ idProducto).replaceWith('<td id="t'+idProducto +'" onclick="actualizarCantidad('+idProducto+','+idFactura+',0)">'+ cantidadFinal*precio +'</td>');
+          $("td#c"+ idProducto).replaceWith('<td id="c'+idProducto +'" onclick="actualizarCantidad('+idProducto+',0)">'+ cantidadFinal +'</td>');
+          var precioFinal = (precio/cantidad)*cantidadFinal;
+          $("td#v"+ idProducto).replaceWith('<td id="v'+idProducto +'" onclick="actualizarCantidad('+idProducto+',0)">'+ precioFinal +'</td>');
         }
      }else if(obsequio == 1){
        if(cantidadFinal == 0){
-         $("tr#p"+idProducto+"1").remove();
+      var table2 = $('#dataTable2').DataTable();
+      table2.row("tr#p"+idProducto+"1").remove().draw( false );
        }else{
-         $("td#c"+ idProducto+"1").replaceWith('<td id="c'+idProducto +'1" onclick="actualizarCantidad('+idProducto+','+idFactura+',1)">'+ cantidadFinal +'</td>');
+         $("td#c"+ idProducto+"1").replaceWith('<td id="c'+idProducto+'1" onclick="actualizarCantidad('+idProducto+','+idFactura+',1)">'+cantidadFinal+'</td>');
        }
      }
    },
@@ -108,19 +173,51 @@ function actualizarCantidad(idProducto, idFactura, obsequio){
 
 };
 
-function enviarDatos(idFactura, idMesa){
+function seleccionarMesa(id){
+  idMesa = id;
+  $('#mesas').slideToggle(1000);
+  $.ajax({
+    url: routeFactura,
+    type: 'GET',
+    data:{
+      idM : idMesa
+    },
+    success : function(data) {
+      var respuesta = $.parseJSON(data);
+      idFactura = respuesta[0].idFactura;
+      if(respuesta[0].validacion == true){
+        var table2 = $('#dataTable2').DataTable();
+        var ventas = respuesta[0].ventas;
+        for (var i = 0; i < ventas.length; i++) {
+          $id = ventas[i].idProducto;
+          if(ventas[i].obsequio == 1){
+            table2.row.add( $('<tr id="p'+$id+'1"><td class="hidden">'+$id+'</td><td id="c'+$id+'1" onclick="actualizarCantidad('+$id+',1)">'+ventas[i].cantidad+'</td><td onclick="actualizarCantidad('+$id+',1)">'+ventas[i].nombre+'</td><td id="v'+$id+'1" onclick="actualizarCantidad('+$id+',1)">Obsequio</td><td><div><a class="table-actions pocketMorado" href="#modalReceta" onclick="receta('+$id+')"><i class="fa fa-book" data-toggle="modal" title="Preparación"></i></a></div></td></tr>')).draw( false );
+          }else{
+            table2.row.add( $('<tr id="p'+$id+'"><td class="hidden">'+$id+'</td><td id="c'+$id+'" onclick="actualizarCantidad('+$id+',0)">'+ventas[i].cantidad+'</td><td onclick="actualizarCantidad('+$id+',0)">'+ventas[i].nombre+'</td><td id="v'+$id+'" onclick="actualizarCantidad('+$id+',0)">'+ ventas[i].precio*ventas[i].cantidad+'</td><td><div><a class="table-actions pocketMorado" href="#modalReceta" onclick="receta('+$id+')"><i class="fa fa-book" data-toggle="modal" title="Preparación"></i></a></div></td></tr>')).draw( false );
+          }
+        }
+      }
+   },
+    error: function(data){
+      alert('Error al facturar');
+   }
+  });
+
+};
+
+function enviarDatos(){
   var idProductos = [];
   var cantidades = [];
   var totales = [];
 
-  $("table#pedidoTabla tr").each(function() {
+  $("#dataTable2 tr").each(function() {
     $(this).children("td").each(function (indextd)
       {
         if(indextd == 0){
           idProductos.push($(this).text());
         }else if(indextd == 1){
           cantidades.push($(this).text());
-        }else if(indextd == 4){
+        }else if(indextd == 3){
           if($(this).text() == 'Obsequio'){
             totales.push('1');
           }else{
@@ -128,7 +225,11 @@ function enviarDatos(idFactura, idMesa){
           }
         }
      })
-  })
+  });
+
+  if(idProductos == 'No hay datos disponibles en la tabla'){
+    idProductos = [];
+  }
 
   $.ajax({
       url: routeVenta,

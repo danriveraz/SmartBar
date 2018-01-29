@@ -49,7 +49,7 @@ class welcomeAdmin extends Controller
 
             $ventasSemana  = $this->VentasSemana();// Lamado a la función que ontener los datos de la semana actual y la semana anterior, para la tabla de comparación
 
-            $datosVentasComparacionSemanas = $this->ventaCadaDiaSemana();
+            $datosVentasComparacionSemanas = $this->ventaCadaDiaSemana();// venta de la semana pasada y actual, detallada en cada día 
 
             return View('WelcomeAdmin/welcome')->with('categoriasMasVendidas',$categoriasMasVendidas['categoriasMasVendidas'])
                     ->with('sumaVentasDeCadaCategoria',$categoriasMasVendidas['sumaVentasDeCadaCategoria'])
@@ -163,14 +163,33 @@ class welcomeAdmin extends Controller
     public function VentasSemana(){
         $carbon = new \Carbon\Carbon();
         $fechaHoy = $carbon->today();
-        $ventaSemanaActual  = Factura::ventaSemana(Auth::user()->empresaActual,$fechaHoy)->first();
-        $cantidadVentasSemanaActual = Factura::cantidadVentasSemana(Auth::user()->empresaActual,$fechaHoy)->first();
-        $ventaSemanaAnterior  = Factura::ventaSemana(Auth::user()->empresaActual,$fechaHoy->subWeek(1))->first();
-        $cantidadVentasSemanaAnterior = Factura::cantidadVentasSemana(Auth::user()->empresaActual,$fechaHoy)->first();
-        return array( 'ventaSemanaActual' => $ventaSemanaActual->totalVentas,
-                      'cantidadVentasSemanaActual' => $cantidadVentasSemanaActual->cantidadVentas,
-                      'ventaSemanaAnterior' => $ventaSemanaAnterior->totalVentas,
-                      'cantidadVentasSemanaAnterior' => $cantidadVentasSemanaAnterior->cantidadVentas);
+        $ventaSemanaActual  = floatval(Factura::ventaSemana(Auth::user()->empresaActual,$fechaHoy)->first()->totalVentas);
+        $cantidadVentasSemanaActual = floatval(Factura::cantidadVentasSemana(Auth::user()->empresaActual,$fechaHoy)->first()->cantidadVentas);
+        $ventaSemanaAnterior  = floatval(Factura::ventaSemana(Auth::user()->empresaActual,$fechaHoy->subWeek(1))->first()->totalVentas);
+        $cantidadVentasSemanaAnterior = floatval(Factura::cantidadVentasSemana(Auth::user()->empresaActual,$fechaHoy)->first()->cantidadVentas);
+
+        if (($ventaSemanaAnterior == 0) && ($ventaSemanaActual != 0 )) {
+            $porcentaje = 100;
+        } elseif(($ventaSemanaAnterior == 0) && ($ventaSemanaActual == 0 )){
+            $porcentaje = 0;
+        } else {
+            $porcentajeVentas = ($ventaSemanaActual*100)/($ventaSemanaAnterior)-100;
+        }
+
+        if (($cantidadVentasSemanaAnterior == 0) && ($cantidadVentasSemanaActual != 0 )) {
+            $porcentaje = 100;
+        } elseif(($cantidadVentasSemanaAnterior == 0) && ($cantidadVentasSemanaActual == 0 )){
+            $porcentaje = 0;
+        } else {
+            $porcentajeCantidadVentas = ($cantidadVentasSemanaActual*100)/($cantidadVentasSemanaAnterior)-100;
+        }
+
+        return array( 'ventaSemanaActual' => $ventaSemanaActual,
+                      'cantidadVentasSemanaActual' => $cantidadVentasSemanaActual,
+                      'ventaSemanaAnterior' => $ventaSemanaAnterior,
+                      'cantidadVentasSemanaAnterior' => $cantidadVentasSemanaAnterior,
+                      'porcentajeVentas'=> $porcentajeVentas,
+                      'porcentajeCantidadVentas'=> $porcentajeCantidadVentas);
 
     }
 
@@ -225,9 +244,9 @@ class welcomeAdmin extends Controller
             $classEtiqueta = "fa fa-pause text-success";
             if ($porcentaje<0) {
                    $classEtiqueta = "fa fa-caret-down text-danger";
-               } elseif($porcentaje>0) {
+            } elseif($porcentaje>0) {
                    $classEtiqueta = "fa fa-caret-up text-success";
-               }
+            }
             array_push($sumas, $porcentaje);
             array_push($sumas, $classEtiqueta);
 

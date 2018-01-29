@@ -96,6 +96,8 @@ Route::get('cajero/historial', 'CajeroController@historial');
 Route::get('mesero/venta',  'MeseroController@venta');
 Route::get('mesero/disminuir',  'MeseroController@disminuir');
 Route::get('mesero/agregar',  'MeseroController@agregar');
+Route::get('mesero/factura',  'MeseroController@factura');
+Route::get('mesero/contiene',  'MeseroController@contiene');
 Route::resource('mesero', 'MeseroController');
 
 

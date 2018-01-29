@@ -475,14 +475,14 @@
                     <div class="gallery-container fileupload-new img-thumbnail">
                       <div class="gallery-item filter1" rel="" style="border-radius: 50%; width: 150px; height: 150px;">
                         @if($empresa->imagenPerfilNegocio!='')
-                          {!! Html::image('images/'.$empresa->imagenPerfilNegocio,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo')) !!}
+                          {!! Html::image('images/admins/'.$empresa->imagenPerfilNegocio,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo', 'id' => 'imagenPerfilNegocioCircular')) !!}
                           <!-- clase circular -> , array('class' => 'img-responsive img-circle user-photo') -->
                         @else
                           <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
                         @endif
                         <div class="actions">
-                          <a  id="modalImagen" href="../../../../public/images/{{$empresa->imagenPerfilNegocio}}" title="Imagen negocio">
-                            <img src="images/{{$empresa->imagenPerfilNegocio}}" hidden>
+                          <a  id="modalImagen" href="{{ asset ('images/admins/'.$empresa->imagenPerfilNegocio) }}" title="Imagen negocio">
+                            <img src="images/admins/{{$empresa->imagenPerfilNegocio}}" hidden>
                             <i class="fa fa-search-plus"></i>
                           </a>
                           <a onclick="$('#imagenPerfil').click()">
@@ -500,7 +500,6 @@
                         <span class="fileupload-exists"><i class="fa fa-search-plus"></i></span>
                         <input type="file" class="form-control" name="imagenPerfilNegocio"  id="imagenPerfil">
                       </span>
-                      <a class="btn btn-default fileupload-exists" data-dismiss="fileupload" id="eliminarImagen"><i class="fa fa-trash-o"></i></a>
                     </div>
                   </div>
 
@@ -1294,5 +1293,11 @@
   #sexo{
     margin-left: 5%;
   }
+
+  #imagenPerfilNegocioCircular{
+    width: 150px;
+    height: 150px;
+  }
+
 </style>
 @endsection

@@ -56,6 +56,13 @@ class Venta extends Model
                     ->where('estadoMesero', 'Vigente');
   }
 
+  public function scopePedidoProductos($query, $idFactura){
+      return $query->where('idFactura', $idFactura)
+                    ->where('estadoMesero', 'Vigente')
+                    ->join('producto','venta.idProducto','=','producto.id')
+                    ->select('cantidad','idProducto','obsequio','nombre','precio');
+  }
+
   public function producto(){
     return $this->belongsTo('PocketByR\Producto', 'idProducto', 'id');
   }

@@ -11,16 +11,29 @@
   {!!Html::style('assetsNew/styles/font-awesome.min.css')!!}<!-- Desde aqui se cargan los iconos -->
   {!!Html::style('assetsNew/styles/hightop-font.css')!!}<!-- Carga los iconos de notificaciones y mensajes -->
   {!!Html::style('assetsNew/styles/style.css')!!}<!-- Es necesario :v -->
-   
+
+  {!!Html::style('assetsNew\styles/fileinput.css')!!} <!--estilos para que el cuadro de subir archivo  Hector-->
+  {!!Html::style('assetsNew\styles/jquery.fancybox.css')!!}<!--css para el modal donde se ve la imagen al cargar Hector--> 
+  {!!Html::style('assetsNew\styles/select2.css')!!}<!--css para el select 2 del crear nuevo trabajador  Hector-->
+  {!!Html::style('assetsNew\styles/jquery.fileupload-ui.css')!!} <!--css para el cargar imagen del crear nuevo trabajador  Hector-->
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script> <!-- Permite que carguen opciones desplegables del menu-->
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script> <!-- se necesita para la funcion onload en cajero -->
+
   {!!Html::script("assetsNew/scripts/bootstrap.min.js")!!}
   {!!Html::script("assetsNew/scripts/jquery.easy-pie-chart.js")!!}
   {!!Html::script("assetsNew/scripts/jquery.sparkline.min.js")!!}
+  {!!Html::script("assetsNew/scripts/jquery.isotope.min.js")!!} <!-- Es para cargar los empleados y que se vean en cuadritos Hector-->
+  {!!Html::script("assetsNew/scripts/isotope_extras.js")!!}<!-- Es para cargar los empleados y que se vean en cuadritos Hector -->
+  {!!Html::script('assetsNew/scripts/upload/fileinput.js')!!} <!-- para el campo de subir archivo en el slider Hector-->
+  {!!Html::script("assetsNew/scripts\jquery.fancybox.pack.js")!!}  <!--modal para ver la imagen cuando se carga Hector-->
+  {!!Html::script("assetsNew/scripts\select2.js")!!} <!-- selecto 2 del crear nuevo trabajador Hector-->
+  {!!Html::script("assetsNew/scripts\bootstrap-fileupload.js")!!} <!--js para el cargar imagen del crear nuevo trabajador  Hector-->
   {!!Html::script('assetsNew/scripts/main.js')!!}
-  
+
+     
 
 
-  <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script> <!-- Permite que carguen opciones desplegables del menu-->
-  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script> <!-- se necesita para la funcion onload en cajero -->
+
 
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   </head>
