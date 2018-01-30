@@ -10,7 +10,6 @@ $(document).ready(function(){
   var estado = false;
   $('#toggle-Mesas').on('click', function(){
     $('.plegable').slideToggle();
-
     if (estado == true) {
       $(this).text("Abrir");
       $('body').css({
@@ -24,7 +23,6 @@ $(document).ready(function(){
       });
       estado = true;
     }
-
     return false;
   });
 
@@ -40,15 +38,24 @@ $('#basicDemo').carousel({
 
 $('#basicDemo').bind('slid', function() {
     var currentIndex = $('li.active').attr('id');
-    
 });
+
+function desplegar(){
+  var clase = $('#mesas').attr("class").split(' ');
+  if(clase[1] == 'plegado'){
+    $('#mesas').slideToggle(1000);
+    $('#mesas').attr("class", "cd-gallery desplegado");
+  }
+}
 
 function cambiarCurrent(idInput) {
   $(".current").removeClass("current");
   $(idInput).addClass("current");
 };
 
-function actualizarCategoria(productos){
+function actualizarCategoria(productos,idCategoria){
+  $('.categoria').attr('style','filter:url("data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="grayscale"><feColorMatrix type="matrix" values="0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0"/></filter></svg>#grayscale");filter:gray;-webkit-filter:grayscale(100%);-webkit-transition:all .1s ease;transition:all .1s ease');
+  $('#img'+idCategoria).attr('style','opacity:1;filter:none;-webkit-filter:grayscale(0);-webkit-transition:all .1s ease;transition:all .1s ease');
   var table = $('#dataTable1').DataTable();
   table.clear().draw();
   for (var i = 0; i < productos.length; i++) {
@@ -176,6 +183,7 @@ function actualizarCantidad(idProducto, obsequio){
 function seleccionarMesa(id){
   idMesa = id;
   $('#mesas').slideToggle(1000);
+  $('#mesas').attr("class", "cd-gallery plegado");
   $.ajax({
     url: routeFactura,
     type: 'GET',
@@ -187,6 +195,7 @@ function seleccionarMesa(id){
       idFactura = respuesta[0].idFactura;
       if(respuesta[0].validacion == true){
         var table2 = $('#dataTable2').DataTable();
+        table2.clear().draw();
         var ventas = respuesta[0].ventas;
         for (var i = 0; i < ventas.length; i++) {
           $id = ventas[i].idProducto;
