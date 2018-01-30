@@ -217,6 +217,16 @@
 <script src="javascripts/mainMesas.js"></script> 
 <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
 <script type="text/javascript">
+    $(window).load(function() {
+    cambiarCurrent("#bartender");
+      function update(){
+        facturas = eval(<?php echo json_encode($facturas);?>);
+        if(facturas.total == 0){
+          location.reload();
+        }
+      }   
+      setInterval(update, 15000);      
+    });
   function seleccionar(idMesa){
       var checks = document.getElementsByName("pedidos[]");
       if($("#seleccionarTodos").attr("valor") == "0"){
