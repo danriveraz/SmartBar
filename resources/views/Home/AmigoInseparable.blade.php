@@ -92,34 +92,47 @@
                     <hr>
                 </div>
                 <div>
-                    <h3 class="text-green margin-tiny">¿Qué debo tener en cuenta antes de empezar?</h3>
-                    <p class="margin-tiny">Para utilizar SmartBar simplemente debes registrarte en el sistema, al ingresar encontrarás todas las ayudas necesarias para empezar a elaborar facturas, registrar los gastos, llevar tu inventario, registrar empleados, productos a tu inventario, a tu carta y muchas funciones más. Es muy fácil, la mejor forma de averiguarlo es probarlo, puedes crear tu cuenta <a href="">acá</a></p>
+                    <h3 class="text-green margin-tiny">Te ayudo agendar tus empleados</h3>
+                    <p class="margin-tiny">Con nuestra agenda puedes crear varios turnos y horarios y ubicar a tus empleados en cada uno, asi nunca más tendrás que preocuparte por que turnos cumple cada uno, en caso que quieran cambiar turno con algun compañero lo podrán ahcer siempre y cuando el compañero acepte y tengan el mismo rango de trabajo. <a href="">Ver agenda</a></p>
                     <hr>
                 </div>
                 <div>
-                    <h3 class="text-green margin-tiny">¿Quiénes pueden utilizar SmartBar?</h3>
-                    <p class="margin-tiny"><strong>PocketSamrtBar</strong> está diseñado para que todas las personas que son dueños, empleados o clientes de un negocio tipo bar o restaurante, se vean beneficiados con el uso de smartbar, ya que ayudará a todos los usuarios a obtener una mejor esperiencia en el servicio. </p>
-                    <p class="margin-tiny">Puedes hacer con Smartbar divertido lo que antes era aburrido y además de esto, Smartbar, te ayudará a llevar el control, haciendo cosas por si solo, contando unicamente con tu aprobación.<a href="">acá</a> o <a href="">crea una cuenta</a>  GRATIS </p>
+                    <h3 class="text-green margin-tiny">Sistema de Gestión de ordenes de Pedido</h3>
+                    <p class="margin-tiny">Con mi sistema, tus meseros podrán tomar ordenes en segundos, en tu cocina todas tendrán claro que deben despachar, ordenando los pedidos automaticamente partiendo desde la hora en que fueron ordenados, el cajero podrá ver el total, cobrar o no, la propina, perzonalizarla, podrás obsequiar productos que no serán cobrados, pero si descontados del inventario, personalizar los productos de tus clientes, todo en el mayor tiempo posible, on el menor rango de error en tus pedidos. <a href="">Mesero</a>  </p>
+                    <hr>
+                </div>
+                <div>
+                    <h3 class="text-green margin-tiny">Facilitar enormemente la forma en que facturas</h3>
+                    <p class="margin-tiny">Podrás enviar las facturas a tus clientes a su correo electronico con el fin de ahorras papel, cuidar el medio ambiente y facilitar la vida a tus clientes, tener un control facil y sencillo, además de toda la información necesario de forma rápida y a la mano. <a href="">Cajero</a>  </p>
+                    <hr>
+                </div>
+                <div>
+                    <h3 class="text-green margin-tiny">Si tienes varios negocios, soy al opción indicada</h3>
+                    <p class="margin-tiny"><strong>SMARTBAR</strong> logró que en una sola interfax, puedas manejar varios negocios, con tan sólo un click, completamente actualizado y con una solamembresia, puedes llegar a tener hasta 4 negocios simultaneos, sin pagar más, solo deberás contar con una</p><a href="">membresia Élite</a> y listo! </p>
                     <hr>
                 </div>
                                 
             </div>
             <div class="col bg-gray-white">
                 <div>
-                    <h3 class="text-green margin-tiny">¿Está segura mi información con mi amigo inseparable SmartBar?</h3>
-                    <p>Claro que sí, la información que registres solo será visible para ti y los usuarios autorizados con los correspondientes permisos. La información almacenada en pocketsmartbar se aloja en servidores de Amazon Web Services, una de las mejores plataformas a nivel mundial que realiza copias de seguridad automáticas y es utilizada por empresas como Dropbox, Twitter, La Nasa, Ferrari y muchos más. Tu información está en las mejores manos, Puedes estar tranquilo y ocuparte de hacer crecer tu empresa, de cuidar tu información se encarga tu amigo inseparable SmartBar.</p>
+                    <h3 class="text-green margin-tiny">Control de inventarios y montaje de pedidos automaticos</h3>
+                    <p>Con SMARTBAR nunca más tendrás que preocuparte por saber que falta en tu negocio, el te informará que falta y montará pedidos de forma automatica a tus proveedores, en las fechas que tu lo solicites, sólo tendrás que dar aceptar y te facilitaremos pagos online y envios gratis, además de la recomendación del mejor proveedor del producto para tu zona, con el fin de ahorras costos de transporte de los mismos.</p><a href="">Smartshop</a>
                     <hr>
                 </div>
                 <div>
-                    <h3 class="text-green margin-tiny">Si tengo dudas con el uso de mi amigo inseparable Smartbar, ¿quién me ayuda?</h3>
-                    <p class="margin-tiny">Nuestro Equipo de Soporte siempre está dispuesto para ayudarte hasta con el mínimo problema, tenemos 5 estrellas de calificación y los usuarios son nuestra prioridad, pruébalo tu mismo <a href="">acá</a>  </p>
-                    <p class="margin-tiny">Conoce cómo contactarnos <a href="">aquí</a>.</p>
+                    <h3 class="text-green margin-tiny">Tendrás el control de tus recetas siempre a la mano para tus empleados</h3>
+                    <p class="margin-tiny">Nunca más te preocuparás por guardar las hojitas de tus recetas, o que tus empleados se vuelvan indispensables para tu negocio, ya que la manera de como se preparán tus productos estan guardados de forma seguro, directamente en la nube, a los cuales podrás acceder simepre y desde cualquier dispositivo, además de todo esto, tenemos un canal de videos donde siempre tus empleados, mantendrán actualizados en lo último en cocina y mixologia. <a href="">Recetas</a>  </p>
+                
                     <hr>
                 </div>
                 <div>
-                    <h3 class="text-green margin-tiny">Si tengo dudas con el uso de mi amigo inseparable Smartbar, ¿quién me ayuda?</h3>
-                    <p class="margin-tiny">Nuestro Equipo de Soporte siempre está dispuesto para ayudarte hasta con el mínimo problema, tenemos 5 estrellas de calificación y los usuarios son nuestra prioridad, pruébalo tu mismo <a href="">acá</a>  </p>
-                    <p class="margin-tiny">Conoce cómo contactarnos <a href="">aquí</a>.</p>
+                    <h3 class="text-green margin-tiny">Encuentra los mejores proveedores, recomendados por SmartBar</h3>
+                    <p class="margin-tiny">Con mi SmartShop, podrás comprar todos los productos necesarios para tu bar, encontrando para ti, el proveedor más conveniente a tu ubicación, con el mejor precio y las mejores ventajas para ti. <a href="">SmartShop</a>  </p>
+                    <hr>
+                </div>
+                <div>
+                    <h3 class="text-green margin-tiny">Estadisticas permanentes en tiempo real</h3>
+                    <p class="margin-tiny">Con nuestras estadisticas, permanentes y en timepo real, conocerás plenamente los números de tu negocio con el fin de ayudarte a tomar las mejores desiciones, teneindo en cuenta, productos más vendidos, con el mejor margen, personal más eficiente, flujos de caja diarios, semanales, mensuales y anuales, que harán que siempre estes informado de la situación d etu negocio, y lo mejor, recibe consejos y notificaciones de Smartbar, que te ayudarán día a día a crecer tu negocio, no te lo puedes perder, Smartbar, definitivamente es el compañero inseparable de todos los dueños de negocios tipo bar, restaurante o discoteca.<a href="">Membresias</a>  </p>
                     <hr>
                 </div>
                 </div>

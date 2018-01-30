@@ -119,7 +119,7 @@
           <br><p>
           <span class="textpar spacin30"><strong>Configuración Fácil</strong></span>
           <br> <span class="text-small">Prueba todas las funciones durante <strong>
-          <br>30 días sin limitaciones.</strong></span></p>
+          <br>7 días sin limitaciones.</strong></span></p>
         </div>
         <div class="col">
           <div class="device-laptop">
