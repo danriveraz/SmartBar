@@ -366,6 +366,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'Addvartutusuario' => __DIR__ . '/../..' . '/database/migrations/2017_09_18_200312_addvartutusuario.php',
         'AgregarCliente' => __DIR__ . '/../..' . '/database/migrations/2018_01_04_120442_agregar_cliente.php',
         'AgregarColumnasUsuario' => __DIR__ . '/../..' . '/database/migrations/2017_07_27_144627_agregar_columnas_usuario.php',
+        'AlterTableCategoria' => __DIR__ . '/../..' . '/database/migrations/2018_01_29_110959_alterTableCategoria.php',
         'AlterTableVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_214105_alterTableVenta.php',
         'Altertableadminimagenes' => __DIR__ . '/../..' . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
         'Altertablecategoria' => __DIR__ . '/../..' . '/database/migrations/2017_08_02_170443_altertablecategoria.php',

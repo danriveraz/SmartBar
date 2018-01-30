@@ -37,8 +37,8 @@ class MeseroController extends Controller
 
     public function index()
     {
-        $mesas = Mesa::mesasAdmin(Auth::user()->idEmpresa)->get();
-        $categorias = Categoria::categoriasEmpresa(Auth::user()->idEmpresa)->get();
+        $mesas = Mesa::mesasAdmin(Auth::user()->empresaActual)->get();
+        $categorias = Categoria::categoriasEmpresa(Auth::user()->empresaActual)->get();
         $obsequio = Auth::user()->obsequio;
         return view('Mesero.index')->with('mesas',$mesas)->with('categorias',$categorias)->with('obsequio',$obsequio);
     }
@@ -60,7 +60,7 @@ class MeseroController extends Controller
         $nfactura->estado = "En proceso";
         $nfactura->fecha = date("Y-m-d H:i:s", time());
         $nfactura->total = 0;
-        $nfactura->idEmpresa = Auth::user()->idEmpresa;
+        $nfactura->idEmpresa = Auth::user()->empresaActual;
         $nfactura->idUsuario = Auth::user()->id;
         $nfactura->idMesa = $idMesa;
         $nfactura->save();
@@ -229,7 +229,7 @@ class MeseroController extends Controller
             }
 
           }
-          $request->session()->flash('success_msg', 'El pedido se ha modificado satisfactoriamente.');
+          flash::success('El pedido se ha modificado satisfactoriamente.')->important();
         }else{
           for($i=0; $i<$size; $i++){
             $venta = new Venta;
@@ -251,7 +251,7 @@ class MeseroController extends Controller
           $mesa->estado = 'Ocupada';
           $mesa->save();
 
-          $request->session()->flash('success_msg', 'El registro del pedido se ha realizado satisfactoriamente.');
+          flash::success('El pedido se ha creado satisfactoriamente')->important();
         }
       }else{
         $request->session()->flash('error_msg', 'Deben agregarse productos para completar el pedido');

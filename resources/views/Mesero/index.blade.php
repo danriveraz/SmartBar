@@ -3,25 +3,30 @@
 <link rel="stylesheet" href="stylesheets/styleCategorias.css">
 <link rel="stylesheet" href="stylesheets/mesero.css">
 @section('content')
+<div id="mensaje">
+@include('flash::message')
+</div>
+<div id="message">
+	@if(Session::has('error_msg'))
+		<div class="alert alert-danger alert-dismissable">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			  {{Session::get('error_msg')}}
+		</div>
+	@elseif(Session::has('success_msg'))
+		<div class="alert alert-success alert-dismissable">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			  {{Session::get('success_msg')}}
+		</div>
+	@endif
+</div>
 <body class="page-header-fixed bg-1">
     <div class="modal-shiftfix">
     	<div id="page-content">
     		<div id="message">
-				@if(Session::has('error_msg'))
-					<div class="alert alert-danger alert-dismissable">
-						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						  {{Session::get('error_msg')}}
-					</div>
-				@elseif(Session::has('success_msg'))
-					<div class="alert alert-success alert-dismissable">
-						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						  {{Session::get('success_msg')}}
-					</div>
-				@endif
 			</div>
 		<!-- inicio de las mesas-->
-			<main id="mesas" class="cd-main-content">
-				<div class="cd-tab-filter-wrapper">
+			<main class="cd-main-content">
+				<div id="encabezado" class="cd-tab-filter-wrapper" onclick="desplegar()">
 					<div class="cd-tab-filter">
 						<ul class="cd-filters">
 							<li class="placeholder"> 
@@ -37,25 +42,25 @@
 
 				<!-- color- es para el estado de la mesa-->
 
-				<section class="cd-gallery">
+				<section id="mesas" class="cd-gallery desplegado">
 					<ul>
 						@foreach($mesas as $mesa)
 							@if($mesa->estado == 'Disponible')
-							<li class="mix color-1 option3">
+							<li class="mix color-1 option3" style="width: 10%">
 								<a onclick="seleccionarMesa({{$mesa->id}})">
 									<i class="libre"><img src="images/mesa.png"></i>
 									<div class="text-Mesas">{{$mesa->nombreMesa}}</div>
 								</a>  
 			            	</li>
 							@elseif($mesa->estado == 'Ocupada')
-							<li class="mix color-2 option3">
+							<li class="mix color-2 option3" style="width: 10%">
 								<a onclick="seleccionarMesa({{$mesa->id}})">
 									<i class="ocupada"><img src="images/mesa.png"></i>
 									<div class="text-Mesas">{{$mesa->nombreMesa}}</div>
 								</a>
 							</li>
 							@else
-							<li class="mix color-3 option3">
+							<li class="mix color-3 option3" style="width: 10%">
 								<a onclick="seleccionarMesa({{$mesa->id}})">
 									<i class="reservada"><img src="images/mesa.png"></i>
 									<div class="text-Mesas">{{$mesa->nombreMesa}}</div>
@@ -65,6 +70,12 @@
 			            @endforeach
 			            
 			            <!-- PARA DAR ESPACIO  NO BORRAR-->
+						<li class="gap"></li>
+						<li class="gap"></li>
+						<li class="gap"></li>
+						<li class="gap"></li>
+						<li class="gap"></li>
+						<li class="gap"></li>
 						<li class="gap"></li>
 						<!-- PARA DAR ESPACIO NO BORRAR-->
 
@@ -85,9 +96,9 @@
 							</div> <!-- cd-filter-content -->
 						</div> <!-- cd-filter-block -->
 					</form>
-					<a href="#0" class="cd-close">Cerrar</a>
+					<a href="#" class="cd-close">Cerrar</a>
 				</div> <!-- cd-filter -->
-				<a href="#0" class="cd-filter-trigger">Filtros</a>
+				<a href="#" onclick="desplegar()" class="cd-filter-trigger">Filtros</a>
 			<!-- fin del filtro-->
 			</main>            
 		<!-- fin del mesas-->
@@ -103,8 +114,8 @@
 								        <div class="col-md-12 col-sm-12">
 								            <ol style="text-align:center; list-style-position:inside;" class="carousel-indicators">
 								            	@foreach($categorias as $key => $categoria)
-								                	<li id="{{$categoria->id}}" data-target="#basicDemo" data-slide-to="{{$key}}" class="item" onclick="actualizarCategoria({{$categoria->productos}})">
-								                        <i class="fa fa-fw fa-star"></i>{{$categoria->nombre}}
+								                	<li data-target="#basicDemo" data-slide-to="{{$key}}" class="item" onclick="actualizarCategoria({{$categoria->productos}},{{$categoria->id}})">
+								                        <img id="img{{$categoria->id}}" class="grayscale categoria" src="images/categorias/{{$categoria->imagen}}">{{$categoria->nombre}}
 								                    </li>
 								            	@endforeach
 								            </ol>

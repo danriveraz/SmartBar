@@ -40,11 +40,14 @@ Route::get('Auth/resetpassword', 'Auth\AuthController@resetpassword');
 Route::get('Auth/profile', 'Auth\AuthController@profile');
 Route::get('Auth/editProfile' , 'Auth\AuthController@editProfile');
 Route::post('Auth/updateProfile', 'Auth\AuthController@updateProfile');
+Route::post('Auth/updateFactura', 'Auth\AuthController@updateFactura');
 
 Route::group(['prefix' => 'Auth'], function(){
   Route::post('registerUser', 'UsuariosController@registerUser');
   Route::post('modificarEmpresa', ['uses' => 'UsuariosController@postmodificarEmpresa', 'as' => 'Auth.usuario.editEmpresa']);
   Route::get('modificarEmpresa', ['uses' => 'UsuariosController@modificarEmpresa', 'as' => 'Auth.usuario.showeditEmpresa']);
+  Route::post('modificarFactura', ['uses' => 'UsuariosController@postmodificarFactura', 'as' => 'Auth.usuario.editFactura']);
+  Route::get('modificarFactura', ['uses' => 'UsuariosController@modificarFactura', 'as' => 'Auth.usuario.showeditFactura']);
   Route::resource('usuario','UsuariosController');
   Route::post('usuario/{id}/edit', ['uses' => 'UsuariosController@updateProfile', 'as' => 'Auth.usuario.editUsuario']);
   Route::get('usuario/{id}/destroy', ['uses' => 'UsuariosController@destroy', 'as' => 'Auth.usuario.destroy']);

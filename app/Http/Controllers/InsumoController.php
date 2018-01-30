@@ -30,17 +30,12 @@ class InsumoController extends Controller
     }
 
     public function index(Request $request){
-      /*$userActual = Auth::user();
-      $proveedores = Proveedor::where('idEmpresa' , $userActual->idEmpresa)->
-                                lists('nombre','id');
-
-      $insumos = Insumo::where('idEmpresa' , $userActual->idEmpresa)->get();*/
       $userActual = Auth::user();
-      $categorias = Categoria::where('idEmpresa' , $userActual->idEmpresa)->get();
+      $categorias = Categoria::where('idEmpresa' , $userActual->empresaActual)->get();
 
-      $proveedores = Proveedor::where('idEmpresa' , $userActual->idEmpresa)->get();
+      $proveedores = Proveedor::where('idEmpresa' , $userActual->empresaActual)->get();
 
-      $insumos = Insumo::where('idEmpresa' , $userActual->idEmpresa)->get();
+      $insumos = Insumo::where('idEmpresa' , $userActual->empresaActual)->get();
 
       return view('Insumo.index')->with('insumos',$insumos)->with('categorias',$categorias)->with('proveedores',$proveedores);
   }
@@ -69,14 +64,14 @@ class InsumoController extends Controller
         $producto->nombre = $request->nombre;
         $producto->precio = $request->venta;
         $producto->idCategoria = $request->categoria;
-        $producto->idEmpresa = $userActual->idEmpresa;
+        $producto->idEmpresa = $userActual->empresaActual;
         $producto->save();
 
         $contiene = new Contiene;
         $contiene->idProducto = $producto->id;
         $contiene->idInsumo = $insumo->id;
         $contiene->cantidad = $insumo->cantidadMedida;
-        $contiene->idEmpresa = $userActual->idEmpresa;
+        $contiene->idEmpresa = $userActual->empresaActual;
         $contiene->save();        
       }else{
         $producto = Producto::Nombre($request->nombre)->first();
@@ -145,8 +140,8 @@ class InsumoController extends Controller
         $insumo->tipo = true;
       }
 
-      $insumo->idEmpresa = $userActual->idEmpresa;
-      $insumos = Insumo::where('idEmpresa' , $userActual->idEmpresa)->
+      $insumo->idEmpresa = $userActual->empresaActual;
+      $insumos = Insumo::where('idEmpresa' , $userActual->empresaActual)->
                                 lists('nombre','id');
       if(sizeof($insumos) == 0){
         $userActual->estadoTut += 1;
@@ -160,8 +155,8 @@ class InsumoController extends Controller
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precioUnidad;
         $producto->idCategoria = $request->input('categorias');
-        $producto->idEmpresa = $userActual->idEmpresa;
-        $productos = Producto::where('idEmpresa' , $userActual->idEmpresa)->
+        $producto->idEmpresa = $userActual->empresaActual;
+        $productos = Producto::where('idEmpresa' , $userActual->empresaActual)->
                                 lists('nombre','id');
         if(sizeof($productos) == 0){
           $userActual->estadoTut += 3;
@@ -173,7 +168,7 @@ class InsumoController extends Controller
         $contiene->idProducto = $producto->id;
         $contiene->idInsumo = $insumo->id;
         $contiene->cantidad = $insumo->cantidadMedida;
-        $contiene->idEmpresa = $userActual->idEmpresa;
+        $contiene->idEmpresa = $userActual->empresaActual;
         $contiene->save();
       }
       Flash::success("El insumo se ha registrado satisfactoriamente")->important();

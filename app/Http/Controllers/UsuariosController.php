@@ -161,6 +161,35 @@ class UsuariosController extends Controller
 
   }
 
+  public function modificarFactura(){
+    $user = User::find(Auth::id());
+    $Empresa = Empresa::find($user->empresaActual);
+    return view('Usuario.factura')->with('user',$user)->with('empresa',$Empresa);
+  }
+
+  public function postmodificarFactura(Request $request){
+    $usuario = User::find(Auth::id());
+    $empresa = Empresa::find($usuario->empresaActual);
+    $empresa->notas = $request->notas;
+    $empresa->propina = $request->propinaSugerida;
+    $path = public_path() . '/images/admins/';
+    $file = $request->file('imagenPerfilNegocio');
+    if($file!=null){// verifica que se haya subido una imagen nueva
+      //obtenemos el nombre del archivo
+      $perfilNombre = 'perfilNegocio_' . time() . '.' . $file->getClientOriginalExtension();
+      //indicamos que queremos guardar un nuevo archivo en el disco local
+      $file->move($path, $perfilNombre);
+      if($empresa->imagenPerfilNegocio != "bar.png"){
+        $imagenActual = $path . $empresa->imagenPerfilNegocio;
+        unlink($imagenActual);
+      }
+      $empresa->imagenPerfilNegocio = $perfilNombre;
+    }
+    $empresa->save();
+    flash::success('La factura ha sido modificada satisfactoriamente')->important();
+    return redirect('Auth/modificarFactura');
+  }
+
   public function edit($id){
     $departamentos = Departamento::all();
     $ciudades = Ciudad::all();
@@ -293,91 +322,109 @@ class UsuariosController extends Controller
           $categoria1 = new Categoria;
           $categoria1->nombre = "Cervezas";
           $categoria1->idEmpresa = $empresa->id;
+          $categoria1->imagen = "cervezas.png";
           $categoria1->save();
 
           $categoria2 = new Categoria;
           $categoria2->nombre = "Bebidas";
           $categoria2->idEmpresa = $empresa->id;
+          $categoria2->imagen = "bebidas.png";
           $categoria2->save();
 
           $categoria3 = new Categoria;
           $categoria3->nombre = "Carnes";
           $categoria3->idEmpresa = $empresa->id;
+          $categoria3->imagen = "carnes.png";
           $categoria3->save();
 
           $categoria4 = new Categoria;
           $categoria4->nombre = "Desgranados";
           $categoria4->idEmpresa = $empresa->id;
+          $categoria4->imagen = "desgranados.png";
           $categoria4->save();
 
           $categoria5 = new Categoria;
           $categoria5->nombre = "Hamburguesas";
           $categoria5->idEmpresa = $empresa->id;
+          $categoria5->imagen = "hamburguesa.png";
           $categoria5->save();
 
           $categoria6 = new Categoria;
           $categoria6->nombre = "Hot Dogs";
           $categoria6->idEmpresa = $empresa->id;
+          $categoria6->imagen = "perros.png";
           $categoria6->save();
 
           $categoria7 = new Categoria;
           $categoria7->nombre = "Sandwich";
           $categoria7->idEmpresa = $empresa->id;
+          $categoria7->imagen = "sandwich.png";
           $categoria7->save();
 
           $categoria8 = new Categoria;
           $categoria8->nombre = "Entradas";
           $categoria8->idEmpresa = $empresa->id;
+          $categoria8->imagen = "entradas.png";
           $categoria8->save();
 
           $categoria9 = new Categoria;
           $categoria9->nombre = "Licores";
           $categoria9->idEmpresa = $empresa->id;
+          $categoria9->imagen = "licores.png";
           $categoria9->save();
 
           $categoria10 = new Categoria;
           $categoria10->nombre = "Cocteles";
           $categoria10->idEmpresa = $empresa->id;
+          $categoria10->imagen = "cocteles.png";
           $categoria10->save();
 
           $categoria11 = new Categoria;
           $categoria11->nombre = "Shots";
           $categoria11->idEmpresa = $empresa->id;
+          $categoria11->imagen = "shots.png";
           $categoria11->save();
 
           $categoria12 = new Categoria;
           $categoria12->nombre = "Pizzas";
           $categoria12->idEmpresa = $empresa->id;
+          $categoria12->imagen = "pizza.png";
           $categoria12->save();
 
           $categoria13 = new Categoria;
           $categoria13->nombre = "Pastas";
           $categoria13->idEmpresa = $empresa->id;
+          $categoria13->imagen = "pastas.png";
           $categoria13->save();
 
           $categoria14 = new Categoria;
           $categoria14->nombre = "Mariscos";
           $categoria14->idEmpresa = $empresa->id;
+          $categoria14->imagen = "mariscos.png";
           $categoria14->save();
 
           $categoria15 = new Categoria;
           $categoria15->nombre = "Adiciones";
           $categoria15->idEmpresa = $empresa->id;
+          $categoria15->imagen = "adiciones.png";
           $categoria15->save();
 
           $categoria16 = new Categoria;
           $categoria16->nombre = "Especiales";
           $categoria16->idEmpresa = $empresa->id;
+          $categoria16->imagen = "especiales.png";
           $categoria16->save();
 
           $categoria17 = new Categoria;
           $categoria17->nombre = "Postres";
           $categoria17->idEmpresa = $empresa->id;
+          $categoria17->imagen = "postres.png";
           $categoria17->save();
 
           $categoria18 = new Categoria;
           $categoria18->nombre = "Otros";
           $categoria18->idEmpresa = $empresa->id;
+          $categoria18->imagen = "otros.png";
           $categoria18->save();
 
           flash::success('El negocio ha sido creado satisfactoriamente')->important();
@@ -395,23 +442,22 @@ class UsuariosController extends Controller
     }
 
     if($request->ventanaFactura == 4){
-      $usuario = User::find($id);
-      $empresa =  Auth::User()->empresa;
-      $empresa->notas = $request->notas;
-
+      $usuario = User::find(Auth::id());
       $path = public_path() . '/images/admins/';
-      $file = $request->file('imagenPerfilNegocio');
+      $file = $request->file('imagenPerfil');
       if($file!=null){// verifica que se haya subido una imagen nueva
         //obtenemos el nombre del archivo
-        $perfilNombre = 'perfilNegocio_' . time() . '.' . $file->getClientOriginalExtension();
+        $perfilNombre = 'perfil_' . time() . '.' . $file->getClientOriginalExtension();
         //indicamos que queremos guardar un nuevo archivo en el disco local
         $file->move($path, $perfilNombre);
-        $imagenActual = $path . $empresa->imagenPerfilNegocio;
-        unlink($imagenActual);
-        $empresa->imagenPerfilNegocio = $perfilNombre;
+        if($usuario->imagenPerfil != "perfilhombre.png" && $usuario->imagenPerfil != "perfil.jpg"){
+          $imagenActual = $path . $usuario->imagenPerfil;
+          unlink($imagenActual);
+        }
+        $usuario->imagenPerfil = $perfilNombre;
       }
-      $empresa->save();
-      flash::success('La empresa ha sido modificada satisfactoriamente')->important();
+      $usuario->save();
+      flash::success('La imagen de perfil ha sido modificada satisfactoriamente')->important();
       return redirect('Auth/usuario/'.$usuario->id.'/edit');
     }
 
