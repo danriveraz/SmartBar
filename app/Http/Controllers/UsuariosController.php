@@ -199,9 +199,15 @@ class UsuariosController extends Controller
       }
       $empresa->imagenResolucionFacturacion = $perfilNombre2;
     }
-    $empresa->save();
-    flash::success('La factura ha sido modificada satisfactoriamente')->important();
-    return redirect('Auth/modificarFactura');
+
+    if($empresa->imagenResolucionFacturacion == ""){
+       flash::warning('Se necesita imagen resolucion facturacion para continuar')->important();
+       return redirect('Auth/modificarFactura');
+    }else{
+      $empresa->save();
+      flash::success('La factura ha sido modificada satisfactoriamente')->important();
+      return redirect('Auth/modificarFactura');
+    }    
   }
 
   public function edit($id){
@@ -218,15 +224,18 @@ class UsuariosController extends Controller
     if($request->ventana == 1){
       $rules = [
         'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-        'nombreEstablecimiento' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i'
         ];
         $usuario = User::find($id);
-        $empresa =  Auth::User()->empresa;
+        $empresa = Empresa::find($usuario->empresaActual);
+
+    if($request->nombreEstablecimiento!=$empresa->nombreEstablecimiento){
+      $rules += ['nombreEstablecimiento' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i'];
+    }
     if($request->cedula!=$usuario->cedula){// agrega la regla si la cedula ha sido modificada
-      $rules += ['cedula' => 'required|min:1|max:9999999999|numeric'];
+      $rules += ['cedula' => 'required|min:1|max:9999999999'];
     }
     if($request->telefono!=$usuario->telefono){ // agrega la regla si el telefomo ha sido modificado
-      $rules += ['telefono' => 'required|min:1|max:9999999999|numeric'];
+      $rules += ['telefono' => 'required|min:1|max:9999999999'];
     }
 
     $validator = Validator::make($request->all(), $rules);
@@ -260,6 +269,19 @@ class UsuariosController extends Controller
       $empresa->tipoRegimen = $request->tipoRegimen;
       $empresa->nit = $request->nit;
       
+      if($empresa->tipoRegimen == "comun"){
+        if($empresa->imagenResolucionFacturacion == ""){
+          $empresa->save();
+          $usuario->save();
+          flash::warning('El usuario ha sido modificado satisfactoriamente, recuerde subir imagen resolción facturación en perfil->factura')->important();
+          return redirect('Auth/usuario/'.$usuario->id.'/edit');
+        }else{
+          $empresa->save();
+          $usuario->save();
+          flash::success('El usuario ha sido modificado satisfactoriamente')->important();
+          return redirect('Auth/usuario/'.$usuario->id.'/edit');
+        }
+      }
       $empresa->save();
       $usuario->save();
       flash::success('El usuario ha sido modificado satisfactoriamente')->important();
@@ -281,7 +303,13 @@ class UsuariosController extends Controller
       $usuario = User::find($id);
       $emailaux = $usuario->email;
       if ($validator->fails()){
-        return redirect()->route('Auth.usuario.edit',$id)->withErrors($validator)->withInput();
+        $validacionPassword = $request->password;
+        if(strlen($validacionPassword) <= 5 || strlen($validacionPassword) >= 18){
+          flash::error('Contraseña no valida')->important();
+          return redirect('Auth/usuario/'.$usuario->id.'/edit');
+        }else{
+           return redirect('Auth/usuario/'.$usuario->id.'/edit')->withErrors($validator)->withInput();
+        }
       }else{
         if($request->password !=null){
           $usuario->password = bcrypt($request->password);

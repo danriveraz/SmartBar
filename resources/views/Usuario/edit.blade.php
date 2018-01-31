@@ -216,11 +216,11 @@
                               <h2 class="profile-heading">Cambiar contraseña</h2>
                               <div class="form-group">
                                 <label>Contraseña Nueva</label>
-                                <input id="password" name="password" type="password" class="form-control">
+                                <input id="password" name="password" type="password" class="form-control" >
                               </div>
                               <div class="form-group">
                                 <label>Confirmar Contraseña</label>
-                                <input id="passwordC" name="" type="password" class="form-control">
+                                <input id="passwordC" name="" type="password" class="form-control" min="5">
                               </div>
                             </div>
                             <!-- END RIGHT SECTION -->
@@ -420,7 +420,7 @@
                               <div class="form-group">
                                 <label>Ciudad</label>
                                 <div>
-                                  <select id="idCiudad" name="idCiudad" required class="form-control">
+                                  <select id="idCiudad" name="idCiudad" class="form-control">
                                     <option></option>
                                   </select>
                                 </div>
