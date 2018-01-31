@@ -141,3 +141,5 @@ Route::resource('/usuario', 'MensajeController');
 
 Route::resource('Tienda', 'TiendaController');
 Route::resource('Salario','SalarioController');
+
+Route::resource('Mensajes', 'MensajeriaController');
