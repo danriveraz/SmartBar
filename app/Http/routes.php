@@ -90,6 +90,7 @@ Route::get('categoria/{id}/destroy', ['uses' => 'CategoriaController@destroy', '
 //Route::resource('bartender', 'BartenderController');
 Route::get('bartender/', 'BartenderController@index');
 Route::post('bartender/edit', 'BartenderController@edit');
+Route::get('bartender/checkout', 'BartenderController@checkout');
 
 Route::resource('Estadisticas', 'EstadisticasController');
 

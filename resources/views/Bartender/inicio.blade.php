@@ -89,17 +89,33 @@
     </div>
 </footer>
 @endif
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script> <!-- Permite que carguen opciones desplegables del menu-->
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script> <!-- se necesita para la funcion onload en cajero -->
 
 <script type="text/javascript">
   $(window).load(function() {
     cambiarCurrent("#bartender");
       function update(){
-        facturas = eval(<?php echo json_encode($facturas);?>);
-        if(facturas.total == 0){
-          location.reload();
-        }
+        $.ajax({
+          url: "bartender/checkout",
+          type: 'GET',
+          data:{
+          },
+          success : function(data) {
+            var cantidadNueva = $.parseJSON(data);
+            var facturasActuales = eval(<?php echo json_encode(sizeof($facturas)); ?>);
+            if(cantidadNueva > facturasActuales){
+              $("#aviso1").html((cantidadNueva-facturasActuales));
+              $("#aviso1").addClass("pocketNoti");
+            }
+
+         },
+          error: function(data){
+            alert('Error al guardar en venta');
+         }
+       });
       }   
-      setInterval(update, 15000);      
+      setInterval(update, 5000);      
     });
 
   function cambiarCurrent(idInput) {
@@ -217,16 +233,6 @@
 <script src="javascripts/mainMesas.js"></script> 
 <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
 <script type="text/javascript">
-    $(window).load(function() {
-    cambiarCurrent("#bartender");
-      function update(){
-        facturas = eval(<?php echo json_encode($facturas);?>);
-        if(facturas.total == 0){
-          location.reload();
-        }
-      }   
-      setInterval(update, 15000);      
-    });
   function seleccionar(idMesa){
       var checks = document.getElementsByName("pedidos[]");
       if($("#seleccionarTodos").attr("valor") == "0"){

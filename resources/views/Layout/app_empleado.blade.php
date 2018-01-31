@@ -108,7 +108,21 @@
 {!!Html::script("javascripts\jquery.nestable.js")!!}
 {!!Html::script('javascripts\main.js')!!}
 {!!Html::script('javascripts\respond.js')!!}
-
+<style type="text/css">
+  .pocketNoti{
+            position: absolute;
+            top: 5px;
+            left: 0px;
+            height: 18px;
+            min-width: 18px;
+            padding: 0 5px;
+            border-radius: 9px;
+            background: #00c617;
+            text-align: center;
+            line-height: 17px;
+            color: white;
+            font-size: 11px; }
+</style>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   </head>
     <body class="page-header-fixed bg-1 layout-boxed" style="BACKGROUND-COLOR:WHITE">
@@ -217,6 +231,7 @@
               <li>
               <a id="bartender" href="{{url('bartender/')}}">
                 <span aria-hidden="true" class="fa fa-fw fa-glass"></span>Bartender</a>
+                <p id="aviso1"></p>
               </li>
               @endif
               @if(Auth::User()->esCajero)

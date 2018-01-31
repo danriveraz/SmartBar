@@ -47,4 +47,11 @@ class BartenderController extends Controller
       }
       return redirect('bartender'); 
     }
+    public function checkout(Request $request){
+      $userActual = Auth::user();
+      $facturas = Factura::Listar2($userActual->empresaActual)
+                  ->get();
+      $size = sizeof($facturas);
+      return json_encode($size);
+    }
 }
