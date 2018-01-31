@@ -146,11 +146,20 @@ class Factura extends Model
                 ->select(DB::raw('count(*) as cantidadVentas'));
     }
 
-    //Venta de cada día se la semana, de una semana concreta
+    //Venta de cada día de la semana, de una semana concreta, si se inserta un día cualquiera de la semana, el resultado de la consulta será la ventas separadas por día de la semana. 
     public function scopeVentaCadaDiaSemana($query,$idEmpresa,$fechaInicio){
       return $query->where([['factura.estado', 'Finalizada'],['factura.idEmpresa', $idEmpresa],['factura.fecha','>=',$fechaInicio->startOfWeek()->toDateTimeString()],['factura.fecha','<',$fechaInicio->endOfWeek()]])
                 ->select(DB::raw('SUM(`total`) as totalVentas'),DB::raw('DAYNAME(`factura`.`fecha`) as dia'))
                 ->groupBy(DB::raw('DAY(`factura`.`fecha`)'));
+    }
+
+    //Mesas que tiene las mejores ventas, las primeras 4, en todos los tiempos
+    public function scopeMesasConMasVentas($query, $idEmpresa,$totalVentas){
+      return $query->where([['factura.estado', 'Finalizada'],['factura.idEmpresa', $idEmpresa]])
+                    ->join('mesa', 'mesa.id', '=', 'factura.idMesa')
+                    ->select(DB::raw('SUM(`total`) as totalMesa'),'nombreMesa','mesa.idMesa',DB::raw('((SUM(`total`)*100)/'.$totalVentas.') as porcentaje'))
+                    ->groupBy('factura.idMesa')
+                    ->orderBy('total', 'DESC');
     }
 
     public function scopeListar($query, $idEmpresa){

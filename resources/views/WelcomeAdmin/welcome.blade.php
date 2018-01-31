@@ -274,6 +274,39 @@
         </div>
         <div class="row">
           <div class="col-md-4">
+            <!-- REFERRALS -->
+            <div class="panel-content">
+              <h2 class="heading"><i class="fa fa-square"></i> Top Mesas</h2>
+              <ul class="list-unstyled list-referrals">
+                <li>
+                  <p><span class="value">${{$mesasConMasVentas[0]->totalMesa}}</span><span class="text-muted">Ventas en la Mesa: {{$mesasConMasVentas[0]->nombreMesa}}</span></p>
+                  <div class="progress progress-xs progress-transparent custom-color-blue">
+                    <div class="progress-bar" data-transitiongoal="{{$mesasConMasVentas[0]->porcentaje}}"></div>
+                  </div>
+                </li>
+                <li>
+                  <p><span class="value">${{$mesasConMasVentas[1]->totalMesa}}</span><span class="text-muted">Ventas en la Mesa: {{$mesasConMasVentas[1]->nombreMesa}}</span></p>
+                  <div class="progress progress-xs progress-transparent custom-color-purple">
+                    <div class="progress-bar" data-transitiongoal="{{$mesasConMasVentas[1]->porcentaje}}"></div>
+                  </div>
+                </li>
+                <li>
+                  <p><span class="value">${{$mesasConMasVentas[2]->totalMesa}}</span><span class="text-muted">Ventas en la Mesa: {{$mesasConMasVentas[2]->nombreMesa}}</span></p>
+                  <div class="progress progress-xs progress-transparent custom-color-green">
+                    <div class="progress-bar" data-transitiongoal="{{$mesasConMasVentas[2]->porcentaje}}"></div>
+                  </div>
+                </li>
+                <li>
+                  <p><span class="value">${{$mesasConMasVentas[3]->totalMesa}}</span><span class="text-muted">Ventas en la Mesa: {{$mesasConMasVentas[3]->nombreMesa}}</span></p>
+                  <div class="progress progress-xs progress-transparent custom-color-yellow">
+                    <div class="progress-bar" data-transitiongoal="{{$mesasConMasVentas[3]->porcentaje}}"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- END REFERRALS -->
+          </div> 
+          <div class="col-md-4">
             <!-- TRAFFIC SOURCES -->
             <div class="panel-content">
               <h2 class="heading"><i class="fa fa-square"></i> Traffic Sources</h2>
@@ -281,39 +314,6 @@
             </div>
             <!-- END TRAFFIC SOURCES -->
           </div>
-          <div class="col-md-4">
-            <!-- REFERRALS -->
-            <div class="panel-content">
-              <h2 class="heading"><i class="fa fa-square"></i> Referrals</h2>
-              <ul class="list-unstyled list-referrals">
-                <li>
-                  <p><span class="value">3,454</span><span class="text-muted">visits from Facebook</span></p>
-                  <div class="progress progress-xs progress-transparent custom-color-blue">
-                    <div class="progress-bar" data-transitiongoal="87"></div>
-                  </div>
-                </li>
-                <li>
-                  <p><span class="value">2,102</span><span class="text-muted">visits from Twitter</span></p>
-                  <div class="progress progress-xs progress-transparent custom-color-purple">
-                    <div class="progress-bar" data-transitiongoal="34"></div>
-                  </div>
-                </li>
-                <li>
-                  <p><span class="value">2,874</span><span class="text-muted">visits from Affiliates</span></p>
-                  <div class="progress progress-xs progress-transparent custom-color-green">
-                    <div class="progress-bar" data-transitiongoal="67"></div>
-                  </div>
-                </li>
-                <li>
-                  <p><span class="value">2,623</span><span class="text-muted">visits from Search</span></p>
-                  <div class="progress progress-xs progress-transparent custom-color-yellow">
-                    <div class="progress-bar" data-transitiongoal="54"></div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <!-- END REFERRALS -->
-          </div> 
         </div>
       </div>
       <!-- END ALGO -->

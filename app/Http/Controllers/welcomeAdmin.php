@@ -51,6 +51,8 @@ class welcomeAdmin extends Controller
 
             $datosVentasComparacionSemanas = $this->ventaCadaDiaSemana();// venta de la semana pasada y actual, detallada en cada día 
 
+            $mesasConMasVentas =  Factura::mesasConMasVentas(Auth::user()->empresaActual,$ventaTotal->totalVentas)->limit(4)->get(); // consulta de las 4 mesas en las que más se ha vendido
+
             return View('WelcomeAdmin/welcome')->with('categoriasMasVendidas',$categoriasMasVendidas['categoriasMasVendidas'])
                     ->with('sumaVentasDeCadaCategoria',$categoriasMasVendidas['sumaVentasDeCadaCategoria'])
                     ->with('meserosMasVendedores',$meserosMasVendedores)
@@ -59,7 +61,8 @@ class welcomeAdmin extends Controller
                     ->with('ventasDelDia',$ventasDelDia)
                     ->with('cantidadVentas',$cantidadVentasDelDia)
                     ->with('ventasSemana', $ventasSemana)
-                    ->with('datosVentasComparacionSemanas',$datosVentasComparacionSemanas);
+                    ->with('datosVentasComparacionSemanas',$datosVentasComparacionSemanas)
+                    ->with('mesasConMasVentas',$mesasConMasVentas);
             
         } else {
             return View('WelcomeAdmin/welcome');

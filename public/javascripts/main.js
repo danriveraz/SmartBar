@@ -41,8 +41,8 @@ $(function() {
       var currentWeekData = [352, 267, 373, 222, 533, 111, 60];
 
       if(typeof(semanaActual)!="undefined"){
-        var lastWeekData = semanaActual;
-        var currentWeekData = semanaAnterior;
+        var lastWeekData = semanaAnterior;
+        var currentWeekData =semanaActual ;
       }else{
         var lastWeekData = [142, 164, 298, 384, 232, 269, 211];
         var currentWeekData = [352, 267, 373, 222, 533, 111, 60];
