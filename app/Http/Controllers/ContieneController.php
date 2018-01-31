@@ -30,10 +30,10 @@ public function __construct()
     $userActual = Auth::user();
     session_start();
     $id = $_SESSION['id'];
-    $categorias = Categoria::where('idEmpresa', $userActual->idEmpresa)->
+    $categorias = Categoria::where('idEmpresa', $userActual->empresaActual)->
                              lists('nombre','id');
     $insumosDisponibles = Insumo::Search($request->nombre)->
-                          where('idEmpresa' , $userActual->idEmpresa)->
+                          where('idEmpresa' , $userActual->empresaActual)->
                           orderBy('nombre','ASC')->
                           paginate(1000);
     if($id != 0){
@@ -75,7 +75,7 @@ public function __construct()
     $insumos = Insumo::lists('nombre','id');
 
     $insumosDisponibles = Insumo::Search($request->nombre)->
-                          where('idEmpresa' , $userActual->idEmpresa)->
+                          where('idEmpresa' , $userActual->empresaActual)->
                           Type($request->tipo)->
                           orderBy('nombre','ASC')->
                           paginate(1000);
@@ -101,7 +101,7 @@ public function __construct()
     $idInsumo = $request->idInsumo; 
     $contieneAux = Contiene::IdProducto($idProducto)->
                              IdInsumo($idInsumo)->
-                             where('idEmpresa',$userActual->idEmpresa)->first();
+                             where('idEmpresa',$userActual->empresaActual)->first();
     if($contieneAux != null){
       $contieneAux->delete();
     }
@@ -124,7 +124,7 @@ public function __construct()
       $producto->precio = $request->precio;
       $producto->idCategoria = $request->categoria;
       $producto->receta = $request->receta;
-      $producto->idEmpresa = $userActual->idEmpresa;
+      $producto->idEmpresa = $userActual->empresaActual;
       $producto->save();
       $producto = Producto::Nombre($request->nombre)->Category($request->categoria)->first();
       $idProducto = $producto->id;
@@ -139,13 +139,13 @@ public function __construct()
       for($i=0; $i<$cantidadInsumos; $i++){
         $contieneAux = Contiene::IdProducto($idProducto)->
                                  IdInsumo($idInsumos[$i])->
-                                 where('idEmpresa',$userActual->idEmpresa)->first();
+                                 where('idEmpresa',$userActual->empresaActual)->first();
         if($contieneAux == null){
           $contiene = new Contiene;
           $contiene->idProducto = $idProducto;
           $contiene->idInsumo = $idInsumos[$i];
           $contiene->cantidad = $cantidades[$i];
-          $contiene->idEmpresa = $userActual->idEmpresa;
+          $contiene->idEmpresa = $userActual->empresaActual;
           $contiene->save();
           if($userActual->estadoTut == 8){
             $userActual->estadoTut += 1;
