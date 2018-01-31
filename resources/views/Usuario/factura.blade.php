@@ -62,7 +62,23 @@
 		                <p>
 		                  {{$user->EmpresaActual->direccion}} {{$user->EmpresaActual->ciudad}} {{$user->EmpresaActual->departamento}} <br>
 		                  {{$user->EmpresaActual->telefono}} <br>
-		                </p>
+		                </p> 
+		                <div id="imagenResolucion" align="center" style="display: none;">
+		                	<div class="form-group" style="width: 60%;">
+			                  <div class="input-group" style="padding-top: 25px; ">
+			                    <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+			                    <input class="form-control" id="resolucion" name="resolucion" placeholder="Resolución de facturación" type="text" id="regimen" name="regimen" value="{{$empresa->nresolucionFacturacion}}">
+			                  </div>
+			                </div>
+			                <div class="input-group" style="width: 60%;">
+				                <label class="input-group-btn">
+				                    <span class="btn btn-primary">
+				                        Subir imagen <input type="file" name="imgRes" id="imgRes" style="display: none;" multiple>
+				                    </span>
+				                </label>
+				                <input type="text" class="form-control" readonly>
+				            </div>
+		                </div>            
 		              </div>
 		          </div>
 		          <div class="col-md-3">
@@ -159,28 +175,18 @@
             </div>
 		  </div>
           <div class="factspace1"></div>
-          <div class="row">
-            <div class="col-lg-12">
-               <div class="col-md-4">  
-          		  <div class="form-group">
-            		<div class="col-md-8  pull-right">
-		              <label>Método de Pago:</label>
-		              <div class="toggle-switch text-toggle-switch" data-off-label="Tarjeta" data-on="primary" data-on-label="Efectivo" style="width:110px; height: 30px">
-		                <input checked="" type="checkbox">
-		              </div>
-		            </div>
-			       </div>   
-              	</div>             
-	             <div class="col-md-2" style="width: 25%;" > 
+          <div class="row" >
+            <div class="col-lg-12" >             
+	             <div class="col-md-4"  > 
 	                <div class="form-group" style="padding-top: 25px;" >
 	                  <div class="input-group" >
 	                    <span class="input-group-addon"><i class="fa fa-money"></i></span>
-	                    <input class="form-control" name="propinaSugerida" placeholder="Propina sugerida" type="text" value="{{$empresa->propina}}" id="propinaSugerida">
+	                    <input class="form-control" name="propinaSugerida" placeholder="Propina sugerida %" type="text" value="{{$empresa->propina}}" id="propinaSugerida">
 	                  </div>
 	                </div>            
 	              </div>
 
-	             <div class="col-md-3" style="width: 18%; "> 
+	             <div class="col-md-4" > 
 	                <div class="form-group">
 	                  <div class="input-group" style="padding-top: 25px; ">
 	                    <span class="input-group-addon"><i class="fa fa-money"></i></span>
@@ -189,7 +195,7 @@
 	                </div>            
 	              </div>
 	             
-	             <div class="col-md-3" style="width: 18%; "> 
+	             <div class="col-md-4"> 
 	                <div class="form-group" style="padding-top: 25px;">
 	                  <div class="input-group">
 	                    <span class="input-group-addon"><i class="fa fa-refresh"></i></span>
@@ -223,6 +229,8 @@
 </div>
 
 <script type="text/javascript">
+	var JSONempresa = eval(<?php echo json_encode($empresa); ?>);
+
 	$(document).ready(function(){
 		$("#modalImagen").fancybox({
             helpers: {
@@ -231,11 +239,46 @@
                 }
             }
         });
+        if (JSONempresa.tipoRegimen == "comun") {
+        	document.getElementById("imagenResolucion").style.display = 'block';
+        }
+
         $propina = document.getElementById("propinaSugerida").value;
-        if($propina == 0){
+        $resolucion = document.getElementById("resolucion").value;
+        if($propina == 0 || $propina == ""){
         	document.getElementById("propinaSugerida").value = null;
         }
+        if($resolucion == 0 || $resolucion == ""){
+        	document.getElementById("resolucion").value = null;
+        }
 	});
+
+	$(function() {
+  	// We can attach the `fileselect` event to all file inputs on the page
+	  $(document).on('change', ':file', function() {
+	    var input = $(this),
+	        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+	        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+	    input.trigger('fileselect', [numFiles, label]);
+	  });
+
+	  // We can watch for our custom `fileselect` event like this
+	  $(document).ready( function() {
+	      $(':file').on('fileselect', function(event, numFiles, label) {
+
+	          var input = $(this).parents('.input-group').find(':text'),
+	              log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+	          if( input.length ) {
+	              input.val(log);
+	          } else {
+	          	
+	          }
+
+	      });
+	  });
+  
+});
 </script>
 
 <style type="text/css">

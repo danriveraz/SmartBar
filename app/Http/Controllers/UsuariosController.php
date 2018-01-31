@@ -172,6 +172,7 @@ class UsuariosController extends Controller
     $empresa = Empresa::find($usuario->empresaActual);
     $empresa->notas = $request->notas;
     $empresa->propina = $request->propinaSugerida;
+    $empresa->nresolucionFacturacion = $request->resolucion;
     $path = public_path() . '/images/admins/';
     $file = $request->file('imagenPerfilNegocio');
     if($file!=null){// verifica que se haya subido una imagen nueva
@@ -184,6 +185,19 @@ class UsuariosController extends Controller
         unlink($imagenActual);
       }
       $empresa->imagenPerfilNegocio = $perfilNombre;
+    }
+
+    $file2 = $request->file('imgRes');
+    if($file2!=null){// verifica que se haya subido una imagen nueva
+      //obtenemos el nombre del archivo
+      $perfilNombre2 = 'resolucion_' . time() . '.' . $file2->getClientOriginalExtension();
+      //indicamos que queremos guardar un nuevo archivo en el disco local
+      $file2->move($path, $perfilNombre2);
+      if($empresa->imagenResolucionFacturacion != ""){
+        $imagenActual = $path . $empresa->imagenResolucionFacturacion;
+        unlink($imagenActual);
+      }
+      $empresa->imagenResolucionFacturacion = $perfilNombre2;
     }
     $empresa->save();
     flash::success('La factura ha sido modificada satisfactoriamente')->important();

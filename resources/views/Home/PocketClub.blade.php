@@ -148,7 +148,7 @@
             <div class="col bg-gray-white">
                 <div>
                     <h3 class="text-green margin-tiny">¿Cómo funciona el Demo de 7 días?</h3>
-                    <p class="margin-tiny">Durante 30 días podrás utilizar SMARTBAR con todas sus funciones, crear una cuenta solo toma minutos y transcurridos los 30 días debes seleccionar el plan que utilizaras, para conservar tu información y la ayuda de tu compañero inseparable</p>
+                    <p class="margin-tiny">Durante 7 días podrás utilizar SMARTBAR con todas sus funciones, crear una cuenta solo toma minutos y transcurridos los 7 días debes seleccionar el plan que utilizaras, para conservar tu información y la ayuda de tu compañero inseparable</p>
                     <hr>
                 </div>
                 <div>
