@@ -123,9 +123,9 @@
       </div>
     </div>
     <p><img class="plan-payment" src="assets/images/logos-payment-col.png" alt="Métodos de pago"/></p>
-    <p><a class="button large" href="https://app.alegra.com/user/register/country/colombia" target="_blank" rel="alternate">UNIRTE A <strong>POCKETCLUB</strong></a></p>
+    <p><a class="button large" href="" target="_blank" rel="alternate">UNIRTE A <strong>POCKETCLUB</strong></a></p>
     <hr>
-    <h4 class="text-gris">Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas. <a href="http://www.alegra.com/fundaciones" target="_blank" rel="alternate">¿Que es PocketClub?</a></h4>
+    <h4 class="text-gris">Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas. <a href="" target="_blank" rel="alternate">¿Que es PocketClub?</a></h4>
     <hr>
   </div>
 </section>

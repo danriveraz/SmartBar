@@ -253,7 +253,7 @@
       </div>
     </div>
     <p><img class="plan-payment" src="assetsNew/images/logos-payment-col.png" alt="Métodos de pago"/></p>
-    <p><a class="button large" href="" target="_blank" rel="alternate">UNIRTE A <strong>POCKETCLUB</strong></a></p>
+    <p><a class="button large" href="{{ url('PocketClub') }}" rel="alternate">UNIRTE A <strong>POCKETCLUB</strong></a></p>
     <hr>
     <h4 class="text-gris">Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas. <a href="" target="_blank" rel="alternate">¿Que es PocketClub?</a></h4>
     <hr>
