@@ -19,6 +19,10 @@ use Redirect;
 use Socialite;
 use Laracasts\Flash\Flash;
 use Illuminate\Support\Facades\Log;
+use PocketByR\Proveedor;
+use PocketByR\Insumo;
+use PocketByR\Producto;
+use PocketByR\Contiene;
 
 
 class AuthController extends Controller
@@ -42,9 +46,9 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectTo = '/WelcomeAdmin';
-    
+
     protected function redirectTo()
-    {   
+    {
         if(Auth::User()->esAdmin){
             return '/WelcomeAdmin';
         }elseif(Auth::User()->esProveedor){
@@ -62,7 +66,7 @@ class AuthController extends Controller
     {
         $this->middleware($this->guestMiddleware(), ['except' => ['getLogout','profile','updateProfile' , 'editProfile','cambiarBar']]);
     }
-    
+
     public function getRegister(Request $request){
         $departamentos = Departamento::all();
         $ciudades = Ciudad::all();
@@ -92,7 +96,7 @@ class AuthController extends Controller
             'sexo' => 'required',
             //'telefono' => 'required|min:1|max:9999999999|numeric',
         ];
-         
+
         $validator = Validator::make($request->all(), $rules);
         $departamentos = Departamento::All();
         $ciudades = Ciudad::all();
@@ -107,7 +111,7 @@ class AuthController extends Controller
             $empresa = new Empresa;
             $empresa->nombreEstablecimiento = $request->nombreEstablecimiento;
             $empresa->imagenPerfilNegocio = "bar.png";
-            $empresa->save();// crea la empresa con el nombre del establecimiento 
+            $empresa->save();// crea la empresa con el nombre del establecimiento
 
 
             $admin = new User;
@@ -121,10 +125,10 @@ class AuthController extends Controller
             $admin->sexo = $request->sexo;
             if($request->sexo == "Femenino"){
                 $admin->imagenPerfil = "perfil.jpg";
-                $admin->imagenNegocio = "perfil.jpg";         
+                $admin->imagenNegocio = "perfil.jpg";
             }else{
                 $admin->imagenPerfil = "perfilhombre.png";
-                $admin->imagenNegocio = "perfilhombre.png";   
+                $admin->imagenNegocio = "perfilhombre.png";
             }
             $admin->password = bcrypt($request->password);
             $admin->remember_token = str_random(100);
@@ -138,13 +142,13 @@ class AuthController extends Controller
             $admin->idEmpresa = $empresa->id; // id de la empresa para saber a quién pertenece
             $admin->empresaActual =  $empresa->id;
             $admin->estadoTut = 13;
-            $admin->save();// guarda el usuario registrado 
-            
-            $empresa->usuario_id = $admin->id;// obtiene el id del usuario que creo la empres apara saber la referencia 
+            $admin->save();// guarda el usuario registrado
+
+            $empresa->usuario_id = $admin->id;// obtiene el id del usuario que creo la empres apara saber la referencia
             $empresa->departamento = $departamentos[($request->idDepto) -1]->nombre;
             $empresa->ciudad = $ciudades[($request->idCiudad) -1]->nombre;
             $empresa->notas = "Felicidad es saber que cuentas con un compañero inseparable como SMARTBAR.";
-            $empresa->save();// guarda los cambios 
+            $empresa->save();// guarda los cambios
 
             $categoria1 = new Categoria;
             $categoria1->nombre = "Cervezas";
@@ -920,12 +924,12 @@ class AuthController extends Controller
             $producto34->idEmpresa = $empresa->id;
             $producto34->save();
 
-            $producto = new Producto;
-            $producto->nombre = "Coco Loco";
-            $producto->receta = "En una batidora mezclamos el tequila, el vodka, el ron, el zumo de limón y la crema de coco. Añadimos el resultado a una copa con el hielo picado y lo decoramos con una cáscara de limón cortada en espiral, puede servirse en una piña, en coco o en copa de coctel.";
-            $producto->idCategoria = $categoria18->id;
-            $producto->idEmpresa = $empresa->id;
-            $producto->save();
+            $producto35 = new Producto;
+            $producto35->nombre = "Coco Loco";
+            $producto35->receta = "En una batidora mezclamos el tequila, el vodka, el ron, el zumo de limón y la crema de coco. Añadimos el resultado a una copa con el hielo picado y lo decoramos con una cáscara de limón cortada en espiral, puede servirse en una piña, en coco o en copa de coctel.";
+            $producto35->idCategoria = $categoria18->id;
+            $producto35->idEmpresa = $empresa->id;
+            $producto35->save();
 
             $contiene1 = new Contiene;
             $contiene1->idProducto = $producto1->id;
@@ -1668,7 +1672,7 @@ class AuthController extends Controller
             $contiene106->cantidad = 0.8;
             $contiene106->idEmpresa = $empresa->id;
             $contiene106->save();
-            
+
             // parte del código para generar el username inicial
             $admin->cedula = $admin->id;
 
@@ -1676,9 +1680,9 @@ class AuthController extends Controller
             Mail::send('Emails.confirmacion', ['data' => $data], function($mail) use($data){
                 $mail->to($data->email)->subject('Confirma tu cuenta de PocketByR');
             });
-            
+
             return redirect("Auth/login")
-            ->with("message", "Hemos enviado un enlace de confirmación a su cuenta de correo electrónico");      
+            ->with("message", "Hemos enviado un enlace de confirmación a su cuenta de correo electrónico");
         }
     }
 
@@ -1691,13 +1695,13 @@ class AuthController extends Controller
            $confirm_token = str_random(100);
            $user->where('email', '=', $email)
            ->update(['confirmoEmail' => $confirmoEmail, 'confirm_token' => $confirm_token]);
-           
+
            /*return redirect('Auth/login')
            ->with('message', 'Bienvenido ' . $the_user[0]['nombrePersona'] . ' ya puede iniciar sesión');*/
            //dd($the_user);
             Auth::login($the_user[0], true);
             Auth::User()->inicioSesion();
-            return redirect()->intended($this->redirectPath());        
+            return redirect()->intended($this->redirectPath());
         }else{
            return redirect('');
         }
@@ -1720,7 +1724,7 @@ class AuthController extends Controller
                     'email' => $request->email,
                     'password' => $request->password,
                     'confirmoEmail' => 0
-                ], $request->has('remember'))){            
+                ], $request->has('remember'))){
             return $this->volverLogin('Por favor activa tu cuenta primero');
         }
         if(Auth::attempt([
@@ -1739,7 +1743,7 @@ class AuthController extends Controller
                 'password.required' => 'El campo password es requerido',
             ];
             $validator = Validator::make($request->all(), $rules, $messages);
-            
+
             return redirect('Auth/login')
             ->withErrors($validator)
             ->withInput()
@@ -1777,7 +1781,7 @@ class AuthController extends Controller
         ];
 
         $validator = Validator::make($request->all(), $rules);
-        
+
         if ($validator->fails()){
             return redirect("Auth/editProfile")
             ->withErrors($validator)
@@ -1833,7 +1837,7 @@ class AuthController extends Controller
     /**
      * Obtain the user information from provider.  Check if the user already exists in our
      * database by looking up their provider_id in the database.
-     * If the user exists, log them in. Otherwise, create a new user then log them in. After that 
+     * If the user exists, log them in. Otherwise, create a new user then log them in. After that
      * redirect them to the authenticated users homepage.
      *
      * @return Response
@@ -1845,7 +1849,7 @@ class AuthController extends Controller
         $authUser = $this->findOrCreateUser($user, $provider);
         if($authUser == null){
             return redirect("/")
-            ->with("message", "El correo electrónico ya se encuentra asociado a una cuenta");  
+            ->with("message", "El correo electrónico ya se encuentra asociado a una cuenta");
         }
         Auth::login($authUser, true);
         Auth::User()->inicioSesion();// función que se llama para que guarde un nuevo registro en la tabla de registro de inicio y cierre de sesión
@@ -1870,7 +1874,7 @@ class AuthController extends Controller
         if ($the_user == null){
             $empresa = new Empresa;
             $empresa->nombreEstablecimiento = '';
-            $empresa->save();// crea la empresa con el nombre del establecimiento 
+            $empresa->save();// crea la empresa con el nombre del establecimiento
 
 
             $admin = new User;
@@ -1891,13 +1895,13 @@ class AuthController extends Controller
             $admin->esBartender = true;
             $admin->esMesero = true;
             $admin->obsequio = true;
-            $admin->cedula= ''; 
+            $admin->cedula= '';
             $admin->idEmpresa = $empresa->id;
             $admin->empresaActual =  $empresa->id;// id de la empresa para saber a quién pertenece
-            $admin->save();// guarda el usuario registrado 
-            
-            $empresa->usuario_id = $admin->id;// obtiene el id del usuario que creo la empres apara saber la referencia 
-            $empresa->save();// guarda los cambios 
+            $admin->save();// guarda el usuario registrado
+
+            $empresa->usuario_id = $admin->id;// obtiene el id del usuario que creo la empres apara saber la referencia
+            $empresa->save();// guarda los cambios
 
             $admin->provider = $provider;
             $admin->provider_id = $user->getId();
@@ -1906,9 +1910,9 @@ class AuthController extends Controller
 
 
             return $admin;
-        }   
+        }
         else{
-            return null; 
+            return null;
         }
     }
 

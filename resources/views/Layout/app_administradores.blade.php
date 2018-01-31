@@ -40,7 +40,7 @@
     {!!Html::style('stylesheets\color\gray.css')!!}
 
     -->
-     
+
     <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
 
@@ -112,7 +112,7 @@
   {!!Html::script('javascripts\xeditable-demo.js')!!}
   {!!Html::script('javascripts\address.js')!!}
   <!-- errores croppie -->
-  <!-- 
+  <!--
   {!!Html::script('croppie/croppie.js')!!}
   {!!Html::script('croppie/upload.js')!!} -->
   {!!Html::script('javascripts/upload/plugins/sortable.js')!!}
@@ -120,7 +120,7 @@
   {!!Html::script('javascripts/upload/locales/fr.js')!!}
   {!!Html::script('javascripts/upload/locales/es.js')!!}
   {!!Html::script('javascripts/upload/theme.js')!!}
-  <!-- 
+  <!--
   {!!Html::style('croppie/croppie.css')!!}
   -->
   {!!Html::style('stylesheets/upload/fileinput.css')!!}
@@ -189,7 +189,7 @@
                         New user added: Jane Smith
                       </p>
                     </a>
-                      
+
                     </li>
                     <li>
                       <a href="#">
@@ -200,7 +200,7 @@
                         Sales targets available
                       </p>
                     </a>
-                      
+
                     </li>
                     <li>
                       <a href="#">
@@ -211,7 +211,7 @@
                         New performance metric added
                       </p>
                     </a>
-                      
+
                     </li>
                     <li>
                       <a href="#">
@@ -222,19 +222,21 @@
                         New growth data available
                       </p>
                     </a>
-                      
+
                     </li>
                   </ul>
                 </li>
                 <li class="dropdown messages hidden-xs">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <a data-target="{{url('Mensajes')}}" class="dropdown-toggle" data-toggle="dropdown" href="{{url('Mensajes')}}">
                     <span aria-hidden="true" class="hightop-envelope">
                   </span>
                     <div class="sr-only">
                       Messages
                     </div>
                     <p class="counter">
-                      3
+                    
+
+                      <!--3-->
                     </p>
                   </a>
                   <ul class="dropdown-menu">
@@ -265,12 +267,12 @@
                     <li>
                       <a href="{{url('cajero/historial')}}">
                       <i class="fa fa-file-text-o">
-                      </i>Facturación</a> 
+                      </i>Facturación</a>
                     </li>
                     <li>
                       <a href="{{url('producto/recetas')}}">
                       <i class="fa fa-book">
-                      </i>Recetas</a> 
+                      </i>Recetas</a>
                     </li>
                     <li>
                       <a href="login1.htm">
@@ -299,11 +301,11 @@
            </a>
             </div>
           </div>
-          
+
           <div class="container-fluid main-nav clearfix">
             <div class="nav-collapse">
               <ul class="nav">
-               <li class="dropdown">  
+               <li class="dropdown">
                 <a data-toggle="dropdown" href="">
                   <span aria-hidden="true" class="fa fa-5x fa-reorder">
                   </span>{{Auth::User()->EmpresaActual->nombreEstablecimiento}} <b class="caret">
@@ -320,39 +322,39 @@
                       @endif
                     @endforeach
                   </ul>
-                </li> 
-                
+                </li>
+
                 <li>
                   <a id="miPersonal" href={{url("/Auth/usuario")}}>
                     <span aria-hidden="true" class="fa fa-fw fa-users">
                     </span>Mi Personal</a>
                 </li>
-                
+
                 <li>
                   <a id="miCarta" href="{{route('producto.index')}}">
                     <span aria-hidden="true" class="fa fa-fw fa-square">
                     </span>Mi Carta</a>
                 </li>
-                
+
                 <li>
                   <a id="miInventario" href="{{route('insumo.index')}}">
                     <span aria-hidden="true" class="fa fa-fw fa-scribd">
                     </span>Mi Inventario</a>
-                </li>              
+                </li>
 
                 <li>
                   <a id="informacion" href="{{url('Estadisticas/')}}">
                   <span aria-hidden="true" class="fa fa-fw fa-bar-chart-o">
                   </span>Informacion</a>
                 </li>
-                
+
                 <li>
                   <a id="smartShop" href="">
                   <span aria-hidden="true" class="fa fa-fw fa-cart-plus ">
                   </span>SmartShop</a>
                 </li>
               </ul>
-            
+
             </div>
           </div>
         </div>
@@ -362,7 +364,7 @@
             <input name="campo" type="number" id="campo"  value=0 hidden="">
             <input type="text" name="redireccionar" value="" id="redireccionar" hidden="">
         </form>
-         
+
       <div class="">
         @yield('content')
       </div>
