@@ -1,4 +1,4 @@
-@extends('Layout.app')
+@extends('Layout.app_administradores')
 @section('content')
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
