@@ -198,34 +198,7 @@
 
               <div class="col-lg-4">                 
                 <div class="bs-example">
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                        <!-- Carousel indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                            <li data-target="#myCarousel" data-slide-to="2"></li>
-                        </ol>   
-                        <!-- Wrapper for carousel items -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="images/slider-recetas/B52.png" alt="First Slide">
-                            </div>
-                            <div class="item">
-                                <img src="images/slider-recetas/Alexander.png" alt="Second Slide">
-                            </div>
-                            <div class="item">
-                                <img src="images/slider-recetas/Bacardi Red.png" alt="Third Slide">
-                            </div>
-                        </div>
-                        <!-- Carousel controls 
-                        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a class="carousel-control right" href="#myCarousel" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
-                        -->
-                    </div>
+                  <img src="images/productos/{{$producto->nombre}}.png" alt="{{$producto->nombre}}">
                 </div>
                 
          <!--<div class="text-center"><a class="btn btn-bitbucket" onclick=""><i class="fa fa-send"></i>Guardar Producto</a></div>-->
@@ -234,7 +207,9 @@
               
               <div class="col-lg-8">
               <div class="widget-content padded">
-                <textarea class="form-control" id="receta" style="height: 300px" placeholder="Ingrese la preparación del producto">{{$producto->receta}}</textarea>
+                <textarea class="form-control" id="descripcion" style="height: 50px" placeholder="Descripci&oacute;n del producto">{{$producto->descripcion}}</textarea><br>
+                <textarea class="form-control" id="receta" style="height: 200px" placeholder="Preparaci&oacute;n del producto">{{$producto->receta}}</textarea><br>
+                <input type="text" name="copa" class="form-control" id="copa" placeholder="Tipo de copa o vaso" value="{{$producto->vaso}}">
                 <!--<div id="summernote">
                   {{$producto->receta}}
                 </div>-->
@@ -387,7 +362,9 @@
       var nombre = $("#nombre").val();
       var precio = $("#precio").val();
       var categoria = $("#categoria").val();
+      var descripcion = $("#descripcion").val();
       var receta = $("#receta").val();
+      var copa = $("#copa").val();
       var idInsumos = [];
       var cantidades = [];
       $("table#insumoAgregados tr").each(function() {
@@ -409,6 +386,8 @@
             precio: precio,
             categoria: categoria,
             receta: receta,
+            descripcion: descripcion,
+            copa: copa,
             insumos: idInsumos,
             cantidades: cantidades
           },

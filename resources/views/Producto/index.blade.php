@@ -51,46 +51,21 @@
                                   <div class="row">
                                     <div class="col-md-5">                 
                                       <div class="bs-example">
-                                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                                        <!-- Carousel indicators -->
-                                          <ol class="carousel-indicators">
-                                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                                            <li data-target="#myCarousel" data-slide-to="2"></li>
-                                          </ol>   
-                                          <!-- Wrapper for carousel items -->
-                                          <div class="carousel-inner">
-                                            <div class="item active">
-                                              <img src="images/bar.png" alt="First Slide">
-                                            </div>
-                                            <div class="item">
-                                              <img src="images/slider-recetas/Alexander.png" alt="Second Slide">
-                                            </div>
-                                            <div class="item">
-                                              <img src="images/slider-recetas/Bacardi Red.png" alt="Third Slide">
-                                            </div>
-                                          </div>
-                                          <!-- Carousel controls 
-                                          <a class="carousel-control left" href="#myCarousel" data-slide="prev">
-                                            <span class="glyphicon glyphicon-chevron-left"></span>
-                                          </a>
-                                          <a class="carousel-control right" href="#myCarousel" data-slide="next">
-                                            <span class="glyphicon glyphicon-chevron-right"></span>
-                                          </a> -->
-                                        </div>
+                                        <img src="images/productos/{{$producto->nombre}}.png" alt="{{$producto->nombre}}">
                                       </div>
                                     </div>
                                     <!-- segunda columna-->
                                     <div class="col-md-7">
                                       <div class=" bs-example">
                                         <h3><a class="pocketMorado">{{$producto->nombre}}</a></h3>
+                                        <a class="pocketMorado">{{$producto->descripcion}}</a><br><br>
                                         <div class="true"  id="ingredientes{{$producto->id}}">
                                           
                                         </div>
                                         <div class="">
                                           <strong><a class="pocketMorado">Elaboración</a><br></strong>
                                             {{$producto->receta}}<br>
-                                          <a class="pocketMorado"><b>Copa o Vaso:</b> Margarita</a><br>
+                                          <a class="pocketMorado"><b>Copa o Vaso:</b> {{$producto->vaso}}</a><br>
                                         </div>
                                       </div>
                                     </div>
@@ -154,9 +129,13 @@
           var contiene = $.parseJSON(data);
           var lista = "";
           for (var i = 0; i < contiene.length; i++) {
+            var medida = ' oz de ';
+            if(contiene[i][2] != 0){
+              medida = ' unidades de ';
+            }
             lista += '<i class="padded5 fa fa-caret-right"></i><a class="padded pocketMorado">'
                   + contiene[i][0]
-                  + ' oz de '
+                  + medida
                   + contiene[i][1]
                   + '</a><br>';
           }

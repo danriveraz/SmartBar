@@ -116,7 +116,9 @@ public function __construct()
       $producto->nombre = $request->nombre;
       $producto->precio = $request->precio;
       $producto->idCategoria = $request->categoria;
+      $producto->descripcion = $request->descripcion;
       $producto->receta = $request->receta;
+      $producto->vaso = $request->copa;
       $producto->save();
     }else{
       $producto = new Producto;

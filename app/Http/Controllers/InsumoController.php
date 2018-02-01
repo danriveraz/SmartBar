@@ -35,7 +35,7 @@ class InsumoController extends Controller
 
       $proveedores = Proveedor::where('idEmpresa' , $userActual->empresaActual)->get();
 
-      $insumos = Insumo::where('idEmpresa' , $userActual->empresaActual)->get();
+      $insumos = Insumo::where('idEmpresa' , $userActual->empresaActual)->orderBy('nombre','ASC')->get();
 
       return view('Insumo.index')->with('insumos',$insumos)->with('categorias',$categorias)->with('proveedores',$proveedores);
   }
