@@ -12,7 +12,7 @@
               <th width="10%">Nombre</th>
               <th width="10%">Precio</th>
               <th width="18%">Categoria</th>
-              <th width="4%">Opciones</th>
+              <th width="10%">Opciones</th>
             </thead>
             <tbody>
               @foreach($productos as $producto)
@@ -51,7 +51,7 @@
                                   <div class="row">
                                     <div class="col-md-5">                 
                                       <div class="bs-example">
-                                        <img src="images/productos/{{$producto->nombre}}.png" alt="{{$producto->nombre}}">
+                                        <img src="images/productos/{{$producto->imagen}}" alt="{{$producto->nombre}}">
                                       </div>
                                     </div>
                                     <!-- segunda columna-->

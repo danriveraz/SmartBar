@@ -198,7 +198,7 @@
 
               <div class="col-lg-4">                 
                 <div class="bs-example">
-                  <img src="images/productos/{{$producto->nombre}}.png" alt="{{$producto->nombre}}">
+                  <img src="images/productos/{{$producto->imagen}}" alt="{{$producto->nombre}}">
                 </div>
                 
          <!--<div class="text-center"><a class="btn btn-bitbucket" onclick=""><i class="fa fa-send"></i>Guardar Producto</a></div>-->
