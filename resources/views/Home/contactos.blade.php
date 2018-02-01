@@ -11,8 +11,8 @@
         <div class="hide-mobile">
           <img class="head-small-icon" src="assetsNew/images/head-character.png" alt="¿Tienes dudas?" title="Soporte">
           <div class="head-small-text">
-            <h3 class="serif margin-tiny">¿Tienes dudas?</h3>
-            <p class="serif margin-tiny">Como tu amigo inseparable, siempre estamos presente para brindarte la mejor asesoria, darte un consejo y solucionar cualquier inquietud o inconveniente, es <span class="bold">Gratis</span>, e Ilimitado.</p>
+            <h3 class="serif margin-tiny">Contactarte con tu amigo inseparable es muy fácil</h3>
+            <p class="serif margin-tiny">Puedes contactarnos mediante nuestro correo electronico, aseguramos tener una respuesta en las siguientes 8 horas, con el fin de responder de manera eficiente tus dudas, inquietudes o reclamos.</p>
           </div>
           </div>
         <!-- div que esconde cuando es muy chiquito para mobiles-->
@@ -60,11 +60,15 @@
             </div>
             <div class="col">
                 <!-- Preguntas frecuentes -->
-                <h3 class="serif text-green">¿Tienes mas duas?</h3>
+                <h3 class="serif text-green">además de la opción de mensajes via correo electronico, estenemos más opciones para que te contactes con tu amigo inseparable SMARTBAR.</h3>
                 <div class="js-Accordion" >
                     <!-- Pregunta 1 -->
                     <div class="accordion-content">
-                        <p>nuestro equipo esta calificado para responder todas tus dudas al respecto envianos un correo</p>
+                        <p>Teléfono Fijo</p>
+                        <p>Teléfono Celular</p>
+                        <p>Linea Nacional</p>
+                        <p>Oficina de atención</p>
+                        <p>E-mail</p>
                     </div>
 
                 </div>

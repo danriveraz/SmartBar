@@ -53,10 +53,10 @@ li.second:hover .msg {
 /*-----*/
 .first input[type="text"],form textarea {
   width: 77%;
-    color: #fff;
+    color: #4f4f4f;
   font-size: 16px;
   outline: none;
-    background: #32A09F;
+    background: #e3e3e3;
   font-weight: 500;
   border: none !important;
   border-radius: 0px !important;;
