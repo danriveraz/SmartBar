@@ -214,13 +214,19 @@ class UsuariosController extends Controller
   }
 
   public function edit($id){
-    $departamentos = Departamento::all();
-    $ciudades = Ciudad::all();
-    $usuario = User::find($id);
-    $Empresa = Empresa::find($usuario->empresaActual);
-    $empresas = Empresa::where('usuario_id' , $usuario->id)->get();
-    return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)
-                ->with('ciudades', $ciudades)->with('empresas', $empresas);
+    $usuarioActual  = Auth::User();
+
+    if($usuarioActual->id == $id){
+      $departamentos = Departamento::all();
+      $ciudades = Ciudad::all();
+      $usuario = User::find($id);
+      $Empresa = Empresa::find($usuario->empresaActual);
+      $empresas = Empresa::where('usuario_id' , $usuario->id)->get();
+      return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas);
+    }else{
+      return view('errors.503');
+    }
+    
   }
 
   public function updateProfile(Request $request, $id){
@@ -271,8 +277,12 @@ class UsuariosController extends Controller
       $empresa->telefono = $request->telefonoEstablecimiento;
       $empresa->tipoRegimen = $request->tipoRegimen;
       $empresa->nit = $request->nit;
-      
-      if($empresa->tipoRegimen == "comun"){
+      if($empresa->tipoRegimen == "Tipo regimen"){
+        $empresa->save();
+        $usuario->save();
+        flash::warning('El usuario ha sido modificado satisfactoriamente, recuerde definir un tipo de regimen')->important();
+        return redirect('Auth/usuario/'.$usuario->id.'/edit');
+      }else if($empresa->tipoRegimen == "comun" ){
         if($empresa->imagenResolucionFacturacion == ""){
           $empresa->save();
           $usuario->save();

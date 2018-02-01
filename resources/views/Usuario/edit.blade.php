@@ -152,8 +152,8 @@
                               <div class="form-group">
                                 <label>Regimen</label>
                                 <div>
-                                  <select id="tipoRegimen" name="tipoRegimen" class="form-control">
-                                    @if($empresa->tipoRegimen=='')
+                                  <select id="tipoRegimen" name="tipoRegimen" class="form-control" >
+                                    @if($empresa->tipoRegimen=='' || $empresa->tipoRegimen == "Tipo regimen")
                                       <option>Tipo regimen</option>
                                       <option value="comun">Regimen comun</option>
                                       <option value="simplificado">Regimen simplificado</option>

@@ -227,16 +227,15 @@
                   </ul>
                 </li>
                 <li class="dropdown messages hidden-xs">
-                  <a data-target="{{url('Mensajes')}}" class="dropdown-toggle" data-toggle="dropdown" href="{{url('Mensajes')}}">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                 <!-- <a data-target="{{url('Mensajes')}}" class="dropdown-toggle" data-toggle="dropdown" href="{{url('Mensajes')}}"> -->
                     <span aria-hidden="true" class="hightop-envelope">
                   </span>
                     <div class="sr-only">
                       Messages
                     </div>
                     <p class="counter">
-                    
-
-                      <!--3-->
+                      3
                     </p>
                   </a>
                   <ul class="dropdown-menu">
