@@ -33,11 +33,15 @@ class HomeController extends Controller
         return view('Home.AmigoInseparable');
     }
 
-        public function PocketClub(){
+    public function PocketClub(){
         return view('Home.PocketClub');
     }
-        public function politicas(){
+    public function politicas(){
         return view('Home.politicas');
+    }
+
+    public function contactos(){
+        return view('Home.contactos');
     }
 
 

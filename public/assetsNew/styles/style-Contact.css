@@ -1,0 +1,261 @@
+
+.login-01{
+  width:100%;
+  margin:5% auto 3%;
+}
+form {
+   padding: 0% 1%;
+}
+form li.first,li.second{
+  border:none;
+  list-style:none;
+  margin-bottom:10px;
+  width:100%;
+}
+.icon,.icon2  {
+  height:55px;
+  width:55px;
+  display: block;
+  float: left;
+  border-top-left-radius: 0.3em;
+  -o-border-top-left-radius: 0.3em;
+  -moz-border-top-left-radius: 0.3em;
+  -webkit-border-top-left-radius: 0.3em;
+  border-border-bottom-left-radius: 0.3em;
+  -o-border-bottom-left-radius: 0.3em;
+  -moz-border-bottom-left-radius: 0.3em;
+  -webkit-border-bottom-left-radius: 0.3em;
+}
+.user {
+    background: url(../images/icons.png) no-repeat 14px 15px #2d0031;
+}
+.email{
+  background:url(../images/icons.png) no-repeat 15px -39px #2d0031;
+}
+.phone{
+  background: url(../images/icons.png) no-repeat 15px -93px #2d0031;
+}
+.msg{
+  background: url(../images/msg.png) no-repeat 16px 16px #2d0031;
+}
+li.first:hover .user{
+     background: url(../images/icons.png) no-repeat 14px 15px #49014f;
+}
+li.first:hover .email{
+  background:url(../images/icons.png) no-repeat 15px -39px #49014f;
+}
+li.first:hover .phone{
+  background: url(../images/icons.png) no-repeat 15px -93px #49014f;
+}
+li.second:hover .msg {
+  background: url(../images/msg.png) no-repeat 16px 16px #49014f;
+}
+/*-----*/
+.first input[type="text"],form textarea {
+  width: 77%;
+    color: #fff;
+  font-size: 16px;
+  outline: none;
+    background: #32A09F;
+  font-weight: 500;
+  border: none !important;
+  border-radius: 0px !important;;
+	margin-top: 0.5rem;
+  }
+  .submit{
+
+  }
+form textarea {
+  resize: none;
+  height: 140px;
+}
+.login-01 input[type="submit"]{
+  font-size: 17px;
+  font-weight: 300;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+  padding: 10px 10px;
+  width: 25%;
+  border: 2px solid #2d0031;
+  float: right;
+  background: #2d0031;
+  border-radius: 0.3em;
+  -o-border-radius: 0.3em;
+  -webkit-border-radius: 0.3em;
+  -moz-border-radius: 0.3em;
+  margin-right:2.85em;
+}
+input[type="submit"]:hover{
+-webkit-transform: rotate(4deg);
+  transform: rotate(4deg);
+  -o-transform: rotate(4deg);
+  -moz-transform: rotate(4deg);
+}
+li.lost {
+  margin-bottom: 21px;
+}
+/*---------------*/
+
+/*-----start-responsive-design------*/
+@media (max-width:1440px){
+  /*.login-01 input[type="submit"]{
+  margin-right:1.85em;
+  }*/
+	
+}
+@media (max-width:1366px){
+ /* .login-01 input[type="submit"]{
+  margin-right: 1.6em;
+  }*/
+  	
+}
+@media (max-width:1280px){
+   .login-01 {
+    width: 40%;
+    margin:5% auto 5%;
+  }
+  body h1 {
+  font-size: 2.7em;
+}
+ 
+}
+@media (max-width:1024px){
+  .login-01 {
+  width: 45%;
+}
+ body h1 {
+  font-size: 2.5em;
+}
+ 
+}
+@media (max-width:768px){
+  .login-01 {
+  width: 63%;
+}
+ body h1 {
+  font-size: 2.3em;
+}
+}
+@media (max-width:640px){
+  .login-01 {
+  width: 73%;
+  }
+  body h1 {
+  font-size: 2.1em;
+}
+}
+@media (max-width:480px){
+   .login-01 {
+    width: 85%;
+  }
+
+.login-01 input[type="text"], form textarea {
+  width: 77%;
+  padding: 1em 1em 1em 1em;
+  font-size: 15px;
+  	margin-top: 0rem;
+
+  }
+  .icon, .icon2 {
+  height: 48px;
+  width: 48px;
+  }
+  .user {
+    background: url(../images/icons.png) no-repeat 11px 12px #2d0031;
+      background-size: 45%;
+}
+.email{
+  background:url(../images/icons.png) no-repeat 12px -36px #2d0031;
+    background-size: 45%;
+}
+.phone{
+  background:url(../images/icons.png) no-repeat 12px -87px #2d0031;
+    background-size: 45%;
+}
+.msg{
+  background: url(../images/msg.png) no-repeat 14px 11px #2d0031;
+    background-size: 45%;
+}
+li.first:hover .user{
+     background: url(../images/icons.png) no-repeat 11px 9px #49014f;
+      background-size: 45%;
+}
+li.first:hover .email{
+  background:url(../images/icons.png) no-repeat 12px -36px #49014f;
+   background-size: 45%;
+}
+li.first:hover .phone{
+  background:url(../images/icons.png) no-repeat 12px -87px #49014f;
+   background-size: 45%;
+}
+li.second:hover .msg {
+  background: url(../images/msg.png) no-repeat 14px 11px #49014f;
+   background-size: 45%;
+}
+body h1 {
+  font-size:2em;
+  padding-top: 1em;
+}
+form li.first, li.second {
+  margin-bottom: 5px;
+  }
+
+}
+@media (max-width:320px){
+  input[type="text"], form textarea {
+ width: 71%;
+  padding: 1em 1em 1em 0.8em;
+  font-size: 14px;
+  }
+  .login-01 {
+    width:96%;
+  }
+  .icon, .icon2 {
+  height: 45px;
+  width: 45px;
+  }
+  .user {
+    background: url(../images/icons.png) no-repeat 11px 13px #2d0031;
+     background-size: 40%;
+}
+.email{
+  background:url(../images/icons.png) no-repeat 12px -29px #2d0031;
+   background-size: 40%;
+}
+.phone{
+  background:url(../images/icons.png) no-repeat 12px -72px #2d0031;
+   background-size: 40%;
+}
+.msg{
+  background: url(../images/msg.png) no-repeat 14px 13px #2d0031;
+   background-size: 40%;
+}
+li.first:hover .user{
+     background: url(../images/icons.png) no-repeat 11px 13px #49014f;
+      background-size: 40%;
+}
+li.first:hover .email{
+  background:url(../images/icons.png) no-repeat 12px -29px #49014f;
+   background-size: 40%;
+}
+li.first:hover .phone{
+  background:url(../images/icons.png) no-repeat 12px -72px #49014f;
+   background-size: 40%;
+}
+li.second:hover .msg {
+  background: url(../images/msg.png) no-repeat 14px 13px #49014f;
+   background-size: 40%;
+}
+
+.login-01 input[type="submit"] {
+  font-size: 17px;
+  padding: 8px 8px;
+  width: 36%;
+  margin-right: 0.7em;
+}
+body h1 {
+  font-size:1.6em;
+}
+
+}
