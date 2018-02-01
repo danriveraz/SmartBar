@@ -108,6 +108,32 @@
 {!!Html::script("javascripts\jquery.nestable.js")!!}
 {!!Html::script('javascripts\main.js')!!}
 {!!Html::script('javascripts\respond.js')!!}
+
+  <!-- para el perfil -->
+  {!!Html::style('stylesheets/profile.css')!!}
+  {!!Html::style('assets/vendor/linearicons/style.css')!!}
+  {!!Html::style('assets/vendor/metisMenu/metisMenu.css')!!}
+  {!!Html::style('assets/vendor/chartist/css/chartist.min.css')!!}
+  {!!Html::style('assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css')!!}
+  {!!Html::style('assets/vendor/toastr/toastr.min.css')!!}
+
+  {!!Html::style('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')!!}
+  {!!Html::script('assets/vendor/chartist/js/chartist.min.js')!!}
+
+  {!!Html::script('assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')!!}
+  {!!Html::script('assets/vendor/bootstrap-progressbar/js/bootstrap-progressbar.min.js')!!}
+  {!!Html::script('assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.min.js')!!}
+  {!!Html::script('assets/vendor/chartist-plugin-axistitle/chartist-plugin-axistitle.min.js')!!}
+  {!!Html::script('assets/vendor/chartist-plugin-legend-latest/chartist-plugin-legend.js')!!}
+  {!!Html::script('assets/vendor/toastr/toastr.js')!!}
+  <!-- MAIN CSS -->
+
+  <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+
+
+  {!!Html::style('stylesheetspropio\stylePropio.css')!!}
+  <!-- fin -->
+  
 <style type="text/css">
   .pocketNoti{
             position: absolute;

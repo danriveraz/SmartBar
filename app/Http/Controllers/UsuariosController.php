@@ -215,18 +215,31 @@ class UsuariosController extends Controller
 
   public function edit($id){
     $usuarioActual  = Auth::User();
-
+    $posibleEmpleado = User::find($id);
+    $empresas = Empresa::where('usuario_id' , $usuarioActual->id)->get();
+    $auxiliar = 0;
+    for($i = 0; $i < sizeof($empresas); $i++){
+      if($posibleEmpleado->idEmpresa == $empresas[$i]->id){
+        $auxiliar = 1;
+      }
+    }
     if($usuarioActual->id == $id){
-      $departamentos = Departamento::all();
-      $ciudades = Ciudad::all();
+      if($usuarioActual->esAdmin == 0){
+        $usuario = User::find($id);
+        return view('Usuario.editEmpleado')->with('usuario',$usuario);
+      }else{
+        $departamentos = Departamento::all();
+        $ciudades = Ciudad::all();
+        $usuario = User::find($id);
+        $Empresa = Empresa::find($usuario->empresaActual);
+        return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas);
+      }
+    }else if($auxiliar == 1){
       $usuario = User::find($id);
-      $Empresa = Empresa::find($usuario->empresaActual);
-      $empresas = Empresa::where('usuario_id' , $usuario->id)->get();
-      return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas);
+      return view('Usuario.editEmpleado')->with('usuario',$usuario);
     }else{
       return view('errors.503');
     }
-    
   }
 
   public function updateProfile(Request $request, $id){
@@ -1888,6 +1901,107 @@ class UsuariosController extends Controller
     }else if($request->ventana == 7){
       $plan = 3;
       return view('Usuario.pocketclub')->with('plan',$plan);
+    }else if($request->ventana == 8){
+      $rules = [
+        'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+        ];
+        $usuario = User::find($id);
+      if($request->cedula!=$usuario->cedula){// agrega la regla si la cedula ha sido modificada
+        $rules += ['cedula' => 'required|min:1|max:9999999999'];
+      }
+      if($request->telefono!=$usuario->telefono){ // agrega la regla si el telefomo ha sido modificado
+        $rules += ['telefono' => 'required|min:1|max:9999999999'];
+      }
+      $validator = Validator::make($request->all(), $rules);
+
+      if ($validator->fails()){
+        return redirect()->route('Auth.usuario.edit',$id)->withErrors($validator)->withInput();
+      }else{
+        if($request->cedula!=$usuario->cedula){
+          $usuario->cedula = $request->cedula;
+        }
+        if($request->password!=null){
+          $usuario->password = bcrypt($request->password);
+        }
+        if($request->telefono!=$usuario->telefono){
+          $usuario->telefono=$request->telefono;
+        }
+
+        $usuario->nombrePersona = $request->nombrePersona;
+        $usuario->cedula = $request->cedula;
+        $usuario->sexo = $request->sexo;
+        $fecha = $request->fechaNacimiento;
+        $fecha = date("y-m-d",strtotime($fecha));
+        $usuario->fechaNacimiento = $fecha;
+        $usuario->telefono = $request->telefono;
+
+        $usuario->save();
+        flash::success('El usuario ha sido modificado satisfactoriamente')->important();
+        return redirect('Auth/usuario/'.$usuario->id.'/edit');
+      }
+    }else if($request->ventana == 9){
+      $rules = [
+        'email' => 'required|email|max:255',
+      ];
+      $messages = [
+        'email.required' => 'Debe tener un email',
+      ];
+      if($request->password!=null){
+        $rules += ['password' => 'required|min:6|max:18',];
+        $messages += ['password.required' => 'Debe tener una contraseña',
+        ];
+      }
+      $validator = Validator::make($request->all(), $rules,$messages);
+      $usuario = User::find($id);
+      $emailaux = $usuario->email;
+      if ($validator->fails()){
+        $validacionPassword = $request->password;
+        if(strlen($validacionPassword) <= 5 || strlen($validacionPassword) >= 18){
+          flash::error('Contraseña no valida')->important();
+          return redirect('Auth/usuario/'.$usuario->id.'/edit');
+        }else{
+           return redirect('Auth/usuario/'.$usuario->id.'/edit')->withErrors($validator)->withInput();
+        }
+      }else{
+        if($request->password !=null){
+          $usuario->password = bcrypt($request->password);
+        }
+        $email = $request->email;
+        $usuarioaux = User::search($email)->get();
+        if(sizeof($usuarioaux) == 0 ){
+          $usuario->email = $email;
+          $usuario->save();
+          flash::success('El usuario ha sido modificado satisfactoriamente')->important();
+          return redirect('Auth/usuario/'.$usuario->id.'/edit');
+        }else{
+          if($usuarioaux[0]->email == $emailaux){
+            $usuario->save();
+            flash::success('El usuario ha sido modificado satisfactoriamente')->important();
+            return redirect('Auth/usuario/'.$usuario->id.'/edit');
+          }else{
+            flash::warning('Correo en uso')->important();
+            return redirect('Auth/usuario/'.$usuario->id.'/edit');
+          }
+        }        
+      }
+    }else if($request->ventanaImagenPerfil == 10){
+      $usuario = User::find($id);
+      $path = public_path() . '/images/admins/';
+      $file = $request->file('imagenPerfil');
+      if($file!=null){// verifica que se haya subido una imagen nueva
+        //obtenemos el nombre del archivo
+        $perfilNombre = 'perfil_' . time() . '.' . $file->getClientOriginalExtension();
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        $file->move($path, $perfilNombre);
+        if($usuario->imagenPerfil != "perfilhombre.png" && $usuario->imagenPerfil != "perfil.jpg"){
+          $imagenActual = $path . $usuario->imagenPerfil;
+          unlink($imagenActual);
+        }
+        $usuario->imagenPerfil = $perfilNombre;
+      }
+      $usuario->save();
+      flash::success('La imagen de perfil ha sido modificada satisfactoriamente')->important();
+      return redirect('Auth/usuario/'.$usuario->id.'/edit');
     }
 
     if($request->ventanaFactura == 4){
@@ -2059,7 +2173,11 @@ class UsuariosController extends Controller
           $usuario->empresaActual= Auth::user()->empresaActual;
           $usuario->confirmoEmail = 1;
           $usuario->estado = true;
-          $usuario->imagenPerfil = "perfil.jpg";
+          if($usuario->sexo == "Femenino"){
+            $usuario->imagenPerfil = "perfil.jpg";
+          }else{
+            $usuario->imagenPerfil = "perfilhombre.png";
+          }
           $usuario->imagenNegocio = "perfil.jpg";
           $usuario->remember_token = str_random(100);
           $usuario->confirm_token = str_random(100);

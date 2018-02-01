@@ -52,8 +52,7 @@ public function __construct()
     }else{
       $producto = new Producto;
       $producto->id = 0;
-      $producto->nombre = "";
-      $producto->precio = "";
+      $producto->imagen = "admins/bar.png";
       $contienen = [];
       $insumos = [];
       $medidas = [];
