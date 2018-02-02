@@ -1,8 +1,17 @@
 @extends('Layout.app_administradores')
 @section('content')
-{!!Html::style('assets/css/main.css')!!}
-<!--<h1>Hola {{Auth::user()->nombrePersona}}</h1>
-<h2>Puede regalar: {{Auth::user()->obsequio}}</h2>-->
+
+{!!Html::style('assetsNew\styles/main.css')!!} <!--css para las gráficas -->
+{!!Html::style('assetsNew\styles/chartist.min.css')!!}
+{!!Html::style('assetsNew\styles/chartist-plugin-tooltip.css')!!}
+
+
+
+{!!Html::script('assetsNew\scripts/chartist/js/chartist.min.js')!!}<!-- javascript para las gráficas-->
+{!!Html::script('assetsNew\scripts/chartist-plugin-tooltip/chartist-plugin-tooltip.min.js')!!}
+{!!Html::script('assetsNew\scripts/chartist-plugin-axistitle/chartist-plugin-axistitle.min.js')!!}
+{!!Html::script('assetsNew\scripts/chartist-plugin-legend-latest/chartist-plugin-legend.js')!!}
+
 @if(Auth::User()->empresa->nombreEstablecimiento=='')
 	<div class='alert alert-warning alert-important'>
 		<p>Completa tu perfil aquí
@@ -111,7 +120,7 @@
           <a href="{{url('Estadisticas/')}}" class="right">Ver Todos los Reportes de Ventas</a>
         </div>
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-4">
             <div class="panel-content">
               <h3 class="heading"><i class="fa fa-square"></i>Ventas de Hoy</h3>
               <ul class="list-unstyled list-justify large-number">
@@ -120,9 +129,99 @@
               </ul>
             </div>
           </div>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <div class="panel-content">
-              <h3 class="heading"><i class="fa fa-square"></i> Rendimiento de ventas</h3>
+              <h3 class="heading"><i class="fa fa-square"></i> Ventas Recientes</h3>
+              <div class="table-responsive">
+                <table class="table table-striped no-margin">
+                  <thead>
+                    <tr>
+                      <th>Order No.</th>
+                      <th>Name</th>
+                      <th>Amount</th>
+                      <th>Date &amp; Time</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><a href="#">763648</a></td>
+                      <td>Steve</td>
+                      <td>$122</td>
+                      <td>Oct 21, 2016</td>
+                      <td><span class="label label-success">COMPLETED</span></td>
+                    </tr>
+                    <tr>
+                      <td><a href="#">763649</a></td>
+                      <td>Amber</td>
+                      <td>$62</td>
+                      <td>Oct 21, 2016</td>
+                      <td><span class="label label-warning">PENDING</span></td>
+                    </tr>
+                    <tr>
+                      <td><a href="#">763650</a></td>
+                      <td>Michael</td>
+                      <td>$34</td>
+                      <td>Oct 18, 2016</td>
+                      <td><span class="label label-danger">FAILED</span></td>
+                    </tr>
+                    <tr>
+                      <td><a href="#">763651</a></td>
+                      <td>Roger</td>
+                      <td>$186</td>
+                      <td>Oct 17, 2016</td>
+                      <td><span class="label label-success">SUCCESS</span></td>
+                    </tr>
+                    <tr>
+                      <td><a href="#">763652</a></td>
+                      <td>Smith</td>
+                      <td>$362</td>
+                      <td>Oct 16, 2016</td>
+                      <td><span class="label label-success">SUCCESS</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="panel-content">
+              <h3 class="heading"><i class="fa fa-square"></i> Rendimiento de ventas del mes</h3>
+              <div class="row">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>&nbsp;</th>
+                      <th>Última Semana</th>
+                      <th>Esta Semana</th>
+                      <th>Cambio</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Dinero</th>
+                      <td>${{$ventasSemana['ventaSemanaAnterior']}}</td>
+                      <td><span class="text-info">${{$ventasSemana['ventaSemanaActual']}}</span></td>
+                      <td><span @if($ventasSemana['porcentajeVentas']>=0) class="text-success" @else class="text-danger" @endif >{{$ventasSemana['porcentajeVentas']}}%</span></td>
+                    </tr>
+                    <tr>
+                      <th>Ventas</th>
+                      <td>{{$ventasSemana['cantidadVentasSemanaAnterior']}}</td>
+                      <td>
+                        <div class="text-info">{{$ventasSemana['cantidadVentasSemanaActual']}}</div>
+                      </td>
+                      <td><span @if($ventasSemana['porcentajeCantidadVentas']>=0) class="text-success" @else class="text-danger" @endif>{{$ventasSemana['porcentajeCantidadVentas']}}%</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="panel-content">
+              <h3 class="heading"><i class="fa fa-square"></i> Rendimiento de ventas de la Semana</h3>
               <div class="row">
                 <div class="col-md-6">
                   <table class="table">
@@ -163,11 +262,11 @@
       <!-- END SALES SUMMARY -->
       <!--ALGO -->
       <div class="dashboard-section">
-        <div class="section-heading clearfix">
-          <h2 class="section-title"><i class="fa fa-pie-chart"></i> Categorias más vendidas </h2>
-          <a href="{{url('Estadisticas/')}}" class="right">Ver más Reportes</a>
-        </div>
         <div class="panel-content">
+          <div class="section-heading clearfix">
+            <h2 class="section-title"><i class="fa fa-pie-chart"></i> Categorias más vendidas </h2>
+            <a href="{{url('Estadisticas/')}}" class="right">Ver más Reportes</a>
+          </div>
           <div class="row">
             @foreach($categoriasMasVendidas as $key => $categoria)
                 <div class="col-md-3 col-sm-6">
@@ -306,83 +405,15 @@
             </div>
             <!-- END REFERRALS -->
           </div> 
-          <div class="col-md-4">
-            <!-- TRAFFIC SOURCES -->
-            <div class="panel-content">
-              <h2 class="heading"><i class="fa fa-square"></i> Traffic Sources</h2>
-              <div id="demo-pie-chart" class="ct-chart"></div>
-            </div>
-            <!-- END TRAFFIC SOURCES -->
-          </div>
-        </div>
-      </div>
-      <!-- END ALGO -->
-      <div>
-        <div class="row">
           <div class="col-md-8">
             <div class="panel-content">
-              <h3 class="heading"><i class="fa fa-square"></i> Recent Purchases</h3>
-              <div class="table-responsive">
-                <table class="table table-striped no-margin">
-                  <thead>
-                    <tr>
-                      <th>Order No.</th>
-                      <th>Name</th>
-                      <th>Amount</th>
-                      <th>Date &amp; Time</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><a href="#">763648</a></td>
-                      <td>Steve</td>
-                      <td>$122</td>
-                      <td>Oct 21, 2016</td>
-                      <td><span class="label label-success">COMPLETED</span></td>
-                    </tr>
-                    <tr>
-                      <td><a href="#">763649</a></td>
-                      <td>Amber</td>
-                      <td>$62</td>
-                      <td>Oct 21, 2016</td>
-                      <td><span class="label label-warning">PENDING</span></td>
-                    </tr>
-                    <tr>
-                      <td><a href="#">763650</a></td>
-                      <td>Michael</td>
-                      <td>$34</td>
-                      <td>Oct 18, 2016</td>
-                      <td><span class="label label-danger">FAILED</span></td>
-                    </tr>
-                    <tr>
-                      <td><a href="#">763651</a></td>
-                      <td>Roger</td>
-                      <td>$186</td>
-                      <td>Oct 17, 2016</td>
-                      <td><span class="label label-success">SUCCESS</span></td>
-                    </tr>
-                    <tr>
-                      <td><a href="#">763652</a></td>
-                      <td>Smith</td>
-                      <td>$362</td>
-                      <td>Oct 16, 2016</td>
-                      <td><span class="label label-success">SUCCESS</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="panel-content">
-              <h3 class="heading"><i class="fa fa-square"></i> Top Products</h3>
+              <h3 class="heading"><i class="fa fa-square"></i> Top Productos</h3>
               <div id="chart-top-products" class="chartist"></div>
             </div>
           </div>
         </div>
       </div>
-      <!-- CAMPAIGN -->
+      <!-- END ALGO -->
       <div class="dashboard-section">
         <div class="section-heading clearfix">
           <h2 class="section-title"><i class="fa fa-flag-checkered"></i> Campaign</h2>
@@ -484,13 +515,13 @@
       return a + b;
     };
 
-    new Chartist.Pie('#demo-pie-chart', dataPie, {
+    /*new Chartist.Pie('#demo-pie-chart', dataPie, {
       height: "290px",
       labelInterpolationFnc: function(value, idx) {
         var percentage = Math.round(value / dataPie.series.reduce(sum) * 100) + '%';
         return labels[idx] + ' (' + percentage + ')';
       }
-    });
+    });*/
 
 
     // progress bars
