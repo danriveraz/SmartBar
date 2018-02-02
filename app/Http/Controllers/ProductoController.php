@@ -48,7 +48,7 @@ class ProductoController extends Controller
     $count = 0;
     foreach ($contenido as $contiene) {
       $insumo = Insumo::find($contiene->idInsumo);
-      $datos = array_add($datos, $count,[$contiene->cantidad, $insumo->nombre]);
+      $datos = array_add($datos, $count,[$contiene->cantidad, $insumo->nombre, $insumo->medida]);
       $count++;
     }
     return json_encode($datos);

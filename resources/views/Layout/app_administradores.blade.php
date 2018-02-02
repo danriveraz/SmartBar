@@ -224,7 +224,7 @@
                   </ul>
                 </li>
                 <li class="dropdown messages hidden-xs">
-                  <a data-target="{{url('Mensajes')}}" class="dropdown-toggle" data-toggle="dropdown" href="{{url('Mensajes')}}">
+                  <a data-target="{{url('Mensajes')}}" class="dropdown-toggle" href="{{url('Mensajes')}}">
                     <span aria-hidden="true" class="hightop-envelope">
                   </span>
                     <div class="sr-only">

@@ -23,6 +23,9 @@ Route::get('/PocketClub', 'HomeController@PocketClub');
 
 Route::get('/politicas', 'HomeController@politicas');
 
+Route::get('/contactos', 'HomeController@contactos');
+
+
 Route::get('Auth/register', 'Auth\AuthController@getRegister');
 Route::post('Auth/register', 'Auth\AuthController@postRegister');
 
