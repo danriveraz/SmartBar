@@ -267,11 +267,6 @@
                       </i>Facturación</a>
                     </li>
                     <li>
-                      <a href="{{url('producto/recetas')}}">
-                      <i class="fa fa-book">
-                      </i>Recetas</a>
-                    </li>
-                    <li>
                       <a href="login1.htm">
                       <i class="fa fa-question">
                       </i>Ayuda</a>

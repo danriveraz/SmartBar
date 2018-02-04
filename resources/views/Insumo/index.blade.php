@@ -48,10 +48,10 @@
 		                  <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->proveedor->nombre}}</td>
 		                  <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->valorCompra}}</td>
 		                  <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->precioUnidad}}</td>
-		                  <td id="{{$insumo->id}}" class="seleccionar">{{number_format($insumo->cantidadMedida,3)}}</td>
+		                  <td id="{{$insumo->id}}" class="seleccionar">{{number_format($insumo->cantidadMedida,2)}}</td>
 		                  <td id="{{$insumo->id}}" class="seleccionar">
 		                  	<span class="label label-Pocket">
-		                  		<b><?php if($insumo->medida == "0"){echo "Oz";}else{echo "Unidad";}?></b>
+		                  		<b><?php if($insumo->medida == "0"){echo "Onza";}else{echo "Unidad";}?></b>
 		                  	</span>
 		                  </td>
 		                  <td>
@@ -99,6 +99,12 @@
 		                                </div>
 		                                <div class="col-md-4 ">
 		                                  <div class=" bs-example">
+		                                    <div id="divcantidad{{$insumo->id}}" class="form-group">
+		                                      <div class="input-group">
+		                                        <span id="icoCantidad" class="input-group-addon"><i class="fa fa-superscript"></i></span>
+		                                        <input type="number" id="unidades{{$insumo->id}}" name="unidades{{$insumo->id}}" min="0" placeholder="Cantidad" class="form-control" value="{{$insumo->cantidadUnidad}}"/>
+		                                      </div>
+		                                    </div>
 		                                    <div class="form-group">
 		                                      <div class="input-group">
 		                                        <span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
@@ -125,28 +131,6 @@
 												</select>
 		                                      </div>
 		                                    </div>
-		                                    <div id="divcantidad{{$insumo->id}}" class="form-group" <?php if($insumo->medida == "1") echo'style="display:none;"' ?>>
-		                                      <div class="input-group">
-		                                        <span id="icoCantidad" class="input-group-addon"><i class="fa fa-superscript"></i></span>
-		                                        <input type="number" id="unidades{{$insumo->id}}" name="unidades{{$insumo->id}}" min="0" placeholder="Cantidad" class="form-control" value="{{$insumo->cantidadUnidad}}"/>
-		                                      </div>
-		                                    </div>
-		                                   
-		                                    <div class="form-group text-center">
-	                                    	  <label> 
-			                                      <input type="checkbox" name="tipo" id="stipo{{$insumo->id}}" <?php if($insumo->tipo == "1") echo "checked";?> onchange="showContent({{$insumo->id}})" />
-			                                      <span></span>
-		                                      </label>
-		                                      <label for="tipo" class="control-label"> Añadir a mi carta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-		                                    </div>
-		                                    <div id="scontent{{$insumo->id}}" <?php if($insumo->tipo == "0") echo "hidden";?>>
-		                                      <label for="categorias" class="control-label">Categor&iacutea</label>
-												<select id="categoria{{$insumo->id}}" class="select2able">
-													@foreach($categorias as $categoria)
-														<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
-													@endforeach
-												</select>
-		                                    </div>
 		                                  </div>
 		                                </div>
 		                                <div class="col-md-4">
@@ -164,21 +148,35 @@
 		                                      </div>
 		                                    </div>
 		                                    <div class="form-group">
-		                                      <div class="input-group">
+		                                      <div class="input-group col-lg-7" style="padding-left: 0px">
 		                                        <span class="input-group-addon"><i class="fa fa-eyedropper"></i></span>
-		                                        <input type="number" id="cantMedida{{$insumo->id}}" min="0" step="any" placeholder="Contenido" name="cantidadMedida" class="form-control" value="{{$insumo->cantidadMedida}}"/>
+		                                        <input type="number" id="cantMedida{{$insumo->id}}" min="0" step="any" placeholder="Contenido" name="cantidadMedida" class="form-control" value="{{$insumo->cantidadMedida}}" <?php if($insumo->medida == "1") echo'disabled' ?> />
 		                                      </div>
-		                                    </div>
-		                                    <div class="form-group">
-		                                      <div class="input-group">
+		                                      <div class="input-group col-lg-5" style="padding-right: 0px">
 		                                        <span class="input-group-addon"><i class="fa fa-hourglass-half"></i></span>
 		                                        <select name="medida" id="medida{{$insumo->id}}" class="select2able" onchange="editValor(this.value,{{$insumo->id}});"> 
-			                                        <option value="2" <?php if($insumo->medida =="2") echo "selected";?>>Mililitro</option> 
-			                                        <option value="3" <?php if($insumo->medida =="3") echo "selected";?>>Cm3</option> 
-			                                        <option value="0" <?php if($insumo->medida =="0") echo "selected";?>>Oz</option>
-			                                        <option value="1" <?php if($insumo->medida =="1") echo "selected";?>>Unidad</option>
+			                                        <option value="2">Mililitro</option> 
+			                                        <option value="3">Cm3</option>
+			                                        <option value="4">Centilitro</option>
+			                                        <option value="0" <?php if($insumo->medida == "0") echo "selected";?>>Onza</option>
+			                                        <option value="1" <?php if($insumo->medida == "1") echo "selected";?>>Unidad</option>
 		                                        </select>
 		                                      </div>
+		                                    </div>		                                   
+		                                    <div class="form-group text-center">
+	                                    	  <label> 
+			                                      <input type="checkbox" name="tipo" id="stipo{{$insumo->id}}" <?php if($insumo->tipo == "1") echo "checked";?> onchange="showContent({{$insumo->id}})" />
+			                                      <span></span>
+		                                      </label>
+		                                      <label for="tipo" class="control-label"> Añadir a mi carta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		                                    </div>
+		                                    <div id="scontent{{$insumo->id}}" <?php if($insumo->tipo == 0) echo "hidden";?>>
+		                                      <label for="categorias" class="control-label">Categor&iacute;a</label>
+												<select id="categoria{{$insumo->id}}" class="select2able">
+													@foreach($categorias as $categoria)
+														<option value="{{$categoria->id}}" <?php if($insumo->medida == "0") echo "selected";?>>{{$categoria->nombre}}</option>
+													@endforeach
+												</select>
 		                                    </div>
 		                                    
 		                                  </div>
@@ -245,6 +243,12 @@
                     <div class=" bs-example">
                       <div class="form-group">
                         <div class="input-group">
+                          <span id="iconCantidad" class="input-group-addon"><i class="fa fa-sort-numeric-asc"></i></span>
+                          <input type="number" min="0" name="cantidadUnidad" id="cantidadUnidad" class="form-control" required placeholder="Cantidad" >
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
                           <span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
                           <input type="text" name="nombre" class="form-control" placeholder="Nombre" placeholder="Nombre" required="true"/>
                         </div>
@@ -265,29 +269,6 @@
 							</select>
                         </div>
                       </div>
-                      <div id="divcantidad" class="form-group">
-                        <div class="input-group">
-                          <span id="iconCantidad" class="input-group-addon"><i class="fa fa-superscript"></i></span>
-                          <input type="number" min="0" name="cantidadUnidad" id="cantidadUnidad" class="form-control" required="false" placeholder="Cantidad" >
-                        </div>
-                      </div>
-                      <div class="form-group text-center">
-                      	<label> 
-	                        <input type="checkbox" name="tipo" id="stipo" value="1" onchange="showContent('')"/>
-	                        <span></span>
-                        </label>
-                        <label for="tipo" class="control-label"> Añadir a la carta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                      </div>
-                      <div class="form-group">
-                        <div id="scontent" style="display: none;">
-                          <label for="categorias" class="control-label">Categoría</label>
-                          <select name="categorias" class="select2able">
-								@foreach($categorias as $categoria)
-									<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
-								@endforeach
-						  </select>
-                        </div>
-                      </div>
                     </div>
                   </div>
                   <div class="col-md-4">
@@ -305,20 +286,36 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="input-group">
+                        <div class="input-group col-lg-7" style="padding-left: 0px;">
                           <span class="input-group-addon"><i class="fa fa-eyedropper"></i></span>
-                          <input type="number" step="any" min="0" id="cantidadMedida" name="cantidadMedida" placeholder="Contenido" class="form-control" required="true" />
+                          <input type="number" step="any" min="0" id="cantidadMedida" name="cantidadMedida" placeholder="Contenido" class="form-control" required="true"/>
                         </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-hourglass-half"></i></span>
+                        <div class="input-group col-lg-5" style="padding-right: 0px">
                           <select name="medida" class="select2able" onchange="valor(this.value);"> 
                             <option value="ml">Mililitro</option> 
-                            <option value="cm3">Cm3</option> 
-                            <option value="oz">Oz</option>
+                            <option value="cm3">Cm3</option>
+                            <option value="cl">Centilitro</option>
+                            <option value="oz">Onza</option>
                             <option value="unidad">Unidad</option>
                           </select>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="form-group text-center">
+                      	<label> 
+	                        <input type="checkbox" name="tipo" id="stipo" value="1" onchange="showContent('')"/>
+	                        <span></span>
+                        </label>
+                        <label for="tipo" class="control-label"> Añadir a la carta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                      </div>
+                      <div class="form-group">
+                        <div id="scontent" style="display: none;">
+                          <label for="categorias" class="control-label">Categoría</label>
+                          <select name="categorias" class="select2able">
+								@foreach($categorias as $categoria)
+									<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+								@endforeach
+						  </select>
                         </div>
                       </div>
                     </div>
@@ -388,27 +385,19 @@
 
   var valor = function(x){
     if(x == 'unidad'){
-      document.getElementById('divcantidad').style.display='none';
-      document.getElementById('cantidadUnidad').value = 1;
-      document.getElementById('cantidadMedida').placeholder ="Cantidad";
+      document.getElementById('cantidadMedida').disabled = true;
+      document.getElementById('cantidadMedida').value = 1;
     }else{
-      document.getElementById('divcantidad').style.display='block';
-      document.getElementById('cantidadUnidad').value = null;
-      document.getElementById('cantidadMedida').placeholder ="Contenido";
+      document.getElementById('cantidadMedida').disabled = false;
     }
   };
 
   var editValor = function(x,id){
     if(x == '1'){
-      document.getElementById('divcantidad'+id).style.display='none';
-      document.getElementById('unidades'+id).value = 1;
-      document.getElementById('cantMedida'+id).placeholder ="Cantidad";
-      $("#label"+id).text('Cantidad');
+    	document.getElementById('cantMedida'+id).disabled = true;
+      document.getElementById('cantMedida'+id).value = 1;
      }else{
-      document.getElementById('divcantidad'+id).style.display='block';
-      document.getElementById('unidades'+id).value = null;
-      document.getElementById('cantMedida'+id).placeholder ="Contenido";
-      $("#label"+id).text('Contenido');
+      document.getElementById('cantMedida'+id).disabled = false;
     }
   };
 
@@ -435,18 +424,23 @@
     }
 
     if(medida == '2' || medida == '3'){
-      var cantidad = parseFloat(cantMedida)/30;
+      var cantidad = parseFloat(cantMedida)*0.033814;
       cantMedida = cantidad;
-      medida = '0';
+      medida = 0;
+    }
+    else if(medida == '4'){
+      var cantidad = parseFloat(cantMedida)*0.33814;
+      cantMedida = cantidad;
+      medida = 0;
     }
     else if(medida == '1'){
       unidades = 1;
     }
     else{
-      medida = '0';
+      medida = 0;
     }
 
-    cantMedida = parseFloat(cantMedida).toFixed(3);
+    cantMedida = parseFloat(cantMedida).toFixed(2);
     
     $.ajax({
       url: routeModificar,
@@ -456,7 +450,6 @@
         nombre: nombre,
         marca: marca,
         proveedor: proveedor,
-        nommbreProveedor: nombreProveedor,
         unidades: unidades,
         compra: compra,
         venta: venta,
@@ -482,8 +475,8 @@
           }else if(indextd == 6){
             $(this).text(cantMedida);
           }else if(indextd == 7){
-            if(medida == '0'){
-              $(this).html('<span class="label label-Pocket"><b>Oz</b></span>');
+            if(medida == 0){
+              $(this).html('<span class="label label-Pocket"><b>Onza</b></span>');
             }else{
               $(this).html('<span class="label label-Pocket"><b>Unidad</b></span>');
             }
@@ -491,7 +484,7 @@
         });
       },
       error: function(data){
-        alert('Error al modificar insumo');
+        alert('Ooops disculpanos, hemos tenido un error al modificar tu insumo');
       }
     });
   }
@@ -506,9 +499,10 @@
         },
         success: function(){
             $("#"+idInsumo).remove();
+            alert("Insumo eliminado exitosamente.");
         },
         error: function(data){
-          alert('No se puede eliminar el insumo, porque es ingrediente de un producto.');
+          alert('No se puede eliminar el insumo porque es ingrediente de algún producto.');
         }
       });
     }

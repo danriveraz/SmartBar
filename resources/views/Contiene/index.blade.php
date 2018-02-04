@@ -150,7 +150,7 @@
                         {{$insumo->marca}}
                       </td>
                       <td>
-                        <input type="number" class="Titulo-css" id="{{$insumo->id}}" placeholder="Ingrese Cantidad" />
+                        <input type="number" class="Titulo-css" id="{{$insumo->id}}" onkeypress="tecla(event,{{$insumo}})" placeholder="Ingrese Cantidad" />
                       </td>
                       <td class="text-center">
                         {{$insumo->cantidadRestante}}
@@ -240,11 +240,11 @@
   var routeEliminar = "http://localhost/PocketByR/public/contiene/eliminar";
   var routeGuardar = "http://localhost/PocketByR/public/contiene/guardar";
 
-  /*function tecla(e,insumo){
+  function tecla(e,insumo){
     if(e.which == 13){
       adicionarInsumo(insumo);
     }
-  }*/
+  }
 
   function adicionarInsumo(insumo){
     var cantidad = $("#"+insumo.id).val();

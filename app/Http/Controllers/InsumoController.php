@@ -54,12 +54,12 @@ class InsumoController extends Controller
 
     
     $insumo->cantidadMedida = $request->cantMedida;
-    $insumo->cantidadRestante = $request->cantMedida;
+    $insumo->cantidadRestante = $request->cantMedida*$request->unidades;
 
 
     if($insumo->tipo != $request->tipo){
       $insumo->tipo = $request->tipo;
-      if($request->tipo == '1'){
+      if($request->tipo == 1){
         $producto = new Producto;
         $producto->nombre = $request->nombre;
         $producto->precio = $request->venta;
@@ -72,9 +72,9 @@ class InsumoController extends Controller
         $contiene->idInsumo = $insumo->id;
         $contiene->cantidad = $insumo->cantidadMedida;
         $contiene->idEmpresa = $userActual->empresaActual;
-        $contiene->save();        
+        $contiene->save();
       }else{
-        $producto = Producto::Nombre($request->nombre)->first();
+        $producto = Producto::Nombre($nombre)->where('idEmpresa',$userActual->empresaActual)->first();
         $contenido = Contiene::IdProducto($producto->id)->get();
         foreach($contenido as $contiene){
           $contiene->delete();
@@ -82,8 +82,8 @@ class InsumoController extends Controller
         $producto->delete();
       }
     }
-    else if($request->tipo == '1'){
-      $producto = Producto::Nombre($nombre)->first();
+    else if($request->tipo == 1){
+      $producto = Producto::Nombre($nombre)->where('idEmpresa',$userActual->empresaActual)->first();
       $producto->nombre = $request->nombre;
       $producto->precio = $request->venta;
       $producto->idCategoria = $request->categoria;
@@ -118,19 +118,23 @@ class InsumoController extends Controller
 
       if ($request->medida == 'ml' || $request->medida == 'cm3') {
         $insumo->medida = false;
-        $insumo->cantidadMedida = $request->cantidadMedida/30;
-        $insumo->cantidadRestante = $request->cantidadMedida/30;
+        $insumo->cantidadMedida = $request->cantidadMedida*0.033814;
+        $insumo->cantidadRestante = ($request->cantidadMedida*0.033814)*$request->cantidadUnidad;
+      }
+      elseif ($request->medida == 'cl'){
+        $insumo->medida = false;
+        $insumo->cantidadMedida = $request->cantidadMedida*0.33814;
+        $insumo->cantidadRestante = ($request->cantidadMedida*0.33814)*$request->cantidadUnidad;
       }
       elseif ($request->medida == 'unidad') {
-        $insumo->cantidadUnidad = 1;
         $insumo->medida = true;
-        $insumo->cantidadMedida = $request->cantidadMedida;
-        $insumo->cantidadRestante = $request->cantidadMedida;
+        $insumo->cantidadMedida = 1;
+        $insumo->cantidadRestante = $request->cantidadUnidad;
       }
       else{
         $insumo->medida = false;
         $insumo->cantidadMedida = $request->cantidadMedida;
-        $insumo->cantidadRestante = $request->cantidadMedida;
+        $insumo->cantidadRestante = $request->cantidadMedida*$request->cantidadUnidad;
       }
 
       if($request->tipo == null){
