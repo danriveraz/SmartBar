@@ -1,9 +1,9 @@
 @extends('Layout.app_administradores')
 @section('content')
 
-{!!Html::style('assetsNew\styles/main.css')!!} <!--css para las gráficas -->
-{!!Html::style('assetsNew\styles/chartist.min.css')!!}
+{!!Html::style('assetsNew\styles/chartist.min.css')!!}<!--css para las gráficas -->
 {!!Html::style('assetsNew\styles/chartist-plugin-tooltip.css')!!}
+{!!Html::style('assetsNew\styles/main.css')!!} 
 
 
 
@@ -11,6 +11,7 @@
 {!!Html::script('assetsNew\scripts/chartist-plugin-tooltip/chartist-plugin-tooltip.min.js')!!}
 {!!Html::script('assetsNew\scripts/chartist-plugin-axistitle/chartist-plugin-axistitle.min.js')!!}
 {!!Html::script('assetsNew\scripts/chartist-plugin-legend-latest/chartist-plugin-legend.js')!!}
+
 
 @if(Auth::User()->empresa->nombreEstablecimiento=='')
 	<div class='alert alert-warning alert-important'>
@@ -585,17 +586,13 @@
 
     // top products
     var dataStackedBar = {
-      labels: ['Q1', 'Q2', 'Q3'],
-      series: [
-        [800000, 1200000, 1400000],
-        [200000, 400000, 500000],
-        [100000, 200000, 400000]
-      ]
+      labels: ['Producto 1', 'Producto 2', 'Producto 3'],
+      series: [800000, 1200000, 1400000]
     };
 
     new Chartist.Bar('#chart-top-products', dataStackedBar, {
       height: "280px",
-      stackBars: true,
+      stackBars: false,
       axisX: {
         showGrid: false
       },
@@ -604,18 +601,16 @@
           return (value / 1000) + 'k';
         }
       },
+      distributeSeries: true,
       plugins: [
         Chartist.plugins.tooltip({
           appendToBody: true
-        }),
-        Chartist.plugins.legend({
-          legendNames: ['Phone', 'Laptop', 'PC']
         })
       ]
     }).on('draw', function(data) {
       if (data.type === 'bar') {
         data.element.attr({
-          style: 'stroke-width: 30px'
+          style: 'stroke-width: 50px'
         });
       }
     });

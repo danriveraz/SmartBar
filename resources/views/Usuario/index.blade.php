@@ -4,13 +4,17 @@
   .PocketA:hover {
     color: #FFFFFF;
     text-decoration: none; }
-
-  
+  .Deshabilitado{
+    background: rgb(177, 169, 169) !important;
+  }
 </style>
 
 
 @extends('Layout.app_administradores')
 @section('content')
+
+{!!Html::script('assetsNew\scripts/notify.min.js')!!} <!---->
+
 <!--Barra de título y botones de busqueda-->
 <div id="page-content">
   <div class="col-lg-12">
@@ -77,14 +81,19 @@
 
 
             <div class="widget-container fluid-height clearfix ">
+              @if($usuario->estado == 1) 
+                <div class="heading Habilitado">
+                  <a href="{{url('Auth/usuario/'.$usuario->id.'/active')}}"><i   data-toggle="tooltip" data-placement="left" title="Deshabilitar" class="pocketMorado fa fa-times pull-right" ></i></a>
+              @else 
+                <div class="heading Deshabilitado">
+                  <a href="{{url('Auth/usuario/'.$usuario->id.'/active')}}"><i   data-toggle="tooltip" data-placement="left" title="Habilitar" class="pocketMorado fa fa-check pull-right" ></i></a>
+              @endif
 
-            <div class="heading">
-              <!--<i class="pocketMorado fa fa-times pull-right"></i>-->
-              <a href="{{url('Auth/usuario/'.$usuario->id.'/active')}}"><i class="pocketMorado fa fa-times pull-right" ></i></a>
-              <!--<a href="{{url('Auth/usuario/'.$usuario->id.'/edit')}}"><i class="fa fa-gear  pull-right"></i></a>-->
-            </div>
+              </div>
               
-              <div class="profile-info clearfix padded3">
+              <div class="profile-info clearfix padded3 @if($usuario->estado == 1) Habilitado
+                                                        @else Deshabilitado
+                                                        @endif" data-toggle="modal" href="#myModal{{$usuario->id}}">
                 <div class="social-avatar">
                   <img width="70" height="70" class="avatar" src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
                 </div>
@@ -255,8 +264,8 @@
                   <label class="checkbox">{!! Form::checkbox('Obsequiar', 'Obsequiar', $usuario->obsequio) !!}<span>Activar Para Obsequiar</span></label>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="form-group">
+              <div class="col-md-4" style="height: 300px;>
+                <div class="form-group" >
                   <input  style="background-color: #4f0157;" type="file" class="file" data-upload-url="#">
                 </div>
               </div>
@@ -365,8 +374,8 @@
                             <a onclick="$('#eliminarImagen').click()">
                               <i class="fa fa-trash-o"></i>
                             </a>
-                            <a  id="modalImagen" href="http://www.pocketsmartbar.com/images/logo.png" title="Sin imagen">
-                              <img src="http://www.pocketsmartbar.com/images/logo.png" hidden>
+                            <a  id="modalImagen" href="{{asset("images/logo.png")}}" title="Sin imagen">
+                              <img src="{{asset("images/logo.png")}}" hidden>
                               <i class="fa fa-search-plus"></i>
                             </a>
                             <a onclick="$('#imagenPerfil').click()">
@@ -490,6 +499,11 @@
 {!!Html::script('javascripts/notificaciones/notificationFx.js')!!}
 <script type="text/javascript">
 
+
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
   $(document).ready(function() { // función para elfancybox, o sea lo que carga la imagen en un modal
       $("#modalImagen").fancybox({
             helpers: {
@@ -588,7 +602,35 @@ $("#registrarUsuario").click(function(){
            }if(usuarioNuevo.esCajero){
               permisoQueTiene += ' Cajero';
            }
-           var $link = $('<div class=" item row widget-container fluid-height"> <div class="heading"><i class="fa fa-times pull-right"></i><i class="fa fa-eye  pull-right" data-toggle="modal" href="#myModal'+usuarioNuevo.id+'"></i><a href="http://localhost/PocketByR/public/Auth/usuario/'+usuarioNuevo.id+'/edit"><i class="fa fa-gear  pull-right"></i></a></div><div class="widget-container fluid-height clearfix "><div class="profile-info clearfix padded3"><img width="70" height="70" class="social-avatar pull-left" src="http://localhost/PocketByR/public/images/admins/'+usuarioNuevo.imagenPerfil+'"><div class="profile-details"><strong><a class="user-name" >'+usuarioNuevo.nombrePersona+'</a></strong><br>'+permisoQueTiene+'<br><em><i class="fa fa-list-alt "></i>'+usuarioNuevo.cedula+'</em>&nbsp&nbsp<em><i class="fa fa-phone "></i>'+usuarioNuevo.telefono+'</em></div></div><div class="widget-content padded2 colorpocket"><div class="dg btn-group dropup"><button class="btn btn-pocket dropdown-toggle" data-toggle="dropdown">Control<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#"><i class="fa fa-clock-o pull-left"></i>Horas Ingreso</a></li><li><a href="#"><i class="fa fa-bar-chart-o pull-left"></i>Estadisticas</a></li><li><a href="#"><i class="fa fa-money pull-left"></i>Salario</a></li></ul></div><button class="dg btn btn-pocket"><i class="fa fa-calendar-o"></i>Agenda</button><button class="dg btn btn-pocket"><i class="fa fa-envelope-o"></i>Mensaje</button></div></div></div>');
+
+          var cadenaToTag = '<div class=" item row widget-container fluid-height">'+
+          '  <div class="widget-container fluid-height clearfix ">'+
+          '      <div class="heading Habilitado">'+
+          '        <a href="{{url("Auth/usuario")}}'+usuarioNuevo.id+'/active"><i data-toggle="tooltip" data-placement="left" title="Deshabilitar" class="pocketMorado fa fa-times pull-right" ></i></a>'+
+          '      </div>'+
+          '    <div class="profile-info clearfix padded3 Habilitado" data-toggle="modal" href="#myModal'+usuarioNuevo.id+'">'+
+          '      <div class="social-avatar">'+
+          '        <img width="70" height="70" class="avatar" src="{{asset("images/admins/")}}/'+usuarioNuevo.imagenPerfil+'">'+
+          '      </div>'+
+          '        <div class="profile-details">'+
+          '          <strong><a class="pocketMorado user-name" >'+usuarioNuevo.nombrePersona+'</a></strong><br>'+permisoQueTiene+''+
+          '          <i class="fa fa-check-circle"></i>'+usuarioNuevo.salario+''+
+          '        </div>'+
+          '    </div>'+
+          '    <div class="widget-content padded3 colorpocket">'+
+          '  <div class="col-md-4 colorpocket"></div>'+
+          '      <div class="col-md-8 colorpocket"> '+
+          '        <div class="headingPocket">'+
+          '          <div data-toggle="modal" href="#ModalMsg'+usuarioNuevo.id+'">'+
+          '            <a class="PocketA"><i class="fa fa-comments pull-right"></i></a></div>'+
+          '            <a class="PocketA" href="{{ url("Agenda/") }}"><i class="fa fa-calendar-check-o pull-right"></i></a>'+
+          '            <a class="PocketA" href="{{url("Estadisticas/")}}"><i class="fa fa-bar-chart pull-right"></i></a>'+
+          '        </div>'+
+          '      </div>  '+
+          '    </div>'+
+          '  </div>'+
+          '</div>';
+           var $link = $(cadenaToTag);
            $("#social-container").isotope('insert', $link);// añadir al isotope de usuarios
            $("#nombrePersona").val("");
            $("#cedula").val("");
@@ -615,13 +657,7 @@ $("#registrarUsuario").click(function(){
                 for(var k in error.message){
                     if(error.message.hasOwnProperty(k)){
                         error.message[k].forEach(function(val){
-                            var notification = new NotificationFx({
-                              message : val,
-                              layout : 'growl',
-                              effect : 'genie',
-                              type : 'warning',
-                            });
-                            notification.show();
+                          $.notify(val, "info");
                         });
                     }
                 }
