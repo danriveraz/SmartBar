@@ -255,7 +255,7 @@
                       </div>
                       <div class="form-group">
                         <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-commenting-o"></i></span>
+                          <span class="input-group-addon"><i class="fa fa-tags"></i></span>
                           <input type="text" name="marca" class="form-control" placeholder="Marca" placeholder="Marca"/>
                         </div>
                       </div>
@@ -275,19 +275,19 @@
                     <div class=" bs-example">
                       <div class="form-group">
                         <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                          <span class="input-group-addon"><i class="fa fa-meetup"></i></span>
                           <input type="number" step="any" min="0" name="valorCompra" class="form-control" required="true" placeholder="Costo" onkeyup="autocompletar(event,this,0)">
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                          <span class="input-group-addon"><i class="fa fa-grav"></i></span>
                           <input type="number" step="any" min="0" name="precioUnidad" class="form-control" required="true" placeholder="Venta" onkeyup="autocompletar(event,this,1)">
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="input-group col-lg-7" style="padding-left: 0px;">
-                          <span class="input-group-addon"><i class="fa fa-eyedropper"></i></span>
+                          <span class="input-group-addon"><i class="fa fa-stack-overflow"></i></span>
                           <input type="number" step="any" min="0" id="cantidadMedida" name="cantidadMedida" placeholder="Contenido" class="form-control" required="true"/>
                         </div>
                         <div class="input-group col-lg-5" style="padding-right: 0px">

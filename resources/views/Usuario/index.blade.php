@@ -34,7 +34,7 @@
                 <a data-filter=".Deshabilitado"><i class="fa fa-times"></i>Deshabilitados</a>
               </li>
               <li>
-                <a data-filter=".Administrador"><i class="fa fa-imdb"></i>Administradores</a>
+                <a data-filter=".Administrador"><i class="fa fa-group"></i>Administradores</a>
               </li>
               <li>
                 <a data-filter=".Bartender"><i class="fa fa-imdb"></i>Bartenders</a>
@@ -406,7 +406,7 @@
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-phone-square"></i></span>
                     <input class="form-control" placeholder="Teléfono" type="text">
                   </div>
                 </div>
@@ -426,7 +426,7 @@
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-map"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                     <input class="form-control" name="direccion" placeholder="Dirección" type="text">
                   </div>
                 </div>

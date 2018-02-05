@@ -213,7 +213,7 @@
 
                 <li>
                   <a id="informacion" href="{{url('Estadisticas/')}}">
-                  <span aria-hidden="true" class="fa fa-fw fa-bar-chart-o">
+                  <span aria-hidden="true" class="fa fa-fw fa-line-chart">
                   </span>Informacion</a>
                 </li>
                 

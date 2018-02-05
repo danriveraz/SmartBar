@@ -250,20 +250,20 @@
               @if(Auth::User()->esMesero)
                 <li>
                   <a id="mesero" href="{{url('mesero/')}}">
-                  <span aria-hidden="true" class="fa fa-fw fa-group"></span>Mesas</a>
+                  <span aria-hidden="true" class="fa fa-fw fa-houzz"></span>Mesas</a>
                 </li>
               @endif
               @if(Auth::User()->esBartender)
               <li>
               <a id="bartender" href="{{url('bartender/')}}">
-                <span aria-hidden="true" class="fa fa-fw fa-glass"></span>Bartender</a>
+                <span aria-hidden="true" class="fa fa-fw fa-imdb"></span>Bartender</a>
                 <p id="aviso1"></p>
               </li>
               @endif
               @if(Auth::User()->esCajero)
               <li class="dropdown">
               <a id="cajero" href="{{url('cajero/')}}">
-                <span aria-hidden="true" class="fa fa-fw fa-list"></span>Caja</a>
+                <span aria-hidden="true" class="fa fa-fw fa-wpbeginner"></span>Caja</a>
               </li>
               @endif
             
