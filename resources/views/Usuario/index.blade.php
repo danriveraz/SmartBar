@@ -5,7 +5,7 @@
     color: #FFFFFF;
     text-decoration: none; }
   .Deshabilitado{
-    background: rgb(177, 169, 169) !important;
+    background: rgb(230, 230, 230) !important;
   }
 </style>
 
