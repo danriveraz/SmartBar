@@ -17,6 +17,7 @@ use PocketByR\Proveedor;
 use PocketByR\Insumo;
 use PocketByR\Producto;
 use PocketByR\Contiene;
+use Illuminate\Support\Facades\Log;
 
 class UsuariosController extends Controller
 {
@@ -2194,12 +2195,12 @@ class UsuariosController extends Controller
             $usuario->imagenPerfil = $nombre;// guarda la imagen en la base de datos
           }
 
-          foreach ($Permisos as $key => $value) {
+          foreach ($Permisos as $key => $value) {// asignar los permisos o cargos
             if($value=='Administrador'){
                   $usuario->esMesero = 1;
                   $usuario->esBartender = 1;
                   $usuario->esCajero = 1;
-                  $usuario->esAdmin = 1;
+                  $usuario->esAdmin = 2;
                   $usuario->obsequio = 1;
             }else{
               if($value=='Mesero'){
@@ -2211,7 +2212,16 @@ class UsuariosController extends Controller
               }
             }
           }
-          if($request['regalar']){
+
+          if($request['permisoPrincipal']=='Mesero'){ //asignar el permiso principal o cargo principal
+              $usuario->esMesero = 2;
+          }if($request['permisoPrincipal']=='Cajero'){
+              $usuario->esCajero = 2;
+          }if($request['permisoPrincipal']=='Bartender'){
+              $usuario->esBartender = 2;
+          }
+
+          if($request['regalar']){ // asignar el permiso de regalar 
             $usuario->obsequio = 1;
           }
           $userActual = Auth::user();

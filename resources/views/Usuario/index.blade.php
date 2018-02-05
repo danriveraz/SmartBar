@@ -99,13 +99,28 @@
                 </div>
                   <div class="profile-details">
                     <strong><a class="pocketMorado user-name" >{{$usuario->nombrePersona}}</a></strong><br>
-                      @if($usuario->esAdmin == 1) Administrador
+                      @if($usuario->esAdmin == 2) <strong  style="font-size: 16px !important">Administrador</strong> 
                       @else
-                        @if($usuario->esMesero != 0) Mesero
+                        @if($usuario->esMesero != 0) 
+                          @if($usuario->esMesero != 1)
+                            <strong style="font-size: 16px !important">Mesero</strong> 
+                          @else
+                            Mesero
+                          @endif
                         @endif
-                        @if($usuario->esBartender != 0) Bartender
+                        @if($usuario->esBartender != 0)
+                          @if($usuario->esBartender != 1)
+                            <strong style="font-size: 16px !important">Bartender</strong> 
+                          @else
+                            Bartender
+                          @endif 
                         @endif
-                        @if($usuario->esCajero != 0) Cajero
+                        @if($usuario->esCajero != 0) 
+                          @if($usuario->esCajero != 1)
+                            <strong style="font-size: 16px !important">Cajero</strong> 
+                          @else
+                            Cajero
+                          @endif 
                         @endif
                       @endif
                     <br>
@@ -358,7 +373,7 @@
             <i class=" pocketMorado fa fa-shield"></i>&nbsp;Nuevo Empleado
           </div>
           <div class="widget-content padded">
-            <form id="checkbox">
+            <form id="formslider">
             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
             <fieldset>
             <div class="row">
@@ -446,9 +461,10 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <input type="text" name="permisoPrincipal" value="Mesero" hidden id="permisoPrincipal"><!-- oculto para permiso principal-->
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                        <select id="selectPermisosAjax" name="Permisos[]" class="form-control select2able" multiple="multiple">
+                        <select id="selectPermisosAjax" name="Permisos[]" class="form-control selectPermisos" multiple="multiple">
                           <option value="Mesero">Mesero</option>
                           <option value="Bartender">Bartender</option>
                           <option value="Cajero">Cajero</option>
@@ -500,9 +516,28 @@
 <script type="text/javascript">
 
 
-  $(function () {
+  $(document).ready(function () {// tooltip para colocar ayuda en los botones de habilitar y deshabilitar
     $('[data-toggle="tooltip"]').tooltip()
-  })
+  });
+
+  $(document).ready(function(){
+
+    var selectPermisos = $('#selectPermisosAjax');
+    var arregloDePermisosOrdenados = ["Mesero"];
+    selectPermisos.select2().on("change", function (e) { 
+      var count = $(this).select2('data').length;
+      if( e.added ){
+        arregloDePermisosOrdenados.push(e.added.id);
+      }else {
+        var index = arregloDePermisosOrdenados.indexOf(e.removed.id);
+        if (index > -1) {
+            arregloDePermisosOrdenados.splice(index, 1);
+        } 
+      }
+      $("#permisoPrincipal").val(arregloDePermisosOrdenados[0]);
+    });
+
+  });
 
   $(document).ready(function() { // función para elfancybox, o sea lo que carga la imagen en un modal
       $("#modalImagen").fancybox({
@@ -561,12 +596,12 @@ $("#registrarUsuario").click(function(){
     // si tiene el permiso de obsequio
     var Obsequio = $(document.querySelectorAll("input.Obsequio:checked")[0]).val();
     var image = $('#imagenPerfil')[0].files[0];// la imagen de perfil
-    console.log(image)
+    //console.log(image)
     var token = $("#token").val();
     var type = "POST";
     var selectPermisos = $('#selectPermisosAjax').val();
     selectPermisos.forEach(function(element) {
-        console.log(element);
+        //console.log(element);
     });
     /*var formData = {
             nombrePersona: $("#nombrePersona").val(),
@@ -579,7 +614,7 @@ $("#registrarUsuario").click(function(){
             imagenPerfil: image
         };*/
 
-    var formData = new FormData($('#checkbox')[0]);
+    var formData = new FormData($('#formslider')[0]);
 
     $.ajax({
         url: '{{url('Auth/registerUser')}}',
