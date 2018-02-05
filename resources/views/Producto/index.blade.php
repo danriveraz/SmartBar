@@ -204,7 +204,7 @@
     $(id).modal();
 });
 </script>  
-<style>
+<!--<style>
     .center-block {
         float: none;
         margin-left: auto;
@@ -289,5 +289,5 @@
     .icon-addon:hover .fa {
         color: rgb(79,0,85);
     }
-  </style>
+  </style>-->
 @endsection
