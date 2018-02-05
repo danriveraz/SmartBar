@@ -40,7 +40,7 @@
                 <a data-filter=".Bartender"><i class="fa fa-imdb"></i>Bartenders</a>
               </li>
               <li>
-                <a data-filter=".Mesero"><i class="fa fa-houzz"></i>Meseros</a>
+                <a data-filter=".Mesero"><i class="fa fa-industry"></i>Meseros</a>
               </li>
               <li>
                 <a data-filter=".Cajero"><i class="fa fa-wpbeginner pull-left"></i>Cajeros</a>
