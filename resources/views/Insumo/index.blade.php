@@ -300,7 +300,7 @@
                           </select>
                         </div>
                       </div>
-                      <br>
+                       
                       <div class="form-group text-center">
                       	<label> 
 	                        <input type="checkbox" name="tipo" id="stipo" value="1" onchange="showContent('')"/>
@@ -308,16 +308,21 @@
                         </label>
                         <label for="tipo" class="control-label"> Añadir a la carta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                       </div>
-                      <div class="form-group">
-                        <div id="scontent" style="display: none;">
-                          <label for="categorias" class="control-label">Categoría</label>
-                          <select name="categorias" class="select2able">
-								@foreach($categorias as $categoria)
-									<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
-								@endforeach
-						  </select>
-                        </div>
-                      </div>
+
+                              <div class="form-group" id="scontent" style="display: none;">
+                                <label>Categoría</label>
+                                <div class="input-group" >
+                                  <span class="input-group-addon"><i class="fa fa-outdent"></i></span>
+			                          <select name="categorias" class="select2able">
+											@foreach($categorias as $categoria)
+												<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+											@endforeach
+									  </select>
+                                </div>
+                              </div>
+
+
+
                     </div>
                     <div  class="text-center">
                       <button class="btn btn-bitbucket" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >

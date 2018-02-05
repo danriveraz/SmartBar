@@ -63,7 +63,7 @@
               <nav class="side-menu">
                   <ul class="nav">
                     <li class="active"><a data-toggle="tab" href="#tab1"><span class="fa fa-user"></span> Perfil</a></li>
-                    <li><a data-toggle="tab" href="#tab2"><span class="fa fa-bars"></span> Categoria</a></li>
+                    <li><a data-toggle="tab" href="#tab2"><span class="fa fa-outdent"></span> Categoria</a></li>
                     <li><a href="{{url('Auth/modificarFactura')}}"><span class="fa fa-newspaper-o"></span> Factura</a></li>
                     <li><a data-toggle="tab" href="#tab4"><span class="fa fa-pencil-square-o"></span> Mesas</a></li>
                   </ul>    
@@ -91,15 +91,21 @@
                             <div class="left">
                               <h2>Información General</h2>
                               <div class="form-group">
-                                <label>Nombres</label>
-                                <input name="nombrePersona" class="form-control" value="{{$usuario->nombrePersona}}" placeholder="Nombre completo" type="text" >
+                                  <label>Nombre</label>
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                  <input name="nombrePersona" class="form-control" value="{{$usuario->nombrePersona}}" placeholder="Nombre completo" type="text" >
+                                </div>
                               </div>
+
                               <div class="form-group">
                                 <label>Documento</label>
-                                <div>
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
                                   <input name="cedula" class="form-control" value="{{$usuario->cedula}}"  placeholder="Identificacion" type="text" maxlength="10">
                                 </div>
                               </div>
+
                               <div class="form-group">
                                 <label>Sexo</label>
                                 <div class="input-group">
@@ -122,12 +128,15 @@
                                   <input  id="fechaNacimiento" name="fechaNacimiento" value="{{$usuario->fechaNacimiento}}" class="form-control" placeholder="Fecha de Nacimiento" type="date">
                                 </div>
                               </div>
+
                               <div class="form-group">
                                 <label>Telefono</label>
-                                <div>
-                                  <input name="telefono" type="text" class="form-control" placeholder="Telefono o Celular" value="{{$usuario->telefono}}" maxlength="10">
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                <input name="telefono" type="text" class="form-control" placeholder="Telefono o Celular" value="{{$usuario->telefono}}" maxlength="10">
                                 </div>
                               </div>
+
                               <div class="form-group" hidden="true">
                                   <input id="ventana" name="ventana" class="form-control" value=""  type="text">
                               </div>
@@ -136,22 +145,37 @@
                             <!-- RIGHT SECTION -->
                             <div class="right">
                               <h2> Información Bar</h2>
+
                               <div class="form-group">
                                 <label>Nombre</label>
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-bars"></i></span>
                                 <input name="nombreEstablecimiento" type="text" class="form-control" placeholder="Nombre del Establecimiento" value="{{$empresa->nombreEstablecimiento}}">
+                                </div>
                               </div>
+
                               <div class="form-group">
                                 <label>Dirección</label>
-                                <input name="direccionEstablecimiento" type="text" class="form-control" placeholder="Dirección" value="{{$empresa->direccion}}">
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                              <input name="direccionEstablecimiento" type="text" class="form-control" placeholder="Dirección" value="{{$empresa->direccion}}">
                               </div>
+                              </div>
+
+
                               <div class="form-group">
                                 <label>Teléfono</label>
-                                <input name="telefonoEstablecimiento" type="text" class="form-control" placeholder="Teléfono o celular" value="{{$empresa->telefono}}" maxlength="10">
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                              <input name="telefonoEstablecimiento" type="text" class="form-control" placeholder="Teléfono o celular" value="{{$empresa->telefono}}" maxlength="10">
                               </div>
+                              </div>
+
                               <div class="form-group">
                                 <label>Regimen</label>
-                                <div>
-                                  <select id="tipoRegimen" name="tipoRegimen" class="form-control" >
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-drivers-license-o"></i></span>
+                                    <select id="tipoRegimen" name="tipoRegimen" class="form-control" >
                                     @if($empresa->tipoRegimen=='' || $empresa->tipoRegimen == "Tipo regimen")
                                       <option>Tipo regimen</option>
                                       <option value="comun">Regimen comun</option>
@@ -166,24 +190,32 @@
                                   </select>
                                 </div>
                               </div>
+
+
                               <div class="form-group">
                                 <label>Nit</label>
-                                <div>
-                                    <input name="nit" type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx" value="{{$empresa->nit}}">
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
+                                  <input name="nit" type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx" value="{{$empresa->nit}}">
                                 </div>
                               </div>
+
                               <div class="form-group">
                                 <label>Departamento</label>
-                                <div>
-                                    <input type="text" class="form-control" value="{{$empresa->departamento}}" disabled>
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-map"></i></span>
+                                  <input type="text" class="form-control" value="{{$empresa->departamento}}" disabled>
                                 </div>
                               </div>
+
                               <div class="form-group">
                                 <label>Ciudad</label>
-                                <div>
-                                    <input type="text" class="form-control" value="{{$empresa->ciudad}}" disabled>
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-map-o"></i></span>
+                                  <input type="text" class="form-control" value="{{$empresa->ciudad}}" disabled>
                                 </div>
                               </div>
+
                             </div>
                             <!-- END RIGHT SECTION -->
                           </div>

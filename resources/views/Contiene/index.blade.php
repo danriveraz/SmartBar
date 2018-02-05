@@ -41,7 +41,7 @@
               <div class="col-lg-6">
             <div class="form-group">
               <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-object-group"></i></span>
+                <span class="input-group-addon"><i class="fa fa-outdent"></i></span>
                 {!! Form::select('categorias', $categorias, $producto->idCategoria, ['class'=>'select2able', 'placeholder' => 'Categorias', 'id' => 'categoria']) !!}
               </div>
             </div>
