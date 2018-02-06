@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -231,9 +233,16 @@
                       Messages
                     </div>
                     <p class="counter">
+                      <?php
+                        $cont=0;
+                        foreach(Auth::User()->mensajes as $mensaje){
+                          if($mensaje->id_receptor == Auth::user()->id){
+                            $cont++;
+                          }
+                        }
+                        echo $cont.'</span>';
+                      ?>
                     
-
-                      <!--3-->
                     </p>
                   </a>
                   <ul class="dropdown-menu">

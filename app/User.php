@@ -43,6 +43,13 @@ class User extends Authenticatable
     public function AgendaTrabajadores(){
       return $this->hasmany('PocketByR\AgendaTrabajadores', 'idUsuario', 'id');
     }
+ //Mensajes
+    public function mensajes(){     
+      return $this->hasmany('PocketByR\Mensaje','id_receptor', 'id');
+    }
+
+
+
 
     public function inicioSesion(){// función para crear un registro en la tabla de registroEntadaSalida, para administrar las entradas y salidas del usuario
         $Inicio = new RegistroLogin;

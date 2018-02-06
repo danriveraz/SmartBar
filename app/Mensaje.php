@@ -15,6 +15,5 @@ class Mensaje extends Model
     }
     public function Receptor(){
       return $this->belongsTo('PocketByR\Usuario','id_receptor', 'id');
-    }
-
+    }    
 }
