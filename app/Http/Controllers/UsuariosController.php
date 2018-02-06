@@ -18,6 +18,7 @@ use PocketByR\Insumo;
 use PocketByR\Producto;
 use PocketByR\Contiene;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 class UsuariosController extends Controller
 {
@@ -2144,17 +2145,22 @@ class UsuariosController extends Controller
   }
 
 
-  public function registerUser(Request $request){
-
+  public function registerUser(Request $request){ // registrar usuario por el slider con ajax 
+      $carbon = new \Carbon\Carbon();
+      $hoyMenos18anios =$carbon->now()->subYears(18)->toDateString();
       if($request->ajax()){
+        $messages = [
+            'fechaNacimiento.before'    => 'El Trabajador Debe ser mayor de edad. verifica la fecha de nacimiento',
+            'email.unique'    => 'El Correo Electrónico ya ha sido registrado, por favor verificar, o cambiar de correo',
+        ];
         $validator = Validator::make($request->all(), [
             'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|max:255|unique:usuario',
             'cedula' => 'required|min:1|max:9999999999|numeric',
-            'fechaNacimiento' => 'required',
+            'fechaNacimiento' => 'required|date|before:'.$hoyMenos18anios,
             'sexo' => 'required',
             'Permisos' => 'required'
-         ]);
+         ],$messages);
 
         if($validator->passes()){
           $Permisos = $request['Permisos'];
