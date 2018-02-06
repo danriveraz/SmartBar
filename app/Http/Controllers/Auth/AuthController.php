@@ -654,7 +654,7 @@ class AuthController extends Controller
             $producto2->nombre = "B52";
             $producto2->descripcion = "Es un cóctel más bien digestivo";
             $producto2->receta = "Las capas se forman por densidad y orden con los ingredientes Kahlua, seguido de Bailey’s y en la superficie con Grand Marnier o Ginebra. Después se flambea el Grand Marnier o el Ginebra de la superficie y se sirve con la llama aún encendida, para una mejor dicion de los colores se puede aplicar con una cuchara, para suavizar la aplicación. Puede tomarse con pitillo, tomando un poco de cada sabor.";
-            $producto2->imagen = "b52.png";
+            $producto2->imagen = "B52.png";
             $producto2->idCategoria = $categoria18->id;
             $producto2->idEmpresa = $empresa->id;
             $producto2->save();
@@ -848,7 +848,7 @@ class AuthController extends Controller
             $producto24->nombre = "Negrori";
             $producto24->descripcion = "Coctel de aperitivo debido a que el amargo del Campari abre el apetito";
             $producto24->receta = "Echar todos los ingredientes en un vaso ancho lleno de hielo y remover suavemente. Adornar con media rodaja de naranja.";
-            $producto24->imagen = "negrori.png";
+            $producto24->imagen = "Negrori.png";
             $producto24->idCategoria = $categoria18->id;
             $producto24->idEmpresa = $empresa->id;
             $producto24->save();
@@ -866,7 +866,7 @@ class AuthController extends Controller
             $producto26->nombre = "Paradise";
             $producto26->descripcion = "Para tomar a cualquier hora";
             $producto26->receta = "Verter todos los ingredientes en una coctelera llena de hielo, agitar y colar en vaso de frío de coctel.";
-            $producto26->imagen = "Long Island Ice Tea.png";
+            $producto26->imagen = "Paradise.png";
             $producto26->idCategoria = $categoria18->id;
             $producto26->idEmpresa = $empresa->id;
             $producto26->save();
@@ -874,7 +874,7 @@ class AuthController extends Controller
             $producto27 = new Producto;
             $producto27->nombre = "Piña Colada";
             $producto27->receta = "Mezclar todos los ingredientes con hielo en una licuadora, echar en una copa grande, en un vaso tipo Hurricane o en una piña, y servir con pajita. Se suele adornar con una rodaja de piña y con una cereza de coctel.";
-            $producto27->imagen = "Long Island Ice Tea.png";
+            $producto27->imagen = "Piña Colada.png";
             $producto27->idCategoria = $categoria18->id;
             $producto27->idEmpresa = $empresa->id;
             $producto27->save();
@@ -883,7 +883,7 @@ class AuthController extends Controller
             $producto28->nombre = "Rusty Nail";
             $producto28->descripcion = "Cóctel digestivo";
             $producto28->receta = "Mezclar todo en un vaso ancho lleno de hielo. Remover suavemente y decorar con corteza de limón.";
-            $producto28->imagen = "Long Island Ice Tea.png";
+            $producto28->imagen = "Rusty Nail.png";
             $producto28->idCategoria = $categoria18->id;
             $producto28->idEmpresa = $empresa->id;
             $producto28->save();
@@ -892,7 +892,7 @@ class AuthController extends Controller
             $producto29->nombre = "Screw Driver/Bulldog";
             $producto29->descripcion = "Para cualquier hora del día";
             $producto29->receta = "Echar todos los ingredientes en un vaso largo lleno de hielo. Remover suavemente y decorarlo con una rodaja de naranja. Si en vez de vodka lleva ginebra (preferiblemente Bulldog, se le llama así).";
-            $producto29->imagen = "Long Island Ice Tea.png";
+            $producto29->imagen = "Screw Driver.png";
             $producto29->idCategoria = $categoria18->id;
             $producto29->idEmpresa = $empresa->id;
             $producto29->save();
@@ -900,7 +900,7 @@ class AuthController extends Controller
             $producto30 = new Producto;
             $producto30->nombre = "Sex on the Beach";
             $producto30->receta = "Verter todos los ingredientes en un vaso largo lleno de hielo. Decorar con una rodaja de naranja y una cereza.";
-            $producto30->imagen = "Long Island Ice Tea.png";
+            $producto30->imagen = "Sex on the Beach.png";
             $producto30->idCategoria = $categoria18->id;
             $producto30->idEmpresa = $empresa->id;
             $producto30->save();
@@ -909,7 +909,7 @@ class AuthController extends Controller
             $producto31->nombre = "Stinger";
             $producto31->descripcion = "Cóctel digestivo";
             $producto31->receta = "Echar todos los ingredientes en un mezclador con hielo y remover. Verter en un vaso de coctel. El coñac puede ser reemplazado por brandy.";
-            $producto31->imagen = "Long Island Ice Tea.png";
+            $producto31->imagen = "Stinger.png";
             $producto31->idCategoria = $categoria18->id;
             $producto31->idEmpresa = $empresa->id;
             $producto31->save();
@@ -917,7 +917,7 @@ class AuthController extends Controller
             $producto32 = new Producto;
             $producto32->nombre = "Tequila Sunrise";
             $producto32->receta = "Echar tequila y zumo de naranja directamente en un vaso largo con hielos y rociar un poco de granadina sin remover para crear un efecto cromático. Decorar con una rodaja de naranja y una cereza.";
-            $producto32->imagen = "Long Island Ice Tea.png";
+            $producto32->imagen = "Tequila Sunrise.png";
             $producto32->idCategoria = $categoria18->id;
             $producto32->idEmpresa = $empresa->id;
             $producto32->save();
@@ -926,7 +926,7 @@ class AuthController extends Controller
             $producto33->nombre = "Whiskey Sour";
             $producto33->descripcion = "Coctel para beber antes de cenar";
             $producto33->receta = "Echar todos los ingredientes en una coctelera con hielos, agitar bien y colar en vaso de coctel. Si se sirve “On the rocks”, colar los ingredientes en un vaso ancho lleno de hielo. Decorar con media rodaja de naranja y una cereza.";
-            $producto33->imagen = "Long Island Ice Tea.png";
+            $producto33->imagen = "Whiskey Sour.png";
             $producto33->idCategoria = $categoria18->id;
             $producto33->idEmpresa = $empresa->id;
             $producto33->save();
@@ -934,7 +934,7 @@ class AuthController extends Controller
             $producto34 = new Producto;
             $producto34->nombre = "Blue Hawaii";
             $producto34->receta = "Se mezclan todos los ingredientes en una coctelera con hielo y se agitan bien durante 8 segundos. Adornar la copa con uno naranja o piña y cereza.";
-            $producto34->imagen = "Long Island Ice Tea.png";
+            $producto34->imagen = "Blue Hawaii.png";
             $producto34->idCategoria = $categoria18->id;
             $producto34->idEmpresa = $empresa->id;
             $producto34->save();
@@ -942,7 +942,7 @@ class AuthController extends Controller
             $producto35 = new Producto;
             $producto35->nombre = "Coco Loco";
             $producto35->receta = "En una batidora mezclamos el tequila, el vodka, el ron, el zumo de limón y la crema de coco. Añadimos el resultado a una copa con el hielo picado y lo decoramos con una cáscara de limón cortada en espiral, puede servirse en una piña, en coco o en copa de coctel.";
-            $producto35->imagen = "Long Island Ice Tea.png";
+            $producto35->imagen = "Coco Loco.png";
             $producto35->idCategoria = $categoria18->id;
             $producto35->idEmpresa = $empresa->id;
             $producto35->save();

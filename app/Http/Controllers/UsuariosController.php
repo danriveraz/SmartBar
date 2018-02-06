@@ -884,6 +884,7 @@ class UsuariosController extends Controller
             $producto1->nombre = "Alexander";
             $producto1->descripcion = "Cóctel digestivo por las propiedades digestivas del coñac o brandy";
             $producto1->receta = "Verter el hielo, el Brandy, la crema de cacao y la nata liquida en la coctelera y agitar muy bien, colar en la copa, decorar con una fresa y espolvorear canela o una pizca de nuez moscada.";
+            $producto1->imagen = "Alexander.png";
             $producto1->idCategoria = $categoria18->id;
             $producto1->idEmpresa = $empresa->id;
             $producto1->save();
@@ -892,6 +893,7 @@ class UsuariosController extends Controller
             $producto2->nombre = "B52";
             $producto2->descripcion = "Es un cóctel más bien digestivo";
             $producto2->receta = "Las capas se forman por densidad y orden con los ingredientes Kahlua, seguido de Bailey’s y en la superficie con Grand Marnier o Ginebra. Después se flambea el Grand Marnier o el Ginebra de la superficie y se sirve con la llama aún encendida, para una mejor dicion de los colores se puede aplicar con una cuchara, para suavizar la aplicación. Puede tomarse con pitillo, tomando un poco de cada sabor.";
+            $producto2->imagen = "B52.png";
             $producto2->idCategoria = $categoria18->id;
             $producto2->idEmpresa = $empresa->id;
             $producto2->save();
@@ -900,6 +902,7 @@ class UsuariosController extends Controller
             $producto3->nombre = "Bacardi Red";
             $producto3->descripcion = "Cóctel de aperitivo";
             $producto3->receta = "Verter todos los ingredientes en la coctelera y agitar muy bien. Colar en la copa. Decorar con una rodaja de limón y una fresa atravesadas por un palillo de plástico o rodear la copa con sal y decorar con una fresa o cereza. Se puede reemplazar el jugo de lima con jugo de limón.";
+            $producto3->imagen = "Bacardi Red.png";
             $producto3->idCategoria = $categoria18->id;
             $producto3->idEmpresa = $empresa->id;
             $producto3->save();
@@ -908,6 +911,8 @@ class UsuariosController extends Controller
             $producto4->nombre = "Between the Sheets";
             $producto4->descripcion = "Cóctel para tomar durante todo el día.";
             $producto4->receta = "Verter todos los ingredientes en la coctelera con hielos, agitar y colar en un vaso frío de coctel. Se puede reemplazar el coñac con brandy.";
+
+            $producto4->imagen = "Between the Sheets.png";
             $producto4->idCategoria = $categoria18->id;
             $producto4->idEmpresa = $empresa->id;
             $producto4->save();
@@ -916,6 +921,8 @@ class UsuariosController extends Controller
             $producto5->nombre = "Black Russian/White Russian";
             $producto5->descripcion = "Cóctel digestivo";
             $producto5->receta = "Echar los ingredientes en un vaso ancho con hielos, y revolver suavemente. Para hacer el White Russian, hacer flotar nata fresca por la superficie y revolver.";
+
+            $producto5->imagen = "Black Russian.png";
             $producto5->idCategoria = $categoria18->id;
             $producto5->idEmpresa = $empresa->id;
             $producto5->save();
@@ -924,6 +931,7 @@ class UsuariosController extends Controller
             $producto6->nombre = "Caipirinha/Caipiroska";
             $producto6->descripcion = "Destinado para beber a cualquier hora del día";
             $producto6->receta = "Poner media lima fresca cortada en 4 trozos y azúcar en un vaso ancho y mezclarlo, llenar el vaso con hielo y Cachaça, si queremos una Caipiroska, cambiamos la Cachaca por Vodka.";
+            $producto6->imagen = "Caipirinha.png";
             $producto6->idCategoria = $categoria18->id;
             $producto6->idEmpresa = $empresa->id;
             $producto6->save();
@@ -932,6 +940,7 @@ class UsuariosController extends Controller
             $producto7->nombre = "Casino";
             $producto7->descripcion = "Cóctel para disfrutar a cualquier hora del día";
             $producto7->receta = "Mezclar todos los ingredientes en una coctelera con hielos, agitar bien, colar en un vaso de coctel frío y decorar con una cereza y rodear la copa con sal.";
+            $producto7->imagen = "Casino.png";
             $producto7->idCategoria = $categoria18->id;
             $producto7->idEmpresa = $empresa->id;
             $producto7->save();
@@ -940,6 +949,7 @@ class UsuariosController extends Controller
             $producto8->nombre = "Champagne Cooler";
             $producto8->descripcion = "Es un cóctel espumoso";
             $producto8->receta = "Añadir una pizca de amargo Angostura en el terrón de azúcar o sirope y servirlo en copa de champagne. Añadir coñac seguido de champagne frío. Decorar con una rodaja de naranja y añadir una cereza al fondo de la copa.";
+            $producto8->imagen = "Champagne Cooler.png";
             $producto8->idCategoria = $categoria18->id;
             $producto8->idEmpresa = $empresa->id;
             $producto8->save();
@@ -948,6 +958,7 @@ class UsuariosController extends Controller
             $producto9->nombre = "Cosmopolitan";
             $producto9->descripcion = "Para cualquier hora del día";
             $producto9->receta = "Agitar todos los elementos con hielo en una coctelera. Servir en un vaso largo de coctel. Decorar con una rodaja de limón y una cereza. Se puede reemplazar el jugo de lima con jugo de limón.";
+            $producto9->imagen = "Cosmopolitan.png";
             $producto9->idCategoria = $categoria18->id;
             $producto9->idEmpresa = $empresa->id;
             $producto9->save();
@@ -955,6 +966,7 @@ class UsuariosController extends Controller
             $producto10 = new Producto;
             $producto10->nombre = "Cubalibre";
             $producto10->receta = "Mezclar todos los ingredientes en un vaso largo lleno de hielo y decorar con una porción de limón.";
+            $producto10->imagen = "Cubalibre.png";
             $producto10->idCategoria = $categoria18->id;
             $producto10->idEmpresa = $empresa->id;
             $producto10->save();
@@ -963,6 +975,7 @@ class UsuariosController extends Controller
             $producto11->nombre = "Daiquiri";
             $producto11->descripcion = "Cóctel de aperitivo";
             $producto11->receta = "Licuar todos los ingredientes junto con el hielo, revolver y colar en un vaso de coctel.";
+            $producto11->imagen = "Daiquiri.png";
             $producto11->idCategoria = $categoria18->id;
             $producto11->idEmpresa = $empresa->id;
             $producto11->save();
@@ -971,6 +984,7 @@ class UsuariosController extends Controller
             $producto12->nombre = "Dry Martini sucio";
             $producto12->descripcion = "Cóctel digestivo";
             $producto12->receta = "Echar todos los ingredientes en un vaso mezclador con hielos, remover bien y colar en un vaso frío de Martini. Exprimir el aceite de la corteza de limón en la bebida y decorar con aceitunas, Recomendación: poner siempre aceitunas impares, una, tres o cinco. Para hacer un Dry Martini limpio, bañar la copa con vermut y eliminarlo, agregar el ginebra.";
+            $producto12->imagen = "Dry Martini sucio.png";
             $producto12->idCategoria = $categoria18->id;
             $producto12->idEmpresa = $empresa->id;
             $producto12->save();
@@ -979,6 +993,7 @@ class UsuariosController extends Controller
             $producto13->nombre = "Gin & Tonic";
             $producto13->descripcion = "Cóctel de aperitivo";
             $producto13->receta = "Echar directamente la ginebra y la tónica en un vaso ancho o en una copa de balón con hielo y una porción/rodaja de limón.";
+            $producto13->imagen = "Gin & Tonic.png";
             $producto13->idCategoria = $categoria18->id;
             $producto13->idEmpresa = $empresa->id;
             $producto13->save();
@@ -987,6 +1002,7 @@ class UsuariosController extends Controller
             $producto14->nombre = "God Father/God Mother";
             $producto14->descripcion = "Cóctel digestivo";
             $producto14->receta = "Verter directamente todos los ingredientes en un vaso ancho lleno de hielos y remover suavemente. Con vodka en vez de whisky, se llama God Mother.";
+            $producto14->imagen = "God Father.png";
             $producto14->idCategoria = $categoria18->id;
             $producto14->idEmpresa = $empresa->id;
             $producto14->save();
@@ -995,6 +1011,7 @@ class UsuariosController extends Controller
             $producto15->nombre = "Grasshopper";
             $producto15->descripcion = "Cóctel digestivo";
             $producto15->receta = "Verter todos los ingredientes en una coctelera con hielo. Agitar rápidamente durante unos segundos. Colar en un vaso de coctel frío.";
+            $producto15->imagen = "Grasshopper.png";
             $producto15->idCategoria = $categoria18->id;
             $producto15->idEmpresa = $empresa->id;
             $producto15->save();
@@ -1003,6 +1020,7 @@ class UsuariosController extends Controller
             $producto16->nombre = "Harvey Wallbanger";
             $producto16->descripcion = "Cóctel para cualquier hora del día";
             $producto16->receta = "Echar vodka y zumo de naranja en un vaso largo lleno de hielo. Remover suavemente y boyar el Galliano en la superficie. Decorar con rodajas de naranja y cereza.";
+            $producto16->imagen = "Harvey Wallbanger.png";
             $producto16->idCategoria = $categoria18->id;
             $producto16->idEmpresa = $empresa->id;
             $producto16->save();
@@ -1010,6 +1028,7 @@ class UsuariosController extends Controller
             $producto17 = new Producto;
             $producto17->nombre = "John Collins/Tom Collins";
             $producto17->receta = "Verter todos los componentes directamente en un vaso largo lleno de hielo y remover. Decorar con una rodaja de limón y una cereza. Añadir finalmente un toque de amargo de Angostura. Si queremos variarlo al Tom Collins, debemos usar Old Tom Gin.";
+            $producto17->imagen = "John Collins.png";
             $producto17->idCategoria = $categoria18->id;
             $producto17->idEmpresa = $empresa->id;
             $producto17->save();
@@ -1017,6 +1036,7 @@ class UsuariosController extends Controller
             $producto18 = new Producto;
             $producto18->nombre = "Long Island Ice Tea";
             $producto18->receta = "Añadir todos los ingredientes en un vaso largo lleno de hielo, revolver y decorar con rodaja de limón. Adicionar un toque de té o coca cola";
+            $producto18->imagen = "Long Island Ice Tea.png";
             $producto18->idCategoria = $categoria18->id;
             $producto18->idEmpresa = $empresa->id;
             $producto18->save();
@@ -1024,6 +1044,7 @@ class UsuariosController extends Controller
             $producto19 = new Producto;
             $producto19->nombre = "Mai-Tai";
             $producto19->receta = "Agitar en un vaso largo, y decorar con una porción de piña, hojas de menta o piel de lima. Servir con pitillo y mezclador. Se puede reemplazar el Curacao de naranja por Cointreau.";
+            $producto19->imagen = "Mai-Tai.png";
             $producto19->idCategoria = $categoria18->id;
             $producto19->idEmpresa = $empresa->id;
             $producto19->save();
@@ -1032,6 +1053,7 @@ class UsuariosController extends Controller
             $producto20->nombre = "Manhattan";
             $producto20->descripcion = "Coctel de aperitivo por su amargo que abre el apetito";
             $producto20->receta = "Echar todos los ingredientes en un mezclador con hielos, agregando un toque de amargo de Angostura y remover bien. Colarlo en un vaso de coctel enfriado y decorarlo con cereza.";
+            $producto20->imagen = "Manhattan.png";
             $producto20->idCategoria = $categoria18->id;
             $producto20->idEmpresa = $empresa->id;
             $producto20->save();
@@ -1040,6 +1062,7 @@ class UsuariosController extends Controller
             $producto21->nombre = "Margarita";
             $producto21->descripcion = "Para beber a cualquier hora del día";
             $producto21->receta = "Echar todos los ingredientes en una coctelera con hielo, agitarlo bien y colarlo en un vaso de coctel bordeado con sal. Jugo de limón recién exprimido.";
+            $producto21->imagen = "Margarita.png";
             $producto21->idCategoria = $categoria18->id;
             $producto21->idEmpresa = $empresa->id;
             $producto21->save();
@@ -1047,6 +1070,7 @@ class UsuariosController extends Controller
             $producto22 = new Producto;
             $producto22->nombre = "Mint Julep";
             $producto22->receta = "En un vaso largo machacar o macerar suavemente las hojas de menta, una cucharilla de azúcar en polvo con dos cucharillas de soda o de agua con gas. Llenar el vaso con hielo picado, añadir el whisky y revolver hasta que el vaso se congele. Decorar con una hoja de menta y rodaja de limón.";
+            $producto22->imagen = "Mint Julep.png";
             $producto22->idCategoria = $categoria18->id;
             $producto22->idEmpresa = $empresa->id;
             $producto22->save();
@@ -1054,6 +1078,7 @@ class UsuariosController extends Controller
             $producto23 = new Producto;
             $producto23->nombre = "Mojito";
             $producto23->receta = "Machacar las ramas de menta o hierbabuena con dos cucharillas azúcar y jugo de lima. Añadir un chorro de soda, agua con gas o ginger y llenar el vaso con hielo molido. Echar ron y llenarlo con la soda, agua con gas o ginger de nuevo. Decorar con hojas de menta y una rodaja de limón, servir con pitillo.";
+            $producto23->imagen = "Mojito.png";
             $producto23->idCategoria = $categoria18->id;
             $producto23->idEmpresa = $empresa->id;
             $producto23->save();
@@ -1062,6 +1087,7 @@ class UsuariosController extends Controller
             $producto24->nombre = "Negrori";
             $producto24->descripcion = "Coctel de aperitivo debido a que el amargo del Campari abre el apetito";
             $producto24->receta = "Echar todos los ingredientes en un vaso ancho lleno de hielo y remover suavemente. Adornar con media rodaja de naranja.";
+            $producto24->imagen = "Negrori.png";
             $producto24->idCategoria = $categoria18->id;
             $producto24->idEmpresa = $empresa->id;
             $producto24->save();
@@ -1070,6 +1096,7 @@ class UsuariosController extends Controller
             $producto25->nombre = "Old Fashioned";
             $producto25->descripcion = "Coctel de aperitivo por su amargo Angostura";
             $producto25->receta = "Poner un terrón de azúcar en un vaso ancho y empaparlo de amargo (dos pizcas), añadir soda y remover hasta disolverlo. Llenar el vaso con hielo y añadir whisky. Decorar con una rodaja de naranja y una cereza.";
+            $producto25->imagen = "Old Fashioned.png";
             $producto25->idCategoria = $categoria18->id;
             $producto25->idEmpresa = $empresa->id;
             $producto25->save();
@@ -1078,6 +1105,7 @@ class UsuariosController extends Controller
             $producto26->nombre = "Paradise";
             $producto26->descripcion = "Para tomar a cualquier hora";
             $producto26->receta = "Verter todos los ingredientes en una coctelera llena de hielo, agitar y colar en vaso de frío de coctel.";
+            $producto26->imagen = "Paradise.png";
             $producto26->idCategoria = $categoria18->id;
             $producto26->idEmpresa = $empresa->id;
             $producto26->save();
@@ -1085,6 +1113,7 @@ class UsuariosController extends Controller
             $producto27 = new Producto;
             $producto27->nombre = "Piña Colada";
             $producto27->receta = "Mezclar todos los ingredientes con hielo en una licuadora, echar en una copa grande, en un vaso tipo Hurricane o en una piña, y servir con pajita. Se suele adornar con una rodaja de piña y con una cereza de coctel.";
+            $producto27->imagen = "Piña Colada.png";
             $producto27->idCategoria = $categoria18->id;
             $producto27->idEmpresa = $empresa->id;
             $producto27->save();
@@ -1093,6 +1122,7 @@ class UsuariosController extends Controller
             $producto28->nombre = "Rusty Nail";
             $producto28->descripcion = "Cóctel digestivo";
             $producto28->receta = "Mezclar todo en un vaso ancho lleno de hielo. Remover suavemente y decorar con corteza de limón.";
+            $producto28->imagen = "Rusty Nail.png";
             $producto28->idCategoria = $categoria18->id;
             $producto28->idEmpresa = $empresa->id;
             $producto28->save();
@@ -1101,6 +1131,7 @@ class UsuariosController extends Controller
             $producto29->nombre = "Screw Driver/Bulldog";
             $producto29->descripcion = "Para cualquier hora del día";
             $producto29->receta = "Echar todos los ingredientes en un vaso largo lleno de hielo. Remover suavemente y decorarlo con una rodaja de naranja. Si en vez de vodka lleva ginebra (preferiblemente Bulldog, se le llama así).";
+            $producto29->imagen = "Screw Driver.png";
             $producto29->idCategoria = $categoria18->id;
             $producto29->idEmpresa = $empresa->id;
             $producto29->save();
@@ -1108,6 +1139,7 @@ class UsuariosController extends Controller
             $producto30 = new Producto;
             $producto30->nombre = "Sex on the Beach";
             $producto30->receta = "Verter todos los ingredientes en un vaso largo lleno de hielo. Decorar con una rodaja de naranja y una cereza.";
+            $producto30->imagen = "Sex on the Beach.png";
             $producto30->idCategoria = $categoria18->id;
             $producto30->idEmpresa = $empresa->id;
             $producto30->save();
@@ -1116,6 +1148,7 @@ class UsuariosController extends Controller
             $producto31->nombre = "Stinger";
             $producto31->descripcion = "Cóctel digestivo";
             $producto31->receta = "Echar todos los ingredientes en un mezclador con hielo y remover. Verter en un vaso de coctel. El coñac puede ser reemplazado por brandy.";
+            $producto31->imagen = "Stinger.png";
             $producto31->idCategoria = $categoria18->id;
             $producto31->idEmpresa = $empresa->id;
             $producto31->save();
@@ -1123,6 +1156,7 @@ class UsuariosController extends Controller
             $producto32 = new Producto;
             $producto32->nombre = "Tequila Sunrise";
             $producto32->receta = "Echar tequila y zumo de naranja directamente en un vaso largo con hielos y rociar un poco de granadina sin remover para crear un efecto cromático. Decorar con una rodaja de naranja y una cereza.";
+            $producto32->imagen = "Tequila Sunrise.png";
             $producto32->idCategoria = $categoria18->id;
             $producto32->idEmpresa = $empresa->id;
             $producto32->save();
@@ -1131,6 +1165,7 @@ class UsuariosController extends Controller
             $producto33->nombre = "Whiskey Sour";
             $producto33->descripcion = "Coctel para beber antes de cenar";
             $producto33->receta = "Echar todos los ingredientes en una coctelera con hielos, agitar bien y colar en vaso de coctel. Si se sirve “On the rocks”, colar los ingredientes en un vaso ancho lleno de hielo. Decorar con media rodaja de naranja y una cereza.";
+            $producto33->imagen = "Whiskey Sour.png";
             $producto33->idCategoria = $categoria18->id;
             $producto33->idEmpresa = $empresa->id;
             $producto33->save();
@@ -1138,6 +1173,7 @@ class UsuariosController extends Controller
             $producto34 = new Producto;
             $producto34->nombre = "Blue Hawaii";
             $producto34->receta = "Se mezclan todos los ingredientes en una coctelera con hielo y se agitan bien durante 8 segundos. Adornar la copa con uno naranja o piña y cereza.";
+            $producto34->imagen = "Blue Hawaii.png";
             $producto34->idCategoria = $categoria18->id;
             $producto34->idEmpresa = $empresa->id;
             $producto34->save();
@@ -1145,6 +1181,7 @@ class UsuariosController extends Controller
             $producto35 = new Producto;
             $producto35->nombre = "Coco Loco";
             $producto35->receta = "En una batidora mezclamos el tequila, el vodka, el ron, el zumo de limón y la crema de coco. Añadimos el resultado a una copa con el hielo picado y lo decoramos con una cáscara de limón cortada en espiral, puede servirse en una piña, en coco o en copa de coctel.";
+            $producto35->imagen = "Coco Loco.png";
             $producto35->idCategoria = $categoria18->id;
             $producto35->idEmpresa = $empresa->id;
             $producto35->save();
