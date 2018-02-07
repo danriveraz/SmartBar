@@ -2066,9 +2066,13 @@ class UsuariosController extends Controller
   }
 
   public function update(Request $request, $id){
+    $carbon = new \Carbon\Carbon();
+    $hoyMenos18anios =$carbon->now()->subYears(18)->toDateString();
+    //dd($request);
     $rules = [
         'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
         'imagenPerfil' => 'image',
+        'hojaDeVida' => 'file|mimes:pdf',
         ];
     $usuario = User::find($id);
     if(Auth::User()->esAdmin){ // validar que cuadno sea admin el que modifica, los usuarios deben de quedar con permisos
@@ -2078,25 +2082,29 @@ class UsuariosController extends Controller
       $rules += ['cedula' => 'required|min:1|max:9999999999|numeric'];
     }
     if ($request->password!=null) {// agrega la regla si el password ha sido modificado
-      $rules += ['password' => 'required|min:6|max:18|confirmed'];
+      $rules += ['contrasena' => 'required|min:6|max:18|confirmed'];
     }
     if($request->telefono!=$usuario->telefono){ // agrega la regla si el telefomo ha sido modificado
       $rules += ['telefono' => 'required|min:1|max:9999999999|numeric'];
     }
+    if($request->fechaNacimiento!=$usuario->fechaNacimiento){ // agrega la regla si la fecha de nacimiento fue modificada
+      $rules += ['fechaNacimiento' => 'before:'.$hoyMenos18anios];
+    }
 
     $messages = [
       'Permisos.required' => 'Debe tener asignado por lo menos un Permiso',
+      'fechaNacimiento.before'    => 'El Trabajador Debe ser mayor de edad. verifica la fecha de nacimiento',
     ];
 
     $validator = Validator::make($request->all(), $rules,$messages);
     if ($validator->fails()){
-      return redirect()->route('Auth.usuario.edit',$id)->withErrors($validator)->withInput();
+      return redirect()->route('Auth.usuario.index')->withErrors($validator)->withInput();
     }else{
       if($request->cedula!=$usuario->cedula){
         $usuario->cedula = $request->cedula;
       }
-      if($request->password!=null){
-        $usuario->password = bcrypt($request->password);
+      if($request->contrasena!=null){
+        $usuario->password = bcrypt($request->contrasena);
       }
       if($request->telefono!=$usuario->telefono){
         $usuario->telefono=$request->telefono;
@@ -2104,12 +2112,26 @@ class UsuariosController extends Controller
       $usuario->nombrePersona = $request->nombrePersona;
       $usuario->sexo = $request->sexo;
       $usuario->fechaNacimiento = $request->fechaNacimiento;
+      $usuario->direccion = $request->direccion;
+      $usuario->salario = $request->salario;
+
+      //Inicio Guardar PDF
+      $path = public_path() . '/pdf/';
+      $hojaDeVida = $request->file('hojaDeVida');
+      if ($hojaDeVida!=null) {
+        //obtenemos el nombre del archivo
+        $nombre = 'hojaDeVida' . time() . '.' . $hojaDeVida->getClientOriginalName();
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        $hojaDeVida->move($path, $nombre);
+        //\Storage::disk('local')->put("../../pdf/".$nombre,  \File::get($hojaDeVida));
+        $usuario->hojaDeVida = $nombre;// guarda el nombre del pfd en la base de datos
+      }
 
       //obtenemos el campo file definido en el formulario
       $file = $request->file('imagenPerfil');
       if($file!=null){// verifica que se haya subido una imagen nueva
         //obtenemos el nombre del archivo
-        $nombre = $file->getClientOriginalName();
+        $nombre = 'imagenPerfil' . time() . '.' . $file->getClientOriginalName();
         //indicamos que queremos guardar un nuevo archivo en el disco local
         \Storage::disk('local')->put($nombre,  \File::get($file));
         $usuario->imagenPerfil = $nombre;// guarda la imagen en la base de datos
@@ -2125,6 +2147,8 @@ class UsuariosController extends Controller
 
         if($request['Obsequiar']=='Obsequiar'){
           $usuario->obsequio = 1;
+        }else{
+          $usuario->obsequio = 0;
         }
 
         $Permisos = $request['Permisos'];
@@ -2134,7 +2158,7 @@ class UsuariosController extends Controller
             $usuario->esMesero = 1;
             $usuario->esBartender = 1;
             $usuario->esCajero = 1;
-            $usuario->esAdmin = 1;
+            $usuario->esAdmin = 2;
             $usuario->obsequio = 1;
           }else{
             if($value=='Mesero'){
@@ -2148,6 +2172,15 @@ class UsuariosController extends Controller
             }
           }
         }
+
+        if($request['permisoPrincipal']=='Mesero'){ //asignar el permiso principal o cargo principal
+            $usuario->esMesero = 2;
+        }if($request['permisoPrincipal']=='Cajero'){
+            $usuario->esCajero = 2;
+        }if($request['permisoPrincipal']=='Bartender'){
+            $usuario->esBartender = 2;
+        }
+
       }
 
       $usuario->save();

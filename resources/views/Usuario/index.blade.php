@@ -162,7 +162,7 @@
         <div class="row">
         <div class="heading">
           <i class=" pocketMorado fa fa-shield"></i>
-          &nbsp; Nuevo Empleado      
+          &nbsp; Editar Empleado      
         </div>
           <!-- Login Screen -->
           {!! Form::open(['route' => ['Auth.usuario.update',$usuario], 'method' => 'PUT','enctype' => 'multipart/form-data']) !!}
@@ -170,17 +170,35 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <div class="row">
-                    <label class="control-label col-md-2"></label>
-                    <div class="col-md-9">
-                      <div class="widget-content ">
-                        <div class="gallery-container">
-                          <a class="gallery-item filter1 fancybox" href="#fancybox-example" rel="">
-                          <img src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
+                  <label class="control-label col-md-2"></label>
+                  <div class="col-md-9">
+                    <div class="widget-content fileupload fileupload-new" data-provides="fileupload">
+                      <div class="gallery-container fileupload-new img-thumbnail" >
+                        <div class="gallery-item  img-thumbnail" style="line-height: 150px;">
+                          <img class="  img-responsive img-circle user-photo" style="width: 150px; height: 150px;" src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
                           <div class="actions">
-                             <i class="fa fa-pencil"></i>
-                          </div></a>
-                       </div>
+                            <a onclick="$('#eliminarImagen{{$usuario->id}}').click()">
+                              <i class="fa fa-trash-o"></i>
+                            </a>
+                            <a  id="modalImagen" href="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}" title="Sin imagen">
+                              <img src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}" hidden>
+                              <i class="fa fa-search-plus"></i>
+                            </a>
+                            <a onclick="$('#imagenPerfil{{$usuario->id}}').click()">
+                              <i class="fa fa-pencil"></i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="gallery-item fileupload-preview fileupload-exists img-thumbnail" >
+                      </div>
+                      <div hidden>
+                        <span class=" btn-file" >
+                          <span class="fileupload-new"><i class="fa fa-pencil"></i></span>
+                          <span class="fileupload-exists"><i class="fa fa-search-plus"></i></span>
+                          <input type="file" class="form-control" name="imagenPerfil"  id="imagenPerfil{{$usuario->id}}">
+                        </span>
+                        <a class="btn btn-default fileupload-exists" data-dismiss="fileupload" id="eliminarImagen{{$usuario->id}}"><i class="fa fa-trash-o"></i></a>
                       </div>
                     </div>
                   </div>
@@ -193,16 +211,11 @@
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                    <input name="username" class="form-control" value="{{$usuario->username}}"  placeholder="Username" type="text">
+                    <span class="input-group-addon"><i class="fa fa-map"></i></span>
+                    <input class="form-control" value="{{$usuario->direccion}}" name="direccion" placeholder="Dirección" type="text">
                   </div>
                 </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                    <input name="email" class="form-control" value="{{$usuario->email}}"  placeholder="Email" type="text">
-                  </div>
-                </div>
+
                 <a class="pull-right" href="#">Mirar Calendario De Trabajo</a>
               </div>
               <div class="col-md-4">
@@ -229,36 +242,46 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
-                    <input  value="{{$usuario->fechaNacimiento}}" class="form-control datepicker" data-date-autoclose="true" placeholder="Fecha de Nacimiento" type="text">
+                    <input data-date-format="yyyy/mm/dd" value="{{$usuario->fechaNacimiento}}" class="form-control datepicker" data-date-autoclose="true" placeholder="Fecha de Nacimiento" type="text" name="fechaNacimiento" >
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-lock"></i></span><input name="password" class="form-control" placeholder="Contraseña" type="password">
+                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                    <input class="form-control" name="contrasena" placeholder="Contraseña" type="password">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-lock"></i></span><input name="password" class="form-control" name="password_confirmation" placeholder="Confirmar Contraseña" type="password">
+                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                    <input class="form-control" name="contrasen
+                    na_confirmation" placeholder="Confirmar Contraseña" type="password">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                    <input class="form-control" type="number"><span class="input-group-addon">.00</span>
+                    <input class="form-control" value="{{$usuario->salario}}" name="salario" type="number"><span class="input-group-addon">.00</span>
                   </div>
                 </div>
                 <div class="form-group">
+                  <input type="text" name="permisoPrincipal" value="
+                    @if($usuario->esAdmin == 2) Administrador
+                    @elseif($usuario->esMesero == 2) Mesero
+                    @elseif($usuario->esBartender == 2) Bartender
+                    @elseif($usuario->esCajero == 2) Cajero
+                    @endif
+                  " hidden id="{{$usuario->id}}permisoPrincipal"><!-- oculto para permiso principal-->
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                    <select  name="Permisos[]"class="form-control select2able" multiple="multiple">
+                    <select id="selectPermisos{{$usuario->id}}" name="Permisos[]"class="form-control select2able" multiple="multiple">
                       <option value="Administrador"
-                        @if($usuario->esAdmin == 1)
+                        @if($usuario->esAdmin != 0 )
                           selected="selected"
                         @endif
                       >Administrador</option>
                       <option value="Mesero" selected="selected"
-                          @if($usuario->esMesero != 0)
+                          @if($usuario->esMesero != 0 )
                             selected="selected"
                           @endif
                       >Mesero</option>
@@ -274,6 +297,26 @@
                       >Cajero</option>
                     </select>
                   </div>
+                  <script type="">//inicializar el select2 y el permiso principal
+                    $(document).ready(function(){
+                      var selectPermisos = $('#selectPermisos{{$usuario->id}}');
+                      var arregloDePermisosOrdenados = [$("#{{$usuario->id}}permisoPrincipal").val().trim()];
+                      selectPermisos.select2().on("change", function (e) { 
+                        var count = $(this).select2('data').length;
+                        if( e.added ){
+                          arregloDePermisosOrdenados.push(e.added.id);
+                          console.log(arregloDePermisosOrdenados);
+                        }else {
+                          var index = arregloDePermisosOrdenados.indexOf(e.removed.id);
+                          if (index > -1) {
+                              arregloDePermisosOrdenados.splice(index, 1);
+                          } 
+                          console.log(arregloDePermisosOrdenados);
+                        }
+                        $("#{{$usuario->id}}permisoPrincipal").val(arregloDePermisosOrdenados[0]);
+                    });
+                  });
+                  </script>
                 </div>
                 <div class="text-center">
                   <label class="checkbox">{!! Form::checkbox('Obsequiar', 'Obsequiar', $usuario->obsequio) !!}<span>Activar Para Obsequiar</span></label>
@@ -295,7 +338,7 @@
                           ],
                           deleteUrl: "/site/file-delete",
                           overwriteInitial: false,
-                          maxFileSize: 100,
+                          maxFileSize: 10000,
                           initialCaption: "Hoja de Vida"
                       });
                     });
@@ -307,7 +350,7 @@
                           initialPreviewAsData: true,
                           deleteUrl: "/site/file-delete",
                           overwriteInitial: false,
-                          maxFileSize: 100,
+                          maxFileSize: 10000,
                           initialCaption: "Hoja de Vida"
                       });
                     });
