@@ -2196,7 +2196,9 @@ class UsuariosController extends Controller
             'cedula' => 'required|min:1|max:9999999999|numeric',
             'fechaNacimiento' => 'required|date|before:'.$hoyMenos18anios,
             'sexo' => 'required',
-            'Permisos' => 'required'
+            'Permisos' => 'required',
+            'hojaDeVida' => 'file|mimes:pdf',
+            'imagenPerfil' => 'image'
          ],$messages);
 
         if($validator->passes()){
@@ -2227,12 +2229,26 @@ class UsuariosController extends Controller
           $usuario->confirm_token = str_random(100);
           $usuario->idEmpresa = Auth::user()->idEmpresa; // id de la empresa para saber a quién pertenece
 
+          //Inicio Guardar PDF
+          $path = public_path() . '/pdf/';
+          $hojaDeVida = $request->file('hojaDeVida');
+          if ($hojaDeVida!=null) {
+            //obtenemos el nombre del archivo
+            $nombre = 'hojaDeVida' . time() . '.' . $hojaDeVida->getClientOriginalName();
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            $hojaDeVida->move($path, $nombre);
+            //\Storage::disk('local')->put("../../pdf/".$nombre,  \File::get($hojaDeVida));
+            $usuario->hojaDeVida = $nombre;// guarda el nombre del pfd en la base de datos
+          }
+
+          //fin guardar pdf 
+
           //Guardar imagen
           //obtenemos el campo file definido en el formulario
           $file = $request->file('imagenPerfil');
           if($file!=null){// verifica que se haya subido una imagen nueva
             //obtenemos el nombre del archivo
-            $nombre = $file->getClientOriginalName();
+            $nombre = 'imagenPerfil' . time() . '.' . $file->getClientOriginalName();
             //indicamos que queremos guardar un nuevo archivo en el disco local
             \Storage::disk('local')->put($nombre,  \File::get($file));
             $usuario->imagenPerfil = $nombre;// guarda la imagen en la base de datos

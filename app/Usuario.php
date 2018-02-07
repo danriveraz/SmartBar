@@ -15,7 +15,7 @@ class Usuario extends Model
    */
   protected $fillable = [
       'nombrePersona', 'pais', 'departamento', 'ciudad', 'fechaNacimiento', 'cedula',  'sexo', 'telefono', 'email', 'estado', 'confirmoEmail', 'password',
-      'idEmpresa','esAdmin','esMesero','esBartender','esCajero','provider','provider_id','imagenPerfil','obsequio','imagenNegocio', 'esProveedor'];
+      'idEmpresa','esAdmin','esMesero','esBartender','esCajero','provider','provider_id','imagenPerfil','obsequio','imagenNegocio', 'esProveedor','hojaDeVida'];
 
   /**
    * The attributes that should be hidden for arrays.

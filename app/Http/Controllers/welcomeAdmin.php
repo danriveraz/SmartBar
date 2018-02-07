@@ -172,17 +172,17 @@ class welcomeAdmin extends Controller
         $cantidadVentasSemanaAnterior = floatval(Factura::cantidadVentasSemana(Auth::user()->empresaActual,$fechaHoy)->first()->cantidadVentas);
 
         if (($ventaSemanaAnterior == 0) && ($ventaSemanaActual != 0 )) {
-            $porcentaje = 100;
+            $porcentajeVentas = 100;
         } elseif(($ventaSemanaAnterior == 0) && ($ventaSemanaActual == 0 )){
-            $porcentaje = 0;
+            $porcentajeVentas = 0;
         } else {
             $porcentajeVentas = ($ventaSemanaActual*100)/($ventaSemanaAnterior)-100;
         }
 
         if (($cantidadVentasSemanaAnterior == 0) && ($cantidadVentasSemanaActual != 0 )) {
-            $porcentaje = 100;
+            $porcentajeCantidadVentas = 100;
         } elseif(($cantidadVentasSemanaAnterior == 0) && ($cantidadVentasSemanaActual == 0 )){
-            $porcentaje = 0;
+            $porcentajeCantidadVentas = 0;
         } else {
             $porcentajeCantidadVentas = ($cantidadVentasSemanaActual*100)/($cantidadVentasSemanaAnterior)-100;
         }

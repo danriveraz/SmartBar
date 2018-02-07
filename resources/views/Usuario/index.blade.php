@@ -279,10 +279,40 @@
                   <label class="checkbox">{!! Form::checkbox('Obsequiar', 'Obsequiar', $usuario->obsequio) !!}<span>Activar Para Obsequiar</span></label>
                 </div>
               </div>
-              <div class="col-md-4" style="height: 300px;>
+              <div class="col-md-4" style="height: 300px">
                 <div class="form-group" >
-                  <input  style="background-color: #4f0157;" type="file" class="file" data-upload-url="#">
+                  <input id="{{$usuario->id}}hojaDeVida" name="hojaDeVida" style="background-color: #4f0157;" type="file"  data-upload-url="#">
                 </div>
+                @if($usuario->hojaDeVida)<!-- todo este script es para inicializar la subida de  la hoja de vida en el modal de editar el trabajador-->
+                  <script >
+                    $(document).ready(function () {// Para inicializar los que tienen hoja de vida
+                      var urlhoja = '{{ asset( 'pdf/'.$usuario->hojaDeVida) }}';
+                      $("#{{$usuario->id}}hojaDeVida").fileinput({
+                          initialPreview: [urlhoja],
+                          initialPreviewAsData: true,
+                          initialPreviewConfig: [
+                              {type: "pdf", size: 8000, caption: "{{$usuario->hojaDeVida}}", downloadUrl: urlhoja, width: "120px", key: 1}
+                          ],
+                          deleteUrl: "/site/file-delete",
+                          overwriteInitial: false,
+                          maxFileSize: 100,
+                          initialCaption: "Hoja de Vida"
+                      });
+                    });
+                  </script>
+                @else
+                  <script >
+                    $(document).ready(function () {// Para inicializar los que tienen hoja de vida
+                      $("#{{$usuario->id}}hojaDeVida").fileinput({
+                          initialPreviewAsData: true,
+                          deleteUrl: "/site/file-delete",
+                          overwriteInitial: false,
+                          maxFileSize: 100,
+                          initialCaption: "Hoja de Vida"
+                      });
+                    });
+                  </script>
+                @endif
               </div>
             </div>
             <div class="row">
@@ -484,7 +514,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <input id="file-4" name="hojaDeVida" type="file" class="file" data-upload-url="#">
+                  <input id="file-4" name="hojaDeVida" type="file" class="file" data-upload-url="#" accept="pdf/*">
                 </div>
               </div>
             </div>
@@ -564,7 +594,8 @@
     cambiarCurrent("#miPersonal");
 
     $("#file-4").fileinput({
-        uploadExtraData: {kvId: '10'}
+        uploadExtraData: {kvId: '10'},
+        maxFileSize: 1
     });
     $(".btn-warning").on('click', function () {
         var $el = $("#file-4");
@@ -590,6 +621,7 @@ function cambiarCurrent(idInput) {
 
 /// Ajax para registrar un usuario
 $("#registrarUsuario").click(function(){
+    /*
     //Aquí buscamos todos los inputs que tengan una clase llamada; Check
     var a = document.querySelectorAll("input.Check:checked");
     var Permisos = Array.prototype.map.call(a,function(x){ return x.value; });
@@ -597,13 +629,11 @@ $("#registrarUsuario").click(function(){
     var Obsequio = $(document.querySelectorAll("input.Obsequio:checked")[0]).val();
     var image = $('#imagenPerfil')[0].files[0];// la imagen de perfil
     //console.log(image)
-    var token = $("#token").val();
-    var type = "POST";
     var selectPermisos = $('#selectPermisosAjax').val();
     selectPermisos.forEach(function(element) {
         //console.log(element);
     });
-    /*var formData = {
+      var formData = {
             nombrePersona: $("#nombrePersona").val(),
             cedula: $('#cedula').val(),
             email: $('#email').val(),
@@ -614,6 +644,8 @@ $("#registrarUsuario").click(function(){
             imagenPerfil: image
         };*/
 
+    var type = "POST";
+    var token = $("#token").val();
     var formData = new FormData($('#formslider')[0]);
 
     $.ajax({
