@@ -1,17 +1,16 @@
-@extends(Auth::User()->esAdmin ? 'Layout.app_administradoresOptimizado' : 'Layout.app_empleado')
+@extends(Auth::User()->esAdmin ? 'Layout.app_administradores' : 'Layout.app_empleado')
 @section('content')
 
-
+ <!--{!!Html::script("assetsNew/scripts/fullcalendar.min.js")!!}
  {!!Html::style('assetsNew/styles/datatables.css')!!}
   {!!Html::script("assetsNew/scripts/select2.js")!!}
   {!!Html::script("assetsNew/scripts/datatable-editable.js")!!}
   {!!Html::script("assetsNew/scripts/jquery.dataTables.js")!!}
   {!!Html::script("assetsNew/scripts/bootstrap.min.js")!!}<!-- ya esta -->
-  {!!Html::script("assetsNew/scripts/jquery.bootstrap.wizard.js")!!}
+   <!--{!!Html::script("assetsNew/scripts/jquery.bootstrap.wizard.js")!!}
   {!!Html::script("assetsNew/scripts/jquery.dataTables.min.js")!!}
-  {!!Html::script("assetsNew/scripts/fullcalendar.min.js")!!}
   {!!Html::script("assetsNew/scripts/jquery.easy-pie-chart.js")!!}<!-- ya esta -->
-  {!!Html::script("assetsNew/scripts/jquery.isotope.min.js")!!}
+   <!--{!!Html::script("assetsNew/scripts/jquery.isotope.min.js")!!}
   {!!Html::script("assetsNew/scripts/jquery.fancybox.pack.js")!!}
   {!!Html::script("assetsNew/scripts/jquery.inputmask.min.js")!!}
   {!!Html::script("assetsNew/scripts/jquery.validate.js")!!}
@@ -23,7 +22,7 @@
   {!!Html::script("assetsNew/scripts/date.js")!!}  
   {!!Html::script("assetsNew/scripts/fitvids.js")!!}
   {!!Html::script("assetsNew/scripts/jquery.sparkline.min.js")!!}<!-- ya esta -->
-  {!!Html::script("assetsNew/scripts/dropzone.js")!!}
+  <!-- {!!Html::script("assetsNew/scripts/dropzone.js")!!}
   {!!Html::script("assetsNew/scripts/jquery.nestable.js")!!}
   {!!Html::script('assetsNew/scripts/main.js')!!}<!-- ya esta -->
   
