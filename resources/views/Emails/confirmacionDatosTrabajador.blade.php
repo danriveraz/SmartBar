@@ -1,31 +1,46 @@
 <!doctype html>
 <head>
 <meta charset="utf-8">
-<title>Documento sin título</title>
+<title>PocketSmartBar</title>
 </head>
-
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <body>
 
-<h1>Bienvenid@ {{$data['user']->nombrePersona}}</h1>
+<style> 
+.btn {
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  color: #ffffff;
+  font-size: 16px;
+  background: #2d0031;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
 
-<p>
-	Su Contraseña para el acceso a la plataforma es: {{$data['contrasena']}} <br>
-</p>
+.btn:hover {
+  background: #5e0166;
+  text-decoration: none;
+}
+</style>
 
 <div class="_rp_x5 ms-font-weight-regular ms-font-color-neutralDark" id="Item.MessageNormalizedBody" style="font-family: wf_segoe-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif, serif, EmojiFont;">
 	<div class="rps_8dd2">
 <div>
 	<div style="background-color:white; padding: 15px 0px 50px; margin: 0px; text-align: center; font-family: Arial, Helvetica, sans-serif, serif, EmojiFont;">
 <br>
-<a href="https://www.buscalibre.com" target="_blank" rel="noopener noreferrer"><img data-imagetype="External" src="{{asset('/images/Correo.jpeg')}}"></a> <br>
+<a href="" target="_blank" rel="noopener noreferrer"><img style="width:50%;" data-imagetype="External" src="images/CorreoEmpleado.jpg"></a> <br>
 <br>
 
 <br>
-<div style="background-color:#F1F1F1; border:solid 1px #c0c0c0; margin:0 auto; padding:15px; width:90%">
-<span>Para confirmar tu cuenta presiona el siguiente link:</span> <span style="font-size:14px">
-<p>
-<a href="{{url('/')}}/Auth/login}}">Iniciar sesión</a></p>
-</span></div>
+<div style="background-color:#F1F1F1; border:solid 1px #c0c0c0; margin:0 auto; padding:15px; width:49%">
+<h2 style="color:#2d0031; font-family: 'Roboto', sans-serif; margin-top:2px;margin-bottom: 8px;">Hola!! {{$data['user']->nombrePersona}}</h2>
+<span>Ingresa con esta contraseña: {{$data['contrasena']}}</span>
+<br>
+<br>
+<p><a href="{{url('/')}}/Auth/login}}" target="_blank" class="btn" rel="noopener noreferrer">Confirmar Mi Cuenta</a></p>
+</div>
 <div style="margin:0 auto; width:90%; padding:15px">
 
 </div>
