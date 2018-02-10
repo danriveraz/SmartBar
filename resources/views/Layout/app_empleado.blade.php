@@ -5,31 +5,32 @@
     <title>
       SMARTBAR
     </title>
-    <link rel="shortcut icon" href={{ asset('images/icon.png') }}>
-	<link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="{{asset('images/icon.png')}}">
+  <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
 	
-	<link href="stylesheets\isotope.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\jquery.fancybox.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\fullcalendar.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\wizard.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\morris.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\datepicker.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\timepicker.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\colorpicker.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\bootstrap-switch.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\bootstrap-editable.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\daterange-picker.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\typeahead.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\summernote.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\ladda-themeless.min.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\social-buttons.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\jquery.fileupload-ui.css" media="screen" rel="stylesheet" type="text/css">
-	<link href="stylesheets\dropzone.css" media="screen" rel="stylesheet" type="text/css">
-	<link href="stylesheets\nestable.css" media="screen" rel="stylesheet" type="text/css">
-	<link href="stylesheets\pygments.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\select2.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\datatables.css" media="all" rel="stylesheet" type="text/css">
-	<link href="stylesheets\bootstrap.css" media="all" rel="stylesheet" type="text/css">
+
+	{!!Html::style('stylesheets\isotope.css')!!}
+	{!!Html::style('stylesheets\jquery.fancybox.css')!!}
+	{!!Html::style('stylesheets\fullcalendar.css')!!}
+	{!!Html::style('stylesheets\wizard.css')!!}
+	{!!Html::style('stylesheets\morris.css')!!}
+	{!!Html::style('stylesheets\datepicker.css')!!}
+	{!!Html::style('stylesheets\timepicker.css')!!}
+	{!!Html::style('stylesheets\colorpicker.css')!!}
+	{!!Html::style('stylesheets\bootstrap-switch.css')!!}
+	{!!Html::style('stylesheets\bootstrap-editable.css')!!}
+	{!!Html::style('stylesheets\daterange-picker.css')!!}
+	{!!Html::style('stylesheets\typeahead.css')!!}
+	{!!Html::style('stylesheets\summernote.css')!!}
+	{!!Html::style('stylesheets\ladda-themeless.min.css')!!}
+	{!!Html::style('stylesheets\social-buttons.css')!!}
+	{!!Html::style('stylesheets\jquery.fileupload-ui.css')!!}
+	{!!Html::style('stylesheets\dropzone.css')!!}
+	{!!Html::style('stylesheets\nestable.css')!!}
+	{!!Html::style('stylesheets\pygments.css')!!}
+	{!!Html::style('stylesheets\select2.css')!!}
+	{!!Html::style('stylesheets\datatables.css')!!}
+	{!!Html::style('stylesheets\bootstrap.css')!!}
     {!!Html::style('stylesheets/bootstrap.min.css')!!}
     {!!Html::style('stylesheets/font-awesome.min.css')!!}
     {!!Html::style('stylesheets/hightop-font.css')!!}
@@ -39,38 +40,38 @@
 <script>
 // ajax para verificar que el usuario esté logueado y así no dejar ver la página
 
- $(document).ready(function(){
-    console.log("ejecuta al cargar");
-        $.ajax({
-          type: "POST",
-          url: '{{url('Auth/verificarUser')}}',
-          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-          success: function (data) { //anunciar creado autor
-            console.log("sigue logueado");
-          }, error: function(xhr,status, response) {
-            console.log("ya no está logueado");
-            window.history.forward();
-          }
+   $(document).ready(function(){
+      console.log("ejecuta al cargar");
+      $.ajax({
+        type: "POST",
+        url: '{{url('Auth/verificarUser')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        success: function (data) { //anunciar creado autor
+          console.log("sigue logueado");
+        }, error: function(xhr,status, response) {
+          console.log("ya no está logueado");
+          window.history.forward();
+        }
+      });
     });
-});
 </script>
 
-<script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
+{!!Html::script("https://code.jquery.com/jquery-1.10.2.min.js")!!}
+{!!Html::script("https://code.jquery.com/ui/1.10.3/jquery-ui.js")!!}
 
-<script src="javascripts\raphael.min.js" type="text/javascript"></script>
-<script src="javascripts\selectivizr-min.js" type="text/javascript"></script>
-<script src="javascripts\jquery.mousewheel.js" type="text/javascript"></script>
-<script src="javascripts\jquery.vmap.min.js" type="text/javascript"></script>
-<script src="javascripts\jquery.vmap.sampledata.js" type="text/javascript"></script>
-<script src="javascripts\jquery.vmap.world.js" type="text/javascript"></script>
-<script src="javascripts\jquery.dataTables.js" type="text/javascript"></script>
-<script src="javascripts\excanvas.min.js" type="text/javascript"></script>
-<script src="javascripts\select2.js" type="text/javascript"></script>
-<script src="javascripts\bootstrap-editable.min.js" type="text/javascript"></script>
-<script src="javascripts\xeditable-demo-mock.js" type="text/javascript"></script>
-<script src="javascripts\xeditable-demo.js" type="text/javascript"></script>
-<script src="javascripts\address.js" type="text/javascript"></script>
+{!!Html::script("javascripts\raphael.min.js")!!}
+{!!Html::script("javascripts\selectivizr-min.js")!!}
+{!!Html::script("javascripts\jquery.mousewheel.js")!!}
+{!!Html::script("javascripts\jquery.vmap.min.js")!!}
+{!!Html::script("javascripts\jquery.vmap.sampledata.js")!!}
+{!!Html::script("javascripts\jquery.vmap.world.js")!!}
+{!!Html::script("javascripts\jquery.dataTables.js")!!}
+{!!Html::script("javascripts\excanvas.min.js")!!}
+{!!Html::script("javascripts\select2.js")!!}
+{!!Html::script("javascripts\bootstrap-editable.min.js")!!}
+{!!Html::script("javascripts\xeditable-demo-mock.js")!!}
+{!!Html::script("javascripts\xeditable-demo.js")!!}
+{!!Html::script("javascripts\address.js")!!}
 {!!Html::script("javascripts\bootstrap.min.js")!!}
 {!!Html::script("javascripts/bootstrap-select.js")!!}
 {!!Html::script("javascripts\jquery.bootstrap.wizard.js")!!}
@@ -217,10 +218,10 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><a href="#">
-                    <img width="34" height="34" src="images\avatar-male2.png">Llegaste tarde el día de ayer...</a>
+                    <img width="34" height="34" src="{{asset('images\avatar-male2.png')}}" >Llegaste tarde el día de ayer...</a>
                   </li>
                   <li><a href="#">
-                    <img width="34" height="34" src="images\avatar-male2.png">llamado de atención por llegar tarde...</a>
+                    <img width="34" height="34" src="{{asset('images\avatar-male2.png')}}">llamado de atención por llegar tarde...</a>
                   </li>
                 </ul>
               </li>

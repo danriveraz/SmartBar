@@ -26,7 +26,7 @@ class UsuariosController extends Controller
     $this->middleware('auth');
     $this->middleware('guardarAccionUser');// solo con colocar este middleware aquí, ya en todas las vistas se le va a estar actualizando las horas de las actividades que ha estado haciendo, esto se debe a en todas las vistas hay un ajax que verifica que el usuario esté logueado y hace un llamado a este controlador, por lo tanto en las todas las vistas se está ejecutando este middleware
     $this->middleware('Permisos:Admin')->except(['edit','update']);
-    $this->middleware('PermisoEditarUsuario')->only(['edit','update']);
+    $this->middleware('PermisoEditarUsuario')->only(['edit', 'update']);
   }
 
   public function index(){
@@ -216,6 +216,35 @@ class UsuariosController extends Controller
   }
 
   public function edit($id){
+    $usuarioActual  = Auth::User();
+    $posibleEmpleado = User::find($id);
+    $empresas = Empresa::where('usuario_id' , $usuarioActual->id)->get();
+    $auxiliar = 0;
+    for($i = 0; $i < sizeof($empresas); $i++){
+      if($posibleEmpleado->idEmpresa == $empresas[$i]->id){
+        $auxiliar = 1;
+      }
+    }
+    if($usuarioActual->id == $id){
+      if($usuarioActual->esAdmin == 0){
+        $usuario = User::find($id);
+        return view('Usuario.editEmpleado')->with('usuario',$usuario);
+      }else{
+        $departamentos = Departamento::all();
+        $ciudades = Ciudad::all();
+        $usuario = User::find($id);
+        $Empresa = Empresa::find($usuario->empresaActual);
+        return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas);
+      }
+    }else if($auxiliar == 1){
+      $usuario = User::find($id);
+      return view('Usuario.editEmpleado')->with('usuario',$usuario);
+    }else{
+      return view('errors.503');
+    }
+  }
+
+  public function editEmpleado($id){
     $usuarioActual  = Auth::User();
     $posibleEmpleado = User::find($id);
     $empresas = Empresa::where('usuario_id' , $usuarioActual->id)->get();

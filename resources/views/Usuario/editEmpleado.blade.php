@@ -1,4 +1,4 @@
-@extends(Auth::User()->esAdmin ? 'Layout.app_administradores' : 'Layout.app_empleado')
+@extends('Layout.app_empleado')
 @section('content')
 @include('flash::message')
 {!!Html::style('assets/css/main.css')!!}
@@ -539,13 +539,9 @@
   </div>
 </div>
       
-<!-- JAVASCRIPT -->
 <script>
   var JSONusuario = eval(<?php echo json_encode($usuario); ?>);
-
   $(document).ready(function(){
-      listcat();
-      listmesas();
       $("#modalImagen").fancybox({
             helpers: {
                 title : {
