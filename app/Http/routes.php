@@ -147,3 +147,11 @@ Route::resource('Tienda', 'TiendaController');
 Route::resource('Salario','SalarioController');
 
 Route::resource('Mensajes', 'MensajeriaController');
+
+
+Route::get('mail', function () { // esto lo hice para poder probar los emails
+    $admin =  Auth::user();
+    $data = ['user' => $admin, 'contrasena' => '1245678'];
+
+    return view("Emails/confirmacionDatosTrabajador")->with('data',$data);
+});
