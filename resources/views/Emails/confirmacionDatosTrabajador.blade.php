@@ -30,7 +30,7 @@
 <div>
 	<div style="background-color:white; padding: 15px 0px 50px; margin: 0px; text-align: center; font-family: Arial, Helvetica, sans-serif, serif, EmojiFont;">
 <br>
-<a href="" target="_blank" rel="noopener noreferrer"><img style="width:50%;" data-imagetype="External" src="{{asset('/images/CorreoEmpleado.jpeg')}}"></a> <br>
+<a href="" target="_blank" rel="noopener noreferrer"><img style="width:50%;" data-imagetype="External" src="{{asset('/images/CorreoEmpleado.jpg')}}"></a> <br>
 <br>
 
 <br>
