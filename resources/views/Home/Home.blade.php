@@ -59,7 +59,7 @@
       <div class="row">
         <div class="col spacin">
           <span class="text1" style="color:#373737">REPRODUCE Y OBSERVA</span>
-          <span class="textpar">Asi haremos tu vida mas facil</span>
+          <span class="textpar">Asi haremos tu vida más fácil</span>
           <br><p>
           <span class="textpar spacin30"><strong>Configuración Fácil</strong></span>
           <br> <span class="text-small">Prueba todas las funciones durante <strong>
@@ -143,8 +143,8 @@
       <div class="col plan">
           <h2 class="plan-title">ÚNICA</h2>
           <ul>
-              <li>Hasta 7 Empleados</li>
-              <li>Asesoria de Lunes a Viernes(✓)</li>
+              <li>Hasta 10 Empleados</li>
+              <li>Asesoria Permanente(✓)</li>
               <li>1 sólo negocio</li>
               <li>Promociones Únicas SmartShop</li>
               <li>Uso del programa por 30 días</li>
@@ -159,10 +159,33 @@
           </p>
       </div>
       <div class="col plan bg-gray-white">
-        <h2 class="plan-title">ESPECIAL</h2>
+
+          <h2 class="plan-title">ÉLITE</h2>
+          <ul>
+              <li>Empleados Infinitos</li>
+              <li>Asesoria Permanente (✓)</li>
+              <li>Hasta 4 Negocios</li>
+              <li>Todas las promociones SmartShop</li>
+              <li>Uso del programa por 3 años</li>
+              <li>Información segura hasta por 4 años</li>
+              <li>Acceso al 100% de las utilidades SmartBar</li>
+              <li>Personaje Real Smartbar GRATIS</li>
+              <li>El mes 1, 12,24 y 36 son GRATIS</li>
+              <li>CAPACITACIÓN PROFESIONAL GRATIS (Servicio al Cliente)</li>
+              <li>Ahorra hasta $ 400.000 Cop</li>
+          </ul>
+
+          <h3 class="plan-price">$ 2.998.800 COP</h3>
+          <p>
+            Descuento en membresia de $ 198.000 Cop
+          </p>
+          
+      </div>
+      <div class="col plan">
+                <h2 class="plan-title">ESPECIAL</h2>
           <ul>
               <li>Hasta 20 Empleados</li>
-              <li>Asesoria de Lunes a Sábado (✓)</li>
+              <li>Asesoria Permanente (✓)</li>
               <li>Hasta 2 negocios</li>
               <li>Promociones Únicas y especiales SmartShop</li>
               <li>Uso del programa por 6 meses</li>
@@ -176,24 +199,7 @@
           <p>
             10% descuento en pago anual.
           </p>
-      </div>
-      <div class="col plan">
-          <h2 class="plan-title">ÉLITE</h2>
-          <ul>
-              <li>Empleados infinitos</li>
-              <li>Asesoria de 24/7, 365 días al año (✓)</li>
-              <li>Hasta 4 Negocios</li>
-              <li>Todas las promociones SmartShop</li>
-              <li>Uso del programa por 3 años</li>
-              <li>Información segura hasta por 5 años</li>
-              <li>Acceso al 100% de las utilidades SmartBar</li>
-              <li>El mes 1, 12,24 y 36 son GRATIS</li>
-              <li>Ahorra hasta $ 400.000 Cop</li>
-          </ul>
-          <h3 class="plan-price">$ 2.998.800 COP</h3>
-          <p>
-            Descuento en membresia de $ 198.000 Cop
-          </p>
+
       </div>
     </div>
     <p><img class="plan-payment" src="assetsNew/images/logos-payment-col.png" alt="Métodos de pago"/></p>
