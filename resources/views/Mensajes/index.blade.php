@@ -120,25 +120,20 @@
               <li id="sentButtom" class="list-group-item">
                 <a onclick="mensajes('{{Auth::user()->id}}','enviados')" href="javascript:void(0)">
                   <p>
-                    <span class="badge">9</span>Enviados
+                    <?php
+                      $cont=0;
+                      foreach($mensajes as $mensaje){
+                        if($mensaje->id_receptor != Auth::user()->id){
+                          $cont++;
+                        }
+                      }
+                      echo '<span class="badge" id="countRecibidos">'.$cont.'</span>Enviados';
+                    ?>
+
                   </p>
                 </a>
               </li>
 
-              <li class="list-group-item">
-                <a href="#">
-                  <p>
-                    Borradores
-                  </p>
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="#">
-                  <p>
-                    <span class="badge">1</span>No deseados
-                  </p>
-                </a>
-              </li>
               <li class="list-group-item">
                 <a href="#">
                   <p>
