@@ -596,9 +596,6 @@
                 }
             }
         });
-      $('#modalImagen').change(function(){
-          alert("yeees");
-      });
      // $(".gallery-item filter1 fancybox").fancybox({ });
 
       $("#fechaNacimiento").load(this);

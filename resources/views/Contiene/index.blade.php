@@ -196,19 +196,50 @@
          <!-- fin de la tabla de selecion de productos-->      
                   <div class="col-lg-12">
 
-              <div class="col-lg-4">                 
+              <div class="col-lg-2">                 
                 <div class="bs-example">
-                  <img src="images/productos/{{$producto->imagen}}" alt="{{$producto->nombre}}">
+                  <div class="widget-content fileupload fileupload-new" data-provides="fileupload" style="margin-top: 20%;">
+                  <div class="gallery-container fileupload-new img-thumbnail">
+                    <div id="imgActual" class="gallery-item filter1" rel="" style="border-radius: 50%; width: 150px; height: 150px;">
+                      @if($producto->imagen!='')
+                        {!! Html::image('images/productos/'.$producto->imagen,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo', 'id' => 'imagenPerfilUsuarioCircular')) !!}
+                        <!-- clase circular -> , array('class' => 'img-responsive img-circle user-photo') -->
+                      @else
+                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" class="img-responsive img-circle user-photo">
+                      @endif
+                      <div class="actions">
+                        <a  id="modalImagen" href="{{asset('images/productos/'.$producto->imagen) }}" title="Imagen negocio">
+                          <img src="images/productos/{{$producto->imagen}}" hidden>
+                          <i class="fa fa-search-plus"></i>
+                        </a>
+                        <a onclick="$('#imagenPerfil').click()">
+                          <i class="fa fa-pencil"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="imgReemplazo" onchange="funcioncita();" class="gallery-item fileupload-preview fileupload-exists img-thumbnail" style="border-radius: 50%; width: 150px; height: 150px; background: #ffffff;" >
+                    
+                  </div>
+                  <div hidden>
+                    <span class=" btn-file" id="subirImagenPerfil">
+                      <span class="fileupload-new"><i class="fa fa-pencil"></i></span>
+                      <span class="fileupload-exists"><i class="fa fa-search-plus"></i></span>
+                      <input type="file" value="{{$producto->imagen}}" class="form-control" name="imagenPerfil"  id="imagenPerfil">
+                    </span>
+                  </div>
+                </div>
+                  <!-- <img src="images/productos/{{$producto->imagen}}" alt="{{$producto->nombre}}"> -->
                 </div>
                 
          <!--<div class="text-center"><a class="btn btn-bitbucket" onclick=""><i class="fa fa-send"></i>Guardar Producto</a></div>-->
                                             
               </div> <!-- fin del modal 1-->
               
-              <div class="col-lg-8">
+              <div class="col-lg-10">
               <div class="widget-content padded">
-                <textarea class="form-control" id="descripcion" style="height: 50px" placeholder="Descripci&oacute;n del producto">{{$producto->descripcion}}</textarea><br>
-                <textarea class="form-control" id="receta" style="height: 200px" placeholder="Preparaci&oacute;n del producto">{{$producto->receta}}</textarea><br>
+                <textarea class="form-control" id="descripcion" style="height: 80px; resize: none;"  maxlength="250"placeholder="Descripci&oacute;n del producto">{{$producto->descripcion}}</textarea><br>
+                <textarea class="form-control" id="receta" style="height: 150px ; resize: none;" maxlength="500" placeholder="Preparaci&oacute;n del producto">{{$producto->receta}}</textarea><br>
                 <input type="text" name="copa" class="form-control" id="copa" placeholder="Tipo de copa o vaso" value="{{$producto->vaso}}">
                 <!--<div id="summernote">
                   {{$producto->receta}}
@@ -239,6 +270,16 @@
 
   var routeEliminar = "http://localhost/PocketByR/public/contiene/eliminar";
   var routeGuardar = "http://localhost/PocketByR/public/contiene/guardar";
+
+  $(document).ready(function(){
+    $("#modalImagen").fancybox({
+        helpers: {
+            title : {
+                type : 'float'
+            }
+        }
+    });
+  });
 
   function tecla(e,insumo){
     if(e.which == 13){
@@ -403,6 +444,13 @@
 
 </script>
 <style>
+
+    #imagenPerfilUsuarioCircular{ 
+      width: 150px;
+      height: 150px;
+      background: #2f003;
+    }
+
     .center-block {
         float: none;
         margin-left: auto;
