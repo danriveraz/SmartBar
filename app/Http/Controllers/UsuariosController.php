@@ -220,27 +220,31 @@ class UsuariosController extends Controller
     $posibleEmpleado = User::find($id);
     $empresas = Empresa::where('usuario_id' , $usuarioActual->id)->get();
     $auxiliar = 0;
-    for($i = 0; $i < sizeof($empresas); $i++){
-      if($posibleEmpleado->idEmpresa == $empresas[$i]->id){
-        $auxiliar = 1;
+    if($posibleEmpleado == null){
+      return view('errors.503');
+    }else{
+      for($i = 0; $i < sizeof($empresas); $i++){
+        if($posibleEmpleado->idEmpresa == $empresas[$i]->id){
+          $auxiliar = 1;
+        }
       }
-    }
-    if($usuarioActual->id == $id){
-      if($usuarioActual->esAdmin == 0){
+      if($usuarioActual->id == $id){
+        if($usuarioActual->esAdmin == 0){
+          $usuario = User::find($id);
+          return view('Usuario.editEmpleado')->with('usuario',$usuario);
+        }else{
+          $departamentos = Departamento::all();
+          $ciudades = Ciudad::all();
+          $usuario = User::find($id);
+          $Empresa = Empresa::find($usuario->empresaActual);
+          return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas);
+        }
+      }else if($auxiliar == 1){
         $usuario = User::find($id);
         return view('Usuario.editEmpleado')->with('usuario',$usuario);
       }else{
-        $departamentos = Departamento::all();
-        $ciudades = Ciudad::all();
-        $usuario = User::find($id);
-        $Empresa = Empresa::find($usuario->empresaActual);
-        return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas);
+        return view('errors.503');
       }
-    }else if($auxiliar == 1){
-      $usuario = User::find($id);
-      return view('Usuario.editEmpleado')->with('usuario',$usuario);
-    }else{
-      return view('errors.503');
     }
   }
 

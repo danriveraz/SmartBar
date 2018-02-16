@@ -22,7 +22,6 @@
                       @endif
                       <div class="actions">
                         <a  id="modalImagen" href="{{ asset ('images/admins/'.$usuario->imagenPerfil) }}" title="Imagen negocio">
-                          <img src="images/admins/{{$usuario->imagenPerfil}}" hidden>
                           <i class="fa fa-search-plus"></i>
                         </a>
                         <a onclick="$('#imagenPerfil').click()">
@@ -601,7 +600,7 @@
       $("#fechaNacimiento").load(this);
       $('[data-toggle="popover"]').popover();
       function update(){
-        document.getElementById('no.').style.width = '10%';
+        document.getElementById('no').style.width = '10%';
         document.getElementById('opcionesMesas').style.width = '5%';
         document.getElementById('opcionesCategorias').style.width = '5%';
       }

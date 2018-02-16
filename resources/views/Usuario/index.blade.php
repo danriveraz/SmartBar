@@ -174,12 +174,9 @@
                   <div class="col-md-9">
                     <div class="widget-content fileupload fileupload-new" data-provides="fileupload">
                       <div class="gallery-container fileupload-new img-thumbnail" >
-                        <div class="gallery-item  img-thumbnail" style="line-height: 150px;">
-                          <img class="  img-responsive img-circle user-photo" style="width: 150px; height: 150px;" src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
+                        <div class="gallery-item  img-thumbnail" style="line-height: 150px; border-radius: 50%; width: 150px; height: 150px;">
+                          {!! Html::image('images/admins/'.$usuario->imagenPerfil,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo', 'id' => 'imagenPerfilUsuarioCircular')) !!}
                           <div class="actions">
-                            <a onclick="$('#eliminarImagen{{$usuario->id}}').click()">
-                              <i class="fa fa-trash-o"></i>
-                            </a>
                             <a  id="modalImagen" href="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}" title="Sin imagen">
                               <img src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}" hidden>
                               <i class="fa fa-search-plus"></i>
@@ -190,7 +187,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="gallery-item fileupload-preview fileupload-exists img-thumbnail" >
+                      <div class="gallery-item fileupload-preview fileupload-exists img-thumbnail" style="border-radius: 50%; width: 150px; height: 150px; background: #ffffff;">
                       </div>
                       <div hidden>
                         <span class=" btn-file" >
@@ -777,4 +774,10 @@ $("#registrarUsuario").click(function(){
 
 
 </script>
+<style type="text/css">
+  #imagenPerfilUsuarioCircular{ 
+    width: 150px;
+    height: 150px;
+  }
+</style>
 @endsection
