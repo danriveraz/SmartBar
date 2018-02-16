@@ -83,6 +83,11 @@
 								Al crear tu cuenta aceptas nuestros
 								<a href="" target="_blank">Términos, Condiciones</a> y 
 								<a href="" target="_blank">Política de Tratamiento de Datos</a>.
+								<div class="colorGris user-access-footer">
+				
+				<a class="btn btn-social-icon btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-facebook']);"><span class="fa fa-facebook"></span></a>
+				<p>¿Quieres Loguearte? <a href="{{url('Auth/login')}}">INGRESAR</a></p>
+			</div>
 							</div>
 							<div class="input-wrapper share-data" style="display: none;">
 								<div>
@@ -91,7 +96,8 @@
 										<img id="checkbox-image">
 									</div>
 									<div style="display: inline-block; width: 90%; text-align: left;">
-										<label style="font-size: 12px;" for="canShareData" id="canShareData-label">Compartir información con Bancolombia para recibir ofertas personalizadas de productos y servicios.</label>
+										<label style="font-size: 12px;" for="canShareData" id="canShareData-label"></label>
+
 									</div>
 								</div>
 							</div>                
