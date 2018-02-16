@@ -1,11 +1,11 @@
-{!!Html::script('javascripts\main2.js')!!}
+
 <div class="row">
   <div class="col-sm-12">
     <div class="widget-container fluid-height clearfix">
       <div class="widget-content padded clearfix">
         <table class="table table-bordered table-striped" id="dataTable1">
           <thead>
-            <th width="1%" id="no.">No.</th>
+            <th width="1%" id="no">No.</th>
             <th width="45%">Nombre</th>
             <th width="45%">Precio</th>
             <th width="9%" id="opcionesCategorias">Opciones</th>
@@ -18,7 +18,6 @@
                     <a class="popover-trigger" readonly value="0"  data-content="Cantidad de productos que pertenecen a esta categoría" data-html="true" data-placement="bottom" data-toggle="popover" style="width: 100%; color: #5A5A5A;">0
                     </a>
                   </td>
-                <!--onmouseover="showdiv(event);" onmousemove="showdiv(event);" onmouseout="javascript:document.getElementById('flotante').style.display='none';"-->
                 </div>
                 <td id="categoria{{$categoria->id}}" class="seleccionar">{{$categoria->nombre}}</td>
                 <td id="categoria{{$categoria->id}}" class="seleccionar">{{$categoria->precio}}</td>
@@ -32,9 +31,10 @@
                 </td>
               </tr>
               <!-- MODAL EDIT -->
-              <div class="modal fade" id="editModalCategoria{{$categoria->id}}" role="dialog" >
+              <div class="modal fade" id="editModalCategoria{{$categoria->id}}">
                 <div class="modal-dialog">
-                  <div class="modal-content">
+                  <div class="modal-content" style="background-color:#FFFFFF">
+                    <!-- class="modal-content" -->
                       <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
                         <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
                         <h4 class="modal-title">
@@ -46,17 +46,30 @@
                           <div class="widget-content padded">
                             {!! Form::open() !!}
                               <fieldset>
-                                <div class="row">       
-                                  <div class="widget-content">
-                                    <div class="form-group">
-                                      <div class="form-group">
-                                        <input type="text" id="nombreCategoria{{$categoria->id}}" placeholder="Nombre" class="form-control" value="{{$categoria->nombre}}" required="true" />
+                                <div class="row">
+                                  <div class="col-md-4">
+                                    <div class="bs-example">
+                                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                        <!-- Carousel indicators -->  
+                                          <!-- Wrapper for carousel items -->
+                                          <div class="carousel-inner">
+                                            <img src="{{ asset ('images/categorias/'.$categoria->imagen)}}" style="width: 150px; height: 150px;">
+                                          </div>
+                                        </div>
                                       </div>
-                                      <div class="form-grup">
-                                          <input type="number" placeholder="Precio" min="0" step="any" id="precioCategoria{{$categoria->id}}" class="form-control" value="{{$categoria->precio}}"/>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="widget-content">
+                                      <div class="form-group">
+                                        <div class="form-group">
+                                          <input type="text" id="nombreCategoria{{$categoria->id}}" placeholder="Nombre" class="form-control" value="{{$categoria->nombre}}" required="true" />
+                                        </div>
+                                        <div class="form-grup">
+                                            <input type="number" placeholder="Precio" min="0" step="any" id="precioCategoria{{$categoria->id}}" class="form-control" value="{{$categoria->precio}}"/>
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
+                                  </div>   
                                   <div class="modal-footer">
                                     <button class="btn btn-default" data-dismiss="modal" onclick="modificarCategoria({{$categoria->id}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
                                   </div>
@@ -78,21 +91,9 @@
   </div>
 </div>
 
-<style type="text/css">
-  #flotante
-  {
-    position: absolute;
-    display:none;
-    font-family:Arial;
-    font-size:0.8em;
-    border:1px solid #808080;
-    background-color:#f1f1f1;
-  }
-</style>
-
 <script type="text/javascript">
   var JSONproductos = eval(<?php echo json_encode($arregloProductos); ?>);
-
+  $(".popover-trigger").popover();
   for(var i = 0; i < JSONproductos.length; i++){
     if(JSONproductos[i][0] != null){
       $("#categoria"+JSONproductos[i][0].idCategoria).children("td").children("a").each(function (indextd){
@@ -182,4 +183,41 @@
     var id = palabra.concat(idElegido);
     $(id).modal();
   });
+
+  $("#dataTable1").dataTable({
+      "sPaginationType": "full_numbers",
+      aoColumnDefs: [
+        {
+          bSortable: false,
+          aTargets: [0, -1]
+        }
+      ]
+    });
+
+    $('.table').each(function() {
+      return $(".table #checkAll").click(function() {
+        if ($(".table #checkAll").is(":checked")) {
+          return $(".table input[type=checkbox]").each(function() {
+            return $(this).prop("checked", true);
+          });
+        } else {
+          return $(".table input[type=checkbox]").each(function() {
+            return $(this).prop("checked", false);
+          });
+        }
+      });
+    });
+
 </script>
+
+<style type="text/css">
+  #flotante
+  {
+    position: absolute;
+    display:none;
+    font-family:Arial;
+    font-size:0.8em;
+    border:1px solid #808080;
+    background-color:#f1f1f1;
+  }
+</style>
