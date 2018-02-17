@@ -192,18 +192,6 @@
 
   //CODIGO PARA NOTIFICACIONES EN Layout
 
-  $(function(){
-  //  currentValue.id_receptor==(Auth::user()->id);
-
-          JSONMensajes = eval(<?php echo json_encode($mensajes);?>);
-          JSONMensajes.forEach(function(currentValue,index,arr) {
-              if(currentValue.id_receptor == Auth::user()->id){
-
-              $('#listaMensajes').append('<a onclick="verMensaje('+currentValue.id+')" href="javascript:void(0)"><div class="status"></div><div class="favorite fa fa-star-o"></div><h2>'+currentValue.emisor.nombrePersona+'<span>'+currentValue.created_at+'</span></h2><p>'+currentValue.descripcion+'</p></a>');
-              }
-          });
-  });
-
   function mensajes(id,estado){
     alert(estado);
           $('#listaMensajes').html('');
@@ -222,9 +210,13 @@
                 $('#listaMensajes').append('<a onclick="verMensaje('+currentValue.id+')" href="javascript:void(0)"><div class="status"></div><div class="favorite fa fa-star-o"></div><h2>'+currentValue.emisor.nombrePersona+'<span>'+currentValue.created_at+'</span></h2><p>'+currentValue.descripcion+'</p></a>');
               }
             }
+
           });
 }
+
   function verMensaje(idMensaje){
+      var esta=1;
+      var routeMensajesModificar="http://localhost:8000//Mensajes/modificar";
       var options = {};
       $( "#messageBox" ).effect( "fold", options, 100, callback );
 
@@ -237,17 +229,43 @@
               $('#receptor').html(currentValue.id_receptor.nombrePersona);
               $('#asunto').html(currentValue.asunto);
               $('#descripcion').html(currentValue.descripcion);
-              $('#estado').html(currentValue.estado);
+              //$('#estado').html(currentValue.estado);
 
             }
-          });
+            $.ajax({
+
+
+             url: routeMensajesModificar,
+             type: 'GET',
+             data: {
+               id: idMensaje,
+               estado:esta
+             },
+             success: function(){
+                $("#estado"+idMensaje).val(esta);
+
+             },
+             error: function(data){
+               alert('Error al modificar el estado');
+             }
+           });
+         });
 }
 
 function callback() {
       setTimeout(function() {
         $( "#messageBox" ).removeAttr( "style" ).hide().fadeIn();
       }, 1000 );
-    };
+    }
+  /*  function(){
+            JSONMensajes = eval(<?php echo json_encode($mensajes);?>);
+            JSONMensajes.forEach(function(currentValue,index,arr) {
+                if(currentValue.id_receptor == Auth::user()->id){
+
+                $('#listaMensajes').append('<a onclick="verMensaje('+currentValue.id+')" href="javascript:void(0)"><div class="status"></div><div class="favorite fa fa-star-o"></div><h2>'+currentValue.emisor.nombrePersona+'<span>'+currentValue.created_at+'</span></h2><p>'+currentValue.descripcion+'</p></a>');
+                }
+            });
+    }*/
 
   </script>
 

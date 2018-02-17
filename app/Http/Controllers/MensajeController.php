@@ -23,9 +23,8 @@ class MensajeController extends Controller
     $mensaje->id_receptor = $request->id_receptor;
     $mensaje->asunto = $request->asunto;
     $mensaje->descripcion = $request->descripcion;
-
+    //$mensaje->estado=0;
     $mensaje->save();
-
 
     Flash::success("El mensaje se ha enviado satisfactoriamente")->important();
     return redirect()->route('Auth.usuario.index');

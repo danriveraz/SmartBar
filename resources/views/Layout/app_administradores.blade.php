@@ -236,13 +236,13 @@
                       <?php
                         $cont=0;
                         foreach(Auth::User()->mensajes as $mensaje){
-                          if($mensaje->id_receptor == Auth::user()->id){
+                          if($mensaje->id_receptor == Auth::user()->id && $mensaje->estado==1){
                             $cont++;
                           }
                         }
                         echo $cont.'</span>';
                       ?>
-                    
+
                     </p>
                   </a>
                   <ul class="dropdown-menu">
