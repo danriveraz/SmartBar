@@ -145,9 +145,8 @@ Route::resource('/usuario', 'MensajeController');
 Route::resource('Tienda', 'TiendaController');
 Route::resource('Salario','SalarioController');
 
-Route::resource('Mensajes', 'MensajeriaController');
 Route::get('Mensajes/modificar', 'MensajeriaController@modificarEstado');
-
+Route::resource('Mensajes', 'MensajeriaController');
 
 Route::get('mail', function () { // esto lo hice para poder probar los emails
     $admin =  Auth::user();

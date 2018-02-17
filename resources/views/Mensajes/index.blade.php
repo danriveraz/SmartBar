@@ -215,7 +215,7 @@
 }
 
   function verMensaje(idMensaje){
-      var esta=1;
+    //  var esta=1;
       var routeMensajesModificar="http://localhost:8000//Mensajes/modificar";
       var options = {};
       $( "#messageBox" ).effect( "fold", options, 100, callback );
@@ -229,21 +229,19 @@
               $('#receptor').html(currentValue.id_receptor.nombrePersona);
               $('#asunto').html(currentValue.asunto);
               $('#descripcion').html(currentValue.descripcion);
-              //$('#estado').html(currentValue.estado);
-
+              $('#estado').html(currentValue.estado);
             }
+
+            //AJAX QUE MODIFICA ESTADO, PARA MENSAJES LEIDO ES 1, Y PARA NO LEIDOS ES CERO
             $.ajax({
-
-
              url: routeMensajesModificar,
              type: 'GET',
              data: {
-               id: idMensaje,
-               estado:esta
+               id: idMensaje
+               //estado:esta
              },
              success: function(){
-                $("#estado"+idMensaje).val(esta);
-
+              //  $("#estado"+idMensaje).val(esta);
              },
              error: function(data){
                alert('Error al modificar el estado');

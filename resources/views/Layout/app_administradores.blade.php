@@ -236,7 +236,7 @@
                       <?php
                         $cont=0;
                         foreach(Auth::User()->mensajes as $mensaje){
-                          if($mensaje->id_receptor == Auth::user()->id && $mensaje->estado==1){
+                          if($mensaje->id_receptor == Auth::user()->id && $mensaje->estado==0){
                             $cont++;
                           }
                         }
