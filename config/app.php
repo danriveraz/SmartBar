@@ -159,6 +159,7 @@ return [
         PocketByR\Providers\RouteServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        MaddHatter\LaravelFullcalendar\ServiceProvider::class,
 
     ],
 
@@ -212,6 +213,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Flash'     => Laracasts\Flash\Flash::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Calendar'  => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
 
     ],
 

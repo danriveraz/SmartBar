@@ -10,13 +10,20 @@ use PocketByR\User;
 use Auth;
 use Laracasts\Flash\Flash;
 use PocketByR\AgendaTrabajadores;
+use DateTime;
 
 class AgendaTrabajadoresController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
-        $this->middleware('guardarAccionUser');// solo con colocar este middleware aquí, ya en todas las vistas se le va a estar actualizando las horas de las actividades que ha estado haciendo, esto se debe a en todas las vistas hay un ajax que verifica que el usuario esté logueado y hace un llamado a este controlador, por lo tanto en las todas las vistas se está ejecutando este middleware
-        $this->middleware('Permisos:Admin');
+        $userActual = Auth::user();
+        if($userActual != null){
+          if (!$userActual->esAdmin) {
+              flash('No Tiene Los Permisos Necesarios')->error()->important();
+              return redirect('/WelcomeTrabajador')->send();
+          }
+        }
+
     }
     /**
      * Display a listing of the resource.
@@ -24,8 +31,19 @@ class AgendaTrabajadoresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-      return view('AgendaTrabajadores.index');
-    }
+        $empleados = User::usuariosEmpresa(Auth::user()->empresaActual)->get();
+        $empleadosIzq = array();
+        $empleadosDer = array();
+        foreach ($empleados as $key => $empleado) {
+            if ($key % 2 == 0) {
+                array_push($empleadosIzq, $empleado);
+            }else{
+                array_push($empleadosDer, $empleado);
+            }
+        }
+            
+        return view('AgendaTrabajadores.index')->with('empleadosIzq',$empleadosIzq)->with('empleadosDer',$empleadosDer);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -33,9 +51,6 @@ class AgendaTrabajadoresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(){
-    	//modificar lista de trabajadores
-        $trabajadores = User::find(Auth::user()->id)->empresa->empleados->where('estado',1)->lists('nombrePersona','id');
-        return view('AgendaTrabajadores/crearAgenda', compact('trabajadores'));
     }
 
     /**
@@ -45,25 +60,38 @@ class AgendaTrabajadoresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        //
-        $rules = [
-            'fechaTrabajo' => 'required',
-            'idUsuario' => 'required'
-            ];
-            $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()){
-            return redirect()->route('Auth.usuario.create')->withErrors($validator)->withInput();
-        }else{
-            $trabajadores = $request['idUsuario'];
-            foreach ($trabajadores as $trabajador){
-                AgendaTrabajadores::create([
-                    // Empaquetamos los Datos  y los envamos al Insert
-                    'fechaTrabajo' => $request['fechaTrabajo'],
-                    'idUsuario' => $trabajador
-                ]);
+
+        if($request->entities[0] != null && $request->entities[1] != null && $request->entities[2] != null){
+            $jornada = $request->entities[0][0];
+            $idEmpleado = $request->entities[1][0];
+            $diasTrabajo = $request->entities[2];
+            $date = new DateTime();
+            $week = $date->format("W");
+
+            $agenda = new AgendaTrabajadores;
+            $agenda->idUsuario = $idEmpleado;
+            $agenda->idEmpresa = Auth::user()->empresaActual;
+            $agenda->idSemana = $week;
+            foreach ($diasTrabajo as $key => $dia) {
+                if($dia == "lun"){
+                    $agenda->lun = $jornada;
+                }elseif($dia == "mar"){
+                    $agenda->mar = $jornada;
+                }elseif($dia == "mie"){
+                    $agenda->mie = $jornada;
+                }elseif($dia == "jue"){
+                    $agenda->jue = $jornada;
+                }elseif($dia == "vie"){
+                    $agenda->vie = $jornada;
+                }elseif($dia == "sab"){
+                    $agenda->sab = $jornada;
+                }else{
+                    $agenda->dom = $jornada;
+                }
             }
-            flash::success('Se han agregado las agendas de trabajo')->important();
-            return redirect()->action('UsuariosController@index');
+            $agenda->save();
+
+            return redirect('/agenda');
         }
     }
 
@@ -84,8 +112,6 @@ class AgendaTrabajadoresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
-        $agenda = AgendaTrabajadores::find($id);
-        return view('AgendaTrabajadores/editarAgenda' , ['agenda' => $agenda] );
     }
 
     /**
@@ -96,14 +122,6 @@ class AgendaTrabajadoresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-        $agenda = AgendaTrabajadores::find($id);
-        $agenda -> fill([
-            // Empaquetamos los Datos  y los envamos al Insert
-            'fechaTrabajo' => $request['fechaTrabajo']
-            ]);
-        $agenda -> save();
-        flash::success('Agenda actualizada')->important();
-        return redirect()->action('UsuariosController@index');
     }
 
     /**
@@ -113,9 +131,5 @@ class AgendaTrabajadoresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){
-        $agenda = AgendaTrabajadores::find($id);
-        $agenda->delete();
-        flash::success('Se ha eliminado la agenda')->important();
-        return redirect()->action('UsuariosController@index');
     }
 }

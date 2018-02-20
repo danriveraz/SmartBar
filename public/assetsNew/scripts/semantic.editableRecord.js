@@ -1,5 +1,5 @@
 (function($) {
-
+    var columna = -1;
     //add batch operation
     $.fn.editableRecord = function( options ) {
         var $this = $.extend(this, defaultSetting, options);
@@ -16,8 +16,8 @@
         addable: true,
 
         //buttons
-        saveButton: '<div name="save" class="ui primary button">Save</div>',
-        cancellButton: '<div name="cancel" class="ui button">Cancel</div>',
+        /*saveButton: '<div name="save" class="ui primary button">Save</div>',
+        cancellButton: '<div name="cancel" class="ui button">Cancel</div>',*/
         newButton: '<div class="ui positive button">+</div>',
         deleteButton: '<div class="ui icon button" onclick="del()"><i class="trash icon"></i></div>',
         detailButton: '',
@@ -88,14 +88,14 @@
 
     function appendButtons(editableRecord){
 
-        editableRecord.buttonGroup = $(editableRecord.buttonGroup).append(editableRecord.cancellButton + editableRecord.orButton + editableRecord.saveButton);
+        editableRecord.buttonGroup = $(editableRecord.buttonGroup)/*.append(editableRecord.cancellButton + editableRecord.orButton + editableRecord.saveButton)*/;
         editableRecord.buttonGroup.css('float', 'right').insertAfter(editableRecord);
-        editableRecord.buttonGroup.find('div[name=save]').on('click.editableRecord', function(){
+        /*editableRecord.buttonGroup.find('div[name=save]').on('click.editableRecord', function(){
             saveButtonClicked(editableRecord);
         });
         editableRecord.buttonGroup.find('div[name=cancel]').on('click.editableRecord', function(){
             cancelButtonClicked(editableRecord);
-        });
+        });*/
     }
 
     function appendNewButton(editableRecord){
@@ -461,22 +461,18 @@
                 value = $field.text(),
                 checkedValue = $field.data('checked'),
                 uncheckedValue = $field.data('unchecked');
-
+                columna++;
             $field.attr('data-value', value);
             var inputWrapper = $('<div class="ui checkbox"></div>');
-            var inputField = inputWrapper.append($('<input type="checkbox"/>').attr('checked', checkedValue === value).val(value))
-                                         .append('<label>'+value+'</label>');
+            var inputField = inputWrapper.append($('<input name="entities[2]['+columna+']" type="checkbox"/>').attr('checked', checkedValue === value).val(value));
             inputField.checkbox({
                 onChecked: function(){
                     var $this = $(this);
                     $this.val(checkedValue);
-                    $this.next().html(checkedValue);
                 },
                 onUnchecked: function(){
                     var $this = $(this);
-                    $this.val(uncheckedValue);
-                    $this.next().html(uncheckedValue);
-                }
+                    $this.val(uncheckedValue);                }
             });
             return inputField
         },

@@ -59,6 +59,11 @@ class User extends Authenticatable
         $Inicio->save();
     }
 
+    public function scopeUsuariosEmpresa($query, $idEmpresa){
+      return $query->where('idEmpresa',$idEmpresa)
+                    ->where('esAdmin',0);
+    }
+
     public function registros(){
         return $this->hasmany('PocketByR\RegistroLogin','idUsuario');
     }
