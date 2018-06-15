@@ -135,7 +135,9 @@
 
   <!-- ascrip y css de menu -->
 
-  <!-- para el perfil -->
+  <!-- para el perfil-->
+  <!--FALTAN ALGUNOS ESTILOS, EL LAYOUT OPTIMIZADO NO SIRVE AÚN PARA EL PERFIL-->
+  {!!Html::style('assets/css/main.css')!!}
   {!!Html::style('stylesheets/profile.css')!!}
   {!!Html::style('assets/vendor/linearicons/style.css')!!}
   {!!Html::style('assets/vendor/metisMenu/metisMenu.css')!!}
@@ -245,20 +247,6 @@
 
                     </p>
                   </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="#">
-                      <img width="34" height="34" src="../../../images\avatar-male2.png">Could we meet today? I wanted...</a>
-                    </li>
-                    <li>
-                      <a href="#">
-                      <img width="34" height="34" src="../../../images\avatar-female.png">Important data needs your analysis...</a>
-                    </li>
-                    <li>
-                      <a href="#">
-                      <img width="34" height="34" src="../../../images\avatar-male2.png">Buy Se7en today, it's a great theme...</a>
-                    </li>
-                  </ul>
                 </li>
                 <li class="dropdown user hidden-xs">
                   <a data-toggle="dropdown" class="dropdown-toggle" href="#">

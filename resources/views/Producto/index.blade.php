@@ -51,7 +51,7 @@
                                   <div class="row">
                                     <div class="col-md-5">                 
                                       <div class="bs-example">
-                                        <img src="images/productos/{{$producto->imagen}}" alt="{{$producto->nombre}}">
+                                        <img src="{{asset('images/productos/'.$producto->imagen)}}" alt="{{$producto->nombre}}">
                                       </div>
                                     </div>
                                     <!-- segunda columna-->

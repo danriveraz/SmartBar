@@ -845,10 +845,10 @@ class AuthController extends Controller
             $producto23->save();
 
             $producto24 = new Producto;
-            $producto24->nombre = "Negrori";
+            $producto24->nombre = "Negroni";
             $producto24->descripcion = "Coctel de aperitivo debido a que el amargo del Campari abre el apetito";
             $producto24->receta = "Echar todos los ingredientes en un vaso ancho lleno de hielo y remover suavemente. Adornar con media rodaja de naranja.";
-            $producto24->imagen = "Negrori.png";
+            $producto24->imagen = "Negroni.png";
             $producto24->idCategoria = $categoria18->id;
             $producto24->idEmpresa = $empresa->id;
             $producto24->save();

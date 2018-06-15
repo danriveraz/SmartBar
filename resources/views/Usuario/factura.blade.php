@@ -32,7 +32,7 @@
 	                        @endif
 	                        <div class="actions">
 	                          <a  id="modalImagen" href="{{ asset ('images/admins/'.$empresa->imagenPerfilNegocio) }}" title="Imagen negocio">
-	                            <img src="images/admins/{{$empresa->imagenPerfilNegocio}}" hidden>
+	                            <img src="{{ asset ('images/admins/'.$empresa->imagenPerfilNegocio) }}" hidden>
 	                            <i class="fa fa-search-plus"></i>
 	                          </a>
 	                          <a onclick="$('#imagenPerfil').click()">

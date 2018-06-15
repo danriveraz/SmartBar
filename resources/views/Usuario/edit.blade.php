@@ -1,7 +1,7 @@
 @extends(Auth::User()->esAdmin ? 'Layout.app_administradores' : 'Layout.app_empleado')
 @section('content')
 @include('flash::message')
-{!!Html::style('assets/css/main.css')!!}
+
 
 <div class="view-account">
   <div class="module">

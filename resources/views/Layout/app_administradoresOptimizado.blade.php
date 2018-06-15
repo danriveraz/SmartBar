@@ -30,6 +30,24 @@
   {!!Html::script("assetsNew/scripts\bootstrap-fileupload.js")!!} <!--js para el cargar imagen del crear nuevo trabajador  Hector-->
   {!!Html::script('assetsNew/scripts/main.js')!!}
 
+  <!-- para el perfil -->
+  {!!Html::style('assets/css/main.css')!!}
+  {!!Html::style('stylesheets/profile.css')!!}
+  {!!Html::style('assets/vendor/linearicons/style.css')!!}
+  {!!Html::style('assets/vendor/metisMenu/metisMenu.css')!!}
+
+  {!!Html::style('assets/vendor/toastr/toastr.min.css')!!}
+
+  {!!Html::style('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')!!}
+
+
+  {!!Html::script('assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')!!}
+  {!!Html::script('assets/vendor/bootstrap-progressbar/js/bootstrap-progressbar.min.js')!!}
+
+  {!!Html::script('assets/vendor/toastr/toastr.js')!!}
+  <!-- MAIN CSS -->
+  {!!Html::style('stylesheetspropio\stylePropio.css')!!}
+  <!-- fin -->
      
 
 
