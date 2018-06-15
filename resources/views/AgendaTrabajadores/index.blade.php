@@ -1,14 +1,25 @@
 @extends(Auth::User()->esAdmin ? 'Layout.app_administradores' : 'Layout.app_empleado')
 @section('content')
-
-{!!Html::script('assetsNew\scripts\jquery-2.1.3.min.js')!!}
-{!!Html::script('assetsNew\scripts\semantic.min.js')!!}
-{!!Html::script('assetsNew\scripts\semantic.editableRecord.js')!!}
-{!!Html::script('assetsNew\scripts\example.js')!!}
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
+<link href="assetsNew/styles/semantic.min.css" rel="stylesheet" type="text/css">
+<script src="assetsNew/scripts/semantic.min.js"></script>
+<script src="assetsNew/scripts/semantic.editableRecord.js"></script>
+<script src="assetsNew/scripts/example.js"></script>
+       
+<style type="text/css">
+	.avatar {
+	    border-radius: 50%;
+	}
+	.widget-content{
+		width: 100%;
+		margin-top: 15px;
+	}
+	#inicio{
+		border-bottom: solid 2px rgba(210, 215, 217, 0.75);
+	}
+  .semanas{
+    padding-right: 10px;
+  }
+</style>
 
 <div class="modal-shiftfix">
 	<div class="container main-content">
@@ -16,7 +27,6 @@
       		<div class="col-lg-12">
       			<div class="widget-container fluid-height">
       				<div class="col-md-6 text-center" style="border-right: solid 2px rgba(210, 215, 217, 0.75);">
-      				{!! Form::open(['method' => 'POST', 'action' => 'AgendaTrabajadoresController@store']) !!}
       					<div id="inicio">
 							<div class="heading">
 								<div class="col-xs-6 col-md-6 text-center">
@@ -25,13 +35,13 @@
 								</div>
 								<div class="col-xs-3 col-md-3 text-center">
 								  <label>
-								  <input type="checkbox" value="1" name="entities[0][0]">
+								  <input checked="" name="optionsRadios1" type="radio" value="option1">
 								  <span id="dia"></span>
 								  </label><label>Dia</label>
 								</div>
 								<div class="col-xs-3 col-md-3 text-center">
 								  <label>
-								  <input type="checkbox" value="2" name="entities[0][0]">
+								  <input checked="" name="optionsRadios1" type="radio" value="option2">
 								  <span id="noche"></span>
 								  </label><label>Noche</label>
 								</div>
@@ -40,68 +50,79 @@
       		     		</div>
 						<div class="widget-container fluid-height">
 							<div class="col-md-6 text-center">
-								@foreach($empleadosIzq as $empleado)
 								<div class="widget-content padded">
 									<div class="profile-info clearfix">
 										<label class="pull-left">
-											<input type="checkbox" value="{{$empleado->id}}" name="entities[1][0]">
+											<input checked="" name="optionsRadios2" type="radio" value="option1">
 											<span id="usuario"></span>
 										</label>
 										<img width="70" height="70" class="avatar pull-left" src="images\avatar-male.jpg">
 										<div class="profile-details">
-											<p class="user-name">{{$empleado->nombrePersona}}</p>
-											@if($empleado->esMesero)
-											<p>Mesero</p>
-											@elseif($empleado->esBartender)
-											<p>Bartender</p>
-											@elseif($empleado->esCajero)
-											<p>Cajero</p>
-											@endif
-											<p>${{$empleado->salario}}</p>
+											<p class="user-name">Maria Diaz Diaz</p>
+											<p>Administrador</p>
+											<p>$1.000.000</p>
 										</div>
 									</div>
 								</div>
-								@endforeach
+								<div class="widget-content padded">
+									<div class="profile-info clearfix">
+										<label class="pull-left">
+											<input checked="" name="optionsRadios2" type="radio" value="option1">
+											<span id="usuario"></span>
+										</label>
+										<img width="70" height="70" class="avatar pull-left" src="images\avatar-male.jpg">
+										<div class="profile-details">
+											<p class="user-name">Maria Diaz Diaz</p>
+											<p>Administrador</p>
+											<p>$1.000.000</p>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="col-md-6 text-center">
-								@foreach($empleadosDer as $empleado)
 								<div class="widget-content padded">
 									<div class="profile-info clearfix">
 										<label class="pull-left">
-											<input type="checkbox" value="{{$empleado->id}}" name="entities[1][0]">
+											<input checked="" name="optionsRadios2" type="radio" value="option1">
 											<span id="usuario"></span>
 										</label>
 										<img width="70" height="70" class="avatar pull-left" src="images\avatar-male.jpg">
 										<div class="profile-details">
-											<p class="user-name">{{$empleado->nombrePersona}}</p>
-											@if($empleado->esMesero)
-											<p>Mesero</p>
-											@elseif($empleado->esBartender)
-											<p>Bartender</p>
-											@elseif($empleado->esCajero)
-											<p>Cajero</p>
-											@endif
-											<p>${{$empleado->salario}}</p>
+											<p class="user-name">Maria Diaz Diaz</p>
+											<p>Administrador</p>
+											<p>$1.000.000</p>
 										</div>
 									</div>
 								</div>
-								@endforeach
+								<div class="widget-content padded">
+									<div class="profile-info clearfix">
+										<label class="pull-left">
+											<input checked="" name="optionsRadios2" type="radio" value="option1">
+											<span id="usuario"></span>
+										</label>
+										<img width="70" height="70" class="avatar pull-left" src="images\avatar-male.jpg">
+										<div class="profile-details">
+											<p class="user-name">Maria Diaz Diaz</p>
+											<p>Administrador</p>
+											<p>$1.000.000</p>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-
       					<br>
                 		<br>
 		                <div class="semanas text-center">
 		                  <table id="example1" class="ui table">
 		                    <thead>
 			                    <tr>
-			                        <th data-type="checkbox" name="lun" data-checked="lun" data-unchecked="no">LUN</th>
-			                        <th data-type="checkbox" name="mar" data-checked="mar" data-unchecked="no">MAR</th>
-			                        <th data-type="checkbox" name="mir" data-checked="mie" data-unchecked="no">MIE</th>
-			                        <th data-type="checkbox" name="jue" data-checked="jue" data-unchecked="no">JUE</th>
-			                        <th data-type="checkbox" name="vie" data-checked="vie" data-unchecked="no">VIE</th>
-			                        <th data-type="checkbox" name="sab" data-checked="sab" data-unchecked="no">SAB</th>
-			                        <th data-type="checkbox" name="dom" data-checked="dom" data-unchecked="no">DOM</th>
+			                        <th data-type="checkbox" name="lun">LUN</th>
+			                        <th data-type="checkbox" name="mar">MAR</th>
+			                        <th data-type="checkbox" name="mir">MIE</th>
+			                        <th data-type="checkbox" name="jue">JUE</th>
+			                        <th data-type="checkbox" name="vie">VIE</th>
+			                        <th data-type="checkbox" name="sab">SAB</th>
+			                        <th data-type="checkbox" name="dom">DOM</th>
 			                    </tr>
 		                    </thead>
 		                    <tbody>
@@ -113,16 +134,15 @@
 		                    <i class="fa fa-check"></i>GUARDAR
 		                  </button>
 		                </div>
-		              	{!! Form::close() !!}
       				</div>
 
       				<div class="col-md-6"> 
 		                <div class="headingPocket2">
-		                    <a onclick="salario()"><i class=" pocketMorado fa-2x fa fa-money"></i></a>
-		                    <a onclick="calendario()"><i class=" fa-2x fa fa-calendar"></i></a>
+		                    <a><i class=" pocketMorado fa-2x fa fa-money"></i></a>
+		                    <a><i class=" fa-2x fa fa-calendar"></i></a>
 		                    <a><i class=" fa-2x fa fa-clock-o"></i></a>
 		                </div>                       
-      					<div id="salario" style="margin-top: 2px;" class="widget-content clearfix">
+      					<div style="margin-top: 2px;" class="widget-content clearfix">
 							<div class="table-responsive">
 								<table class="table table-striped">
 									<thead>
@@ -208,6 +228,8 @@
 									</tbody>
 								</table>
 		                 	</div>
+		                </div>
+		                <div class="widget-content padded clearfix">
 							<div class="row">
 								<div class="col-md-4 text-center">
 									<select class="form-control" style="font-family: 'FontAwesome', 'Arial';">
@@ -227,12 +249,6 @@
 								</div>
 							</div>
 		                </div>
-		                <div id="agenda" style="display: none;">
-		                	<button id="today" style="display: none;"></button>
-							<div class="widget-container fluid-height clearfix">
-								<div id="calendar"></div>
-							</div>
-		                </div>
       				</div>
       			</div>
       		</div>
@@ -250,9 +266,6 @@
         }
       });
       $('.ui.positive.button').click();
-      $('#calendar').fullCalendar({
-        // put your options and callbacks here
-    	})
     });
 
     function del(){
@@ -261,14 +274,5 @@
         $('.ui.positive.button').removeClass('disabled');
       }
     };
-
-    function calendario(){
-    	$('#salario').css('display', 'none');
-    	$('#agenda').css('display', 'block');
-    }
-    function salario(){
-    	$('#agenda').css('display', 'none');
-    	$('#salario').css('display', 'block');
-    }
 </script>
 @endsection

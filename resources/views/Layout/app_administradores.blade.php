@@ -11,13 +11,13 @@
     <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
     {!!Html::style('stylesheets\select2.css')!!}
     {!!Html::style('stylesheets\datatables.css')!!}
-    {!!Html::style('stylesheets\bootstrap.min.css')!!}
+    {!!Html::style('stylesheets\bootstrap.css')!!}
     {!!Html::style('stylesheets/font-awesome.min.css')!!}
     {!!Html::style('stylesheets/hightop-font.css')!!}
     {!!Html::style('stylesheets/bootstrap-select.css')!!}
     {!!Html::style('stylesheets\isotope.css')!!}
     {!!Html::style('stylesheets\jquery.fancybox.css')!!}
-    <!--{!!Html::style('stylesheets\fullcalendar.css')!!}-->
+    {!!Html::style('stylesheets\fullcalendar.css')!!}
     {!!Html::style('stylesheets\wizard.css')!!}
     {!!Html::style('stylesheets\morris.css')!!}
     {!!Html::style('stylesheets\datepicker.css')!!}
@@ -42,24 +42,6 @@
     {!!Html::style('stylesheets\color\gray.css')!!}
 
     -->
-    {!!Html::style('assetsNew/styles/semantic.min.css')!!}
-    
-    
-    <style type="text/css">
-      .avatar {
-          border-radius: 50%;
-      }
-      .widget-content{
-        width: 100%;
-        margin-top: 15px;
-      }
-      #inicio{
-        border-bottom: solid 2px rgba(210, 215, 217, 0.75);
-      }
-      .semanas{
-        padding-right: 10px;
-      }
-    </style>
 
     <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
@@ -87,7 +69,7 @@
   {!!Html::script("javascripts\bootstrap.min.js")!!}
   {!!Html::script("javascripts/bootstrap-select.js")!!}
   {!!Html::script("javascripts\jquery.bootstrap.wizard.js")!!}
-  <!--{!!Html::script("javascripts/fullcalendar.min.js")!!}-->
+  {!!Html::script("javascripts/fullcalendar.min.js")!!}
   {!!Html::script("javascripts\gcal.js")!!}
   {!!Html::script("javascripts\jquery.dataTables.min.js")!!}
   {!!Html::script("javascripts\jquery.easy-pie-chart.js")!!}
@@ -97,7 +79,7 @@
   {!!Html::script("javascripts\jquery.fancybox.pack.js")!!}
   {!!Html::script("javascripts\styleswitcher.js")!!}
   {!!Html::script("javascripts\wysiwyg.js")!!}
-  {!!Html::script("javascripts\typeahead.js")!!}
+  {!!Html::script("javascripts/typeahead.js")!!}
   {!!Html::script("javascripts\summernote.min.js")!!}
   {!!Html::script("javascripts\jquery.inputmask.min.js")!!}
   {!!Html::script("javascripts\jquery.validate.js")!!}
@@ -114,7 +96,7 @@
   {!!Html::script("javascripts\date.js")!!}
   {!!Html::script("javascripts\morris.min.js")!!}
   {!!Html::script("javascripts\skycons.js")!!}
-  {!!Html::script("javascripts\fitvids.js")!!}
+  {!!Html::script("javascripts/fitvids.js")!!}
   {!!Html::script("javascripts\jquery.sparkline.min.js")!!}
   {!!Html::script("javascripts\dropzone.js")!!}
   {!!Html::script("javascripts\jquery.nestable.js")!!}
@@ -131,7 +113,6 @@
   {!!Html::script('javascripts\xeditable-demo-mock.js')!!}
   {!!Html::script('javascripts\xeditable-demo.js')!!}
   {!!Html::script('javascripts\address.js')!!}
-
   <!-- errores croppie -->
   <!--
   {!!Html::script('croppie/croppie.js')!!}
@@ -345,7 +326,7 @@
                 </li>
 
                 <li>
-                  <a id="miPersonal" href={{url("/agenda")}}>
+                  <a id="miPersonal" href={{url("/Auth/usuario")}}>
                     <span aria-hidden="true" class="fa fa-fw fa-users">
                     </span>Mi Personal</a>
                 </li>
