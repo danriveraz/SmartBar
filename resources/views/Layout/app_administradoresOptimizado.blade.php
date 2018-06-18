@@ -152,7 +152,7 @@
                 </a>
                   <ul class="dropdown-menu">
                     <li>
-                      <a href="{{url('Auth/usuario/'.Auth::id().'/edit')}}">
+                      <a href="{{route('Auth.usuario.edit', Auth::id())}}">
                       <i class="fa fa-user-circle">
                       </i>Mi Perfil</a>
                     </li>

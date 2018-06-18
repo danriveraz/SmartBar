@@ -215,8 +215,45 @@ class UsuariosController extends Controller
     }    
   }
 
-  public function edit($id){
+  public function editEmpleado($id){
     $usuarioActual  = Auth::User();
+    $posibleEmpleado = User::find($id);
+    $empresas = Empresa::where('usuario_id' , $usuarioActual->id)->get();
+    $auxiliar = 0;
+    for($i = 0; $i < sizeof($empresas); $i++){
+      if($posibleEmpleado->idEmpresa == $empresas[$i]->id){
+        $auxiliar = 1;
+      }
+    }
+    if($usuarioActual->id == $id){
+      if($usuarioActual->esAdmin == 0){
+        $usuario = User::find($id);
+        return view('Usuario.editEmpleado')->with('usuario',$usuario);
+      }else{
+        $departamentos = Departamento::all();
+        $ciudades = Ciudad::all();
+        $usuario = User::find($id);
+        $Empresa = Empresa::find($usuario->empresaActual);
+        return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas);
+      }
+    }else if($auxiliar == 1){
+      $usuario = User::find($id);
+      return view('Usuario.editEmpleado')->with('usuario',$usuario);
+    }else{
+      return view('errors.503');
+    }
+  }
+
+  public function edit($id){
+    session_start();
+    $_SESSION['id'] = $id;
+    return redirect()->route('Auth.usuario.editUsuario');
+  }
+
+  public function editProfile(){
+    $usuarioActual  = Auth::User();
+    session_start();
+    $id = $_SESSION['id'];
     $posibleEmpleado = User::find($id);
     $empresas = Empresa::where('usuario_id' , $usuarioActual->id)->get();
     $auxiliar = 0;
@@ -248,36 +285,8 @@ class UsuariosController extends Controller
     }
   }
 
-  public function editEmpleado($id){
-    $usuarioActual  = Auth::User();
-    $posibleEmpleado = User::find($id);
-    $empresas = Empresa::where('usuario_id' , $usuarioActual->id)->get();
-    $auxiliar = 0;
-    for($i = 0; $i < sizeof($empresas); $i++){
-      if($posibleEmpleado->idEmpresa == $empresas[$i]->id){
-        $auxiliar = 1;
-      }
-    }
-    if($usuarioActual->id == $id){
-      if($usuarioActual->esAdmin == 0){
-        $usuario = User::find($id);
-        return view('Usuario.editEmpleado')->with('usuario',$usuario);
-      }else{
-        $departamentos = Departamento::all();
-        $ciudades = Ciudad::all();
-        $usuario = User::find($id);
-        $Empresa = Empresa::find($usuario->empresaActual);
-        return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas);
-      }
-    }else if($auxiliar == 1){
-      $usuario = User::find($id);
-      return view('Usuario.editEmpleado')->with('usuario',$usuario);
-    }else{
-      return view('errors.503');
-    }
-  }
+  public function posteditProfile(Request $request, $id){
 
-  public function updateProfile(Request $request, $id){
     if($request->ventana == 1){
       $rules = [
         'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',

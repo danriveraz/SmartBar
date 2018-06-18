@@ -194,8 +194,13 @@
                               <div class="form-group">
                                 <label>Nit</label>
                                 <div class="input-group">
-                                  <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
-                                  <input name="nit" type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx" value="{{$empresa->nit}}">
+                                  @if($empresa->nit == 0)
+                                    <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
+                                    <input name="nit" type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx">
+                                  @else
+                                    <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
+                                    <input name="nit" type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx" value="{{$empresa->nit}}">
+                                  @endif
                                 </div>
                               </div>
 
