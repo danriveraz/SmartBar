@@ -35,6 +35,7 @@ class welcomeAdmin extends Controller
      */
     public function index()
     {   
+        $flag = false; 
         if(Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual]])->first()!= null) {
             $categoriasMasVendidas = $this->categoriasMasVendidas();// llamado a la función queretorna un arreglo con dos valores
 
@@ -62,10 +63,12 @@ class welcomeAdmin extends Controller
                     ->with('cantidadVentas',$cantidadVentasDelDia)
                     ->with('ventasSemana', $ventasSemana)
                     ->with('datosVentasComparacionSemanas',$datosVentasComparacionSemanas)
-                    ->with('mesasConMasVentas',$mesasConMasVentas);
+                    ->with('mesasConMasVentas',$mesasConMasVentas)
+                    ->with('flag', $flag);
             
         } else {
-            return View('WelcomeAdmin/welcome');
+            $flag = true;
+            return View('WelcomeAdmin/welcome')->with('flag', $flag);
         }
     }
 

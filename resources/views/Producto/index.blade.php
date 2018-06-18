@@ -23,7 +23,9 @@
                   <td>
                     <div>
                       <a class="table-actions pocketMorado" href="">
-                        <i class="fa fa-book" data-toggle="modal" href="#modalReceta{{$producto->id}}"  title="Preparación"  onclick="ingredientes({{$producto->id}})"></i>
+                        <i class="fa fa-book" data-toggle="modal" href="#modalReceta{{$producto->id}}"  title="Preparación"></i> 
+                        <!-- Se comenta la función onclick debido a que genera error, revisar en caso de que esta sea necesaria-->
+                        <!-- onclick="ingredientes({{$producto->id}})" -->
                       </a>
                       <a class="table-actions pocketMorado" href="{{route('producto.contenido', $producto->id)}}">
                         <i class="fa fa-pencil" title="Editar"></i>
@@ -59,13 +61,11 @@
                                       <div class=" bs-example">
                                         <h3><a class="pocketMorado">{{$producto->nombre}}</a></h3>
                                         <a class="pocketMorado">{{$producto->descripcion}}</a><br><br>
-                                        <div class="true"  id="ingredientes{{$producto->id}}">
-                                          
-                                        </div>
+                                        <div class="true"  id="ingredientes{{$producto->id}}"></div>
                                         <div class="">
                                           <strong><a class="pocketMorado">Elaboración</a><br></strong>
                                             {{$producto->receta}}<br>
-                                          <a class="pocketMorado"><b>Copa o Vaso:</b> {{$producto->vaso}}</a><br>
+                                          <a class="pocketMorado"><b>Copa o Vaso:</b>{{$producto->vaso}}</a><br>
                                         </div>
                                       </div>
                                     </div>

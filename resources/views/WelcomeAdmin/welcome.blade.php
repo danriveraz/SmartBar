@@ -5,13 +5,10 @@
 {!!Html::style('assetsNew\styles/chartist-plugin-tooltip.css')!!}
 {!!Html::style('assetsNew\styles/main.css')!!} 
 
-
-
 {!!Html::script('assetsNew\scripts/chartist/js/chartist.min.js')!!}<!-- javascript para las gráficas-->
 {!!Html::script('assetsNew\scripts/chartist-plugin-tooltip/chartist-plugin-tooltip.min.js')!!}
 {!!Html::script('assetsNew\scripts/chartist-plugin-axistitle/chartist-plugin-axistitle.min.js')!!}
 {!!Html::script('assetsNew\scripts/chartist-plugin-legend-latest/chartist-plugin-legend.js')!!}
-
 
 @if(Auth::User()->empresa->nombreEstablecimiento=='')
 	<div class='alert alert-warning alert-important'>
@@ -502,9 +499,12 @@
 
 <!-- JS REPORTE -->
 <script>
-  $(function() {
 
+  var JSONflag = eval(<?php echo json_encode($flag); ?>);
 
+  if(JSONflag != true){
+    
+    $(function() {
 
     // traffic sources
     var dataPie = {
@@ -523,7 +523,6 @@
         return labels[idx] + ' (' + percentage + ')';
       }
     });*/
-
 
     // progress bars
     $('.progress .progress-bar').progressbar({
@@ -580,10 +579,6 @@
 
     new Chartist.Line('#demo-line-chart', data, options);
 
-
-
-
-
     // top products
     var dataStackedBar = {
       labels: ['Producto 1', 'Producto 2', 'Producto 3'],
@@ -615,9 +610,10 @@
       }
     });
 
-
     // notification popup
-  });
+  });    
+  }
+
 </script>
 
 <script type="text/javascript">
