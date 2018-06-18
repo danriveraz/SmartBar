@@ -9,7 +9,7 @@
         <div class="container main-content">
           <div class="side-bar" >
               <div class="user-info">
-                {!! Form::open(['route' => ['Auth.usuario.editUsuario',$usuario], 'method' => 'POST','enctype' => 'multipart/form-data', 'id' => 'formEditFotoPerfil']) !!}
+                {!! Form::open(['route' => ['Auth.usuario.posteditUsuario',$usuario], 'method' => 'GET','enctype' => 'multipart/form-data', 'id' => 'formEditFotoPerfil']) !!}
                 {{ csrf_field() }}
                 <div class="widget-content fileupload fileupload-new" data-provides="fileupload" style="margin-left: -15%;margin-bottom: -20%;">
                   <div class="gallery-container fileupload-new img-thumbnail">
@@ -79,7 +79,7 @@
                     <li><a href="#billings" role="tab" data-toggle="tab">PocketClub</a></li>
                     <li><a href="#preferences" role="tab" data-toggle="tab">Bolsillo</a></li>
                   </ul>
-                  {!! Form::open(['route' => ['Auth.usuario.editUsuario',$usuario], 'method' => 'POST','enctype' => 'multipart/form-data', 'id' => 'formEditUsuario']) !!}
+                  {!! Form::open(['route' => ['Auth.usuario.posteditUsuario',$usuario], 'method' => 'GET','enctype' => 'multipart/form-data', 'id' => 'formEditUsuario']) !!}
                   {{ csrf_field() }}
                     <div class="tab-content content-profile">
                       <!-- MY PROFILE -->
