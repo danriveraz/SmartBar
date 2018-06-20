@@ -152,10 +152,7 @@
 
   {!!Html::script('assets/vendor/toastr/toastr.js')!!}
   <!-- MAIN CSS -->
-
   <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
-
-
   {!!Html::style('stylesheetspropio\stylePropio.css')!!}
   <!-- fin -->
 

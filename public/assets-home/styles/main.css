@@ -1,0 +1,408 @@
+/*------------Inicio css de tab-------------
+
+* {
+  margin: 0;
+  padding: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+   readers do not read off random characters that represent icons */
+/******************** START ********************/
+
+.tabs.blue {
+
+	
+    max-width: 400px;
+	width: 100%;
+	z-index: 1;
+	position: absolute;
+	
+}
+.tabs.blue li {
+  float: left;
+  display: block;
+}
+.tabs.blue input[type="radio"] {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+.tabs.blue .label {
+  display: block;
+  padding: 14px 31px;
+  font-size: 16px;
+  font-weight: normal;
+  cursor: pointer;
+  position: relative;
+  top: 5px;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+@media screen and (max-width:768px){.tabs.blue .label {padding: 14px 25px;
+}}
+
+
+.tabs.blue .tab-content {
+  z-index: 2;
+  display: none;
+  overflow: hidden;
+  width: 100%;
+  font-size: 14px;
+  line-height: 25px;
+  padding: 15px;
+  position: absolute;
+  top: 53px;
+  left: 0;
+}
+
+@media screen and (max-width:768px){
+.tabs.blue .tab-content {padding: 0px;font-size: 13px;}	
+}
+
+
+.tabs.blue [id^="tab"]:checked + .label {
+  top: 5px;
+  padding-top: 17px;
+  
+}
+.tabs.blue [id^="tab"]:checked ~ [id^="tab-content"] {
+  display: block;
+}
+
+/* TAB COLOR SCHEME FOR BLUE*/
+.tabblue .tabs .label {background: #dbdbdb;color: #2d0031}
+
+.tabblue .tabs .label1 {
+	background-color: #e31212;
+	color: white;
+	display: block;
+	padding: 15px 19px;
+	font-size: 16px;
+	font-weight: normal;
+	cursor: pointer;
+	position: relative;
+	top: 6px;
+}/*boton cerrar*/
+.tabblue .tabs .label1:hover { background: #ec1313;}
+
+.tabblue .tabs .label:hover { background: #c3c3c3;}
+.tabblue .tabs .tab-content {  background-color: white;}
+.tabblue .tabs [id^="tab"]:checked + .label {background: #2d0031; color: white}
+.tabblue .tabaddon { color: #16B3F5;}
+
+/******************** END ********************/
+
+/*------------Fin css de tab-------------*/
+
+.login-form .rememberme-container label{color: #2d0031}
+
+
+body {
+	font-family: "open sans", "segoe ui";
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+}
+a {
+	transition: background .3s;
+
+}
+
+a:link 
+{ 
+text-decoration:none; 
+} 
+
+/* BACKGROUND */
+.background, .backdrop {
+	background-color: #3f689c;
+	position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+	background-size: cover;
+}
+
+/* CONTAINER */
+.login-form-container {
+    max-width: 400px;
+	width: 100%;
+	z-index: 1;
+	position: absolute;
+	top: 50%;
+    left: 50%;
+	margin-left: -200px;
+	margin-top: -286px;  
+}
+.login-form-container a{
+	text-decoration:none;
+}
+
+/* CONTENT */
+.login-form-content {
+	background-color: #FFFFFF;
+	padding: 25px 25px;
+}
+.login-form-content i{
+    width: 30px;
+    text-align: center;
+	vertical-align: bottom;
+}
+
+
+.input-container .fa.fa-facebook ,.input-container .fa.fa-twitter,.input-container .fa.fa-instagram ,.input-container .fa.fa-github ,.input-container .fa.fa-youtube ,.input-container .fa,fa-tumblr ,.input-container .fa.fa-google-play ,.input-container .fa.fa-tumblr {
+	color: #9e9e9e;
+	padding: 0px;
+}
+/*
+.fa.fa-facebook:hover , .fa.fa-twitter:hover , .fa.fa-instagram:hover  , .fa.fa-youtube:hover  , .fa.fa-google-play:hover  ,.fa,fa-tumblr:hover  ,.fa.fa-google-plus:hover  , .fa.fa-tumblr:hover  {
+	color: #2d0031;
+}
+
+
+/* HEADER */
+.login-form-header {
+	text-align: center;
+}
+.login-form-header img {
+    padding: 10px;
+	width: 100%;
+}
+
+.login-form-header h3 {
+	font-family:Roboto,sans-serif;
+	font-weight: lighter;
+    font-size: 17px;
+    margin: 10px 0;
+	font-weight: 300;
+	letter-spacing: -1px;
+}
+
+/* FROM INPUT */
+.login-form .input-container {
+	border-bottom: 1px solid #CCCCCC;
+    margin-top: 15px;
+    font-size: 20px;
+    color: #9e9e9e;
+	padding-bottom: 5px;
+}
+.login-form .input {
+	border: 0;
+	width: 200px;
+}
+
+.login-form .selectCi {
+	border: 0;
+	width: 110px;
+}
+
+@media screen and (max-width:400px){
+	.login-form .selectCi {width: 80px;}	
+}
+
+.login-form .select {
+	border: 0;
+	width: 280px;
+}
+
+.login-form .select:focus {
+    outline: none;
+}
+.login-form .input:focus {
+    outline: none;
+}
+
+.terms {
+    margin-top: 15px;
+	font-size: 80%;
+	text-align: center;
+	line-height: 13px;
+}
+
+.terms a {color: rebeccapurple;}
+
+#show-password {
+	float: right;
+    vertical-align: bottom;
+    text-align: center;
+    margin-top: 7px;
+	cursor: pointer;
+}
+
+#show-password1 {
+	float: right;
+    vertical-align: bottom;
+    text-align: center;
+    margin-top: 7px;
+	cursor: pointer;
+}
+
+.fa-eye-slash {
+	color:#2d0031;
+}
+
+.login-form .forgot-password {
+	float: right;
+}
+
+@media screen and (max-width:768px){
+	.login-form .forgot-password {font-size: 11px;}
+}
+
+
+
+.login-form .rememberme-container {
+	margin-top: 15px;
+	padding: 0;
+}
+
+.login-form .rememberme-container a{
+	color: #2D0031;
+}
+
+.login-form .rememberme-container a:hover{
+	color: #5E5E5E;
+}
+
+.login-form .rememberme-container input {
+	margin-left: 0;
+}
+.login-form .rememberme span {
+	vertical-align: top;
+}
+.login-form .button {
+	margin-top: 15px;
+    width: 100%;
+    background: #2d0031;
+    border: 0;
+    color: #FFFFFF;
+    padding: 10px;
+    font-size: 15px;
+	cursor: pointer;
+	transition: background .3s;
+}
+.login-form .button:hover {
+	background: #49014f;
+}
+.login-form .button:focus {
+	outline: none;
+}
+.login-form .register {
+	margin-top: 5px;
+    background: #dadada;
+    border: 0;
+    color: #676464;
+    padding: 9px;
+    font-size: 15px;
+    display: block;
+    text-align: center;
+}
+.login-form .register:hover	{
+	background: #d0d0d0;
+}
+
+/* ACTIVATION LINK */
+.resend-activation {
+	text-align: center;
+	margin-top: 15px;
+	margin-top: 10px;
+    color: #425384;
+	line-height: 22px;
+}
+.attibution {
+	text-align: center;
+    margin-top: 7px;
+    color: #a5a5a5;
+	line-height: 25px;
+}
+
+/* SEPARATOR */
+.login-form-content .separator {
+	margin: 20px 0;
+	border-top: 1px solid #CCCCCC;
+	position: relative;
+}
+.login-form-content .separator-text {
+	display: block;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    margin-left: -22px;
+    padding: 0px 10px;
+    background: #FFFFFF;
+	color: #8a8a8a;
+}
+
+/* SOCIAL MEDIA LOGIN */
+.socmed-login .socmed-btn {
+    padding: 10px 25px;
+    color: #FFFFFF;
+    display: block;
+    margin-top: 5px;
+    text-align: center;
+}
+.socmed-login .socmed-btn i {
+	text-align: left;
+    border-right: 1px solid #FFFFFF;
+    margin-right: 15px;
+    width: 25px;
+	font-size: 16x;
+	vertical-align: middle;
+}
+.socmed-login .socmed-btn span {
+	display: inline-block;
+    margin-top: 8px;
+    line-height: 0;
+}
+.socmed-login .facebook-btn {
+	background: #3b5998;
+}
+.socmed-login .facebook-btn:hover {
+	background: #324b80;
+}
+.socmed-login .google-btn {
+	background: #ef0a0a;
+}
+.socmed-login .google-btn:hover {
+	background: #d40909;
+}
+.socmed-login .yahoo-btn {
+	background: #940b94;
+}
+.socmed-login .yahoo-btn:hover {
+	background: #790a79;
+}
+
+/* RESPONSIVE */
+@media screen and (max-height: 600px) {
+	.login-form-container {
+		margin-top: 0 !important;
+		top: 10px !important;
+	}
+}
+@media screen and (max-width: 400px) {
+	.login-form-container {
+		left: 5px;
+		margin-left: 5px;
+		min-width: 283px;
+		right: 10px;
+		margin-bottom: 10px;
+		width: auto;
+	}
+	.login-form .input {
+		width: 140px;
+	}
+	
+	.login-form .select {
+		width: 200px;
+	}
+	.socmed-login .socmed-btn i {
+		margin-right: 5px;
+		width: 19px;
+	}
+}
