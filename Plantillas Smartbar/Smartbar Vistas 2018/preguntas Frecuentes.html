@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="es">
+<head>
+<!-- Etiquetas meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="HTML5">	
+  <meta name="application-name" content="PocketSmartbar"/>
+  <meta name="author" content="Pocket Company S.A.S"/>
+  <meta name="description" content="Aplicativo inteligente online, escencial en Bares, Discotecas y/o Restaurantes, que facilita enormemente el trabajo  de administradores, empleados, proveedores y clientes de estos." />
+  <meta name="generator" content="Html5 Css Javascrip" />
+  <meta name="keywords" content="Compañero inseparable, sistema inteligente de manejo de negocios, bares, restaurantes, discotecas, licores, comidas, cocteles, información almacenada en la nube, sistema pos, sitema pos para restaurantes, software para restaurante, software POS para restaurante, sistema de punto de ventas, sistema de facturación, software de inventario, software para punto de ventas, software POS, sistema POS, Colombia, POS online" />
+  <meta name="encoding" charset="utf-8" />		
+<!-- Datos Open Graph -->
+  <meta property="og:title" content="PocketSmartbar" />
+  <meta property="og:type" content="WebSite" />
+  <meta property="og:url" content="http://www.pocketsmartbar.com" />
+  <meta property="og:description" content="Aplicativo inteligente online, escencial en Bares, Discotecas y/o Restaurantes, que facilita enormemente el trabajo  de administradores, empleados, proveedores y clientes de estos.">
+  <meta property="og:site_name" content="PocketSmartBar">
+  <meta property="og:image" content="assets/images/p"><!--poner link de la imagen--!>
+  <!-- Datos Twitter Card -->	
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@pocketsmartbar">
+  <meta name="twitter:creator" content="@pocketsmartbar" />
+<!-- Etiquetas meta -->
+  <title>PocketSmartBar</title>
+  <link type="image/x-icon" rel="shortcut icon" href="assets/images/icon.png"/>        
+<!-- Datos meta Graph --> 
+	
+<!-- Styles -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 
+<!--Fuente Requerida -->
+  <link href="assets/styles/pocketStyle.css" rel="stylesheet">
+<!-- GRT Youtube Plugin para video CSS -->
+  <link rel="stylesheet" href="assets/styles/video/grt-youtube-popup.css">
+<!-- Font Awsome
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<!-- style para login -->
+<link rel="stylesheet" href="assets/styles/main.css"/><!--style para login-->
+<link rel="stylesheet" href="assets/styles/font-awesome.css"/><!-- Iconos Ex -->		
+<!--javascript para campo de contraseña/-->
+<script type="text/javascript" src="assets/scripts/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="assets/scripts/main.js"></script>		
+<!--style para desplege lateral-->
+<link rel="stylesheet" href="assets/styles/pure-drawer.css"/>	
+<!--style para desplege lateral-->
+<link rel="stylesheet" href="assets/styles/custom-Pocket.css"/>
+	
+	
+	</head>
+<body>
+<!--INICIO DE TAB-->  
+<div class="pure-container" data-effect="pure-effect-slide">	
+   <input type="checkbox" id="pure-toggle-right" class="pure-toggle" data-toggle="right"/>	
+<header class="block no-pad" data-name="Topbar">
+	<div id="" class="topbar fixed bg-solid">
+      <div class="topbar-content is-centered">
+        <div class="topbar-section">
+          <div id="nav-toggle" class="nav-toggle">
+            <a>&#9776;</a>
+          </div>
+          <div class="logo">
+           <a href="assets/images/logoPrin.png"><img width="240" height="50" src="assets/images/logoPrin.png"></a>
+          </div>
+        </div>
+        <div class="topbar-section">
+		<nav id="nav-main" class="nav">
+            <a class="nav-item " href="caracteristicas">¿Por qué somos tu amigo inseparable?</a>
+            <a class="nav-item " href="precios">PocketClub</a>
+            <div id="nav-toggle-close" class="nav-toggle-close">
+              <a>X</a>
+            </div>
+          </nav>
+          <div class="nav-access">
+           	<a class="nav-access-item button outline rounded-mediun">
+   			<input type="checkbox" id="pure-toggle-right" class="pure-toggle" data-toggle="right"/>			
+			<label class="" for="pure-toggle-right" data-toggle-label="right"><span class="">INGRESAR</span></label> 
+			</a>
+          </div>
+        </div>
+      </div>
+  </div>
+</header>
+<!-- Fin Menu Principal -->
+<!-- inicio de contenigo de login-->
+	  <nav class="pure-drawer" data-position="right" style="overflow: auto">
+		<section class="tabblue">	
+		<ul class="tabs blue">
+		<!-- Inicio del Tag #1-->
+          <li>
+            <input type="radio" name="tabs blue" id="tab1" checked />
+            <label class="label" for="tab1">Iniciar Sesión</label>
+            <div id="tab-content1" class="tab-content">              
+		<div class="login-form-content">
+			<div class="login-form-header">
+				<div class="logo">
+					<img src="assets/images/logoPrin.png"/>
+				</div>
+				<h3>Bienvenido! Tu amigo inseparable te espera </h3>
+			</div>
+			<form method="post" action="" class="login-form">
+				<div class="input-container">
+					<i class="fa fa-envelope"></i>
+					<input type="email" class="input" name="email" placeholder="Email"/>
+				</div>
+				<div class="input-container">
+					<i class="fa fa-lock"></i>
+					<input type="password"  id="login-password" class="input" name="password" placeholder="Contraseña"/>
+					<i id="show-password" class="fa fa-eye"></i>
+				</div>
+				<div class="rememberme-container">
+					<input type="checkbox" name="rememberme" id="rememberme"/>
+					<label for="rememberme" class="rememberme"><span>Recuérdame</span></label>
+					<a class="forgot-password" href="#">Se te olvidó tu contraseña?</a>
+				</div>
+				<input type="submit" name="login" value="Iniciar Sesión" class="button"/>
+				<!--a href="#" class="register">Register</a-->
+			</form>
+			<div class="separator">
+					<span class="separator-text">OR</span>
+			</div>
+			<div class="socmed-login">
+				<a href="#g-plus" class="socmed-btn google-btn">
+					<i style="color: white;padding: 0px;" class="fa fa-google"></i>
+					<span>Iniciar Sesión con Google</span>
+				</a>
+			</div>
+		</div>				
+            </div>
+          </li>
+		<!-- Inicio del Tag #2-->
+      	  <li>
+            <input type="radio" name="tabs blue" id="tab2" />
+            <label class="label" for="tab2">Registro</label>
+            <div id="tab-content2" class="tab-content">
+				<!-- registro-->
+				<div class="login-form-content">
+					<div class="login-form-header">
+						<div class="logo">
+							<img src="assets/images/logoPrin.png"/>
+						</div>
+						<h3>Bienvenido! Tu amigo inseparable te espera </h3>						
+					</div>
+				<form method="post" action="" class="login-form">
+				<div class="input-container">
+					<i class="fa fa-reorder"></i>
+					<input type="text" class="input" name="negocio" placeholder="Nombre de tu Negocio"/>
+				</div>
+				<div class="input-container">
+					<i class="fa fa-address-card"></i>
+					<input type="text" class="input" name="nombre" placeholder="Nombre"/>
+				</div>
+				<div class="input-container">
+					<i class="fa fa-venus-mars"></i>					
+				<select class="select" id="sexo" name="sexo" required="">
+					<option value="Masculino">Masculino</option>
+					<option value="Femenino">Femenino</option>
+					<option value="Otro">Otro</option>
+				</select>
+				</div>
+				<div class="input-container">
+					<i class="fa fa-envelope"></i>
+					<input type="email" class="input" name="email" placeholder="Email" requerid/>
+				</div>
+				<div class="input-container">
+					<i class="fa fa-lock"></i>
+					<input type="password"  id="login-password1" class="input" name="password" placeholder="Contraseña"/>
+					<i id="show-password1" class="fa fa-eye"></i>
+				</div>
+				<div class="input-container" style="float: left; width:49%">
+					<i class="fa fa-map-marker"></i>					
+				<select class="selectCi" id="sexo" name="sexo" required="">
+					<option value="Masculino">Masculino</option>
+					<option value="Femenino">Femenino</option>
+					<option value="Otro">Otro</option>
+				</select>
+				</div>
+				<div class="input-container" style="float: left; width:49%">
+					<i class="fa fa-map-marker"></i>					
+				<select class="selectCi" id="sexo" name="sexo" required="">
+					<option value="Masculino">Masculino</option>
+					<option value="Femenino">Femenino</option>
+					<option value="Otro">Otro</option>
+				</select>
+				</div>			
+				<input type="submit" name="login" value="Registrarme" class="button"/>
+				<!--a href="#" class="register">Register</a-->					
+			</form>
+			<div class="terms">
+				Al crear tu cuenta aceptas nuestros
+				<a class="pocketColor" href="" target="_blank">Términos, Condiciones</a> y 
+				<a class="pocketColor"href="" target="_blank">Política de Tratamiento de Datos</a>.
+			</div>
+			<div class="separator">
+					<span class="separator-text">OR</span>
+			</div>
+			<div class="socmed-login">
+				<a href="#g-plus" class="socmed-btn google-btn">
+					<i style="color: white;padding: 0px;" class="fa fa-google"></i>
+					<span>Registrar con Google</span>
+				</a>
+			</div>
+            </div><!--  fin de login-form-content-->
+			  </div> <!-- tab-content2-->
+          </li>
+		<!-- Inicio del Tag #3-->
+		<li>
+            <input type="radio" name="tabs"/>
+            <label class="label1" for="pure-toggle-right"><i style="color: white;padding: 0px;" class="fa fa-window-close"></i></label>
+		</li>			
+	</ul>
+	</section>			
+	</nav>	
+<!-- fin de contenido de login-->	
+<!-- ENCABEZADO -->
+<!-- CONTACTO (ENCABEZADO) -->
+<section class="block bg-pocket gap-top-contact" data-name="ContactHead">
+    <div class="block-content no-pad">
+        <div class="head-small">        
+        <!-- div que esconde cuando es muy chiquito para mobiles-->
+        <div class="hide-mobile">
+          <img class="head-small-icon" src="assets/images/head-character.png" alt="¿Tienes dudas?" title="Soporte">
+          <div class="head-small-text">
+            <h3 class="roboto1 white margin-tiny">¿Tienes dudas?</h3>
+            <p class=" margin-tiny">Como tu amigo inseparable, siempre estamos presente para brindarte la mejor asesoria, darte un consejo y solucionar cualquier inquietud o inconveniente, es <span class="bold">Gratis</span>, e Ilimitado.</p>
+          </div>
+          </div>
+        <!-- div que esconde cuando es muy chiquito para mobiles-->
+        </div>
+    </div>
+</section>
+<!-- PREGUNTAS FRECUENTES -->
+<section class="block" data-name="Faqs">
+    <div class="block-content">
+        <h2 class="text-center">Preguntas Frecuentes</h2>
+        <div class="row cards-basic bg-white">
+            <div class="col bg-gray-white">
+                <div>
+                    <h3 class="text-green margin-tiny">¿Qué quiere decir que SmartBAr está en la Nube?</h3>
+                    <p class="margin-tiny">La aplicación funciona desde internet, no tienes que preocuparte por instalaciones, servidores, versiones o por copias de seguridad, todo está guardado y protegido por <a href="http://www.pocketSmartbar.com">SmartBar</a>, para acceder sólo necesitas internet. </p>
+                    <p class="margin-tiny">Algunos ejemplos de servicios en la Nube son Dropbox y Facebook.  </p>
+                    <p class="margin-tiny">La Nube es la forma más segura de guardar la información, es mucho más seguro que hacerlo en tu computador o en otros medios locales.  </p>
+                    <hr>
+                </div>
+                <div>
+                    <h3 class="text-green margin-tiny">¿Qué debo tener en cuenta antes de empezar?</h3>
+                    <p class="margin-tiny">Para utilizar SmartBar simplemente debes registrarte en el sistema, al ingresar encontrarás todas las ayudas necesarias para empezar a elaborar facturas, registrar los gastos, llevar tu inventario, registrar empleados, productos a tu inventario, a tu carta y muchas funciones más. Es muy fácil, la mejor forma de averiguarlo es probarlo, puedes crear tu cuenta <a href="">acá</a></p>
+                    <hr>
+                </div>
+                <div>
+                    <h3 class="text-green margin-tiny">¿Quiénes pueden utilizar SmartBar?</h3>
+                    <p class="margin-tiny"><strong>PocketSamrtBar</strong> está diseñado para que todas las personas que son dueños, empleados o clientes de un negocio tipo bar o restaurante, se vean beneficiados con el uso de smartbar, ya que ayudará a todos los usuarios a obtener una mejor esperiencia en el servicio. </p>
+                    <p class="margin-tiny">Puedes hacer con Smartbar divertido lo que antes era aburrido y además de esto, Smartbar, te ayudará a llevar el control, haciendo cosas por si solo, contando unicamente con tu aprobación.<a href="">acá</a> o <a href="">crea una cuenta</a>  GRATIS </p>
+                    <hr>
+                </div>
+                <div>
+                    <h3 class="text-green margin-tiny">Si tengo dudas con el uso de mi amigo inseparable Smartbar, ¿quién me ayuda?</h3>
+                    <p class="margin-tiny">Nuestro Equipo de Soporte siempre está dispuesto para ayudarte hasta con el mínimo problema, tenemos 5 estrellas de calificación y los usuarios son nuestra prioridad, pruébalo tu mismo <a href="">acá</a>  </p>
+                    <p class="margin-tiny">Conoce cómo contactarnos <a href="">aquí</a>.</p>
+                    <hr>
+                </div>
+                <div>
+                    <h3 class="text-green margin-tiny">¿SmartBar, puede hacer todas las facturas por mi?</h3>
+                    <p class="margin-tiny">SmartBar cumple con todos los requisitos para realizar facturas en Colombia, solo debes solicitar la resolución para facturar por computador a la DIAN si perteneces al régimen común, ya contamos con <a href="">Facturación Electrónica</a> </p>
+                    <p class="margin-tiny">Si eres régimen simplificado también puedes generar cuentas de cobro.</p>
+                    <hr>
+                </div>
+                <div>
+                    <h3 class="text-green margin-tiny">¿Que pasa cuando caduquen mis 7 dias de membresia  gratis?</h3>
+                    <p class="margin-tiny">SmartBar cumple con todos los requisitos para realizar facturas en Colombia, solo debes solicitar la resolución para facturar por computador a la DIAN si perteneces al régimen común, ya contamos con <a href="">Facturación Electrónica</a> </p>
+                    <p class="margin-tiny">Si eres régimen simplificado también puedes generar cuentas de cobro.</p>
+                    <hr>
+                </div>
+            </div>
+            <div class="col bg-gray-white">
+                <div>
+                    <h3 class="text-green margin-tiny">¿Está segura mi información con mi amigo inseparable SmartBar?</h3>
+                    <p>Claro que sí, la información que registres solo será visible para ti y los usuarios autorizados con los correspondientes permisos. La información almacenada en pocketsmartbar se aloja en servidores de Amazon Web Services, una de las mejores plataformas a nivel mundial que realiza copias de seguridad automáticas y es utilizada por empresas como Dropbox, Twitter, La Nasa, Ferrari y muchos más. Tu información está en las mejores manos, Puedes estar tranquilo y ocuparte de hacer crecer tu empresa, de cuidar tu información se encarga tu amigo inseparable SmartBar.</p>
+                    <hr>
+                </div>
+                <div>
+                    <h3 class="text-green margin-tiny">¿Quién me explica cómo empezar a utilizar SmartBar?</h3>
+                    <p>SamrtBar  es una herramienta sencilla y práctica, no se requiere de conocimientos previos. Dentro de la aplicación cuentas con todas las ayudas y explicaciones necesarias para empezar a usarla. Además, el  <a href="">centro de soporte</a>  está disponible para ti las 24 horas del día.</p>
+                    <p>Si tienes dudas o inconvenientes contáctanos por soporte y te responderemos lo más pronto posible. Escríbenos o solicita que te llamemos en  <a href="123">www.pocketsmartbar.com</a> </p>
+                    <hr>
+                </div>
+                <div>
+                    <h3 class="text-green margin-tiny">¿Qué características debe tener mi computador?</h3>
+                    <p>SmartBar funciona en Internet, no hay restricciones y puedes acceder desde cualquier equipo, lo único que necesitas es una conexión a internet.
+También lo puedes usar desde tu celular descargando la aplicación móvil para <a target="_blank" href="">Android</a> o <a target="_blank" href="">iOS</a>. </p>
+                    <hr>
+                </div>
+                <div>
+                    <h3 class="text-green margin-tiny">¿Es SmartBar la solución ideal para mi Negocio?</h3>
+                    <p>Tu amigo inseparable Smartbar es un <a href="">sistema inteliegente super completo de gestión,</a> el cual permite, olvidarte para siempre de agendar empleados, de realizar tus pedidos, de descontar d etu inventario los productos que usas, del contrl general d etus empleados y muchas cosas ´más, lo único que tienes que hacer, es analisar la información que te da tu amigo inseparable SmartBar, para tomar las mejores desiciones para tu negocio.</p>
+                    <p>Puedes realizar facturas, llevar el control de gastos, inventarios, empleados, pedidos, compras, varios negocios simultaneamente y mucho más. La mejor forma de descubrirlo es <a href="">crear una cuenta</a> y empezar a probar.</p>
+                    <hr>
+                </div>
+                <div>
+                    <h3 class="text-green margin-tiny">¿Tengo que firmar contrato para empezar a usar mi amigo inseparable SmartBar?</h3>
+                    <p>Para usar <strong>tu amigo inseparable SmartBar</strong> no tienes que firmar ningún contrato, solo aceptar las <a href="">condiciones y términos de uso</a>. Cuando te registras y empiezas a usar la herramienta se entiende que estos términos y condiciones son aceptados por ambas partes, el usuario y el equipo de SmartBar.</p>
+                    <p>Para empezar a usar <strong>SamrtBar</strong> simplemente creas una cuenta <a href="">aquí</a> al entrar al pocketClub con una de nuestras membresias, obtendrás beneficios nunca antes vistos, como descuentos, regalos, productos unicos y todo lo que necesitas para tu negocio al alcance de tu mano. </p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 7 DIAS GRATIS-->
+<section class="block" data-name="Plans">
+  <div class="block-content text-center" style="padding-top: 0px;">
+    <h2 class="margin-tiny">Empieza tus <strong>7 Dias gratis</strong></h2>    
+    <p><img class="plan-payment" src="assets/images/logos-payment-col-pocket.png" alt="Métodos de pago"/></p>
+    <p><a class="button large" href="http://pocketsmartbar.com/Auth/register" rel="alternate"><strong>UNIRSE A POCKETCLUB</strong></a></p>
+    <hr>
+	<div class="pocket">
+    <h4>Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas. <a href="" target="_blank" rel="alternate">¿Que es PocketClub?</a></h4></div>
+    <hr>
+  </div>
+</section>	
+<!-- FIN ENCABEZADO -->
+<footer>
+       <div>        
+               <div class="pocketPadin block-content text-center">
+                  <ul class="list-inline">                                 
+                     <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>                                   
+                     <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>                                  
+                     <li><a href="#"><i class="fa fa-instagram fa-2x"></i></a></li>                                   
+                     <li><a href="#"><i class="fa fa-youtube fa-2x"></i></a></li>                                   
+                     <li><a href="#"><i class="fa fa-google-play fa-2x"></i></a></li>                                
+                   </ul>
+                </div>                 
+                <div class="pocketPadin block-content text-center">   
+                   <ul class="menu list-inline">                               
+                    <li><a href="#">Cliente VIP</a></li>                                   
+                    <li><a href="#">SmartShop</a></li>
+ 					<li><a href="#">Preguntas Frecuentes</a></li>                                   
+                    <li><a href="#">Politicas Privacidad</a></li>
+					<li><a href="#">Contáctos</a></li>             
+                   </ul>
+                 </div>          
+        </div> 
+    </footer>	
+<!-- Copyright PocketSmartBar -->	
+<div class="block bg-pocket">
+  <div class="pocketPadin block-content text-center" >
+      <p style="color: white; font-weight: 400;">COPYRIGHT © 2018 Pocket Company S.A.S</p>
+  </div>
+</div>	
+</div><!--pure-container-->	
+	<!-- SCRIPTS video pocket--> 	
+<!--Jquery-->
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- GRT Youtube Popup-->
+	<script src="assets/scripts/video/grt-youtube-popup.js"></script>	
+<!-- Initialize GRT Youtube Popup plugin -->
+	<script>
+		// Demo video 1
+		$(".youtube-link").grtyoutube({
+			autoPlay:true,
+			theme: "dark"
+		});
+	</script>
+<!-- SCRIPTS header-->
+<script src="assets/scripts/pocket.js" type="text/javascript" async></script>
+<script>
+    // Topbar background
+    window.onscroll = function() {
+      var topBar = document.getElementById('topbar-main');
+
+      if ( window.pageYOffset >= 50 ) {
+          topBar.classList.add("bg-solid");
+      } else {
+          topBar.classList.remove("bg-solid");
+      }
+    };	
+</script>
+	
+<!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = '15d63f5166d34952519b49507e22c761deb5e5b2';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+  c.type='text/javascript';c.charset='utf-8';c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+</script>	
+	
+</body>
+</html>

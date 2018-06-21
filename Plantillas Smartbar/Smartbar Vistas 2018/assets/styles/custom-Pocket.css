@@ -1,0 +1,79 @@
+/*------------------------------------------------------------
+  Custom Styles
+------------------------------------------------------------*/
+
+.text-small {font-size: 1.6rem; }
+
+/* Contacto Breadcrum oculto en Desktop y visible en Mobile */
+
+.gap-top-contact {
+  margin-top: 85px;
+  padding-top: 20px;
+}
+
+@media screen and (min-width: 840px) {
+  .hide-desktop {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 754px) {
+  .gap-top-contact {
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
+
+/* Contacto tiempo de respuesta*/
+.answer-time{
+  background: #00b19d!important;
+  color: white !important;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.margin-tiny {
+    margin: 1.2rem;
+        margin-bottom: 1.2rem;
+}
+
+.head-small-text h3{
+	margin-bottom: 0;
+	font-size: 3rem;
+	font-weight: 500;}
+@media screen and (max-width:768px){.hide-mobile{display:none}}
+
+.head-small{position:relative;height:13rem}
+@media screen and (max-width:768px){.head-small{height:7.5rem}}
+
+.head-small-icon{position:absolute;bottom:0;left:0}
+
+@media screen and (max-width:768px){.head-small-icon{width:8rem;height:auto}}
+.head-small-text{padding-top:.5rem;padding-left:14rem}
+
+@media screen and (max-width:768px){.head-small-text{padding-top:1.2rem;padding-left:10rem}}
+.head-small-text h3{margin-bottom:0;letter-spacing: -2px;}
+
+@media screen and (max-width:768px){.head-small-text h3{font-size:2.5rem}}
+
+.head-small-text p{width:100%;color: white;font-weight: 400; font-size:2rem;line-height:1.2;opacity:.7;margin-top:0;margin-bottom:2rem}.margin-left{margin-left:2rem}
+/*------------------------------------------------------------
+  pockeClub Styles
+------------------------------------------------------------*/
+@media screen and (max-width:768px){.pocketClub{text-align: center;}}
+
+.contac-Pocket p{
+	font-size: 1.8rem;
+line-height: 1.3;
+margin-bottom: 1.5rem;
+	
+}
+
+.contac-Pocket h3{
+line-height: 0.1;
+	
+}
+
+
+
+

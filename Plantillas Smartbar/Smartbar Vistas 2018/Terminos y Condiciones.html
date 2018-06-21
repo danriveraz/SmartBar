@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="es">
+<head>
+<!-- Etiquetas meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="HTML5">	
+  <meta name="application-name" content="PocketSmartbar"/>
+  <meta name="author" content="Pocket Company S.A.S"/>
+  <meta name="description" content="Aplicativo inteligente online, escencial en Bares, Discotecas y/o Restaurantes, que facilita enormemente el trabajo  de administradores, empleados, proveedores y clientes de estos." />
+  <meta name="generator" content="Html5 Css Javascrip" />
+  <meta name="keywords" content="Compañero inseparable, sistema inteligente de manejo de negocios, bares, restaurantes, discotecas, licores, comidas, cocteles, información almacenada en la nube, sistema pos, sitema pos para restaurantes, software para restaurante, software POS para restaurante, sistema de punto de ventas, sistema de facturación, software de inventario, software para punto de ventas, software POS, sistema POS, Colombia, POS online" />
+  <meta name="encoding" charset="utf-8" />		
+<!-- Datos Open Graph -->
+  <meta property="og:title" content="PocketSmartbar" />
+  <meta property="og:type" content="WebSite" />
+  <meta property="og:url" content="http://www.pocketsmartbar.com" />
+  <meta property="og:description" content="Aplicativo inteligente online, escencial en Bares, Discotecas y/o Restaurantes, que facilita enormemente el trabajo  de administradores, empleados, proveedores y clientes de estos.">
+  <meta property="og:site_name" content="PocketSmartBar">
+  <meta property="og:image" content="assets/images/p"><!--poner link de la imagen--!>
+  <!-- Datos Twitter Card -->	
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@pocketsmartbar">
+  <meta name="twitter:creator" content="@pocketsmartbar" />
+<!-- Etiquetas meta -->
+  <title>PocketSmartBar</title>
+  <link type="image/x-icon" rel="shortcut icon" href="assets/images/icon.png"/>        
+<!-- Datos meta Graph --> 
+	
+<!-- Styles -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 
+<!--Fuente Requerida -->
+  <link href="assets/styles/pocketStyle.css" rel="stylesheet">
+<!-- GRT Youtube Plugin para video CSS -->
+  <link rel="stylesheet" href="assets/styles/video/grt-youtube-popup.css">
+<!-- Font Awsome
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<!-- style para login -->
+<link rel="stylesheet" href="assets/styles/main.css"/><!--style para login-->
+<link rel="stylesheet" href="assets/styles/font-awesome.css"/><!-- Iconos Ex -->		
+<!--javascript para campo de contraseña/-->
+<script type="text/javascript" src="assets/scripts/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="assets/scripts/main.js"></script>		
+<!--style para desplege lateral-->
+<link rel="stylesheet" href="assets/styles/pure-drawer.css"/>	
+<!--style para desplege lateral-->
+<link rel="stylesheet" href="assets/styles/custom-Pocket.css"/>
+	
+	
+	</head>
+<body>
+<!--INICIO DE TAB-->  
+<div class="pure-container" data-effect="pure-effect-slide">	
+   <input type="checkbox" id="pure-toggle-right" class="pure-toggle" data-toggle="right"/>	
+<header class="block no-pad" data-name="Topbar">
+	<div id="" class="topbar fixed bg-solid">
+      <div class="topbar-content is-centered">
+        <div class="topbar-section">
+          <div id="nav-toggle" class="nav-toggle">
+            <a>&#9776;</a>
+          </div>
+          <div class="logo">
+           <a href="assets/images/logoPrin.png"><img width="240" height="50" src="assets/images/logoPrin.png"></a>
+          </div>
+        </div>
+        <div class="topbar-section">
+		<nav id="nav-main" class="nav">
+            <a class="nav-item " href="caracteristicas">¿Por qué somos tu amigo inseparable?</a>
+            <a class="nav-item " href="precios">PocketClub</a>
+            <div id="nav-toggle-close" class="nav-toggle-close">
+              <a>X</a>
+            </div>
+          </nav>
+          <div class="nav-access">
+           	<a class="nav-access-item button outline rounded-mediun">
+   			<input type="checkbox" id="pure-toggle-right" class="pure-toggle" data-toggle="right"/>			
+			<label class="" for="pure-toggle-right" data-toggle-label="right"><span class="">INGRESAR</span></label> 
+			</a>
+          </div>
+        </div>
+      </div>
+  </div>
+</header>
+<!-- Fin Menu Principal -->
+<!-- inicio de contenigo de login-->
+	  <nav class="pure-drawer" data-position="right" style="overflow: auto">
+		<section class="tabblue">	
+		<ul class="tabs blue">
+		<!-- Inicio del Tag #1-->
+          <li>
+            <input type="radio" name="tabs blue" id="tab1" checked />
+            <label class="label" for="tab1">Iniciar Sesión</label>
+            <div id="tab-content1" class="tab-content">              
+		<div class="login-form-content">
+			<div class="login-form-header">
+				<div class="logo">
+					<img src="assets/images/logoPrin.png"/>
+				</div>
+				<h3>Bienvenido! Tu amigo inseparable te espera </h3>
+			</div>
+			<form method="post" action="" class="login-form">
+				<div class="input-container">
+					<i class="fa fa-envelope"></i>
+					<input type="email" class="input" name="email" placeholder="Email"/>
+				</div>
+				<div class="input-container">
+					<i class="fa fa-lock"></i>
+					<input type="password"  id="login-password" class="input" name="password" placeholder="Contraseña"/>
+					<i id="show-password" class="fa fa-eye"></i>
+				</div>
+				<div class="rememberme-container">
+					<input type="checkbox" name="rememberme" id="rememberme"/>
+					<label for="rememberme" class="rememberme"><span>Recuérdame</span></label>
+					<a class="forgot-password" href="#">Se te olvidó tu contraseña?</a>
+				</div>
+				<input type="submit" name="login" value="Iniciar Sesión" class="button"/>
+				<!--a href="#" class="register">Register</a-->
+			</form>
+			<div class="separator">
+					<span class="separator-text">OR</span>
+			</div>
+			<div class="socmed-login">
+				<a href="#g-plus" class="socmed-btn google-btn">
+					<i style="color: white;padding: 0px;" class="fa fa-google"></i>
+					<span>Iniciar Sesión con Google</span>
+				</a>
+			</div>
+		</div>				
+            </div>
+          </li>
+		<!-- Inicio del Tag #2-->
+      	  <li>
+            <input type="radio" name="tabs blue" id="tab2" />
+            <label class="label" for="tab2">Registro</label>
+            <div id="tab-content2" class="tab-content">
+				<!-- registro-->
+				<div class="login-form-content">
+					<div class="login-form-header">
+						<div class="logo">
+							<img src="assets/images/logoPrin.png"/>
+						</div>
+						<h3>Bienvenido! Tu amigo inseparable te espera </h3>						
+					</div>
+				<form method="post" action="" class="login-form">
+				<div class="input-container">
+					<i class="fa fa-reorder"></i>
+					<input type="text" class="input" name="negocio" placeholder="Nombre de tu Negocio"/>
+				</div>
+				<div class="input-container">
+					<i class="fa fa-address-card"></i>
+					<input type="text" class="input" name="nombre" placeholder="Nombre"/>
+				</div>
+				<div class="input-container">
+					<i class="fa fa-venus-mars"></i>					
+				<select class="select" id="sexo" name="sexo" required="">
+					<option value="Masculino">Masculino</option>
+					<option value="Femenino">Femenino</option>
+					<option value="Otro">Otro</option>
+				</select>
+				</div>
+				<div class="input-container">
+					<i class="fa fa-envelope"></i>
+					<input type="email" class="input" name="email" placeholder="Email" requerid/>
+				</div>
+				<div class="input-container">
+					<i class="fa fa-lock"></i>
+					<input type="password"  id="login-password1" class="input" name="password" placeholder="Contraseña"/>
+					<i id="show-password1" class="fa fa-eye"></i>
+				</div>
+				<div class="input-container" style="float: left; width:49%">
+					<i class="fa fa-map-marker"></i>					
+				<select class="selectCi" id="sexo" name="sexo" required="">
+					<option value="Masculino">Masculino</option>
+					<option value="Femenino">Femenino</option>
+					<option value="Otro">Otro</option>
+				</select>
+				</div>
+				<div class="input-container" style="float: left; width:49%">
+					<i class="fa fa-map-marker"></i>					
+				<select class="selectCi" id="sexo" name="sexo" required="">
+					<option value="Masculino">Masculino</option>
+					<option value="Femenino">Femenino</option>
+					<option value="Otro">Otro</option>
+				</select>
+				</div>			
+				<input type="submit" name="login" value="Registrarme" class="button"/>
+				<!--a href="#" class="register">Register</a-->					
+			</form>
+			<div class="terms">
+				Al crear tu cuenta aceptas nuestros
+				<a class="pocketColor" href="" target="_blank">Términos, Condiciones</a> y 
+				<a class="pocketColor"href="" target="_blank">Política de Tratamiento de Datos</a>.
+			</div>
+			<div class="separator">
+					<span class="separator-text">OR</span>
+			</div>
+			<div class="socmed-login">
+				<a href="#g-plus" class="socmed-btn google-btn">
+					<i style="color: white;padding: 0px;" class="fa fa-google"></i>
+					<span>Registrar con Google</span>
+				</a>
+			</div>
+            </div><!--  fin de login-form-content-->
+			  </div> <!-- tab-content2-->
+          </li>
+		<!-- Inicio del Tag #3-->
+		<li>
+            <input type="radio" name="tabs"/>
+            <label class="label1" for="pure-toggle-right"><i style="color: white;padding: 0px;" class="fa fa-window-close"></i></label>
+		</li>			
+	</ul>
+	</section>			
+	</nav>	
+<!-- fin de contenido de login-->	
+<!-- ENCABEZADO -->
+<!-- CONTACTO (ENCABEZADO) -->
+<section class="block bg-pocket gap-top-contact" data-name="ContactHead">
+    <div class="block-content no-pad">
+        <div class="head-small">        
+        <!-- div que esconde cuando es muy chiquito para mobiles-->
+        <div class="hide-mobile">
+          <img class="head-small-icon" src="assets/images/head-character.png" alt="¿Tienes dudas?" title="Soporte">
+          <div class="head-small-text">
+            <h3 class="roboto1 white margin-tiny">¿Tienes dudas?</h3>
+            <p class=" margin-tiny">Como tu amigo inseparable, siempre estamos presente para brindarte la mejor asesoria, darte un consejo y solucionar cualquier inquietud o inconveniente, es <span class="bold">Gratis</span>, e Ilimitado.</p>
+          </div>
+          </div>
+        <!-- div que esconde cuando es muy chiquito para mobiles-->
+        </div>
+    </div>
+</section>
+<!-- PREGUNTAS FRECUENTES -->
+<section class="block" data-name="Faqs">
+    <div class="block-content">
+        <h2 class="text-center">Terminos y Condiciones</h2>
+        <div class="row cards-basic bg-white">
+            <div class="col bg-gray-white">
+                <div>
+                    <h3 class="text-green margin-tiny">1.Politicas de Privacidad</h3>
+        			<p style="text-align:justify">
+                    La presente Política de Privacidad establece los términos en que Pocket Compañy usa y protege la información que es proporcionada por sus usuarios al momento de utilizar su sitio web. Esta compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le pedimos llenar los campos de información personal con la cual usted pueda ser identificado, lo hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento. Sin embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios.
+					<br>
+	                Información que es recogida en nuestro sitio web podrá tener información personal por ejemplo: Nombre,  información de contacto como  su dirección de correo electrónica e información demográfica. Así mismo cuando sea necesario podrá ser requerida información específica para procesar algún pedido o realizar una entrega o facturación.</p>
+                    <hr>
+                </div>
+                <div>
+                    <h3 class="text-green margin-tiny">2. Uso de la Información</h3>
+                    <p style="text-align:justify">                   	
+	                Uso de la información recogida en nuestro sitio web, emplea la información con el fin de proporcionar el mejor servicio posible, particularmente para mantener un registro de usuarios, de pedidos en caso que aplique, y mejorar nuestros productos y servicios.  Es posible que sean enviados correos electrónicos periódicamente a través de nuestro sitio con ofertas especiales, nuevos productos y otra información publicitaria que consideremos relevante para usted o que pueda brindarle algún beneficio, estos correos electrónicos serán enviados a la dirección que usted proporcione y podrán ser cancelados en cualquier momento.<br>
+
+	                    	
+	                Pocket Compañy está altamente comprometido para cumplir con el compromiso de mantener su información segura. Usamos los sistemas más avanzados y los actualizamos constantemente para asegurarnos que no exista ningún acceso no autorizado.</p>	               
+                    <hr>
+                </div>
+                <div>
+                    <h3 class="text-green margin-tiny">3. Uso de Cookies</h3>
+                    <p style="text-align:justify">                   	
+	                Una cookie se refiere a un fichero que es enviado con la finalidad de solicitar permiso para almacenarse en su ordenador, al aceptar dicho fichero se crea y la cookie sirve entonces para tener información respecto al tráfico web, y también facilita las futuras visitas a una web recurrente. Otra función que tienen las cookies es que con ellas las web pueden reconocerte individualmente y por tanto brindarte el mejor servicio personalizado de su web.
+
+	                Nuestro sitio web emplea las cookies para poder identificar las páginas que son visitadas y su frecuencia. Esta información es empleada únicamente para análisis estadístico y después la información se elimina de forma permanente. Usted puede eliminar las cookies en cualquier momento desde su ordenador. Sin embargo las cookies ayudan a proporcionar un mejor servicio de los sitios web, estás no dan acceso a información de su ordenador ni de usted, a menos de que usted así lo quiera y la proporcione directamente. Usted puede aceptar o negar el uso de cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues sirve para tener un mejor servicio web. También usted puede cambiar la configuración de su ordenador para declinar las cookies. Si se declinan es posible que no pueda utilizar algunos de nuestros servicios.</p>	               
+                    <hr>
+                </div>
+                <div>
+                    <h3 class="text-green margin-tiny">4. Enlaces a terceros</h3>
+                    <p style="text-align:justify">                   	
+	                este sitio web pudiera contener en laces a otros sitios que pudieran ser de su interés. Una vez que usted de clic en estos enlaces y abandone nuestra página, ya no tenemos control sobre al sitio al que es redirigido y por lo tanto no somos responsables de los términos o privacidad ni de la protección de sus datos en esos otros sitios terceros. Dichos sitios están sujetos a sus propias políticas de privacidad por lo cual es recomendable que los consulte para confirmar que usted está de acuerdo con estas.</p>	               
+                    <hr>
+                </div>				
+                <div>
+                    <h3 class="text-green margin-tiny">5. Control de su información personal</h3>
+                    <p style="text-align:justify">                   	
+	                n cualquier momento usted puede restringir la recopilación o el uso de la información personal que es proporcionada a nuestro sitio web.  Cada vez que se le solicite rellenar un formulario, como el de alta de usuario, puede marcar o desmarcar la opción de recibir información por correo electrónico.  En caso de que haya marcado la opción de recibir nuestro boletín o publicidad usted puede cancelarla en cualquier momento.
+
+	                Esta compañía no venderá, cederá ni distribuirá la información personal que es recopilada sin su consentimiento, salvo que sea requerido por un juez con un orden judicial.
+
+	                Pocket Compañy Se reserva el derecho de cambiar los términos de la presente Política de Privacidad en cualquier momento.
+	                </p>	               
+                    <hr>
+                </div>				
+				
+				
+				
+				
+				
+				
+            </div><!--col bg-gray-white-->            
+        </div>
+    </div>
+</section>
+<!-- 7 DIAS GRATIS-->
+<section class="block" data-name="Plans">
+  <div class="block-content text-center" style="padding-top: 0px;">
+    <h2 class="margin-tiny">Empieza tus <strong>7 Dias gratis</strong></h2>    
+    <p><img class="plan-payment" src="assets/images/logos-payment-col-pocket.png" alt="Métodos de pago"/></p>
+    <p><a class="button large" href="http://pocketsmartbar.com/Auth/register" rel="alternate"><strong>UNIRSE A POCKETCLUB</strong></a></p>
+    <hr>
+	<div class="pocket">
+    <h4>Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas. <a href="" target="_blank" rel="alternate">¿Que es PocketClub?</a></h4></div>
+    <hr>
+  </div>
+</section>	
+<!-- FIN ENCABEZADO -->
+<footer>
+       <div>        
+               <div class="pocketPadin block-content text-center">
+                  <ul class="list-inline">                                 
+                     <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>                                   
+                     <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>                                  
+                     <li><a href="#"><i class="fa fa-instagram fa-2x"></i></a></li>                                   
+                     <li><a href="#"><i class="fa fa-youtube fa-2x"></i></a></li>                                   
+                     <li><a href="#"><i class="fa fa-google-play fa-2x"></i></a></li>                                
+                   </ul>
+                </div>                 
+                <div class="pocketPadin block-content text-center">   
+                   <ul class="menu list-inline">                               
+                    <li><a href="#">Cliente VIP</a></li>                                   
+                    <li><a href="#">SmartShop</a></li>
+ 					<li><a href="#">Preguntas Frecuentes</a></li>                                   
+                    <li><a href="#">Politicas Privacidad</a></li>
+					<li><a href="#">Contáctos</a></li>             
+                   </ul>
+                 </div>          
+        </div> 
+    </footer>	
+<!-- Copyright PocketSmartBar -->	
+<div class="block bg-pocket">
+  <div class="pocketPadin block-content text-center" >
+      <p style="color: white; font-weight: 400;">COPYRIGHT © 2018 Pocket Company S.A.S</p>
+  </div>
+</div>	
+</div><!--pure-container-->	
+	<!-- SCRIPTS video pocket--> 	
+<!--Jquery-->
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- GRT Youtube Popup-->
+	<script src="assets/scripts/video/grt-youtube-popup.js"></script>	
+<!-- Initialize GRT Youtube Popup plugin -->
+	<script>
+		// Demo video 1
+		$(".youtube-link").grtyoutube({
+			autoPlay:true,
+			theme: "dark"
+		});
+	</script>
+<!-- SCRIPTS header-->
+<script src="assets/scripts/pocket.js" type="text/javascript" async></script>
+<script>
+    // Topbar background
+    window.onscroll = function() {
+      var topBar = document.getElementById('topbar-main');
+
+      if ( window.pageYOffset >= 50 ) {
+          topBar.classList.add("bg-solid");
+      } else {
+          topBar.classList.remove("bg-solid");
+      }
+    };	
+</script>
+	
+<!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = '15d63f5166d34952519b49507e22c761deb5e5b2';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+  c.type='text/javascript';c.charset='utf-8';c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+</script>	
+	
+</body>
+</html>

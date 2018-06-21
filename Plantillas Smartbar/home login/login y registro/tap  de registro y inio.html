@@ -1,0 +1,168 @@
+<html>
+	<head>
+		<title>Login Form</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="HTML5">	
+		
+		
+		
+		
+		<link rel="shortcut icon" href="img/logo.png"/>
+		<!--link rel="stylesheet" href="css/menu.css"/-->
+		<link rel="stylesheet" href="css/main.css"/>
+		<!--link rel="stylesheet" href="css/font.css"/-->
+		<link rel="stylesheet" href="assets/styles/font-awesome.css"/>
+		
+		
+		<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		
+<!-- Styles -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 		
+	</head>
+<body>
+	
+	
+
+	
+
+<!--INICIO DE TAB-->  
+<div class="background"></div>
+	<div class="backdrop"></div>
+	
+	
+		<div class="login-form-container" id="login-form">
+
+	
+	<section class="tabblue">
+	
+		<ul class="tabs blue">
+		<!-- Inicio del Tag #1-->
+          <li>
+            <input type="radio" name="tabs blue" id="tab1" checked />
+            <label class="label" for="tab1">Iniciar Sesión</label>
+            <div id="tab-content1" class="tab-content">
+              
+		<div class="login-form-content">
+			<div class="login-form-header">
+				<div class="logo">
+					<img src="assets/images/logoPrin.png"/>
+				</div>
+				<h3>Bienvenido! Tu amigo inseparable te espera </h3>
+			</div>
+			<form method="post" action="" class="login-form">
+				<div class="input-container">
+					<i class="fa fa-envelope"></i>
+					<input type="email" class="input" name="email" placeholder="Email"/>
+				</div>
+				<div class="input-container">
+					<i class="fa fa-lock"></i>
+					<input type="password"  id="login-password" class="input" name="password" placeholder="Contraseña"/>
+					<i id="show-password" class="fa fa-eye"></i>
+				</div>
+				<div class="rememberme-container">
+					<input type="checkbox" name="rememberme" id="rememberme"/>
+					<label for="rememberme" class="rememberme"><span>Recuérdame</span></label>
+					<a class="forgot-password" href="#">Se te olvidó tu contraseña?</a>
+				</div>
+				<input type="submit" name="login" value="Iniciar Sesión" class="button"/>
+				<!--a href="#" class="register">Register</a-->
+			</form>
+			<div class="separator">
+					<span class="separator-text">OR</span>
+			</div>
+			<div class="socmed-login">
+				<a href="#g-plus" class="socmed-btn google-btn">
+					<i class="fa fa-google"></i>
+					<span>Iniciar Sesión con Google</span>
+				</a>
+			</div>
+		</div>
+				
+            </div>
+          </li>
+		<!-- Inicio del Tag #2-->
+      	  <li>
+            <input type="radio" name="tabs blue" id="tab2" />
+            <label class="label" for="tab2">Registro</label>
+            <div id="tab-content2" class="tab-content">
+				<!-- registro-->
+				<div class="login-form-content">
+					<div class="login-form-header">
+						<div class="logo">
+							<img src="assets/images/logoPrin.png"/>
+						</div>
+						<h3>Bienvenido! Tu amigo inseparable te espera </h3>						
+					</div>
+				<form method="post" action="" class="login-form">
+				<div class="input-container">
+					<i class="fa fa-reorder"></i>
+					<input type="text" class="input" name="negocio" placeholder="Nombre de tu Negocio"/>
+				</div>
+				<div class="input-container">
+					<i class="fa fa-address-card"></i>
+					<input type="text" class="input" name="nombre" placeholder="Nombre"/>
+				</div>
+				<div class="input-container">
+					<i class="fa fa-venus-mars"></i>					
+				<select class="select" id="sexo" name="sexo" required="">
+					<option value="Masculino">Masculino</option>
+					<option value="Femenino">Femenino</option>
+					<option value="Otro">Otro</option>
+				</select>
+				</div>
+				<div class="input-container">
+					<i class="fa fa-envelope"></i>
+					<input type="email" class="input" name="email" placeholder="Email" requerid/>
+				</div>
+				<div class="input-container">
+					<i class="fa fa-lock"></i>
+					<input type="password"  id="login-password1" class="input" name="password" placeholder="Contraseña"/>
+					<i id="show-password1" class="fa fa-eye"></i>
+				</div>
+				<div class="input-container" style="float: left; width:49%">
+					<i class="fa fa-map-marker"></i>					
+				<select class="selectCi" id="sexo" name="sexo" required="">
+					<option value="Masculino">Masculino</option>
+					<option value="Femenino">Femenino</option>
+					<option value="Otro">Otro</option>
+				</select>
+				</div>
+				<div class="input-container" style="float: left; width:49%">
+					<i class="fa fa-map-marker"></i>					
+				<select class="selectCi" id="sexo" name="sexo" required="">
+					<option value="Masculino">Masculino</option>
+					<option value="Femenino">Femenino</option>
+					<option value="Otro">Otro</option>
+				</select>
+				</div>			
+				<input type="submit" name="login" value="Registrarme" class="button"/>
+				<!--a href="#" class="register">Register</a-->					
+			</form>
+			<div class="terms">
+				Al crear tu cuenta aceptas nuestros
+				<a class="pocketColor" href="" target="_blank">Términos, Condiciones</a> y 
+				<a class="pocketColor"href="" target="_blank">Política de Tratamiento de Datos</a>.
+			</div>
+			<div class="separator">
+					<span class="separator-text">OR</span>
+			</div>
+			<div class="socmed-login">
+				<a href="#g-plus" class="socmed-btn google-btn">
+					<i class="fa fa-google"></i>
+					<span>Registrar con Google</span>
+				</a>
+			</div>
+            </div><!--  fin de login-form-content-->
+			  </div> <!-- tab-content2-->
+          </li>       
+	</ul>
+	</section>
+	
+			  </div>
+			    				
+					
+</body>
+</html>
