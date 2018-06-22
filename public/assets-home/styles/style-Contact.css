@@ -63,13 +63,14 @@ li.second:hover .msg {
 	margin-top: 0.5rem;
   }
   
-.first input[type="email"], input[type="file"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="url"], select, textarea, textarea[type="text"]{height: 45px;
+
+.first input[type="email"],.first  input[type="file"],.first  input[type="number"],.first  input[type="password"], input[type="search"],.first  input[type="tel"],.first  input[type="text"],.first  input[type="url"],.first  select,.first  textarea, textarea[type="text"]{height: 45px;
 padding: 10px 10px;margin-bottom: 1rem;box-sizing: border-box;transition: all .2s ease;}
 
 
 
 
-form textarea {
+.first form textarea {
   resize: none;
   height: 140px;
 }
@@ -91,10 +92,8 @@ form textarea {
   margin-right:2.85em;
 }
 input[type="submit"]:hover{
--webkit-transform: rotate(4deg);
-  transform: rotate(4deg);
-  -o-transform: rotate(4deg);
-  -moz-transform: rotate(4deg);
+
+	background-color: #49014f;
 }
 li.lost {
   margin-bottom: 21px;
@@ -119,35 +118,27 @@ li.lost {
     width: 40%;
     margin:5% auto 5%;
   }
-  body h1 {
-  font-size: 2.7em;
-}
+
  
 }
 @media (max-width:1024px){
   .login-01 {
   width: 45%;
 }
- body h1 {
-  font-size: 2.5em;
-}
+
  
 }
 @media (max-width:768px){
   .login-01 {
   width: 63%;
 }
- body h1 {
-  font-size: 2.3em;
-}
+
 }
 @media (max-width:640px){
   .login-01 {
   width: 73%;
   }
-  body h1 {
-  font-size: 2.1em;
-}
+
 }
 @media (max-width:480px){
    .login-01 {
@@ -197,10 +188,7 @@ li.second:hover .msg {
   background: url(../images/msg.png) no-repeat 14px 11px #49014f;
    background-size: 45%;
 }
-body h1 {
-  font-size:2em;
-  padding-top: 1em;
-}
+
 form li.first, li.second {
   margin-bottom: 5px;
   }
@@ -258,8 +246,6 @@ li.second:hover .msg {
   width: 36%;
   margin-right: 0.7em;
 }
-body h1 {
-  font-size:1.6em;
-}
+
 
 }

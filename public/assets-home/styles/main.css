@@ -119,7 +119,7 @@ text-decoration:none;
 
 /* BACKGROUND */
 .background, .backdrop {
-	background-color: #3f689c;
+	background-color: #2d0031;
 	position: fixed;
     top: 0;
     left: 0;
@@ -207,7 +207,7 @@ text-decoration:none;
 
 .login-form .select {
 	border: 0;
-	width: 280px;
+	width: 270px;
 }
 
 .login-form .select:focus {

@@ -3,26 +3,22 @@
 <!-- PÁGINA ACTUAL -->
 
 
-<!-- CONTACTO (ENCABEZADO) -->
-<section class="block bg-green gap-top-contact" data-name="ContactHead">
+<section class="block bg-pocket gap-top-contact" data-name="ContactHead">
     <div class="block-content no-pad">
-        <div class="head-small ">        
+        <div class="head-small">        
         <!-- div que esconde cuando es muy chiquito para mobiles-->
         <div class="hide-mobile">
-          <img class="head-small-icon" src="assetsNew/images/head-character.png" alt="¿Tienes dudas?" title="Soporte">
+          <img class="head-small-icon" src="{{asset('assets-home/images/head-character.png')}}" alt="¿Tienes dudas?" title="Soporte">
           <div class="head-small-text">
-            <h3 class="serif margin-tiny">SMARTBAR NO PUEDE FALTAR EN TU NEGOCIO</h3>
-            <p class="serif margin-tiny">Como tu amigo inseparable, siempre estoy presente para hacer la vida de tus empleados, proveedores y clientes mucho más fácil, por ende <span class="bold">ESTAR EN TU NEGOCIO</span>, es lo mejor para todos!</p>
+            <h3 class="roboto1 white margin-tiny">SmartBar no puede faltar en tu negocio</h3>
+            <p class=" margin-tiny">Como tu amigo inseparable, siempre estoy presente para hacer la vida de tus empleados, proveedores y clientes mucho más fácil, por ende <span class="bold" style="color: white;">Estar en tu negocio</span>, es lo mejor para todos!</p>
           </div>
           </div>
         <!-- div que esconde cuando es muy chiquito para mobiles-->
         </div>
     </div>
 </section>
-
-
-<!-- Preguntas frecuentes pocket-->
-
+<!-- Preguntas frecuentes pocket-->     
 <!-- PREGUNTAS FRECUENTES -->
 <section class="block" data-name="Faqs">
     <div class="block-content">
@@ -86,18 +82,18 @@
         </div>
     </div>
 </section>
-
 <!-- finde de preguntas frecuentes pocket-->
-
-
-<!-- REGISTRO -->
-<section class="block" data-name="Register">
-    <div class="block-content text-center">
-        <h2 class="margin-tiny">Empieza tus <strong>7 Dias gratis</strong></h2>
-        <h4 class="margin-tiny">Prueba todas las características de SmartBar sin limitaciones</h4>
-      <p><a class="button large" href="{{ url('Auth/register') }}" rel="alternate"><strong>INGRESA YA!</strong></a></p>
-    </div>
-</section>
+<section class="block" data-name="Plans">
+  <div class="block-content text-center">
+    <h2 class="margin-tiny">Empieza tus <strong>7 Dias gratis</strong></h2>    
+    <p><img class="plan-payment" src="{{asset('assets-home/images/logos-payment-col-pocket.png')}}" alt="Métodos de pago"/></p>
+    <p><a class="button large" href="http://pocketsmartbar.com/Auth/register" rel="alternate"><strong>UNIRSE A POCKETCLUB</strong></a></p>
+    <hr>
+    <div class="pocket">
+    <h4>Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas. <a href="" target="_blank" rel="alternate">¿Que es PocketClub?</a></h4></div>
+    <hr>
+  </div>
+</section>  
 
 
 <!-- PIE DE PÁGINA -->

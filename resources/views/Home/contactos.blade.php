@@ -1,25 +1,21 @@
 @extends('Layout.app_principales')
 @section('content')
 
-{!!Html::style('assetsNew/styles/style-Contact.css')!!}
-
-<!-- CONTACTO (ENCABEZADO) -->
-<section class="block bg-green gap-top-contact" data-name="ContactHead">
+<section class="block bg-pocket gap-top-contact" data-name="ContactHead">
     <div class="block-content no-pad">
-        <div class="head-small ">        
+        <div class="head-small">        
         <!-- div que esconde cuando es muy chiquito para mobiles-->
         <div class="hide-mobile">
-          <img class="head-small-icon" src="assetsNew/images/head-character.png" alt="¿Tienes dudas?" title="Soporte">
+          <img class="head-small-icon" src="{{asset('assets-home/images/head-character.png')}}" alt="¿Tienes dudas?" title="Soporte">
           <div class="head-small-text">
-            <h3 class="serif margin-tiny">Contactarte con tu amigo inseparable es muy fácil</h3>
-            <p class="serif margin-tiny">Puedes contactarnos mediante nuestro correo electronico, aseguramos tener una respuesta en las siguientes 8 horas, con el fin de responder de manera eficiente tus dudas, inquietudes o reclamos.</p>
+            <h3 class="roboto1 white margin-tiny">Contactarte con tu amigo inseparable es muy fácil</h3>
+            <p class=" margin-tiny">Puedes contactarnos mediante nuestro correo electronico, aseguramos tener una respuesta en las siguientes 8 horas, con el fin de responder de manera eficiente tus dudas, inquietudes o reclamos.</p>
           </div>
           </div>
         <!-- div que esconde cuando es muy chiquito para mobiles-->
         </div>
     </div>
 </section>
-
 <!-- CONTACTO -->
 <section class="block" data-name="Contact">
     <div class="block-content">
@@ -52,15 +48,11 @@
       <div class="clear"></div>
     </form>
 </div>
-
-
-
-
-
             </div>
-            <div class="col">
+            <div class="col contac-Pocket">
                 <!-- Preguntas frecuentes -->
-                <h3 class="serif text-green">además de la opción de mensajes via correo electronico, estenemos más opciones para que te contactes con tu amigo inseparable SMARTBAR.</h3>
+                <h3 class="roboto1 pocket-color ">Tienes dudas?</h3>
+          <P class="">Además de la opción de mensajes via correo electronico, estenemos más opciones para que te contactes con tu amigo inseparable SMARTBAR.</P>
                 <div class="js-Accordion" >
                     <!-- Pregunta 1 -->
                     <div class="accordion-content">
@@ -76,33 +68,27 @@
         </div>
     </div>
 </section>
-
-
 <!-- SOPORTE  -->
 <section class="block " data-name="Support">
     <div class="block-content no-pad text-center">
       <h2 class="">¡SmartBar te Asesora!</h2>
       <h4 class="margin-tiny text-Morado">Si necesitas ayuda contáctanos en <a class=" text-gris" rel="alternate">Nuestro chat en linea</a></h4>
-
  <hr>
     <h4 class="text-gris">Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas. <a href="" target="_blank" rel="alternate">¿Que es PocketClub?</a></h4>
     <hr>
-
     </div>
-
-
-
 </section>
-
-   
-
-<!-- REGISTRO -->
-<section class="block" data-name="Register">
-    <div class="block-content text-center">
-        <h2 class="margin-tiny">Empieza tus <strong>7 Dias gratis</strong></h2>
-        <h4 class="margin-tiny">Prueba todas las características de SmartBar sin limitaciones</h4>
-      <p><a class="button large" href="{{ url('Auth/register') }}" rel="alternate"><strong>INGRESA YA!</strong></a></p>
-    </div>
+<!-- 7 dias gratos -->
+<section class="block" data-name="Plans">
+  <div class="block-content text-center">
+    <h2 class="margin-tiny">Empieza tus <strong>7 Dias gratis</strong></h2>    
+    <p><img class="plan-payment" src="{{asset('assets-home/images/logos-payment-col-pocket.png')}}" alt="Métodos de pago"/></p>
+    <p><a class="button large" href="http://pocketsmartbar.com/Auth/register" rel="alternate"><strong>UNIRSE A POCKETCLUB</strong></a></p>
+    <hr>
+  <div class="pocket">
+    <h4>Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas. <a href="" target="_blank" rel="alternate">¿Que es PocketClub?</a></h4></div>
+    <hr>
+  </div>
 </section>
 
 

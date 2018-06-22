@@ -82,7 +82,7 @@ class AuthController extends Controller
     }
 
     public function resetpassword(){
-        return view("Auth/resetpassword");
+        return view("Auth/resetPassword");
     }
 
     public function postRegister(Request $request){

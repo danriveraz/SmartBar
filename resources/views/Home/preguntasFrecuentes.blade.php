@@ -1,29 +1,21 @@
 @extends('Layout.app_principales')
 @section('content')
 
-<!-- PÁGINA ACTUAL -->
-
-
-<!-- CONTACTO (ENCABEZADO) -->
-<section class="block bg-green gap-top-contact" data-name="ContactHead">
+<section class="block bg-pocket gap-top-contact" data-name="ContactHead">
     <div class="block-content no-pad">
-        <div class="head-small ">        
+        <div class="head-small">        
         <!-- div que esconde cuando es muy chiquito para mobiles-->
         <div class="hide-mobile">
-          <img class="head-small-icon" src="assetsNew/images/head-character.png" alt="¿Tienes dudas?" title="Soporte">
+          <img class="head-small-icon" src="{{asset('assets-home/images/head-character.png')}}" alt="¿Tienes dudas?" title="Soporte">
           <div class="head-small-text">
-            <h3 class="serif margin-tiny">¿Tienes dudas?</h3>
-            <p class="serif margin-tiny">Como tu amigo inseparable, siempre estamos presente para brindarte la mejor asesoria, darte un consejo y solucionar cualquier inquietud o inconveniente, es <span class="bold">Gratis</span>, e Ilimitado.</p>
+            <h3 class="roboto1 white margin-tiny">¿Tienes dudas?</h3>
+            <p class=" margin-tiny">Como tu amigo inseparable, siempre estamos presente para brindarte la mejor asesoria, darte un consejo y solucionar cualquier inquietud o inconveniente, es <span class="bold">Gratis</span>, e Ilimitado.</p>
           </div>
           </div>
         <!-- div que esconde cuando es muy chiquito para mobiles-->
         </div>
     </div>
 </section>
-
-
-<!-- Preguntas frecuentes pocket-->
-
 <!-- PREGUNTAS FRECUENTES -->
 <section class="block" data-name="Faqs">
     <div class="block-content">
@@ -101,20 +93,17 @@ También lo puedes usar desde tu celular descargando la aplicación móvil para 
         </div>
     </div>
 </section>
-
-<!-- finde de preguntas frecuentes pocket-->
-
-
-<!-- REGISTRO -->
-<section class="block" data-name="Register">
-    <div class="block-content text-center">
-        <h2 class="margin-tiny">Empieza tus <strong>7 Dias gratis</strong></h2>
-        <h4 class="margin-tiny">Prueba todas las características de SmartBar sin limitaciones</h4>
-      <p><a class="button large" href="{{ url('Auth/register') }}" rel="alternate"><strong>INGRESA YA!</strong></a></p>
-    </div>
-</section>
-
-
-<!-- PIE DE PÁGINA -->
+<!-- 7 DIAS GRATIS-->
+<section class="block" data-name="Plans">
+  <div class="block-content text-center" style="padding-top: 0px;">
+    <h2 class="margin-tiny">Empieza tus <strong>7 Dias gratis</strong></h2>    
+    <p><img class="plan-payment" src="{{asset('assets-home/images/logos-payment-col-pocket.png')}}" alt="Métodos de pago"/></p>
+    <p><a class="button large" href="http://pocketsmartbar.com/Auth/register" rel="alternate"><strong>UNIRSE A POCKETCLUB</strong></a></p>
+    <hr>
+    <div class="pocket">
+    <h4>Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas. <a href="" target="_blank" rel="alternate">¿Que es PocketClub?</a></h4></div>
+    <hr>
+  </div>
+</section>  
 
 @endsection
