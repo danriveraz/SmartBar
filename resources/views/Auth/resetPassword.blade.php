@@ -62,8 +62,7 @@
     
     <!-- Content Slideshow  -->
     <section class="content">
-              <div class="hero-login bg-cover" style="background-image: url({{asset('assets-home/images/login-slide-6.jpg')}}")">
-
+            <div class="hero-login bg-cover" style="background-image: url({{asset('assets-home/images/login-slide-6.jpg')}}")">
         </div>
     </section>
 </div>    </body>
