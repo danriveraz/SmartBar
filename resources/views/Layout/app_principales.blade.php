@@ -101,6 +101,9 @@
         </div>
         <h3>Bienvenido! Tu amigo inseparable te espera </h3>
       </div>
+      @if (Session::has('message'))
+        {{Session::get('message')}}
+      @endif
       <!-- LOGIN -->
       <form autocomplete="on" method="post" action="{{url('Auth/login')}}" class="login-form">
         {{ csrf_field() }}
