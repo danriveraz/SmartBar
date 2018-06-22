@@ -101,14 +101,16 @@
         </div>
         <h3>Bienvenido! Tu amigo inseparable te espera </h3>
       </div>
-      <form method="post" action="" class="login-form">
+      <!-- LOGIN -->
+      <form autocomplete="on" method="post" action="{{url('Auth/login')}}" class="login-form">
+        {{ csrf_field() }}
         <div class="input-container">
           <i class="fa fa-envelope"></i>
-          <input type="email" class="input" name="email" placeholder="Email"/>
+          <input type="email" name="email" id="email" value="{{Input::old('email')}}" class="input" placeholder="E-mail" required>
         </div>
         <div class="input-container">
           <i class="fa fa-lock"></i>
-          <input type="password"  id="login-password" class="input" name="password" placeholder="Contraseña"/>
+          <input type="password" name="password" id="login-password" value="" class="input" placeholder="Contraseña" required>
           <i id="show-password" class="fa fa-eye"></i>
         </div>
         <div class="rememberme-container">
@@ -119,6 +121,7 @@
         <input type="submit" name="login" value="Iniciar Sesión" class="button"/>
         <!--a href="#" class="register">Register</a-->
       </form>
+      <!-- END LOGIN -->
       <div class="separator">
           <span class="separator-text">OR</span>
       </div>
