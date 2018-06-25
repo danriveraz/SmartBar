@@ -84,7 +84,9 @@
 		<div class="login-form-content">
 			<div class="login-form-header">
 				<div class="logo">
-					<img src="{{asset('assets-home/images/logoPrin.png')}}"/>
+					<a href="{{ url('/') }}">
+						<img src="{{asset('assets-home/images/logoPrin.png')}}"/>
+					</a>
 				</div>
 				<h3>Bienvenido! Tu amigo inseparable te espera </h3>						
 			</div>
