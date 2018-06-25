@@ -29,7 +29,7 @@
 <div>
 	<div style="background-color:white; padding: 15px 0px 50px; margin: 0px; text-align: center; font-family: Arial, Helvetica, sans-serif, serif, EmojiFont;">
 <br>
-<a href="" target="_blank" rel="noopener noreferrer"><img src="{{ asset('assets-home/images/email.jpg') }}" data-imagetype="External"></a> <br>
+<a href="" target="_blank" rel="noopener noreferrer"><img  style="width:65%;" src="{{ asset('assets-home/images/email.jpg') }}" data-imagetype="External"></a> <br>
 <br>
 
 <br>
