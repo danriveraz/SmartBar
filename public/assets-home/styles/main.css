@@ -36,7 +36,7 @@
   font-weight: normal;
   cursor: pointer;
   position: relative;
-  top: 5px;
+  top: 0px;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   -webkit-transition: all 0.2s ease-in-out;
@@ -65,7 +65,7 @@
 
 
 .tabs.blue [id^="tab"]:checked + .label {
-  top: 5px;
+  top: 0px;
   padding-top: 17px;
   
 }
@@ -85,7 +85,7 @@
 	font-weight: normal;
 	cursor: pointer;
 	position: relative;
-	top: 6px;
+	top: 0px;
 }/*boton cerrar*/
 .tabblue .tabs .label1:hover { background: #ec1313;}
 

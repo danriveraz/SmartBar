@@ -88,7 +88,7 @@
 <!-- inicio de contenigo de login-->
     <nav class="pure-drawer" data-position="right" style="overflow: auto">
     <section class="tabblue"> 
-    <ul class="tabs blue">
+    <ul class="tabs blue" style="background-color: #FFFFFF">
     <!-- Inicio del Tag #1-->
           <li>
             <input type="radio" name="tabs blue" id="tab1" checked />
@@ -109,7 +109,7 @@
         {{ csrf_field() }}
         <div class="input-container">
           <i class="fa fa-envelope"></i>
-          <input type="email" name="email" id="email" value="{{Input::old('email')}}" class="input" placeholder="E-mail" required>
+          <input type="email" name="emailInicio" id="emailInicio" value="{{Input::old('email')}}" class="input" placeholder="E-mail" required>
         </div>
         <div class="input-container">
           <i class="fa fa-lock"></i>
@@ -125,9 +125,7 @@
         <!--a href="#" class="register">Register</a-->
       </form>
       <!-- END LOGIN -->
-      <div class="separator">
-          <span class="separator-text">OR</span>
-      </div>
+      <div class="separator"></div>
       <div class="socmed-login">
         <a href="#g-plus" class="socmed-btn google-btn">
           <i style="color: white;padding: 0px;" class="fa fa-google"></i>
@@ -150,49 +148,63 @@
             </div>
             <h3>Bienvenido! Tu amigo inseparable te espera </h3>            
           </div>
-        <form method="post" action="" class="login-form">
-        <div class="input-container">
-          <i class="fa fa-reorder"></i>
-          <input type="text" class="input" name="negocio" placeholder="Nombre de tu Negocio"/>
-        </div>
-        <div class="input-container">
-          <i class="fa fa-address-card"></i>
-          <input type="text" class="input" name="nombre" placeholder="Nombre"/>
-        </div>
-        <div class="input-container">
-          <i class="fa fa-venus-mars"></i>          
-        <select class="select" id="sexo" name="sexo" required="">
-          <option value="Masculino">Masculino</option>
-          <option value="Femenino">Femenino</option>
-          <option value="Otro">Otro</option>
-        </select>
-        </div>
-        <div class="input-container">
-          <i class="fa fa-envelope"></i>
-          <input type="email" class="input" name="email" placeholder="Email" requerid/>
-        </div>
-        <div class="input-container">
-          <i class="fa fa-lock"></i>
-          <input type="password"  id="login-password1" class="input" name="password" placeholder="Contraseña"/>
-          <i id="show-password1" class="fa fa-eye"></i>
-        </div>
-        <div class="input-container" style="float: left; width:49%">
-          <i class="fa fa-map-marker"></i>          
-        <select class="selectCi" id="departamento" name="departamento" required="">
-          <option value="Masculino">Masculino</option>
-          <option value="Femenino">Femenino</option>
-          <option value="Otro">Otro</option>
-        </select>
-        </div>
-        <div class="input-container" style="float: left; width:49%">
-          <i class="fa fa-map-marker"></i>          
-        <select class="selectCi" id="ciudad" name="ciudad" required="">
-          <option value="Masculino">Masculino</option>
-          <option value="Femenino">Femenino</option>
-          <option value="Otro">Otro</option>
-        </select>
-        </div>      
-        <input type="submit" name="login" value="Registrarme" class="button"/>
+       <form class="login-form" autocomplete="off" role="form" method="POST" enctype="multipart/form-data" action="{{ url('Auth/register') }}" files="true">
+        {{ csrf_field() }}
+        <div class="text-danger">
+           @if (Session::has('message'))
+             {{Session::get('message')}}
+           @endif
+         </div>
+          <div class="input-container">
+            <i class="fa fa-reorder"></i>
+            <input type="text" class="input" name="nombreEstablecimiento" placeholder="Nombre de tu Negocio" required/>
+          </div>
+          <div class="input-container">
+            <i class="fa fa-address-book"></i>
+            <select class="select" id="tipo"  name="tipo" required>
+              <option value="dueño">Dueño de Negocio</option>
+              <option value="proveedor">Proveedor</option>
+              <option value="cliente">Cliente</option>
+            </select>
+          </div>
+          <div class="input-container">
+            <i class="fa fa-address-card"></i>
+            <input type="text" class="input" name="nombrePersona" placeholder="Nombre" required/>
+          </div>
+          <div class="input-container">
+            <i class="fa fa-venus-mars"></i>          
+            <select class="select" id="sexo" name="sexo" required="">
+              <option value="">Sexo</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <div class="input-container">
+            <i class="fa fa-envelope"></i>
+            <input type="email" class="input" id="email" name="email" placeholder="Email" requerid/>
+          </div>
+          <div class="input-container">
+            <i class="fa fa-lock"></i>
+            <input type="password"  id="login-password1" class="input" name="password" placeholder="Contraseña"/>
+            <i id="show-password1" class="fa fa-eye"></i>
+          </div>
+          <div class="input-container" style="float: left; width:49%">
+            <i class="fa fa-map-marker"></i>          
+            <select class="selectCi" id="idDepto"  name="idDepto" required>
+              <option value="">Departamento</option>
+              @foreach($departamentos as $departamento)
+                  <option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="input-container" style="float: left; width:49%">
+            <i class="fa fa-map-marker"></i>          
+            <select class="selectCi" id="idCiudad" name="idCiudad" required>
+              <option value="">Ciudad</option>
+            </select>
+          </div>      
+          <input type="submit" name="login" value="Registrarme" class="button"/>
         <!--a href="#" class="register">Register</a-->          
       </form>
       <div class="terms">
@@ -200,9 +212,7 @@
         <a class="pocketColor" href="" target="_blank">Términos, Condiciones</a> y 
         <a class="pocketColor"href="" target="_blank">Política de Tratamiento de Datos</a>.
       </div>
-      <div class="separator">
-          <span class="separator-text">O</span>
-      </div>
+      <div class="separator"></div>
       <div class="socmed-login">
         <a href="#g-plus" class="socmed-btn google-btn">
           <i style="color: white;padding: 0px;" class="fa fa-google"></i>
@@ -214,8 +224,10 @@
           </li>
     <!-- Inicio del Tag #3-->
     <li>
-            <input type="radio" name="tabs"/>
-            <label class="label1" for="pure-toggle-right"><i style="color: white;padding: 0px;" class="fa fa-window-close"></i></label>
+      <input type="radio" name="tabs"/>
+      <label class="label1" for="pure-toggle-right">
+        <i style="color: white;padding: 0px; margin-top: -1%" class="fa fa-arrow-right"></i>
+      </label>
     </li>     
   </ul>
   </section>      
@@ -299,6 +311,27 @@ window.smartsupp||(function(d) {
   c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
 })(document);
 </script> 
-  
+
+<!-- SCRIPT DEPARTAMENTO Y CIUDADES -->
+<script>
+  $('#idDepto').on('change', function (event) {
+    var id = $(this).find('option:selected').val();
+    $('#idCiudad').empty();
+    $('#idCiudad').append($('<option>', {
+          value: "",
+          text: 'Elija una opción'
+    }));
+    JSONCiudades = eval(<?php echo json_encode($ciudades);?>);
+    JSONCiudades.forEach(function(currentValue,index,arr) {
+      if(currentValue.idDepartamento == id){
+        $('#idCiudad').append($('<option>', {
+          value: currentValue.id,
+          text: currentValue.nombre
+        }));
+      }
+    });
+  });
+</script> 
+<!-- FIN SCRIPT DEPARTAMENTO Y CIUDADES -->
 </body>
 </html>
