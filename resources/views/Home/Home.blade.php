@@ -13,7 +13,7 @@
             para hacer mil cosas por ti...</b>
           </p>
           <!-- Buttons -->
-          <a class="button large" href="http://www.pocketsmartbar.com/Auth/register" rel="nofollow">REGISTRATE</a><br>
+          <a class="button large" href="{{ url('/Auth/register') }}" rel="nofollow">REGISTRATE</a><br>
            <span class="textpar"><b>7 DIAS GRATIS</b></span>
       <!-- inicio de section-->
            <section class="content">
@@ -84,7 +84,7 @@
               <p>Tu amigo Smartbar te ayuda a Controlar y Crecer tu Negocio ahora administrar tu bar es mucho mas facil y divertido lleva el control de tus facturas, contabiliza y Administra tus gastos, Controla los horarios de tus empleados, agenda de trabajo, salarios y chats, Organiza tus inventarios, Ordena la información de tus clientes y proveedores, consulta en tiempo real reportes inteligentes.</p>
               <p>Smartbar, hace posible que manejar varios negocios sea facil y divertido dale play al video y conoce mas... </p>             
             <div class="separator1"></div>
-                    <a class="button large" href="http://www.pocketsmartbar.com/Auth/register" rel="nofollow">REGISTRATE</a>
+                    <a class="button large" href="{{ url('/Auth/register') }}" rel="nofollow">REGISTRATE</a>
             </div>
           </div>
           </div>          
