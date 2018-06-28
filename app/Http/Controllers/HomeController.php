@@ -26,22 +26,37 @@ class HomeController extends Controller
     }
 
     public function preguntasFrecuentes(){
-        return view('Home.preguntasFrecuentes');
+        $departamentos = Departamento::all();
+        $ciudades = Ciudad::all();
+        return view('Home.preguntasFrecuentes')->with('departamentos',$departamentos)
+                ->with('ciudades', $ciudades);
     }
 
     public function AmigoInseparable(){
-        return view('Home.AmigoInseparable');
+        $departamentos = Departamento::all();
+        $ciudades = Ciudad::all();
+        return view('Home.AmigoInseparable')->with('departamentos',$departamentos)
+                ->with('ciudades', $ciudades);
     }
 
     public function PocketClub(){
-        return view('Home.PocketClub');
+        $departamentos = Departamento::all();
+        $ciudades = Ciudad::all();
+        return view('Home.PocketClub')->with('departamentos',$departamentos)
+                ->with('ciudades', $ciudades);
     }
     public function politicas(){
-        return view('Home.politicas');
+        $departamentos = Departamento::all();
+        $ciudades = Ciudad::all();
+        return view('Home.politicas')->with('departamentos',$departamentos)
+                ->with('ciudades', $ciudades);
     }
 
     public function contactos(){
-        return view('Home.contactos');
+        $departamentos = Departamento::all();
+        $ciudades = Ciudad::all();
+        return view('Home.contactos')->with('departamentos',$departamentos)
+                ->with('ciudades', $ciudades);
     }
 
 
