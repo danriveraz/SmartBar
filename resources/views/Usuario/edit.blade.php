@@ -21,16 +21,17 @@
                         <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" class="img-responsive img-circle user-photo">
                       @endif
                       <div class="actions">
-                        <a  id="modalImagen" href="{{asset('images/admins/'.$usuario->imagenPerfil)}}" title="Imagen perfil">
+                        <a  id="modalImagen" href="{{ asset ('images/admins/'.$usuario->imagenPerfil) }}" title="Imagen negocio">
                           <i class="fa fa-search-plus"></i>
                         </a>
-                        <a onclick="$('#imagenPerfil').click()" title="Editar imagen">
+                        <a onclick="$('#imagenPerfil').click()">
                           <i class="fa fa-pencil"></i>
                         </a>
                       </div>
                     </div>
                   </div>
                   <div id="imgReemplazo" onchange="funcioncita();" class="gallery-item fileupload-preview fileupload-exists img-thumbnail" style="border-radius: 50%; width: 150px; height: 150px; background: #ffffff;" >
+                    
                   </div>
                   <div hidden>
                     <span class=" btn-file" id="subirImagenPerfil">
@@ -43,18 +44,19 @@
                 <div id="btnImagenPerfil" style="display: none; margin-top: 5px;">
                   <button id="btn-guardarimg" class="btn btn-bitbucket" onclick="setValue(this)"  title="Guardar imagen" style="margin-top: 15%; width: 25%; font-size: 10px; margin-left: -5%"><i class="fa fa-save"></i></button>
                 </div>
+
                 <div hidden>
                   <input id="ventanaFactura" name="ventanaFactura" class="form-control" value=""  type="text">
                 </div>
                 {!! Form::close() !!}
-
+                <!-- imagen perfil -->
+                
+                  <!-- fin imagen perfil -->
                 <ul class="meta list list-unstyled" style="padding-top: 15%; margin-bottom: -20%; margin-left: -5%;">
-                  <li class="name">{{$usuario->nombrePersona}}
-                    <br>
-                    <label class="label label-info pocketColor" style=" margin: 5px 5px 5px 5px; padding:.3em .9em .3em;">
-                      <b>Admin</b>
-                    </label>
-                  </li>
+                    <li class="name">{{$usuario->nombrePersona}}
+                        <br>
+                        <label class="label label-info pocketColor" style=" margin: 5px 5px 5px 5px; padding:.3em .9em .3em;"><b>Admin</b></label>
+                    </li>
                 </ul>
               </div>
               <nav class="side-menu">

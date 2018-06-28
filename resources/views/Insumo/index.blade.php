@@ -300,13 +300,13 @@
                           </select>
                         </div>
                       </div>
-                      <br>
+                       
                       <div class="form-group text-center">
                       	<label> 
-	                        <input  type="checkbox" name="tipo" id="stipo" value="1" onchange="showContent('')"/>
-	                        <span  title="Qué es añadir a la carta?"></span>
+	                        <input type="checkbox" name="tipo" id="stipo" value="1" onchange="showContent('')"/>
+	                        <span></span>
                         </label>
-                        <label  title="Qué es añadir a la carta?" for="tipo" class="control-label"> Añadir a la carta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <label for="tipo" class="control-label"> Añadir a la carta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                       </div>
 
                               <div class="form-group" id="scontent" style="display: none;">

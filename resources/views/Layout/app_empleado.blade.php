@@ -37,13 +37,9 @@
     {!!Html::style('stylesheets/style.css')!!}
     {!!Html::style('stylesheets/bootstrap-select.css')!!}
 
-
-
-{!!Html::script("https://code.jquery.com/jquery-1.10.2.min.js")!!}
-{!!Html::script("https://code.jquery.com/ui/1.10.3/jquery-ui.js")!!}
-
 <script>
 // ajax para verificar que el usuario esté logueado y así no dejar ver la página
+
    $(document).ready(function(){
       console.log("ejecuta al cargar");
       $.ajax({
@@ -60,45 +56,32 @@
     });
 </script>
 
-<!-- {!!Html::script("javascripts\raphael.min.js")!!} -->
-<!-- COMENTADO POR ERROR EN PERFIL -->
+{!!Html::script("https://code.jquery.com/jquery-1.10.2.min.js")!!}
+{!!Html::script("https://code.jquery.com/ui/1.10.3/jquery-ui.js")!!}
 
+{!!Html::script("javascripts\raphael.min.js")!!}
 {!!Html::script("javascripts\selectivizr-min.js")!!}
 {!!Html::script("javascripts\jquery.mousewheel.js")!!}
 {!!Html::script("javascripts\jquery.vmap.min.js")!!}
 {!!Html::script("javascripts\jquery.vmap.sampledata.js")!!}
 {!!Html::script("javascripts\jquery.vmap.world.js")!!}
 {!!Html::script("javascripts\jquery.dataTables.js")!!}
-
-<!--{!!Html::script("javascripts\excanvas.min.js")!!}-->
-<!-- COMENTADO POR ERROR EN PERFIL -->
-
+{!!Html::script("javascripts\excanvas.min.js")!!}
 {!!Html::script("javascripts\select2.js")!!}
-
-<!-- {!!Html::script("javascripts\bootstrap-editable.min.js")!!} -->
-<!-- COMENTADO POR ERROR EN PERFIL -->
+{!!Html::script("javascripts\bootstrap-editable.min.js")!!}
 {!!Html::script("javascripts\xeditable-demo-mock.js")!!}
 {!!Html::script("javascripts\xeditable-demo.js")!!}
-
-<!-- {!!Html::script("javascripts\address.js")!!} -->
-<!-- COMENTADO POR ERROR EN PERFIL -->
-
+{!!Html::script("javascripts\address.js")!!}
 {!!Html::script("javascripts\bootstrap.min.js")!!}
 {!!Html::script("javascripts/bootstrap-select.js")!!}
 {!!Html::script("javascripts\jquery.bootstrap.wizard.js")!!}
 {!!Html::script("javascripts/fullcalendar.min.js")!!}
 {!!Html::script("javascripts\gcal.js")!!}
 {!!Html::script("javascripts\jquery.dataTables.min.js")!!}
-
-<!-- COMENTADO POR ERROR EN BARTENDER -->
-<!-- {!!Html::script("javascripts\datatable-editable.js")!!} -->
-
+{!!Html::script("javascripts\datatable-editable.js")!!}
 {!!Html::script("javascripts\jquery.easy-pie-chart.js")!!}
 {!!Html::script("javascripts\jquery.isotope.min.js")!!}
-
-<!-- COMENTADO POR ERROR EN BARTENDER -->
-<!-- {!!Html::script("javascripts\isotope_extras.js")!!} -->
-
+{!!Html::script("javascripts\isotope_extras.js")!!}
 {!!Html::script("javascripts\modernizr.custom.js")!!}
 {!!Html::script("javascripts\jquery.fancybox.pack.js")!!}
 {!!Html::script("javascripts\styleswitcher.js")!!}
@@ -124,7 +107,7 @@
 {!!Html::script("javascripts\jquery.sparkline.min.js")!!}
 {!!Html::script("javascripts\dropzone.js")!!}
 {!!Html::script("javascripts\jquery.nestable.js")!!}
-
+{!!Html::script('javascripts\main.js')!!}
 {!!Html::script('javascripts\respond.js')!!}
 
   <!-- para el perfil -->
@@ -249,7 +232,7 @@
                     <i class="fa fa-user"></i>Perfil</a>
                   </li>
                   <li><a href="#">
-                    <i class="fa fa-question"></i>Ayuda</a>
+                    <i class="fa fa-gear"></i>Configuracion</a>
                   </li>
                   <li><a href="{{url('/Auth/logout')}}">
                     <i class="fa fa-sign-out"></i>Salir</a>
@@ -294,16 +277,6 @@
     </div>
 
   </body>
-  <!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
-var _smartsupp = _smartsupp || {};
-_smartsupp.key = '15d63f5166d34952519b49507e22c761deb5e5b2';
-window.smartsupp||(function(d) {
-  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-  c.type='text/javascript';c.charset='utf-8';c.async=true;
-  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-})(document);
-</script> 
+
 </html>
 

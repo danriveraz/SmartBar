@@ -3,10 +3,6 @@
 <link rel="stylesheet" href="stylesheets/styleCategorias.css">
 <link rel="stylesheet" href="stylesheets/mesero.css">
 @section('content')
-
-<!-- SE INCLUYE MAIN.JS PARA CORREGIR TABLA -->
-{!!Html::script('javascripts\main.js')!!}
-
 <div id="mensaje">
 @include('flash::message')
 </div>
