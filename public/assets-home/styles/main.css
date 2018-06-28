@@ -91,7 +91,7 @@
 
 .tabblue .tabs .label:hover { background: #c3c3c3;}
 .tabblue .tabs .tab-content {  background-color: white;}
-.tabblue .tabs [id^="tab"]:checked + .label {background: #2d0031; color: white}
+.tabblue .tabs [id^="tab"]:checked + .label {background: #ffffff; color: black}
 .tabblue .tabaddon { color: #16B3F5;}
 
 /******************** END ********************/

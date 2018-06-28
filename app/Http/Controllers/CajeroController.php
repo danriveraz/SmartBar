@@ -7,6 +7,7 @@ use Auth;
 use PocketByR\Factura;
 use PocketByR\Venta;
 use PocketByR\Mesa;
+use PocketByR\Empresa;
 use PocketByR\CLiente;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
@@ -30,6 +31,7 @@ class CajeroController extends Controller
         $idFacturas = Factura::listarFacturaDia($userActual->empresaActual)->get();
         $ventas = Venta::vendido($idFacturas)->get();
         $totalVentas = 0;
+        $empresa = Empresa::find($userActual->empresaActual);
         foreach ($ventas as $venta ) {
             $totalVentas = $totalVentas + ($venta->producto->precio * $venta->cantidad);
         }
@@ -41,7 +43,7 @@ class CajeroController extends Controller
                 array_push($productos, array(($facturas[$i]->id), $ventasHechas[$j]->id, $ventasHechas[$j]->producto->nombre, $ventasHechas[$j]->cantidad, $ventasHechas[$j]->producto->precio, $ventasHechas[$j]->estadoMesero, $ventasHechas[$j]->estadoCajero)); 
             }
         }
-    	return view('Cajero.inicio')->with('totalVentas',$totalVentas)->with('facturas',$facturas)->with('user',$userActual)->with('productos',$productos);
+    	return view('Cajero.inicio')->with('totalVentas',$totalVentas)->with('facturas',$facturas)->with('user',$userActual)->with('productos',$productos)->with('empresa', $empresa);
     }
   
     public function historial(Request $request){
@@ -82,7 +84,13 @@ class CajeroController extends Controller
        $idProductos = $request->productosId;
        $estados =$request->estados;
        $contador = 0;
-        foreach ($idProductos as $id) {
+
+      /* cambio para solucionar error -> Se encapsula todo dentro de un if
+         con el fin de no realizar consultas sobre un id nulo, esto para evitar 
+         errores cuando no hay ventas */
+      /* inicio cambio */
+      if($idProductos != null){
+        foreach($idProductos as $id){
             $rq = array("$id", "$estados[$contador]");
             Venta::ActualizarVenta($rq);
             $contador = $contador + 1;
@@ -98,6 +106,9 @@ class CajeroController extends Controller
             $factura = Factura::find($request->idFactura);
             Mesa::actualizarEstado($factura->mesa->id);
         }
+      }
+      /* fin cambio */
+
         return redirect("cajero");
        
     }

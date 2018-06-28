@@ -267,8 +267,8 @@ class UsuariosController extends Controller
       }
       if($usuarioActual->id == $id){
         if($usuarioActual->esAdmin == 0){
-          $usuario = User::find($id);
-          return view('Usuario.editEmpleado')->with('usuario',$usuario);
+            $usuario = User::find($id);
+            return view('Usuario.editEmpleado')->with('usuario',$usuario);
         }else{
           $departamentos = Departamento::all();
           $ciudades = Ciudad::all();
@@ -2053,6 +2053,7 @@ class UsuariosController extends Controller
         return redirect()->route('Auth.usuario.editUsuario');
       }
     }else if($request->ventana == 9){
+      dd("=");
       $rules = [
         'email' => 'required|email|max:255',
       ];
@@ -2122,6 +2123,7 @@ class UsuariosController extends Controller
         }
         $usuario->imagenPerfil = $perfilNombre;
       }
+      dd($usuario);
       $usuario->save();
       flash::success('La imagen de perfil ha sido modificada satisfactoriamente')->important();
       session_start();
@@ -2132,7 +2134,8 @@ class UsuariosController extends Controller
     if($request->ventanaFactura == 4){
       $usuario = User::find(Auth::id());
       $path = public_path() . '/images/admins/';
-      $file = $request->file('imagenPerfil');
+      $file = $request->file('imagen');
+      dd($request->file('imagenPerfil'));
       if($file!=null){// verifica que se haya subido una imagen nueva
         //obtenemos el nombre del archivo
         $perfilNombre = 'perfil_' . time() . '.' . $file->getClientOriginalExtension();
@@ -2428,8 +2431,6 @@ class UsuariosController extends Controller
             return response()->json(['success' => false,'message' => $errors], 422);
         }
       }
-
-
   }
 
   public function modificarEmpresa(){
