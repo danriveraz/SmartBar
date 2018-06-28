@@ -1,81 +1,137 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
+﻿<!doctype html>
+<html lang="es">
+<head>
+<!-- Etiquetas meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="HTML5">   
+  <meta name="application-name" content="PocketSmartbar"/>
+  <meta name="author" content="Pocket Company S.A.S"/>
+  <meta name="description" content="Aplicativo inteligente online, escencial en Bares, Discotecas y/o Restaurantes, que facilita enormemente el trabajo  de administradores, empleados, proveedores y clientes de estos." />
+  <meta name="generator" content="Html5 Css Javascrip" />
+  <meta name="keywords" content="Compañero inseparable, sistema inteligente de manejo de negocios, bares, restaurantes, discotecas, licores, comidas, cocteles, información almacenada en la nube, sistema pos, sitema pos para restaurantes, software para restaurante, software POS para restaurante, sistema de punto de ventas, sistema de facturación, software de inventario, software para punto de ventas, software POS, sistema POS, Colombia, POS online" />
+  <meta name="encoding" charset="utf-8" />      
+<!-- Datos Open Graph -->
+  <meta property="og:title" content="PocketSmartbar" />
+  <meta property="og:type" content="WebSite" />
+  <meta property="og:url" content="http://www.pocketsmartbar.com" />
+  <meta property="og:description" content="Aplicativo inteligente online, escencial en Bares, Discotecas y/o Restaurantes, que facilita enormemente el trabajo  de administradores, empleados, proveedores y clientes de estos.">
+  <meta property="og:site_name" content="PocketSmartBar">
+  <meta property="og:image" content="{{asset('assets-home/images/p')}}"><!--poner link de la imagen--!>
+  <!-- Datos Twitter Card -->   
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@pocketsmartbar">
+  <meta name="twitter:creator" content="@pocketsmartbar" />
+<!-- Etiquetas meta -->
+  <title>Registro - PocketSmartBar</title>
+  <link type="image/x-icon" rel="shortcut icon" href="{{asset('assets-home/images/icon.png')}}"/>        
+<!-- Datos meta Graph --> 
+    
+<!-- Styles -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 
+    <style>
 
-            <!-- End Google Tag Manager -->
-                    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Login - SmartBar</title>        
-        <!-- Estilos y Fuentes -->
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:300,400" rel="stylesheet">
-        <link rel="stylesheet" href="../assetsNew/styles/normalize.css" type="text/css" />
-        <link rel="stylesheet" href="../assetsNew/styles/styles-login-min.css" type="text/css" />
-        <link type="image/x-icon" rel="shortcut icon" href="../assetsNew/images/icon.png"/>
+
+
+
+
+.main-container{display:table;width:100%;height:100%}
+.content{display:table-cell;height:100%;background-color:#eff2f7;text-align:right;vertical-align:top;color:#FFF}
+@media screen and (max-width:480px){.content{display:block;overflow:auto;text-align:center}}.sidebar{display:table-cell;width:160px;height:100%;padding:70px 80px;background-color:#FFF}
+@media screen and (max-width:480px){.sidebar{display:block;width:100%;padding:40px 40px}}
+
+.sidebar-large{
+    display:table-cell;
+width: 360px;
+
+height: 100%;
+
+padding: 100px 80px;
+    background-color:#FFF}
+    
+.sidebar-large1{
+    display:table-cell;
+    width:500px;
+    height:100%;
+    padding:100px 80px;
+    background-color:#FFF}
+@media screen and (max-width:480px){
+    .sidebar-large{display:block;width:100%;padding:20px 20px}
+    .login-form-content{padding: 0px 0px !important;}
+    }
+
+.hero-login{height:100%}
+
+@media screen and (max-width:480px){.hero-login{padding:40px 40px}}.intro-title{font-size:18px;margin-bottom:0;color:#2d0031;}
+
+.bg-cover{background-size:cover !important;background-position:center !important;background-repeat:no-repeat !important}
+
+
+}
+    </style>
+    {!!Html::style('assets-home\styles\main.css')!!}
+    {!!Html::style('assets-home\styles\font-awesome.css')!!}
+    {!!Html::script("assets-home\scripts\jquery-1.12.4.min.js")!!}
+    {!!Html::script("assets-home\scripts\main.js")!!}
+    <link type="image/x-icon" rel="shortcut icon" href="{{asset('assets-home/images/icon.png')}}"/>
     </head>
     <body id="">
 
     </head>
 <div class="main-container">
     <!-- Sidebar Access -->
-    <aside class="sidebar-large1">
-        <div class="user-access">
-            <div class="user-access-header">
-                <a href="{{url('/home')}}" class="logo"><img src="../assetsNew/images/logo.png"></a>
-                <p class="intro-title colorMorado">Ingresa a tu amigo inseparable SmartBar</p>
-                <p class="intro-summary">con tan solo unos cuantos clicks</p>
+    <aside class="sidebar-large">
+
+                <!-- registro-->
+                <div class="login-form-content">
+                    <div class="login-form-header">
+                        <div class="logo">
+                            <a href="{{ url('/') }}">
+                                <img src="{{asset('assets-home/images/logoPrin.png')}}"/>
+                            </a>
+                        </div>
+                        <h3>Bienvenido! Tu amigo inseparable te espera </h3>                        
+                    </div> 
+                    <div class="center">
+                        @if (Session::has('message'))
+                            {{Session::get('message')}}
+                        @endif
+                    </div>  
+                                    <!--a href="#" class="register">Register</a-->
+    				<form  autocomplete="on" method="post" action="{{url('Auth/login')}}" class="login-form">
+    					{{ csrf_field() }}
+    					<div class="input-container">
+                            <i class="fa fa-envelope"></i>
+    						<input type="email" name="email" id="email" value="{{Input::old('email')}}" class="input" placeholder="E-mail" required>
+    					</div>
+    					<div class="input-container">
+                            <i class="fa fa-lock"></i>
+    						<input type="password" name="password" id="login-password" value="" class="input" placeholder="Contraseña" required>
+                            <i id="show-password" class="fa fa-eye"></i>
+    					</div>
+                        <div class="rememberme-container">
+                            <input type="checkbox" name="rememberme" id="rememberme"/>
+                            <label for="rememberme" class="rememberme"><span>Recuérdame</span></label>
+                            <a class="forgot-password" href="{{url('Auth/resetpassword')}}">Se te olvidó tu contraseña?</a>
+                        </div>
+    					<input type="submit" name="submit" id="submit" value="INGRESAR" class="button">
+    				</form>
+        	<div class="separator"></div>
+            <div class="socmed-login">
+                <a href="#g-plus" class="socmed-btn google-btn">
+                    <i class="fa fa-google"></i>
+                    <span>Iniciar Sesión con Google</span>
+                </a>
             </div>
-			<div class="user-access-form">   
-				@if (Session::has('message'))
-					{{Session::get('message')}}
-				@endif
-				<form  autocomplete="on" method="post" action="{{url('Auth/login')}}">
-					{{ csrf_field() }}
-					<div class="input-wrapper">
-						<input type="text" name="email" id="email" value="{{Input::old('email')}}" class="email" placeholder="E-mail" required>
-					</div>
-					<div class="input-wrapper">
-						<input type="password" name="password" id="password" value="" class="clave" placeholder="Contraseña" required>
-					</div>
-					<input type="submit" name="submit" id="submit" value="INGRESAR" class="enviar">
-				</form>
-			</div> 
-			<div class="colorGris user-access-footer">
-				<p><a href="{{url('Auth/resetpassword')}}">¿Olvidaste tu contraseña?</a></p>
-				<hr />
-				<a class="btn btn-social-icon btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-facebook']);"><span class="fa fa-facebook"></span></a>
-				<p>¿Aún no tienes una cuenta? <a href="{{url('Auth/register')}}">CREAR CUENTA</a></p>
-			</div>
-	</div>
+        </div><!--  fin de login-form-content-->
     </aside>
     <!-- Content Slideshow  -->
     <section class="content">
-        <div class="hero-login bg-cover" style="background-image: url('../assetsNew/images/login-slide-4.jpg');">
-
-   
-            <p class="quote">
-                Cada semana tenemos nuevas características<br>
-                <small>Síguenos en nuestras redes sociales</small><br> 
-                <a title="Twitter" class="button-circle" href="https://twitter.com" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
-                        <path fill="#00B19D" d="M35,17.9949748 C34.2270821,18.3335138 33.3977523,18.563107 32.5263881,18.6656082 C33.4161102,18.1389582 34.0971701,17.3036174 34.4199598,16.3113025 C33.58538,16.7990143 32.6641579,17.1531556 31.6825779,17.3451334 C30.8965521,16.516271 29.7785062,16 28.5384061,16 C26.1592944,16 24.2302765,17.9067872 24.2302765,20.2571923 C24.2302765,20.5905417 24.2683305,20.9161238 24.3418306,21.2274602 C20.762011,21.0497281 17.5876774,19.3543879 15.4631396,16.7782562 C15.0917616,17.4060847 14.8804916,18.1376354 14.8804916,18.9185372 C14.8804916,20.3959861 15.6416056,21.6996035 16.7964016,22.4622912 C16.0903956,22.4389554 15.4263896,22.2469776 14.8450798,21.9278739 L14.8450798,21.9810578 C14.8450798,24.0434962 16.3305577,25.764784 18.3002374,26.1565408 C17.9393594,26.2525297 17.5588195,26.3057137 17.1651375,26.3057137 C16.8869557,26.3057137 16.6179357,26.2784772 16.3541656,26.2265822 C16.9026714,27.9193446 18.4931495,29.1503089 20.3775594,29.1840577 C18.9038855,30.3255454 17.0457256,31.0039461 15.0274919,31.0039461 C14.679756,31.0039461 14.3372358,30.983188 14,30.9455726 C15.9067139,32.1558128 18.1703598,32.8614499 20.6032755,32.8614499 C28.5279747,32.8614499 32.8597465,26.3731772 32.8597465,20.7462268 L32.8453004,20.1949521 C33.6916841,19.5982268 34.4239059,18.8484959 35,17.9949748 Z"/>
-                    </svg>
-                </a>
-                <a title="Facebook" class="button-circle" href="https://www.facebook.com" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
-                        <path fill="#00B19D" d="M25.4913914,33.257811 L25.4913914,24.4740625 L28.4385481,24.4740625 L28.8807085,21.0498641 L25.4913914,21.0498641 L25.4913914,18.8640127 C25.4913914,17.8729378 25.7654762,17.1975322 27.1882844,17.1975322 L29,17.1967874 L29,14.1340632 C28.6866893,14.0933477 27.6112042,14 26.3594508,14 C23.7455902,14 21.9560943,15.5954766 21.9560943,18.5248824 L21.9560943,21.0498641 L19,21.0498641 L19,24.4740625 L21.9560943,24.4740625 L21.9560943,33.257811 L25.4913914,33.257811 Z"/>
-                    </svg>
-                </a>          
-                <a title="Instagram" class="button-circle" href="https://www.instagram.com" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
-                        <g fill="#00B19D" transform="translate(14 14)">
-                            <path d="M14.4007059,0 L5.48870588,0 C2.46223529,0 0,2.46235294 0,5.48882353 L0,14.4008235 C0,17.4274118 2.46223529,19.8896471 5.48870588,19.8896471 L14.4007059,19.8896471 C17.4274118,19.8896471 19.8896471,17.4272941 19.8896471,14.4008235 L19.8896471,5.48882353 C19.8897647,2.46235294 17.4274118,0 14.4007059,0 Z M18.1250588,14.4008235 C18.1250588,16.4543529 16.4543529,18.1249412 14.4008235,18.1249412 L5.48870588,18.1249412 C3.43529412,18.1250588 1.76470588,16.4543529 1.76470588,14.4008235 L1.76470588,5.48882353 C1.76470588,3.43541176 3.43529412,1.76470588 5.48870588,1.76470588 L14.4007059,1.76470588 C16.4542353,1.76470588 18.1249412,3.43541176 18.1249412,5.48882353 L18.1249412,14.4008235 L18.1250588,14.4008235 Z"/>
-                            <path d="M9.94482353 4.82C7.11882353 4.82 4.81976471 7.11905882 4.81976471 9.94505882 4.81976471 12.7709412 7.11882353 15.0698824 9.94482353 15.0698824 12.7708235 15.0698824 15.0698824 12.7709412 15.0698824 9.94505882 15.0698824 7.11905882 12.7708235 4.82 9.94482353 4.82zM9.94482353 13.3050588C8.092 13.3050588 6.58447059 11.7977647 6.58447059 9.94494118 6.58447059 8.092 8.09188235 6.58458824 9.94482353 6.58458824 11.7977647 6.58458824 13.3051765 8.092 13.3051765 9.94494118 13.3051765 11.7977647 11.7976471 13.3050588 9.94482353 13.3050588zM15.2848235 3.32364706C14.9448235 3.32364706 14.6108235 3.46129412 14.3707059 3.70247059 14.1294118 3.94247059 13.9907059 4.27658824 13.9907059 4.61776471 13.9907059 4.95788235 14.1295294 5.29188235 14.3707059 5.53305882 14.6107059 5.77305882 14.9448235 5.91188235 15.2848235 5.91188235 15.626 5.91188235 15.9589412 5.77305882 16.2001176 5.53305882 16.4412941 5.29188235 16.5789412 4.95776471 16.5789412 4.61776471 16.5789412 4.27658824 16.4412941 3.94247059 16.2001176 3.70247059 15.9601176 3.46129412 15.626 3.32364706 15.2848235 3.32364706z"/>
-                        </g>
-                    </svg>
-                </a>    
-            </p>                                                  
+        <div class="hero-login bg-cover" style="background-image: url({{asset('assets-home/images/login-slide-4.jpg')}}")"> 
         </div>
     </section>
-</div>    </body>
+
+</div>    
+</body>
 </html>
