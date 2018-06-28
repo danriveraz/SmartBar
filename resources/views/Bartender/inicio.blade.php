@@ -3,7 +3,10 @@
 
 <!-- Slider -->
 @if(sizeof($facturas) == 0)
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+<!-- COMENTADO POR ERROR EN ICONOS TOP BAR-->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
+
 <link rel="stylesheet" href="http://cdn.bootcss.com/animate.css/3.5.1/animate.min.css">
 {!!Html::style('css/sliderBartender.css')!!}
 
@@ -228,10 +231,13 @@
   </div>
 @endforeach 
 
-<script src="javascripts/mesero.js"></script>
+<!-- COMENTADO POR ERROR EN BARTENDER  "CAROUSEL IS NOT A FUNCTION" -->
+<!-- <script src="javascripts/mesero.js"></script> -->
+
 <script src="javascripts/jquery.mixitup.min.js"></script>
 <script src="javascripts/mainMesas.js"></script> 
 <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
+
 <script type="text/javascript">
   function seleccionar(idMesa){
       var checks = document.getElementsByName("pedidos[]");

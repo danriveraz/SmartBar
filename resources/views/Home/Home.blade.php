@@ -181,7 +181,8 @@
     <p><a class="button large" href="{{ url('PocketClub') }}" rel="alternate"><strong>UNIRSE A POCKETCLUB</strong></a></p>
     <hr>
   <div class="pocket">
-    <h4>Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas. <a href="" target="_blank" rel="alternate">¿Que es PocketClub?</a></h4></div>
+    <h4>Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas. 
+      <a href="{{ url('PocketClub') }}" target="_blank" rel="alternate">¿Que es PocketClub?</a></h4></div>
     <hr>
   </div>
 </section>    

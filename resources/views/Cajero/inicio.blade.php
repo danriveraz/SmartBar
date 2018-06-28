@@ -8,7 +8,10 @@
 {!!Html::style('assetsNew/styles/bootstrap-switch.css')!!}
 
 {!!Html::script("assetsNew/scripts/bootstrap-switch.min.js")!!}
-{!!Html::script("assetsNew/scripts/bootstrap.min.js")!!}
+
+<!-- COMENTADO POR ERROR EN TOPBAR -->
+<!-- {!!Html::script("assetsNew/scripts/bootstrap.min.js")!!} -->
+
 {!!Html::script("assetsNew/scripts/jquery.easy-pie-chart.js")!!}
 {!!Html::script("assetsNew/scripts/jquery.sparkline.min.js")!!}
 
@@ -18,8 +21,6 @@
   <div class="row">
     <div class="col-lg-12">
             
-            
-           
 <!-- inicio-->
 
 <div class="receipt-content">
@@ -33,7 +34,7 @@
         <div class="row">
           <div class="col-md-3">
               <div class="cover-inside ">
-                 <img class="cover-avatar size-md img-round" src="{{'images/bar.png'}}" alt="profile">
+                 <img class="cover-avatar size-md img-round" src="{{ asset ('images/admins/'.$empresa->imagenPerfilNegocio) }}" alt="profile">
               </div>
           </div>
           <div class="col-md-6">
@@ -61,8 +62,8 @@
                   @endif
                 </strong>
                 <p>
-                    <strong>Mesa:</strong>
-                        <select class="selectFact numberFact" onchange="cambiarFactura(this.value);">
+                  <select class="selectFact numberFact" onchange="cambiarFactura(this.value);" style="width: 40%">
+                          <option>Mesa</option>
                            @foreach($facturas as $factura) 
                             @if(sizeof($factura->ventasHechas)>0)
                               <option data-idFactura="{{$factura->id}}"  data-idMesaBar="{{$factura->idBar}}" value="{{$factura->mesa->id}}" id="mesas{{$factura->mesa->id}}"
@@ -265,36 +266,28 @@
                 @endif                
               </div>
               <div class="field grand-total">
-                  @if(sizeof($facturas) > 0)
-                    <input type="text" id="valorInput" name="valor" value=0 id="" hidden="" data-valorAntiguo="{{$facturas[0]->total}}"><input type="text" id="idFactura" name="idFactura" value="{{$facturas[0]->id}}" id="" hidden="">
-                  @endif
-                Total <span id="total" data-total="0">$0</span>
-              </div>
-            </div>
-</div>
-
-
-          <div class="factspace1"></div>
-          
-          <div class="row">
-            <div class="col-lg-12">
-             
-             
-             <div class="col-md-4">
-             
-          <div class="form-group">
-           
-            <div class="col-md-8  pull-right">
-               <label>Método de Pago:</label>
-              <div class="toggle-switch text-toggle-switch" data-off-label="Tarjeta" data-on="primary" data-on-label="Efectivo" style="width:110px; height: 30px">
-                <input checked="" type="checkbox">
+                @if(sizeof($facturas) > 0)
+                  <input type="text" id="valorInput" name="valor" value=0 id="" hidden="" data-valorAntiguo="{{$facturas[0]->total}}"><input type="text" id="idFactura" name="idFactura" value="{{$facturas[0]->id}}" id="" hidden="">
+                @endif
+                Total
+                <span id="total" data-total="0">$0</span>
               </div>
             </div>
           </div>
-                      
+          <div class="factspace1"></div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div class="col-md-8  pull-right">
+                    <label>Método de Pago:</label>
+                    <div class="toggle-switch text-toggle-switch" data-off-label="Tarjeta" data-on="primary" data-on-label="Efectivo" style="width:110px; height: 30px">
+                      <input checked="" type="checkbox">
+                    </div>
+                  </div>
+                </div>   
               </div>             
-             
-             <div class="col-md-2" style="padding-left: 0px;"> 
+              <div class="col-md-2" style="padding-left: 0px;"> 
                 <div class="form-group" style="padding-top: 25px;">
                   <div class="input-group" >
                     <span class="input-group-addon"><i class="fa fa-money"></i></span>
@@ -302,8 +295,7 @@
                   </div>
                 </div>            
               </div>
-
-             <div class="col-md-3"> 
+              <div class="col-md-3"> 
                 <div class="form-group">
                   <div class="input-group" style="padding-top: 25px;">
                     <span class="input-group-addon"><i class="fa fa-money"></i></span>
@@ -311,8 +303,7 @@
                   </div>
                 </div>            
               </div>
-             
-             <div class="col-md-3"> 
+              <div class="col-md-3"> 
                 <div class="form-group" style="padding-top: 25px;">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-refresh"></i></span>
@@ -320,41 +311,36 @@
                   </div>
                 </div>            
               </div>
-              
-             
             </div>
-          </div>          
-          
+          </div>     
+
           <div class="row">
             <div class="col-lg-12 center">
               @if(sizeof($facturas) > 0)
                 @if(sizeof($facturas[0]->ventasHechas) > 0)
                   <button class="factBot btn btn-bitbucket pull-right"><i class="fa fa-money"></i>Pagar</button>
                   <button class=" factBot btn btn-bitbucket pull-right" onclick="nada();"><i class="fa fa-print"></i>Imprimir</button>
-                  @else
+                @else
                     <button class="factBot btn btn-bitbucket pull-right" disabled=""><i class="fa fa-money"></i>Pagar</button>
                     <button class=" factBot btn btn-bitbucket pull-right" onclick="nada();" disabled=""><i class="fa fa-print"></i>Imprimir</button>
                 @endif
-                @else
+              @else
                     <button class="factBot btn btn-bitbucket pull-right" disabled=""><i class="fa fa-money"></i>Pagar</button>
-                    <button class=" factBot btn btn-bitbucket pull-right" onclick="nada();" disabled=""><i class="fa fa-print"></i>Imprimir
+                    <button class=" factBot btn btn-bitbucket pull-right" onclick="nada();" disabled=""><i class="fa fa-print"></i>Imprimir</button>
               @endif
-        </form>
-          <a class=" factBot btn btn btn-pinterest pull-right" href="{{ url('cajero/historial') }}" style="background-color: #999999;"><i class="fa fa-file-text-o"></i>Historial</a>
-
+              <button class=" factBot btn btn btn-pinterest pull-right" href="{{url('cajero/historial')}}" style="background-color: #999999;"><i class="fa fa-file-text-o"></i>Historial</button>
             </div>
           </div>
-          </div>
-        </div>
-
-        <div class="footer">
-          Copyright © 2018. Pocket Smartbar
-        </div>
+        </form>
       </div>
     </div>
+    <div class="footer">
+      Copyright © 2018. Pocket Smartbar
+    </div>
   </div>
+  </div>
+</div>
 </div>                    
-
 <!-- fin -->
     </div>
   </div>
@@ -362,6 +348,7 @@
 
 <script>
   var JSONproductos = eval(<?php echo json_encode($productos); ?>);
+  var JSONfacturas = eval(<?php echo json_encode($facturas); ?>);
   var clic = 0;
   jQuery.fn.animateAuto = function(prop, speed, callback){
     var elem, height, width;
@@ -546,11 +533,14 @@ function actualizarTotal() {
   }else if(propina.value != ""){
     total= total+parseInt(propina.value);
   }
-  var totalInput = document.getElementById("valorInput");
-  totalInput.value = parseInt(totalInput.dataset.valorantiguo) + total;
-  document.getElementById("total").dataset.total = (total);
-  $("#total").html("$" + Intl.NumberFormat().format(total));
-  validarEfectivo();
+  /* VALIDACIÓN ERROR POR LLAMADA A ID NO EXISTENTE */
+  if(JSONfacturas > 0){
+    var totalInput = document.getElementById("valorInput");
+    totalInput.value = parseInt(totalInput.dataset.valorantiguo) + total;
+    document.getElementById("total").dataset.total = (total);
+    $("#total").html("$" + Intl.NumberFormat().format(total));
+    validarEfectivo();
+  }
 }
 </script>        
 {!!Html::script('assetsNew/scripts/main.js')!!}
