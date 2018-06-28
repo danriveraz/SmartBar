@@ -43,9 +43,11 @@
 
 .sidebar-large{
 	display:table-cell;
-	width:356px;
-	height:100%;
-	padding:30px 80px;
+width: 360px;
+
+height: 100%;
+
+padding: 100px 80px;
 	background-color:#FFF}
 	
 .sidebar-large1{
@@ -88,56 +90,24 @@
 						</div>
 						<h3>Bienvenido! Tu amigo inseparable te espera </h3>						
 					</div>
-				<form method="post" action="" class="login-form">
-				<div class="input-container">
-					<i class="fa fa-reorder"></i>
-					<input type="text" class="input" name="negocio" placeholder="Nombre de tu Negocio"/>
-				</div>
-				<div class="input-container">
-					<i class="fa fa-address-card"></i>
-					<input type="text" class="input" name="nombre" placeholder="Nombre"/>
-				</div>
-				<div class="input-container">
-					<i class="fa fa-venus-mars"></i>					
-				<select class="select" id="sexo" name="sexo" required="">
-					<option value="Masculino">Masculino</option>
-					<option value="Femenino">Femenino</option>
-					<option value="Otro">Otro</option>
-				</select>
-				</div>
-				<div class="input-container">
-					<i class="fa fa-envelope"></i>
-					<input type="email" class="input" name="email" placeholder="Email" requerid/>
-				</div>
-				<div class="input-container">
-					<i class="fa fa-lock"></i>
-					<input type="password"  id="login-password" class="input" name="password" placeholder="Contraseña"/>
-					<i id="show-password" class="fa fa-eye"></i>
-				</div>
-				<div class="input-container" style="float: left; width:49%">
-					<i class="fa fa-map-marker"></i>					
-				<select class="selectCi" id="sexo" name="sexo" required="">
-					<option value="Masculino">Masculino</option>
-					<option value="Femenino">Femenino</option>
-					<option value="Otro">Otro</option>
-				</select>
-				</div>
-				<div class="input-container" style="float: left; width:49%">
-					<i class="fa fa-map-marker"></i>					
-				<select class="selectCi" id="sexo" name="sexo" required="">
-					<option value="Masculino">Masculino</option>
-					<option value="Femenino">Femenino</option>
-					<option value="Otro">Otro</option>
-				</select>
-				</div>			
-				<input type="submit" name="login" value="Registrarme" class="button"/>
-				<!--a href="#" class="register">Register</a-->					
-			</form>
-			<div class="terms">
-				Al crear tu cuenta aceptas nuestros
-				<a class="pocketColor" href="" target="_blank">Términos, Condiciones</a> y 
-				<a class="pocketColor"href="" target="_blank">Política de Tratamiento de Datos</a>.
-			</div>
+					<form method="post" action="" class="login-form">
+									<div class="input-container">
+										<i class="fa fa-envelope"></i>
+										<input type="email" class="input" name="email" placeholder="Email"/>
+									</div>
+									<div class="input-container">
+										<i class="fa fa-lock"></i>
+										<input type="password"  id="login-password" class="input" name="password" placeholder="Contraseña"/>
+										<i id="show-password" class="fa fa-eye"></i>
+									</div>
+									<div class="rememberme-container">
+										<input type="checkbox" name="rememberme" id="rememberme"/>
+										<label for="rememberme" class="rememberme"><span>Recuérdame</span></label>
+										<a class="forgot-password" href="#">Se te olvidó tu contraseña?</a>
+									</div>
+									<input type="submit" name="login" value="Iniciar Sesión" class="button"/>
+									<!--a href="#" class="register">Register</a-->
+								</form>					
 			<div class="separator">
 					<span class="separator-text">OR</span>
 			</div>
