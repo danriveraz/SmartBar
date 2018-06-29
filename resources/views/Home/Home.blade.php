@@ -81,8 +81,8 @@
               <span class="text1">REPRODUCE Y OBSERVA</span>            
               <h3 class="text2">Conoce tu amigo inseparable</h3>            
             <div class="separator1"></div>
-              <p>Tu amigo Smartbar te ayuda a Controlar y Crecer tu Negocio ahora administrar tu bar es mucho mas facil y divertido lleva el control de tus facturas, contabiliza y Administra tus gastos, Controla los horarios de tus empleados, agenda de trabajo, salarios y chats, Organiza tus inventarios, Ordena la información de tus clientes y proveedores, consulta en tiempo real reportes inteligentes.</p>
-              <p>Smartbar, hace posible que manejar varios negocios sea facil y divertido dale play al video y conoce mas... </p>             
+              <p>Tu amigo Smartbar te ayuda a Controlar, administrar y Crecer tu Negocio de una manera mucho mas facil y divertida; lleva el control de tus facturas, contabiliza y Administra tus gastos, Controla los horarios de tus empleados, salarios y chats, Organiza tus inventarios, Ordena la información de tus clientes y proveedores, consulta en tiempo real reportes estadisticos inteligentes.</p>
+              <p>Smartbar, hace posible que manejar varios negocios sea fácil, simplemente usando un botón, conoce más... </p>             
             <div class="separator1"></div>
                     <a class="button large" href="{{ url('/Auth/register') }}" rel="nofollow">REGISTRATE</a>
             </div>
@@ -113,7 +113,7 @@
 <!-- PLANES -->
 <section class="block" data-name="Plans">
   <div class="block-content text-center">
-    <h2>Membresias PocketClub</h2>
+    <h2>PocketClub Membresías</h2>
     <div class="row plans cards-basic">
       <div class="col plan">
           <h2 class="plan-title">ÚNICA</h2>
@@ -146,7 +146,7 @@
               <li>Acceso al 100% de las utilidades SmartBar</li>
               <li>Personaje Real Smartbar GRATIS</li>
               <li>El mes 1, 12,24 y 36 son GRATIS</li>
-              <li>CAPACITACIÓN PROFESIONAL GRATIS (Servicio al Cliente)</li>
+              <li>CAPACITACIÓN PROFESIONAL GRATIS <br>(Servicio al Cliente)</li>
               <li>Ahorra hasta $ 400.000 Cop</li>
           </ul>
 
@@ -205,7 +205,7 @@
     <div class="block-content text-center">
     <div class="avatar">
         <h2>Ingresa a nuestra SmartShop</h2>
-        <h3 style="line-height: 1;">Configura Smartbar y el se hará cargo de tu negocio.</h3>
+        <h3 style="line-height: 1;">La tienda inteligente que cambiara la forma en la que compras en tu negocio.</h3>
     </div>
       <p><a class="button shop large" href="usuarios.html" rel="alternate"><strong>INGRESA YA!</strong></a></p>
     </div>
@@ -213,7 +213,7 @@
 <!-- TESTIMONIOS MIEMBROS CLUB-->
 <section class="block" data-name="Users">
     <div class="block-content text-center">
-      <h2>Miembros PocketClub Opinan</h2>
+      <h2>Miembros PocketClub</h2>
       <div class="row cards-basic">
         <div class="col bg-gray-white">
             <img class="grayscale" src="{{asset('assets-home/images/testimonios/user-monica.png')}}" alt="" />
