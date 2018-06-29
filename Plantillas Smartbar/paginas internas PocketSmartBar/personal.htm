@@ -1,0 +1,579 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      hightop - Dashboard
+    </title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+	  
+<!-- VALDIACION TOP BAR -->
+    <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
+    <link href="assets-Internas/css/bootstrap.css" media="all" rel="stylesheet" type="text/css">
+    <link href="assets-Internas/css/style.css" media="all" rel="stylesheet" type="text/css">
+	  
+<!-- style font font-awesome hightop-font -->
+    <link href="assets-Internas/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
+	<link href="assets-Internas/css/hightop-font.css" media="all" rel="stylesheet" type="text/css">
+<!-- ascrip y css de menu--> 
+	 
+<!-- estylos para multiselect-->
+		<link rel="stylesheet" href="assets-Internas/css/component-chosen.css"/>
+	  
+<!-- jquery -->
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+	<script src="assets-Internas/javascripts/bootstrap.min.js" type="text/javascript"></script>	  
+	<script src="assets-Internas/javascripts/jquery.easy-pie-chart.js" type="text/javascript"></script>
+	<script src="assets-Internas/javascripts/jquery.sparkline.min.js" type="text/javascript"></script>	
+	<script src="assets-Internas/javascripts/main.js" type="text/javascript"></script>
+<!-- jquery--> 
+<!-- FIN VALDIACION TOP BAR -->
+	  
+<!--link rel="stylesheet" href="css/menu.css"/-->
+		<link rel="stylesheet" href="assets-Internas/css/main.css"/>	  
+<!-- Script para personal-->
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
+	<script src="assets-Internas/javascripts/jquery.bootstrap.wizard.js" type="text/javascript"></script>	  
+	<script src="assets-Internas/javascripts/fullcalendar.min.js" type="text/javascript"></script> 
+	<script src="assets-Internas/javascripts/jquery.dataTables.js" type="text/javascript"></script> 	  	  
+	<script src="assets-Internas/javascripts/jquery.isotope.min.js" type="text/javascript"></script> 	  
+	<script src="assets-Internas/javascripts/isotope_extras.js" type="text/javascript"></script>  	  
+	<script src="assets-Internas/javascripts/jquery.fancybox.pack.js" type="text/javascript"></script>	  
+	<script src="assets-Internas/javascripts/select2.js" type="text/javascript"></script>
+<!-- Fin de Script para personal-->	
+	  
+<!-- scrip y style para select multiple-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.6/chosen.jquery.min.js"></script>
+
+<!-- script para cargar archivos-->	
+<script src="assets-Internas/javascripts/bootstrap-button-to-input-file.js"></script>
+
+<!-- etiqueta title 
+	<script src="http://code.jquery.com/jquery-2.1.3.min.js" type="text/javascript"></script>
+	<script src="assets-Internas/javascripts/bootstrap.min.js" type="text/javascript"></script>	  
+<!-- fin de etieueta title -->
+	  
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+</head>
+<body class="page-header-fixed bg-1">
+<div class="modal-shiftfix">
+<!-- Navigation -->
+<div class="navbar navbar-fixed-top scroll-hide">
+	<!--Inicio de Banner de arriba-->  
+	<div class="container-fluid top-bar">
+		<div class="pull-right">
+			<ul class="nav navbar-nav pull-right">
+             	<li class="dropdown notifications hidden-xs">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span aria-hidden="true" class="hightop-flag"></span>
+                  <div class="sr-only">
+                    Notifications
+                  </div>
+                  <p class="counter">
+                    4
+                  </p>
+                </a>
+                <ul class="dropdown-menu">
+					<li><a href="#">
+						<div class="notifications label label-info">
+						  New
+							</div>
+							<p>
+							  Sales targets available
+							</p></a>
+
+						  </li>
+					<li><a href="#">
+							<div class="notifications label label-info">
+							  New
+							</div>
+							<p>
+							  New performance metric added
+							</p></a>
+
+						  </li>
+					<li><a href="#">
+							<div class="notifications label label-info">
+							  New
+							</div>
+							<p>
+							  New growth data available
+							</p></a>
+
+						  </li>
+				</ul>
+				</li>
+				<li class="dropdown messages hidden-xs">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span aria-hidden="true" class="hightop-envelope"></span>
+					  <div class="sr-only">
+						Messages
+					  </div>
+					  <p class="counter">
+						3
+					  </p>
+					</a>
+					<ul class="dropdown-menu">
+					  <li><a href="#">
+						<img width="34" height="34" src="images\avatar-male2.png">Could we meet today? I wanted...</a>
+					  </li>
+					  <li><a href="#">
+						<img width="34" height="34" src="images\avatar-female.png">Important data needs your analysis...</a>
+					  </li>
+					  <li><a href="#">
+						<img width="34" height="34" src="images\avatar-male2.png">Buy Se7en today, it's a great theme...</a>
+					  </li>
+					</ul>
+				  </li>
+				<li class="dropdown user hidden-xs">
+					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+					<img width="34" height="34" src="images\avatar-male.jpg"><label>John Smith</label><b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+					  <li><a href="#">
+						<i class="fa fa-user-circle"></i>Mi Perfil</a>
+					  </li>
+					  <li><a href="#">
+						<i class="fa fa-gear"></i>Ajuster</a>
+					  </li>
+					  <li><a href="login1.htm">
+						<i class="fa fa-question"></i>Ayuda</a>
+					  </li>
+					  <li><a href="login1.htm">
+						<i class="fa fa-sign-out"></i>Cerrar Secion</a>
+					  </li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!--<button class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>-->
+		<div class="logo">
+			   <a href="http://localhost/PocketByR/public"><img src="assets-Internas/images/logo.png"></a>
+		</div>
+	</div>
+	<!--Inicio de Banner contenedor de iconos-->  
+	<div class="container-fluid main-nav clearfix">
+			  <div class="nav-collapse">
+				<ul class="nav ">             
+				 <li class="dropdown">	
+				<a class="MobEtiq"  data-toggle="dropdown" href="#">
+					<span aria-hidden="true" class="fa fa-5x fa-reorder"></span><label>Shikoba</label><b class="caret"></b>
+				</a>
+					<ul class="dropdown-menu">
+					  <li>
+						<a href="#"><i class="fa fa-reorder pull-left"></i>Black and white</a>
+					  </li>
+					  <li>
+						<a href="#"><i class="fa fa-reorder pull-left"></i>Fresa</a>
+					  </li>
+					</ul>
+				  </li>               
+				  <li><a class="current" href="#">
+					  <span aria-hidden="true" class="fa fa-fw fa-users"></span><label>Mi Personal</label></a>
+				  </li>              
+				  <li><a href="">
+					  <span aria-hidden="true" class="fa fa-fw fa-square"></span><label>Mi Carta</label></a>
+				  </li>              
+				  <li><a href="#">
+					  <span aria-hidden="true" class="fa fa-fw fa-scribd"></span><label>Mi Inventario</label></a>
+				  </li> 
+				  <li><a href="">
+					<span aria-hidden="true" class="fa fa-fw fa-bar-chart-o"></span><label>Informacion</label></a>
+				  </li>
+				  <li><a href="">
+					<span aria-hidden="true" class="fa fa-fw fa-cart-plus "></span><label>SmartShop</label></a>
+				  </li>
+				</ul>          
+			  </div>
+			</div>
+</div>
+<!-- End Navigation -->	
+<!-- Contendor de botones de busqueda seleccion-->
+<div id="page-content">
+	<div class="col-lg-12">
+    	<div class="row invoice-header">
+        	<div class="col-md-4">
+            	<div class=" btn1 pull-left">
+                	<!--<button class="btn btn-default-outline dropdown-toggle" data-toggle="dropdown">-->                       
+                    <a class=" dropdown-toggle" data-toggle="dropdown"><i class="pocketMorado fa fa-2x fa-sliders" ></i></a>
+                    <ul class="dropdown-menu dropdown-menuPocket">
+                          <li>
+                            <a href="#"><i class="fa fa-plus"></i>Todos</a>
+                          </li>
+                          <li>
+                            <a href="#"><i class="fa fa-check"></i>Habilitados</a>
+                          </li>
+                          <li>
+                            <a href="#"><i class="fa fa-times"></i>Deshabilitados</a>
+                          </li>
+                          <li>
+                            <a href="#"><i class="fa fa-imdb"></i>Bartenders</a>
+                          </li>
+                          <li>
+                            <a href="#"><i class="fa fa-houzz"></i>Meseros</a>
+                          </li>
+                          <li>
+                            <a href="#"><i class="fa fa-wpbeginner"></i>Cajeros</a>
+                          </li>
+                    </ul>
+                </div>
+            </div>                
+        </div>
+		<!--style-selector-container contenedor para añadir empleado-->
+		<div class="style-selector" >
+		<div class="style-selector-container">		  
+<!-- inidio de slider de agregar usuario -->
+<div class="row">
+    <div class="">
+		<div class="heading">
+			<i class=" pocketMorado fa fa-shield"></i>&nbsp;Nuevo Empleado
+		</div>
+      <div class="widget-content padded">
+        <form action="" id="validate-form" method="get">
+          <fieldset>
+            <div class="row">
+             	<!-- inicio de componentes para agregar nuevo empleado-->
+					<div class="row">
+						<div class="col-md-4">
+										 <!-- contenedor de la imagen perfil-->
+										 <form method="GET">
+											<input type="hidden" name="_token" value="lxkWELLS0A3LdPFLEWFmpcEPsUpdGRdLqPGcH8gX">
+											<div class="widget-content fileupload fileupload-new" data-provides="fileupload">							
+											<div class="col-md-8 col-centrada">
+											<div class="gallery-container fileupload-new img-thumbnail">
+											<div id="imgActual" class="gallery-item filter1" rel="" style="border-radius: 50%; width: 150px; height: 150px;">
+												<img src="http://localhost/SmartBar/public/images/admins/perfilhombre.png" class="img-responsive img-circle user-photo" id="imagenPerfilUsuarioCircular" alt="">
+												<!-- clase circular -> , array('class' => 'img-responsive img-circle user-photo') -->
+												<div class="actions">
+												<a  id="modalImagen" href="http://localhost/SmartBar/public/images/admins/perfilhombre.png" title="Imagen perfil">
+												  <i class="fa fa-search-plus"></i>
+												</a>
+												<a onclick="$('#imagenPerfil').click()" title="Editar imagen">
+												  <i class="fa fa-pencil"></i>
+												</a>
+												</div>
+											</div>
+										  </div>
+										  <div id="imgReemplazo" onchange="funcioncita();" class="gallery-item fileupload-preview fileupload-exists img-thumbnail" style="border-radius: 50%; width: 150px; height: 150px; background: #ffffff;" >
+										  </div>
+										  <div hidden>
+											<span class=" btn-file" id="subirImagenPerfil">
+											  <span class="fileupload-new"><i class="fa fa-pencil"></i></span>
+											  <span class="fileupload-exists"><i class="fa fa-search-plus"></i></span>
+											  <input type="file" value="perfilhombre.png" class="form-control" name="imagenPerfil"  id="imagenPerfil">
+											</span>
+										  </div>
+											</div>
+											</div>
+										<div id="btnImagenPerfil" style="display: none; margin-top: 5px;">
+										  <button id="btn-guardarimg" class="btn btn-bitbucket" onclick="setValue(this)"  title="Guardar imagen" style="margin-top: 15%; width: 25%; font-size: 10px; margin-left: -5%"><i class="fa fa-save"></i></button>
+										</div>
+										<div hidden>
+										  <input id="ventanaFactura" name="ventanaFactura" class="form-control" value=""  type="text">
+										</div>					</form>
+										 <!-- Input de personal -->
+										<form method="post" action="" class="login-form">
+										<div class="input-container">
+											<i class="fa fa-address-book"></i>
+											<input type="text" class="input" name="nombre" placeholder="Nombre"/>
+										</div>
+										<div class="input-container">
+											<i class="fa fa-phone-square"></i>
+											<input type="text" class="input" name="nombre" placeholder="Telefono"/>
+										</div>					
+										</form>
+									  </div>
+						<div class="col-md-4">
+										 <!-- Input de personal -->
+										<form method="post" action="" class="login-form">
+										<div class="input-container">
+											<i class="fa fa-address-card"></i>
+											<input type="text" class="input" name="nombre" placeholder="identificación"/>
+										</div>
+										<div class="input-container">
+											<i class="fa fa-map-marker"></i>
+											<input type="text" class="input" name="nombre" placeholder="dirección"/>
+										</div>
+										<div class="input-container">
+											<i class="fa fa-venus-mars"></i>					
+										<select class="select" id="sexo" name="sexo" required="">
+											<option value="Masculino">Masculino</option>
+											<option value="Femenino">Femenino</option>
+											<option value="Otro">Otro</option>
+										</select>
+										</div>						
+										<div class="input-container">
+											<i class="fa fa-birthday-cake"></i>
+											<input type="date" class="input" name="nombre" placeholder="fecha de nacimiento"/>
+										</div>						
+										<div class="input-container">
+											<i class="fa fa-money"></i>
+											<input type="text" class="input" name="nombre" placeholder="salario diario"/>
+										</div>						
+										<div class="input-container">
+											<i class="fa fa-users"></i>					
+										  <select id="multiple" class="form-control form-control-chosen" data-placeholder="Selecionar Roles...." multiple>
+											<option></option>
+											<option>Bartender</option>
+											<option>Cajer</option>
+											<option>Mesero</option>
+											<option>Administrador</option>
+										  </select>
+										</div>
+										</form>				  
+									  </div>
+						<div class="col-md-4">
+										  <p class="lead" style="margin-bottom: 10px;">Sube la hoja de vida de tu <span class="text-success">Empleado</span></p>
+										  <ul class="list-unstyled" style="line-height: 1.5">
+											  <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Informacion ordenada e Inmediata</li>
+											  <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Base de datos de empleados</li>
+											  <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Facilidad encontrar personal</li>
+										  </ul>
+
+										<button style="font-weight: 400;" type="button" class="bfs btn btn-pocket" data-style="fileStyle-r"><span class="fa fa-file-pdf-o" aria-hidden="true"></span>
+										Subir hoja de vida
+										</button>				  
+										<br>
+										<div class="form-group">
+										<label class="checkbox"><input name="regalar" value="1" type="checkbox"><span>Activar para obsequiar Productos</span></label>
+										</div>
+										 <br>
+										<div class="form-group">
+										  <a id="registrarUsuario" class="btn btn-pocket" style="font-weight: 400;" type="submit">
+											<i class="fa fa-send"></i>Guardar Empleado
+										  </a>
+										</div>
+									  </div>
+
+					 </div>				
+             	 <!-- fin de componnentes para agregar nuevo empleado-->
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+</div>
+<!-- Fin de slider de agregar usuario -->
+<div class="style-toggle closed">
+	<span aria-hidden="true" class=" pocketGris fa fa-fw fa-plus-circle"></span>
+</div>
+</div>
+		</div><!-- Fin de style-selector-->
+    </div>
+</div><!-- fin de page-content-->
+<!--fin Contendor de botones de busqueda seleccion-->
+<div class="container-fluid main-content">
+<div class="social-wrapper">
+      
+<div id="social-container"></div>
+	<div id="hidden-items">
+    <!-- Share Form --> 
+		
+    <!-- end Profile Widget --><!-- Text Post -->   
+	<div class="item widget-container fluid-height">  
+		<div class="widget-container fluid-height clearfix ">
+			<div class="heading">			
+			<i class="pocketMorado fa fa-times pull-right" ></i>
+			<i data-toggle="modal" data-target="#myModal" class="pocketMorado fa fa-pencil-square-o pull-right" title="editar Empleado"></i>
+			</div>   
+			<div class="profile-info clearfix padded3">
+				<div class="social-avatar">
+					<img width="70" height="70" class="avatar" src="images\avatar-male.jpg">
+				</div>       
+				<div class="profile-details">
+					<strong>
+						<a class="pocketMorado user-name">Alvaro Jose Diaz Gomez</a>
+					</strong>
+					<br>Bartender<br>
+					<i class="fa fa-check-circle"></i> 1'000.000
+				</div>
+			</div>
+			<div class="widget-content padded3 colorpocket">
+			<div class="col-md-4 colorpocket">			
+			</div>				
+			<div class="col-md-8 colorpocket">
+			<div class="headingPocket">  
+				<a href=""><i style="float: center;" class="fa fa-comments pull-right"></i></a>
+				<a href=""><i style="float: center;" class="fa fa-calendar-check-o pull-right"></i></a>
+				<a href=""><i style="float: center;" class="fa fa-bar-chart pull-right"></i></a>
+			</div>
+			</div>
+			</div>
+		</div>	
+	</div>
+    <!-- end Profile Widget --><!-- Text Post -->
+		
+	</div><!--hidden-items-->	
+</div><!--social-wrapper-->	
+</div><!-- container-fluid main-content-->
+</div><!--modal-shiftfix-->
+
+	
+<!-- Inicio del Modal para modificar empleado-->
+<div id="myModal" class="modal fade" role="dialog">
+		<div class=" modal-body">
+        	<div class="col-lg-12" style="background-color:#FFFFFF">
+            	<div class="modal-header">
+                	<button aria-hidden="true" class=" close " data-dismiss="modal" type="button">&times;</button>
+                    <h4 class="modal-title text-center">Editar Empleado</h4>
+                </div>
+				<!-- inicio contenido editable empleado-->
+                <div class="modal-body">
+				<div class="modal-content">
+							  <div class="modal-body">
+								  <div class="row">
+									  <div class="col-md-4">
+										 <!-- contenedor de la imagen perfil-->
+										 <form method="GET">
+											<input type="hidden" name="_token" value="lxkWELLS0A3LdPFLEWFmpcEPsUpdGRdLqPGcH8gX">
+											<div class="widget-content fileupload fileupload-new" data-provides="fileupload">							
+											<div class="col-md-6 col-centrada">
+											<div class="gallery-container fileupload-new img-thumbnail">
+											<div id="imgActual" class="gallery-item filter1" rel="" style="border-radius: 50%; width: 150px; height: 150px;">
+												<img src="http://localhost/SmartBar/public/images/admins/perfilhombre.png" class="img-responsive img-circle user-photo" id="imagenPerfilUsuarioCircular" alt="">
+												<!-- clase circular -> , array('class' => 'img-responsive img-circle user-photo') -->
+												<div class="actions">
+												<a  id="modalImagen" href="http://localhost/SmartBar/public/images/admins/perfilhombre.png" title="Imagen perfil">
+												  <i class="fa fa-search-plus"></i>
+												</a>
+												<a onclick="$('#imagenPerfil').click()" title="Editar imagen">
+												  <i class="fa fa-pencil"></i>
+												</a>
+												</div>
+											</div>
+										  </div>
+										  <div id="imgReemplazo" onchange="funcioncita();" class="gallery-item fileupload-preview fileupload-exists img-thumbnail" style="border-radius: 50%; width: 150px; height: 150px; background: #ffffff;" >
+										  </div>
+										  <div hidden>
+											<span class=" btn-file" id="subirImagenPerfil">
+											  <span class="fileupload-new"><i class="fa fa-pencil"></i></span>
+											  <span class="fileupload-exists"><i class="fa fa-search-plus"></i></span>
+											  <input type="file" value="perfilhombre.png" class="form-control" name="imagenPerfil"  id="imagenPerfil">
+											</span>
+										  </div>
+											</div>
+											</div>
+										<div id="btnImagenPerfil" style="display: none; margin-top: 5px;">
+										  <button id="btn-guardarimg" class="btn btn-bitbucket" onclick="setValue(this)"  title="Guardar imagen" style="margin-top: 15%; width: 25%; font-size: 10px; margin-left: -5%"><i class="fa fa-save"></i></button>
+										</div>
+										<div hidden>
+										  <input id="ventanaFactura" name="ventanaFactura" class="form-control" value=""  type="text">
+										</div>					</form>
+										 <!-- Input de personal -->
+										<form method="post" action="" class="login-form">
+										<div class="input-container">
+											<i class="fa fa-address-book"></i>
+											<input type="text" class="input" name="nombre" placeholder="Nombre"/>
+										</div>
+										<div class="input-container">
+											<i class="fa fa-phone-square"></i>
+											<input type="text" class="input" name="nombre" placeholder="Telefono"/>
+										</div>					
+										</form>
+									  </div>
+									  <div class="col-md-4">
+										 <!-- Input de personal -->
+										<form method="post" action="" class="login-form">
+										<div class="input-container">
+											<i class="fa fa-address-card"></i>
+											<input type="text" class="input" name="nombre" placeholder="identificación"/>
+										</div>
+										<div class="input-container">
+											<i class="fa fa-map-marker"></i>
+											<input type="text" class="input" name="nombre" placeholder="dirección"/>
+										</div>
+										<div class="input-container">
+											<i class="fa fa-venus-mars"></i>					
+										<select class="select" id="sexo" name="sexo" required="">
+											<option value="Masculino">Masculino</option>
+											<option value="Femenino">Femenino</option>
+											<option value="Otro">Otro</option>
+										</select>
+										</div>						
+										<div class="input-container">
+											<i class="fa fa-birthday-cake"></i>
+											<input type="date" class="input" name="nombre" placeholder="fecha de nacimiento"/>
+										</div>						
+										<div class="input-container">
+											<i class="fa fa-money"></i>
+											<input type="text" class="input" name="nombre" placeholder="salario diario"/>
+										</div>						
+										<div class="input-container">
+											<i class="fa fa-users"></i>					
+										  <select id="multiple" class="form-control form-control-chosen" data-placeholder="Selecionar Roles...." multiple>
+											<option></option>
+											<option>Bartender</option>
+											<option>Cajer</option>
+											<option>Mesero</option>
+											<option>Administrador</option>
+										  </select>
+										</div>
+										</form>				  
+									  </div>
+									  <div class="col-md-4">
+										  <p class="lead" style="margin-bottom: 10px;">Sube la hoja de vida de tu <span class="text-success">Empleado</span></p>
+										  <ul class="list-unstyled" style="line-height: 1.5">
+											  <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Informacion ordenada e Inmediata</li>
+											  <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Base de datos de empleados</li>
+											  <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Facilidad encontrar personal</li>
+										  </ul>
+
+										<button style="font-weight: 400;" type="button" class="bfs btn btn-pocket" data-style="fileStyle-r"><span class="fa fa-file-pdf-o" aria-hidden="true"></span>
+										Subir hoja de vida
+										</button>				  
+										<br>
+										<div class="form-group">
+										<label class="checkbox"><input name="regalar" value="1" type="checkbox"><span>Activar para obsequiar Productos</span></label>
+										</div>
+										 <br>
+										<div class="form-group">
+										  <a id="registrarUsuario" class="btn btn-pocket" style="font-weight: 400;" type="submit">
+											<i class="fa fa-send"></i>Guardar Empleado
+										  </a>
+										</div>
+									  </div>
+								  </div>
+							  </div>
+						  </div>
+  				</div>  			
+            </div>
+        </div>                  
+    </div>                
+<!-- Fin del Modal para modificar empleado-->
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#myModal").on('show.bs.modal', function(event){
+        // Get button that triggered the modal
+        var button = $(event.relatedTarget);
+        // Extract value from data-* attributes
+        var titleData = button.data('title');
+        $(this).find('.modal-title').text(titleData + ' Form');
+    });
+});
+</script>
+
+<!-- script par uploaded-->	
+<script>
+var filestyler = new buttontoinputFile();
+</script>
+<!-- scrip para multiselect-->
+  <script type="text/javascript">
+$('.form-control-chosen').chosen({
+  allow_single_deselect: true,
+  width: '100%'
+});
+$(function() {
+  $('[title="clickable_optgroup"]').addClass('chosen-container-optgroup-clickable');
+});
+$(document).on('click', '[title="clickable_optgroup"] .group-result', function() {
+  var unselected = $(this).nextUntil('.group-result').not('.result-selected');
+  if(unselected.length) {
+    unselected.trigger('mouseup');
+  } else {
+    $(this).nextUntil('.group-result').each(function() {
+      $('a.search-choice-close[data-option-array-index="' + $(this).data('option-array-index') + '"]').trigger('click');
+    });
+  }
+});
+  </script>	
+
+</body>
+</html>
