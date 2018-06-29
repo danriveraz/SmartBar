@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,7 +71,7 @@
   {!!Html::script("javascripts\bootstrap.min.js")!!}
   {!!Html::script("javascripts\select2.js")!!}
   {!!Html::script('javascripts\main.js')!!}
-
+  {!!Html::script("javascripts\jquery.fancybox.pack.js")!!}
 
   <!-- AFECTA SI SE QUITA -->
   {!!Html::script("javascripts\jquery.easy-pie-chart.js")!!} 
@@ -106,12 +104,12 @@
 
   <!-- GRAFICOS -->
   {!!Html::script('javascripts\excanvas.min.js')!!}
-
+  {!!Html::script('javascripts\raphael.min.js')!!}
+  {!!Html::script("javascripts\morris.min.js")!!}
 
   {!!Html::script("javascripts\isotope_extras.js")!!}
-  {!!Html::script("javascripts\jquery.fancybox.pack.js")!!}
   {!!Html::script("javascripts\jquery.inputmask.min.js")!!}
-  {!!Html::script("javascripts\jquery.validate.js")!!}}
+  {!!Html::script("javascripts\jquery.validate.js")!!}
   {!!Html::script("javascripts\ladda.min.js")!!}
   {!!Html::script("javascripts\mockjax.js")!!}
   {!!Html::script("javascripts/fitvids.js")!!}
@@ -122,6 +120,7 @@
   <!-- FIN AFECTA SI SE QUITA -->
 
   <!-- APARENTEMENTE NO AFECTA SI SE QUITA -->
+  <!--
   {!!Html::script("javascripts\gcal.js")!!}
   {!!Html::script("javascripts\modernizr.custom.js")!!}
   {!!Html::script("javascripts\styleswitcher.js")!!}
@@ -130,10 +129,10 @@
   {!!Html::script("javascripts\summernote.min.js")!!}
   {!!Html::script("javascripts\spin.min.js")!!}
   {!!Html::script("javascripts\moment.js")!!}
-  {!!Html::script("javascripts\morris.min.js")!!}
+  
   {!!Html::script("javascripts\skycons.js")!!}
   {!!Html::script('javascripts\respond.js')!!}
-  {!!Html::script('javascripts\raphael.min.js')!!}
+  
   {!!Html::script('javascripts\selectivizr-min.js')!!}
   {!!Html::script('javascripts\jquery.mousewheel.js')!!}
   {!!Html::script('javascripts\jquery.vmap.sampledata.js')!!}
@@ -141,6 +140,7 @@
   {!!Html::script('javascripts\xeditable-demo-mock.js')!!}
   {!!Html::script('javascripts\xeditable-demo.js')!!}
   {!!Html::script('javascripts\address.js')!!}
+  -->
   <!-- FIN APARENTEMENTE NO AFECTA SI SE QUITA -->
   
   
@@ -171,6 +171,7 @@
   <!--FALTAN ALGUNOS ESTILOS, EL LAYOUT OPTIMIZADO NO SIRVE AÚN PARA EL PERFIL-->
   {!!Html::style('assets/css/main.css')!!}
   {!!Html::style('stylesheets/profile.css')!!}
+  
   {!!Html::style('assets/vendor/linearicons/style.css')!!}
   {!!Html::style('assets/vendor/metisMenu/metisMenu.css')!!}
 

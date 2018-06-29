@@ -93,7 +93,7 @@ padding: 100px 80px;
                         </div>
                         <h3>Bienvenido! Tu amigo inseparable te espera </h3>                        
                     </div> 
-                    <div class="center">
+                    <div class="center" style="text-align: center;">
                         @if (Session::has('message'))
                             {{Session::get('message')}}
                         @endif
@@ -102,13 +102,13 @@ padding: 100px 80px;
     				<form  autocomplete="on" method="post" action="{{url('Auth/login')}}" class="login-form">
     					{{ csrf_field() }}
     					<div class="input-container">
-                            <i class="fa fa-envelope"></i>
-    						<input type="email" name="email" id="email" value="{{Input::old('email')}}" class="input" placeholder="E-mail" required>
+                <i class="fa fa-envelope"></i>
+    						<input type="email" name="emailInicio" id="emailInicio" value="{{Input::old('email')}}" class="input" placeholder="E-mail" required>
     					</div>
     					<div class="input-container">
-                            <i class="fa fa-lock"></i>
+                <i class="fa fa-lock"></i>
     						<input type="password" name="password" id="login-password" value="" class="input" placeholder="Contraseña" required>
-                            <i id="show-password" class="fa fa-eye"></i>
+                <i id="show-password" class="fa fa-eye"></i>
     					</div>
                         <div class="rememberme-container">
                             <input type="checkbox" name="rememberme" id="rememberme"/>

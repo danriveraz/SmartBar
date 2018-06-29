@@ -92,7 +92,7 @@
 			</div>
 			<form class="login-form" autocomplete="off" role="form" method="POST" enctype="multipart/form-data" action="{{ url('Auth/register') }}" files="true">
         		{{ csrf_field() }}
-	        	<div class="text-danger">
+	        	<div class="text-danger" style="text-align: center;">
 	           	@if (Session::has('message'))
 	            	{{Session::get('message')}}
 	           	@endif
