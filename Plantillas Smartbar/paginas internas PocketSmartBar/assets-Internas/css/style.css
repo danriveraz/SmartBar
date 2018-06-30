@@ -18,6 +18,7 @@ border: 0px solid #000000;
 .col-centrada{
     float: none;
     margin: 0 auto;
+	display: table;
 }
 
 /*----------------------------------------------------------------------------------- */
@@ -69,8 +70,7 @@ border: 0px solid #000000;
   
 .colorpocket{
 	background-color:#2f0033;
-	display: flex;
-  justify-content: right;
+	display: grid;
   align-items: center;
 	}
 
