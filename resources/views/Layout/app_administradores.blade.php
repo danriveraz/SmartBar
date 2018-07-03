@@ -7,6 +7,58 @@
     </title>
     <link rel="shortcut icon" href="{{asset('images/icon.png')}}">
     <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
+
+    <!-- VALDIACION TOP BAR  -->
+    <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
+    {!!Html::style('assets-Internas/css/main.css')!!}
+    {!!Html::style('assets-Internas/css/bootstrap.css')!!}
+    {!!Html::style('assets-Internas/css/style.css')!!}
+    
+    <!-- style font font-awesome hightop-font -->
+    {!!Html::style('assets-Internas/css/font-awesome.min.css')!!}
+    {!!Html::style('assets-Internas/css/hightop-font.css')!!}
+    <!-- ascrip y css de menu -->
+   
+    <!-- estylos para multiselect -->
+    {!!Html::style('assets-Internas/css/component-chosen.css')!!}
+    
+
+    <!-- jquery -->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.60/inputmask/jquery.inputmask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.6/chosen.jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
+
+    {!!Html::script("assets-Internas/javascripts/jquery.easy-pie-chart.js")!!}
+    {!!Html::script("assets-Internas/javascripts/jquery.sparkline.min.js")!!}
+    {!!Html::script("assets-Internas/javascripts/bootstrap.min.js")!!}
+    <!-- FIN VALDIACION TOP BAR -->
+
+    <!-- LO QUE SI ES NECESARIO -->
+    {!!Html::script("javascripts\select2.js")!!}
+    {!!Html::script("javascripts/fullcalendar.min.js")!!}
+    {!!Html::script("javascripts\daterange-picker.js")!!}
+    {!!Html::script("javascripts\date.js")!!}
+    {!!Html::script("javascripts\bootstrap-datepicker.js")!!}
+    {!!Html::script("javascripts\bootstrap-timepicker.js")!!}
+    {!!Html::script("javascripts\bootstrap-colorpicker.js")!!}
+    {!!Html::script("javascripts/fitvids.js")!!}
+    {!!Html::script("javascripts\modernizr.custom.js")!!}
+    {!!Html::script("javascripts\ladda.min.js")!!}
+    {!!Html::script("javascripts\dropzone.js")!!}
+    {!!Html::script("javascripts\jquery.nestable.js")!!}
+    {!!Html::script('javascripts/upload/fileinput.js')!!}
+
+    {!!Html::style('stylesheets\select2.css')!!}
+
+    {!!Html::script("assets-Internas/javascripts/main.js")!!}
+    <!-- -->
+
+    <!-- scrip y style para select multiple-->
+    {!!Html::script("assets-Internas/javascripts/bootstrap-button-to-input-file.js")!!}
+
+    <!-- 
     {!!Html::style('stylesheets\select2.css')!!}
     {!!Html::style('stylesheets\datatables.css')!!}
     {!!Html::style('stylesheets\bootstrap.css')!!}
@@ -28,16 +80,20 @@
     {!!Html::style('stylesheets\summernote.css')!!}
     {!!Html::style('stylesheets\ladda-themeless.min.css')!!}
     {!!Html::style('stylesheets\social-buttons.css')!!}
+    -->
+
 
     <!-- SUBIR IMAGENES -->
+
+    <!-- 
     {!!Html::style('stylesheets\jquery.fileupload-ui.css')!!}
     
     {!!Html::style('stylesheets\dropzone.css')!!}
     {!!Html::style('stylesheets\nestable.css')!!}
     {!!Html::style('stylesheets\pygments.css')!!}
-
+    -->
     <!-- NO BORRAR-->
-    {!!Html::style('stylesheets/style.css')!!}
+    <!-- {!!Html::style('stylesheets/style.css')!!} -->
 
     <!--
     {!!Html::style('stylesheets\color\green.css')!!}
@@ -46,9 +102,10 @@
     {!!Html::style('stylesheets\color\gray.css')!!}
     -->
 
+    <!-- 
     <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
-
+    -->
     <script>
     // ajax para verificar que el usuario esté logueado y así no dejar ver la página
      $(document).ready(function(){
@@ -67,46 +124,47 @@
     });
     </script>
 
-  <!-- PRIMORDIALES -->
+
+  <!-- PRIMORDIALES --><!--
   {!!Html::script("javascripts\bootstrap.min.js")!!}
   {!!Html::script("javascripts\select2.js")!!}
   {!!Html::script('javascripts\main.js')!!}
-  {!!Html::script("javascripts\jquery.fancybox.pack.js")!!}
+  {!!Html::script("javascripts\jquery.fancybox.pack.js")!!}-->
 
-  <!-- AFECTA SI SE QUITA -->
+  <!-- AFECTA SI SE QUITA --><!--
   {!!Html::script("javascripts\jquery.easy-pie-chart.js")!!} 
-  {!!Html::script("javascripts\jquery.isotope.min.js")!!}
+  {!!Html::script("javascripts\jquery.isotope.min.js")!!}-->
 
-  <!-- BOOTSTRAP -->
+  <!-- BOOTSTRAP --><!--
   {!!Html::script("javascripts\bootstrap-select.js")!!}
   {!!Html::script("javascripts\jquery.bootstrap.wizard.js")!!}
   {!!Html::script("javascripts\bootstrap-datepicker.js")!!}
   {!!Html::script("javascripts\bootstrap-timepicker.js")!!}
   {!!Html::script("javascripts\bootstrap-colorpicker.js")!!}
   {!!Html::script("javascripts\bootstrap-switch.min.js")!!}
-  {!!Html::script('javascripts\bootstrap-editable.min.js')!!}
+  {!!Html::script('javascripts\bootstrap-editable.min.js')!!}-->
 
-  <!-- DATATABLES -->
+  <!-- DATATABLES --><!--
   {!!Html::script("javascripts\datatable-editable.js")!!}
-  {!!Html::script("javascripts\jquery.dataTables.js")!!}
+  {!!Html::script("javascripts\jquery.dataTables.js")!!}-->
   <!-- VERSION MIN DE DATATABLES.JS -->
   <!-- {!!Html::script("javascripts\jquery.dataTables.min.js")!!}--> 
 
 
-  <!-- FULL CALENDAR Y DATE JS'S--> 
+  <!-- FULL CALENDAR Y DATE JS'S--> <!--
   {!!Html::script("javascripts/fullcalendar.min.js")!!}
   {!!Html::script("javascripts\daterange-picker.js")!!}
-  {!!Html::script("javascripts\date.js")!!}
+  {!!Html::script("javascripts\date.js")!!}-->
   
-  <!-- SUBIR IMAGENES -->
-  {!!Html::script("javascripts\bootstrap-fileupload.js")!!}
+  <!-- SUBIR IMAGENES --><!--
+  {!!Html::script("javascripts\bootstrap-fileupload.js")!!}-->
 
 
-  <!-- GRAFICOS -->
+  <!-- GRAFICOS --><!--
   {!!Html::script('javascripts\excanvas.min.js')!!}
   {!!Html::script('javascripts\raphael.min.js')!!}
-  {!!Html::script("javascripts\morris.min.js")!!}
-
+  {!!Html::script("javascripts\morris.min.js")!!}-->
+  <!--
   {!!Html::script("javascripts\isotope_extras.js")!!}
   {!!Html::script("javascripts\jquery.inputmask.min.js")!!}
   {!!Html::script("javascripts\jquery.validate.js")!!}
@@ -116,7 +174,7 @@
   {!!Html::script("javascripts\jquery.sparkline.min.js")!!}
   {!!Html::script("javascripts\dropzone.js")!!}
   {!!Html::script("javascripts\jquery.nestable.js")!!}
-  {!!Html::script('javascripts\jquery.vmap.min.js')!!}
+  {!!Html::script('javascripts\jquery.vmap.min.js')!!}-->
   <!-- FIN AFECTA SI SE QUITA -->
 
   <!-- APARENTEMENTE NO AFECTA SI SE QUITA -->
@@ -150,7 +208,7 @@
   <!-- {!!Html::style('croppie/croppie.css')!!} -->
   
 
-  <!-- UPLOAD -->
+  <!-- UPLOAD --><!--
   {!!Html::script('javascripts/upload/plugins/sortable.js')!!}
   {!!Html::script('javascripts/upload/fileinput.js')!!}
   {!!Html::script('javascripts/upload/locales/fr.js')!!}
@@ -158,20 +216,20 @@
   {!!Html::script('javascripts/upload/theme.js')!!}
   
   {!!Html::style('stylesheets/upload/fileinput.css')!!}
-  {!!Html::style('stylesheets/upload/theme.css')!!}
+  {!!Html::style('stylesheets/upload/theme.css')!!}-->
   <!-- FIN UPLOAD -->
 
 
-  <!-- ascrip y css de menu -->
+  <!-- ascrip y css de menu --><!--
   {!!Html::style('stylesheets/menu/bootstrap-submenu.css')!!}
-  {!!Html::script('javascripts/menu/bootstrap-submenu.min.js')!!}
+  {!!Html::script('javascripts/menu/bootstrap-submenu.min.js')!!}-->
   <!-- ascrip y css de menu -->
 
   <!-- PARA EL PERFIL-->
-  <!--FALTAN ALGUNOS ESTILOS, EL LAYOUT OPTIMIZADO NO SIRVE AÚN PARA EL PERFIL-->
+  <!--FALTAN ALGUNOS ESTILOS, EL LAYOUT OPTIMIZADO NO SIRVE AÚN PARA EL PERFIL--><!--
   {!!Html::style('assets/css/main.css')!!}
   {!!Html::style('stylesheets/profile.css')!!}
-  
+
   {!!Html::style('assets/vendor/linearicons/style.css')!!}
   {!!Html::style('assets/vendor/metisMenu/metisMenu.css')!!}
 
@@ -183,9 +241,9 @@
   {!!Html::script('assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')!!}
   {!!Html::script('assets/vendor/bootstrap-progressbar/js/bootstrap-progressbar.min.js')!!}
 
-  {!!Html::script('assets/vendor/toastr/toastr.js')!!}
-  <!-- MAIN CSS -->
-  {!!Html::style('stylesheetspropio\stylePropio.css')!!}
+  {!!Html::script('assets/vendor/toastr/toastr.js')!!}-->
+  <!-- MAIN CSS --><!--
+  {!!Html::style('stylesheetspropio\stylePropio.css')!!}-->
   <!-- FIN PARA EL PERFIL -->
 
 
@@ -200,8 +258,7 @@
               <ul class="nav navbar-nav pull-right">
                 <li class="dropdown notifications hidden-xs">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <span aria-hidden="true" class="hightop-flag">
-                  </span>
+                    <span aria-hidden="true" class="hightop-flag"></span>
                     <div class="sr-only">
                       Notifications
                     </div>
@@ -237,8 +294,8 @@
                 </li>
                 <li class="dropdown user hidden-xs">
                   <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                  {{ HTML::image('images/admins/'.Auth::User()->imagenPerfil , 'avatar', array( 'width' => '34', 'height'=>'34')) }} {{Auth::User()->nombrePersona}}<b class="caret"></b>
-                </a>
+                  {{ HTML::image('images/admins/'.Auth::User()->imagenPerfil , 'avatar', array( 'width' => '34', 'height'=>'34')) }} <label>{{Auth::User()->nombrePersona}}</label><b class="caret"></b>
+                  </a>
                   <ul class="dropdown-menu">
                     <li>
                       <a href="{{route('Auth.usuario.edit', Auth::id())}}">
@@ -264,27 +321,17 @@
                 </li>
               </ul>
             </div>
-              <button class="navbar-toggle">
-          <span class="icon-bar">
-        </span>
-        <span class="icon-bar">
-        </span>
-        <span class="icon-bar">
-        </span>
-      </button>
-        <div class="logo">
-              <a href="{{url('/')}}">{{ HTML::image('images/logo.png') }}</a>
-           </a>
+            <div class="logo">
+              <a href="{{url('/')}}"> <img src="{{asset('assets-Internas/images/logo.png')}}"> </a>
             </div>
           </div>
-
           <div class="container-fluid main-nav clearfix">
             <div class="nav-collapse">
               <ul class="nav">
                <li class="dropdown">
                 <a data-toggle="dropdown" href="">
                   <span aria-hidden="true" class="fa fa-5x fa-reorder">
-                  </span>{{Auth::User()->EmpresaActual->nombreEstablecimiento}} <b class="caret">
+                  </span><label>{{Auth::User()->EmpresaActual->nombreEstablecimiento}}</label><b class="caret">
                   </b>
                 </a>
                   <ul class="dropdown-menu">
@@ -292,7 +339,8 @@
                       @if($empresa->nombreEstablecimiento != Auth::User()->EmpresaActual->nombreEstablecimiento)
                       <li>
                           <a onclick="cambiarBar({{$empresa->id}});" valor="">
-                            <i class="fa fa-reorder pull-left"></i>{{$empresa->nombreEstablecimiento}}
+                            <i class="fa fa-reorder pull-left"></i>
+                            {{$empresa->nombreEstablecimiento}}
                           </a>
                       </li>
                       @endif
@@ -303,31 +351,31 @@
                 <li>
                   <a id="miPersonal" href={{url("/Auth/usuario")}}>
                     <span aria-hidden="true" class="fa fa-fw fa-users">
-                    </span>Mi Personal</a>
+                    </span><label>Mi Personal</label></a>
                 </li>
 
                 <li>
                   <a id="miCarta" href="{{route('producto.index')}}">
                     <span aria-hidden="true" class="fa fa-fw fa-square">
-                    </span>Mi Carta</a>
+                    </span><label>Mi Carta</label></a>
                 </li>
 
                 <li>
                   <a id="miInventario" href="{{route('insumo.index')}}">
                     <span aria-hidden="true" class="fa fa-fw fa-scribd">
-                    </span>Mi Inventario</a>
+                    </span><label>Mi Inventario</label></a>
                 </li>
 
                 <li>
                   <a id="informacion" href="{{url('Estadisticas/')}}">
                   <span aria-hidden="true" class="fa fa-fw fa-line-chart">
-                  </span>Informacion</a>
+                  </span><label>Informacion</label></a>
                 </li>
 
                 <li>
                   <a id="smartShop" href="">
                   <span aria-hidden="true" class="fa fa-fw fa-cart-plus ">
-                  </span>SmartShop</a>
+                  </span><label>SmartShop</label></a>
                 </li>
               </ul>
 
