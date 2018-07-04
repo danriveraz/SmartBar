@@ -49,7 +49,7 @@
     {!!Html::script("javascripts\dropzone.js")!!}
     {!!Html::script("javascripts\jquery.nestable.js")!!}
     {!!Html::script('javascripts/upload/fileinput.js')!!}
-
+    
     {!!Html::style('stylesheets\select2.css')!!}
 
     {!!Html::script("assets-Internas/javascripts/main.js")!!}
