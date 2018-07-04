@@ -38,6 +38,11 @@
 
     <!-- LO QUE SI ES NECESARIO css -->
     {!!Html::style('stylesheets\select2.css')!!}
+    {!!Html::style('stylesheets\jquery.fancybox.css')!!}
+    
+    <!-- ESTOS ESTILOS DESCUADRAN EL REGISTRO DE USUARIOS, SE DEBE ENCONTRAR SOLUCIÓN
+     {!!Html::style('stylesheets\jquery.fileupload-ui.css')!!}
+    {!!Html::style('stylesheets/upload/fileinput.css')!!} -->
     <!-- FIN-->
 
     <!-- LO QUE SI ES NECESARIO js-->
@@ -54,8 +59,10 @@
     {!!Html::script("javascripts\dropzone.js")!!}
     {!!Html::script("javascripts\jquery.nestable.js")!!}
     {!!Html::script('javascripts/upload/fileinput.js')!!}
+    {!!Html::script("javascripts\bootstrap-fileupload.js")!!}
     {!!Html::script("javascripts\jquery.bootstrap.wizard.js")!!}
     {!!Html::script("javascripts\jquery.isotope.min.js")!!}
+    {!!Html::script("javascripts\isotope_extras.js")!!}
     {!!Html::script("javascripts\jquery.fancybox.pack.js")!!}
     <!-- FIN -->
 
@@ -89,7 +96,7 @@
     {!!Html::style('stylesheets/hightop-font.css')!!}
     {!!Html::style('stylesheets/bootstrap-select.css')!!}
     {!!Html::style('stylesheets\isotope.css')!!}
-    {!!Html::style('stylesheets\jquery.fancybox.css')!!}
+    
     {!!Html::style('stylesheets\fullcalendar.css')!!}
     {!!Html::style('stylesheets\wizard.css')!!}
     {!!Html::style('stylesheets\morris.css')!!}
@@ -109,7 +116,7 @@
     <!-- SUBIR IMAGENES -->
 
     <!-- 
-    {!!Html::style('stylesheets\jquery.fileupload-ui.css')!!}
+    
     
     {!!Html::style('stylesheets\dropzone.css')!!}
     {!!Html::style('stylesheets\nestable.css')!!}
@@ -178,9 +185,9 @@
   {!!Html::script("javascripts/fullcalendar.min.js")!!}
   {!!Html::script("javascripts\daterange-picker.js")!!}
   {!!Html::script("javascripts\date.js")!!}-->
-  
   <!-- SUBIR IMAGENES --><!--
-  {!!Html::script("javascripts\bootstrap-fileupload.js")!!}-->
+  {!!Html::script("javascripts\bootstrap-fileupload.js")!!}
+  }-->
 
 
   <!-- GRAFICOS --><!--
@@ -230,15 +237,15 @@
   <!-- {!!Html::script('croppie/upload.js')!!} -->
   <!-- {!!Html::style('croppie/croppie.css')!!} -->
   
-
+{!!Html::script('javascripts/upload/fileinput.js')!!}
   <!-- UPLOAD --><!--
   {!!Html::script('javascripts/upload/plugins/sortable.js')!!}
-  {!!Html::script('javascripts/upload/fileinput.js')!!}
+  
   {!!Html::script('javascripts/upload/locales/fr.js')!!}
   {!!Html::script('javascripts/upload/locales/es.js')!!}
   {!!Html::script('javascripts/upload/theme.js')!!}
   
-  {!!Html::style('stylesheets/upload/fileinput.css')!!}
+  
   {!!Html::style('stylesheets/upload/theme.css')!!}-->
   <!-- FIN UPLOAD -->
 

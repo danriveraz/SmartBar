@@ -1818,7 +1818,7 @@ border-radius: 200px 200px 200px 200px;
   height: 150px;
   margin: 10px;
   position: relative;
-  background:#2d0038;
+  background:#E7E7E7;
  }
   .gallery-item img {
     width: 100%;
@@ -1857,11 +1857,11 @@ border-radius: 200px 200px 200px 200px;
         background: white;
         color: #333333; }
       .gallery-item .actions i.fa-pencil {
-        font-size: 24px;
+        /*font-size: 24px;
         width: 50px;
         height: 50px;
         line-height: 48px;
-        margin-top: -7px; }
+        margin-top: -7px;*/ }
   .gallery-item:hover img {
     opacity: 0.4;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)"; }

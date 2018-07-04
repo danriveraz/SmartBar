@@ -29,176 +29,164 @@
           <div class="col-lg-6">
         <div class=" text-center page-title">
 
-            <div class="row">
-              <div class="col-lg-6">
-        <div>
-          <h2>
-      <input class="Titulo-css2" id="nombre" placeholder="Ingrese Nombre" value="{{$producto->nombre}}"/>
-          </h2>
-        </div> 
-
-              </div>
-              <div class="col-lg-6">
+        <div class="row">
+          <div class="col-lg-6">
+            <div>
+              <h2>
+                <div class="login-form">
+                  <i class="fa fa-pencil" style="font-size: 70%;"></i>
+                  <input class="Titulo-css2" id="nombre" placeholder="Ingrese Nombre" value="{{$producto->nombre}}" style="text-align: center; width: 50%;" />
+                </div>
+              </h2>
+            </div> 
+          </div>
+          <div class="login-form col-lg-6">
             <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-outdent"></i></span>
-                {!! Form::select('categorias', $categorias, $producto->idCategoria, ['class'=>'select2able', 'placeholder' => 'Categorias', 'id' => 'categoria']) !!}
+              <div class="input-container">
+                <i class="fa fa-outdent"></i>
+                {!! Form::select('categorias', $categorias, $producto->idCategoria, ['class'=>'select', 'placeholder' => 'Categorias', 'id' => 'categoria', 'style' => 'width: 70%;']) !!}
               </div>
             </div>
-            
             <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                <input class="form-control" id="precio" placeholder="Precio del Producto" type="text" value="{{$producto->precio}}">
+              <div class="input-container">
+                <i class="fa fa-money"></i>
+                @if($producto->precio == 0)
+                <input class="input" id="precio" placeholder="Precio de venta" type="text">
+                @else
+                <input class="input" id="precio" placeholder="Precio de venta" type="text" value="{{$producto->precio}}">
+                @endif
               </div>
             </div>
-             </div>
-            </div>
-
-        </div>          
-            <div class="widget-container fluid-height clearfix" style="box-shadow: none;">
-              <div class="heading">
-                <i class=" pocketMorado fa fa-table"></i><a class="pocketMorado">Productos Selecionados</a>
-              </div>
-              <div class="widget-content padded clearfix">
-                <table class="table table-striped" id="insumoAgregados">
-                  <thead>
-                    <th style="display: none;"></th>
-                    <th>
-                      Nombre
-                    </th>
-                    <th class="text-center">
-                      Cantidad
-                    </th>
-                    <th class="text-center">
-                      Medida
-                    </th>
-                    <th></th>
-                  </thead>
-                  <tbody>
-                    @foreach($contienen as $contiene)
-                    <tr id="fila{{$contiene->idInsumo}}">
-                      <td style="display: none;">{{$contiene->idInsumo}}</td>
-                      <td>
-                        {{$insumos[$contiene->idInsumo]}}
-                      </td>
-                      <td class="text-center">
-                        {{$contiene->cantidad}}
-                      </td>
-                      <td class="text-center">
-                        <span class="label label-Pocket">
-                          <b><?php if($medidas[$contiene->idInsumo] == 1) echo "Unidad"; else echo "Onza";?></b>
-                        </span>
-                      </td>
-                      <td>
-                        <div class="action-buttons">
-                      <a class="table-actions pocketMorado"><i class="fa fa-window-close" title="Cancelar" onclick="eliminarInsumo({{$producto->id}},{{$contiene->idInsumo}})"></i></a>
-                        </div>
-                      </td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-              </div>
-            </div>
-           </div>
+          </div>
         </div>
-      </div>      
-      
-      
-      
-      
+      </div>          
+        <div class="widget-container fluid-height clearfix" style="box-shadow: none;">
+          <div class="heading">
+            <i class=" pocketMorado fa fa-table"></i><a class="pocketMorado">Ingredientes</a>
+          </div>
+          <div class="widget-content padded clearfix">
+            <table class="table table-striped" id="insumoAgregados">
+              <thead>
+                <th style="display: none;"></th>
+                <th>
+                  Nombre
+                </th>
+                <th class="text-center">
+                  Cantidad
+                </th>
+                <th class="text-center">
+                  Medida
+                </th>
+                <th></th>
+              </thead>
+              <tbody>
+                @foreach($contienen as $contiene)
+                <tr id="fila{{$contiene->idInsumo}}">
+                  <td style="display: none;">{{$contiene->idInsumo}}</td>
+                  <td>
+                    {{$insumos[$contiene->idInsumo]}}
+                  </td>
+                  <td class="text-center">
+                    {{$contiene->cantidad}}
+                  </td>
+                  <td class="text-center">
+                    <span class="label label-Pocket">
+                      <b><?php if($medidas[$contiene->idInsumo] == 1) echo "Unidad"; else echo "Onza";?></b>
+                    </span>
+                  </td>
+                  <td>
+                    <div class="action-buttons">
+                      <a class="table-actions pocketMorado">
+                        <i class="fa fa-window-close" title="Cancelar" onclick="eliminarInsumo({{$producto->id}},{{$contiene->idInsumo}})">
+                        </i>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>      
+    <div class="container main-content">
+      <div class="row"> 
+        <div class="col-lg-12">
+          <div class="widget-container fluid-height clearfix">
+            <div class="widget-content padded clearfix">
+              <table class="table table-bordered table-striped" id="example">
+                <thead>
+                  <th width="30%">
+                    Nombre
+                  </th>
+                  <th width="25%">
+                    Marca
+                  </th>
+                  <th width="15%">
+                    Cantidad
+                  </th>
+                  <th width="15%" class="text-center">
+                    En Inventario
+                  </th>
+                  <th width="15%" class="text-center">
+                    Medida
+                  </th>
+                  <th width="5%" class="text-center">
+                    Opciones
+                  </th>
+                </thead>
+                <tbody>
+                  @foreach($insumosDisponibles as $insumo)
+                  <tr data-toggle="modal">
+                    <td>
+                      {{$insumo->nombre}}
+                    </td>
+                    <td>
+                      {{$insumo->marca}}
+                    </td>
+                    <td>
+                      <input type="number" class="Titulo-css" id="{{$insumo->id}}" onkeypress="tecla(event,{{$insumo}})" placeholder="Ingrese Cantidad" />
+                    </td>
+                    <td class="text-center">
+                      {{$insumo->cantidadRestante}}
+                    </td>
+                    <td class="text-center">
+                      <span class="label label-Pocket">
+                        <b><?php if($insumo->medida == 1) echo "Unidad"; else echo "Onza";?></b>
+                      </span>
+                    </td>                     
+                    <td class="text-center actions">
+                      <div class="action-buttons">
+                        <a class="table-actions pocketMorado"><i class="fa fa-plus" onclick="adicionarInsumo({{$insumo}})" title="Adicionar Insumo"></i></a>
+                      </div>
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+          </div> 
+        </div> 
+      </div> 
+      <br>
+      <div class="text-center">
+        <button class="btn btn-pocket" type="submit" onclick="enviarDatos({{$producto->id}})">
+            <i class="fa fa-send"></i>Guardar Producto
+          </button>
+        </div>                                 
+      </div> 
+    </div>        
+    <div role="tabpanel" class="tab-pane" id="yorkcastle">            
       <div class="container main-content">
         <!-- DataTables Example -->         
         <div class="row"> 
- <!-- fin de la tabla de selecion de productos-->      
+        <!-- fin de la tabla de selecion de productos-->      
           <div class="col-lg-12">
-            <div class="widget-container fluid-height clearfix">
-              <div class="heading">
-                <i class="pocketMorado fa fa-check-square-o"></i><a class="pocketMorado">Mi Inventario</a>
-              </div>
-              <div class="widget-content padded clearfix">
-                <table class="table table-bordered table-striped" id="dataTable1">
-                  <thead>
-                    <th width="30%">
-                      Nombre
-                    </th>
-                    <th width="25%">
-                      Marca
-                    </th>
-                    <th width="15%">
-                      Cantidad
-                    </th>
-                   <th width="15%" class="text-center">
-                      En Inventario
-                    </th>
-                   <th width="15%" class="text-center">
-                      Medida
-                    </th>
-
-                   <th width="5%" class="text-center">
-                      Opciones
-                    </th>
-                  </thead>
-                  <tbody>
-                    @foreach($insumosDisponibles as $insumo)
-                    <tr data-toggle="modal">
-                      <td>
-                        {{$insumo->nombre}}
-                      </td>
-                      <td>
-                        {{$insumo->marca}}
-                      </td>
-                      <td>
-                        <input type="number" class="Titulo-css" id="{{$insumo->id}}" onkeypress="tecla(event,{{$insumo}})" placeholder="Ingrese Cantidad" />
-                      </td>
-                      <td class="text-center">
-                        {{$insumo->cantidadRestante}}
-                      </td>
-                      <td class="text-center">
-                        <span class="label label-Pocket">
-                          <b><?php if($insumo->medida == 1) echo "Unidad"; else echo "Onza";?></b>
-                        </span>
-                      </td>                     
-                      <td class="text-center actions">
-                        <div class="action-buttons">
-                          <a class="table-actions pocketMorado"><i class="fa fa-plus" onclick="adicionarInsumo({{$insumo}})" title="Adicionar Insumo"></i></a>
-                        </div>
-                      </td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-              </div>
-            </div> 
-            
-          </div> 
-         
-        </div> 
-        
-        
-             <div class="text-center"><a class="btn btn-bitbucket" onclick="enviarDatos({{$producto->id}})"><i class="fa fa-send"></i>Guardar Producto</a></div>                                 
-
-        <!-- end DataTables Example -->
-      </div> 
-    
-
-
-            </div>
-            
-            
-            
-            
-            <div role="tabpanel" class="tab-pane" id="yorkcastle">            
-              <div class="container main-content">
-                <!-- DataTables Example -->         
-                <div class="row"> 
-         <!-- fin de la tabla de selecion de productos-->      
-                  <div class="col-lg-12">
-
-              <div class="col-lg-2">                 
-                <div class="bs-example">
-                  <div class="widget-content fileupload fileupload-new" data-provides="fileupload" style="margin-top: 20%;">
+            <div class="col-lg-2">                 
+              <div class="bs-example">
+                <div class="widget-content fileupload fileupload-new" data-provides="fileupload" style="margin-top: 20%;">
                   <div class="gallery-container fileupload-new img-thumbnail">
                     <div id="imgActual" class="gallery-item filter1" rel="" style="border-radius: 50%; width: 150px; height: 150px;">
                       @if($producto->imagen!='')
@@ -279,6 +267,21 @@
             }
         }
     });
+    $('#example').DataTable( {
+          dom: 'lBfrtip',
+          buttons: [
+              {
+                  extend:    'excelHtml5',
+                  text:      '<i class="fa fa-file-excel-o"></i>',
+                  titleAttr: 'Descarga Excel'
+              },
+              {
+                  extend:    'pdfHtml5',
+                  text:      '<i class="fa fa-file-pdf-o"></i>',
+                  titleAttr: 'Descarga PDF'
+              }
+          ]
+      } );
   });
 
   function tecla(e,insumo){
