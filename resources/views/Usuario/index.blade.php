@@ -13,7 +13,7 @@
 @extends('Layout.app_administradores')
 @section('content')
 
-{!!Html::script('assetsNew\scripts/notify.min.js')!!} <!---->
+{!!Html::script('assets-Internas/javascripts/notify.min.js')!!} <!---->
 
 <!--Barra de título y botones de busqueda-->
 <div id="page-content">
@@ -84,9 +84,11 @@
               @if($usuario->estado == 1) 
                 <div class="heading Habilitado">
                   <a href="{{url('Auth/usuario/'.$usuario->id.'/active')}}"><i   data-toggle="tooltip" data-placement="left" title="Deshabilitar" class="pocketMorado fa fa-times pull-right" ></i></a>
+                  <i data-toggle="modal" data-target="#myModal{{$usuario->id}}" class="pocketMorado fa fa-pencil-square-o pull-right" title="editar Empleado"></i>
               @else 
                 <div class="heading Deshabilitado">
                   <a href="{{url('Auth/usuario/'.$usuario->id.'/active')}}"><i   data-toggle="tooltip" data-placement="left" title="Habilitar" class="pocketMorado fa fa-check pull-right" ></i></a>
+                  <i data-toggle="modal" data-target="#myModal{{$usuario->id}}" class="pocketMorado fa fa-pencil-square-o pull-right" title="editar Empleado"></i>
               @endif
 
               </div>
@@ -128,18 +130,19 @@
                   </div>
               </div>
               <div class="widget-content padded3 colorpocket">
-
-            <div class="col-md-4 colorpocket"></div>
-                <div class="col-md-8 colorpocket"> 
-
-                  <div class="headingPocket">
-                    <div data-toggle="modal" href="#ModalMsg{{$usuario->id}}">
-                      <a class="PocketA"><i class="fa fa-comments pull-right"></i></a></div>
-                      <a class="PocketA" href="{{ url('Agenda/') }}"><i class="fa fa-calendar-check-o pull-right"></i></a>
-                      <a class="PocketA" href="{{url('Estadisticas/')}}"><i class="fa fa-bar-chart pull-right"></i></a>
-                  </div>
-
-                </div>  
+                <div class="col-md-12">   
+                  <div class="col-md-4 colorpocket"></div>
+                    <div class="col-md-8 colorpocket"> 
+                      <div class="headingPocket">
+                          <!-- <div data-toggle="modal" href="#ModalMsg{{$usuario->id}}">
+                            <a class=""><i class="fa fa-comments pull-right"></i></a>
+                          </div> -->
+                          <a href=""><i style="float: center;" class="fa fa-comments pull-right"></i></a>
+                          <a href="{{ url('Agenda/') }}"><i style="float: center;" class="fa fa-calendar-check-o pull-right"></i></a>
+                          <a href="{{url('Estadisticas/')}}"><i style="float: center;" class="fa fa-bar-chart pull-right"></i></a>
+                      </div>
+                  </div>  
+                </div>
               </div>
             </div>
           </div>
@@ -165,15 +168,12 @@
           &nbsp; Editar Empleado      
         </div>
           <!-- Login Screen -->
-          {!! Form::open(['route' => ['Auth.usuario.update',$usuario], 'method' => 'PUT','enctype' => 'multipart/form-data']) !!}
+          {!! Form::open(['route' => ['Auth.usuario.update',$usuario], 'method' => 'PUT','enctype' => 'multipart/form-data', 'class' => 'login-form']) !!}
           {{ csrf_field() }}
             <div class="row">
               <div class="col-md-4">
-                <div class="form-group">
-                  <label class="control-label col-md-2"></label>
-                  <div class="col-md-9">
                     <div class="widget-content fileupload fileupload-new" data-provides="fileupload">
-                      <div class="gallery-container fileupload-new img-thumbnail" >
+                      <div class="gallery-container fileupload-new img-thumbnail" style="margin-left: 15%">
                         <div class="gallery-item  img-thumbnail" style="line-height: 150px; border-radius: 50%; width: 150px; height: 150px;">
                           {!! Html::image('images/admins/'.$usuario->imagenPerfil,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo', 'id' => 'imagenPerfilUsuarioCircular')) !!}
                           <div class="actions">
@@ -198,34 +198,24 @@
                         <a class="btn btn-default fileupload-exists" data-dismiss="fileupload" id="eliminarImagen{{$usuario->id}}"><i class="fa fa-trash-o"></i></a>
                       </div>
                     </div>
+                    <div class="input-container">
+                      <i class="fa fa-user"></i>
+                      <input name="nombrePersona" class="input" value="{{$usuario->nombrePersona}}" placeholder="Username" type="text" >
+                    </div>
+                    <div class="input-container">
+                      <i class="fa fa-map"></i>
+                      <input class="input" value="{{$usuario->direccion}}" name="direccion" placeholder="Dirección" type="text">
+                    </div>
+                    <div class="input-container">
+                      <i class="fa fa-address-card"></i>
+                      <input name="cedula" class="input" value="{{$usuario->cedula}}"  placeholder="Identificacion" type="text">
+                    </div>
+                    <!-- <a class="pull-right" href="#">Mirar Calendario De Trabajo</a> -->
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input name="nombrePersona" class="form-control" value="{{$usuario->nombrePersona}}" placeholder="Username" type="text" >
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-map"></i></span>
-                    <input class="form-control" value="{{$usuario->direccion}}" name="direccion" placeholder="Dirección" type="text">
-                  </div>
-                </div>
-
-                <a class="pull-right" href="#">Mirar Calendario De Trabajo</a>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
-                    <input name="cedula" class="form-control" value="{{$usuario->cedula}}"  placeholder="Identificacion" type="text">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
-                      <select name='sexo' class="form-control" placeholder="Tipo De Sexo">
+                  <div class="col-md-4">
+                  <div class="input-container">
+                    <i class="fa fa-venus-mars"></i>
+                      <select name='sexo' class="select" placeholder="Tipo De Sexo">
                         @if($usuario->sexo=='Femenino')
                           <option value="Masculino">Masculino</option>
                           <option value="Femenino" selected="selected">Femenino</option>
@@ -235,33 +225,23 @@
                         @endif
                       </select>
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
-                    <input data-date-format="yyyy/mm/dd" value="{{$usuario->fechaNacimiento}}" class="form-control datepicker" data-date-autoclose="true" placeholder="Fecha de Nacimiento" type="text" name="fechaNacimiento" >
+                  <div class="input-container">
+                    <i class="fa fa-birthday-cake"></i>
+                    <input data-date-format="yyyy/mm/dd" value="{{$usuario->fechaNacimiento}}" class="input" data-date-autoclose="true" placeholder="Fecha de Nacimiento" type="date" name="fechaNacimiento" >
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                    <input class="form-control" name="contrasena" placeholder="Contraseña" type="password">
+                  <div class="input-container">
+                    <i class="fa fa-key"></i>
+                    <input class="input" name="contrasena" placeholder="Contraseña" type="password">
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                    <input class="form-control" name="contrasen
+                  <div class="input-container">
+                    <i class="fa fa-key"></i>
+                    <input class="input" name="contrasen
                     na_confirmation" placeholder="Confirmar Contraseña" type="password">
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                    <input class="form-control" value="{{$usuario->salario}}" name="salario" type="number"><span class="input-group-addon">.00</span>
+                  <div class="input-container">
+                    <i class="fa fa-money"></i>
+                    <input class="input" value="{{$usuario->salario}}" name="salario" type="number">
                   </div>
-                </div>
-                <div class="form-group">
                   <input type="text" name="permisoPrincipal" value="
                     @if($usuario->esAdmin == 2) Administrador
                     @elseif($usuario->esMesero == 2) Mesero
@@ -269,9 +249,9 @@
                     @elseif($usuario->esCajero == 2) Cajero
                     @endif
                   " hidden id="{{$usuario->id}}permisoPrincipal"><!-- oculto para permiso principal-->
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                    <select id="selectPermisos{{$usuario->id}}" name="Permisos[]"class="form-control select2able" multiple="multiple">
+                  <div class="input-container">
+                    <i class="fa fa-users"></i>
+                    <select id="selectPermisos{{$usuario->id}}" name="Permisos[]"class="form-control selectPermisos" multiple style="padding: 0px 0px; width: 80%">
                       <option value="Administrador"
                         @if($usuario->esAdmin != 0 )
                           selected="selected"
@@ -314,14 +294,19 @@
                     });
                   });
                   </script>
-                </div>
-                <div class="text-center">
-                  <label class="checkbox">{!! Form::checkbox('Obsequiar', 'Obsequiar', $usuario->obsequio) !!}<span>Activar Para Obsequiar</span></label>
-                </div>
               </div>
               <div class="col-md-4" style="height: 300px">
-                <div class="form-group" >
+                <p class="lead" style="margin-bottom: 10px;">Sube la hoja de vida de tu <span class="text-success">Empleado</span></p>
+                      <ul class="list-unstyled" style="line-height: 1.5">
+                        <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Informacion ordenada e Inmediata</li>
+                        <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Base de datos de empleados</li>
+                        <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Facilidad encontrar personal</li>
+                      </ul>
+                <div class="input-container" >
                   <input id="{{$usuario->id}}hojaDeVida" name="hojaDeVida" style="background-color: #4f0157;" type="file"  data-upload-url="#">
+                  <!-- <button id="{{$usuario->id}}hojaDeVida" name="hojaDeVida" style="font-weight: 400;" type="button" class="bfs btn btn-pocket" data-style="fileStyle-r" data-upload-url="#"><span class="fa fa-file-pdf-o" aria-hidden="true"></span>
+                    Subir hoja de vida
+                    </button> -->
                 </div>
                 @if($usuario->hojaDeVida)<!-- todo este script es para inicializar la subida de  la hoja de vida en el modal de editar el trabajador-->
                   <script >
@@ -353,14 +338,21 @@
                     });
                   </script>
                 @endif
+                <br>
+                <div class="form-group">
+                  <label class="checkbox">{!! Form::checkbox('Obsequiar', 'Obsequiar', $usuario->obsequio) !!}<span>Activar Para Obsequiar</span></label>
+                </div>
+                <br>
+                <div  class="form-group">
+                  <a id="registrarUsuario" class="btn btn-pocket" style="font-weight: 400;" type="submit">
+                    <i class="fa fa-send"></i>Guardar Empleado
+                  </a>
+                </div>
+              </div>
               </div>
             </div>
             <div class="row">
-              <div  class="col-md-3 col-md-offset-5">
-                <button class="btn btn-bitbucket" type="submit">
-                  <i class="fa fa-send"></i>Guardar
-                </button>
-              </div>
+              
             </div>
           </form>
         </div>
@@ -443,24 +435,21 @@
             <i class=" pocketMorado fa fa-shield"></i>&nbsp;Nuevo Empleado
           </div>
           <div class="widget-content padded">
-            <form id="formslider">
+            <form id="formslider" class="login-form">
             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
             <fieldset>
             <div class="row">
               <div class="col-md-4">
-                <div class="form-group">
-                  <label class="control-label col-md-2"></label>
-                  <div class="col-md-9">
                     <div class="widget-content fileupload fileupload-new" data-provides="fileupload">
-                      <div class="gallery-container fileupload-new img-thumbnail" >
-                        <div class="gallery-item filter1" rel="">
-                          <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" >
+                      <div class="gallery-container fileupload-new img-thumbnail" style="margin-left: 15%">
+                        <div class="gallery-item filter1" rel="" style="border-radius: 50%; width: 150px; height: 150px;">
+                          <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" style="border-radius: 50%; width: 150px; height: 150px;">
                           <div class="actions">
                             <a onclick="$('#eliminarImagen').click()">
                               <i class="fa fa-trash-o"></i>
                             </a>
-                            <a  id="modalImagen" href="{{asset("images/logo.png")}}" title="Sin imagen">
-                              <img src="{{asset("images/logo.png")}}" hidden>
+                            <a  id="modalImagen" href="{{asset('images/logo.png')}}" title="Sin imagen">
+                              <img src="{{asset('images/logo.png')}}" hidden>
                               <i class="fa fa-search-plus"></i>
                             </a>
                             <a onclick="$('#imagenPerfil').click()">
@@ -480,88 +469,82 @@
                         <a class="btn btn-default fileupload-exists" data-dismiss="fileupload" id="eliminarImagen"><i class="fa fa-trash-o"></i></a>
                       </div>
                     </div>
-                  </div>
+                <div class="input-container">
+                  <i class="fa fa-address-book"></i>
+                  <input class="input" id="nombrePersona" name="nombrePersona" placeholder="Nombre" type="text">
                 </div>
-                <div  style="margin-top: 61%;"></div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input class="form-control" id="nombrePersona" name="nombrePersona" placeholder="Nombre" type="text">
-                  </div>
+                <div class="input-container">
+                  <i class="fa fa-phone-square"></i>
+                  <input class="input" placeholder="Teléfono" type="text">
                 </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
-                    <input class="form-control" placeholder="Teléfono" type="text">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                    <input class="form-control" placeholder="Email" id="email" name="email" type="email">
-                  </div>
+                <div class="input-container">
+                  <i class="fa fa-envelope"></i>
+                  <input class="input" placeholder="Email" id="email" name="email" type="email">
                 </div>
               </div>
               <div class="col-md-4 ">
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
-                    <input class="form-control" id="cedula" name="cedula" placeholder="Identificación" type="text">
+                  <div class="input-container">
+                    <i class="fa fa-address-card"></i>
+                    <input class="input" id="cedula" name="cedula" placeholder="Identificación" type="text">
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-map"></i></span>
-                    <input class="form-control" name="direccion" placeholder="Dirección" type="text">
+                  <div class="input-container">
+                    <i class="fa fa-map-marker"></i>
+                    <input class="input" name="direccion" placeholder="Dirección" type="text">
                   </div>
-                </div>
-                <div class="form-group"> <!-- OJO esto dará error -->
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
-                    <select id="sexo"  name="sexo" class=" select2able"  style="weight: 100%;">
+                  <div class="input-container">
+                    <i class="fa fa-venus-mars"></i>
+                    <select id="sexo"  name="sexo" class="select"  style="weight: 100%; width: 50%">
                       <option value="Masculino">Masculino</option>
                       <option value="Femenino">Femenino</option>
                     </select>
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
-                    <input data-date-format="yyyy/mm/dd" class="form-control datepicker" data-date-autoclose="true" placeholder="Fecha de Nacimiento" name="fechaNacimiento" id="fechaNacimiento" type="text">
+                  <div class="input-container">
+                    <i class="fa fa-birthday-cake"></i>
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha de Nacimiento" name="fechaNacimiento" id="fechaNacimiento" type="date">
                   </div>
-                </div>
-                <div class="form-group">
+                  <div class="input-container">
+                    <i class="fa fa-money"></i>
+                    <input class="input" name="salario" placeholder="Salario Diario" type="number">
+                  </div>
                   <input type="text" name="permisoPrincipal" value="Mesero" hidden id="permisoPrincipal"><!-- oculto para permiso principal-->
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                        <select id="selectPermisosAjax" name="Permisos[]" class="form-control selectPermisos" multiple="multiple">
-                          <option value="Mesero">Mesero</option>
-                          <option value="Bartender">Bartender</option>
-                          <option value="Cajero">Cajero</option>
-                          <option value="Administrador">Administrador</option>
-                        </select>
+                  <div class="input-container">
+                     <i class="fa fa-users"></i>
+                      <select id="selectPermisosAjax" name="Permisos[]" class="form-control selectPermisos" data-placeholder="Selecionar Roles...." multiple style="    padding: 0px 0px; width: 80%">
+                        <option value="Mesero">Mesero</option>
+                        <option value="Bartender">Bartender</option>
+                        <option value="Cajero">Cajero</option>
+                        <option value="Administrador">Administrador</option>
+                      </select>
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                    <input class="form-control" name="salario" placeholder="Salario Diario" type="number"><span class="input-group-addon">.00</span>
-                  </div>
-                </div>
-                <div class="text-center">
-                  <label class="checkbox">{{ Form::checkbox('regalar') }}<span>Obsequiar Productos</span></label>
-                </div>
               </div>
               <div class="col-md-4">
+                <p class="lead" style="margin-bottom: 10px;">Sube la hoja de vida de tu <span class="text-success">Empleado</span></p>
+                <ul class="list-unstyled" style="line-height: 1.5">
+                  <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Informacion ordenada e Inmediata</li>
+                  <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Base de datos de empleados</li>
+                  <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Facilidad encontrar personal</li>
+                </ul>
+                <!-- <button style="font-weight: 400;" type="button" class="bfs btn btn-pocket" data-style="fileStyle-r"><span class="fa fa-file-pdf-o" aria-hidden="true"></span>
+                  Subir hoja de vida
+                </button>-->
+                <br>
                 <div class="form-group">
                   <input id="file-4" name="hojaDeVida" type="file" class="file" data-upload-url="#" accept="pdf/*">
                 </div>
+                <div class="input-container">
+                  <label class="checkbox">
+                    <input class="checkbox" name="regalar" value="1" type="checkbox">
+                    <span>Activar para obsequiar Productos</span>
+                  </label>
+                </div>
+                <br>
+                <div  class="form-group">
+                  <a id='registrarUsuario' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Guardar
+                  </a>
+                </div>
               </div>
-            </div>
-            <div  class="col-md-3 col-md-offset-5">
-              <a id='registrarUsuario' class="btn btn-bitbucket" type="submit">
-                <i class="fa fa-send"></i>Guardar
-              </a>
             </div>
             </fieldset>
           </form>
@@ -578,6 +561,17 @@
 </div>
   {!!$usuarios->render() !!}
 </div>
+
+<!-- Script para personal-->
+{!!Html::script('assets-Internas/javascripts/jquery.bootstrap.wizard.js')!!}
+{!!Html::script('assets-Internas/javascripts/fullcalendar.min.js')!!}
+{!!Html::script('assets-Internas/javascripts/jquery.dataTables.js')!!}
+{!!Html::script('assets-Internas/javascripts/jquery.isotope.min.js')!!}
+{!!Html::script('assets-Internas/javascripts/isotope_extras.js')!!}
+{!!Html::script('assets-Internas/javascripts/jquery.fancybox.pack.js')!!}
+{!!Html::script('assets-Internas/javascripts/select2.js')!!}
+<!-- Fin de Script para personal-->
+
 <!-- Para notificaciones con ajax -->
 {!!Html::style('css/notificaciones/ns-default.css')!!}
 {!!Html::style('css/notificaciones/ns-style-growl.css')!!}
