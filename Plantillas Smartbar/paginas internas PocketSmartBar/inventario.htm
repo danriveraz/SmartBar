@@ -1,0 +1,619 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      hightop - Dashboard
+    </title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+	  
+<!-- VALDIACION TOP BAR -->
+    <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
+    <link href="assets-Internas/css/bootstrap.css" media="all" rel="stylesheet" type="text/css">
+    <link href="assets-Internas/css/style.css" media="all" rel="stylesheet" type="text/css">
+	  
+<!-- style font font-awesome hightop-font -->
+    <link href="assets-Internas/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
+	<link href="assets-Internas/css/hightop-font.css" media="all" rel="stylesheet" type="text/css">
+<!-- ascrip y css de menu--> 
+	 
+<!-- estylos para multiselect-->
+		<link rel="stylesheet" href="assets-Internas/css/component-chosen.css"/>
+	  
+<!-- jquery -->
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+	<script src="assets-Internas/javascripts/bootstrap.min.js" type="text/javascript"></script>	  
+	<script src="assets-Internas/javascripts/jquery.easy-pie-chart.js" type="text/javascript"></script>
+	<script src="assets-Internas/javascripts/jquery.sparkline.min.js" type="text/javascript"></script>	
+	<script src="assets-Internas/javascripts/main.js" type="text/javascript"></script>
+<!-- jquery--> 
+<!-- FIN VALDIACION TOP BAR -->
+	  
+<!-- Style para Form -->
+		<link rel="stylesheet" href="assets-Internas/css/main.css"/>	  
+	  
+		<!--link rel="stylesheet" href="css/font.css"/-->
+		<link rel="stylesheet" href="assets-Internas/css/component-chosen.css"/>
+			  
+<!-- scrib para inventario-->
+	<!-- styles para tabla-->
+	<link href="stylesheets\datatables.css" media="all" rel="stylesheet" type="text/css">
+	<link href="stylesheets\datepicker.css" media="all" rel="stylesheet" type="text/css">
+	<!-- script para tabla-->	
+	<script src="javascripts\jquery.bootstrap.wizard.js" type="text/javascript"></script><!-- tabla-->
+    <script src="assets-Internas/javascripts/daTables/jquery.dataTables.js" type="text/javascript"></script>
+	<script src="assets-Internas/javascripts/daTables/jquerydatatable-editable.js" type="text/javascript"></script>
+	  
+	  
+  
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  </head>
+  <body class="page-header-fixed bg-1">
+<div class="modal-shiftfix">
+<!-- Navigation -->
+<div class="navbar navbar-fixed-top scroll-hide">
+	<!--Inicio de Banner de arriba-->  
+	<div class="container-fluid top-bar">
+		<div class="pull-right">
+			<ul class="nav navbar-nav pull-right">
+             	<li class="dropdown notifications hidden-xs">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span aria-hidden="true" class="hightop-flag"></span>
+                  <div class="sr-only">
+                    Notifications
+                  </div>
+                  <p class="counter">
+                    4
+                  </p>
+                </a>
+                <ul class="dropdown-menu">
+					<li><a href="#">
+						<div class="notifications label label-info">
+						  New
+							</div>
+							<p>
+							  Sales targets available
+							</p></a>
+
+						  </li>
+					<li><a href="#">
+							<div class="notifications label label-info">
+							  New
+							</div>
+							<p>
+							  New performance metric added
+							</p></a>
+
+						  </li>
+					<li><a href="#">
+							<div class="notifications label label-info">
+							  New
+							</div>
+							<p>
+							  New growth data available
+							</p></a>
+
+						  </li>
+				</ul>
+				</li>
+				<li class="dropdown messages hidden-xs">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span aria-hidden="true" class="hightop-envelope"></span>
+					  <div class="sr-only">
+						Messages
+					  </div>
+					  <p class="counter">
+						3
+					  </p>
+					</a>
+					<ul class="dropdown-menu">
+					  <li><a href="#">
+						<img width="34" height="34" src="images\avatar-male2.png">Could we meet today? I wanted...</a>
+					  </li>
+					  <li><a href="#">
+						<img width="34" height="34" src="images\avatar-female.png">Important data needs your analysis...</a>
+					  </li>
+					  <li><a href="#">
+						<img width="34" height="34" src="images\avatar-male2.png">Buy Se7en today, it's a great theme...</a>
+					  </li>
+					</ul>
+				  </li>
+				<li class="dropdown user hidden-xs">
+					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+					<img width="34" height="34" src="images\avatar-male.jpg"><label>John Smith</label><b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+					  <li><a href="#">
+						<i class="fa fa-user-circle"></i>Mi Perfil</a>
+					  </li>
+					  <li><a href="#">
+						<i class="fa fa-gear"></i>Ajuster</a>
+					  </li>
+					  <li><a href="login1.htm">
+						<i class="fa fa-question"></i>Ayuda</a>
+					  </li>
+					  <li><a href="login1.htm">
+						<i class="fa fa-sign-out"></i>Cerrar Secion</a>
+					  </li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!--<button class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>-->
+		<div class="logo">
+			   <a href="http://localhost/PocketByR/public"><img src="assets-Internas/images/logo.png"></a>
+		</div>
+	</div>
+	<!--Inicio de Banner contenedor de iconos-->  
+	<div class="container-fluid main-nav clearfix">
+			  <div class="nav-collapse">
+				<ul class="nav ">             
+				 <li class="dropdown">	
+				<a class="MobEtiq"  data-toggle="dropdown" href="#">
+					<span aria-hidden="true" class="fa fa-5x fa-reorder"></span><label>Shikoba</label><b class="caret"></b>
+				</a>
+					<ul class="dropdown-menu">
+					  <li>
+						<a href="#"><i class="fa fa-reorder pull-left"></i>Black and white</a>
+					  </li>
+					  <li>
+						<a href="#"><i class="fa fa-reorder pull-left"></i>Fresa</a>
+					  </li>
+					</ul>
+				  </li>               
+				  <li><a href="#">
+					  <span aria-hidden="true" class="fa fa-fw fa-users"></span><label>Mi Personal</label></a>
+				  </li>              
+				  <li><a href="">
+					  <span aria-hidden="true" class="fa fa-fw fa-square"></span><label>Mi Carta</label></a>
+				  </li>              
+				  <li><a class="current" href="#">
+					  <span aria-hidden="true" class="fa fa-fw fa-scribd"></span><label>Mi Inventario</label></a>
+				  </li> 
+				  <li><a href="">
+					<span aria-hidden="true" class="fa fa-fw fa-bar-chart-o"></span><label>Informacion</label></a>
+				  </li>
+				  <li><a href="">
+					<span aria-hidden="true" class="fa fa-fw fa-cart-plus "></span><label>SmartShop</label></a>
+				  </li>
+				</ul>          
+			  </div>
+			</div>
+</div>
+<!-- End Navigation -->	
+	
+<div class="contec-Pocket main-content">
+  <!-- DataTables Example -->
+   <div class="row">
+          <div class="col-lg-12">
+            <div class="widget-container fluid-height clearfix">
+              <div class="widget-content padded clearfix">
+                <table class="table table-bordered table-striped" id="dataTable1">
+                  <thead>
+                    <th class="check-header">
+                      und
+                    </th>
+                    <th>
+                      Nombre
+                    </th>
+                    <th class="hidden-xs">
+                      Marca
+                    </th>
+                    <th class="hidden-xs">
+                      Provedor
+                    </th>
+                    <th class="hidden-xs">
+                      Compra
+                    </th>
+                    <th>
+                      venta
+                    </th>
+                    <th class="hidden-pocket">
+                      Disponible
+                    </th>
+                    <th class="hidden-pocket">
+                      Medida
+                    </th>
+                    <th>
+					<label class="table-pocket">Opciones</label>
+					</th>
+                  </thead>                  
+					<tbody>
+                    <tr data-toggle="modal" href="#myModal">
+                      <td align="center">
+ 						5
+                       </td>
+                      <td>
+                        Ron Viejo del caldas                        
+                      </td>
+                      <td class="hidden-xs">
+                        Ron Viejo del caldas                        
+                      </td>
+                      <td class="hidden-xs">
+                        Bavaria
+                      </td>
+                      <td class="hidden-xs">
+                        2500
+                      </td>
+                      <td>
+                        4000
+                      </td>
+                      <td class="hidden-pocket">
+                        1100
+                      </td>
+                      <td class="hidden-pocket">
+                        <span class="label label-Pocket"><b>Mililitro</b></span>
+                      </td>                    
+                      <td class="actions">
+                        <div class="action-buttons">
+                          <a class="table-actions pocketMorado" href=""><i class="fa fa-pencil" data-toggle="modal" data-target="#myModal" title="Editar Insumo"></i></a>
+                          <a class="table-actions pocketMorado" href=""><i class="fa fa-trash-o" title="Eliminar Insumo"></i></a>
+                        </div>
+                      </td>
+                    </tr>                    
+                    <tr data-toggle="modal" href="#myModal">
+                      <td align="center">
+ 						55
+                       </td>
+                      <td>
+                        Aguila Light                        
+                      </td>
+                      <td class="hidden-xs">
+                        Aguila
+                      </td>
+                      <td class="hidden-xs">
+                        Bavaria
+                      </td>
+                      <td class="hidden-xs">
+                        2500
+                      </td>
+                      <td>
+                        4000
+                      </td>
+                      <td class="hidden-pocket">
+                        1100
+                      </td>
+                      <td class="hidden-pocket">
+                        <span class="label label-Pocket"><b>Mililitro</b></span>
+                      </td>                     
+                      <td class="actions">
+                        <div class="action-buttons">
+                          <a class="table-actions pocketMorado" href=""><i class="fa fa-pencil" data-toggle="modal" href="#myModal" title="Editar Insumo"></i></a>
+                          <a class="table-actions pocketMorado" href=""><i class="fa fa-trash-o" title="Eliminar Insumo"></i></a>
+                        </div>
+                      </td>
+                    </tr>                    
+                  </tbody>					
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+  <!-- end DataTables Example -->
+</div>
+</div>
+
+<!-- contenido para agregar insumo-->
+<div class="style-selector" >
+    <div class="style-selector-container">
+    <!-- inidio de slider de agregar usuario -->
+	<div class="row">
+		  <div class="heading">
+			<form method="post" action="" class="login-form">
+			<!-- inicio de añadir insumo-->          
+				<div class="row">
+					<div class="col-md-4">
+								<!-- Slider-->
+									<div id="myCarousel" class="carousel slide" data-ride="carousel">
+										<!-- Carousel indicators -->
+										<ol class="carousel-indicators">
+											<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+											<li data-target="#myCarousel" data-slide-to="1"></li>
+											<li data-target="#myCarousel" data-slide-to="2"></li>
+										</ol>   
+										<!-- Wrapper for carousel items -->
+										<div class="carousel-inner">
+											<div class="item active">
+												<img src="assets-Internas/images/slider-Inventario/image-iso3.png" alt="First Slide">
+											</div>
+											<div class="item">
+												<img src="assets-Internas/images/slider-Inventario/image-iso4.png" alt="Second Slide">
+											</div>
+											<div class="item">
+												<img src="assets-Internas/images/slider-Inventario/image-iso5.png" alt="Third Slide">
+											</div>
+										</div>
+										<!-- Carousel controls -->
+										<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+											<span class="glyphicon glyphicon-chevron-left"></span>
+										</a>
+										<a class="carousel-control right" href="#myCarousel" data-slide="next">
+											<span class="glyphicon glyphicon-chevron-right"></span>
+										</a>
+									</div>					  
+								  <!-- Fin del Slider-->
+								</div>
+					<div class="col-md-4">
+								 <!-- Input de personal -->
+								<div class="input-container" style="margin-top: 0px">
+									<i class="fa fa-braille"></i>
+									<input type="text" class="input" name="nombre" placeholder="Cantidad"/>
+								</div>						
+								<div class="input-container">
+									<i class="fa fa-book"></i>
+									<input type="text" class="input" name="nombre" placeholder="Nombre del Producto"/>
+								</div>
+								<div class="input-container">
+									<i class="fa fa-tags"></i>
+									<input type="text" class="input" name="nombre" placeholder="Marca"/>
+								</div>
+								<div class="input-container">
+									<i class="fa fa-500px"></i>					
+								<select class="select" id="sexo" name="provedor" required="">
+									<option value="Masculino">Masculino</option>
+									<option value="Femenino">Femenino</option>
+									<option value="Otro">Otro</option>
+								</select>
+								</div>						
+								<div class="input-container">
+									<i class="fa fa-money"></i>
+									<input type="text" class="input" name="nombre" placeholder="Costo"/>
+								</div>					
+								<div class="input-container">
+									<i class="fa fa-handshake-o"></i>
+									<input type="text" class="input" name="nombre" placeholder="Valor Venta Publico"/>
+								</div>						
+							  </div>
+					<div class="col-md-4">
+								<div class="input-container" style="margin-top: 0px">
+									<i class="fa fa-stack-overflow"></i>
+									<input type="text" class="input" name="nombre" placeholder="Contenido"/>
+								</div>
+								<div class="input-container">
+									<i class="fa fa-eyedropper"></i>					
+								<select class="select" id="sexo" name="provedor" required="">
+									<option value="Masculino">Masculino</option>
+									<option value="Femenino">Femenino</option>
+									<option value="Otro">Otro</option>
+								</select>
+								</div>					
+								  <br>
+								  <p class="lead" style="margin-bottom: 10px;">Añade tu Producto a <span class="text-success">Mi Carta</span></p>
+								  <ul class="list-unstyled" style="line-height: 1.5">
+									  <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Producto para venta a publico como unidad</li>
+								  </ul>				  
+								<div class="form-group">
+								<label class="checkbox"><input type="checkbox" name="AñadirCat" id="AñadirCat" value="1" onchange="javascript:showContent()" />
+			<span>Añadir Producto</span></label>
+								</div>
+								<div id="categoria" style="display: none;">
+								<div class="input-container">
+									<i class="fa fa-outdent"></i>					
+								<select class="select" id="sexo" name="provedor" required="">
+									<option value="Masculino">Selecionar Categoria</option>
+									<option value="Femenino">Femenino</option>
+									<option value="Otro">Otro</option>
+								</select>
+								</div>
+								<br>
+								</div>
+								  <div class="form-group">
+								  <a id="registrarUsuario" class="btn btn-pocket" style="font-weight: 400;" type="submit">
+									<i class="fa fa-send"></i>Guardar Empleado
+								  </a>
+								</div>
+
+							  </div>
+				</div>
+			<!-- inicio de añadir insumo-->          
+			</form>
+	</div>
+    <!-- fin de slider de agregar usuario -->
+    <div class="style-toggle closed">
+    	<span aria-hidden="true" class="pocketMorado fa fa-fw fa-plus-circle"></span>
+    </div>
+    </div>
+</div> 
+</div>
+<!-- contenido para agregar insumo-->
+	  
+<!-- Inicio del Modal para modificar empleado-->
+<div id="myModal" class="modal fade" role="dialog">
+		<div class=" modal-body">
+        	<div class="col-lg-12" style="background-color:#FFFFFF">
+            	<div class="modal-header">
+                	<button aria-hidden="true" class=" close " data-dismiss="modal" type="button">&times;</button>
+                    <h4 class="modal-title text-center">Editar Empleado</h4>
+                </div>
+				<!-- inicio contenido editable empleado-->
+                <div class="modal-body">
+				<div class="modal-content">
+					<div class="modal-body">
+						<!-- contenido modal editar insumo -->
+						<div class="row">
+							<div class="heading">
+							<form method="post" action="" class="login-form">
+								<!-- inicio de añadir insumo-->          
+								<div class="row">
+									<div class="col-md-4">
+									<!-- Slider-->
+									<div id="myCarousel" class="carousel slide" data-ride="carousel">
+									<!-- Carousel indicators -->
+									<ol class="carousel-indicators">
+									<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+									<li data-target="#myCarousel" data-slide-to="1"></li>
+									<li data-target="#myCarousel" data-slide-to="2"></li>
+									</ol>   
+									<!-- Wrapper for carousel items -->
+									<div class="carousel-inner">
+									<div class="item active">
+									<img src="assets-Internas/images/slider-Inventario/image-iso3.png" alt="First Slide">
+									</div>
+									<div class="item">
+									<img src="assets-Internas/images/slider-Inventario/image-iso4.png" alt="Second Slide">
+									</div>
+									<div class="item">
+									<img src="assets-Internas/images/slider-Inventario/image-iso5.png" alt="Third Slide">
+									</div>
+									</div>
+									<!-- Carousel controls -->
+									<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+									</a>
+									<a class="carousel-control right" href="#myCarousel" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+									</a>
+									</div>					  
+									<!-- Fin del Slider-->
+									</div>
+									<div class="col-md-4">
+																			 <!-- Input de personal -->
+																			<div class="input-container" style="margin-top: 0px">
+																				<i class="fa fa-braille"></i>
+																				<input type="text" class="input" name="nombre" placeholder="Cantidad"/>
+																			</div>						
+																			<div class="input-container">
+																				<i class="fa fa-book"></i>
+																				<input type="text" class="input" name="nombre" placeholder="Nombre del Producto"/>
+																			</div>
+																			<div class="input-container">
+																				<i class="fa fa-tags"></i>
+																				<input type="text" class="input" name="nombre" placeholder="Marca"/>
+																			</div>
+																			<div class="input-container">
+																				<i class="fa fa-500px"></i>					
+																			<select class="select" id="sexo" name="provedor" required="">
+																				<option value="Masculino">Masculino</option>
+																				<option value="Femenino">Femenino</option>
+																				<option value="Otro">Otro</option>
+																			</select>
+																			</div>						
+																			<div class="input-container">
+																				<i class="fa fa-money"></i>
+																				<input type="text" class="input" name="nombre" placeholder="Costo"/>
+																			</div>					
+																			<div class="input-container">
+																				<i class="fa fa-handshake-o"></i>
+																				<input type="text" class="input" name="nombre" placeholder="Valor Venta Publico"/>
+																			</div>						
+																		  </div>
+									<div class="col-md-4">
+																			<div class="input-container" style="margin-top: 0px">
+																				<i class="fa fa-stack-overflow"></i>
+																				<input type="text" class="input" name="nombre" placeholder="Contenido"/>
+																			</div>
+																			<div class="input-container">
+																				<i class="fa fa-eyedropper"></i>					
+																			<select class="select" id="sexo" name="provedor" required="">
+																				<option value="Masculino">Masculino</option>
+																				<option value="Femenino">Femenino</option>
+																				<option value="Otro">Otro</option>
+																			</select>
+																			</div>					
+																			  <br>
+																			  <p class="lead" style="margin-bottom: 10px;">Añade tu Producto a <span class="text-success">Mi Carta</span></p>
+																			  <ul class="list-unstyled" style="line-height: 1.5">
+																				  <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Producto para venta a publico como unidad</li>
+																			  </ul>				  
+																			<div class="form-group">
+																			<label class="checkbox"><input type="checkbox" name="AñadirCat2" id="AñadirCat2" value="1" onchange="javascript:showContent()" />
+														<span>Añadir Producto</span></label>
+																			</div>
+																			<div id="categoria2" style="display: none;">
+																			<div class="input-container">
+																				<i class="fa fa-outdent"></i>					
+																			<select class="select" id="sexo" name="provedor" required="">
+																				<option value="Masculino">Selecionar Categoria</option>
+																				<option value="Femenino">Femenino</option>
+																				<option value="Otro">Otro</option>
+																			</select>
+																			</div>
+																			<br>
+																			</div>
+																			  <div class="form-group">
+																			  <a id="registrarUsuario" class="btn btn-pocket" style="font-weight: 400;" type="submit">
+																				<i class="fa fa-send"></i>Guardar Empleado
+																			  </a>
+																			</div>
+
+																		  </div>
+								</div>
+								<!-- inicio de añadir insumo-->          
+							</form>
+							</div>
+							<!-- fin de slider de agregar usuario -->
+						</div>
+						<!-- contenido modal editar insumo -->										  
+					</div>
+				</div>
+  				</div>  			
+            </div>
+        </div>                  
+    </div>                
+<!-- Fin del Modal para modificar empleado-->	
+
+<!--scrip para modal-->
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#myModal").on('show.bs.modal', function(event){
+        // Get button that triggered the modal
+        var button = $(event.relatedTarget);
+        // Extract value from data-* attributes
+        var titleData = button.data('title');
+        $(this).find('.modal-title').text(titleData + ' Form');
+    });
+});
+</script>
+<!-- script para añadir insumo-->	  
+<script>
+$(document).ready(function(){
+    // Activate Carousel
+    $("#myCarousel").carousel();
+    
+    // Enable Carousel Indicators
+    $(".item1").click(function(){
+        $("#myCarousel").carousel(0);
+    });
+    $(".item2").click(function(){
+        $("#myCarousel").carousel(1);
+    });
+    $(".item3").click(function(){
+        $("#myCarousel").carousel(2);
+    });
+    $(".item4").click(function(){
+        $("#myCarousel").carousel(3);
+    });
+    
+    // Enable Carousel Controls
+    $(".left").click(function(){
+        $("#myCarousel").carousel("prev");
+    });
+    $(".right").click(function(){
+        $("#myCarousel").carousel("next");
+    });
+});
+</script>
+<script type="text/javascript">
+    function showContent() {
+        element = document.getElementById("categoria");
+        check = document.getElementById("AñadirCat");
+        if (check.checked) {
+            element.style.display='block';
+        }
+        else {
+            element.style.display='none';
+        }
+    }
+</script>	  
+<script type="text/javascript">
+    function showContent() {
+        element = document.getElementById("categoria2");
+        check = document.getElementById("AñadirCat2");
+        if (check.checked) {
+            element.style.display='block';
+        }
+        else {
+            element.style.display='none';
+        }
+    }
+</script>	
+	  
+  </body>
+</html>
