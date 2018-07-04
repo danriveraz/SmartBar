@@ -3,8 +3,8 @@
 
 <!-- Nav tabs nombre de la lista -->
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#yorkminster" aria-controls="home" role="tab" data-toggle="tab" class="pocketMorado">Contenido del Producto</a></li>
-            <li role="presentation"><a class="pocketMorado" href="#yorkcastle" aria-controls="profile" role="tab" data-toggle="tab">Preparación</a></li>
+            <li role="presentation" class="active"><a href="#yorkminster" aria-controls="home" role="tab" data-toggle="tab" class="pocketMorado" style="color: #111; font-weight: 600;">Contenido</a></li>
+            <li role="presentation"><a class="pocketMorado" href="#yorkcastle" aria-controls="profile" role="tab" data-toggle="tab"  style="color: #111; font-weight: 600;">Preparación</a></li>
             <!--<li role="presentation"><a href="#yorkmuseumgardens" aria-controls="profile" role="tab" data-toggle="tab">York Museum Gardens</a></li>-->
         </ul>
         <!-- Tab panes -->
@@ -22,11 +22,49 @@
           <!-- end Condensed Table -->
         <div class="row">
           <!-- Hover Row Table -->
-          <div class="col-lg-3">
-          <div  class="text-center"><a class="btn btn-bitbucket" href="{{route('producto.index')}}"><i class="fa fa-arrow-left"></i>Ir Atras</a></div>
+          <div class="col-lg-4 text-center">
+          <div class="bs-example">
+                <div class="widget-content fileupload fileupload-new" data-provides="fileupload" style="margin-top: 20%;">
+                  <div class="gallery-container fileupload-new img-thumbnail">
+                    <div id="imgActual" class="gallery-item filter1" rel="" style="border-radius: 50%; width: 150px; height: 150px;">
+                      @if($producto->imagen!='')
+                        {!! Html::image('images/productos/'.$producto->imagen,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo', 'id' => 'imagenPerfilUsuarioCircular')) !!}
+                        <!-- clase circular -> , array('class' => 'img-responsive img-circle user-photo') -->
+                      @else
+                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" class="img-responsive img-circle user-photo">
+                      @endif
+                      <div class="actions">
+                        <a  id="modalImagen" href="{{asset('images/productos/'.$producto->imagen) }}" title="Imagen negocio">
+                          <img src="images/productos/{{$producto->imagen}}" hidden>
+                          <i class="fa fa-search-plus"></i>
+                        </a>
+                        <a onclick="$('#imagenPerfil').click()">
+                          <i class="fa fa-pencil"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="imgReemplazo" onchange="funcioncita();" class="gallery-item fileupload-preview fileupload-exists img-thumbnail" style="border-radius: 50%; width: 150px; height: 150px; background: #ffffff;" >
+                    
+                  </div>
+                  <div hidden>
+                    <span class=" btn-file" id="subirImagenPerfil">
+                      <span class="fileupload-new"><i class="fa fa-pencil"></i></span>
+                      <span class="fileupload-exists"><i class="fa fa-search-plus"></i></span>
+                      <input type="file" value="{{$producto->imagen}}" class="form-control" name="imagenPerfil"  id="imagenPerfil">
+                    </span>
+                  </div>
+                </div>
+                  <!-- <img src="images/productos/{{$producto->imagen}}" alt="{{$producto->nombre}}"> -->
+                </div>
+                <div class="text-center">
+      <button class="btn btn-pocket" type="submit" onclick="enviarDatos({{$producto->id}})">
+          <i class="fa fa-send"></i>Guardar
+        </button>
+    </div>
           </div>
           <!-- end Hover Row Table --><!-- Responsive Table -->
-          <div class="col-lg-6">
+          <div class="col-lg-6" style="margin-left: -5%;">
         <div class=" text-center page-title">
 
         <div class="row">
@@ -34,8 +72,8 @@
             <div>
               <h2>
                 <div class="login-form">
-                  <i class="fa fa-pencil" style="font-size: 70%;"></i>
-                  <input class="Titulo-css2" id="nombre" placeholder="Ingrese Nombre" value="{{$producto->nombre}}" style="text-align: center; width: 50%;" />
+                  <i class="fa fa-pencil" style="font-size: 70%; margin-top: 12%"></i>
+                  <input class="Titulo-css2" id="nombre" placeholder="Nombre" value="{{$producto->nombre}}" style="text-align: center; width: 50%; font-weight: 600" />
                 </div>
               </h2>
             </div> 
@@ -83,7 +121,7 @@
                 @foreach($contienen as $contiene)
                 <tr id="fila{{$contiene->idInsumo}}">
                   <td style="display: none;">{{$contiene->idInsumo}}</td>
-                  <td>
+                  <td style="color: #111; font-weight: 600">
                     {{$insumos[$contiene->idInsumo]}}
                   </td>
                   <td class="text-center">
@@ -109,7 +147,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> 
   </div>      
     <div class="container main-content">
       <div class="row"> 
@@ -170,12 +208,7 @@
           </div> 
         </div> 
       </div> 
-      <br>
-      <div class="text-center">
-        <button class="btn btn-pocket" type="submit" onclick="enviarDatos({{$producto->id}})">
-            <i class="fa fa-send"></i>Guardar Producto
-          </button>
-        </div>                                 
+      <br>                                
       </div> 
     </div>        
     <div role="tabpanel" class="tab-pane" id="yorkcastle">            
@@ -184,50 +217,26 @@
         <div class="row"> 
         <!-- fin de la tabla de selecion de productos-->      
           <div class="col-lg-12">
-            <div class="col-lg-2">                 
-              <div class="bs-example">
-                <div class="widget-content fileupload fileupload-new" data-provides="fileupload" style="margin-top: 20%;">
-                  <div class="gallery-container fileupload-new img-thumbnail">
-                    <div id="imgActual" class="gallery-item filter1" rel="" style="border-radius: 50%; width: 150px; height: 150px;">
-                      @if($producto->imagen!='')
-                        {!! Html::image('images/productos/'.$producto->imagen,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo', 'id' => 'imagenPerfilUsuarioCircular')) !!}
-                        <!-- clase circular -> , array('class' => 'img-responsive img-circle user-photo') -->
-                      @else
-                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" class="img-responsive img-circle user-photo">
-                      @endif
-                      <div class="actions">
-                        <a  id="modalImagen" href="{{asset('images/productos/'.$producto->imagen) }}" title="Imagen negocio">
-                          <img src="images/productos/{{$producto->imagen}}" hidden>
-                          <i class="fa fa-search-plus"></i>
-                        </a>
-                        <a onclick="$('#imagenPerfil').click()">
-                          <i class="fa fa-pencil"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="imgReemplazo" onchange="funcioncita();" class="gallery-item fileupload-preview fileupload-exists img-thumbnail" style="border-radius: 50%; width: 150px; height: 150px; background: #ffffff;" >
-                    
-                  </div>
-                  <div hidden>
-                    <span class=" btn-file" id="subirImagenPerfil">
-                      <span class="fileupload-new"><i class="fa fa-pencil"></i></span>
-                      <span class="fileupload-exists"><i class="fa fa-search-plus"></i></span>
-                      <input type="file" value="{{$producto->imagen}}" class="form-control" name="imagenPerfil"  id="imagenPerfil">
-                    </span>
-                  </div>
-                </div>
-                  <!-- <img src="images/productos/{{$producto->imagen}}" alt="{{$producto->nombre}}"> -->
-                </div>
-                
-         <!--<div class="text-center"><a class="btn btn-bitbucket" onclick=""><i class="fa fa-send"></i>Guardar Producto</a></div>-->
-                                            
-              </div> <!-- fin del modal 1-->
-              
-              <div class="col-lg-10">
+              <div class="col-lg-12">
               <div class="widget-content padded">
-                <textarea class="form-control" id="descripcion" style="height: 80px; resize: none;"  maxlength="250"placeholder="Descripci&oacute;n del producto">{{$producto->descripcion}}</textarea><br>
-                <textarea class="form-control" id="receta" style="height: 150px ; resize: none;" maxlength="500" placeholder="Preparaci&oacute;n del producto">{{$producto->receta}}</textarea><br>
+                @if($producto->descripcion != "")
+                <label style="color: #111; font-weight: 600;">Descripción</label>
+                <textarea class="form-control" id="descripcion" style="height: 80px; resize: none;"  maxlength="250"placeholder="Descripci&oacute;n del producto">{{$producto->descripcion}}</textarea>
+                @else
+                <textarea class="form-control" id="descripcion" style="height: 80px; resize: none;"  maxlength="250"placeholder="Descripci&oacute;n del producto"></textarea>
+                @endif
+
+                <br>
+
+                @if($producto->receta != "")
+                <label style="color: #111; font-weight: 600;">Receta</label>
+                <textarea class="form-control" id="receta" style="height: 150px ; resize: none;" maxlength="500" placeholder="Preparaci&oacute;n del producto">{{$producto->receta}}</textarea>
+                @else
+                <textarea class="form-control" id="receta" style="height: 150px ; resize: none;" maxlength="500" placeholder="Preparaci&oacute;n del producto"></textarea>
+                @endif
+
+                <br>
+
                 <input type="text" name="copa" class="form-control" id="copa" placeholder="Tipo de copa o vaso" value="{{$producto->vaso}}">
                 <!--<div id="summernote">
                   {{$producto->receta}}
@@ -312,7 +321,7 @@
           });
         }
       else{
-        var fila = '<tr id="fila'+insumo.id+'"><td style="display: none;">'+insumo.id+'</td><td>'+insumo.nombre+'</td><td class="text-center">'+cantidad+'</td><td class="text-center"><span class="label label-Pocket"><b>'+medidaInsumo+'</b></span></td><td><div class="action-buttons"><a class="table-actions pocketMorado"><i class="fa fa-window-close" title="Cancelar" onclick="eliminarInsumo({{$producto->id}},'+insumo.id+')"></i></a></div></td></tr>';
+        var fila = '<tr id="fila'+insumo.id+'"><td style="display: none;">'+insumo.id+'</td><td style="color: #111; font-weight: 600;">'+insumo.nombre+'</td><td class="text-center">'+cantidad+'</td><td class="text-center"><span class="label label-Pocket"><b>'+medidaInsumo+'</b></span></td><td><div class="action-buttons"><a class="table-actions pocketMorado"><i class="fa fa-window-close" title="Cancelar" onclick="eliminarInsumo({{$producto->id}},'+insumo.id+')"></i></a></div></td></tr>';
         $("#insumoAgregados").append(fila);
       }
       $("#"+insumo.id).val('');
