@@ -115,7 +115,16 @@ body {
     background: url(../images/bg-5.png) repeat 0 0; }
 
 .main-content {
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.contec-Pocket {
+  width: 88%;
+  margin-right: auto;
+  margin-left: auto;
+}
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1020,7 +1029,7 @@ body.sidebar-nav {
       width: 0;
       height: 0;
       position: absolute;
-      right: 12px;
+      right: 5px;
       border-right: 5px solid transparent;
       border-left: 5px solid transparent; }
     .dataTable th.sorting:after {
@@ -1038,7 +1047,7 @@ body.sidebar-nav {
       width: 0;
       height: 0;
       position: absolute;
-      right: 12px;
+      right: 5px;
       top: 18px;
       border-bottom: 5px solid #2f0033 !important;
       border-right: 5px solid transparent;
@@ -1072,12 +1081,12 @@ th:active {
   .table th {
     font-size: 14px; }
   .table td {
-    font-size: 14px; }
+    font-size: 13px; }
     .table td.actions {
-      width: 90px;
+      /*width: 90px;*/
       padding-right: 0; }
       .table td.actions .action-buttons {
-        width: 80px;
+        /*width: 80px;*/
         margin: 0; }
         .table td.actions .action-buttons a:last-child {
           margin-right: 0; }
@@ -1809,7 +1818,7 @@ border-radius: 200px 200px 200px 200px;
   height: 150px;
   margin: 10px;
   position: relative;
-  background:#2d0038;
+  background:#E7E7E7;
  }
   .gallery-item img {
     width: 100%;
@@ -1848,11 +1857,11 @@ border-radius: 200px 200px 200px 200px;
         background: white;
         color: #333333; }
       .gallery-item .actions i.fa-pencil {
-        font-size: 24px;
+        /*font-size: 24px;
         width: 50px;
         height: 50px;
         line-height: 48px;
-        margin-top: -7px; }
+        margin-top: -7px;*/ }
   .gallery-item:hover img {
     opacity: 0.4;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)"; }
@@ -1886,8 +1895,8 @@ border-radius: 200px 200px 200px 200px;
   z-index: 5;
   display: inline-block;
   height: 40px;
-  font-size: 40px;
-  margin-top: -20px;
+  font-size: 20px;
+  /*margin-top: -20px;*/
   margin-left: -10px; }
 
 .carousel-control .fa-angle-right {
@@ -3760,6 +3769,35 @@ body.fourofour {
 	.social-wrapper #social-container .profile-details {margin-left: 45%;}
 }
 
+/*----------------------------------------------------------------------------------- */
+/*  Mobile Styles table*/
+/*----------------------------------------------------------------------------------- */
+@media (max-width: 800px) {
+	.dataTable th.sorting::after, .dataTable th.sorting::before{display: none}
+	.dataTable th.sorting_asc::after {display: none}
+}
+
+@media (max-width: 508px) {.dataTables_filter {display: none;}}
+
+@media (max-width: 742px) {.contec-Pocket {width: 100%;}}
+
+@media (max-width: 649px) {	.table-pocket {display: none;} .MinSpacing {width: 40px!important;}}
+
+@media (max-width: 454px) {.dataTable th.hidden-pocket {display: none;}.dataTable td.hidden-pocket {display: none;}}
+
+
+
+@media (max-width: 1200px) {
+  .containerTable {
+    max-width: 1170px;
+  }
+}
+
+@media (max-width: 900px) {
+.table td {
+    font-size: 12px;
+}
+}
 /*
 @media (max-width: 549px) {
   html.nav-open {

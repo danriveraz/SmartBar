@@ -7,7 +7,7 @@
     <div class="col-lg-12">
       <div class="widget-container fluid-height clearfix">
         <div class="widget-content padded clearfix">
-          <table class="table table-bordered table-striped" id="dataTable1">
+          <table class="table table-bordered table-striped" id="example">
             <thead>
               <th width="10%">Nombre</th>
               <th width="10%">Precio</th>
@@ -38,9 +38,9 @@
                       </a>
                     </div>
                   </td>
-                  <div class="modal fade" id="modalReceta{{$producto->id}}">
+                  <div class="modal fade" id="modalReceta{{$producto->id}}" role="dialog">
                     <div class="dialog1 modal-dialog">
-                      <div class="col-lg-12" style="background-color:#FFFFFF">
+                      <div class="modal-content" style="background-color:#FFFFFF">
                         <div class="modal-header">
                           <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
                           <h4 class="modal-title text-center">Preparación</h4>
@@ -108,6 +108,21 @@
 
   $(document).ready(function(){
       cambiarCurrent("#miCarta");
+      $('#example').DataTable( {
+          dom: 'lBfrtip',
+          buttons: [
+              {
+                  extend:    'excelHtml5',
+                  text:      '<i class="fa fa-file-excel-o"></i>',
+                  titleAttr: 'Descarga Excel'
+              },
+              {
+                  extend:    'pdfHtml5',
+                  text:      '<i class="fa fa-file-pdf-o"></i>',
+                  titleAttr: 'Descarga PDF'
+              }
+          ]
+      } );
     });
   function cambiarCurrent(idInput) {
     $(".current").removeClass("current");
@@ -199,7 +214,7 @@
   }
   $(".seleccionar").click(function(){
     var idElegido = $(this).attr("id");
-    var palabra = "#editModal";
+    var palabra = "#modalReceta";
     var id = palabra.concat(idElegido);
     $(id).modal();
 });

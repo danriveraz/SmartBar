@@ -154,26 +154,22 @@
 
 <!--Inicio modal ver más datos-->
 @foreach($usuarios as $usuario)
-<div class="modal fade" id="myModal{{$usuario->id}}">
-  <div class="modal-body">
-    <div class="col-lg-12" style="background-color:#FFFFFF">
+<div class="modal fade" id="myModal{{$usuario->id}}" role="dialog">
+  <div class="modal-body modal-lg">
+    <div class="modal-content" style="background-color:#FFFFFF">
       <div class="modal-header">
           <button aria-hidden="true" class=" close " data-dismiss="modal" type="button">&times;</button>
           <h4 class="modal-title text-center"> Editar Información Del Empleado</h4>
       </div>
       <div class="modal-body">
         <div class="row">
-        <div class="heading">
-          <i class=" pocketMorado fa fa-shield"></i>
-          &nbsp; Editar Empleado      
-        </div>
           <!-- Login Screen -->
           {!! Form::open(['route' => ['Auth.usuario.update',$usuario], 'method' => 'PUT','enctype' => 'multipart/form-data', 'class' => 'login-form']) !!}
           {{ csrf_field() }}
             <div class="row">
               <div class="col-md-4">
-                    <div class="widget-content fileupload fileupload-new" data-provides="fileupload">
-                      <div class="gallery-container fileupload-new img-thumbnail" style="margin-left: 15%">
+                    <div class="widget-content fileupload fileupload-new" data-provides="fileupload" style="text-align: center;">
+                      <div class="gallery-container fileupload-new img-thumbnail">
                         <div class="gallery-item  img-thumbnail" style="line-height: 150px; border-radius: 50%; width: 150px; height: 150px;">
                           {!! Html::image('images/admins/'.$usuario->imagenPerfil,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo', 'id' => 'imagenPerfilUsuarioCircular')) !!}
                           <div class="actions">
@@ -431,17 +427,14 @@
     <div class="row">
       <div class="">
         <div class="">
-          <div class="heading">
-            <i class=" pocketMorado fa fa-shield"></i>&nbsp;Nuevo Empleado
-          </div>
           <div class="widget-content padded">
             <form id="formslider" class="login-form">
             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
             <fieldset>
             <div class="row">
               <div class="col-md-4">
-                    <div class="widget-content fileupload fileupload-new" data-provides="fileupload">
-                      <div class="gallery-container fileupload-new img-thumbnail" style="margin-left: 15%">
+                    <div class="widget-content fileupload fileupload-new" data-provides="fileupload" style="text-align: center;">
+                      <div class="gallery-container fileupload-new img-thumbnail">
                         <div class="gallery-item filter1" rel="" style="border-radius: 50%; width: 150px; height: 150px;">
                           <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" style="border-radius: 50%; width: 150px; height: 150px;">
                           <div class="actions">
@@ -458,7 +451,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="gallery-item fileupload-preview fileupload-exists img-thumbnail" >
+                      <div class="gallery-item fileupload-preview fileupload-exists img-thumbnail" style="border-radius: 50%; width: 150px; height: 150px;">
                       </div>
                       <div hidden>
                         <span class=" btn-file" id="subirImagen">

@@ -9,7 +9,7 @@
 		  <div class="col-lg-12">
 			<div class="widget-container fluid-height clearfix">
 			  <div class="widget-content padded clearfix">
-				<table class="table table-bordered table-striped" id="dataTable1">
+				<table class="table table-bordered table-striped" id="example">
 				  <thead>
 					<th  width="7%" align="center">
 					  Und
@@ -17,13 +17,13 @@
 					<th width="15%">
 					  Nombre
 					</th>
-					<th width="15%">
+					<th width="15%" class="hidden-xs">
 					  Marca
 					</th>
-					<th width="15%">
+					<th width="15%" class="hidden-xs">
 					  Proveedor
 					</th>
-					<th width="10%">
+					<th width="10%" class="hidden-xs">
 					  Compra
 					</th>
 					<th width="10%">
@@ -35,7 +35,7 @@
 					<th width="10%">
 					  Medida
 					</th>
-				   <th width="5%">
+				   <th width="5%" class="hidden-xs">
 					  Opciones
 					</th>
 				  </thead>
@@ -44,9 +44,9 @@
 		                <tr id="{{$insumo->id}}">
 		                  <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->cantidadUnidad}}</td>
 		                  <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->nombre}}</td>
-		                  <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->marca}}</td>
-		                  <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->proveedor->nombre}}</td>
-		                  <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->valorCompra}}</td>
+		                  <td id="{{$insumo->id}}" class="seleccionar hidden-xs">{{$insumo->marca}}</td>
+		                  <td id="{{$insumo->id}}" class="seleccionar hidden-xs">{{$insumo->proveedor->nombre}}</td>
+		                  <td id="{{$insumo->id}}" class="seleccionar hidden-xs">{{$insumo->valorCompra}}</td>
 		                  <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->precioUnidad}}</td>
 		                  <td id="{{$insumo->id}}" class="seleccionar">{{number_format($insumo->cantidadMedida,2)}}</td>
 		                  <td id="{{$insumo->id}}" class="seleccionar">
@@ -61,66 +61,76 @@
 		                </tr>
 
 		              <!--Modal para editar -->
-		              <div class="modal fade" id="editModal{{$insumo->id}}">
-		                <div class=" modal-body">
-		                  <div class="col-lg-12" style="background-color:#FFFFFF">
+		              <div class="modal fade" id="editModal{{$insumo->id}}" role="dialog">
+		                <div class="modal-dialog modal-lg">
+		                  <div class="modal-content" style="background-color: #FFFFFF">
 		                    <div class="modal-header">
-		                      <button aria-hidden="true" class=" close " data-dismiss="modal" type="button">&times;</button>
-		                       <h4 class="modal-title text-center">
-		                         Editar Insumo
-		                       </h4>
-		                      </div>
+		                    	<button aria-hidden="true" class=" close " data-dismiss="modal" type="button">&times;</button>
+		                       	<h4 class="modal-title text-center">
+		                        	Editar Insumo
+		                       	</h4>
+		                    </div>
 		                    <div class="modal-body">
 		                    <!-- Login Screen -->
 		                    <div class="row">
-		                      <div class="widget-content padded">
+		                      <div class="login-form">
 		                        {!! Form::open() !!}
-		                          <fieldset>
 		                            <div class="row">
 		                              <div class="col-md-4">
 		                                <div class="bs-example">
-		                                  	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		                                  	<div id="myCarousel{{$insumo->id}}" class="carousel slide" data-ride="carousel">
 		                                    <!-- Carousel indicators -->
 			                                    <ol class="carousel-indicators">
-			                                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			                                        <li data-target="#myCarousel" data-slide-to="1"></li>
+			                                        <li data-target="#myCarousel{{$insumo->id}}" data-slide-to="0" class="active"></li>
+			                                        <li data-target="#myCarousel{{$insumo->id}}" data-slide-to="1"></li>
 			                                    </ol>   
 			                                    <!-- Wrapper for carousel items -->
 			                                    <div class="carousel-inner">
 			                                        <div class="item active">
-														<img src="images/slider-admin/0.png" alt="First Slide">
+														<img src="images/slider-admin/0.png" alt="First Slide" style="width: 50%;">
 													</div>
 													<div class="item">
-														<img src="images/slider-admin/2.png" alt="Second Slide">
+														<img src="images/slider-admin/2.png" alt="Second Slide"  style="width: 50%;">
 													</div>
 			                                    </div>
+			                                    <!-- Carousel controls -->
+												<a class="carousel-control left" href="#myCarousel{{$insumo->id}}" data-slide="prev">
+													<span class="glyphicon glyphicon-chevron-left"></span>
+												</a>
+												<a class="carousel-control right" href="#myCarousel{{$insumo->id}}" data-slide="next">
+													<span class="glyphicon glyphicon-chevron-right"></span>
+												</a>
 		                                    </div>
 		                                  </div>
 		                                </div>
 		                                <div class="col-md-4 ">
 		                                  <div class=" bs-example">
 		                                    <div id="divcantidad{{$insumo->id}}" class="form-group">
-		                                      <div class="input-group">
-		                                        <span id="icoCantidad" class="input-group-addon"><i class="fa fa-superscript"></i></span>
-		                                        <input type="number" id="unidades{{$insumo->id}}" name="unidades{{$insumo->id}}" min="0" placeholder="Cantidad" class="form-control" value="{{$insumo->cantidadUnidad}}"/>
+		                                      <div class="input-container">
+		                                        <i class="fa fa-braille"></i>
+		                                        @if($insumo->cantidadUnidad == 0)
+		                                        <input type="number" id="unidades{{$insumo->id}}" name="unidades{{$insumo->id}}" min="0" placeholder="Cantidad" class="input"/>
+		                                        @else
+		                                        <input type="number" id="unidades{{$insumo->id}}" name="unidades{{$insumo->id}}" min="0" placeholder="Cantidad" class="input" value="{{$insumo->cantidadUnidad}}"/>
+		                                        @endif
 		                                      </div>
 		                                    </div>
 		                                    <div class="form-group">
-		                                      <div class="input-group">
-		                                        <span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
-		                                        <input type="text" id="nombre{{$insumo->id}}" name="nombre" placeholder="Nombre" class="form-control" value="{{$insumo->nombre}}" required="" />
+		                                      <div class="input-container">
+		                                        <i class="fa fa-book"></i>
+		                                        <input type="text" id="nombre{{$insumo->id}}" name="nombre" placeholder="Nombre" class="input" value="{{$insumo->nombre}}" required="" />
 		                                      </div>
 		                                    </div>
 		                                    <div class="form-group">
-		                                      <div class="input-group">
-		                                        <span class="input-group-addon"><i class="fa fa-commenting-o"></i></span>
-		                                        <input type="text" id="marca{{$insumo->id}}" name="marca" placeholder="Marca" class="form-control" value="{{$insumo->marca}}"/>
+		                                      <div class="input-container">
+		                                        <i class="fa fa-tags"></i>
+		                                        <input type="text" id="marca{{$insumo->id}}" name="marca" placeholder="Marca" class="input" value="{{$insumo->marca}}"/>
 		                                      </div>
 		                                    </div>
 		                                    <div class="form-group">
-		                                      <div class="input-group">
-		                                        <span class="input-group-addon"><i class="fa fa-handshake-o"></i></span>
-												<select id="proveedores{{$insumo->id}}" class="select2able">
+		                                      <div class="input-container">
+		                                        <i class="fa fa-500px"></i>
+												<select id="proveedores{{$insumo->id}}" class="select" style="width: 90%;">
 													@foreach($proveedores as $prov)
 														@if($insumo->proveedor->id == $prov->id)
 															<option value="{{$prov->id}}" selected="selected">{{$prov->nombre}}</option>
@@ -131,63 +141,77 @@
 												</select>
 		                                      </div>
 		                                    </div>
+		                                    <div class="form-group">
+		                                      <div class="input-container">
+		                                        <i class="fa fa-money"></i>
+		                                        @if($insumo->valorCompra == 0)
+		                                        <input type="number" id="compra{{$insumo->id}}" step="any" min="0" placeholder="Costo" name="valorCompra" class="input" onkeyup="autocompletar(event,this,2)"/>
+		                                        @else
+		                                        <input type="number" id="compra{{$insumo->id}}" step="any" min="0" placeholder="Costo" name="valorCompra" class="input" value="{{$insumo->valorCompra}}" onkeyup="autocompletar(event,this,2)"/>
+		                                        @endif
+		                                      </div>
+		                                    </div>
+		                                    <div class="form-group">
+		                                      <div class="input-container">
+		                                        <i class="fa fa-handshake-o"></i>
+		                                        @if($insumo->precioUnidad == 0)
+		                                        <input type="number" id="venta{{$insumo->id}}" step="any" min="0" placeholder="Valor venta publico" name="precioUnidad" class="input" onkeyup="autocompletar(event,this,3)"/>
+		                                        @else
+		                                        <input type="number" id="venta{{$insumo->id}}" step="any" min="0" placeholder="Valor venta publico" name="precioUnidad" class="input" value="{{$insumo->precioUnidad}}" onkeyup="autocompletar(event,this,3)"/>
+		                                        @endif
+		                                      </div>
+		                                    </div>
 		                                  </div>
 		                                </div>
 		                                <div class="col-md-4">
 		                                  <div class=" bs-example">
-		                                  	<div class="form-group">
-		                                      <div class="input-group">
-		                                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
-		                                        <input type="number" id="compra{{$insumo->id}}" step="any" min="0" placeholder="Costo" name="valorCompra" class="form-control" value="{{$insumo->valorCompra}}" onkeyup="autocompletar(event,this,2)"/>
-		                                      </div>
+		                                    <div class="form-group">
+		                                    	<div class="input-container">
+		                                        	<i class="fa fa-stack-overflow"></i>
+		                                        	@if($insumo->cantidadMedida == 0)
+		                                        	<input type="number" id="cantMedida{{$insumo->id}}" min="0" step="any" placeholder="Contenido" name="cantidadMedida" class="input" <?php if($insumo->medida == "1") echo'disabled' ?> />
+		                                        	@else
+		                                        	<input type="number" id="cantMedida{{$insumo->id}}" min="0" step="any" placeholder="Contenido" name="cantidadMedida" class="input" value="{{$insumo->cantidadMedida}}" <?php if($insumo->medida == "1") echo'disabled' ?> />
+		                                        	@endif
+		                                      	</div>
 		                                    </div>
 		                                    <div class="form-group">
-		                                      <div class="input-group">
-		                                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
-		                                        <input type="number" id="venta{{$insumo->id}}" step="any" min="0" placeholder="Venta" name="precioUnidad" class="form-control" value="{{$insumo->precioUnidad}}" onkeyup="autocompletar(event,this,3)"/>
-		                                      </div>
-		                                    </div>
-		                                    <div class="form-group">
-		                                      <div class="input-group col-lg-7" style="padding-left: 0px">
-		                                        <span class="input-group-addon"><i class="fa fa-eyedropper"></i></span>
-		                                        <input type="number" id="cantMedida{{$insumo->id}}" min="0" step="any" placeholder="Contenido" name="cantidadMedida" class="form-control" value="{{$insumo->cantidadMedida}}" <?php if($insumo->medida == "1") echo'disabled' ?> />
-		                                      </div>
-		                                      <div class="input-group col-lg-5" style="padding-right: 0px">
-		                                        <span class="input-group-addon"><i class="fa fa-hourglass-half"></i></span>
-		                                        <select name="medida" id="medida{{$insumo->id}}" class="select2able" onchange="editValor(this.value,{{$insumo->id}});"> 
+		                                        <i class="fa fa-eyedropper"></i>
+		                                        <select name="medida" id="medida{{$insumo->id}}" class="select" onchange="editValor(this.value,{{$insumo->id}});"> 
 			                                        <option value="2">Mililitro</option> 
 			                                        <option value="3">Cm3</option>
 			                                        <option value="4">Centilitro</option>
 			                                        <option value="0" <?php if($insumo->medida == "0") echo "selected";?>>Onza</option>
 			                                        <option value="1" <?php if($insumo->medida == "1") echo "selected";?>>Unidad</option>
 		                                        </select>
-		                                      </div>
-		                                    </div>		                                   
-		                                    <div class="form-group text-center">
+		                                    </div>	
+		                                    <br>	       
+		                                    <p class="lead" style="margin-bottom: 10px;">Añade tu Producto a <span class="text-success">Mi Carta</span></p>
+										  	<ul class="list-unstyled" style="line-height: 1.5">
+												<li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Producto para venta a publico como unidad</li>
+										 	 </ul>	                            
+		                                    <div class="form-group" style="margin-left: 5%;">
 	                                    	  <label> 
 			                                      <input type="checkbox" name="tipo" id="stipo{{$insumo->id}}" <?php if($insumo->tipo == "1") echo "checked";?> onchange="showContent({{$insumo->id}})" />
 			                                      <span></span>
 		                                      </label>
 		                                      <label for="tipo" class="control-label"> Añadir a mi carta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 		                                    </div>
-		                                    <div id="scontent{{$insumo->id}}" <?php if($insumo->tipo == 0) echo "hidden";?>>
-		                                      <label for="categorias" class="control-label">Categor&iacute;a</label>
-												<select id="categoria{{$insumo->id}}" class="select2able">
+		                                    <div class="input-container" id="scontent{{$insumo->id}}" <?php if($insumo->tipo == 0) echo "hidden";?>>
+												<select id="categoria{{$insumo->id}}" class="select">
 													@foreach($categorias as $categoria)
 														<option value="{{$categoria->id}}" <?php if($insumo->medida == "0") echo "selected";?>>{{$categoria->nombre}}</option>
 													@endforeach
 												</select>
 		                                    </div>
-		                                    
 		                                  </div>
-		                                  <div class="text-center">
+		                                  <div class="form-group">
 		                                    <button class="btn btn-bitbucket" data-dismiss="modal" onclick="modificar({{$insumo->id}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" ><i class="fa fa-send"></i>
 		                                    Guardar
 		                                    </button>
 		                                  </div>                
 		                                </div> 
 		                              </div>
-		                            </fieldset>
 		                          {!! Form::close() !!} 
 		                        </div>
 		                      </div>
@@ -214,59 +238,76 @@
         <div class="row">
           <div class="">
             <div class="">
-              <div class="heading">
-                <i class="fa fa-shield"></i>&nbsp;Nuevo Producto</div>
               <div class="widget-content padded">
-                {!! Form::open(['method' => 'POST', 'action' => 'InsumoController@store']) !!}
+                {!! Form::open(['method' => 'POST', 'action' => 'InsumoController@store', 'class' => 'login-form']) !!}
                   <fieldset>
                     <div class="row">
                       <div class="col-md-4">
                       	<div class="bs-example">
-                          	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+                          	<div id="myCarousel2" class="carousel slide" data-ride="carousel">
                               <!-- Carousel indicators -->
 	                            <ol class="carousel-indicators">
-									<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-									<li data-target="#myCarousel" data-slide-to="1"></li>
+									<li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+									<li data-target="#myCarousel2" data-slide-to="1"></li>
 								</ol>   
 								<div class="carousel-inner">
 									<div class="item active">
-										<img src="images/slider-admin/0.png" alt="First Slide">
+										<img src="images/slider-admin/0.png" alt="First Slide" style="width: 50%;">
 									</div>
 									<div class="item">
-										<img src="images/slider-admin/2.png" alt="Second Slide">
+										<img src="images/slider-admin/2.png" alt="Second Slide"style="width: 50%;">
 									</div>
 								</div>
+								<!-- Carousel controls -->
+								<a class="carousel-control left" href="#myCarousel2" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+								<a class="carousel-control right" href="#myCarousel2" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
 	                        </div>
                       </div>
                   </div>
                   <div class="col-md-4 ">
                     <div class=" bs-example">
                       <div class="form-group">
-                        <div class="input-group">
-                          <span id="iconCantidad" class="input-group-addon"><i class="fa fa-sort-numeric-asc"></i></span>
-                          <input type="number" min="0" name="cantidadUnidad" id="cantidadUnidad" class="form-control" required placeholder="Cantidad" >
+                        <div class="input-container">
+                          <i class="fa fa-braille"></i>
+                          <input type="number" min="0" name="cantidadUnidad" id="cantidadUnidad" class="input" required placeholder="Cantidad" >
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
-                          <input type="text" name="nombre" class="form-control" placeholder="Nombre" placeholder="Nombre" required="true"/>
+                        <div class="input-container">
+                          <i class="fa fa-book"></i>
+                          <input type="text" name="nombre" class="input" placeholder="Nombre" placeholder="Nombre" required="true"/>
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-tags"></i></span>
-                          <input type="text" name="marca" class="form-control" placeholder="Marca" placeholder="Marca"/>
+                        <div class="input-container">
+                          <i class="fa fa-tags"></i>
+                          <input type="text" name="marca" class="input" placeholder="Marca" placeholder="Marca"/>
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-500px"></i></span>
-                          	<select name="proveedores" class="select2able" placeholder="Proveedor" required="true">
+                        <div class="input-container">
+                          <i class="fa fa-500px"></i>
+                          	<select name="proveedores" class="select" placeholder="Proveedor" required="true" style="width: 90%;">
 								@foreach($proveedores as $prov)
 										<option value="{{$prov->id}}">{{$prov->nombre}}</option>
 								@endforeach
 							</select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-container">
+                          <i class="fa fa-money"></i>
+                          <input type="number" step="any" min="0" name="valorCompra" class="input" required="true" placeholder="Costo" onkeyup="autocompletar(event,this,0)">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-container">
+                          <i class="fa fa-handshake-o"></i>
+                          <input type="number" step="any" min="0" name="precioUnidad" class="input" required="true" placeholder="Valor venta publico" onkeyup="autocompletar(event,this,1)">
                         </div>
                       </div>
                     </div>
@@ -274,57 +315,46 @@
                   <div class="col-md-4">
                     <div class=" bs-example">
                       <div class="form-group">
-                        <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-meetup"></i></span>
-                          <input type="number" step="any" min="0" name="valorCompra" class="form-control" required="true" placeholder="Costo" onkeyup="autocompletar(event,this,0)">
+                        <div class="input-container">
+                          <i class="fa fa-stack-overflow"></i>
+                          <input type="number" step="any" min="0" id="cantidadMedida" name="cantidadMedida" placeholder="Contenido" class="input" required="true"/>
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-grav"></i></span>
-                          <input type="number" step="any" min="0" name="precioUnidad" class="form-control" required="true" placeholder="Venta" onkeyup="autocompletar(event,this,1)">
+                      	<div class="input-container">
+                      		<i class="fa fa-eyedropper"></i>
+                          	<select name="medida" class="select" onchange="valor(this.value);" style="width: 90%"> 
+	                            <option value="ml">Mililitro</option> 
+	                            <option value="cm3">Cm3</option>
+	                            <option value="cl">Centilitro</option>
+	                            <option value="oz">Onza</option>
+	                            <option value="unidad">Unidad</option>
+	                        </select>
                         </div>
                       </div>
-                      <div class="form-group">
-                        <div class="input-group col-lg-7" style="padding-left: 0px;">
-                          <span class="input-group-addon"><i class="fa fa-stack-overflow"></i></span>
-                          <input type="number" step="any" min="0" id="cantidadMedida" name="cantidadMedida" placeholder="Contenido" class="form-control" required="true"/>
-                        </div>
-                        <div class="input-group col-lg-5" style="padding-right: 0px">
-                          <select name="medida" class="select2able" onchange="valor(this.value);"> 
-                            <option value="ml">Mililitro</option> 
-                            <option value="cm3">Cm3</option>
-                            <option value="cl">Centilitro</option>
-                            <option value="oz">Onza</option>
-                            <option value="unidad">Unidad</option>
-                          </select>
-                        </div>
-                      </div>
-                      <br>
-                      <div class="form-group text-center">
+                      <p class="lead" style="margin-bottom: 10px;">Añade tu Producto a <span class="text-success">Mi Carta</span></p>
+					  <ul class="list-unstyled" style="line-height: 1.5">
+						  <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Producto para venta a publico como unidad</li>
+					  </ul>	
+                      <div class="form-group" style="margin-left: 5%;">
                       	<label> 
 	                        <input  type="checkbox" name="tipo" id="stipo" value="1" onchange="showContent('')"/>
 	                        <span  title="Qué es añadir a la carta?"></span>
                         </label>
                         <label  title="Qué es añadir a la carta?" for="tipo" class="control-label"> Añadir a la carta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                       </div>
-
-                              <div class="form-group" id="scontent" style="display: none;">
-                                <label>Categoría</label>
-                                <div class="input-group" >
-                                  <span class="input-group-addon"><i class="fa fa-outdent"></i></span>
-			                          <select name="categorias" class="select2able">
-											@foreach($categorias as $categoria)
-												<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
-											@endforeach
-									  </select>
-                                </div>
-                              </div>
-
-
-
+                      <div class="form-group" id="scontent" style="display: none;">
+                        <div class="input-container" >
+                          	<i class="fa fa-outdent"></i>
+	                          	<select name="categorias" class="select" style="width: 90%;">
+									@foreach($categorias as $categoria)
+										<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+									@endforeach
+							  	</select>
+                        </div>
+                      </div>
                     </div>
-                    <div  class="text-center">
+                    <div  class="form-group">
                       <button class="btn btn-bitbucket" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >
                           <i class="fa fa-send"></i>Guardar
                       </button>
@@ -351,6 +381,29 @@
 
   $(document).ready(function(){
       cambiarCurrent("#miInventario");
+      $('#example').DataTable( {
+	        dom: 'lBfrtip',
+	        buttons: [
+	            {
+	                extend:    'excelHtml5',
+	                text:      '<i class="fa fa-file-excel-o"></i>',
+	                titleAttr: 'Descarga Excel'
+	            },
+	            {
+	                extend:    'pdfHtml5',
+	                text:      '<i class="fa fa-file-pdf-o"></i>',
+	                titleAttr: 'Descarga PDF'
+	            },
+	            {
+	                text:      '<i class="fa fa-file-text-o" id="descargaPlantilla" name="descargaPlantilla"></i>',
+	                titleAttr: 'Descarga plantilla'
+	            },
+	            {
+	                text:      '<i class="fa fa-upload" id="subirArchivo" name="subirArchivo"></i>',
+	                titleAttr: 'Subir archivo'
+	            }
+	        ]
+    	} );
     });
   function cambiarCurrent(idInput) {
     $(".current").removeClass("current");

@@ -25,6 +25,7 @@
 
     <!-- jquery -->
     <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.60/inputmask/jquery.inputmask.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.6/chosen.jquery.min.js"></script>
@@ -35,7 +36,16 @@
     {!!Html::script("assets-Internas/javascripts/bootstrap.min.js")!!}
     <!-- FIN VALDIACION TOP BAR -->
 
-    <!-- LO QUE SI ES NECESARIO -->
+    <!-- LO QUE SI ES NECESARIO css -->
+    {!!Html::style('stylesheets\select2.css')!!}
+    {!!Html::style('stylesheets\jquery.fancybox.css')!!}
+    
+    <!-- ESTOS ESTILOS DESCUADRAN EL REGISTRO DE USUARIOS, SE DEBE ENCONTRAR SOLUCIÓN
+     {!!Html::style('stylesheets\jquery.fileupload-ui.css')!!}
+    {!!Html::style('stylesheets/upload/fileinput.css')!!} -->
+    <!-- FIN-->
+
+    <!-- LO QUE SI ES NECESARIO js-->
     {!!Html::script("javascripts\select2.js")!!}
     {!!Html::script("javascripts/fullcalendar.min.js")!!}
     {!!Html::script("javascripts\daterange-picker.js")!!}
@@ -49,8 +59,28 @@
     {!!Html::script("javascripts\dropzone.js")!!}
     {!!Html::script("javascripts\jquery.nestable.js")!!}
     {!!Html::script('javascripts/upload/fileinput.js')!!}
-    
-    {!!Html::style('stylesheets\select2.css')!!}
+    {!!Html::script("javascripts\bootstrap-fileupload.js")!!}
+    {!!Html::script("javascripts\jquery.bootstrap.wizard.js")!!}
+    {!!Html::script("javascripts\jquery.isotope.min.js")!!}
+    {!!Html::script("javascripts\isotope_extras.js")!!}
+    {!!Html::script("javascripts\jquery.fancybox.pack.js")!!}
+    <!-- FIN -->
+
+    <!-- DATATABLES + ICONOS-->
+    {!!Html::script("assets-Internas\javascripts\datatable-editable.js")!!}
+    {!!Html::script("assets-Internas\javascripts\jquery.dataTables.js")!!}
+    {!!Html::script("assets-Internas\javascripts\jquery.dataTables.min.js")!!}
+    {!!Html::style('assets-Internas\css\datatables.css')!!}
+
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
+
+    {!!Html::style('assets-Internas\css\buttons.dataTables.css')!!}
+    <!-- FIN -->
 
     {!!Html::script("assets-Internas/javascripts/main.js")!!}
     <!-- -->
@@ -66,7 +96,7 @@
     {!!Html::style('stylesheets/hightop-font.css')!!}
     {!!Html::style('stylesheets/bootstrap-select.css')!!}
     {!!Html::style('stylesheets\isotope.css')!!}
-    {!!Html::style('stylesheets\jquery.fancybox.css')!!}
+    
     {!!Html::style('stylesheets\fullcalendar.css')!!}
     {!!Html::style('stylesheets\wizard.css')!!}
     {!!Html::style('stylesheets\morris.css')!!}
@@ -86,7 +116,7 @@
     <!-- SUBIR IMAGENES -->
 
     <!-- 
-    {!!Html::style('stylesheets\jquery.fileupload-ui.css')!!}
+    
     
     {!!Html::style('stylesheets\dropzone.css')!!}
     {!!Html::style('stylesheets\nestable.css')!!}
@@ -155,9 +185,9 @@
   {!!Html::script("javascripts/fullcalendar.min.js")!!}
   {!!Html::script("javascripts\daterange-picker.js")!!}
   {!!Html::script("javascripts\date.js")!!}-->
-  
   <!-- SUBIR IMAGENES --><!--
-  {!!Html::script("javascripts\bootstrap-fileupload.js")!!}-->
+  {!!Html::script("javascripts\bootstrap-fileupload.js")!!}
+  }-->
 
 
   <!-- GRAFICOS --><!--
@@ -207,15 +237,15 @@
   <!-- {!!Html::script('croppie/upload.js')!!} -->
   <!-- {!!Html::style('croppie/croppie.css')!!} -->
   
-
+{!!Html::script('javascripts/upload/fileinput.js')!!}
   <!-- UPLOAD --><!--
   {!!Html::script('javascripts/upload/plugins/sortable.js')!!}
-  {!!Html::script('javascripts/upload/fileinput.js')!!}
+  
   {!!Html::script('javascripts/upload/locales/fr.js')!!}
   {!!Html::script('javascripts/upload/locales/es.js')!!}
   {!!Html::script('javascripts/upload/theme.js')!!}
   
-  {!!Html::style('stylesheets/upload/fileinput.css')!!}
+  
   {!!Html::style('stylesheets/upload/theme.css')!!}-->
   <!-- FIN UPLOAD -->
 
