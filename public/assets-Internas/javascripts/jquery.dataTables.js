@@ -11416,7 +11416,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "_START_ De _END_",
+			"sInfo": "_START_ de _END_",
 	
 	
 			/**
@@ -11437,7 +11437,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Mostrandeo 0 a 0 de 0 Entradas",
+			"sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
 	
 	
 			/**

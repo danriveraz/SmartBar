@@ -5730,7 +5730,7 @@ body.modal-open,
   .modal-dialog {
     right: auto;
     left: 50%;
-    width: 600px;
+    width: 90%;
     padding-top: 30px;
     padding-bottom: 30px;
   }
@@ -6527,7 +6527,8 @@ td.hidden-xs {
   display: table-cell !important;
 }
 
-@media (max-width: 767px) {
+/*MODIFICACION PARA TABLAS INVENTARIO Y MI CARTAR 767*/
+@media (max-width: 630px) {
   tr.hidden-xs {
     display: none !important;
   }
