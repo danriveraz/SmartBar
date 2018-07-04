@@ -1,0 +1,441 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      hightop - Dashboard
+    </title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+	  
+<!-- VALDIACION TOP BAR -->
+    <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
+    <link href="assets-Internas/css/bootstrap.css" media="all" rel="stylesheet" type="text/css">
+    <link href="assets-Internas/css/style.css" media="all" rel="stylesheet" type="text/css">
+	  
+<!-- style font font-awesome hightop-font--> 
+    <link href="assets-Internas/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
+	<link href="assets-Internas/css/hightop-font.css" media="all" rel="stylesheet" type="text/css">
+<!-- ascrip y css de menu--> 
+	 
+<!-- estylos para multiselect-->
+		<link rel="stylesheet" href="assets-Internas/css/component-chosen.css"/>
+	  
+<!-- jquery -->
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+	<script src="assets-Internas/javascripts/bootstrap.min.js" type="text/javascript"></script>	  
+	<script src="assets-Internas/javascripts/jquery.easy-pie-chart.js" type="text/javascript"></script>
+	<script src="assets-Internas/javascripts/jquery.sparkline.min.js" type="text/javascript"></script>	
+	<script src="assets-Internas/javascripts/main.js" type="text/javascript"></script>
+<!-- jquery--> 
+<!-- FIN VALDIACION TOP BAR -->
+	    
+<!-- scrib para chat-->
+<link rel="stylesheet" href="assets-Internas/css/style-Chat.css"/>	  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://91.234.35.26/iwiki-admin/v1.0.0/admin/js/jquery.nicescroll.min.js"></script>
+  
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  </head>
+  <body class="page-header-fixed bg-1">
+<div class="modal-shiftfix">
+<!-- Navigation -->
+<div class="navbar navbar-fixed-top scroll-hide">
+	<!--Inicio de Banner de arriba-->  
+	<div class="container-fluid top-bar">
+		<div class="pull-right">
+			<ul class="nav navbar-nav pull-right">
+             	<li class="dropdown notifications hidden-xs">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span aria-hidden="true" class="hightop-flag"></span>
+                  <div class="sr-only">
+                    Notifications
+                  </div>
+                  <p class="counter">
+                    4
+                  </p>
+                </a>
+                <ul class="dropdown-menu">
+					<li><a href="#">
+						<div class="notifications label label-info">
+						  New
+							</div>
+							<p>
+							  Sales targets available
+							</p></a>
+
+						  </li>
+					<li><a href="#">
+							<div class="notifications label label-info">
+							  New
+							</div>
+							<p>
+							  New performance metric added
+							</p></a>
+
+						  </li>
+					<li><a href="#">
+							<div class="notifications label label-info">
+							  New
+							</div>
+							<p>
+							  New growth data available
+							</p></a>
+
+						  </li>
+				</ul>
+				</li>
+				<li class="dropdown messages hidden-xs">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span aria-hidden="true" class="hightop-envelope"></span>
+					  <div class="sr-only">
+						Messages
+					  </div>
+					  <p class="counter">
+						3
+					  </p>
+					</a>
+					<ul class="dropdown-menu">
+					  <li><a href="#">
+						<img width="34" height="34" src="images\avatar-male2.png">Could we meet today? I wanted...</a>
+					  </li>
+					  <li><a href="#">
+						<img width="34" height="34" src="images\avatar-female.png">Important data needs your analysis...</a>
+					  </li>
+					  <li><a href="#">
+						<img width="34" height="34" src="images\avatar-male2.png">Buy Se7en today, it's a great theme...</a>
+					  </li>
+					</ul>
+				  </li>
+				<li class="dropdown user hidden-xs">
+					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+					<img width="34" height="34" src="images\avatar-male.jpg"><label>John Smith</label><b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+					  <li><a href="#">
+						<i class="fa fa-user-circle"></i>Mi Perfil</a>
+					  </li>
+					  <li><a href="#">
+						<i class="fa fa-gear"></i>Ajuster</a>
+					  </li>
+					  <li><a href="login1.htm">
+						<i class="fa fa-question"></i>Ayuda</a>
+					  </li>
+					  <li><a href="login1.htm">
+						<i class="fa fa-sign-out"></i>Cerrar Secion</a>
+					  </li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!--<button class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>-->
+		<div class="logo">
+			   <a href="http://localhost/PocketByR/public"><img src="assets-Internas/images/logo.png"></a>
+		</div>
+	</div>
+	<!--Inicio de Banner contenedor de iconos-->  
+	<div class="container-fluid main-nav clearfix">
+			  <div class="nav-collapse">
+				<ul class="nav ">             
+				 <li class="dropdown">	
+				<a class="MobEtiq"  data-toggle="dropdown" href="#">
+					<span aria-hidden="true" class="fa fa-5x fa-reorder"></span><label>Shikoba</label><b class="caret"></b>
+				</a>
+					<ul class="dropdown-menu">
+					  <li>
+						<a href="#"><i class="fa fa-reorder pull-left"></i>Black and white</a>
+					  </li>
+					  <li>
+						<a href="#"><i class="fa fa-reorder pull-left"></i>Fresa</a>
+					  </li>
+					</ul>
+				  </li>               
+				  <li><a class="current" href="#">
+					  <span aria-hidden="true" class="fa fa-fw fa-users"></span><label>Mi Personal</label></a>
+				  </li>              
+				  <li><a href="">
+					  <span aria-hidden="true" class="fa fa-fw fa-square"></span><label>Mi Carta</label></a>
+				  </li>              
+				  <li><a href="#">
+					  <span aria-hidden="true" class="fa fa-fw fa-scribd"></span><label>Mi Inventario</label></a>
+				  </li> 
+				  <li><a href="">
+					<span aria-hidden="true" class="fa fa-fw fa-bar-chart-o"></span><label>Informacion</label></a>
+				  </li>
+				  <li><a href="">
+					<span aria-hidden="true" class="fa fa-fw fa-cart-plus "></span><label>SmartShop</label></a>
+				  </li>
+				</ul>          
+			  </div>
+			</div>
+</div>
+<!-- End Navigation -->
+	
+<div class="contec-Pocket main-content">
+  <!-- DataTables Example -->
+	
+	
+<div class="row">
+        <div class="col-sm-12">
+			<div class="panel panel-white">
+                <div class="panel-body chat"> 
+                    <div class="row chat-wrapper">  
+                        <div class="col-xs-5 col-md-4">
+                            <div class="compose-area"> 
+                                <i class="fa fa-edit"></i>&nbsp Chat Con Empleados</a>
+                            </div>                            
+                            <div>
+                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 550px;">
+                                <div class="chat-list-wrapper" style="overflow-y: auto; width: auto; height: 550px;">
+                                    <ul class="chat-list">
+                                        <li class="new">
+                                            <span class="avatar available">
+                                                <img src="assets-Internas/images/Avatar-Pocket.jpg" alt="avatar" class="img-circle">
+                                            </span>
+                                            <div class="body">
+                                                <div class="header">
+                                                    <span class="username">Gavin Free</span>
+                                                    <small class="timestamp text-muted">
+                                                        <i class="fa fa-clock-o"></i>1 secs ago
+                                                    </small>
+                                                </div>
+                                                <p>
+                                                   Hey, have you finished up with the Ladybug project?
+                                                </p>
+                                            </div>
+                                        </li>  
+                                        <li class="active">
+                                            <span class="avatar available">
+                                                <img src="assets-Internas/images/Avatar-Pocket.jpg" alt="avatar" class="img-circle">
+                                            </span>
+                                            <div class="body">
+                                                <div class="header">
+                                                    <span class="username">Yanique Robinson</span>
+                                                    <small class="timestamp text-muted">
+                                                        <i class="fa fa-clock-o"></i>3 secs ago
+                                                    </small>
+                                                </div>
+                                                <p>
+                                                    Cool. I'll see you guys then.
+                                                </p>
+                                            </div>
+                                        </li>  
+                                        <li>
+                                            <span class="avatar">
+                                                <img src="assets-Internas/images/Avatar-Pocket.jpg" alt="avatar" class="img-circle">
+                                            </span>
+                                            <div class="body">
+                                                <div class="header">
+                                                    <span class="username">Ryan Haywood</span>
+                                                    <small class="timestamp text-muted">
+                                                        <i class="fa fa-clock-o"></i>12 mins ago
+                                                    </small>
+                                                </div>
+                                                <p>
+                                                    Kevin, tomorrow is GoT night at my house. Bring your HDMI extension. Thanks.
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span class="avatar busy">
+                                                <img src="assets-Internas/images/Avatar-Pocket.jpg" alt="avatar" class="img-circle">
+                                            </span>
+                                            <div class="body">
+                                                <div class="header">
+                                                    <span class="username">Geoff Ramsey</span>
+                                                    <small class="timestamp text-muted">
+                                                        <i class="fa fa-clock-o"></i>1 hour ago
+                                                    </small>
+                                                </div>
+                                                <p>
+                                                    Sales want to see you. Something about the new product.
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span class="avatar">
+                                                <img src="assets-Internas/images/Avatar-Pocket.jpg" alt="avatar" class="img-circle">
+                                            </span>
+                                            <div class="body">
+                                                <div class="header">
+                                                    <span class="username">Kara Mendly</span>
+                                                    <small class="timestamp text-muted">
+                                                        <i class="fa fa-clock-o"></i>5 hours ago
+                                                    </small>
+                                                </div>
+                                                <p>
+                                                    Meeting next week Tuesday. Nothing serious, just bring teams work progress with you.
+                                                </p>
+                                            </div>
+                                        </li> 
+                                        <li>
+                                            <span class="avatar busy">
+                                                <img src="assets-Internas/images/Avatar-Pocket.jpg" alt="avatar" class="img-circle">
+                                            </span>
+                                            <div class="body">
+                                                <div class="header">
+                                                    <span class="username">Jack Patillo</span>
+                                                    <small class="timestamp text-muted">
+                                                        <i class="fa fa-clock-o"></i>12 mins ago
+                                                    </small>
+                                                </div>
+                                                <p>
+                                                    hey, what does this error mean?
+                                                </p>
+                                            </div>
+                                        </li>  
+                                    </ul>
+                                </div><div class="slimScrollBar" style="width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 478.639px; background: rgb(0, 0, 0);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
+                            </div>                            
+                        </div>
+                        
+                        <div class="col-xs-7 col-md-8">
+                            <div class="recipient-box"> 
+                                <select data-placeholder=" " class="form-control chzn-select chzn-done" multiple="" style="display: none;"> 
+                                    <option value="k.mckoy@ztapps.com">Kevin Mckoy</option>
+                                    <option value="y.robinson@ztapps.com" selected="">Yanique Robinson</option>
+                                    <option value="gavino@ztapps.com">Gavino Free</option> 
+                                    <option value="ggeoff@ztapps.com">Geoff Ramsey</option>
+                                    <option value="kkara@ztapps.com">Kara Kingsley</option>
+                                    <option value="barbs@ztapps.com">Barbara Dundkleman</option> 
+                                </select>
+                            </div>                            
+                            <div>
+
+                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 452px;">
+                                <div class="message-list-wrapper" style="overflow: hidden; width: auto; height: 452px;">
+                                    <ul class="message-list">
+                                        <li class="text-center">
+                                            <a href="javascript:void(0);" class="btn btn-pocket"><i class="fa fa-refresh"></i></a>
+                                        </li>
+                                        <li class="left">
+                                            <span class="username">Yanique Robinson</span>
+                                            <small class="timestamp">
+                                                <i class="fa fa-clock-o"></i>9 mins ago
+                                            </small> 
+                                            <span class="avatar available tooltips" data-toggle="tooltip " data-placement="right" data-original-title="Yanique Robinson">
+                                                <img src="assets-Internas/images/Avatar-Pocket.jpg" alt="avatar" class="img-circle">
+                                            </span>
+                                            <div class="body">   
+                                                <div class="message well-Pocke well-sm">
+                                                    Hey, are you busy at the moment?
+                                                </div>
+                                            </div>
+                                        </li>  
+                                        <li class="right">
+                                            <span class="username">Kevin Mckoy</span>
+                                            <small class="timestamp">
+                                                <i class="fa fa-clock-o"></i>5 mins ago
+                                            </small> 
+                                            <span class="avatar tooltips" data-toggle="tooltip " data-placement="left" data-original-title="Kevin Mckoy">
+                                                <img src="assets-Internas/images/Avatar-Pocket.jpg" alt="avatar" class="img-circle">
+                                            </span>
+                                            <div class="body">   
+                                                <div class="message well-Pocke well-sm">
+                                                    Um, no actually. I've just wrapped up my last project for the day.
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="message well-sm">
+                                                    Whats up?
+                                                </div>
+                                            </div>
+                                        </li>  
+                                        <li class="left">
+                                            <span class="username">Yanique Robinson</span>
+                                            <small class="timestamp">
+                                                <i class="fa fa-clock-o"></i>3 mins ago
+                                            </small> 
+                                            <span class="avatar available tooltips" data-toggle="tooltip " data-placement="right" data-original-title="Yanique Robinson">
+                                                <img src="assets-Internas/images/Avatar-Pocket.jpg" alt="avatar" class="img-circle">
+                                            </span>
+                                            <div class="body">   
+                                                <div class="message well-Pocke well-sm">
+                                                    Well, I wanted to find out if you have any plans for tonight.
+                                                </div>   
+                                                <div class="clearfix"></div>
+                                                <div class="message well-Pocke well-sm">
+                                                    <p><a href="#" class="white">Barbara</a> and I are going to this restaurant out of town.</p>
+                                                    <img src="https://lorempixel.com/300/200/nature/3" alt="">
+                                                </div>
+                                            </div>
+                                        </li>  
+                                        <li class="right">
+                                            <span class="username">Kevin Mckoy</span>
+                                            <small class="timestamp">
+                                                <i class="fa fa-clock-o"></i>2 mins ago
+                                            </small> 
+                                            <span class="avatar tooltips" data-toggle="tooltip " data-placement="left" data-original-title="Kevin Mckoy">
+                                                <img src="assets-Internas/images/Avatar-Pocket.jpg" alt="avatar" class="img-circle">
+                                            </span>
+                                            <div class="body">   
+                                                <div class="message well-Pocke well-sm">
+                                                    Wow that sounds great.
+                                                </div>
+                                            </div>
+                                            </li> 
+                                        <li class="left">
+                                            <span class="username">Yanique Robinson</span>
+                                                <small class="timestamp">
+                                                    <i class="fa fa-clock-o"></i>56 secs ago
+                                                </small> 
+                                            <span class="avatar available tooltips" data-toggle="tooltip " data-placement="right" data-original-title="Yanique Robinson">
+                                                    <img src="assets-Internas/images/Avatar-Pocket.jpg" alt="avatar" class="img-circle">
+                                                </span>
+                                                <div class="body">   
+                                                    <div class="message well-sm">
+                                                        Ok! We'll swing by your office at 5.
+                                                    </div>
+                                                </div>
+                                            </li>  
+                                        <li class="right">
+                                            <span class="username">Kevin Mckoy</span>
+                                                <small class="timestamp">
+                                                    <i class="fa fa-clock-o"></i>3 secs ago
+                                                </small> 
+                                                <span class="avatar tooltips" data-toggle="tooltip " data-placement="left" data-original-title="Kevin Mckoy">
+                                                    <img src="assets-Internas/images/Avatar-Pocket.jpg" alt="avatar" class="img-circle">
+                                                </span>
+                                                <div class="body">   
+                                                    <div class="message well-Pocke well-sm">
+                                                        Cool. I'l see you guys then.
+                                                    </div>
+                                                </div>
+                                            </li>   
+                                    </ul>
+                                </div><div class="slimScrollBar" style="width: 7px; position: absolute; top: 265px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 187.092px; background: rgb(0, 0, 0);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
+
+                                <div class="compose-box">
+                                    <div class="row">
+                                       <div class="col-xs-12 mg-btm-10">
+                                           <textarea id="btn-input" class="form-control input-sm" placeholder="Escriba su mensaje aquí…"></textarea>
+                                        </div>
+                                        <div class="col-xs-8">
+                                        </div>
+                                        <div class="col-xs-4"> 
+                                            <button class="btn btn-pocket btn-sm pull-right" style="font-weight: 500;">
+                                                <i class="fa fa-location-arrow"></i> Enviar
+                                            </button>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                
+                            </div>                            
+                        </div>                                    
+                    </div> 
+                    
+                </div> 
+			</div>
+        </div>
+
+    </div>
+	
+	
+  <!-- end DataTables Example -->
+</div>
+	
+	
+</div><!--Fin de Modal-shiftfix-->
+	
+<script type="text/javascript">
+	$(function(){
+    $(".chat-list-wrapper, .message-list-wrapper").niceScroll();
+})
+</script>
+  </body>
+</html>
