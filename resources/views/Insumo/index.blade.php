@@ -78,11 +78,11 @@
 		                            <div class="row">
 		                              <div class="col-md-4">
 		                                <div class="bs-example">
-		                                  	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		                                  	<div id="myCarousel{{$insumo->id}}" class="carousel slide" data-ride="carousel">
 		                                    <!-- Carousel indicators -->
 			                                    <ol class="carousel-indicators">
-			                                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			                                        <li data-target="#myCarousel" data-slide-to="1"></li>
+			                                        <li data-target="#myCarousel{{$insumo->id}}" data-slide-to="0" class="active"></li>
+			                                        <li data-target="#myCarousel{{$insumo->id}}" data-slide-to="1"></li>
 			                                    </ol>   
 			                                    <!-- Wrapper for carousel items -->
 			                                    <div class="carousel-inner">
@@ -93,6 +93,13 @@
 														<img src="images/slider-admin/2.png" alt="Second Slide"  style="width: 50%;">
 													</div>
 			                                    </div>
+			                                    <!-- Carousel controls -->
+												<a class="carousel-control left" href="#myCarousel{{$insumo->id}}" data-slide="prev">
+													<span class="glyphicon glyphicon-chevron-left"></span>
+												</a>
+												<a class="carousel-control right" href="#myCarousel{{$insumo->id}}" data-slide="next">
+													<span class="glyphicon glyphicon-chevron-right"></span>
+												</a>
 		                                    </div>
 		                                  </div>
 		                                </div>
@@ -251,6 +258,13 @@
 										<img src="images/slider-admin/2.png" alt="Second Slide"style="width: 50%;">
 									</div>
 								</div>
+								<!-- Carousel controls -->
+								<a class="carousel-control left" href="#myCarousel2" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+								<a class="carousel-control right" href="#myCarousel2" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
 	                        </div>
                       </div>
                   </div>
