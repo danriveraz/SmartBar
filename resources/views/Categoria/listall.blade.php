@@ -65,7 +65,11 @@
                                           <input type="text" id="nombreCategoria{{$categoria->id}}" placeholder="Nombre" class="form-control" value="{{$categoria->nombre}}" required="true" />
                                         </div>
                                         <div class="form-grup">
-                                            <input type="number" placeholder="Precio" min="0" step="any" id="precioCategoria{{$categoria->id}}" class="form-control" value="{{$categoria->precio}}"/>
+                                          @if($categoria->precio == 0)
+                                          <input type="number" placeholder="Precio" min="0" step="any" id="precioCategoria{{$categoria->id}}" class="form-control"/>
+                                          @else
+                                          <input type="number" placeholder="Precio" min="0" step="any" id="precioCategoria{{$categoria->id}}" class="form-control" value="{{$categoria->precio}}"/>
+                                          @endif
                                         </div>
                                       </div>
                                     </div>
