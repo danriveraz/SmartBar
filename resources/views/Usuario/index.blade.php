@@ -1,6 +1,5 @@
 @extends('Layout.app_administradores')
 @section('content')
-
 {!!Html::script('assets-Internas/javascripts/notify.min.js')!!} <!---->
 
 <!--Barra de título y botones de busqueda-->
@@ -120,9 +119,9 @@
                           <!-- <div data-toggle="modal" href="#ModalMsg{{$usuario->id}}">
                             <a class=""><i class="fa fa-comments pull-right"></i></a>
                           </div> -->
-                          <a href=""><i style="float: center;" class="fa fa-comments pull-right"></i></a>
-                          <a href="{{ url('Agenda/') }}"><i style="float: center;" class="fa fa-calendar-check-o pull-right"></i></a>
-                          <a href="{{url('Estadisticas/')}}"><i style="float: center;" class="fa fa-bar-chart pull-right"></i></a>
+                          <a href=""><i style="float: center;" class="fa fa-comments pull-right" title="Mensaje"></i></a>
+                          <a href="{{ url('Agenda/') }}" title="Agenda"><i style="float: center;" class="fa fa-calendar-check-o pull-right"></i></a>
+                          <a href="{{url('Estadisticas/')}}" title="Estadísticas"><i style="float: center;" class="fa fa-bar-chart pull-right"></i></a>
                       </div>
                   </div>
                 </div>
