@@ -78,11 +78,11 @@
             <div class="widget-container fluid-height clearfix ">
               @if($usuario->estado == 1)
                 <div class="heading Habilitado">
-                  <a href="{{url('Auth/usuario/'.$usuario->id.'/active')}}"><i   data-toggle="tooltip" data-placement="left" title="Deshabilitar" class="pocketMorado fa fa-times pull-right" ></i></a>
+                  <a href="{{url('Auth/usuario/'.$usuario->id.'/active')}}"><i title="Deshabilitar" class="pocketMorado fa fa-times pull-right" ></i></a>
                   <i data-toggle="modal" data-target="#myModal{{$usuario->id}}" class="pocketMorado fa fa-pencil-square-o pull-right" title="editar Empleado"></i>
               @else
                 <div class="heading Deshabilitado">
-                  <a href="{{url('Auth/usuario/'.$usuario->id.'/active')}}"><i   data-toggle="tooltip" data-placement="left" title="Habilitar" class="pocketMorado fa fa-check pull-right" ></i></a>
+                  <a href="{{url('Auth/usuario/'.$usuario->id.'/active')}}"><i title="Habilitar" class="pocketMorado fa fa-check pull-right" ></i></a>
                   <i data-toggle="modal" data-target="#myModal{{$usuario->id}}" class="pocketMorado fa fa-pencil-square-o pull-right" title="editar Empleado"></i>
               @endif
 
@@ -561,6 +561,7 @@
 
   $(document).ready(function () {// tooltip para colocar ayuda en los botones de habilitar y deshabilitar
     $('[data-toggle="tooltip"]').tooltip()
+
   });
 
   $(document).ready(function(){
