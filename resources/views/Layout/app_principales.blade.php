@@ -5,13 +5,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="generator" content="HTML5"> 
+  <meta name="generator" content="HTML5">
   <meta name="application-name" content="PocketSmartbar"/>
   <meta name="author" content="Pocket Company S.A.S"/>
   <meta name="description" content="Aplicativo inteligente online, escencial en Bares, Discotecas y/o Restaurantes, que facilita enormemente el trabajo  de administradores, empleados, proveedores y clientes de estos." />
   <meta name="generator" content="Html5 Css Javascrip" />
   <meta name="keywords" content="Compañero inseparable, sistema inteligente de manejo de negocios, bares, restaurantes, discotecas, licores, comidas, cocteles, información almacenada en la nube, sistema pos, sitema pos para restaurantes, software para restaurante, software POS para restaurante, sistema de punto de ventas, sistema de facturación, software de inventario, software para punto de ventas, software POS, sistema POS, Colombia, POS online" />
-  <meta name="encoding" charset="utf-8" />    
+  <meta name="encoding" charset="utf-8" />
 <!-- Datos Open Graph -->
   <meta property="og:title" content="PocketSmartbar" />
   <meta property="og:type" content="WebSite" />
@@ -19,17 +19,17 @@
   <meta property="og:description" content="Aplicativo inteligente online, escencial en Bares, Discotecas y/o Restaurantes, que facilita enormemente el trabajo  de administradores, empleados, proveedores y clientes de estos.">
   <meta property="og:site_name" content="PocketSmartBar">
   <meta property="og:image" content="assets-home/images/p"><!--poner link de la imagen--!>
-  <!-- Datos Twitter Card --> 
+  <!-- Datos Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@pocketsmartbar">
   <meta name="twitter:creator" content="@pocketsmartbar" />
 <!-- Etiquetas meta -->
   <title>PocketSmartBar</title>
-  <link type="image/x-icon" rel="shortcut icon" href="assets-home/images/icon.png"/>        
-<!-- Datos meta Graph --> 
-  
+  <link type="image/x-icon" rel="shortcut icon" href="assets-home/images/icon.png"/>
+<!-- Datos meta Graph -->
+
 <!-- Styles -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
 <!--Fuente Requerida -->
 {!!Html::style('assets-home\styles\pocketStyle.css')!!}
 {!!Html::style('assets-home\styles\style-Contact.css')!!}
@@ -40,18 +40,18 @@
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <!-- style para login -->
 {!!Html::style('assets-home\styles\main.css')!!}<!--style para login-->
-{!!Html::style('assets-home\styles\font-awesome.css')!!}<!-- Iconos Ex -->    
+{!!Html::style('assets-home\styles\font-awesome.css')!!}<!-- Iconos Ex -->
 <!--javascript para campo de contraseña/-->
 {!!Html::script("assets-home\scripts\jquery-1.12.4.min.js")!!}
 {!!Html::script("assets-home\scripts\main.js")!!}
 <!--style para desplege lateral-->
 {!!Html::style('assets-home\styles\pure-drawer.css')!!}
-  
+
   </head>
 <body>
-<!--INICIO DE TAB-->  
-<div class="pure-container" data-effect="pure-effect-slide">  
-   <input type="checkbox" id="pure-toggle-right" class="pure-toggle" data-toggle="right"/>  
+<!--INICIO DE TAB-->
+<div class="pure-container" data-effect="pure-effect-slide">
+   <input type="checkbox" id="pure-toggle-right" class="pure-toggle" data-toggle="right"/>
 <header class="block no-pad" data-name="Topbar" id="topbar-main">
   <div id="" class="topbar fixed bg-solid">
       <div class="topbar-content is-centered">
@@ -60,7 +60,7 @@
             <a>&#9776;</a>
           </div>
           <div class="logo">
-           <a href="{{ url('/') }}"><img width="240" height="50" src="{{asset('assets-home/images/logoPrin.png')}}"></a>
+           <a href="{{ url('/') }}"><img src="{{asset('assets-home/images/logoPrin.png')}}"></a>
           </div>
         </div>
         <div class="topbar-section">
@@ -74,10 +74,10 @@
           <div class="nav-access">
             <label class="" for="pure-toggle-right" data-toggle-label="right">
               <a class="nav-access-item button outline rounded-mediun">
-          <input type="checkbox" id="pure-toggle-right" class="pure-toggle" data-toggle="right"/>     
+          <input type="checkbox" id="pure-toggle-right" class="pure-toggle" data-toggle="right"/>
         <span class="">INGRESAR</span>
         </a>
-      </label> 
+      </label>
           </div>
         </div>
       </div>
@@ -87,13 +87,13 @@
 
 <!-- inicio de contenigo de login-->
     <nav class="pure-drawer" data-position="right" style="overflow: auto">
-    <section class="tabblue"> 
+    <section class="tabblue">
     <ul class="tabs blue" style="background-color: #FFFFFF">
     <!-- Inicio del Tag #1-->
           <li>
             <input type="radio" name="tabs blue" id="tab1" checked />
             <label class="label" for="tab1">Iniciar Sesión</label>
-            <div id="tab-content1" class="tab-content">              
+            <div id="tab-content1" class="tab-content">
     <div class="login-form-content">
       <div class="login-form-header">
         <div class="logo">
@@ -132,7 +132,7 @@
           <span>Iniciar Sesión con Google</span>
         </a>
       </div>
-    </div>        
+    </div>
             </div>
           </li>
     <!-- Inicio del Tag #2-->
@@ -146,7 +146,7 @@
             <div class="logo">
               <img src="{{asset('assets-home/images/logoPrin.png')}}"/>
             </div>
-            <h3>Bienvenido! Tu amigo inseparable te espera </h3>            
+            <h3>Bienvenido! Tu amigo inseparable te espera </h3>
           </div>
        <form class="login-form" autocomplete="off" role="form" method="POST" enctype="multipart/form-data" action="{{ url('Auth/register') }}" files="true">
         {{ csrf_field() }}
@@ -172,7 +172,7 @@
             <input type="text" class="input" name="nombrePersona" placeholder="Nombre" required/>
           </div>
           <div class="input-container">
-            <i class="fa fa-venus-mars"></i>          
+            <i class="fa fa-venus-mars"></i>
             <select class="select" id="sexo" name="sexo" required="">
               <option value="">Sexo</option>
               <option value="Masculino">Masculino</option>
@@ -190,7 +190,7 @@
             <i id="show-password1" class="fa fa-eye"></i>
           </div>
           <div class="input-container" style="float: left; width:49%">
-            <i class="fa fa-map-marker"></i>          
+            <i class="fa fa-map-marker"></i>
             <select class="selectCi" id="idDepto"  name="idDepto" required>
               <option value="">Departamento</option>
               @foreach($departamentos as $departamento)
@@ -199,17 +199,17 @@
             </select>
           </div>
           <div class="input-container" style="float: left; width:49%">
-            <i class="fa fa-map-marker"></i>          
+            <i class="fa fa-map-marker"></i>
             <select class="selectCi" id="idCiudad" name="idCiudad" required>
               <option value="">Ciudad</option>
             </select>
-          </div>      
+          </div>
           <input type="submit" name="login" value="Registrarme" class="button"/>
-        <!--a href="#" class="register">Register</a-->          
+        <!--a href="#" class="register">Register</a-->
       </form>
       <div class="terms">
         Al crear tu cuenta aceptas nuestros
-        <a class="pocketColor" href="" target="_blank">Términos, Condiciones</a> y 
+        <a class="pocketColor" href="" target="_blank">Términos, Condiciones</a> y
         <a class="pocketColor"href="" target="_blank">Política de Tratamiento de Datos</a>.
       </div>
       <div class="separator"></div>
@@ -228,11 +228,11 @@
       <label class="label1" for="pure-toggle-right">
         <i style="color: white;padding: 0px; margin-top: -1%" class="fa fa-arrow-right"></i>
       </label>
-    </li>     
+    </li>
   </ul>
-  </section>      
-  </nav>  
-<!-- fin de contenido de login--> 
+  </section>
+  </nav>
+<!-- fin de contenido de login-->
 
 <!-- FIN LAYOUT -->
       <div class="">
@@ -240,42 +240,42 @@
       </div>
 
 <!-- Menu -->
-<!--CONTINUACIÓN LAYOUT -->   
+<!--CONTINUACIÓN LAYOUT -->
  <footer>
-   <div>        
+   <div>
      <div class="pocketPadin block-content text-center">
-        <ul class="list-inline">                                 
-           <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>                                   
-           <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>                                  
-           <li><a href="#"><i class="fa fa-instagram fa-2x"></i></a></li>                                   
-           <li><a href="#"><i class="fa fa-youtube fa-2x"></i></a></li>                                   
-           <li><a href="#"><i class="fa fa-google-play fa-2x"></i></a></li>                                
+        <ul class="list-inline">
+           <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
+           <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
+           <li><a href="#"><i class="fa fa-instagram fa-2x"></i></a></li>
+           <li><a href="#"><i class="fa fa-youtube fa-2x"></i></a></li>
+           <li><a href="#"><i class="fa fa-google-play fa-2x"></i></a></li>
          </ul>
-      </div>                 
-      <div class="pocketPadin block-content text-center">   
-         <ul class="menu list-inline">                               
-          <li><a href="#">Cliente VIP</a></li>                                   
+      </div>
+      <div class="pocketPadin block-content text-center">
+         <ul class="menu list-inline">
+          <li><a href="#">Cliente VIP</a></li>
           <li><a href="#">SmartShop</a></li>
-          <li><a href="{{ url('preguntasFrecuentes') }}">Preguntas Frecuentes</a></li>                                   
+          <li><a href="{{ url('preguntasFrecuentes') }}">Preguntas Frecuentes</a></li>
           <li><a href="{{ url('politicas') }}">Politicas Privacidad</a></li>
-          <li><a href="{{ url('contactos') }}">Contáctos</a></li>             
+          <li><a href="{{ url('contactos') }}">Contáctos</a></li>
          </ul>
-       </div>          
-    </div> 
-</footer> 
+       </div>
+    </div>
+</footer>
 <!-- Copyright PocketSmartBar -->
 <div class="block bg-pocket">
   <div class="pocketPadin block-content text-center" >
       <p style="color: white; font-weight: 400;">COPYRIGHT © 2018 Pocket Company S.A.S</p>
   </div>
-</div>  
-  
+</div>
+
 </div><!--pure-container-->
-<!-- SCRIPTS video pocket-->  
+<!-- SCRIPTS video pocket-->
 <!--Jquery-->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <!-- GRT Youtube Popup-->
-  <script src="assets-home/scripts/video/grt-youtube-popup.js"></script> 
+  <script src="assets-home/scripts/video/grt-youtube-popup.js"></script>
 <!-- Initialize GRT Youtube Popup plugin -->
   <script>
     // Demo video 1
@@ -296,10 +296,10 @@
       } else {
           topBar.classList.remove("bg-solid");
       }
-    };  
+    };
 
 </script>
-  
+
 <!-- Smartsupp Live Chat script -->
 <script type="text/javascript">
 var _smartsupp = _smartsupp || {};
@@ -310,7 +310,7 @@ window.smartsupp||(function(d) {
   c.type='text/javascript';c.charset='utf-8';c.async=true;
   c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
 })(document);
-</script> 
+</script>
 
 <!-- SCRIPT DEPARTAMENTO Y CIUDADES -->
 <script>
@@ -331,7 +331,7 @@ window.smartsupp||(function(d) {
       }
     });
   });
-</script> 
+</script>
 <!-- FIN SCRIPT DEPARTAMENTO Y CIUDADES -->
 </body>
 </html>

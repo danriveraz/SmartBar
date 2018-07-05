@@ -3759,8 +3759,8 @@ body.fourofour {
 
 
 @media (max-width: 380px) {
-	.navbar .container-fluid.top-bar .logo {margin: -45px 5px 0 -20px;}/*icon barrra arriba logo*/
-	.navbar .container-fluid.top-bar .logo img{width: 80%}/*icon barrra arriba logo*/
+	.navbar .container-fluid.top-bar .logo {margin: -53px 5px 0 -20px;}/*icon barrra arriba logo*/
+	.navbar .container-fluid.top-bar .logo img{width: 75%}/*icon barrra arriba logo*/
 
 }
 

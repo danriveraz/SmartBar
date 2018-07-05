@@ -40,21 +40,18 @@
                 <a data-filter=".Bartender"><i class="fa fa-imdb"></i>Bartenders</a>
               </li>
               <li>
-                <a data-filter=".Mesero"><i class="fa fa-industry"></i>Meseros</a>
+                <a data-filter=".Mesero"><i class="fa fa-houzz"></i>Meseros</a>
               </li>
               <li>
                 <a data-filter=".Cajero"><i class="fa fa-wpbeginner pull-left"></i>Cajeros</a>
               </li>
             </ul>
         </div>
-      </div>                
+      </div>
     </div>
   </div>
 </div>
 <!--Fin Barra de título y botones de busqueda-->
-
-
-
 
 <!--Inicio de los items de usuarios -->
 <div class="container-fluid main-content">
@@ -62,8 +59,8 @@
     <div id="social-container"></div>
 
       <div id="hidden-items">
+		  
         @foreach($usuarios as $usuario)
-
           <div class=" item row widget-container fluid-height
                  @if($usuario->esAdmin == 1) Administrador
                  @else
@@ -77,22 +74,20 @@
                  @if($usuario->estado == 1) Habilitado
                  @else Deshabilitado
                  @endif">
-
-
-
+			  
             <div class="widget-container fluid-height clearfix ">
-              @if($usuario->estado == 1) 
+              @if($usuario->estado == 1)
                 <div class="heading Habilitado">
                   <a href="{{url('Auth/usuario/'.$usuario->id.'/active')}}"><i   data-toggle="tooltip" data-placement="left" title="Deshabilitar" class="pocketMorado fa fa-times pull-right" ></i></a>
                   <i data-toggle="modal" data-target="#myModal{{$usuario->id}}" class="pocketMorado fa fa-pencil-square-o pull-right" title="editar Empleado"></i>
-              @else 
+              @else
                 <div class="heading Deshabilitado">
                   <a href="{{url('Auth/usuario/'.$usuario->id.'/active')}}"><i   data-toggle="tooltip" data-placement="left" title="Habilitar" class="pocketMorado fa fa-check pull-right" ></i></a>
                   <i data-toggle="modal" data-target="#myModal{{$usuario->id}}" class="pocketMorado fa fa-pencil-square-o pull-right" title="editar Empleado"></i>
               @endif
 
               </div>
-              
+
               <div class="profile-info clearfix padded3 @if($usuario->estado == 1) Habilitado
                                                         @else Deshabilitado
                                                         @endif" data-toggle="modal" href="#myModal{{$usuario->id}}">
@@ -101,38 +96,38 @@
                 </div>
                   <div class="profile-details">
                     <strong><a class="pocketMorado user-name" >{{$usuario->nombrePersona}}</a></strong><br>
-                      @if($usuario->esAdmin == 2) <strong  style="font-size: 16px !important">Administrador</strong> 
+                      @if($usuario->esAdmin == 2) <strong  style="font-size: 16px !important">Administrador</strong>
                       @else
-                        @if($usuario->esMesero != 0) 
+                        @if($usuario->esMesero != 0)
                           @if($usuario->esMesero != 1)
-                            <strong style="font-size: 16px !important">Mesero</strong> 
+                            <strong style="font-size: 16px !important">Mesero</strong>
                           @else
                             Mesero
                           @endif
                         @endif
                         @if($usuario->esBartender != 0)
                           @if($usuario->esBartender != 1)
-                            <strong style="font-size: 16px !important">Bartender</strong> 
+                            <strong style="font-size: 16px !important">Bartender</strong>
                           @else
                             Bartender
-                          @endif 
+                          @endif
                         @endif
-                        @if($usuario->esCajero != 0) 
+                        @if($usuario->esCajero != 0)
                           @if($usuario->esCajero != 1)
-                            <strong style="font-size: 16px !important">Cajero</strong> 
+                            <strong style="font-size: 16px !important">Cajero</strong>
                           @else
                             Cajero
-                          @endif 
+                          @endif
                         @endif
                       @endif
                     <br>
-                    <i class="fa fa-check-circle"></i>{{$usuario->salario}}
+                    <i class="fa fa-check-circle"></i>&nbsp{{$usuario->salario}}
                   </div>
               </div>
               <div class="widget-content padded3 colorpocket">
-                <div class="col-md-12">   
+                <div class="col-md-12">
                   <div class="col-md-4 colorpocket"></div>
-                    <div class="col-md-8 colorpocket"> 
+                    <div class="col-md-8 colorpocket">
                       <div class="headingPocket">
                           <!-- <div data-toggle="modal" href="#ModalMsg{{$usuario->id}}">
                             <a class=""><i class="fa fa-comments pull-right"></i></a>
@@ -141,7 +136,7 @@
                           <a href="{{ url('Agenda/') }}"><i style="float: center;" class="fa fa-calendar-check-o pull-right"></i></a>
                           <a href="{{url('Estadisticas/')}}"><i style="float: center;" class="fa fa-bar-chart pull-right"></i></a>
                       </div>
-                  </div>  
+                  </div>
                 </div>
               </div>
             </div>
@@ -274,7 +269,7 @@
                     $(document).ready(function(){
                       var selectPermisos = $('#selectPermisos{{$usuario->id}}');
                       var arregloDePermisosOrdenados = [$("#{{$usuario->id}}permisoPrincipal").val().trim()];
-                      selectPermisos.select2().on("change", function (e) { 
+                      selectPermisos.select2().on("change", function (e) {
                         var count = $(this).select2('data').length;
                         if( e.added ){
                           arregloDePermisosOrdenados.push(e.added.id);
@@ -283,7 +278,7 @@
                           var index = arregloDePermisosOrdenados.indexOf(e.removed.id);
                           if (index > -1) {
                               arregloDePermisosOrdenados.splice(index, 1);
-                          } 
+                          }
                           console.log(arregloDePermisosOrdenados);
                         }
                         $("#{{$usuario->id}}permisoPrincipal").val(arregloDePermisosOrdenados[0]);
@@ -348,7 +343,7 @@
               </div>
             </div>
             <div class="row">
-              
+
             </div>
           </form>
         </div>
@@ -581,7 +576,7 @@
 
     var selectPermisos = $('#selectPermisosAjax');
     var arregloDePermisosOrdenados = ["Mesero"];
-    selectPermisos.select2().on("change", function (e) { 
+    selectPermisos.select2().on("change", function (e) {
       var count = $(this).select2('data').length;
       if( e.added ){
         arregloDePermisosOrdenados.push(e.added.id);
@@ -589,7 +584,7 @@
         var index = arregloDePermisosOrdenados.indexOf(e.removed.id);
         if (index > -1) {
             arregloDePermisosOrdenados.splice(index, 1);
-        } 
+        }
       }
       $("#permisoPrincipal").val(arregloDePermisosOrdenados[0]);
     });
@@ -636,7 +631,7 @@
         $("#file-4").fileinput('refresh', {previewClass: 'bg-info'});
     });
 
-    
+
 
 
 
@@ -762,7 +757,7 @@ $("#registrarUsuario").click(function(){
 
 </script>
 <style type="text/css">
-  #imagenPerfilUsuarioCircular{ 
+  #imagenPerfilUsuarioCircular{
     width: 150px;
     height: 150px;
   }

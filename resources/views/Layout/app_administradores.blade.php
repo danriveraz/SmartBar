@@ -13,19 +13,17 @@
     {!!Html::style('assets-Internas/css/main.css')!!}
     {!!Html::style('assets-Internas/css/bootstrap.css')!!}
     {!!Html::style('assets-Internas/css/style.css')!!}
-    
+
     <!-- style font font-awesome hightop-font -->
     {!!Html::style('assets-Internas/css/font-awesome.min.css')!!}
     {!!Html::style('assets-Internas/css/hightop-font.css')!!}
     <!-- ascrip y css de menu -->
-   
+
     <!-- estylos para multiselect -->
     {!!Html::style('assets-Internas/css/component-chosen.css')!!}
-    
 
     <!-- jquery -->
     <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
-
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.60/inputmask/jquery.inputmask.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.6/chosen.jquery.min.js"></script>
@@ -39,7 +37,7 @@
     <!-- LO QUE SI ES NECESARIO css -->
     {!!Html::style('stylesheets\select2.css')!!}
     {!!Html::style('stylesheets\jquery.fancybox.css')!!}
-    
+
     <!-- ESTOS ESTILOS DESCUADRAN EL REGISTRO DE USUARIOS, SE DEBE ENCONTRAR SOLUCIÓN
      {!!Html::style('stylesheets\jquery.fileupload-ui.css')!!}
     {!!Html::style('stylesheets/upload/fileinput.css')!!} -->
@@ -88,7 +86,7 @@
     <!-- scrip y style para select multiple-->
     {!!Html::script("assets-Internas/javascripts/bootstrap-button-to-input-file.js")!!}
 
-    <!-- 
+    <!--
     {!!Html::style('stylesheets\select2.css')!!}
     {!!Html::style('stylesheets\datatables.css')!!}
     {!!Html::style('stylesheets\bootstrap.css')!!}
@@ -96,7 +94,7 @@
     {!!Html::style('stylesheets/hightop-font.css')!!}
     {!!Html::style('stylesheets/bootstrap-select.css')!!}
     {!!Html::style('stylesheets\isotope.css')!!}
-    
+
     {!!Html::style('stylesheets\fullcalendar.css')!!}
     {!!Html::style('stylesheets\wizard.css')!!}
     {!!Html::style('stylesheets\morris.css')!!}
@@ -113,11 +111,8 @@
     -->
 
 
-    <!-- SUBIR IMAGENES -->
+    <!-- SUBIR IMAGENES
 
-    <!-- 
-    
-    
     {!!Html::style('stylesheets\dropzone.css')!!}
     {!!Html::style('stylesheets\nestable.css')!!}
     {!!Html::style('stylesheets\pygments.css')!!}
@@ -132,7 +127,7 @@
     {!!Html::style('stylesheets\color\gray.css')!!}
     -->
 
-    <!-- 
+    <!--
     <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
     -->
@@ -162,7 +157,7 @@
   {!!Html::script("javascripts\jquery.fancybox.pack.js")!!}-->
 
   <!-- AFECTA SI SE QUITA --><!--
-  {!!Html::script("javascripts\jquery.easy-pie-chart.js")!!} 
+  {!!Html::script("javascripts\jquery.easy-pie-chart.js")!!}
   {!!Html::script("javascripts\jquery.isotope.min.js")!!}-->
 
   <!-- BOOTSTRAP --><!--
@@ -178,7 +173,7 @@
   {!!Html::script("javascripts\datatable-editable.js")!!}
   {!!Html::script("javascripts\jquery.dataTables.js")!!}-->
   <!-- VERSION MIN DE DATATABLES.JS -->
-  <!-- {!!Html::script("javascripts\jquery.dataTables.min.js")!!}--> 
+  <!-- {!!Html::script("javascripts\jquery.dataTables.min.js")!!}-->
 
 
   <!-- FULL CALENDAR Y DATE JS'S--> <!--
@@ -217,10 +212,10 @@
   {!!Html::script("javascripts\summernote.min.js")!!}
   {!!Html::script("javascripts\spin.min.js")!!}
   {!!Html::script("javascripts\moment.js")!!}
-  
+
   {!!Html::script("javascripts\skycons.js")!!}
   {!!Html::script('javascripts\respond.js')!!}
-  
+
   {!!Html::script('javascripts\selectivizr-min.js')!!}
   {!!Html::script('javascripts\jquery.mousewheel.js')!!}
   {!!Html::script('javascripts\jquery.vmap.sampledata.js')!!}
@@ -230,22 +225,22 @@
   {!!Html::script('javascripts\address.js')!!}
   -->
   <!-- FIN APARENTEMENTE NO AFECTA SI SE QUITA -->
-  
-  
+
+
   <!-- ERRORES CROPPIE -->
   <!-- {!!Html::script('croppie/croppie.js')!!} -->
   <!-- {!!Html::script('croppie/upload.js')!!} -->
   <!-- {!!Html::style('croppie/croppie.css')!!} -->
-  
+
 {!!Html::script('javascripts/upload/fileinput.js')!!}
   <!-- UPLOAD --><!--
   {!!Html::script('javascripts/upload/plugins/sortable.js')!!}
-  
+
   {!!Html::script('javascripts/upload/locales/fr.js')!!}
   {!!Html::script('javascripts/upload/locales/es.js')!!}
   {!!Html::script('javascripts/upload/theme.js')!!}
-  
-  
+
+
   {!!Html::style('stylesheets/upload/theme.css')!!}-->
   <!-- FIN UPLOAD -->
 
@@ -297,9 +292,35 @@
                     </p>
                   </a>
                   <!-- NOTIFICACIONES -->
-                  <ul class="dropdown-menu">
-                    
-                  </ul>
+				 <ul class="dropdown-menu">
+									<li><a href="#">
+										<div class="notifications label label-info">
+										  New
+											</div>
+											<p>
+											  Sales targets available
+											</p></a>
+
+										  </li>
+									<li><a href="#">
+											<div class="notifications label label-info">
+											  New
+											</div>
+											<p>
+											  New performance metric added
+											</p></a>
+
+										  </li>
+									<li><a href="#">
+											<div class="notifications label label-info">
+											  New
+											</div>
+											<p>
+											  New growth data available
+											</p></a>
+
+										  </li>
+								</ul>
                 </li>
                 <li class="dropdown messages hidden-xs">
                   <a data-target="{{url('Mensajes')}}" class="dropdown-toggle" href="{{url('Mensajes')}}">
@@ -359,9 +380,10 @@
             <div class="nav-collapse">
               <ul class="nav">
                <li class="dropdown">
-                <a data-toggle="dropdown" href="">
+                <a class="MobEtiq" data-toggle="dropdown" href="">
                   <span aria-hidden="true" class="fa fa-5x fa-reorder">
-                  </span><label>{{Auth::User()->EmpresaActual->nombreEstablecimiento}}</label><b class="caret">
+                  </span>
+                  <label>{{Auth::User()->EmpresaActual->nombreEstablecimiento}}</label><b class="caret">
                   </b>
                 </a>
                   <ul class="dropdown-menu">
@@ -399,7 +421,7 @@
                 <li>
                   <a id="informacion" href="{{url('Estadisticas/')}}">
                   <span aria-hidden="true" class="fa fa-fw fa-line-chart">
-                  </span><label>Informacion</label></a>
+                  </span><label>Mis Informes</label></a>
                 </li>
 
                 <li>
@@ -446,5 +468,5 @@
     c.type='text/javascript';c.charset='utf-8';c.async=true;
     c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
   })(document);
-  </script> 
+  </script>
 </html>

@@ -413,8 +413,8 @@ body.show-grid .row{outline:#00eed3 solid 1px}
 .topbar.bg-solid .logo-symbol{fill:#00b19d}
 .topbar.bg-solid .logo-country{fill:#00b19d;opacity:.8}
 .topbar.bg-solid .logo-text{fill:#617b8a}
-.logo{margin-top:1rem}
-@media screen and (max-width:768px){.logo{margin-top:0}.logo svg{width:110px;margin-top:.5rem;margin-left:1rem}}
+.logo img {margin-top:1rem; width: 240px;}
+@media screen and (max-width:768px){.logo img {margin-top:0; width: 200px; margin-left: 15px;}.logo svg{width:110px;margin-top:.5rem;margin-left:1rem}}
 @media screen and (max-width:320px){.logo svg{width:100px}}
 /*-----------------Topbar NO BORRAR-----------------*/
 	
