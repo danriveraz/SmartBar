@@ -204,10 +204,11 @@ class UsuariosController extends Controller
       }
       $empresa->imagenResolucionFacturacion = $perfilNombre2;
     }
-
-    if($empresa->imagenResolucionFacturacion == ""){
-       flash::warning('Se necesita imagen resolucion facturacion para continuar')->important();
-       return redirect('Auth/modificarFactura');
+    if($empresa->tipoRegimen != 'simplificado'){
+      if($empresa->imagenResolucionFacturacion == ""){
+        flash::warning('Se necesita imagen resolucion facturacion para continuar')->important();
+        return redirect('Auth/modificarFactura');
+      }
     }else{
       $empresa->save();
       flash::success('La factura ha sido modificada satisfactoriamente')->important();
