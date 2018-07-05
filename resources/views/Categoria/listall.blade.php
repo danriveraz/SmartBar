@@ -3,7 +3,7 @@
   <div class="col-sm-12">
     <div class="widget-container fluid-height clearfix">
       <div class="widget-content padded clearfix">
-        <table class="table table-bordered table-striped" id="dataTable1">
+        <table class="table table-bordered table-striped" id="tablaCategorias">
           <thead>
             <th width="1%" id="no">No.</th>
             <th width="45%">Nombre</th>
@@ -184,7 +184,21 @@
     $(id).modal();
   });
 
-  $("#dataTable1").dataTable();
+  $("#tablaCategorias").DataTable( {
+          dom: 'lBfrtip',
+          buttons: [
+              {
+                  extend:    'excelHtml5',
+                  text:      '<i class="fa fa-file-excel-o"></i>',
+                  titleAttr: 'Descarga Excel'
+              },
+              {
+                  extend:    'pdfHtml5',
+                  text:      '<i class="fa fa-file-pdf-o"></i>',
+                  titleAttr: 'Descarga PDF'
+              }
+          ]
+      } );
 </script>
 
 <style type="text/css">

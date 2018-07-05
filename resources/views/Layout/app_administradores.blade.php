@@ -59,9 +59,9 @@
     {!!Html::script("javascripts\jquery.nestable.js")!!}
     {!!Html::script("assets-Internas/javascripts/main.js")!!}
 
-    <!--{!!Html::script("javascripts\bootstrap-datepicker.js")!!}
+    {!!Html::script("javascripts\bootstrap-datepicker.js")!!}
     {!!Html::script('javascripts/upload/fileinput.js')!!}
-    {!!Html::script("javascripts\bootstrap-fileupload.js")!!}-->
+    {!!Html::script("javascripts\bootstrap-fileupload.js")!!}
     <!-- FIN -->
 
     <!-- DATATABLES + ICONOS-->

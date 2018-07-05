@@ -111,6 +111,7 @@ class AuthController extends Controller
             $empresa = new Empresa;
             $empresa->nombreEstablecimiento = $request->nombreEstablecimiento;
             $empresa->imagenPerfilNegocio = "bar.png";
+            $empresa->tipoRegimen = "simplificado";
             $empresa->save();// crea la empresa con el nombre del establecimiento
 
 
