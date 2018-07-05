@@ -30,7 +30,7 @@
     <!-- LO QUE SI ES NECESARIO css -->
     {!!Html::style('stylesheets\select2.css')!!}
     {!!Html::style('stylesheets\jquery.fancybox.css')!!}
-    
+
     <!-- ESTOS ESTILOS DESCUADRAN EL REGISTRO DE USUARIOS, SE DEBE ENCONTRAR SOLUCIÓN
      {!!Html::style('stylesheets\jquery.fileupload-ui.css')!!}
     {!!Html::style('stylesheets/upload/fileinput.css')!!} -->
@@ -79,13 +79,13 @@
     {!!Html::style('assets-Internas\css\buttons.dataTables.css')!!}
     <!-- FIN -->
 
-    
+
     <!-- -->
 
     <!-- scrip y style para select multiple-->
     {!!Html::script("assets-Internas/javascripts/bootstrap-button-to-input-file.js")!!}
 
-    <!-- 
+    <!--
     {!!Html::style('stylesheets\select2.css')!!}
     {!!Html::style('stylesheets\datatables.css')!!}
     {!!Html::style('stylesheets\bootstrap.css')!!}
@@ -111,9 +111,9 @@
 
     <!-- SUBIR IMAGENES -->
 
-    <!-- 
-    
-    
+    <!--
+
+
     {!!Html::style('stylesheets\dropzone.css')!!}
     {!!Html::style('stylesheets\nestable.css')!!}
     {!!Html::style('stylesheets\pygments.css')!!}
@@ -128,7 +128,7 @@
     {!!Html::style('stylesheets\color\gray.css')!!}
     -->
 
-    <!-- 
+    <!--
     <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
     -->
@@ -158,7 +158,7 @@
   {!!Html::script("javascripts\jquery.fancybox.pack.js")!!}-->
 
   <!-- AFECTA SI SE QUITA --><!--
-  {!!Html::script("javascripts\jquery.easy-pie-chart.js")!!} 
+  {!!Html::script("javascripts\jquery.easy-pie-chart.js")!!}
   {!!Html::script("javascripts\jquery.isotope.min.js")!!}-->
 
   <!-- BOOTSTRAP --><!--
@@ -174,16 +174,16 @@
   {!!Html::script("javascripts\datatable-editable.js")!!}
   {!!Html::script("javascripts\jquery.dataTables.js")!!}-->
   <!-- VERSION MIN DE DATATABLES.JS -->
-  <!-- {!!Html::script("javascripts\jquery.dataTables.min.js")!!}--> 
+  <!-- {!!Html::script("javascripts\jquery.dataTables.min.js")!!}-->
 
   <!-- FULL CALENDAR Y DATE JS'S--> <!--
-  
+
   {!!Html::script("javascripts\date.js")!!}-->
   <!-- SUBIR IMAGENES --><!--
   {!!Html::script("javascripts\bootstrap-fileupload.js")!!}
   }-->
 
-  
+
   <!-- GRAFICOS --><!--
   {!!Html::script('javascripts\excanvas.min.js')!!}
   {!!Html::script('javascripts\raphael.min.js')!!}
@@ -191,11 +191,11 @@
   <!--
   {!!Html::script("javascripts\isotope_extras.js")!!}
   {!!Html::script("javascripts\jquery.inputmask.min.js")!!}
-  
+
   {!!Html::script("javascripts\ladda.min.js")!!}
   {!!Html::script("javascripts\mockjax.js")!!}
-  
-  
+
+
   {!!Html::script("javascripts\dropzone.js")!!}
   {!!Html::script("javascripts\jquery.nestable.js")!!}
   {!!Html::script('javascripts\jquery.vmap.min.js')!!}-->
@@ -211,10 +211,10 @@
   {!!Html::script("javascripts\summernote.min.js")!!}
   {!!Html::script("javascripts\spin.min.js")!!}
   {!!Html::script("javascripts\moment.js")!!}
-  
+
   {!!Html::script("javascripts\skycons.js")!!}
   {!!Html::script('javascripts\respond.js')!!}
-  
+
   {!!Html::script('javascripts\selectivizr-min.js')!!}
   {!!Html::script('javascripts\jquery.mousewheel.js')!!}
   {!!Html::script('javascripts\jquery.vmap.sampledata.js')!!}
@@ -224,22 +224,22 @@
   {!!Html::script('javascripts\address.js')!!}
   -->
   <!-- FIN APARENTEMENTE NO AFECTA SI SE QUITA -->
-  
-  
+
+
   <!-- ERRORES CROPPIE -->
   <!-- {!!Html::script('croppie/croppie.js')!!} -->
   <!-- {!!Html::script('croppie/upload.js')!!} -->
   <!-- {!!Html::style('croppie/croppie.css')!!} -->
-  
+
 {!!Html::script('javascripts/upload/fileinput.js')!!}
   <!-- UPLOAD --><!--
   {!!Html::script('javascripts/upload/plugins/sortable.js')!!}
-  
+
   {!!Html::script('javascripts/upload/locales/fr.js')!!}
   {!!Html::script('javascripts/upload/locales/es.js')!!}
   {!!Html::script('javascripts/upload/theme.js')!!}
-  
-  
+
+
   {!!Html::style('stylesheets/upload/theme.css')!!}-->
   <!-- FIN UPLOAD -->
 
@@ -292,8 +292,33 @@
                   </a>
                   <!-- NOTIFICACIONES -->
                   <ul class="dropdown-menu">
-                    
-                  </ul>
+  					<li><a href="#">
+  						<div class="notifications label label-info">
+  						  New
+  							</div>
+  							<p>
+  							  Sales targets available
+  							</p></a>
+
+  						  </li>
+  					<li><a href="#">
+  							<div class="notifications label label-info">
+  							  New
+  							</div>
+  							<p>
+  							  New performance metric added
+  							</p></a>
+
+  						  </li>
+  					<li><a href="#">
+  							<div class="notifications label label-info">
+  							  New
+  							</div>
+  							<p>
+  							  New growth data available
+  							</p></a>  
+  						  </li>
+  				</ul>
                 </li>
                 <li class="dropdown messages hidden-xs">
                   <a data-target="{{url('Mensajes')}}" class="dropdown-toggle" href="{{url('Mensajes')}}">
@@ -440,5 +465,5 @@
     c.type='text/javascript';c.charset='utf-8';c.async=true;
     c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
   })(document);
-  </script> 
+  </script>
 </html>
