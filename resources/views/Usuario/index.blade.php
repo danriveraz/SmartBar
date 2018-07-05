@@ -1,3 +1,15 @@
+<style type="text/css">
+  .PocketA {
+  color: #E9E9E9; }
+  .PocketA:hover {
+    color: #FFFFFF;
+    text-decoration: none; }
+  .Deshabilitado{
+    background:  rgb(243, 243, 243) !important;
+  }
+</style>
+
+
 @extends('Layout.app_administradores')
 @section('content')
 

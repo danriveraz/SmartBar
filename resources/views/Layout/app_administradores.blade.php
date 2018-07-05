@@ -30,7 +30,6 @@
     <!-- LO QUE SI ES NECESARIO css -->
     {!!Html::style('stylesheets\select2.css')!!}
     {!!Html::style('stylesheets\jquery.fancybox.css')!!}
-    {!!Html::style('stylesheets\isotope.css')!!}
     
     <!-- ESTOS ESTILOS DESCUADRAN EL REGISTRO DE USUARIOS, SE DEBE ENCONTRAR SOLUCIÓN
      {!!Html::style('stylesheets\jquery.fileupload-ui.css')!!}
@@ -59,9 +58,9 @@
     {!!Html::script("javascripts\jquery.nestable.js")!!}
     {!!Html::script("assets-Internas/javascripts/main.js")!!}
 
-    {!!Html::script("javascripts\bootstrap-datepicker.js")!!}
+    <!--{!!Html::script("javascripts\bootstrap-datepicker.js")!!}
     {!!Html::script('javascripts/upload/fileinput.js')!!}
-    {!!Html::script("javascripts\bootstrap-fileupload.js")!!}
+    {!!Html::script("javascripts\bootstrap-fileupload.js")!!}-->
     <!-- FIN -->
 
     <!-- DATATABLES + ICONOS-->
@@ -87,7 +86,13 @@
     {!!Html::script("assets-Internas/javascripts/bootstrap-button-to-input-file.js")!!}
 
     <!-- 
+    {!!Html::style('stylesheets\select2.css')!!}
+    {!!Html::style('stylesheets\datatables.css')!!}
+    {!!Html::style('stylesheets\bootstrap.css')!!}
+    {!!Html::style('stylesheets/font-awesome.min.css')!!}
+    {!!Html::style('stylesheets/hightop-font.css')!!}
     {!!Html::style('stylesheets/bootstrap-select.css')!!}
+    {!!Html::style('stylesheets\isotope.css')!!}
     {!!Html::style('stylesheets\fullcalendar.css')!!}
     {!!Html::style('stylesheets\wizard.css')!!}
     {!!Html::style('stylesheets\morris.css')!!}
@@ -102,6 +107,7 @@
     {!!Html::style('stylesheets\ladda-themeless.min.css')!!}
     {!!Html::style('stylesheets\social-buttons.css')!!}
     -->
+
 
     <!-- SUBIR IMAGENES -->
 
@@ -148,7 +154,7 @@
   <!-- PRIMORDIALES --><!--
   {!!Html::script("javascripts\bootstrap.min.js")!!}
   {!!Html::script("javascripts\select2.js")!!}
-  
+  {!!Html::script('javascripts\main.js')!!}
   {!!Html::script("javascripts\jquery.fancybox.pack.js")!!}-->
 
   <!-- AFECTA SI SE QUITA --><!--
@@ -225,9 +231,8 @@
   <!-- {!!Html::script('croppie/upload.js')!!} -->
   <!-- {!!Html::style('croppie/croppie.css')!!} -->
   
-
+{!!Html::script('javascripts/upload/fileinput.js')!!}
   <!-- UPLOAD --><!--
-  {!!Html::script('javascripts/upload/fileinput.js')!!}
   {!!Html::script('javascripts/upload/plugins/sortable.js')!!}
   
   {!!Html::script('javascripts/upload/locales/fr.js')!!}
@@ -245,7 +250,6 @@
   <!-- ascrip y css de menu -->
 
   <!-- PARA EL PERFIL-->
-  
   <!--FALTAN ALGUNOS ESTILOS, EL LAYOUT OPTIMIZADO NO SIRVE AÚN PARA EL PERFIL--><!--
   {!!Html::style('assets/css/main.css')!!}
   {!!Html::style('stylesheets/profile.css')!!}

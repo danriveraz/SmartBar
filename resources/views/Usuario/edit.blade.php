@@ -2,6 +2,7 @@
 @section('content')
 @include('flash::message')
 
+
 <div class="view-account">
   <div class="module">
       <div class="module-inner">
