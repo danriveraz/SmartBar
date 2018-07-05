@@ -30,7 +30,8 @@
     <!-- LO QUE SI ES NECESARIO css -->
     {!!Html::style('stylesheets\select2.css')!!}
     {!!Html::style('stylesheets\jquery.fancybox.css')!!}
-
+    {!!Html::style('stylesheets\isotope.css')!!}
+    
     <!-- ESTOS ESTILOS DESCUADRAN EL REGISTRO DE USUARIOS, SE DEBE ENCONTRAR SOLUCIÓN
      {!!Html::style('stylesheets\jquery.fileupload-ui.css')!!}
     {!!Html::style('stylesheets/upload/fileinput.css')!!} -->
@@ -92,7 +93,7 @@
     {!!Html::style('stylesheets/font-awesome.min.css')!!}
     {!!Html::style('stylesheets/hightop-font.css')!!}
     {!!Html::style('stylesheets/bootstrap-select.css')!!}
-    {!!Html::style('stylesheets\isotope.css')!!}
+    
     {!!Html::style('stylesheets\fullcalendar.css')!!}
     {!!Html::style('stylesheets\wizard.css')!!}
     {!!Html::style('stylesheets\morris.css')!!}
