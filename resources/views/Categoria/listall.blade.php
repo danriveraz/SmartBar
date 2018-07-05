@@ -31,8 +31,8 @@
                 </td>
               </tr>
               <!-- MODAL EDIT -->
-              <div class="modal fade" id="editModalCategoria{{$categoria->id}}">
-                <div class="modal-dialog">
+              <div class="modal fade" id="editModalCategoria{{$categoria->id}}" role="dialog">
+                <div class="modal-dialog modal-md" style="width: 50%;">
                   <div class="modal-content" style="background-color:#FFFFFF">
                     <!-- class="modal-content" -->
                       <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
@@ -49,7 +49,7 @@
                                 <div class="row">
                                   <div class="col-md-4">
                                     <div class="bs-example">
-                                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                        <div id="myCarousel" class="carousel" data-ride="carousel">
                                         <!-- Carousel indicators -->  
                                           <!-- Wrapper for carousel items -->
                                           <div class="carousel-inner">

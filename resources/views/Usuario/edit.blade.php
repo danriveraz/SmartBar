@@ -2,6 +2,10 @@
 @section('content')
 @include('flash::message')
 
+<!-- ESTILOS VISTA PERFIL -->
+{!!Html::style('assets/css/main.css')!!}
+{!!Html::style('stylesheets/profile.css')!!}
+<!-- FIN -->
 
 <div class="view-account">
   <div class="module">
