@@ -478,7 +478,7 @@ body.login2 {
         .navbar .container-fluid.top-bar .nav > li.open > a, .navbar .container-fluid.top-bar .nav > li.active > a, .navbar .container-fluid.top-bar .nav > li.open.active > a {
           background-color: #eeeeee; }
           .navbar .container-fluid.top-bar .nav > li.open > a span, .navbar .container-fluid.top-bar .nav > li.active > a span, .navbar .container-fluid.top-bar .nav > li.open.active > a span {
-            color: #9b999c; }
+            color: #d7d7d7; }
         .navbar .container-fluid.top-bar .nav > li.settings .settings-link span {
           width: 20px;
           height: 20px;
