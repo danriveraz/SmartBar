@@ -9,10 +9,10 @@
         <div class="widget-content padded clearfix">
           <table class="table table-bordered table-striped" id="example">
             <thead>
-              <th width="10%">Nombre</th>
-              <th width="10%">Precio</th>
-              <th width="18%">Categoria</th>
-              <th width="10%">Opciones</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Categoria</th>
+              <th>Opciones</th>
             </thead>
             <tbody>
               @foreach($productos as $producto)
@@ -23,7 +23,7 @@
                   <td>
                     <div>
                       <a class="table-actions pocketMorado" href="">
-                        <i class="fa fa-book" data-toggle="modal" href="#modalReceta{{$producto->id}}"  title="Preparación"></i> 
+                        <i class="fa fa-book" data-toggle="modal" href="#modalReceta{{$producto->id}}"  title="Preparación"></i>
                         <!-- Se comenta la función onclick debido a que genera error, revisar en caso de que esta sea necesaria-->
                         <!-- onclick="ingredientes({{$producto->id}})" -->
                       </a>
@@ -51,7 +51,7 @@
                               <form action="" id="validate-form" method="get">
                                 <fieldset>
                                   <div class="row">
-                                    <div class="col-md-5">                 
+                                    <div class="col-md-5">
                                       <div class="bs-example">
                                         <img src="{{asset('images/productos/'.$producto->imagen)}}" alt="{{$producto->nombre}}">
                                       </div>
@@ -80,7 +80,7 @@
                       </div>
                     </div>
                   </div>
-                </tr>                
+                </tr>
               @endforeach
             </tbody>
           </table>
@@ -159,7 +159,7 @@
           document.getElementById("ingredientes"+idProducto).className = "false";
         },
         error: function(data){
-          
+
         }
       });
     }
@@ -218,36 +218,36 @@
     var id = palabra.concat(idElegido);
     $(id).modal();
 });
-</script>  
+</script>
 <!--<style>
     .center-block {
         float: none;
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     .input-group .icon-addon .form-control {
         border-radius: 0;
     }
-    
+
     .icon-addon {
         position: relative;
         color: rgb(79,0,85);
         display: block;
     }
-    
+
     .icon-addon:after,
     .icon-addon:before {
         display: table;
         content: " ";
     }
-    
+
     .icon-addon:after {
         clear: both;
     }
-    
+
     .icon-addon.addon-md .glyphicon,
-    .icon-addon .glyphicon, 
+    .icon-addon .glyphicon,
     .icon-addon.addon-md .fa,
     .icon-addon .fa {
         position: absolute;
@@ -260,21 +260,21 @@
         padding: 10px 0;
         top: 1px
     }
-    
+
     .icon-addon.addon-lg .form-control {
         line-height: 1.33;
         height: 46px;
         font-size: 18px;
         padding: 10px 16px 10px 40px;
     }
-    
+
     .icon-addon.addon-sm .form-control {
         height: 30px;
         padding: 5px 10px 5px 28px;
         font-size: 12px;
         line-height: 1.5;
     }
-    
+
     .icon-addon.addon-lg .fa,
     .icon-addon.addon-lg .glyphicon {
         font-size: 18px;
@@ -282,14 +282,14 @@
         left: 11px;
         top: 4px;
     }
-    
+
     .icon-addon.addon-md .form-control,
     .icon-addon .form-control {
         padding-left: 30px;
         float: left;
         font-weight: normal;
     }
-    
+
     .icon-addon.addon-sm .fa,
     .icon-addon.addon-sm .glyphicon {
         margin-left: 0;
@@ -297,7 +297,7 @@
         left: 5px;
         top: -1px
     }
-    
+
     .icon-addon .form-control:focus + .glyphicon,
     .icon-addon:hover .glyphicon,
     .icon-addon .form-control:focus + .fa,

@@ -61,7 +61,7 @@ table.dataTable {
 }
 
 .dataTables_length {
-  width: 9%;
+  /*width: 9%;*/
   float: left;
   margin: 1.1% 0 10px;
 }
