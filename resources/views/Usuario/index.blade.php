@@ -550,15 +550,6 @@
   {!!$usuarios->render() !!}
 </div>
 
-<!-- Script para personal-->
-{!!Html::script('assets-Internas/javascripts/jquery.bootstrap.wizard.js')!!}
-{!!Html::script('assets-Internas/javascripts/fullcalendar.min.js')!!}
-{!!Html::script('assets-Internas/javascripts/jquery.dataTables.js')!!}
-{!!Html::script('assets-Internas/javascripts/jquery.isotope.min.js')!!}
-{!!Html::script('assets-Internas/javascripts/isotope_extras.js')!!}
-{!!Html::script('assets-Internas/javascripts/jquery.fancybox.pack.js')!!}
-{!!Html::script('assets-Internas/javascripts/select2.js')!!}
-<!-- Fin de Script para personal-->
 
 <!-- Para notificaciones con ajax -->
 {!!Html::style('css/notificaciones/ns-default.css')!!}

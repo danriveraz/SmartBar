@@ -3,7 +3,7 @@
 
 {!!Html::style('assetsNew\styles/chartist.min.css')!!}<!--css para las gráficas -->
 {!!Html::style('assetsNew\styles/chartist-plugin-tooltip.css')!!}
-{!!Html::style('assetsNew\styles/main.css')!!} 
+<!-- {!!Html::style('assetsNew\styles/main.css')!!}  -->
 
 {!!Html::script('assetsNew\scripts/chartist/js/chartist.min.js')!!}<!-- javascript para las gráficas-->
 {!!Html::script('assetsNew\scripts/chartist-plugin-tooltip/chartist-plugin-tooltip.min.js')!!}
