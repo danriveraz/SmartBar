@@ -155,7 +155,15 @@
              {{Session::get('message')}}
            @endif
          </div>
-          <div class="input-container">
+         <div class="input-container">
+           <i class="fa fa-address-book"></i>
+           <select class="select" id="tipo"  name="tipo" required>
+             <option value="dueño">Dueño de Negocio</option>
+             <option value="proveedor">Proveedor</option>
+             <option value="cliente">Cliente VIP</option>
+           </select>
+         </div>
+          <div class="input-container" id="NomNeg">
             <i class="fa fa-reorder"></i>
             <input type="text" class="input" name="nombreEstablecimiento" placeholder="Nombre de tu Negocio" required/>
           </div>
@@ -165,14 +173,6 @@
               <option >Tipo De Negocio</option>
               <option value="Bar">Bar</option>
               <option value="restaurante">restaurante</option>
-            </select>
-          </div>
-          <div class="input-container">
-            <i class="fa fa-address-book"></i>
-            <select class="select" id="tipo"  name="tipo" required>
-              <option value="dueño">Dueño de Negocio</option>
-              <option value="proveedor">Proveedor</option>
-              <option value="cliente">Cliente VIP</option>
             </select>
           </div>
           <div class="input-container">
@@ -340,17 +340,25 @@ window.smartsupp||(function(d) {
     });
   });
 </script>
+<!-- FIN SCRIPT DEPARTAMENTO Y CIUDADES -->
+
+<!-- Funcion para validar tipo de usuario y quitar campos q no le corresponde-->
 <script>
 $(document).ready(function() {
   $('#tipo').change(function(e) {
     if ($(this).val() === "proveedor") {
       document.getElementById( 'TipNeg' ).style.display = 'none';
-    } else {
+      document.getElementById( 'NomNeg' ).style.display = 'block';
+    }
+    else if ($(this).val() === "cliente") {
+      document.getElementById( 'TipNeg' ).style.display = 'none';
+      document.getElementById( 'NomNeg' ).style.display = 'none';
+    }
+    else {
       document.getElementById( 'TipNeg' ).style.display = 'block';
     }
   })
 });
 </script>
-<!-- FIN SCRIPT DEPARTAMENTO Y CIUDADES -->
 </body>
 </html>

@@ -5,13 +5,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="generator" content="HTML5">	
+  <meta name="generator" content="HTML5">
   <meta name="application-name" content="PocketSmartbar"/>
   <meta name="author" content="Pocket Company S.A.S"/>
   <meta name="description" content="Aplicativo inteligente online, escencial en Bares, Discotecas y/o Restaurantes, que facilita enormemente el trabajo  de administradores, empleados, proveedores y clientes de estos." />
   <meta name="generator" content="Html5 Css Javascrip" />
   <meta name="keywords" content="Compañero inseparable, sistema inteligente de manejo de negocios, bares, restaurantes, discotecas, licores, comidas, cocteles, información almacenada en la nube, sistema pos, sitema pos para restaurantes, software para restaurante, software POS para restaurante, sistema de punto de ventas, sistema de facturación, software de inventario, software para punto de ventas, software POS, sistema POS, Colombia, POS online" />
-  <meta name="encoding" charset="utf-8" />		
+  <meta name="encoding" charset="utf-8" />
 <!-- Datos Open Graph -->
   <meta property="og:title" content="PocketSmartbar" />
   <meta property="og:type" content="WebSite" />
@@ -19,17 +19,17 @@
   <meta property="og:description" content="Aplicativo inteligente online, escencial en Bares, Discotecas y/o Restaurantes, que facilita enormemente el trabajo  de administradores, empleados, proveedores y clientes de estos.">
   <meta property="og:site_name" content="PocketSmartBar">
   <meta property="og:image" content="assets/images/p"><!--poner link de la imagen--!>
-  <!-- Datos Twitter Card -->	
+  <!-- Datos Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@pocketsmartbar">
   <meta name="twitter:creator" content="@pocketsmartbar" />
 <!-- Etiquetas meta -->
   <title>Registro - PocketSmartBar</title>
-  <link type="image/x-icon" rel="shortcut icon" href="{{asset('assets-home/images/icon.png')}}"/>        
-<!-- Datos meta Graph --> 
-	
+  <link type="image/x-icon" rel="shortcut icon" href="{{asset('assets-home/images/icon.png')}}"/>
+<!-- Datos meta Graph -->
+
 <!-- Styles -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
 	<style>
 
 
@@ -47,7 +47,7 @@
 	height:100%;
 	padding:30px 80px;
 	background-color:#FFF}
-	
+
 .sidebar-large1{
 	display:table-cell;
 	width:500px;
@@ -88,7 +88,7 @@
 						<img src="{{asset('assets-home/images/logoPrin.png')}}"/>
 					</a>
 				</div>
-				<h3>Bienvenido! Tu amigo inseparable te espera </h3>						
+				<h3>Bienvenido! Tu amigo inseparable te espera </h3>
 			</div>
 			<form class="login-form" autocomplete="off" role="form" method="POST" enctype="multipart/form-data" action="{{ url('Auth/register') }}" files="true">
         		{{ csrf_field() }}
@@ -97,42 +97,50 @@
 	            	{{Session::get('message')}}
 	           	@endif
 	         	</div>
-		        <div class="input-container">
-		        	<i class="fa fa-reorder"></i>
-		        	<input type="text" class="input" name="nombreEstablecimiento" placeholder="Nombre de tu Negocio" required/>
-		        </div>
-			    <div class="input-container">
-			    	<i class="fa fa-address-book"></i>
-			    	<select class="select" id="tipo"  name="tipo" required>
-					    <option value="dueño">Dueño de Negocio</option>
-					    <option value="proveedor">Proveedor</option>
-					    <option value="cliente">Cliente</option>
-			    	</select>
-			    </div>
-		        <div class="input-container">
-		            <i class="fa fa-address-card"></i>
-		            <input type="text" class="input" name="nombrePersona" placeholder="Nombre" required/>
-		        </div>
-		        <div class="input-container">
-		            <i class="fa fa-venus-mars"></i>          
-		            <select class="select" id="sexo" name="sexo" required="">
-		            	<option value="">Sexo</option>
-		              	<option value="Masculino">Masculino</option>
-		              	<option value="Femenino">Femenino</option>
-		              	<option value="Otro">Otro</option>
-		            </select>
-		        </div>
-		        <div class="input-container">
-		            <i class="fa fa-envelope"></i>
-		            <input type="email" class="input" id="email" name="email" placeholder="Email" requerid/>
-		        </div>
+            <div class="input-container">
+              <i class="fa fa-address-book"></i>
+              <select class="select" id="tipo"  name="tipo" required>
+                <option value="dueño">Dueño de Negocio</option>
+                <option value="proveedor">Proveedor</option>
+                <option value="cliente">Cliente VIP</option>
+              </select>
+            </div>
+             <div class="input-container" id="NomNeg">
+               <i class="fa fa-reorder"></i>
+               <input type="text" class="input" name="nombreEstablecimiento" placeholder="Nombre de tu Negocio" required/>
+             </div>
+             <div class="input-container" id="TipNeg">
+               <i class="fa fa-reorder"></i>
+               <select class="select" id="TipoNegocio"  name="TipoNegocio" required>
+                 <option >Tipo De Negocio</option>
+                 <option value="Bar">Bar</option>
+                 <option value="restaurante">restaurante</option>
+               </select>
+             </div>
+             <div class="input-container">
+               <i class="fa fa-address-card"></i>
+               <input type="text" class="input" name="nombrePersona" placeholder="Nombre" required/>
+             </div>
+             <!--div class="input-container">
+               <i class="fa fa-venus-mars"></i>
+               <select class="select" id="sexo" name="sexo" required="">
+                 <option value="">Sexo</option>
+                 <option value="Masculino">Masculino</option>
+                 <option value="Femenino">Femenino</option>
+                 <option value="Otro">Otro</option>
+               </select>
+             </div-->
+             <div class="input-container">
+               <i class="fa fa-envelope"></i>
+               <input type="email" class="input" id="email" name="email" placeholder="Email" requerid/>
+             </div>
 	          	<div class="input-container">
 	            	<i class="fa fa-lock"></i>
 	            	<input type="password"  id="login-password1" class="input" name="password" placeholder="Contraseña"/>
 	            	<i id="show-password1" class="fa fa-eye"></i>
 	          	</div>
           		<div class="input-container" style="float: left; width:49%">
-            		<i class="fa fa-map-marker"></i>          
+            		<i class="fa fa-map-marker"></i>
             		<select class="selectCi" id="idDepto"  name="idDepto" required>
               			<option value="">Departamento</option>
 			            @foreach($departamentos as $departamento)
@@ -141,17 +149,17 @@
             		</select>
           		</div>
 	          	<div class="input-container" style="float: left; width:49%">
-	            	<i class="fa fa-map-marker"></i>          
+	            	<i class="fa fa-map-marker"></i>
 	            	<select class="selectCi" id="idCiudad" name="idCiudad" required>
 	              		<option value="">Ciudad</option>
 	            	</select>
-	          	</div>      
+	          	</div>
           		<input type="submit" name="login" value="Registrarme" class="button"/>
-        <!--a href="#" class="register">Register</a-->          
+        <!--a href="#" class="register">Register</a-->
       		</form>
 			<div class="terms">
 				Al crear tu cuenta aceptas nuestros
-				<a class="pocketColor" href="" target="_blank">Términos, Condiciones</a> y 
+				<a class="pocketColor" href="" target="_blank">Términos, Condiciones</a> y
 				<a class="pocketColor"href="" target="_blank">Política de Tratamiento de Datos</a>.
 			</div>
 			<div class="separator">
@@ -163,11 +171,11 @@
 					<span>Iniciar Sesión con Google</span>
 				</a>
 			</div>
-        </div><!--  fin de login-form-content-->		
+        </div><!--  fin de login-form-content-->
     </aside>
     <!-- Content Slideshow  -->
     <section class="content">
-        <div class="hero-login bg-cover"style="background-image: url({{asset('assets-home/images/login-slide-4.jpg')}}")">
+        <div class="hero-login bg-cover"style="background-image: url({{asset('assets-home/images/login-slide-4.jpg')}})">
         </div>
     </section>
     <!-- SCRIPT DEPARTAMENTO Y CIUDADES -->
@@ -189,8 +197,26 @@
 	      }
 	    });
 	  });
-	</script> 
+	</script>
 	<!-- FIN SCRIPT DEPARTAMENTO Y CIUDADES -->
-</div>    
+</div>
+<!-- Funcion para validar tipo de usuario y quitar campos q no le corresponde-->
+<script>
+$(document).ready(function() {
+  $('#tipo').change(function(e) {
+    if ($(this).val() === "proveedor") {
+      document.getElementById( 'TipNeg' ).style.display = 'none';
+      document.getElementById( 'NomNeg' ).style.display = 'block';
+    }
+    else if ($(this).val() === "cliente") {
+      document.getElementById( 'TipNeg' ).style.display = 'none';
+      document.getElementById( 'NomNeg' ).style.display = 'none';
+    }
+    else {
+      document.getElementById( 'TipNeg' ).style.display = 'block';
+    }
+  })
+});
+</script>
 </body>
 </html>
