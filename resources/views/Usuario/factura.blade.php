@@ -188,9 +188,9 @@
               </div>
               <div class="field">
               	<div class="login-form" id="field">
-              		<input autocomplete="off" class="input" name="impuesto" id="field1" placeholder="Iva" data-items="3" style="width: 10%;"/>
-              		<input autocomplete="off" class="input" name="valor" id="valor1" placeholder="19%" data-items="3" style="width: 5%;"/>
-              		<button id="b1" class="add-more btn btn-pocket" type="button" style="padding: 1px 7px;">+</button>
+              		<input autocomplete="off" class="input" name="impuesto" id="field1" placeholder="Iva" data-items="8" style="width: 10%;"/>
+              		<input autocomplete="off" class="input" name="valor" id="valor1" placeholder="19%" data-items="8" style="width: 5%;"/>
+              		<button id="b1" class="add-more btn btn-pocket" type="button" style="padding: 1px 7px; width: 3%;">+</button>
               	</div>
               </div>
               <div class="field">
@@ -285,28 +285,53 @@
 
         //SCRIPTS PARA IMPUESTOS
         var next = 1;
+        var auxNext = 1;
 	    $(".add-more").click(function(e){
-	    	alert("?");
-	        e.preventDefault();
-	        var addto = "#field" + next;
-	        var addRemove = "#field" + (next);
-	        next = next + 1;
-	        var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="field' + next + '" type="text">';
-	        var newInput = $(newIn);
-	        var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
-	        var removeButton = $(removeBtn);
-	        $(addto).after(newInput);
-	        $(addRemove).after(removeButton);
-	        $("#field" + next).attr('data-source',$(addto).attr('data-source'));
-	        $("#count").val(next);  
+	    	if(next < 3){
+	    		e.preventDefault();
+		        var addto = "#valor" + (auxNext);
+		        var addRemove = "#valor" + (auxNext);
+		        var addAdd = "#valor" + (auxNext);
+
+		        next = next + 1;
+		        auxNext = auxNext + 1;
+		        var newIn = '<input autocomplete="off" placeholder="Impuesto" class="input" id="field' + next + '" name="field' + auxNext + '" type="text" style="width: 10%; margin-top: 1%;">';
+		        var newVal = '<input autocomplete="off" placeholder="0%" class="input" id="valor' + next + '" name="valor' + auxNext + '" type="text" style="width: 5%; margin-top: 1%;">';
+		        var newInput = $(newIn);
+		        var newInputVal = $(newVal);
+
+		        var removeBtn = '<button id="remove' + (auxNext - 1) + '" class="btn btn-danger remove-me" style="padding: 1px 7px; width: 3%; margin-top: 1%;" type="button">-</button></div><div id="field">';
+
+		        var addBtn = '<button id="b' + (auxNext) + '" class="add-more btn btn-pocket" type="button" style="padding: 1px 7px; width: 3%; margin-top: 1%;">+</button></div><div id="field">';
+
+		        var removeButton = $(removeBtn);
+		        var addButton = $(addBtn);
+
+		        $(addto).after(newInputVal);
+		        $(addto).after(newInput);
+
+		        if((auxNext - 1) > 1){
+		        	$(addRemove).after(removeButton); 
+		        }else{
+		        	$(addAdd).after(addButton);
+		        }
+		        $("#field" + next).attr('data-source',$(addto).attr('data-source'));
+			    $("#count").val(next); 
+		        
+	            $('.remove-me').click(function(e){
+	            	next = next - 1;
+	            	auxNext = next + 1;
+	                e.preventDefault();
+	                var fieldNum = this.id.charAt(this.id.length-1);
+	                var fieldID = "#field" + fieldNum;
+	                var valorID = "#valor" + fieldNum;
+	                repite = true;
+	                $(this).remove();
+	                $(fieldID).remove();
+	                $(valorID).remove();
+	            });
+	    	}
 	        
-            $('.remove-me').click(function(e){
-                e.preventDefault();
-                var fieldNum = this.id.charAt(this.id.length-1);
-                var fieldID = "#field" + fieldNum;
-                $(this).remove();
-                $(fieldID).remove();
-            });
 	    });
 	});
 
