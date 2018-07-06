@@ -16,7 +16,7 @@
 		    <div class="row">
 		      <div class="col-md-12">
 		        <div class="invoice-wrapper">
-		         {!! Form::open(['route' => ['Auth.usuario.editFactura',$user], 'method' => 'POST','enctype' => 'multipart/form-data']) !!}
+		         {!! Form::open(['route' => ['Auth.usuario.editFactura',$user], 'method' => 'POST','enctype' => 'multipart/form-data', 'class' => 'input-append']) !!}
               	 {{ csrf_field() }}
 			<!-- inicio de prueba -->
 		        <div class="row">
@@ -153,6 +153,30 @@
               </div>
             </div>
             <div class="items" id="tabla">
+            	<div class="row">
+	                <div class="col-xs-5">Producto 1</div>
+	                <div class="FactPocket col-xs-2 text-center">1</div>
+	                <div class="FactPocket col-xs-2 text-center">0</div>
+	                <div class="FactPocket col-xs-2 text-center">100</div>
+	                <div class="FactPocket col-xs-2 text-center">100</div>
+	                <div class="FactPocket col-xs-2 text-center">100</div>
+	        	</div>
+	        	<div class="row">
+	                <div class="col-xs-5">Producto 2</div>
+	                <div class="FactPocket col-xs-2 text-center">2</div>
+	                <div class="FactPocket col-xs-2 text-center">1</div>
+	                <div class="FactPocket col-xs-2 text-center">400</div>
+	                <div class="FactPocket col-xs-2 text-center">200</div>
+	                <div class="FactPocket col-xs-2 text-center">200</div>
+	        	</div>
+	        	<div class="row">
+	                <div class="col-xs-5">Producto 3</div>
+	                <div class="FactPocket col-xs-2 text-center">4</div>
+	                <div class="FactPocket col-xs-2 text-center">4</div>
+	                <div class="FactPocket col-xs-2 text-center">2000</div>
+	                <div class="FactPocket col-xs-2 text-center">500</div>
+	                <div class="FactPocket col-xs-2 text-center">0</div>
+	        	</div>
            	</div>
            	<div class="total text-right">
               <p class="extra-notes">
@@ -160,7 +184,14 @@
                 <textarea id="notas" name="notas" class="form-control" rows="2" cols="100" maxlength="140" placeholder="Pon tu mensaje aquí" style="resize: none;">{{$empresa->notas}} </textarea>
               </p>
               <div class="field">
-                Subtotal <span id="subtotal">$0.00</span>
+                Subtotal <span id="subtotal">$300</span>
+              </div>
+              <div class="field">
+              	<div class="login-form" id="field">
+              		<input autocomplete="off" class="input" name="impuesto" id="field1" placeholder="Iva" data-items="3" style="width: 10%;"/>
+              		<input autocomplete="off" class="input" name="valor" id="valor1" placeholder="19%" data-items="3" style="width: 5%;"/>
+              		<button id="b1" class="add-more btn btn-pocket" type="button" style="padding: 1px 7px;">+</button>
+              	</div>
               </div>
               <div class="field">
                 @if($user->EmpresaActual->tipoRegimen == "comun")
@@ -169,8 +200,8 @@
                 <span id="iva" data-regimen="simplificado"></span>
                 @endif                
               </div>
-              <div class="field grand-total"> 
-                Total <span id="total" data-total="0">$0</span>
+              <div class="field"> 
+                Total <span id="total">$300</span>
               </div>
             </div>
 		  </div>
@@ -251,6 +282,32 @@
         if($resolucion == 0 || $resolucion == ""){
         	document.getElementById("resolucion").value = null;
         }
+
+        //SCRIPTS PARA IMPUESTOS
+        var next = 1;
+	    $(".add-more").click(function(e){
+	    	alert("?");
+	        e.preventDefault();
+	        var addto = "#field" + next;
+	        var addRemove = "#field" + (next);
+	        next = next + 1;
+	        var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="field' + next + '" type="text">';
+	        var newInput = $(newIn);
+	        var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
+	        var removeButton = $(removeBtn);
+	        $(addto).after(newInput);
+	        $(addRemove).after(removeButton);
+	        $("#field" + next).attr('data-source',$(addto).attr('data-source'));
+	        $("#count").val(next);  
+	        
+            $('.remove-me').click(function(e){
+                e.preventDefault();
+                var fieldNum = this.id.charAt(this.id.length-1);
+                var fieldID = "#field" + fieldNum;
+                $(this).remove();
+                $(fieldID).remove();
+            });
+	    });
 	});
 
 	$(function() {

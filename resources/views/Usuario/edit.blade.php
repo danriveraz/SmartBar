@@ -2,6 +2,10 @@
 @section('content')
 @include('flash::message')
 
+<!-- ESTILOS VISTA PERFIL -->
+{!!Html::style('assets/css/main.css')!!}
+{!!Html::style('stylesheets/profile.css')!!}
+<!-- FIN -->
 
 <div class="view-account">
   <div class="module">
@@ -488,8 +492,8 @@
               <div class="col-sm-offset-1 col-sm-10" style="align-content: center;">
                 <div id="list-cat"></div>
               </div>
-              <div class="modal fade in" id="addModalCategoria" >
-                <div class="modal-dialog">
+              <div class="modal fade in" id="addModalCategoria" role="dialog">
+                <div class="modal-dialog modal-md" style="width: 50%;">
                   <div class="modal-content">
                     {!! Form::open(['method' => 'POST', 'action' => 'CategoriaController@store']) !!}
                       <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
@@ -543,14 +547,14 @@
               </div>
               <div class="col-sm-offset-2 col-sm-8">
                 <div class="modal fade in" id="addModalMesas" >
-                  <div class="modal-dialog">
+                  <div class="modal-dialog modal-md" style="width: 30%;">
                     <div class="modal-content">
                       <form name="formulario" autocomplete="on" method="post" action="{{url('mesas/create')}}">
                           {{csrf_field()}}
                         <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
                         <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
                           <h4 class="modal-title">
-                          Nuevo Mesa
+                          Nueva Mesa
                           </h4>
                         </div>
                         <div class="modal-body">

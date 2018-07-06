@@ -59,9 +59,9 @@
     {!!Html::script("javascripts\jquery.nestable.js")!!}
     {!!Html::script("assets-Internas/javascripts/main.js")!!}
 
-    <!--{!!Html::script("javascripts\bootstrap-datepicker.js")!!}
+    {!!Html::script("javascripts\bootstrap-datepicker.js")!!}
     {!!Html::script('javascripts/upload/fileinput.js')!!}
-    {!!Html::script("javascripts\bootstrap-fileupload.js")!!}-->
+    {!!Html::script("javascripts\bootstrap-fileupload.js")!!}
     <!-- FIN -->
 
     <!-- DATATABLES + ICONOS-->
@@ -252,9 +252,6 @@
 
   <!-- PARA EL PERFIL-->
   <!--FALTAN ALGUNOS ESTILOS, EL LAYOUT OPTIMIZADO NO SIRVE AÚN PARA EL PERFIL--><!--
-  {!!Html::style('assets/css/main.css')!!}
-  {!!Html::style('stylesheets/profile.css')!!}
-
   {!!Html::style('assets/vendor/linearicons/style.css')!!}
   {!!Html::style('assets/vendor/metisMenu/metisMenu.css')!!}
 

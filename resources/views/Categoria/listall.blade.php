@@ -3,7 +3,7 @@
   <div class="col-sm-12">
     <div class="widget-container fluid-height clearfix">
       <div class="widget-content padded clearfix">
-        <table class="table table-bordered table-striped" id="dataTable1">
+        <table class="table table-bordered table-striped" id="tablaCategorias">
           <thead>
             <th width="1%" id="no">No.</th>
             <th width="45%">Nombre</th>
@@ -31,8 +31,8 @@
                 </td>
               </tr>
               <!-- MODAL EDIT -->
-              <div class="modal fade" id="editModalCategoria{{$categoria->id}}">
-                <div class="modal-dialog">
+              <div class="modal fade" id="editModalCategoria{{$categoria->id}}" role="dialog">
+                <div class="modal-dialog modal-md" style="width: 50%;">
                   <div class="modal-content" style="background-color:#FFFFFF">
                     <!-- class="modal-content" -->
                       <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
@@ -49,7 +49,7 @@
                                 <div class="row">
                                   <div class="col-md-4">
                                     <div class="bs-example">
-                                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                        <div id="myCarousel" class="carousel" data-ride="carousel">
                                         <!-- Carousel indicators -->  
                                           <!-- Wrapper for carousel items -->
                                           <div class="carousel-inner">
@@ -65,7 +65,11 @@
                                           <input type="text" id="nombreCategoria{{$categoria->id}}" placeholder="Nombre" class="form-control" value="{{$categoria->nombre}}" required="true" />
                                         </div>
                                         <div class="form-grup">
-                                            <input type="number" placeholder="Precio" min="0" step="any" id="precioCategoria{{$categoria->id}}" class="form-control" value="{{$categoria->precio}}"/>
+                                          @if($categoria->precio == 0)
+                                          <input type="number" placeholder="Precio" min="0" step="any" id="precioCategoria{{$categoria->id}}" class="form-control"/>
+                                          @else
+                                          <input type="number" placeholder="Precio" min="0" step="any" id="precioCategoria{{$categoria->id}}" class="form-control" value="{{$categoria->precio}}"/>
+                                          @endif
                                         </div>
                                       </div>
                                     </div>
@@ -184,7 +188,21 @@
     $(id).modal();
   });
 
-  $("#dataTable1").dataTable();
+  $("#tablaCategorias").DataTable( {
+          dom: 'lBfrtip',
+          buttons: [
+              {
+                  extend:    'excelHtml5',
+                  text:      '<i class="fa fa-file-excel-o"></i>',
+                  titleAttr: 'Descarga Excel'
+              },
+              {
+                  extend:    'pdfHtml5',
+                  text:      '<i class="fa fa-file-pdf-o"></i>',
+                  titleAttr: 'Descarga PDF'
+              }
+          ]
+      } );
 </script>
 
 <style type="text/css">
