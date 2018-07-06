@@ -7,24 +7,21 @@
             <li role="presentation"><a class="pocketMorado" href="#yorkcastle" aria-controls="profile" role="tab" data-toggle="tab"  style="color: #111; font-weight: 600;">Preparación</a></li>
             <!--<li role="presentation"><a href="#yorkmuseumgardens" aria-controls="profile" role="tab" data-toggle="tab">York Museum Gardens</a></li>-->
         </ul>
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="yorkminster">
+<!-- Tab panes -->
+ <div class="tab-content">
+ <div role="tabpanel" class="tab-pane active" id="yorkminster">
  <div class="container-fluid main-content">
-        <!--<div class="page-title">
-          <h1>
-            Basic Tables
-          </h1>
-        </div>-->
         <p></p>
         <p></p>
-
-          <!-- end Condensed Table -->
-        <div class="row">
-          <!-- Hover Row Table -->
-          <div class="col-lg-4 text-center">
+ <!-- end Condensed Table -->
+<!-- incio de tabla y dactos del insumo-->
+ 	<div class="row">
+		<div class="col-lg-12">
+        <div class="fluid-height clearfix">
+ 		<!-- contiene cambio de imagen del insumo -->
+          <div class="col-sm-3 col-lg-4 text-center">
           <div class="bs-example">
-                <div class="widget-content fileupload fileupload-new" data-provides="fileupload" style="margin-top: 20%;">
+                <div class="top20 widget-content fileupload fileupload-new " data-provides="fileupload">
                   <div class="gallery-container fileupload-new img-thumbnail">
                     <div id="imgActual" class="gallery-item filter1" rel="" style="border-radius: 50%; width: 150px; height: 150px;">
                       @if($producto->imagen!='')
@@ -63,29 +60,25 @@
         </button>
     </div>
           </div>
-          <!-- end Hover Row Table --><!-- Responsive Table -->
-          <div class="col-lg-6" style="margin-left: -5%;">
-        <div class=" text-center page-title">
-
+          <!-- Fin contiene cambio de imagen del insumo -->
+		<!-- Responsive Table -->
+        <div class="col-sm-9 col-lg-8 marLef-5">
+		
+        <div class="page-title">
         <div class="row">
-          <div class="col-lg-6">
-            <div>
-              <h2>
+          <div class="col-sm-6 col-lg-6">
                 <div class="login-form">
-                  <i class="fa fa-pencil" style="font-size: 70%; margin-top: 12%"></i>
-                  <input class="Titulo-css2" id="nombre" placeholder="Nombre" value="{{$producto->nombre}}" style="text-align: center; width: 50%; font-weight: 600" />
+              	<div class="input-container">
+                  <i class="fa fa-pencil"></i>
+                  <input class="Titulo-css2" id="nombre" placeholder="Nombre" value="{{$producto->nombre}}"/>
+				</div>	
                 </div>
-              </h2>
-            </div> 
           </div>
-          <div class="login-form col-lg-6">
-            <div class="form-group">
+          <div class="login-form col-sm-6 col-lg-6">
               <div class="input-container">
                 <i class="fa fa-outdent"></i>
                 {!! Form::select('categorias', $categorias, $producto->idCategoria, ['class'=>'select', 'placeholder' => 'Categorias', 'id' => 'categoria', 'style' => 'width: 70%;']) !!}
               </div>
-            </div>
-            <div class="form-group">
               <div class="input-container">
                 <i class="fa fa-money"></i>
                 @if($producto->precio == 0)
@@ -94,10 +87,11 @@
                 <input class="input" id="precio" placeholder="Precio de venta" type="text" value="{{$producto->precio}}">
                 @endif
               </div>
-            </div>
           </div>
         </div>
-      </div>          
+      	</div>
+	
+		<!-- Tabla de Ingredientes-->
         <div class="widget-container fluid-height clearfix" style="box-shadow: none;">
           <div class="heading">
             <i class=" pocketMorado fa fa-table"></i><a class="pocketMorado">Ingredientes</a>
@@ -146,9 +140,16 @@
             </table>
           </div>
         </div>
-      </div>
-    </div> 
-  </div>      
+		<!-- Fin de Tabla de Ingredientes-->
+
+      	</div><!--col-lg-8-->
+    	</div><!--fluid-height clearfix-->
+		</div><!--col-lg-12-->
+	 </div><!--row-->
+<!-- Fin de tabla y dactos del insumo-->		
+  </div><!-- Fin del container-fluid main-content-->
+	 
+	<!-- tabla-->
     <div class="container main-content">
       <div class="row"> 
         <div class="col-lg-12">
@@ -210,7 +211,9 @@
       </div> 
       <br>                                
       </div> 
-    </div>        
+    </div>
+	 
+	<!-- Tab de Preparacion-->
     <div role="tabpanel" class="tab-pane" id="yorkcastle">            
       <div class="container main-content">
         <!-- DataTables Example -->         
@@ -247,22 +250,13 @@
                     </div>
                   </div>  
                </div>     
-            </div>
-            <!--<div role="tabpanel" class="tab-pane" id="yorkmuseumgardens">
-                <h3>York Museum Gardens</h3>
-                <p>The <strong>York Museum Gardens</strong> are botanic gardens in the centre of York, England, beside 
-                    the River Ouse. They cover an area of 10 acres (4.0 ha) of the former grounds of St Mary's Abbey, 
-                    and were created in the 1830s by the Yorkshire Philosophical Society along with the Yorkshire 
-                    Museum which they contain.</p>
-            </div>  -->          
-        </div>
+            </div>         
+    </div>
+<!-- Fin de Tab panes -->
 
 
 
 
-@endsection
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
   var routeEliminar = "http://localhost/PocketByR/public/contiene/eliminar";
@@ -548,3 +542,4 @@
         color: rgb(79,0,85);
     }
   </style>
+@endsection
