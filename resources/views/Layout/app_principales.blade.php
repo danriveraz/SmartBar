@@ -159,19 +159,27 @@
             <i class="fa fa-reorder"></i>
             <input type="text" class="input" name="nombreEstablecimiento" placeholder="Nombre de tu Negocio" required/>
           </div>
+          <div class="input-container" id="TipNeg">
+            <i class="fa fa-reorder"></i>
+            <select class="select" id="TipoNegocio"  name="TipoNegocio" required>
+              <option >Tipo De Negocio</option>
+              <option value="Bar">Bar</option>
+              <option value="restaurante">restaurante</option>
+            </select>
+          </div>
           <div class="input-container">
             <i class="fa fa-address-book"></i>
             <select class="select" id="tipo"  name="tipo" required>
               <option value="dueño">Dueño de Negocio</option>
               <option value="proveedor">Proveedor</option>
-              <option value="cliente">Cliente</option>
+              <option value="cliente">Cliente VIP</option>
             </select>
           </div>
           <div class="input-container">
             <i class="fa fa-address-card"></i>
             <input type="text" class="input" name="nombrePersona" placeholder="Nombre" required/>
           </div>
-          <div class="input-container">
+          <!--div class="input-container">
             <i class="fa fa-venus-mars"></i>
             <select class="select" id="sexo" name="sexo" required="">
               <option value="">Sexo</option>
@@ -179,7 +187,7 @@
               <option value="Femenino">Femenino</option>
               <option value="Otro">Otro</option>
             </select>
-          </div>
+          </div-->
           <div class="input-container">
             <i class="fa fa-envelope"></i>
             <input type="email" class="input" id="email" name="email" placeholder="Email" requerid/>
@@ -331,6 +339,17 @@ window.smartsupp||(function(d) {
       }
     });
   });
+</script>
+<script>
+$(document).ready(function() {
+  $('#tipo').change(function(e) {
+    if ($(this).val() === "proveedor") {
+      document.getElementById( 'TipNeg' ).style.display = 'none';
+    } else {
+      document.getElementById( 'TipNeg' ).style.display = 'block';
+    }
+  })
+});
 </script>
 <!-- FIN SCRIPT DEPARTAMENTO Y CIUDADES -->
 </body>

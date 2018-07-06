@@ -31,7 +31,7 @@
     {!!Html::style('stylesheets\select2.css')!!}
     {!!Html::style('stylesheets\jquery.fancybox.css')!!}
     {!!Html::style('stylesheets\isotope.css')!!}
-    
+
     <!-- ESTOS ESTILOS DESCUADRAN EL REGISTRO DE USUARIOS, SE DEBE ENCONTRAR SOLUCIÓN
      {!!Html::style('stylesheets\jquery.fileupload-ui.css')!!}
     {!!Html::style('stylesheets/upload/fileinput.css')!!} -->
@@ -93,7 +93,7 @@
     {!!Html::style('stylesheets/font-awesome.min.css')!!}
     {!!Html::style('stylesheets/hightop-font.css')!!}
     {!!Html::style('stylesheets/bootstrap-select.css')!!}
-    
+
     {!!Html::style('stylesheets\fullcalendar.css')!!}
     {!!Html::style('stylesheets\wizard.css')!!}
     {!!Html::style('stylesheets\morris.css')!!}
@@ -317,7 +317,7 @@
   							</div>
   							<p>
   							  New growth data available
-  							</p></a>  
+  							</p></a>
   						  </li>
   				</ul>
                 </li>
@@ -419,7 +419,7 @@
                 <li>
                   <a id="informacion" href="{{url('Estadisticas/')}}">
                   <span aria-hidden="true" class="fa fa-fw fa-line-chart">
-                  </span><label>Informacion</label></a>
+                  </span><label>Mis Reportes</label></a>
                 </li>
 
                 <li>

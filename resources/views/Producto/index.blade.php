@@ -9,10 +9,10 @@
         <div class="widget-content padded clearfix">
           <table class="table table-bordered table-striped" id="example">
             <thead>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Categoria</th>
-              <th>Opciones</th>
+              <th width="18%">Nombre</th>
+              <th width="10%">Precio</th>
+              <th width="10%">Categoria</th>
+              <th width="4%">Opciones</th>
             </thead>
             <tbody>
               @foreach($productos as $producto)
