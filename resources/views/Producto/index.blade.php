@@ -11,8 +11,8 @@
             <thead>
               <th width="18%">Nombre</th>
               <th width="10%">Precio</th>
-              <th width="10%">Categoria</th>
-              <th width="4%">Opciones</th>
+              <th width="11%">Categoria</th>
+              <th width="3%">Opciones</th>
             </thead>
             <tbody>
               @foreach($productos as $producto)
@@ -32,9 +32,6 @@
                       </a>
                       <a class="table-actions pocketMorado" href="" onclick="eliminar({{$producto->id}})">
                         <i class="fa fa-trash-o" title="Eliminar"></i>
-                      </a>
-                      <a class="table-actions pocketMorado" href="{{route('Tienda.index')}}">
-                        <i class="fa fa-500px" title="Tienda"></i>
                       </a>
                     </div>
                   </td>

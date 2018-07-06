@@ -29,13 +29,13 @@
 					<th width="10%">
 					  Venta
 					</th>
-					<th width="10%">
+					<th width="8%">
 					  Disponible
 					</th>
-					<th width="10%">
+					<th width="8%">
 					  Medida
 					</th>
-				   <th width="5%" class="hidden-xs">
+				   <th width="10%" class="hidden-xs">
 					  Opciones
 					</th>
 				  </thead>
@@ -57,7 +57,9 @@
 		                  <td>
 		                    <a class="table-actions pocketMorado" href=""><i class="fa fa-pencil" data-toggle="modal" href="#editModal{{$insumo->id}}" title="Editar Insumo"></i></a>
 		                    <a class="table-actions pocketMorado" href="#" onclick="eliminar({{$insumo->id}})"><i class="fa fa-trash-o" title="Eliminar Insumo"></i></a>
-		                  </td>
+												<a class="table-actions pocketMorado" href="{{route('Tienda.index')}}"><i class="fa fa-500px" title="Tienda"></i></a>
+
+											</td>
 		                </tr>
 
 		              <!--Modal para editar -->
@@ -83,7 +85,7 @@
 			                                    <ol class="carousel-indicators">
 			                                        <li data-target="#myCarousel{{$insumo->id}}" data-slide-to="0" class="active"></li>
 			                                        <li data-target="#myCarousel{{$insumo->id}}" data-slide-to="1"></li>
-			                                    </ol>   
+			                                    </ol>
 			                                    <!-- Wrapper for carousel items -->
 			                                    <div class="carousel-inner">
 			                                        <div class="item active">
@@ -177,21 +179,21 @@
 		                                    </div>
 		                                    <div class="form-group">
 		                                        <i class="fa fa-eyedropper"></i>
-		                                        <select name="medida" id="medida{{$insumo->id}}" class="select" onchange="editValor(this.value,{{$insumo->id}});"> 
-			                                        <option value="2">Mililitro</option> 
+		                                        <select name="medida" id="medida{{$insumo->id}}" class="select" onchange="editValor(this.value,{{$insumo->id}});">
+			                                        <option value="2">Mililitro</option>
 			                                        <option value="3">Cm3</option>
 			                                        <option value="4">Centilitro</option>
 			                                        <option value="0" <?php if($insumo->medida == "0") echo "selected";?>>Onza</option>
 			                                        <option value="1" <?php if($insumo->medida == "1") echo "selected";?>>Unidad</option>
 		                                        </select>
-		                                    </div>	
-		                                    <br>	       
+		                                    </div>
+		                                    <br>
 		                                    <p class="lead" style="margin-bottom: 10px;">Añade tu Producto a <span class="text-success">Mi Carta</span></p>
 										  	<ul class="list-unstyled" style="line-height: 1.5">
 												<li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Producto para venta a publico como unidad</li>
-										 	 </ul>	                            
+										 	 </ul>
 		                                    <div class="form-group" style="margin-left: 5%;">
-	                                    	  <label> 
+	                                    	  <label>
 			                                      <input type="checkbox" name="tipo" id="stipo{{$insumo->id}}" <?php if($insumo->tipo == "1") echo "checked";?> onchange="showContent({{$insumo->id}})" />
 			                                      <span></span>
 		                                      </label>
@@ -209,10 +211,10 @@
 		                                    <button class="btn btn-bitbucket" data-dismiss="modal" onclick="modificar({{$insumo->id}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" ><i class="fa fa-send"></i>
 		                                    Guardar
 		                                    </button>
-		                                  </div>                
-		                                </div> 
+		                                  </div>
+		                                </div>
 		                              </div>
-		                          {!! Form::close() !!} 
+		                          {!! Form::close() !!}
 		                        </div>
 		                      </div>
 		                      <!-- End Login Screen -->
@@ -220,7 +222,7 @@
 		                  </div>
 		                </div>
 		              </div>
-		              <!-- fin de modal para editar-->  
+		              <!-- fin de modal para editar-->
 		            @endforeach
 		          </tbody>
 				</table>
@@ -249,7 +251,7 @@
 	                            <ol class="carousel-indicators">
 									<li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
 									<li data-target="#myCarousel2" data-slide-to="1"></li>
-								</ol>   
+								</ol>
 								<div class="carousel-inner">
 									<div class="item active">
 										<img src="images/slider-admin/0.png" alt="First Slide" style="width: 50%;">
@@ -323,8 +325,8 @@
                       <div class="form-group">
                       	<div class="input-container">
                       		<i class="fa fa-eyedropper"></i>
-                          	<select name="medida" class="select" onchange="valor(this.value);" style="width: 90%"> 
-	                            <option value="ml">Mililitro</option> 
+                          	<select name="medida" class="select" onchange="valor(this.value);" style="width: 90%">
+	                            <option value="ml">Mililitro</option>
 	                            <option value="cm3">Cm3</option>
 	                            <option value="cl">Centilitro</option>
 	                            <option value="oz">Onza</option>
@@ -335,9 +337,9 @@
                       <p class="lead" style="margin-bottom: 10px;">Añade tu Producto a <span class="text-success">Mi Carta</span></p>
 					  <ul class="list-unstyled" style="line-height: 1.5">
 						  <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Producto para venta a publico como unidad</li>
-					  </ul>	
+					  </ul>
                       <div class="form-group" style="margin-left: 5%;">
-                      	<label> 
+                      	<label>
 	                        <input  type="checkbox" name="tipo" id="stipo" value="1" onchange="showContent('')"/>
 	                        <span  title="Qué es añadir a la carta?"></span>
                         </label>
@@ -358,8 +360,8 @@
                       <button class="btn btn-bitbucket" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >
                           <i class="fa fa-send"></i>Guardar
                       </button>
-                    </div>      
-                  </div> 
+                    </div>
+                  </div>
                 </div>
               </fieldset>
             {!! Form::close() !!}
@@ -372,12 +374,12 @@
       <span aria-hidden="true" class="pocketMorado fa fa-fw fa-plus-circle"></span>
     </div>
   </div>
-</div>  
+</div>
 
 <script>
   var routeModificar = "http://localhost/PocketByR/public/insumo/modificar";
   var routeEliminar = "http://localhost/PocketByR/public/insumo/eliminar";
- 
+
 
   $(document).ready(function(){
       cambiarCurrent("#miInventario");
@@ -499,7 +501,7 @@
     }
 
     cantMedida = parseFloat(cantMedida).toFixed(2);
-    
+
     $.ajax({
       url: routeModificar,
       type: 'GET',
@@ -516,7 +518,7 @@
         tipo: tipo,
         categoria: categoria
       },
-      success: function(){       
+      success: function(){
         $("#"+idInsumo).children("td").each(function (indextd){
           if(indextd == 1){
             $(this).text(nombre);
