@@ -132,14 +132,11 @@
                   <i class="fa fa-imdb"></i>Cajero:<span id="cajero">  
                     </span>
                 </div>
-          	  <div class="factspace3"></div>
+          	  	<div class="factspace3"></div>
+              	</div>
               </div>
-          
-              </div>
-              </div>
-          </div>
-<!--  prueba-->
-
+            </div>
+        </div>
         <div class="line-items">      
           <div class="col-lg-12 ">
             <div class="headers clearfix">
@@ -188,9 +185,10 @@
               </div>
               <div class="field">
               	<div class="login-form" id="field">
-              		<input autocomplete="off" class="input" name="impuesto" id="field1" placeholder="Iva" data-items="8" style="width: 10%;"/>
-              		<input autocomplete="off" class="input" name="valor" id="valor1" placeholder="19%" data-items="8" style="width: 5%;"/>
+              		<input autocomplete="off" class="input" name="impuesto" id="field1" placeholder="Iva" data-items="8"  value="Iva" disabled style="width: 10%;"/>
+              		<input autocomplete="off" class="input" name="valor" id="valor1" value="{{$empresa->iva}}%" placeholder="0%%" data-items="8" style="width: 5%;"/>
               		<button id="b1" class="add-more btn btn-pocket" type="button" style="padding: 1px 7px; width: 3%;">+</button>
+              		
               	</div>
               </div>
               <div class="field">
@@ -364,10 +362,14 @@
 </script>
 
 <style type="text/css">
-  #imagenPerfilNegocioCircular{
-    width: 150px;
-    height: 150px;
-  }
+	#imagenPerfilNegocioCircular{
+    	width: 150px;
+    	height: 150px;
+  	}
+
+  	#field1:disabled{
+		background-color: #fff;  
+	}
 </style>
 
 @endsection
