@@ -376,7 +376,7 @@
             <div class="nav-collapse">
               <ul class="nav">
                <li class="dropdown">
-                <a data-toggle="dropdown" href="">
+                <a class="MobEtiq" data-toggle="dropdown" href="">
                   <span aria-hidden="true" class="fa fa-5x fa-reorder">
                   </span><label>{{Auth::User()->EmpresaActual->nombreEstablecimiento}}</label><b class="caret">
                   </b>
