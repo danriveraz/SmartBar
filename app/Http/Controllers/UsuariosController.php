@@ -175,9 +175,19 @@ class UsuariosController extends Controller
   public function postmodificarFactura(Request $request){
     $usuario = User::find(Auth::id());
     $empresa = Empresa::find($usuario->empresaActual);
+
+    $iva = str_replace('%', '', $request->valorIva);
+    $valorImpuesto1 = str_replace('%', '', $request->valorImpuesto2);
+    $valorImpuesto2 = str_replace('%', '', $request->valorImpuesto3);
+
     $empresa->notas = $request->notas;
     $empresa->propina = $request->propinaSugerida;
     $empresa->nresolucionFacturacion = $request->resolucion;
+    $empresa->iva = $iva;
+    $empresa->impuesto1 = $request->impuesto2;
+    $empresa->valorImpuesto1 = $valorImpuesto1;
+    $empresa->impuesto2 = $request->impuesto3;
+    $empresa->valorImpuesto2 = $valorImpuesto2;
     $path = public_path() . '/images/admins/';
     $file = $request->file('imagenPerfilNegocio');
     if($file!=null){// verifica que se haya subido una imagen nueva

@@ -185,10 +185,33 @@
               </div>
               <div class="field">
               	<div class="login-form" id="field">
-              		<input autocomplete="off" class="input" name="impuesto" id="field1" placeholder="Iva" data-items="8"  value="Iva" disabled style="width: 10%;"/>
-              		<input autocomplete="off" class="input" name="valor" id="valor1" value="{{$empresa->iva}}%" placeholder="0%%" data-items="8" style="width: 5%;"/>
-              		<button id="b1" class="add-more btn btn-pocket" type="button" style="padding: 1px 7px; width: 3%;">+</button>
-              		
+              		<input autocomplete="off" class="input" name="iva" id="iva" placeholder="Iva" data-items="8"  value="Iva" disabled style="width: 10%;"/>
+              		<input autocomplete="off" class="input" name="valorIva" id="valorIva" value="{{$empresa->iva}}%" placeholder="0%" data-items="8" style="width: 5%;"/>
+              		<button id="b1" class="add-more btn btn-pocket" type="button" style="padding: 1px 7px; width: 3%;">+</button>              		
+              	</div>
+              	<div class="login-form" id="divImpuesto1">
+              		<!-- IMPUESTO 1 -->
+              		@if($empresa->impuesto1 == "")
+	              		<input autocomplete="off" class="input" name="impuesto2" id="impuesto2" placeholder="Impuesto 1" data-items="8"  value="{{$empresa->impuesto1}}" style="width: 10%; margin-top: 1%; display: none;"/>
+	              		<input autocomplete="off" class="input" name="valorImpuesto2" id="valorImpuesto2" value="{{$empresa->valorImpuesto1}}%" placeholder="0%" data-items="8" style="width: 5%; display: none;"/>
+	              		<button id="rm2" class="btn btn-danger remove-me" type="button" style="padding: 1px 7px; width: 3%; display: none;">-</button>
+	              	@else
+	              		<input autocomplete="off" class="input" name="impuesto2" id="impuesto2" placeholder="Impuesto 1" data-items="8"  value="{{$empresa->impuesto1}}" style="width: 10%; margin-top: 1%;"/>
+	              		<input autocomplete="off" class="input" name="valorImpuesto2" id="valorImpuesto2" value="{{$empresa->valorImpuesto1}}%" placeholder="0%" data-items="8" style="width: 5%;"/>
+	              		<button id="rm2" class="btn btn-danger remove-me" type="button" style="padding: 1px 7px; width: 3%;">-</button>
+	              	@endif
+              	</div>
+              	<div class="login-form" id="divImpuesto2">
+              		<!-- IMPUESTO 2 -->
+              		@if($empresa->impuesto2 == "")
+	              		<input autocomplete="off" class="input" name="impuesto3" id="impuesto3" placeholder="Impuesto 2" data-items="8"  value="{{$empresa->impuesto2}}" style="width: 10%; margin-top: 1%; display: none;"/>
+	              		<input autocomplete="off" class="input" name="valorImpuesto3" id="valorImpuesto3" value="{{$empresa->valorImpuesto2}}%" placeholder="0%" data-items="8" style="width: 5%; display: none;"/>
+	              		<button id="rm3" class="btn btn-danger remove-me" type="button" style="padding: 1px 7px; width: 3%; display: none;">-</button>
+	              	@else
+	              		<input autocomplete="off" class="input" name="impuesto3" id="impuesto3" placeholder="Impuesto 2" data-items="8"  value="{{$empresa->impuesto2}}" style="width: 10%; margin-top: 1%;"/>
+	              		<input autocomplete="off" class="input" name="valorImpuesto3" id="valorImpuesto3" value="{{$empresa->valorImpuesto2}}%" placeholder="0%" data-items="8" style="width: 5%;"/>
+	              		<button id="rm3" class="btn btn-danger remove-me" type="button" style="padding: 1px 7px; width: 3%;">-</button>
+	              	@endif
               	</div>
               </div>
               <div class="field">
@@ -281,56 +304,76 @@
         	document.getElementById("resolucion").value = null;
         }
 
-        //SCRIPTS PARA IMPUESTOS
-        var next = 1;
-        var auxNext = 1;
+        var contador = 1;
+        var impuesto1 = document.getElementById("impuesto2").value;
+        var impuesto2 = document.getElementById("impuesto3").value;
+
+        if(impuesto1 != ""){
+        	contador = 2;
+        }else if(impuesto2 != ""){
+        	if(impuesto1 == ""){
+        		contador = 1;
+        	}else{
+        		contador = 3;
+        	}
+        }
+
 	    $(".add-more").click(function(e){
-	    	if(next < 3){
-	    		e.preventDefault();
-		        var addto = "#valor" + (auxNext);
-		        var addRemove = "#valor" + (auxNext);
-		        var addAdd = "#valor" + (auxNext);
-
-		        next = next + 1;
-		        auxNext = auxNext + 1;
-		        var newIn = '<input autocomplete="off" placeholder="Impuesto" class="input" id="field' + next + '" name="field' + auxNext + '" type="text" style="width: 10%; margin-top: 1%;">';
-		        var newVal = '<input autocomplete="off" placeholder="0%" class="input" id="valor' + next + '" name="valor' + auxNext + '" type="text" style="width: 5%; margin-top: 1%;">';
-		        var newInput = $(newIn);
-		        var newInputVal = $(newVal);
-
-		        var removeBtn = '<button id="remove' + (auxNext - 1) + '" class="btn btn-danger remove-me" style="padding: 1px 7px; width: 3%; margin-top: 1%;" type="button">-</button></div><div id="field">';
-
-		        var addBtn = '<button id="b' + (auxNext) + '" class="add-more btn btn-pocket" type="button" style="padding: 1px 7px; width: 3%; margin-top: 1%;">+</button></div><div id="field">';
-
-		        var removeButton = $(removeBtn);
-		        var addButton = $(addBtn);
-
-		        $(addto).after(newInputVal);
-		        $(addto).after(newInput);
-
-		        if((auxNext - 1) > 1){
-		        	$(addRemove).after(removeButton); 
-		        }else{
-		        	$(addAdd).after(addButton);
-		        }
-		        $("#field" + next).attr('data-source',$(addto).attr('data-source'));
-			    $("#count").val(next); 
-		        
-	            $('.remove-me').click(function(e){
-	            	next = next - 1;
-	            	auxNext = next + 1;
-	                e.preventDefault();
-	                var fieldNum = this.id.charAt(this.id.length-1);
-	                var fieldID = "#field" + fieldNum;
-	                var valorID = "#valor" + fieldNum;
-	                repite = true;
-	                $(this).remove();
-	                $(fieldID).remove();
-	                $(valorID).remove();
-	            });
+	    	if(contador < 3){
+	    		if(contador == 1){
+	    			if(impuesto1 == ""){
+		    			document.getElementById("impuesto2").style.display ='initial';
+		    			document.getElementById("valorImpuesto2").style.display ='initial';
+		    			document.getElementById("rm2").style.display ='initial';
+		    			if(impuesto2 != ""){
+		    				contador = 3;
+		    				console.log("impuesto 2 != 0: " + contador);
+		    			}else{
+		    				console.log("impuesto1 = 2: " + contador);
+		    				contador = 2;
+		    			}
+		    		}
+	    		}else{
+	    			if(impuesto2 == ""){
+			    		document.getElementById("impuesto3").style.display ='initial';
+			    		document.getElementById("valorImpuesto3").style.display ='initial';
+			    		document.getElementById("rm3").style.display ='initial';
+			    	}
+			    	contador = 3;
+			    	console.log("impuesto2, contador = 3: " + contador);
+	    		}
 	    	}
-	        
 	    });
+
+	    $(".remove-me").click(function(e){
+            var fieldNum = this.id.charAt(2);
+            var fieldID = "impuesto" + fieldNum;
+            var fieldVAL = "valorImpuesto" + fieldNum;
+
+            document.getElementById(this.id).style.display ='none';
+
+			document.getElementById(fieldID).style.display ='none';
+			document.getElementById(fieldID).value ='';
+
+			document.getElementById(fieldVAL).style.display ='none';
+			document.getElementById(fieldVAL).value ='';
+
+			impuesto1 = document.getElementById("impuesto2").value;
+			impuesto2 = document.getElementById("impuesto3").value;
+
+			if(impuesto1 == ""){
+				contador = 1;
+			}else if(impuesto2 == ""){ 
+				contador = 2;
+			}else if(impuesto1 != ""){
+				contador = 2;
+				console.log("remover, contador = 2: " + contador);
+			}else if(impuesto2 != ""){
+				contador = 1;
+				console.log("remover, contador = 1: " + contador);
+			}
+	    });
+
 	});
 
 	$(function() {
@@ -367,8 +410,9 @@
     	height: 150px;
   	}
 
-  	#field1:disabled{
+  	#iva:disabled{
 		background-color: #fff;  
+		color: #111;
 	}
 </style>
 
