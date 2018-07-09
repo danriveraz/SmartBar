@@ -45,7 +45,7 @@
                   </div>
                 </div>
                 <div id="btnImagenPerfil" style="display: none; margin-top: 5px;">
-                  <button id="btn-guardarimg" class="btn btn-bitbucket" onclick="setValue(this)"  title="Guardar imagen" style="margin-top: 15%; width: 25%; font-size: 10px; margin-left: -5%"><i class="fa fa-save"></i></button>
+                  <button id="btn-guardarimg" class="btn btn-pocket" onclick="setValue(this)"  title="Guardar imagen" style="margin-top: 15%; width: 25%; font-size: 10px; margin-left: -5%"><i class="fa fa-save"></i></button>
                 </div>
                 <div hidden>
                   <input id="ventanaFactura" name="ventanaFactura" class="form-control" value=""  type="text">
@@ -63,20 +63,50 @@
               </div>
               <nav class="side-menu">
                   <ul class="nav">
-                    <li class="active"><a data-toggle="tab" href="#tab1"><span class="fa fa-user"></span> Perfil</a></li>
-                    <li><a data-toggle="tab" href="#tab2"><span class="fa fa-outdent"></span> Categoria</a></li>
-                    <li><a href="{{url('Auth/modificarFactura')}}"><span class="fa fa-newspaper-o"></span> Factura</a></li>
-                    <li><a data-toggle="tab" href="#tab4"><span class="fa fa-pencil-square-o"></span> Mesas</a></li>
+                    @if($tab == 'perfil')
+                    <li class="active">
+                    @else
+                    <li>
+                    @endif
+                      <a data-toggle="tab" href="#tab1">
+                        <span class="fa fa-user"></span> Perfil
+                      </a>
+                    </li>
+                    @if($tab == 'categorias')
+                    <li class="active">
+                    @else
+                    <li>
+                    @endif
+                      <a data-toggle="tab" href="#tab2">
+                      <span class="fa fa-outdent"></span> Categoría</a>
+                    </li>
+                    <li>
+                      <a href="{{url('Auth/modificarFactura')}}">
+                        <span class="fa fa-newspaper-o">
+                      </span> Factura</a>
+                    </li>
+                    @if($tab == 'mesas')
+                    <li class="active">
+                    @else
+                    <li>
+                    @endif
+                      <a data-toggle="tab" href="#tab4"><span class="fa fa-pencil-square-o"></span> Mesas</a>
+                    </li>
                   </ul>    
               </nav>
           </div>
           <!-- MAIN CONTENT -->
           <div class="tab-content">
+            @if($tab == "perfil")
             <div class="tab-pane active" id="tab1">
+            @else
+            <div class="tab-pane" id="tab1">
+            @endif
               <div id="main-content">
                 <div class="container-fluid">
                   <ul class="nav nav-tabs" role="tablist">
                     <li class="active"><a href="#myprofile" role="tab" data-toggle="tab">Perfil</a></li>
+                    <li><a href="#empresa" role="tab" data-toggle="tab">Empresa</a></li>
                     <li><a href="#account" role="tab" data-toggle="tab">Cuenta</a></li>
                     <li><a href="#billings" role="tab" data-toggle="tab">PocketClub</a></li>
                     <li><a href="#preferences" role="tab" data-toggle="tab">Bolsillo</a></li>
@@ -90,7 +120,6 @@
                           <div class="clearfix">
                             <!-- LEFT SECTION -->
                             <div class="left">
-                              <h2>Información General</h2>
                               <div class="form-group">
                                   <label>Nombre</label>
                                 <div class="input-group">
@@ -98,7 +127,6 @@
                                   <input name="nombrePersona" class="form-control" value="{{$usuario->nombrePersona}}" placeholder="Nombre completo" type="text" >
                                 </div>
                               </div>
-
                               <div class="form-group">
                                 <label>Documento</label>
                                 <div class="input-group">
@@ -106,7 +134,6 @@
                                   <input name="cedula" class="form-control" value="{{$usuario->cedula}}"  placeholder="Identificacion" type="text" maxlength="10">
                                 </div>
                               </div>
-
                               <div class="form-group">
                                 <label>Sexo</label>
                                 <div class="input-group">
@@ -122,6 +149,10 @@
                                     </select>
                                 </div>
                               </div>
+                            </div>
+                            <!-- END LEFT SECTION -->
+                            <!-- RIGHT SECTION -->
+                            <div class="right">
                               <div class="form-group">
                                 <label>Fecha de Nacimiento</label>
                                 <div class="input-group date" >
@@ -129,7 +160,6 @@
                                   <input  id="fechaNacimiento" name="fechaNacimiento" value="{{$usuario->fechaNacimiento}}" class="form-control" placeholder="Fecha de Nacimiento" type="date">
                                 </div>
                               </div>
-
                               <div class="form-group">
                                 <label>Telefono</label>
                                 <div class="input-group">
@@ -137,41 +167,47 @@
                                 <input name="telefono" type="text" class="form-control" placeholder="Telefono o Celular" value="{{$usuario->telefono}}" maxlength="10">
                                 </div>
                               </div>
-
                               <div class="form-group" hidden="true">
                                   <input id="ventana" name="ventana" class="form-control" value=""  type="text">
-                              </div>
+                              </div>                              
                             </div>
-                            <!-- END LEFT SECTION -->
-                            <!-- RIGHT SECTION -->
-                            <div class="right">
-                              <h2> Información Bar</h2>
-
+                            <!-- END RIGHT SECTION -->
+                          </div>
+                          <div class="form-group" align="center">
+                            <p class="margin-top-30">
+                              <button id="btn-guardar1" class="btn btn-pocket" onclick="setValue(this)">
+                                Guardar
+                              </button>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade" id="empresa">
+                        <div class="profile-section">
+                          <div class="clearfix">
+                            <!-- LEFT SECTION -->
+                            <div class="left">
                               <div class="form-group">
                                 <label>Nombre</label>
                                 <div class="input-group">
                                   <span class="input-group-addon"><i class="fa fa-bars"></i></span>
-                                <input name="nombreEstablecimiento" type="text" class="form-control" placeholder="Nombre del Establecimiento" value="{{$empresa->nombreEstablecimiento}}">
+                                  <input name="nombreEstablecimiento" type="text" class="form-control" placeholder="Nombre del Establecimiento" value="{{$empresa->nombreEstablecimiento}}">
                                 </div>
                               </div>
-
                               <div class="form-group">
                                 <label>Dirección</label>
                                 <div class="input-group">
                                   <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                              <input name="direccionEstablecimiento" type="text" class="form-control" placeholder="Dirección" value="{{$empresa->direccion}}">
+                                  <input name="direccionEstablecimiento" type="text" class="form-control" placeholder="Dirección" value="{{$empresa->direccion}}">
+                                </div>
                               </div>
-                              </div>
-
-
                               <div class="form-group">
                                 <label>Teléfono</label>
                                 <div class="input-group">
                                   <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                              <input name="telefonoEstablecimiento" type="text" class="form-control" placeholder="Teléfono o celular" value="{{$empresa->telefono}}" maxlength="10">
+                                  <input name="telefonoEstablecimiento" type="text" class="form-control" placeholder="Teléfono o celular" value="{{$empresa->telefono}}" maxlength="10">
+                                </div>
                               </div>
-                              </div>
-
                               <div class="form-group">
                                 <label>Regimen</label>
                                 <div class="input-group">
@@ -191,8 +227,10 @@
                                   </select>
                                 </div>
                               </div>
-
-
+                            </div>
+                            <!-- END LEFT SECTION -->
+                            <!-- RIGTH SECTION -->
+                            <div class="right">
                               <div class="form-group">
                                 <label>Nit</label>
                                 <div class="input-group">
@@ -205,7 +243,6 @@
                                   @endif
                                 </div>
                               </div>
-
                               <div class="form-group">
                                 <label>Departamento</label>
                                 <div class="input-group">
@@ -213,7 +250,6 @@
                                   <input type="text" class="form-control" value="{{$empresa->departamento}}" disabled>
                                 </div>
                               </div>
-
                               <div class="form-group">
                                 <label>Ciudad</label>
                                 <div class="input-group">
@@ -221,15 +257,12 @@
                                   <input type="text" class="form-control" value="{{$empresa->ciudad}}" disabled>
                                 </div>
                               </div>
-
                             </div>
-                            <!-- END RIGHT SECTION -->
+                            <!-- END RIGTH SECTION-->
                           </div>
                           <div class="form-group" align="center">
                             <p class="margin-top-30">
-                              <button id="btn-guardar1" class="btn btn-bitbucket" onclick="setValue(this)">
-                                Guardar
-                              </button>
+                              <button id="btn-guardarEmpresa" class="btn btn-pocket" onclick="setValue(this)" >Guardar</button>
                             </p>
                           </div>
                         </div>
@@ -262,8 +295,8 @@
                             </div>
                             <!-- END RIGHT SECTION -->
                           </div>
-                          <p class="margin-top-30">
-                            <a href="#" id="btn-guardar2" class="btn btn-bitbucket" onclick="setValue(this)">
+                          <p class="margin-top-30 text-center">
+                            <a href="#" id="btn-guardar2" class="btn btn-pocket" onclick="setValue(this)">
                               Guardar
                             </a>
                           </p>
@@ -293,7 +326,7 @@
                                   <li>10% descuento en pago trimestral.</li>
                                 </ul>
                                 <div>
-                                  <button id="btn-guardar5" class="btn btn-bitbucket" onclick="setValue(this)" >Unirte al Club</button>
+                                  <button id="btn-guardar5" class="btn btn-pocket" onclick="setValue(this)" >Unirte al Club</button>
                                 </div>
                               </div>
 
@@ -313,7 +346,7 @@
                                   <li>10% descuento en pago anual.</li>
                                 </ul>
                                 <div>
-                                  <button id="btn-guardar6" class="btn btn-bitbucket" onclick="setValue(this)" >Unirte al Club</button>
+                                  <button id="btn-guardar6" class="btn btn-pocket" onclick="setValue(this)" >Unirte al Club</button>
                                 </div>
                               </div>
 
@@ -333,7 +366,7 @@
                                   <li>Descuento en membresia de $ 198.000 Cop</li>
                                 </ul>
                                 <div>
-                                  <button id="btn-guardar7" class="btn btn-bitbucket" onclick="setValue(this)" >Unirte al Club</button>
+                                  <button id="btn-guardar7" class="btn btn-pocket" onclick="setValue(this)" >Unirte al Club</button>
                                 </div>
                               </div>
 
@@ -466,7 +499,7 @@
                           </div>
                           <div class="form-group" align="center">
                             <p class="margin-top-30">
-                              <button id="btn-guardar3" class="btn btn-bitbucket" onclick="setValue(this)">
+                              <button id="btn-guardar3" class="btn btn-pocket" onclick="setValue(this)">
                                 Guardar
                               </button>
                             </p>
@@ -479,7 +512,11 @@
             </div>
           </div>
         </div>
+        @if($tab == 'categorias')
+        <div class="tab-pane active" id="tab2">
+        @else
         <div class="tab-pane" id="tab2">
+        @endif
           <div id="main-content">
             <div class="container-fluid">
               <div class="section-heading">
@@ -531,8 +568,11 @@
         <div class="tab-pane" id="tab3">
           
         </div>
-        
+        @if($tab == 'mesas')
+        <div class="tab-pane active" id="tab4">
+        @else
         <div class="tab-pane" id="tab4">
+        @endif
           <div id="main-content">
             <div class="container-fluid">
               <div class="section-heading">
@@ -685,6 +725,9 @@
   function setValue(idBtn) {
     if(idBtn.id == "btn-guardar1"){
       ventana.value = 1;
+    }else if(idBtn.id == "btn-guardarEmpresa"){
+      ventana.value = 11;
+
     }else if(idBtn.id == "btn-guardar2"){
       if(password.value == passwordC.value) {
         ventana.value = 2;

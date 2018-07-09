@@ -157,7 +157,7 @@ class UsuariosController extends Controller
               $mail->to($data['user']->email)->subject('Bienvenido a SMARTBAR');
           });
 
-          flash::success('El usuario ha sido registrado satisfactoriamente')->important();
+          flash::success('El usuario ha sido registrado exitosamente')->important();
           return redirect()->route('Auth.usuario.index');
     }
   }
@@ -221,7 +221,7 @@ class UsuariosController extends Controller
       }
     }else{
       $empresa->save();
-      flash::success('La factura ha sido modificada satisfactoriamente')->important();
+      flash::success('La factura ha sido modificada exitosamente')->important();
       return redirect('Auth/modificarFactura');
     }    
   }
@@ -285,7 +285,8 @@ class UsuariosController extends Controller
           $ciudades = Ciudad::all();
           $usuario = User::find($id);
           $Empresa = Empresa::find($usuario->empresaActual);
-          return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas);
+          $tab = 'perfil';
+          return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas)->with('tab',$tab);
         }
       }else if($auxiliar == 1){
         $usuario = User::find($id);
@@ -304,80 +305,83 @@ class UsuariosController extends Controller
         $usuario = User::find($id);
         $empresa = Empresa::find($usuario->empresaActual);
 
-    if($request->nombreEstablecimiento!=$empresa->nombreEstablecimiento){
-      $rules += ['nombreEstablecimiento' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i'];
-    }
-    if($request->cedula!=$usuario->cedula){// agrega la regla si la cedula ha sido modificada
-      $rules += ['cedula' => 'required|min:1|max:9999999999'];
-    }
-    if($request->telefono!=$usuario->telefono){ // agrega la regla si el telefomo ha sido modificado
-      $rules += ['telefono' => 'required|min:1|max:9999999999'];
-    }
+      if($request->nombreEstablecimiento!=$empresa->nombreEstablecimiento){
+        $rules += ['nombreEstablecimiento' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i'];
+      }
+      if($request->cedula!=$usuario->cedula){// agrega la regla si la cedula ha sido modificada
+        $rules += ['cedula' => 'required|min:1|max:9999999999'];
+      }
+      if($request->telefono!=$usuario->telefono){ // agrega la regla si el telefomo ha sido modificado
+        $rules += ['telefono' => 'required|min:1|max:9999999999'];
+      }
 
-    $validator = Validator::make($request->all(), $rules);
-    if ($validator->fails()){
+      $validator = Validator::make($request->all(), $rules);
+      if ($validator->fails()){
       return redirect()->route('Auth.usuario.edit',$id)->withErrors($validator)->withInput();
-    }else{
-      if($request->cedula!=$usuario->cedula){
-        $usuario->cedula = $request->cedula;
-      }
-      if($request->password!=null){
-        $usuario->password = bcrypt($request->password);
-      }
-      if($request->telefono!=$usuario->telefono){
-        $usuario->telefono=$request->telefono;
-      }
-      if($request->telefono!=$empresa->telefono){
-        $rules += ['telefono' => 'required|min:1|max:9999999999|numeric'];
-      }
+      }else{
+        if($request->cedula!=$usuario->cedula){
+          $usuario->cedula = $request->cedula;
+        }
+        if($request->password!=null){
+          $usuario->password = bcrypt($request->password);
+        }
+        if($request->telefono!=$usuario->telefono){
+          $usuario->telefono=$request->telefono;
+        }
+        if($request->telefono!=$empresa->telefono){
+          $rules += ['telefono' => 'required|min:1|max:9999999999|numeric'];
+        }
 
-      $usuario->nombrePersona = $request->nombrePersona;
-      $usuario->cedula = $request->cedula;
-      $usuario->sexo = $request->sexo;
-      $fecha = $request->fechaNacimiento;
-      $fecha = date("y-m-d",strtotime($fecha));
-      $usuario->fechaNacimiento = $fecha;
-      $usuario->telefono = $request->telefono;
+        $usuario->nombrePersona = $request->nombrePersona;
+        $usuario->cedula = $request->cedula;
+        $usuario->sexo = $request->sexo;
+        $fecha = $request->fechaNacimiento;
+        $fecha = date("y-m-d",strtotime($fecha));
+        $usuario->fechaNacimiento = $fecha;
+        $usuario->telefono = $request->telefono;
+        $usuario->save();
+
+        flash::success('El usuario ha sido modificado exitosamente')->important();
+        session_start();
+        $_SESSION['id'] = $id;
+        return redirect()->route('Auth.usuario.editUsuario');
+      }
+    }else if($request->ventana == 11){
+      $usuario = User::find($id);
+      $empresa = Empresa::find($usuario->empresaActual);
 
       $empresa->nombreEstablecimiento = $request->nombreEstablecimiento;
       $empresa->direccion = $request->direccionEstablecimiento;
       $empresa->telefono = $request->telefonoEstablecimiento;
       $empresa->tipoRegimen = $request->tipoRegimen;
       $empresa->nit = $request->nit;
+
       if($empresa->tipoRegimen == "Tipo regimen"){
         $empresa->save();
-        $usuario->save();
-
-        flash::warning('El usuario ha sido modificado satisfactoriamente, recuerde definir un tipo de regimen')->important();
-
+        flash::warning('La empresa ha sido modificada exitosamente, recuerde definir un tipo de regimen')->important();
         session_start();
         $_SESSION['id'] = $id;
         return redirect()->route('Auth.usuario.editUsuario');
-
       }else if($empresa->tipoRegimen == "comun" ){
         if($empresa->imagenResolucionFacturacion == ""){
           $empresa->save();
-          $usuario->save();
-          flash::warning('El usuario ha sido modificado satisfactoriamente, recuerde subir imagen resolción facturación en perfil->factura')->important();
+          flash::warning('La empresa ha sido modificada exitosamente, recuerde subir imagen resolción facturación')->important();
           session_start();
           $_SESSION['id'] = $id;
           return redirect()->route('Auth.usuario.editUsuario');
         }else{
           $empresa->save();
-          $usuario->save();
-          flash::success('El usuario ha sido modificado satisfactoriamente')->important();
+          flash::success('La empresa ha sido modificada exitosamente')->important();
           session_start();
           $_SESSION['id'] = $id;
           return redirect()->route('Auth.usuario.editUsuario');
         }
       }
       $empresa->save();
-      $usuario->save();
-      flash::success('El usuario ha sido modificado satisfactoriamente')->important();
+      flash::success('La empresa ha sido modificada exitosamente')->important();
       session_start();
       $_SESSION['id'] = $id;
       return redirect()->route('Auth.usuario.editUsuario');
-    }
     }else if($request->ventana == 2){
       $rules = [
         'email' => 'required|email|max:255',
@@ -414,14 +418,14 @@ class UsuariosController extends Controller
         if(sizeof($usuarioaux) == 0 ){
           $usuario->email = $email;
           $usuario->save();
-          flash::success('El usuario ha sido modificado satisfactoriamente')->important();
+          flash::success('El usuario ha sido modificado exitosamente')->important();
           session_start();
           $_SESSION['id'] = $id;
           return redirect()->route('Auth.usuario.editUsuario');
         }else{
           if($usuarioaux[0]->email == $emailaux){
             $usuario->save();
-            flash::success('El usuario ha sido modificado satisfactoriamente')->important();
+            flash::success('El usuario ha sido modificado exitosamente')->important();
             session_start();
             $_SESSION['id'] = $id;
             return redirect()->route('Auth.usuario.editUsuario');
@@ -2009,7 +2013,7 @@ class UsuariosController extends Controller
             $contiene106->idEmpresa = $empresa->id;
             $contiene106->save();
 
-          flash::success('El negocio ha sido creado satisfactoriamente')->important();
+          flash::success('El negocio ha sido creado exitosamente')->important();
           session_start();
           $_SESSION['id'] = $id;
           return redirect()->route('Auth.usuario.editUsuario');
@@ -2058,7 +2062,7 @@ class UsuariosController extends Controller
         $usuario->telefono = $request->telefono;
 
         $usuario->save();
-        flash::success('El usuario ha sido modificado satisfactoriamente')->important();
+        flash::success('El usuario ha sido modificado exitosamente')->important();
         session_start();
         $_SESSION['id'] = $id;
         return redirect()->route('Auth.usuario.editUsuario');
@@ -2100,14 +2104,14 @@ class UsuariosController extends Controller
         if(sizeof($usuarioaux) == 0 ){
           $usuario->email = $email;
           $usuario->save();
-          flash::success('El usuario ha sido modificado satisfactoriamente')->important();
+          flash::success('El usuario ha sido modificado exitosamente')->important();
           session_start();
           $_SESSION['id'] = $id;
           return redirect()->route('Auth.usuario.editUsuario');
         }else{
           if($usuarioaux[0]->email == $emailaux){
             $usuario->save();
-            flash::success('El usuario ha sido modificado satisfactoriamente')->important();
+            flash::success('El usuario ha sido modificado exitosamente')->important();
             session_start();
             $_SESSION['id'] = $id;
             return redirect()->route('Auth.usuario.editUsuario');
@@ -2136,7 +2140,7 @@ class UsuariosController extends Controller
       }
       dd($usuario);
       $usuario->save();
-      flash::success('La imagen de perfil ha sido modificada satisfactoriamente')->important();
+      flash::success('La imagen de perfil ha sido modificada exitosamente')->important();
       session_start();
       $_SESSION['id'] = $id;
       return redirect()->route('Auth.usuario.editUsuario');
@@ -2159,7 +2163,7 @@ class UsuariosController extends Controller
         $usuario->imagenPerfil = $perfilNombre;
       }
       $usuario->save();
-      flash::success('La imagen de perfil ha sido modificada satisfactoriamente')->important();
+      flash::success('La imagen de perfil ha sido modificada exitosamente')->important();
       session_start();
       $_SESSION['id'] = $id;
       return redirect()->route('Auth.usuario.editUsuario');
@@ -2285,7 +2289,7 @@ class UsuariosController extends Controller
       }
 
       $usuario->save();
-      flash::warning('El usuario ha sido modificado satisfactoriamente')->important();
+      flash::warning('El usuario ha sido modificado exitosamente')->important();
       return redirect()->route('Auth.usuario.index');
     }
   }
@@ -2311,7 +2315,7 @@ class UsuariosController extends Controller
           $usuario -> save();
       }
 
-    flash::success('El estado del usuario ha sido modificado satisfactoriamente')->important();
+    flash::success('El estado del usuario ha sido modificado exitosamente')->important();
     return redirect()->route('Auth.usuario.index');
   }
 
@@ -2433,7 +2437,7 @@ class UsuariosController extends Controller
 
           $user = User::all()->last()->toJson();
           return response()->json(['success' => true,'message' => 'record updated', 'user' => $user], 200);
-          Flash::success("El usuario se ha registrado satisfactoriamente")->important();
+          Flash::success("El usuario se ha registrado exitosamente")->important();
           return redirect()->route('Auth.usuario.index');
 
         }if ($validator->fails()) {
@@ -2480,7 +2484,7 @@ class UsuariosController extends Controller
       $empresa->telefono = $request->telefono;
       $empresa->save();
       $user->save();
-      flash::warning('Los datos de la empresa se modificaron satisfactoriamente')->important();
+      flash::warning('Los datos de la empresa se modificaron exitosamente')->important();
       return redirect()->route('Auth.usuario.index');
     }
   }

@@ -121,18 +121,7 @@
     -->
     <!-- NO BORRAR-->
     <!-- {!!Html::style('stylesheets/style.css')!!} -->
-
-    <!--
-    {!!Html::style('stylesheets\color\green.css')!!}
-    {!!Html::style('stylesheets\color\orange.css')!!}
-    {!!Html::style('stylesheets\color\magenta.css')!!}
-    {!!Html::style('stylesheets\color\gray.css')!!}
-    -->
-
-    <!--
-    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
-    -->
+    
     <script>
     // ajax para verificar que el usuario esté logueado y así no dejar ver la página
      $(document).ready(function(){
