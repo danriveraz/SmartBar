@@ -54,7 +54,9 @@ Route::group(['prefix' => 'Auth'], function(){
   Route::resource('usuario','UsuariosController');
 
   Route::get('usuario/{id}/edit', ['uses' => 'UsuariosController@edit', 'as' => 'Auth.usuario.edit']);
-  Route::get('editarUsuairo', ['uses' => 'UsuariosController@editProfile', 'as' => 'Auth.usuario.editUsuario']);
+
+  Route::get('editarUsuairo/{tab}', ['uses' => 'UsuariosController@editProfile', 'as' => 'Auth.usuario.editUsuario']);
+  
   Route::get('editarUsuairo/{id}/edit', ['uses' => 'UsuariosController@posteditProfile', 'as' => 'Auth.usuario.posteditUsuario']);
 
   Route::get('usuario/{id}/destroy', ['uses' => 'UsuariosController@destroy', 'as' => 'Auth.usuario.destroy']);

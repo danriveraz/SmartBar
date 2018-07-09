@@ -60,8 +60,9 @@ class MesasController extends Controller
             $mesa->save();
         }
         //return redirect('mesas')->with('mesas',$mesas);
-        flash::success('Mesas creadas satisfactoriamente')->important();
-        return redirect('Auth/usuario/'.$userActual->id.'/edit');
+        $tab = 'mesas';
+        Flash::success("Mesas creadas satisfactoriamente")->important();
+        return redirect()->route('Auth.usuario.editUsuario',$tab);;
     }
 
     public function modificar(Request $request){

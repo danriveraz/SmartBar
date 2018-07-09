@@ -65,8 +65,9 @@ class CategoriaController extends Controller
         $userActual->save();
       }
       $categoria->save();
+      $tab = 'categorias';
       Flash::success("La categoria se ha registrado satisfactoriamente")->important();
-      return redirect('Auth/usuario/'.$userActual->id.'/edit');
+      return redirect()->route('Auth.usuario.editUsuario',$tab);
   	}
 
    	public function edit($id){

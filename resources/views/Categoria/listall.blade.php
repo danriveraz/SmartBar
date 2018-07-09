@@ -163,7 +163,7 @@
   }
 
    function eliminarCategoria(idCategoria){
-    if(confirm('¿Desea eliminar esta categoria?')){
+    if(confirm('¿Desea eliminar esta categoria?, tenga en cuenta que se eliminarán los productos relacionados a esta categoría.')){
       $.ajax({
         url: routeEliminarCategoria,
         type: 'GET',

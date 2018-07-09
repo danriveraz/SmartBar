@@ -5,6 +5,7 @@
 <!-- ESTILOS VISTA PERFIL -->
 {!!Html::style('assets/css/main.css')!!}
 {!!Html::style('stylesheets/profile.css')!!}
+{!!Html::style('assetsNew/styles/cajero.css')!!}
 <!-- FIN -->
 
 <div class="view-account">
@@ -63,7 +64,7 @@
               </div>
               <nav class="side-menu">
                   <ul class="nav">
-                    @if($tab == 'perfil')
+                    @if($nuevaTab == 'perfil')
                     <li class="active">
                     @else
                     <li>
@@ -72,7 +73,7 @@
                         <span class="fa fa-user"></span> Perfil
                       </a>
                     </li>
-                    @if($tab == 'categorias')
+                    @if($nuevaTab == 'categorias')
                     <li class="active">
                     @else
                     <li>
@@ -85,7 +86,7 @@
                         <span class="fa fa-newspaper-o">
                       </span> Factura</a>
                     </li>
-                    @if($tab == 'mesas')
+                    @if($nuevaTab == 'mesas')
                     <li class="active">
                     @else
                     <li>
@@ -97,7 +98,7 @@
           </div>
           <!-- MAIN CONTENT -->
           <div class="tab-content">
-            @if($tab == "perfil")
+            @if($nuevaTab == "perfil")
             <div class="tab-pane active" id="tab1">
             @else
             <div class="tab-pane" id="tab1">
@@ -209,22 +210,17 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label>Regimen</label>
+                                <label>Departamento</label>
                                 <div class="input-group">
-                                  <span class="input-group-addon"><i class="fa fa-drivers-license-o"></i></span>
-                                    <select id="tipoRegimen" name="tipoRegimen" class="form-control" >
-                                    @if($empresa->tipoRegimen=='' || $empresa->tipoRegimen == "Tipo regimen")
-                                      <option>Tipo regimen</option>
-                                      <option value="comun">Regimen comun</option>
-                                      <option value="simplificado">Regimen simplificado</option>
-                                    @elseif($empresa->tipoRegimen=='comun')
-                                      <option value="comun" selected="selected">Regimen comun</option>
-                                      <option value="simplificado" >Regimen simplificado</option>
-                                    @else
-                                      <option value="comun">Regimen comun</option>
-                                      <option value="simplificado" selected="selected">Regimen simplificado</option>
-                                    @endif
-                                  </select>
+                                  <span class="input-group-addon"><i class="fa fa-map"></i></span>
+                                  <input type="text" class="form-control" value="{{$empresa->departamento}}" disabled>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label>Ciudad</label>
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-map-o"></i></span>
+                                  <input type="text" class="form-control" value="{{$empresa->ciudad}}" disabled>
                                 </div>
                               </div>
                             </div>
@@ -244,17 +240,56 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label>Departamento</label>
+                                <label>Regimen</label>
                                 <div class="input-group">
-                                  <span class="input-group-addon"><i class="fa fa-map"></i></span>
-                                  <input type="text" class="form-control" value="{{$empresa->departamento}}" disabled>
+                                  <span class="input-group-addon"><i class="fa fa-drivers-license-o"></i></span>
+                                    <select id="tipoRegimen" name="tipoRegimen" class="form-control" onchange="valor(this.value);">
+                                    @if($empresa->tipoRegimen=='' || $empresa->tipoRegimen == "Tipo regimen")
+                                      <option>Tipo regimen</option>
+                                      <option value="comun">Regimen comun</option>
+                                      <option value="simplificado">Regimen simplificado</option>
+                                    @elseif($empresa->tipoRegimen=='comun')
+                                      <option value="comun" selected="selected">Regimen comun</option>
+                                      <option value="simplificado" >Regimen simplificado</option>
+                                    @else
+                                      <option value="comun">Regimen comun</option>
+                                      <option value="simplificado" selected="selected">Regimen simplificado</option>
+                                    @endif
+                                  </select>
+                                </div>
+                              </div>
+                              <div id="regimenComun" style="display: none;">
+                                <div class="form-group">
+                                  <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                                    <input class="form-control" id="resolucion" name="resolucion" placeholder="Resolución de facturación" type="text" id="regimen" name="regimen" value="{{$empresa->nresolucionFacturacion}}">
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
+                                    <input name="fechaResolucion" type="date" class="form-control" placeholder="Fecha resolución" value="">
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <div class="input-group">
+                                    <label class="input-group-btn" style="display: table-cell;">
+                                      <span class="btn btn-pocket">
+                                          Subir imagen <input type="file" name="imgRes" id="imgRes" style="display: none;" multiple>
+                                      </span>
+                                    </label>
+                                    <input type="text" class="form-control" readonly>
+                                  </div>
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label>Ciudad</label>
                                 <div class="input-group">
-                                  <span class="input-group-addon"><i class="fa fa-map-o"></i></span>
-                                  <input type="text" class="form-control" value="{{$empresa->ciudad}}" disabled>
+                                  <div class="col-md-6">
+                                    <input name="inicio" type="text" class="form-control" placeholder="Del No." value="">
+                                  </div>
+                                  <div class="col-md-6">
+                                    <input name="final" type="text" class="form-control" placeholder="Hasta" value="">
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -512,7 +547,7 @@
             </div>
           </div>
         </div>
-        @if($tab == 'categorias')
+        @if($nuevaTab == 'categorias')
         <div class="tab-pane active" id="tab2">
         @else
         <div class="tab-pane" id="tab2">
@@ -568,7 +603,7 @@
         <div class="tab-pane" id="tab3">
           
         </div>
-        @if($tab == 'mesas')
+        @if($nuevaTab == 'mesas')
         <div class="tab-pane active" id="tab4">
         @else
         <div class="tab-pane" id="tab4">
@@ -630,8 +665,7 @@
 <!-- JAVASCRIPT -->
 <script>
   var JSONusuario = eval(<?php echo json_encode($usuario); ?>);
-  var JSONempresa = eval(<?php echo json_encode($empresas); ?>);
-
+  var JSONempresa = eval(<?php echo json_encode($empresa); ?>);
   $(document).ready(function(){
       listcat();
       listmesas();
@@ -643,6 +677,9 @@
             }
         });
      // $(".gallery-item filter1 fancybox").fancybox({ });
+      if(JSONempresa.tipoRegimen == "comun"){
+        document.getElementById('regimenComun').style.display = "block";
+      }
 
       $("#fechaNacimiento").load(this);
       $('[data-toggle="popover"]').popover();
@@ -721,6 +758,13 @@
     });
   });
 
+  var valor = function(x){
+    if(x == 'comun'){
+      document.getElementById('regimenComun').style.display = "block";
+    }else{
+      document.getElementById('regimenComun').style.display = "none";
+    }
+  };
 
   function setValue(idBtn) {
     if(idBtn.id == "btn-guardar1"){

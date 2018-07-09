@@ -244,8 +244,8 @@ class UsuariosController extends Controller
         $departamentos = Departamento::all();
         $ciudades = Ciudad::all();
         $usuario = User::find($id);
-        $Empresa = Empresa::find($usuario->empresaActual);
-        return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas);
+        $empresa = Empresa::find($usuario->empresaActual);
+        return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas);
       }
     }else if($auxiliar == 1){
       $usuario = User::find($id);
@@ -258,10 +258,11 @@ class UsuariosController extends Controller
   public function edit($id){
     session_start();
     $_SESSION['id'] = $id;
-    return redirect()->route('Auth.usuario.editUsuario');
+    $tab = 'perfil';
+    return redirect()->route('Auth.usuario.editUsuario',$tab);
   }
 
-  public function editProfile(){
+  public function editProfile($tab){
     $usuarioActual  = Auth::User();
     session_start();
     $id = $_SESSION['id'];
@@ -285,8 +286,8 @@ class UsuariosController extends Controller
           $ciudades = Ciudad::all();
           $usuario = User::find($id);
           $Empresa = Empresa::find($usuario->empresaActual);
-          $tab = 'perfil';
-          return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas)->with('tab',$tab);
+          $nuevaTab = $tab;
+          return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas)->with('nuevaTab',$nuevaTab);
         }
       }else if($auxiliar == 1){
         $usuario = User::find($id);
@@ -317,7 +318,8 @@ class UsuariosController extends Controller
 
       $validator = Validator::make($request->all(), $rules);
       if ($validator->fails()){
-      return redirect()->route('Auth.usuario.edit',$id)->withErrors($validator)->withInput();
+        $tab = 'perfil';
+        return redirect()->route('Auth.usuario.editUsuario',$tab)->withErrors($validator)->withInput();
       }else{
         if($request->cedula!=$usuario->cedula){
           $usuario->cedula = $request->cedula;
@@ -344,7 +346,8 @@ class UsuariosController extends Controller
         flash::success('El usuario ha sido modificado exitosamente')->important();
         session_start();
         $_SESSION['id'] = $id;
-        return redirect()->route('Auth.usuario.editUsuario');
+        $tab = 'perfil';
+        return redirect()->route('Auth.usuario.editUsuario',$tab);
       }
     }else if($request->ventana == 11){
       $usuario = User::find($id);
@@ -361,27 +364,31 @@ class UsuariosController extends Controller
         flash::warning('La empresa ha sido modificada exitosamente, recuerde definir un tipo de regimen')->important();
         session_start();
         $_SESSION['id'] = $id;
-        return redirect()->route('Auth.usuario.editUsuario');
+        $tab = 'perfil';
+        return redirect()->route('Auth.usuario.editUsuario',$tab);
       }else if($empresa->tipoRegimen == "comun" ){
         if($empresa->imagenResolucionFacturacion == ""){
           $empresa->save();
           flash::warning('La empresa ha sido modificada exitosamente, recuerde subir imagen resolción facturación')->important();
           session_start();
           $_SESSION['id'] = $id;
-          return redirect()->route('Auth.usuario.editUsuario');
+          $tab = 'perfil';
+          return redirect()->route('Auth.usuario.editUsuario',$tab);
         }else{
           $empresa->save();
           flash::success('La empresa ha sido modificada exitosamente')->important();
           session_start();
           $_SESSION['id'] = $id;
-          return redirect()->route('Auth.usuario.editUsuario');
+          $tab = 'perfil';
+          return redirect()->route('Auth.usuario.editUsuario',$tab);
         }
       }
       $empresa->save();
       flash::success('La empresa ha sido modificada exitosamente')->important();
       session_start();
       $_SESSION['id'] = $id;
-      return redirect()->route('Auth.usuario.editUsuario');
+      $tab = 'perfil';
+      return redirect()->route('Auth.usuario.editUsuario',$tab);
     }else if($request->ventana == 2){
       $rules = [
         'email' => 'required|email|max:255',
@@ -403,11 +410,13 @@ class UsuariosController extends Controller
           flash::error('Contraseña no valida')->important();
           session_start();
           $_SESSION['id'] = $id;
-          return redirect()->route('Auth.usuario.editUsuario');
+          $tab = 'perfil';
+          return redirect()->route('Auth.usuario.editUsuario',$tab);
         }else{
           session_start();
           $_SESSION['id'] = $id;
-          return redirect()->route('Auth.usuario.editUsuario')->withErrors($validator)->withInput();
+          $tab = 'perfil';
+          return redirect()->route('Auth.usuario.editUsuario',$tab)->withErrors($validator)->withInput();
         }
       }else{
         if($request->password !=null){
@@ -421,19 +430,22 @@ class UsuariosController extends Controller
           flash::success('El usuario ha sido modificado exitosamente')->important();
           session_start();
           $_SESSION['id'] = $id;
-          return redirect()->route('Auth.usuario.editUsuario');
+          $tab = 'perfil';
+          return redirect()->route('Auth.usuario.editUsuario',$tab);
         }else{
           if($usuarioaux[0]->email == $emailaux){
             $usuario->save();
             flash::success('El usuario ha sido modificado exitosamente')->important();
             session_start();
             $_SESSION['id'] = $id;
-            return redirect()->route('Auth.usuario.editUsuario');
+            $tab = 'perfil';
+            return redirect()->route('Auth.usuario.editUsuario',$tab);
           }else{
             flash::warning('Correo en uso')->important();
             session_start();
             $_SESSION['id'] = $id;
-            return redirect()->route('Auth.usuario.editUsuario');
+            $tab = 'perfil';
+            return redirect()->route('Auth.usuario.editUsuario',$tab);
           }
         }        
       }
@@ -444,22 +456,26 @@ class UsuariosController extends Controller
         flash::warning('Adquiere una membresia')->important();
         session_start();
         $_SESSION['id'] = $id;
-        return redirect()->route('Auth.usuario.editUsuario');
+        $tab = 'perfil';
+        return redirect()->route('Auth.usuario.editUsuario',$tab);
       }else if($usuario->membresia == 1){
         flash::warning('Almacenamiento suficiente para un solo negocio')->important();
         session_start();
         $_SESSION['id'] = $id;
-        return redirect()->route('Auth.usuario.editUsuario');
+        $tab = 'perfil';
+        return redirect()->route('Auth.usuario.editUsuario',$tab);
       }else if($usuario->membresia == 2 && sizeof($empresas) == 2){
         flash::warning('Almacenamiento suficiente para dos negocios')->important();
         session_start();
         $_SESSION['id'] = $id;
-        return redirect()->route('Auth.usuario.editUsuario');
+        $tab = 'perfil';
+        return redirect()->route('Auth.usuario.editUsuario',$tab);
       }else if($usuario->membresia == 3 && sizeof($empresas) == 4){
         flash::warning('Número máximo de negocios alcanzado')->important();
         session_start();
         $_SESSION['id'] = $id;
-        return redirect()->route('Auth.usuario.editUsuario');
+        $tab = 'perfil';
+        return redirect()->route('Auth.usuario.editUsuario',$tab);
       }else{
           $empresa = new Empresa;
           $empresa->nombreEstablecimiento = $request->nombreEstablecimientoNBar;
@@ -2016,7 +2032,8 @@ class UsuariosController extends Controller
           flash::success('El negocio ha sido creado exitosamente')->important();
           session_start();
           $_SESSION['id'] = $id;
-          return redirect()->route('Auth.usuario.editUsuario');
+          $tab = 'perfil';
+          return redirect()->route('Auth.usuario.editUsuario',$tab);
       }
     }else if($request->ventana == 5){
       $plan = 1;
@@ -2041,7 +2058,8 @@ class UsuariosController extends Controller
       $validator = Validator::make($request->all(), $rules);
 
       if ($validator->fails()){
-        return redirect()->route('Auth.usuario.edit',$id)->withErrors($validator)->withInput();
+        $tab = 'perfil';
+        return redirect()->route('Auth.usuario.editUsuario',$tab)->withErrors($validator)->withInput();
       }else{
         if($request->cedula!=$usuario->cedula){
           $usuario->cedula = $request->cedula;
@@ -2065,7 +2083,8 @@ class UsuariosController extends Controller
         flash::success('El usuario ha sido modificado exitosamente')->important();
         session_start();
         $_SESSION['id'] = $id;
-        return redirect()->route('Auth.usuario.editUsuario');
+        $tab = 'perfil';
+        return redirect()->route('Auth.usuario.editUsuario',$tab);
       }
     }else if($request->ventana == 9){
       dd("=");
@@ -2089,11 +2108,13 @@ class UsuariosController extends Controller
           flash::error('Contraseña no valida')->important();
           session_start();
           $_SESSION['id'] = $id;
-          return redirect()->route('Auth.usuario.editUsuario');
+          $tab = 'perfil';
+          return redirect()->route('Auth.usuario.editUsuario',$tab);
         }else{
           session_start();
           $_SESSION['id'] = $id;
-          return redirect()->route('Auth.usuario.editUsuario')->withErrors($validator)->withInput();
+          $tab = 'perfil';
+          return redirect()->route('Auth.usuario.editUsuario',$tab)->withErrors($validator)->withInput();
         }
       }else{
         if($request->password !=null){
@@ -2107,19 +2128,22 @@ class UsuariosController extends Controller
           flash::success('El usuario ha sido modificado exitosamente')->important();
           session_start();
           $_SESSION['id'] = $id;
-          return redirect()->route('Auth.usuario.editUsuario');
+          $tab = 'perfil';
+          return redirect()->route('Auth.usuario.editUsuario',$tab);
         }else{
           if($usuarioaux[0]->email == $emailaux){
             $usuario->save();
             flash::success('El usuario ha sido modificado exitosamente')->important();
             session_start();
             $_SESSION['id'] = $id;
-            return redirect()->route('Auth.usuario.editUsuario');
+            $tab = 'perfil';
+            return redirect()->route('Auth.usuario.editUsuario',$tab);
           }else{
             flash::warning('Correo en uso')->important();
             session_start();
             $_SESSION['id'] = $id;
-            return redirect()->route('Auth.usuario.editUsuario');
+            $tab = 'perfil';
+            return redirect()->route('Auth.usuario.editUsuario',$tab);
           }
         }        
       }
@@ -2143,7 +2167,8 @@ class UsuariosController extends Controller
       flash::success('La imagen de perfil ha sido modificada exitosamente')->important();
       session_start();
       $_SESSION['id'] = $id;
-      return redirect()->route('Auth.usuario.editUsuario');
+      $tab = 'perfil';
+      return redirect()->route('Auth.usuario.editUsuario',$tab);
     }
 
     if($request->ventanaFactura == 4){
@@ -2166,7 +2191,8 @@ class UsuariosController extends Controller
       flash::success('La imagen de perfil ha sido modificada exitosamente')->important();
       session_start();
       $_SESSION['id'] = $id;
-      return redirect()->route('Auth.usuario.editUsuario');
+      $tab = 'perfil';
+      return redirect()->route('Auth.usuario.editUsuario',$tab);
     }
   }
 
