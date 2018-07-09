@@ -259,8 +259,8 @@
 
 <script>
 
-  var routeEliminar = "http://localhost/PocketByR/public/contiene/eliminar";
-  var routeGuardar = "http://localhost/PocketByR/public/contiene/guardar";
+  var routeEliminar = "http://localhost/SmartBar/public/contiene/eliminar";
+  var routeGuardar = "http://localhost/SmartBar/public/contiene/guardar";
 
   $(document).ready(function(){
     $("#modalImagen").fancybox({

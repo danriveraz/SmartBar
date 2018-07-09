@@ -377,8 +377,8 @@
 </div>
 
 <script>
-  var routeModificar = "http://localhost/PocketByR/public/insumo/modificar";
-  var routeEliminar = "http://localhost/PocketByR/public/insumo/eliminar";
+  var routeModificar = "http://localhost/SmartBar/public/insumo/modificar";
+  var routeEliminar = "http://localhost/SmartBar/public/insumo/eliminar";
 
 
   $(document).ready(function(){

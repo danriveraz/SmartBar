@@ -130,8 +130,8 @@
       }
   });
 
-  var routeModificarCategoria = "http://localhost/PocketByR/public//categoria/modificar";
-  var routeEliminarCategoria = "http://localhost/PocketByR/public//categoria/eliminar";
+  var routeModificarCategoria = "http://localhost/SmartBar/public//categoria/modificar";
+  var routeEliminarCategoria = "http://localhost/SmartBar/public//categoria/eliminar";
 
   function modificarCategoria(idCategoria){
     var nombre = $("#nombreCategoria"+idCategoria).val();

@@ -61,8 +61,8 @@
 
   
   <script>
-    var routeModificar = "http://localhost/PocketByR/public/proveedor/modificar";
-    var routeEliminar = "http://localhost/PocketByR/public/proveedor/eliminar";
+    var routeModificar = "http://localhost/SmartBar/public/proveedor/modificar";
+    var routeEliminar = "http://localhost/SmartBar/public/proveedor/eliminar";
 
     function modificar(idProveedor) {
       var nombre = $("#nombre"+idProveedor).val();

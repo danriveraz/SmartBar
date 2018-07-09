@@ -75,8 +75,8 @@
 
 <script type="text/javascript">
   
-  var routeModificarMesas = "http://localhost/PocketByR/public/mesas/modificar";
-  var routeEliminarMesas = "http://localhost/PocketByR/public/mesas/eliminar";
+  var routeModificarMesas = "http://localhost/SmartBar/public/mesas/modificar";
+  var routeEliminarMesas = "http://localhost/SmartBar/public/mesas/eliminar";
 
   function modificarMesa(idMesa) {
     var nombre = $("#nombreMesa"+idMesa).val();

@@ -125,9 +125,9 @@
     $(".current").removeClass("current");
     $(idInput).addClass("current");
   };
-  var routeModificar = "http://localhost/PocketByR/public/producto/modificar";
-  var routeEliminar = "http://localhost/PocketByR/public/producto/eliminar";
-  var routeIngredientes = "http://localhost/PocketByR/public/producto/ingredientes";
+  var routeModificar = "http://localhost/SmartBar/public/producto/modificar";
+  var routeEliminar = "http://localhost/SmartBar/public/producto/eliminar";
+  var routeIngredientes = "http://localhost/SmartBar/public/producto/ingredientes";
 
   function ingredientes(idProducto){
     if(document.getElementById("ingredientes"+idProducto).className == "true"){
