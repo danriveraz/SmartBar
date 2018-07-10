@@ -298,9 +298,7 @@
 
   						  </li>
   					<li><a href="#">
-  							<div class="notifications label label-info">
-  							  New
-  							</div>
+  							
   							<p>
   							  New growth data available
   							</p></a>

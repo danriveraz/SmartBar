@@ -145,6 +145,7 @@ return array(
     'Insertpkcontiene' => $baseDir . '/database/migrations/2017_07_19_205814_insertpkcontiene.php',
     'LoginRedesSociales' => $baseDir . '/database/migrations/2017_08_11_012709_login_redes_sociales.php',
     'MebresiaUsuario' => $baseDir . '/database/migrations/2018_01_18_103432_mebresiaUsuario.php',
+    'NotificacionesTable' => $baseDir . '/database/migrations/2018_07_10_162521_notificaciones_table.php',
     'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
     'PHPUnit\\Framework\\AssertionFailedError' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/AssertionFailedError.php',
     'PHPUnit\\Framework\\BaseTestListener' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',

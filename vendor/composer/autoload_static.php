@@ -481,6 +481,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'Insertpkcontiene' => __DIR__ . '/../..' . '/database/migrations/2017_07_19_205814_insertpkcontiene.php',
         'LoginRedesSociales' => __DIR__ . '/../..' . '/database/migrations/2017_08_11_012709_login_redes_sociales.php',
         'MebresiaUsuario' => __DIR__ . '/../..' . '/database/migrations/2018_01_18_103432_mebresiaUsuario.php',
+        'NotificacionesTable' => __DIR__ . '/../..' . '/database/migrations/2018_07_10_162521_notificaciones_table.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
         'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/AssertionFailedError.php',
         'PHPUnit\\Framework\\BaseTestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
