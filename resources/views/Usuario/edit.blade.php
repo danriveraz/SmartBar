@@ -5,7 +5,7 @@
 <!-- ESTILOS VISTA PERFIL -->
 {!!Html::style('assets/css/main.css')!!}
 {!!Html::style('stylesheets/profile.css')!!}
-{!!Html::style('assetsNew/styles/cajero.css')!!}
+
 <!-- FIN -->
 
 <div class="view-account">
@@ -260,22 +260,24 @@
                               </div>
                               <div id="regimenComun" style="display: none;">
                                 <div class="form-group">
+                                  <label>No. Resolución facturación</label>
                                   <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
                                     <input class="form-control" id="resolucion" name="resolucion" placeholder="Resolución de facturación" type="text" id="regimen" name="regimen" value="{{$empresa->nresolucionFacturacion}}">
                                   </div>
                                 </div>
                                 <div class="form-group">
+                                  <label>Fecha resolución</label>
                                   <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
                                     <input name="fechaResolucion" id="fechaResolucion" type="date" class="form-control" placeholder="Fecha resolución" value="{{$empresa->fechaResolucion}}">
                                   </div>
                                 </div>
                                 <div class="form-group">
-                                  <div class="input-group">
+                                  <div class="input-group" style="width: 100%;">
                                     <label class="input-group-btn" style="display: table-cell;">
                                       <span class="btn btn-pocket">
-                                          Subir imagen <input type="file" name="imgRes" id="imgRes" style="display: none;" multiple>
+                                          Subir resolución <input type="file" name="imgRes" id="imgRes" style="display: none;" multiple>
                                       </span>
                                     </label>
                                     <input type="text" class="form-control" readonly>
@@ -283,6 +285,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
+                                <label>Del No. Hasta</label>
                                 <div class="input-group">
                                   <div class="col-md-6">
                                     @if($empresa->nInicio != 0)

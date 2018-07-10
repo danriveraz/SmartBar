@@ -62,23 +62,7 @@
 		                <p>
 		                  {{$user->EmpresaActual->direccion}} {{$user->EmpresaActual->ciudad}} {{$user->EmpresaActual->departamento}} <br>
 		                  {{$user->EmpresaActual->telefono}} <br>
-		                </p> 
-		                <div id="imagenResolucion" align="center" style="display: none;">
-		                	<div class="form-group" style="width: 60%;">
-			                  <div class="input-group" style="padding-top: 25px; ">
-			                    <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
-			                    <input class="form-control" id="resolucion" name="resolucion" placeholder="Resolución de facturación" type="text" id="regimen" name="regimen" value="{{$empresa->nresolucionFacturacion}}">
-			                  </div>
-			                </div>
-			                <div class="input-group" style="width: 60%;">
-				                <label class="input-group-btn">
-				                    <span class="btn btn-primary">
-				                        Subir imagen <input type="file" name="imgRes" id="imgRes" style="display: none;" multiple>
-				                    </span>
-				                </label>
-				                <input type="text" class="form-control" readonly>
-				            </div>
-		                </div>            
+		                </p>           
 		              </div>
 		          </div>
 		          <div class="col-md-3">
@@ -214,13 +198,6 @@
 	              	@endif
               	</div>
               </div>
-              <div class="field">
-                @if($user->EmpresaActual->tipoRegimen == "comun")
-                Iva 19% <span id="iva" data-regimen="comun">$0.00</span>
-                @else
-                <span id="iva" data-regimen="simplificado"></span>
-                @endif                
-              </div>
               <div class="field"> 
                 Total <span id="total">$300</span>
               </div>
@@ -229,40 +206,45 @@
           <div class="factspace1"></div>
           <div class="row" >
             <div class="col-lg-12" >             
-	             <div class="col-md-4"  > 
+	            <div class="col-md-4"  > 
 	                <div class="form-group" style="padding-top: 25px;" >
 	                  <div class="input-group" >
 	                    <span class="input-group-addon" title="Propina sugerida"><i class="fa fa-money"></i></span>
 	                    <input class="form-control" name="propinaSugerida" placeholder="Propina sugerida" type="text" value="{{$empresa->propina}}%" id="propinaSugerida">
 	                  </div>
 	                </div>            
-	              </div>
-
-	             <div class="col-md-4" > 
+	            </div>
+	            <div class="col-md-4" > 
 	                <div class="form-group">
 	                  <div class="input-group" style="padding-top: 25px; ">
 	                    <span class="input-group-addon"><i class="fa fa-money"></i></span>
 	                    <input class="form-control" placeholder="Efectivo" type="text" id="efectivo" disabled>
 	                  </div>
 	                </div>            
-	              </div>
-	             
-	             <div class="col-md-4"> 
+	            </div>
+           	 	<div class="col-md-4"> 
 	                <div class="form-group" style="padding-top: 25px;">
 	                  <div class="input-group">
 	                    <span class="input-group-addon"><i class="fa fa-refresh"></i></span>
 	                    <input class="form-control" id="cambio" disabled="" placeholder="Cambio" type="text" disabled>
 	                  </div>
 	                </div>            
-	              </div>
+            	</div>
+	            @if($empresa->tipoRegimen == "comun")
+                <br>
+                <div class="text-center">
+	            	<strong  style="text-align: center;">Resolución DIAN: {{$empresa->nresolucionFacturacion}} de {{$empresa->fechaResolucion}} del No. {{$empresa->nInicio}} hasta {{$empresa->nFinal}}
+	            	</strong>
 	            </div>
-	            <div style="text-align: center; margin-top: 12%;" >
-	              	<button class="btn btn-bitbucket">
-                      Guardar
-                    </button>
-	              </div>
-	          </div>          
-	    	</div>
+                @endif
+	        </div>
+            <div style="text-align: center; margin-top: 2%;" >
+              	<button class="btn btn-bitbucket">
+                  Guardar
+                </button>
+              </div>
+          	</div>          
+	    </div>
 	    {!! Form::close() !!}
       </div>
     </div>

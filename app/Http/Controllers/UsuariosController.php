@@ -169,6 +169,9 @@ class UsuariosController extends Controller
   public function modificarFactura(){
     $user = User::find(Auth::id());
     $Empresa = Empresa::find($user->empresaActual);
+    if ($Empresa->nresolucionFacturacion == 0) {
+      flash::error('Por favor ingresar número resolución facturación en perfil')->important();
+    }
     return view('Usuario.factura')->with('user',$user)->with('empresa',$Empresa);
   }
 
