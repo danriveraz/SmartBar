@@ -73,7 +73,7 @@
 		                    	0
 		                    @else
 		                    	Documento equivalente 
-		                    	a la Factura No # 0
+		                    	a la factura No # 0
 		                    @endif
 		                </strong>
 		                <p>

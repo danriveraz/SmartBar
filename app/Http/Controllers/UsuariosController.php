@@ -367,8 +367,8 @@ class UsuariosController extends Controller
       $empresa->tipoRegimen = $request->tipoRegimen;
       $empresa->nresolucionFacturacion = null;
       $empresa->fechaResolucion = null;
-      $empresa->nInicio = $request->nInicio;
-      $empresa->nFinal = $request->nFinal;
+      $empresa->nInicio = 0;
+      $empresa->nFinal = 0;
       $empresa->nit = $request->nit;
 
       if($empresa->tipoRegimen == "Tipo regimen"){

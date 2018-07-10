@@ -283,23 +283,23 @@
                                     <input type="text" class="form-control" readonly>
                                   </div>
                                 </div>
-                              </div>
-                              <div class="form-group">
-                                <label>Del No. Hasta</label>
-                                <div class="input-group">
-                                  <div class="col-md-6">
-                                    @if($empresa->nInicio != 0)
-                                    <input name="nInicio" type="text" class="form-control" placeholder="Del No." value="{{$empresa->nInicio}}" required="true">
-                                    @else
-                                    <input name="nInicio" type="text" class="form-control" placeholder="Del No." required="true">
-                                    @endif
-                                  </div>
-                                  <div class="col-md-6">
-                                    @if($empresa->nFinal != 0)
-                                    <input name="nFinal" type="text" class="form-control" placeholder="Hasta" value="{{$empresa->nFinal}}" required="true">
-                                    @else
-                                    <input name="nFinal" type="text" class="form-control" placeholder="Hasta" required="true">
-                                    @endif
+                                <div class="form-group">
+                                  <label>Del No. Hasta</label>
+                                  <div class="input-group">
+                                    <div class="col-md-6">
+                                      @if($empresa->nInicio != 0)
+                                      <input name="nInicio" id="nInicio" type="text" class="form-control" placeholder="Del No." value="{{$empresa->nInicio}}" required="true">
+                                      @else
+                                      <input name="nInicio" id="nInicio" type="text" class="form-control" placeholder="Del No." required="true">
+                                      @endif
+                                    </div>
+                                    <div class="col-md-6">
+                                      @if($empresa->nFinal != 0)
+                                      <input name="nFinal" id="nFinal" type="text" class="form-control" placeholder="Hasta" value="{{$empresa->nFinal}}" required="true">
+                                      @else
+                                      <input name="nFinal" id="nFinal" type="text" class="form-control" placeholder="Hasta" required="true">
+                                      @endif
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -774,12 +774,18 @@
       document.getElementById('regimenComun').style.display = "block";
       document.getElementById('resolucion').required = true;
       document.getElementById('fechaResolucion').required = true;
+      document.getElementById('nInicio').required = true;
+      document.getElementById('nFinal').required = true;
     }else{
       document.getElementById('regimenComun').style.display = "none";
       document.getElementById('resolucion').required = false;
       document.getElementById('resolucion').value = null;
       document.getElementById('fechaResolucion').required = false;
       document.getElementById('fechaResolucion').value = null;
+      document.getElementById('nInicio').required = false;
+      document.getElementById('nInicio').value = null;
+      document.getElementById('nFinal').required = false;
+      document.getElementById('nFinal').value = null;
     }
   };
 
