@@ -14,7 +14,7 @@
         <div class="container main-content">
           <div class="side-bar" >
               <div class="user-info">
-                {!! Form::open(['route' => ['Auth.usuario.posteditUsuario',$usuario], 'method' => 'GET','enctype' => 'multipart/form-data', 'id' => 'formEditFotoPerfil']) !!}
+                {!! Form::open(['route' => ['Auth.usuario.posteditUsuario',$usuario], 'method' => 'POST','enctype' => 'multipart/form-data', 'class' => 'input-append', 'id' => 'formEditFotoPerfil']) !!}
                 {{ csrf_field() }}
                 <div class="widget-content fileupload fileupload-new" data-provides="fileupload" style="margin-left: -15%;margin-bottom: -20%;">
                   <div class="gallery-container fileupload-new img-thumbnail">
@@ -112,7 +112,7 @@
                     <li><a href="#billings" role="tab" data-toggle="tab">PocketClub</a></li>
                     <li><a href="#preferences" role="tab" data-toggle="tab">Bolsillo</a></li>
                   </ul>
-                  {!! Form::open(['route' => ['Auth.usuario.posteditUsuario',$usuario], 'method' => 'GET','enctype' => 'multipart/form-data', 'id' => 'formEditUsuario']) !!}
+                  {!! Form::open(['route' => ['Auth.usuario.posteditUsuario',$usuario], 'method' => 'POST','enctype' => 'multipart/form-data', 'class' => 'input-append', 'id' => 'formEditUsuario']) !!}
                   {{ csrf_field() }}
                     <div class="tab-content content-profile">
                       <!-- MY PROFILE -->
@@ -192,21 +192,21 @@
                                 <label>Nombre</label>
                                 <div class="input-group">
                                   <span class="input-group-addon"><i class="fa fa-bars"></i></span>
-                                  <input name="nombreEstablecimiento" type="text" class="form-control" placeholder="Nombre del Establecimiento" value="{{$empresa->nombreEstablecimiento}}">
+                                  <input name="nombreEstablecimiento" type="text" class="form-control" placeholder="Nombre del Establecimiento" value="{{$empresa->nombreEstablecimiento}}" required="true">
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label>Dirección</label>
                                 <div class="input-group">
                                   <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                  <input name="direccionEstablecimiento" type="text" class="form-control" placeholder="Dirección" value="{{$empresa->direccion}}">
+                                  <input name="direccionEstablecimiento" type="text" class="form-control" placeholder="Dirección" value="{{$empresa->direccion}}" required="true">
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label>Teléfono</label>
                                 <div class="input-group">
                                   <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                  <input name="telefonoEstablecimiento" type="text" class="form-control" placeholder="Teléfono o celular" value="{{$empresa->telefono}}" maxlength="10">
+                                  <input name="telefonoEstablecimiento" type="text" class="form-control" placeholder="Teléfono o celular" value="{{$empresa->telefono}}" maxlength="10" required="true">
                                 </div>
                               </div>
                               <div class="form-group">
@@ -232,10 +232,10 @@
                                 <div class="input-group">
                                   @if($empresa->nit == 0)
                                     <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
-                                    <input name="nit" type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx">
+                                    <input name="nit" type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx" required="true">
                                   @else
                                     <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
-                                    <input name="nit" type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx" value="{{$empresa->nit}}">
+                                    <input name="nit" type="text" class="form-control" placeholder="Ingrese su nit xxxxxxx-xx" value="{{$empresa->nit}}" required="true">
                                   @endif
                                 </div>
                               </div>
@@ -268,7 +268,7 @@
                                 <div class="form-group">
                                   <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
-                                    <input name="fechaResolucion" type="date" class="form-control" placeholder="Fecha resolución" value="">
+                                    <input name="fechaResolucion" id="fechaResolucion" type="date" class="form-control" placeholder="Fecha resolución" value="{{$empresa->fechaResolucion}}">
                                   </div>
                                 </div>
                                 <div class="form-group">
@@ -285,10 +285,18 @@
                               <div class="form-group">
                                 <div class="input-group">
                                   <div class="col-md-6">
-                                    <input name="inicio" type="text" class="form-control" placeholder="Del No." value="">
+                                    @if($empresa->nInicio != 0)
+                                    <input name="nInicio" type="text" class="form-control" placeholder="Del No." value="{{$empresa->nInicio}}" required="true">
+                                    @else
+                                    <input name="nInicio" type="text" class="form-control" placeholder="Del No." required="true">
+                                    @endif
                                   </div>
                                   <div class="col-md-6">
-                                    <input name="final" type="text" class="form-control" placeholder="Hasta" value="">
+                                    @if($empresa->nFinal != 0)
+                                    <input name="nFinal" type="text" class="form-control" placeholder="Hasta" value="{{$empresa->nFinal}}" required="true">
+                                    @else
+                                    <input name="nFinal" type="text" class="form-control" placeholder="Hasta" required="true">
+                                    @endif
                                   </div>
                                 </div>
                               </div>
@@ -761,8 +769,14 @@
   var valor = function(x){
     if(x == 'comun'){
       document.getElementById('regimenComun').style.display = "block";
+      document.getElementById('resolucion').required = true;
+      document.getElementById('fechaResolucion').required = true;
     }else{
       document.getElementById('regimenComun').style.display = "none";
+      document.getElementById('resolucion').required = false;
+      document.getElementById('resolucion').value = null;
+      document.getElementById('fechaResolucion').required = false;
+      document.getElementById('fechaResolucion').value = null;
     }
   };
 

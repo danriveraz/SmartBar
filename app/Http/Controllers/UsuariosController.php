@@ -181,8 +181,10 @@ class UsuariosController extends Controller
     $valorImpuesto2 = str_replace('%', '', $request->valorImpuesto3);
 
     $empresa->notas = $request->notas;
-    $empresa->propina = $request->propinaSugerida;
-    $empresa->nresolucionFacturacion = $request->resolucion;
+
+    $propina = str_replace('%', '', $request->propinaSugerida);
+    $empresa->propina = $propina;
+
     $empresa->iva = $iva;
     $empresa->impuesto1 = $request->impuesto2;
     $empresa->valorImpuesto1 = $valorImpuesto1;
@@ -202,28 +204,9 @@ class UsuariosController extends Controller
       $empresa->imagenPerfilNegocio = $perfilNombre;
     }
 
-    $file2 = $request->file('imgRes');
-    if($file2!=null){// verifica que se haya subido una imagen nueva
-      //obtenemos el nombre del archivo
-      $perfilNombre2 = 'resolucion_' . time() . '.' . $file2->getClientOriginalExtension();
-      //indicamos que queremos guardar un nuevo archivo en el disco local
-      $file2->move($path, $perfilNombre2);
-      if($empresa->imagenResolucionFacturacion != ""){
-        $imagenActual = $path . $empresa->imagenResolucionFacturacion;
-        unlink($imagenActual);
-      }
-      $empresa->imagenResolucionFacturacion = $perfilNombre2;
-    }
-    if($empresa->tipoRegimen != 'simplificado'){
-      if($empresa->imagenResolucionFacturacion == ""){
-        flash::warning('Se necesita imagen resolucion facturacion para continuar')->important();
-        return redirect('Auth/modificarFactura');
-      }
-    }else{
-      $empresa->save();
-      flash::success('La factura ha sido modificada exitosamente')->important();
-      return redirect('Auth/modificarFactura');
-    }    
+    $empresa->save();
+    flash::success('La factura ha sido modificada exitosamente')->important();
+    return redirect('Auth/modificarFactura');    
   }
 
   public function editEmpleado($id){
@@ -357,6 +340,10 @@ class UsuariosController extends Controller
       $empresa->direccion = $request->direccionEstablecimiento;
       $empresa->telefono = $request->telefonoEstablecimiento;
       $empresa->tipoRegimen = $request->tipoRegimen;
+      $empresa->nresolucionFacturacion = null;
+      $empresa->fechaResolucion = null;
+      $empresa->nInicio = $request->nInicio;
+      $empresa->nFinal = $request->nFinal;
       $empresa->nit = $request->nit;
 
       if($empresa->tipoRegimen == "Tipo regimen"){
@@ -367,9 +354,26 @@ class UsuariosController extends Controller
         $tab = 'perfil';
         return redirect()->route('Auth.usuario.editUsuario',$tab);
       }else if($empresa->tipoRegimen == "comun" ){
+        $empresa->nresolucionFacturacion = $request->resolucion;
+        $empresa->nInicio = $request->nInicio;
+        $empresa->nFinal = $request->nFinal;
+        $empresa->fechaResolucion = $request->fechaResolucion;
+        $file2 = $request->file('imgRes');
+        $path = public_path() . '/assets-Internas/images/facturacion/';
+        if($file2!=null){// verifica que se haya subido una imagen nueva
+          //obtenemos el nombre del archivo
+          $perfilNombre2 = 'resolucion_' . time() . '.' . $file2->getClientOriginalExtension();
+          //indicamos que queremos guardar un nuevo archivo en el disco local
+          $file2->move($path, $perfilNombre2);
+          if($empresa->imagenResolucionFacturacion != ""){
+            $imagenActual = $path . $empresa->imagenResolucionFacturacion;
+            unlink($imagenActual);
+          }
+          $empresa->imagenResolucionFacturacion = $perfilNombre2;
+        }
         if($empresa->imagenResolucionFacturacion == ""){
           $empresa->save();
-          flash::warning('La empresa ha sido modificada exitosamente, recuerde subir imagen resolción facturación')->important();
+          flash::warning('La empresa ha sido modificada exitosamente, recuerde subir imagen resolución facturación')->important();
           session_start();
           $_SESSION['id'] = $id;
           $tab = 'perfil';
@@ -2162,7 +2166,6 @@ class UsuariosController extends Controller
         }
         $usuario->imagenPerfil = $perfilNombre;
       }
-      dd($usuario);
       $usuario->save();
       flash::success('La imagen de perfil ha sido modificada exitosamente')->important();
       session_start();
@@ -2174,10 +2177,10 @@ class UsuariosController extends Controller
     if($request->ventanaFactura == 4){
       $usuario = User::find(Auth::id());
       $path = public_path() . '/images/admins/';
-      $file = $request->file('imagen');
-      dd($request->file('imagenPerfil'));
+      $file = $request->file('imagenPerfil');
       if($file!=null){// verifica que se haya subido una imagen nueva
         //obtenemos el nombre del archivo
+        
         $perfilNombre = 'perfil_' . time() . '.' . $file->getClientOriginalExtension();
         //indicamos que queremos guardar un nuevo archivo en el disco local
         $file->move($path, $perfilNombre);
@@ -2194,6 +2197,7 @@ class UsuariosController extends Controller
       $tab = 'perfil';
       return redirect()->route('Auth.usuario.editUsuario',$tab);
     }
+
   }
 
   public function update(Request $request, $id){

@@ -403,6 +403,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'DeleteUniqueCedulaCorreo' => __DIR__ . '/../..' . '/database/migrations/2017_08_13_234303_delete_unique_cedula_correo.php',
         'DroUsernameCreateUniqueEmail' => __DIR__ . '/../..' . '/database/migrations/2018_01_02_095041_dro_username_create_unique_email.php',
         'EmpresaAgregarNuevosDatos' => __DIR__ . '/../..' . '/database/migrations/2018_01_02_103819_empresa_agregar_nuevos_datos.php',
+        'EmpresaDatosfacturacion' => __DIR__ . '/../..' . '/database/migrations/2018_07_10_110920_empresa_datosfacturacion.php',
         'EmpresaNotasAdicionales' => __DIR__ . '/../..' . '/database/migrations/2018_01_17_121055_empresa_notasAdicionales.php',
         'FacturaAgregarIdFacturaLocal' => __DIR__ . '/../..' . '/database/migrations/2018_01_04_120125_factura_agregar_idFacturaLocal.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',

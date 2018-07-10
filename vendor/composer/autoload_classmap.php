@@ -67,6 +67,7 @@ return array(
     'DeleteUniqueCedulaCorreo' => $baseDir . '/database/migrations/2017_08_13_234303_delete_unique_cedula_correo.php',
     'DroUsernameCreateUniqueEmail' => $baseDir . '/database/migrations/2018_01_02_095041_dro_username_create_unique_email.php',
     'EmpresaAgregarNuevosDatos' => $baseDir . '/database/migrations/2018_01_02_103819_empresa_agregar_nuevos_datos.php',
+    'EmpresaDatosfacturacion' => $baseDir . '/database/migrations/2018_07_10_110920_empresa_datosfacturacion.php',
     'EmpresaNotasAdicionales' => $baseDir . '/database/migrations/2018_01_17_121055_empresa_notasAdicionales.php',
     'FacturaAgregarIdFacturaLocal' => $baseDir . '/database/migrations/2018_01_04_120125_factura_agregar_idFacturaLocal.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',

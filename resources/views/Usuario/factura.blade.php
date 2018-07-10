@@ -232,8 +232,8 @@
 	             <div class="col-md-4"  > 
 	                <div class="form-group" style="padding-top: 25px;" >
 	                  <div class="input-group" >
-	                    <span class="input-group-addon"><i class="fa fa-money"></i></span>
-	                    <input class="form-control" name="propinaSugerida" placeholder="Propina sugerida %" type="text" value="{{$empresa->propina}}" id="propinaSugerida">
+	                    <span class="input-group-addon" title="Propina sugerida"><i class="fa fa-money"></i></span>
+	                    <input class="form-control" name="propinaSugerida" placeholder="Propina sugerida" type="text" value="{{$empresa->propina}}%" id="propinaSugerida">
 	                  </div>
 	                </div>            
 	              </div>
