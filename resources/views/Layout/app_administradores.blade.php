@@ -281,7 +281,7 @@
                   <ul class="dropdown-menu">
                     @foreach($notificaciones as $notificacion)
                       <li>
-                        <a href="">
+                        <a href="{{url($notificacion->ruta)}}">
                           @if($notificacion->estado == 'nueva')
                           <div class="notifications label label-info">
                             New

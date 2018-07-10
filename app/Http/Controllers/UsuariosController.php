@@ -172,7 +172,7 @@ class UsuariosController extends Controller
     $user = User::find(Auth::id());
     $Empresa = Empresa::find($user->empresaActual);
     $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
-    if ($Empresa->nresolucionFacturacion == 0) {
+    if ($Empresa->nresolucionFacturacion == 0 && $Empresa->tipoRegimen == "comun") {
       flash::error('Por favor ingresar número resolución facturación en perfil')->important();
     }
     return view('Usuario.factura')->with('user',$user)->with('empresa',$Empresa)->with('notificaciones',$notificaciones);
@@ -233,7 +233,7 @@ class UsuariosController extends Controller
         return view('Usuario.editEmpleado')
         ->with('usuario',$usuario)
         ->with('notificaciones',$notificaciones);
-        
+
       }else{
         $departamentos = Departamento::all();
         $ciudades = Ciudad::all();
@@ -284,8 +284,17 @@ class UsuariosController extends Controller
           $usuario = User::find($id);
           $Empresa = Empresa::find($usuario->empresaActual);
           $nuevaTab = $tab;
+
           $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
-          return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas)->with('nuevaTab',$nuevaTab)->with('notificaciones',$notificaciones);
+          return view('Usuario.edit')
+                ->with('usuario',$usuario)
+                ->with('empresa',$Empresa)
+                ->with('departamentos',$departamentos)
+                ->with('ciudades', $ciudades)
+                ->with('empresas', $empresas)
+                ->with('nuevaTab',$nuevaTab)
+                ->with('notificaciones',$notificaciones);
+
         }
       }else if($auxiliar == 1){
         $usuario = User::find($id);

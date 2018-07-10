@@ -68,8 +68,13 @@
 		          <div class="col-md-3">
 		              <div class="factspace text-right" >
 		                <strong class=" text1 text-danger" style="color: #2d0031;">
-		                  Factura No. #
-		                    0
+		                	@if($empresa->tipoRegimen == "comun")
+		                		Factura No. #
+		                    	0
+		                    @else
+		                    	Documento equivalente 
+		                    	a la Factura No # 0
+		                    @endif
 		                </strong>
 		                <p>
 		                    <strong>Mesa:</strong>
@@ -278,12 +283,8 @@
         }
 
         $propina = document.getElementById("propinaSugerida").value;
-        $resolucion = document.getElementById("resolucion").value;
         if($propina == 0 || $propina == ""){
         	document.getElementById("propinaSugerida").value = null;
-        }
-        if($resolucion == 0 || $resolucion == ""){
-        	document.getElementById("resolucion").value = null;
         }
 
         var contador = 1;
