@@ -279,31 +279,21 @@
                   </a>
                   <!-- NOTIFICACIONES -->
                   <ul class="dropdown-menu">
-  					<li><a href="#">
-  						<div class="notifications label label-info">
-  						  New
-  							</div>
-  							<p>
-  							  Sales targets available
-  							</p></a>
-
-  						  </li>
-  					<li><a href="#">
-  							<div class="notifications label label-info">
-  							  New
-  							</div>
-  							<p>
-  							  New performance metric added
-  							</p></a>
-
-  						  </li>
-  					<li><a href="#">
-  							
-  							<p>
-  							  New growth data available
-  							</p></a>
-  						  </li>
-  				</ul>
+                    @foreach($notificaciones as $notificacion)
+                      <li>
+                        <a href="">
+                          @if($notificacion->estado == 'nueva')
+                          <div class="notifications label label-info">
+                            New
+                          </div>
+                          @endif
+                          <p>
+                            {{$notificacion->descripcion}}
+                          </p>
+                        </a>
+                      </li>
+                    @endforeach
+  				        </ul>
                 </li>
                 <li class="dropdown messages hidden-xs">
                   <a data-target="{{url('Mensajes')}}" class="dropdown-toggle" href="{{url('Mensajes')}}">

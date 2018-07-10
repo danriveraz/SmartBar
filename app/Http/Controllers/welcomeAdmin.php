@@ -7,6 +7,7 @@ use Auth;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use PocketByR\Producto;
+use PocketByR\Notificaciones;
 use PocketByR\Contiene;
 use PocketByR\Categoria;
 use PocketByR\Factura;
@@ -35,6 +36,8 @@ class welcomeAdmin extends Controller
      */
     public function index()
     {   
+
+        $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
         $flag = false; 
         if(Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual]])->first()!= null) {
             $categoriasMasVendidas = $this->categoriasMasVendidas();// llamado a la función queretorna un arreglo con dos valores
@@ -64,11 +67,12 @@ class welcomeAdmin extends Controller
                     ->with('ventasSemana', $ventasSemana)
                     ->with('datosVentasComparacionSemanas',$datosVentasComparacionSemanas)
                     ->with('mesasConMasVentas',$mesasConMasVentas)
-                    ->with('flag', $flag);
+                    ->with('flag', $flag)
+                    ->with('notificaciones',$notificaciones);
             
         } else {
             $flag = true;
-            return View('WelcomeAdmin/welcome')->with('flag', $flag);
+            return View('WelcomeAdmin/welcome')->with('flag', $flag)->with('notificaciones',$notificaciones);
         }
     }
 

@@ -17,6 +17,7 @@ use PocketByR\Proveedor;
 use PocketByR\Insumo;
 use PocketByR\Producto;
 use PocketByR\Contiene;
+use PocketByR\Notificaciones;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 
@@ -30,8 +31,9 @@ class UsuariosController extends Controller
   }
 
   public function index(){
+    $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
     $usuarios = User::where('idEmpresa',Auth::User()->empresaActual)->orderBy('id','ASC')->paginate(10);
-    return view('Usuario.index')->with('usuarios',$usuarios);
+    return view('Usuario.index')->with('usuarios',$usuarios)->with('notificaciones',$notificaciones);
   }
 
   public function create(){
@@ -169,10 +171,11 @@ class UsuariosController extends Controller
   public function modificarFactura(){
     $user = User::find(Auth::id());
     $Empresa = Empresa::find($user->empresaActual);
+    $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
     if ($Empresa->nresolucionFacturacion == 0) {
       flash::error('Por favor ingresar número resolución facturación en perfil')->important();
     }
-    return view('Usuario.factura')->with('user',$user)->with('empresa',$Empresa);
+    return view('Usuario.factura')->with('user',$user)->with('empresa',$Empresa)->with('notificaciones',$notificaciones);
   }
 
   public function postmodificarFactura(Request $request){
@@ -225,17 +228,24 @@ class UsuariosController extends Controller
     if($usuarioActual->id == $id){
       if($usuarioActual->esAdmin == 0){
         $usuario = User::find($id);
-        return view('Usuario.editEmpleado')->with('usuario',$usuario);
+
+        $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+        return view('Usuario.editEmpleado')
+        ->with('usuario',$usuario)
+        ->with('notificaciones',$notificaciones);
+        
       }else{
         $departamentos = Departamento::all();
         $ciudades = Ciudad::all();
         $usuario = User::find($id);
         $empresa = Empresa::find($usuario->empresaActual);
-        return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas);
+        $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+        return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas)->with('notificaciones',$notificaciones);
       }
     }else if($auxiliar == 1){
       $usuario = User::find($id);
-      return view('Usuario.editEmpleado')->with('usuario',$usuario);
+      $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+      return view('Usuario.editEmpleado')->with('usuario',$usuario)->with('notificaciones',$notificaciones);
     }else{
       return view('errors.503');
     }
@@ -266,18 +276,21 @@ class UsuariosController extends Controller
       if($usuarioActual->id == $id){
         if($usuarioActual->esAdmin == 0){
             $usuario = User::find($id);
-            return view('Usuario.editEmpleado')->with('usuario',$usuario);
+            $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+            return view('Usuario.editEmpleado')->with('usuario',$usuario)->with('notificaciones',$notificaciones);
         }else{
           $departamentos = Departamento::all();
           $ciudades = Ciudad::all();
           $usuario = User::find($id);
           $Empresa = Empresa::find($usuario->empresaActual);
           $nuevaTab = $tab;
-          return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas)->with('nuevaTab',$nuevaTab);
+          $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+          return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$Empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas)->with('nuevaTab',$nuevaTab)->with('notificaciones',$notificaciones);
         }
       }else if($auxiliar == 1){
         $usuario = User::find($id);
-        return view('Usuario.editEmpleado')->with('usuario',$usuario);
+        $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+        return view('Usuario.editEmpleado')->with('usuario',$usuario)->with('notificaciones',$notificaciones);
       }else{
         return view('errors.503');
       }
