@@ -38,6 +38,12 @@ class welcomeAdmin extends Controller
     {   
 
         $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+        $nuevas = 0;
+        for ($i=0; $i < sizeof($notificaciones); $i++) { 
+          if($notificaciones[$i]->estado == "nueva"){
+            $nuevas = $nuevas + 1;
+          }
+        }
         $flag = false; 
         if(Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual]])->first()!= null) {
             $categoriasMasVendidas = $this->categoriasMasVendidas();// llamado a la función queretorna un arreglo con dos valores
@@ -68,11 +74,15 @@ class welcomeAdmin extends Controller
                     ->with('datosVentasComparacionSemanas',$datosVentasComparacionSemanas)
                     ->with('mesasConMasVentas',$mesasConMasVentas)
                     ->with('flag', $flag)
-                    ->with('notificaciones',$notificaciones);
+                    ->with('notificaciones',$notificaciones)
+                    ->with('nuevas',$nuevas);
             
         } else {
             $flag = true;
-            return View('WelcomeAdmin/welcome')->with('flag', $flag)->with('notificaciones',$notificaciones);
+            return View('WelcomeAdmin/welcome')
+                ->with('flag', $flag)
+                ->with('notificaciones',$notificaciones)
+                ->with('nuevas',$nuevas);
         }
     }
 

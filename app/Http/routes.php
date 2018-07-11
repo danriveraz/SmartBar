@@ -68,6 +68,8 @@ Route::get('insumo/eliminar', 'InsumoController@eliminar');
 Route::get('insumo/modificar', 'InsumoController@modificar');
 Route::resource('insumo', 'InsumoController');
 
+Route::get('notificaciones/{id}', ['uses' => 'NotificacionesController@modificarNotificacion', 'as' => 'notificacion.updateNotificacion']);
+
 Route::get('producto/recetas', 'ProductoController@recetas');
 Route::get('producto/ingredientes', 'ProductoController@ingredientes');
 Route::get('producto/eliminar', 'ProductoController@eliminar');

@@ -271,27 +271,28 @@
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <span aria-hidden="true" class="hightop-flag"></span>
                     <div class="sr-only">
-                      Notifications
+                      Notificaciones
                     </div>
                     <p class="counter">
-                      4
+                      {{$nuevas}}
                     </p>
                   </a>
                   <!-- NOTIFICACIONES -->
-                  <ul class="dropdown-menu">
+                  <ul class="dropdown-menu" style="width: 600px;">
                     @foreach($notificaciones as $notificacion)
-                      <li>
-                        <a href="{{url($notificacion->ruta)}}">
-                          @if($notificacion->estado == 'nueva')
-                          <div class="notifications label label-info">
-                            New
-                          </div>
-                          @endif
-                          <p>
-                            {{$notificacion->descripcion}}
-                          </p>
-                        </a>
-                      </li>
+                    <form autocomplete="on" method="GET" action="{{route('notificacion.updateNotificacion',$notificacion)}}" style="width: 100%;" class="login-form">
+                      {{csrf_field()}}
+                        <button type="submit">
+                          <li>
+                              {{$notificacion->descripcion}}
+                              @if($notificacion->estado == 'nueva')
+                              <div class="notifications label label-info">
+                                Nuevo
+                              </div>
+                              @endif
+                          </li>
+                        </button>
+                    </form>
                     @endforeach
   				        </ul>
                 </li>

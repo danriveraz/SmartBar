@@ -32,8 +32,17 @@ class UsuariosController extends Controller
 
   public function index(){
     $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+    $nuevas = 0;
+    for ($i=0; $i < sizeof($notificaciones); $i++) { 
+      if($notificaciones[$i]->estado == "nueva"){
+        $nuevas = $nuevas + 1;
+      }
+    }
     $usuarios = User::where('idEmpresa',Auth::User()->empresaActual)->orderBy('id','ASC')->paginate(10);
-    return view('Usuario.index')->with('usuarios',$usuarios)->with('notificaciones',$notificaciones);
+    return view('Usuario.index')
+          ->with('usuarios',$usuarios)
+          ->with('notificaciones',$notificaciones)
+          ->with('nuevas',$nuevas);
   }
 
   public function create(){
@@ -172,10 +181,20 @@ class UsuariosController extends Controller
     $user = User::find(Auth::id());
     $Empresa = Empresa::find($user->empresaActual);
     $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+    $nuevas = 0;
+    for ($i=0; $i < sizeof($notificaciones); $i++) { 
+      if($notificaciones[$i]->estado == "nueva"){
+        $nuevas = $nuevas + 1;
+      }
+    }
     if ($Empresa->nresolucionFacturacion == 0 && $Empresa->tipoRegimen == "comun") {
       flash::error('Por favor ingresar número resolución facturación en perfil')->important();
     }
-    return view('Usuario.factura')->with('user',$user)->with('empresa',$Empresa)->with('notificaciones',$notificaciones);
+    return view('Usuario.factura')
+          ->with('user',$user)
+          ->with('empresa',$Empresa)
+          ->with('notificaciones',$notificaciones)
+          ->with('nuevas',$nuevas);
   }
 
   public function postmodificarFactura(Request $request){
@@ -228,11 +247,17 @@ class UsuariosController extends Controller
     if($usuarioActual->id == $id){
       if($usuarioActual->esAdmin == 0){
         $usuario = User::find($id);
-
         $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+        $nuevas = 0;
+        for ($i=0; $i < sizeof($notificaciones); $i++) { 
+          if($notificaciones[$i]->estado == "nueva"){
+            $nuevas = $nuevas + 1;
+          }
+        }
         return view('Usuario.editEmpleado')
-        ->with('usuario',$usuario)
-        ->with('notificaciones',$notificaciones);
+              ->with('usuario',$usuario)
+              ->with('notificaciones',$notificaciones)
+              ->with('nuevas',$nuevas);
 
       }else{
         $departamentos = Departamento::all();
@@ -240,12 +265,34 @@ class UsuariosController extends Controller
         $usuario = User::find($id);
         $empresa = Empresa::find($usuario->empresaActual);
         $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
-        return view('Usuario.edit')->with('usuario',$usuario)->with('empresa',$empresa)->with('departamentos',$departamentos)->with('ciudades', $ciudades)->with('empresas', $empresas)->with('notificaciones',$notificaciones);
+        $nuevas = 0;
+        for ($i=0; $i < sizeof($notificaciones); $i++) { 
+          if($notificaciones[$i]->estado == "nueva"){
+            $nuevas = $nuevas + 1;
+          }
+        }
+        return view('Usuario.edit')
+              ->with('usuario',$usuario)
+              ->with('empresa',$empresa)
+              ->with('departamentos',$departamentos)
+              ->with('ciudades', $ciudades)
+              ->with('empresas', $empresas)
+              ->with('notificaciones',$notificaciones)
+              ->with('nuevas',$nuevas);
       }
     }else if($auxiliar == 1){
       $usuario = User::find($id);
       $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
-      return view('Usuario.editEmpleado')->with('usuario',$usuario)->with('notificaciones',$notificaciones);
+      $nuevas = 0;
+        for ($i=0; $i < sizeof($notificaciones); $i++) { 
+          if($notificaciones[$i]->estado == "nueva"){
+            $nuevas = $nuevas + 1;
+          }
+        }
+      return view('Usuario.editEmpleado')
+            ->with('usuario',$usuario)
+            ->with('notificaciones',$notificaciones)
+            ->with('nuevas',$nuevas);
     }else{
       return view('errors.503');
     }
@@ -277,15 +324,29 @@ class UsuariosController extends Controller
         if($usuarioActual->esAdmin == 0){
             $usuario = User::find($id);
             $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
-            return view('Usuario.editEmpleado')->with('usuario',$usuario)->with('notificaciones',$notificaciones);
+            $nuevas = 0;
+            for ($i=0; $i < sizeof($notificaciones); $i++) { 
+              if($notificaciones[$i]->estado == "nueva"){
+                $nuevas = $nuevas + 1;
+              }
+            }
+            return view('Usuario.editEmpleado')
+                  ->with('usuario',$usuario)
+                  ->with('notificaciones',$notificaciones)
+                  ->with('nuevas',$nuevas);
         }else{
           $departamentos = Departamento::all();
           $ciudades = Ciudad::all();
           $usuario = User::find($id);
           $Empresa = Empresa::find($usuario->empresaActual);
           $nuevaTab = $tab;
-
           $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+          $nuevas = 0;
+          for ($i=0; $i < sizeof($notificaciones); $i++) { 
+            if($notificaciones[$i]->estado == "nueva"){
+              $nuevas = $nuevas + 1;
+            }
+          }
           return view('Usuario.edit')
                 ->with('usuario',$usuario)
                 ->with('empresa',$Empresa)
@@ -293,13 +354,23 @@ class UsuariosController extends Controller
                 ->with('ciudades', $ciudades)
                 ->with('empresas', $empresas)
                 ->with('nuevaTab',$nuevaTab)
-                ->with('notificaciones',$notificaciones);
+                ->with('notificaciones',$notificaciones)
+                ->with('nuevas',$nuevas);
 
         }
       }else if($auxiliar == 1){
         $usuario = User::find($id);
         $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
-        return view('Usuario.editEmpleado')->with('usuario',$usuario)->with('notificaciones',$notificaciones);
+        $nuevas = 0;
+        for ($i=0; $i < sizeof($notificaciones); $i++) { 
+          if($notificaciones[$i]->estado == "nueva"){
+            $nuevas = $nuevas + 1;
+          }
+        }
+        return view('Usuario.editEmpleado')
+              ->with('usuario',$usuario)
+              ->with('notificaciones',$notificaciones)
+              ->with('nuevas',$nuevas);
       }else{
         return view('errors.503');
       }
@@ -2506,7 +2577,9 @@ class UsuariosController extends Controller
   public function modificarEmpresa(){
     $usuario = User::find(Auth::id());
     $Empresa = Empresa::find($usuario->idEmpresa);
-    return view('Usuario.editEmpresa')->with('usuario',$usuario)->with('empresa',$Empresa);
+    return view('Usuario.editEmpresa')
+          ->with('usuario',$usuario)
+          ->with('empresa',$Empresa);
   }
 
 
