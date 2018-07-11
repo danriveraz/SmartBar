@@ -13,6 +13,6 @@ class Notificaciones extends Model
     }
 
     public function scopeUsuario($query, $usuario){
-        return $query->where('idUsuario',"$usuario");
+        return $query->where('idUsuario',"$usuario")->orderBy('estado');
     }
 }

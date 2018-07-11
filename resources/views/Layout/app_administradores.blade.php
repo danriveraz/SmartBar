@@ -294,6 +294,9 @@
                         </button>
                     </form>
                     @endforeach
+                    <div class="text-center">
+                      <a href=""> Ver todas</a>
+                    </div>
   				        </ul>
                 </li>
                 <li class="dropdown messages hidden-xs">

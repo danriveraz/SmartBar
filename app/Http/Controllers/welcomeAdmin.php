@@ -37,13 +37,21 @@ class welcomeAdmin extends Controller
     public function index()
     {   
 
-        $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+        $notificacionesAuxiliar = Notificaciones::Usuario(Auth::user()->id)->get();
+        $notificaciones[] = array();
         $nuevas = 0;
-        for ($i=0; $i < sizeof($notificaciones); $i++) { 
-          if($notificaciones[$i]->estado == "nueva"){
+
+        for ($i=0; $i < sizeof($notificacionesAuxiliar); $i++) { 
+          if($notificacionesAuxiliar[$i]->estado == "nueva"){
             $nuevas = $nuevas + 1;
           }
+          if($i < 4){
+            array_push($notificaciones, $notificacionesAuxiliar[$i]);
+          }
         }
+        
+        array_shift($notificaciones);
+
         $flag = false; 
         if(Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual]])->first()!= null) {
             $categoriasMasVendidas = $this->categoriasMasVendidas();// llamado a la función queretorna un arreglo con dos valores

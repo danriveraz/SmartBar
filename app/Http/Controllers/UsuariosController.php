@@ -247,13 +247,20 @@ class UsuariosController extends Controller
     if($usuarioActual->id == $id){
       if($usuarioActual->esAdmin == 0){
         $usuario = User::find($id);
-        $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+        $notificacionesAuxiliar = Notificaciones::Usuario(Auth::user()->id)->get();
+        $notificaciones[] = array();
         $nuevas = 0;
-        for ($i=0; $i < sizeof($notificaciones); $i++) { 
-          if($notificaciones[$i]->estado == "nueva"){
+
+        for ($i=0; $i < sizeof($notificacionesAuxiliar); $i++) { 
+          if($notificacionesAuxiliar[$i]->estado == "nueva"){
             $nuevas = $nuevas + 1;
           }
+          if($i < 4){
+            array_push($notificaciones, $notificacionesAuxiliar[$i]);
+          }
         }
+        
+        array_shift($notificaciones);
         return view('Usuario.editEmpleado')
               ->with('usuario',$usuario)
               ->with('notificaciones',$notificaciones)
@@ -264,13 +271,20 @@ class UsuariosController extends Controller
         $ciudades = Ciudad::all();
         $usuario = User::find($id);
         $empresa = Empresa::find($usuario->empresaActual);
-        $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+        $notificacionesAuxiliar = Notificaciones::Usuario(Auth::user()->id)->get();
+        $notificaciones[] = array();
         $nuevas = 0;
-        for ($i=0; $i < sizeof($notificaciones); $i++) { 
-          if($notificaciones[$i]->estado == "nueva"){
+
+        for ($i=0; $i < sizeof($notificacionesAuxiliar); $i++) { 
+          if($notificacionesAuxiliar[$i]->estado == "nueva"){
             $nuevas = $nuevas + 1;
           }
+          if($i < 4){
+            array_push($notificaciones, $notificacionesAuxiliar[$i]);
+          }
         }
+        
+        array_shift($notificaciones);
         return view('Usuario.edit')
               ->with('usuario',$usuario)
               ->with('empresa',$empresa)
@@ -282,13 +296,20 @@ class UsuariosController extends Controller
       }
     }else if($auxiliar == 1){
       $usuario = User::find($id);
-      $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+      $notificacionesAuxiliar = Notificaciones::Usuario(Auth::user()->id)->get();
+      $notificaciones[] = array();
       $nuevas = 0;
-        for ($i=0; $i < sizeof($notificaciones); $i++) { 
-          if($notificaciones[$i]->estado == "nueva"){
-            $nuevas = $nuevas + 1;
-          }
+
+      for ($i=0; $i < sizeof($notificacionesAuxiliar); $i++) { 
+        if($notificacionesAuxiliar[$i]->estado == "nueva"){
+          $nuevas = $nuevas + 1;
         }
+        if($i < 4){
+          array_push($notificaciones, $notificacionesAuxiliar[$i]);
+        }
+      }
+      
+      array_shift($notificaciones);
       return view('Usuario.editEmpleado')
             ->with('usuario',$usuario)
             ->with('notificaciones',$notificaciones)
@@ -323,13 +344,20 @@ class UsuariosController extends Controller
       if($usuarioActual->id == $id){
         if($usuarioActual->esAdmin == 0){
             $usuario = User::find($id);
-            $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+            $notificacionesAuxiliar = Notificaciones::Usuario(Auth::user()->id)->get();
+            $notificaciones[] = array();
             $nuevas = 0;
-            for ($i=0; $i < sizeof($notificaciones); $i++) { 
-              if($notificaciones[$i]->estado == "nueva"){
+
+            for ($i=0; $i < sizeof($notificacionesAuxiliar); $i++) { 
+              if($notificacionesAuxiliar[$i]->estado == "nueva"){
                 $nuevas = $nuevas + 1;
               }
+              if($i < 4){
+                array_push($notificaciones, $notificacionesAuxiliar[$i]);
+              }
             }
+            
+            array_shift($notificaciones);
             return view('Usuario.editEmpleado')
                   ->with('usuario',$usuario)
                   ->with('notificaciones',$notificaciones)
@@ -340,13 +368,20 @@ class UsuariosController extends Controller
           $usuario = User::find($id);
           $Empresa = Empresa::find($usuario->empresaActual);
           $nuevaTab = $tab;
-          $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+          $notificacionesAuxiliar = Notificaciones::Usuario(Auth::user()->id)->get();
+          $notificaciones[] = array();
           $nuevas = 0;
-          for ($i=0; $i < sizeof($notificaciones); $i++) { 
-            if($notificaciones[$i]->estado == "nueva"){
+
+          for ($i=0; $i < sizeof($notificacionesAuxiliar); $i++) { 
+            if($notificacionesAuxiliar[$i]->estado == "nueva"){
               $nuevas = $nuevas + 1;
             }
+            if($i < 4){
+              array_push($notificaciones, $notificacionesAuxiliar[$i]);
+            }
           }
+          
+          array_shift($notificaciones);
           return view('Usuario.edit')
                 ->with('usuario',$usuario)
                 ->with('empresa',$Empresa)
@@ -360,13 +395,20 @@ class UsuariosController extends Controller
         }
       }else if($auxiliar == 1){
         $usuario = User::find($id);
-        $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+        $notificacionesAuxiliar = Notificaciones::Usuario(Auth::user()->id)->get();
+        $notificaciones[] = array();
         $nuevas = 0;
-        for ($i=0; $i < sizeof($notificaciones); $i++) { 
-          if($notificaciones[$i]->estado == "nueva"){
+
+        for ($i=0; $i < sizeof($notificacionesAuxiliar); $i++) { 
+          if($notificacionesAuxiliar[$i]->estado == "nueva"){
             $nuevas = $nuevas + 1;
           }
+          if($i < 4){
+            array_push($notificaciones, $notificacionesAuxiliar[$i]);
+          }
         }
+        
+        array_shift($notificaciones);
         return view('Usuario.editEmpleado')
               ->with('usuario',$usuario)
               ->with('notificaciones',$notificaciones)
