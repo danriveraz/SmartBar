@@ -273,29 +273,31 @@
                     <div class="sr-only">
                       Notificaciones
                     </div>
-                    <p class="counter">
+                    @if($nuevas > 0)
+                    <p class="counter" style="background-color: red;">
                       {{$nuevas}}
                     </p>
+                    @endif
                   </a>
                   <!-- NOTIFICACIONES -->
-                  <ul class="dropdown-menu" style="width: 600px;">
+                  <ul class="dropdown-menu" style="width: 330px;">
                     @foreach($notificaciones as $notificacion)
-                    <form autocomplete="on" method="GET" action="{{route('notificacion.updateNotificacion',$notificacion)}}" style="width: 100%;" class="login-form">
+                    <li>
+                      <form autocomplete="on" method="GET" action="{{route('notificacion.updateNotificacion',$notificacion)}}" id="formNotificaciones{{$notificacion->id}}" class="notificacion">
                       {{csrf_field()}}
-                        <button type="submit">
-                          <li>
-                              {{$notificacion->descripcion}}
-                              @if($notificacion->estado == 'nueva')
-                              <div class="notifications label label-info">
-                                Nuevo
-                              </div>
-                              @endif
-                          </li>
-                        </button>
-                    </form>
+                        <a href="#" type="submit" class="aNotificaciones" onclick="document.getElementById('formNotificaciones{{$notificacion->id}}').submit();">
+                            {{$notificacion->descripcion}}
+                            @if($notificacion->estado == 'nueva')
+                            <div class="notifications label label-info">
+                              Nuevo
+                            </div>
+                            @endif
+                        </a>
+                      </form>
+                    </li>
                     @endforeach
                     <div class="text-center">
-                      <a href=""> Ver todas</a>
+                      <a href="{{url('notificaciones')}}" style="color: #2d0031;"> Ver todas</a>
                     </div>
   				        </ul>
                 </li>
@@ -445,4 +447,31 @@
     c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
   })(document);
   </script>
+
+  <style type="text/css">
+    .notificacion {
+      color: #999999;
+      border-bottom: 1px solid #e2e2e2;
+      padding: 9px 15px 9px 2px;
+      font-size: 12px;
+    }
+
+    .notificacion:hover {
+      border-bottom-color: #2d0031;
+      color: #2d0031;
+      background: transparent;
+    }
+
+    .aNotificaciones{
+      color: #999999;
+    }
+
+    .aNotificaciones:hover{
+      border-bottom-color: #2d0031;
+      color: #2d0031;
+      background: transparent; 
+    }
+  </style>
+  <script type="text/javascript">
+</script>
 </html>
