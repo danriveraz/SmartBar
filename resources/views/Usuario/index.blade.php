@@ -84,7 +84,7 @@
 
               <div class="profile-info clearfix padded3 @if($usuario->estado == 1) Habilitado
                                                         @else Deshabilitado
-                                                        @endif" data-toggle="modal" href="#myModal{{$usuario->id}}">
+                                                        @endif">
                 <div class="social-avatar">
                   <img width="70" height="70" class="avatar" src="{{ asset( 'images/admins/'.$usuario->imagenPerfil) }}">
                 </div>
@@ -131,9 +131,9 @@
                             <div class="dropdown-menu form-login" role="menu">
                               <div class="form-group">
                                   <label for="exampleInputEmail1" class="pocketMorado"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Chat Empleado</label>
-                                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Escribir Mensaje" />
+                                  <textarea class="form-control"  placeholder="Escribir Mensaje..."></textarea>
                               </div>
-                              <button type="submit" class="btn btn-pocket btn-block"><i class="fa fa-send"></i>Enviar Mensaje</button>
+                              <button type="submit" class="btn btn-pocket btn-block"><i class="fa fa-send"></i>Enviar</button>
                             </div>
                           <!-- Fin div para mensajes chat-->
                           <a href="{{ url('Agenda/') }}" title="Agenda"><i style="float: center;" class="fa fa-calendar-check-o pull-right"></i></a>
