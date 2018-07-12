@@ -2,6 +2,13 @@
 @section('content')
 {!!Html::script('assets-Internas/javascripts/notify.min.js')!!} <!---->
 
+<style>
+  .form-login{
+  padding: 1em;
+  min-width: 280px;
+  }
+</style>
+
 <!--Barra de título y botones de busqueda-->
 <div id="page-content">
   <div class="col-lg-12">
@@ -46,7 +53,7 @@
     <div id="social-container"></div>
 
       <div id="hidden-items">
-		  
+
         @foreach($usuarios as $usuario)
           <div class=" item row widget-container fluid-height
                  @if($usuario->esAdmin == 1) Administrador
@@ -61,7 +68,7 @@
                  @if($usuario->estado == 1) Habilitado
                  @else Deshabilitado
                  @endif">
-			  
+
             <div class="widget-container fluid-height clearfix ">
               @if($usuario->estado == 1)
                 <div class="heading Habilitado">
@@ -119,7 +126,16 @@
                           <!-- <div data-toggle="modal" href="#ModalMsg{{$usuario->id}}">
                             <a class=""><i class="fa fa-comments pull-right"></i></a>
                           </div> -->
-                          <a href=""><i style="float: center;" class="fa fa-comments pull-right" title="Mensaje"></i></a>
+                          <!-- div para mensajes chat-->
+                          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i style="float: center;" class="fa fa-comments pull-right" title="Mensaje"></i></a>
+                            <div class="dropdown-menu form-login" role="menu">
+                              <div class="form-group">
+                                  <label for="exampleInputEmail1" class="pocketMorado"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Chat Empleado</label>
+                                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Escribir Mensaje" />
+                              </div>
+                              <button type="submit" class="btn btn-pocket btn-block"><i class="fa fa-send"></i>Enviar Mensaje</button>
+                            </div>
+                          <!-- Fin div para mensajes chat-->
                           <a href="{{ url('Agenda/') }}" title="Agenda"><i style="float: center;" class="fa fa-calendar-check-o pull-right"></i></a>
                           <a href="{{url('Estadisticas/')}}" title="Estadísticas"><i style="float: center;" class="fa fa-bar-chart pull-right"></i></a>
                       </div>
@@ -732,9 +748,14 @@ $("#registrarUsuario").click(function(){
         }
     });
 });
-
-
 </script>
+
+<script>
+$('.stop-propagation').on('click', function (e) {
+    e.stopPropagation();
+});
+</script>
+
 <style type="text/css">
   #imagenPerfilUsuarioCircular{
     width: 150px;
