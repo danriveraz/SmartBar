@@ -127,8 +127,8 @@
                             <a class=""><i class="fa fa-comments pull-right"></i></a>
                           </div> -->
                           <!-- div para mensajes chat-->
-                          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i style="float: center;" class="fa fa-comments pull-right" title="Mensaje"></i></a>
-                            <div class="dropdown-menu form-login" role="menu">
+                          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i style="float: center;" class="fa fa-comments pull-right" title="Mensaje" onclick="mensajes('mensaje'+{{$usuario->id}});"></i></a>
+                            <div class="dropdown-menu form-login" role="menu" id="mensaje{{$usuario->id}}">
                               <div class="form-group">
                                   <label for="exampleInputEmail1" class="pocketMorado"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Chat Empleado</label>
                                   <textarea class="form-control"  placeholder="Escribir Mensaje..."></textarea>
@@ -560,6 +560,17 @@
 {!!Html::script('javascripts/notificaciones/modernizr.custom.js')!!}
 {!!Html::script('javascripts/notificaciones/notificationFx.js')!!}
 <script type="text/javascript">
+  var auxMensajes = 1;
+
+  var mensajes = function(id){
+      if (auxMensajes ==1 ) {
+        document.getElementById(id).style.display = "block";
+        auxMensajes = 2;
+      }else{
+        document.getElementById(id).style.display = "none";
+        auxMensajes = 1;
+      }
+  };
 
 
   $(document).ready(function () {// tooltip para colocar ayuda en los botones de habilitar y deshabilitar
@@ -598,8 +609,6 @@
   });
 
  $(document).ready(function(){
-
-
     //Filtros del isotope
     $('#filters a').click(function(){
       var $container = $('#social-container');
