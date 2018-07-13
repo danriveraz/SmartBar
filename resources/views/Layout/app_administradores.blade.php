@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
       SMARTBAR
     </title>
@@ -17,6 +16,8 @@
     {!!Html::style('assets-Internas/css/font-awesome.min.css')!!}
     {!!Html::style('assets-Internas/css/hightop-font.css')!!}
     {!!Html::style('assets-Internas/css/component-chosen.css')!!}
+    {!!Html::style('assets-Internas/css/notification.css')!!}
+
 
     <!-- jquery -->
     <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
@@ -122,7 +123,7 @@
     -->
     <!-- NO BORRAR-->
     <!-- {!!Html::style('stylesheets/style.css')!!} -->
-    
+
     <script>
     // ajax para verificar que el usuario esté logueado y así no dejar ver la página
      $(document).ready(function(){
@@ -280,7 +281,7 @@
                     </p>
                     @endif
                   </a>
-                  <!-- NOTIFICACIONES -->
+                  <!-- NOTIFICACIONES
                   <ul class="dropdown-menu" style="width: 330px;">
                     @foreach($notificaciones as $notificacion)
                     <li>
@@ -300,29 +301,80 @@
                     <div class="text-center">
                       <a href="{{url('notificaciones')}}" style="color: #2d0031;"> Ver todas</a>
                     </div>
-  				        </ul>
-                </li>
-                <li class="dropdown messages hidden-xs">
-                  <a data-target="{{url('Mensajes')}}" class="dropdown-toggle" href="{{url('Mensajes')}}">
-                    <span aria-hidden="true" class="hightop-envelope">
-                  </span>
-                    <div class="sr-only">
-                      Messages
+  				        </ul>-->
+                  <!-- NOTIFICACIONES NUEVAS-->
+                  <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                    <div class="notification-heading"><h4 class="menu-title">Notificationes</h4><h4 class="menu-title pull-right"><a href="{{url('notificaciones')}}">Ver Todoas<i class="glyphicon glyphicon-circle-arrow-right"></i></a></h4>
                     </div>
-                    <p class="counter">
-                      <?php
-                        $cont=0;
-                        foreach(Auth::User()->mensajes as $mensaje){
-                          if($mensaje->id_receptor == Auth::user()->id && $mensaje->estado==0){
-                            $cont++;
-                          }
-                        }
-                        echo $cont.'</span>';
-                      ?>
+                   <div class="notifications-wrapper">
 
-                    </p>
-                  </a>
+                     @foreach($notificaciones as $notificacion)
+                     <a class="content" href="#">
+                       <div class="notification-item">
+                		<div class="iconNot"><i class="glyphicon glyphicon-bell"></i></div>
+                        <h4 class="item-title">Notificacion de Perfil <small> 1 day ago</small></h4>
+                		<div class="divtext">
+                        ¡Recuerde llenar TODOS los campos de su perfil!
+                		</div>
+                      </div>
+                    </a>
+                    @endforeach
+
+
+                   </div>
+                   <div class="notification-heading"></div>
+                  </ul>
+                  <!-- fIN NOTIFICACIONES NUEVAS-->
                 </li>
+                <!--mensajes-->
+                <li class="dropdown messages hidden-xs">
+        					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span aria-hidden="true" class="hightop-envelope"></span>
+        					  <div class="sr-only">
+        						Messages
+        					  </div>
+        					  <p class="counter">
+        						3
+        					  </p>
+        					</a>
+                  <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                     <div class="notification-heading"><h4 class="menu-title">Mensajes</h4><h4 class="menu-title pull-right"><a>Ver Todos<i class="glyphicon glyphicon-circle-arrow-right"></i></a></h4>
+                     </div>
+                    <div class="notifications-wrapper">
+                      <a class="content" href="#">
+                        <div class="notification-item">
+                      <img src="http://www.leapcms.com/images/100pixels1.gif">
+                         <h4 class="item-title">Diego Fajardo <small> 1 day ago</small></h4>
+                 		<div class="divtext">
+                         hola jefe como esta para comunicarle q hoy no puedo trabajardddddddddddddddddddddddddddddddddddddddddddddddddd
+                 		</div>
+                       </div>
+                     </a>
+
+                     <a class="content" href="#">
+                       <div class="notification-item chatCation">
+                     <img src="http://www.leapcms.com/images/100pixels1.gif">
+                        <h4 class="item-title">Marcer Diaz <small> 1 day ago</small></h4>
+                   <div class="divtext">
+                        hola jefe como esta para comunicarle q hoy no puedo trabajardddddddddddddddddddddddddddddddddddddddddddddddddd
+                   </div>
+                      </div>
+                    </a>
+
+                    <a class="content" href="#">
+                      <div class="notification-item chatCation">
+                    <img src="http://www.leapcms.com/images/100pixels1.gif">
+                       <h4 class="item-title">Alvaro Gome <small> 1 day ago</small></h4>
+                  <div class="divtext">
+                       hola jefe como esta para comunicarle q hoy no puedo trabajardddddddddddddddddddddddddddddddddddddddddddddddddd
+                  </div>
+                     </div>
+                   </a>
+
+
+                    </div>
+                   </ul>
+        				  </li>
+                <!-- perfil-->
                 <li class="dropdown user hidden-xs">
                   <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                   {{ HTML::image('images/admins/'.Auth::User()->imagenPerfil , 'avatar', array( 'width' => '34', 'height'=>'34')) }} <label>{{Auth::User()->nombrePersona}}</label><b class="caret"></b>
@@ -427,7 +479,7 @@
 
     <div class="footer">
     </div>
-  </body>
+  </body> 
 
   <script type="text/javascript">
     function cambiarBar(valor) {
@@ -470,7 +522,7 @@
     .aNotificaciones:hover{
       border-bottom-color: #2d0031;
       color: #2d0031;
-      background: transparent; 
+      background: transparent;
     }
   </style>
   <script type="text/javascript">
