@@ -1,6 +1,7 @@
 @extends('Layout.app_administradores')
 @section('content')
 {!!Html::script('assets-Internas/javascripts/notify.min.js')!!} <!---->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
   .form-login{
@@ -565,6 +566,11 @@
   var mensajes = function(id){
       if (auxMensajes ==1 ) {
         document.getElementById(id).style.display = "block";
+        if (document.documentElement.clientWidth < 960) {
+          document.getElementById(id).style.marginTop ="-50%";
+        }else{
+          document.getElementById(id).style.marginTop ="0%";
+        }
         auxMensajes = 2;
       }else{
         document.getElementById(id).style.display = "none";
