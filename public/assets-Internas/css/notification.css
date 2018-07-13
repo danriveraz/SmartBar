@@ -44,6 +44,10 @@ box-shadow: none;
     margin: 1px 0px;
 }
 
+.item-title small{
+	font-size: 10px;	
+}
+
 .notifications a.content {
     text-decoration: none;
     display: block;
@@ -51,7 +55,7 @@ box-shadow: none;
 }
 .notification-item {
     position: relative;
-    padding: 10px;
+    padding: 9px 0 9px;
     padding-left: 70px;
     padding-bottom: 10px;
 }
@@ -79,8 +83,8 @@ box-shadow: none;
 	align-content:center;
 	margin: auto;
 	text-align: center;
-	left: 25%;
-    top: 20%;
+	left: 26%;
+    top: 25%;
     color: white;		
 }
 		
@@ -101,8 +105,8 @@ box-shadow: none;
 }
 ul.dropdown-menu.notifications .notifications-wrapper a.content {
     padding: 0px !important;
-    /*background: rgba(0, 0, 0, 0.04);
-    border-bottom: 1px solid #d1d1d1;*/
+    /*background: rgba(0, 0, 0, 0.04);*/
+    border-bottom: 1px solid #d1d1d1;
 }
 ul.dropdown-menu.notifications .notifications-wrapper a.content:hover {
     color: #000;

@@ -342,15 +342,6 @@
                      <div class="notification-heading"><h4 class="menu-title">Mensajes</h4><h4 class="menu-title pull-right"><a>Ver Todos<i class="glyphicon glyphicon-circle-arrow-right"></i></a></h4>
                      </div>
                     <div class="notifications-wrapper">
-                      <a class="content" href="#">
-                        <div class="notification-item">
-                      <img src="http://www.leapcms.com/images/100pixels1.gif">
-                         <h4 class="item-title">Diego Fajardo <small> 1 day ago</small></h4>
-                 		<div class="divtext">
-                         hola jefe como esta para comunicarle q hoy no puedo trabajardddddddddddddddddddddddddddddddddddddddddddddddddd
-                 		</div>
-                       </div>
-                     </a>
 
                      <a class="content" href="#">
                        <div class="notification-item chatCation">
@@ -507,7 +498,7 @@
     .notificacion {
       color: #999999;
       border-bottom: 1px solid #e2e2e2;
-      padding: 9px 15px 9px 2px;
+      padding: 0px 0px 9px 0px;
       font-size: 12px;
     }
 
