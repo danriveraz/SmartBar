@@ -309,12 +309,14 @@
                    <div class="notifications-wrapper">
 
                      @foreach($notificaciones as $notificacion)
-                     <a class="content" href="#">
+                     <form autocomplete="on" method="GET" action="{{route('notificacion.updateNotificacion',$notificacion)}}" id="formNotificaciones{{$notificacion->id}}" class="notificacion">
+                     {{csrf_field()}}
+                     <a class="content" type="submit"  onclick="document.getElementById('formNotificaciones{{$notificacion->id}}').submit();">
                        <div class="notification-item">
                 		<div class="iconNot"><i class="glyphicon glyphicon-bell"></i></div>
                         <h4 class="item-title">Notificacion de Perfil <small> 1 day ago</small></h4>
                 		<div class="divtext">
-                        ¡Recuerde llenar TODOS los campos de su perfil!
+                        {{$notificacion->descripcion}}
                 		</div>
                       </div>
                     </a>
@@ -479,7 +481,7 @@
 
     <div class="footer">
     </div>
-  </body> 
+  </body>
 
   <script type="text/javascript">
     function cambiarBar(valor) {
