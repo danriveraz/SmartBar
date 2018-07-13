@@ -127,7 +127,7 @@
       <!-- END LOGIN -->
       <div class="separator"></div>
       <div class="socmed-login">
-        <a href="#g-plus" class="socmed-btn google-btn">
+        <a href="{{url('Auth/Google')}}" class="socmed-btn google-btn">
           <i style="color: white;padding: 0px;" class="fa fa-google"></i>
           <span>Iniciar Sesión con Google</span>
         </a>
@@ -222,7 +222,7 @@
       </div>
       <div class="separator"></div>
       <div class="socmed-login">
-        <a href="#g-plus" class="socmed-btn google-btn">
+        <a href="{{url('Auth/Google')}}" class="socmed-btn google-btn">
           <i style="color: white;padding: 0px;" class="fa fa-google"></i>
           <span>Registrar con Google</span>
         </a>

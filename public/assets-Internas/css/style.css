@@ -986,8 +986,8 @@ body.sidebar-nav {
   margin-top: 0;
   border-radius: 0;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid #dddddd;
+  /*background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #dddddd;*/
   padding: 0;
   min-width: 140px;
   max-width: 400px; }
