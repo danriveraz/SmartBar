@@ -38,6 +38,7 @@ class welcomeAdmin extends Controller
     {   
 
         $notificacionesAuxiliar = Notificaciones::Usuario(Auth::user()->id)->get();
+        $allNotifications = Notificaciones::Usuario(Auth::user()->id)->get();
         $notificaciones[] = array();
         $nuevas = 0;
 
@@ -82,6 +83,7 @@ class welcomeAdmin extends Controller
                     ->with('datosVentasComparacionSemanas',$datosVentasComparacionSemanas)
                     ->with('mesasConMasVentas',$mesasConMasVentas)
                     ->with('flag', $flag)
+                    ->with('allNotifications',$allNotifications)
                     ->with('notificaciones',$notificaciones)
                     ->with('nuevas',$nuevas);
             
@@ -89,6 +91,7 @@ class welcomeAdmin extends Controller
             $flag = true;
             return View('WelcomeAdmin/welcome')
                 ->with('flag', $flag)
+                ->with('allNotifications',$allNotifications)
                 ->with('notificaciones',$notificaciones)
                 ->with('nuevas',$nuevas);
         }

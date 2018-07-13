@@ -166,7 +166,7 @@
 					<span class="separator-text">OR</span>
 			</div>
 			<div class="socmed-login">
-				<a href="#g-plus" class="socmed-btn google-btn">
+				<a href="{{url('Auth/Google')}}" class="socmed-btn google-btn">
 					<i class="fa fa-google"></i>
 					<span>Iniciar Sesión con Google</span>
 				</a>
