@@ -225,7 +225,7 @@
             <img class="grayscale" src="{{asset('assets-home/images/testimonios/user-monica4.png')}}" alt="" />
             <h3>Daniel Rivera</h3>
       <input type="checkbox" class="read-more-state" id="post-1" />
-            <p class="read-more-wrap">Desde que cuento con Smartbar, tomo mejores desiciones, y mi negocio a crecido<span class="read-more-target"> más rápido de lo que algun avez soñe, definitivamente, nunca me puede faltar, Smartbar.</span><label for="post-1" class="read-more-trigger"></label></p>
+            <p class="read-more-wrap">Desde que cuento con Smartbar, tomo mejores desiciones, y mi negocio a crecido<span class="read-more-target"> más rápido de lo que alguna vez soñe, definitivamente, nunca me puede faltar, Smartbar.</span><label for="post-1" class="read-more-trigger"></label></p>
             <a class="button small lemon" href="" target="_blank">Ver testimonio</a>
         </div>        
         <div class="col bg-gray-white">

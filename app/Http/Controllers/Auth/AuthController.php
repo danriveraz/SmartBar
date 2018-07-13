@@ -86,21 +86,22 @@ class AuthController extends Controller
     }
 
     public function postRegister(Request $request){
-
         $rules = [
             //'nombreEstablecimiento' => 'required|min:3|max:20|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nombrePersona' => 'required|min:3|max:40|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'email' => 'required|email|max:255',
             //'cedula' => 'required|min:1|max:9999999999|numeric',
             'password' => 'required|min:6|max:18',
-            'sexo' => 'required',
+            //'TipoNegocio' => 'required',
+            //'sexo' => 'required',
             //'telefono' => 'required|min:1|max:9999999999|numeric',
         ];
 
         $validator = Validator::make($request->all(), $rules);
         $departamentos = Departamento::All();
         $ciudades = Ciudad::all();
-        if ($validator->fails()){
+
+        if ($validator->fails()){  
             return redirect("Auth/register")
             ->withErrors($validator)
             ->withInput()
@@ -124,14 +125,10 @@ class AuthController extends Controller
             $admin->ciudad = Ciudad::find($request->idCiudad)->nombre;
             $admin->confirmoEmail = 0;
             $admin->estado = true;
-            $admin->sexo = $request->sexo;
-            if($request->sexo == "Femenino"){
-                $admin->imagenPerfil = "perfil.jpg";
-                $admin->imagenNegocio = "perfil.jpg";
-            }else{
-                $admin->imagenPerfil = "perfilhombre.png";
-                $admin->imagenNegocio = "perfilhombre.png";
-            }
+
+            $admin->imagenPerfil = "perfilhombre.png";
+            $admin->imagenNegocio = "perfilhombre.png";
+            
             $admin->password = bcrypt($request->password);
             $admin->remember_token = str_random(100);
             $admin->confirm_token = str_random(100);

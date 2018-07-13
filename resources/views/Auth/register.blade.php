@@ -88,7 +88,7 @@
 						<img src="{{asset('assets-home/images/logoPrin.png')}}"/>
 					</a>
 				</div>
-				<h3>Bienvenido! Tu amigo inseparable te espera </h3>
+				<h3>Bienvenido! Tu amigo inseparable te espera</h3>
 			</div>
 			<form class="login-form" autocomplete="off" role="form" method="POST" enctype="multipart/form-data" action="{{ url('Auth/register') }}" files="true">
         		{{ csrf_field() }}
@@ -99,28 +99,31 @@
 	         	</div>
             <div class="input-container">
               <i class="fa fa-address-book"></i>
-              <select class="select" id="tipo"  name="tipo" required>
-                <option value="dueño">Dueño de Negocio</option>
+              <select class="select" id="tipo"  name="tipo" value="" required>
+                <option value="dueno">Dueño de Negocio</option>
                 <option value="proveedor">Proveedor</option>
                 <option value="cliente">Cliente VIP</option>
               </select>
             </div>
              <div class="input-container" id="NomNeg">
                <i class="fa fa-reorder"></i>
-               <input type="text" class="input" name="nombreEstablecimiento" placeholder="Nombre de tu Negocio" required/>
+               <input type="text" class="input" id="nombreEstablecimiento" name="nombreEstablecimiento" placeholder="Nombre de tu Negocio" value="{{ old('nombreEstablecimiento') }}" required/>
              </div>
              <div class="input-container" id="TipNeg">
                <i class="fa fa-reorder"></i>
-               <select class="select" id="TipoNegocio"  name="TipoNegocio" required>
-                 <option >Tipo De Negocio</option>
+               <select class="select" id="TipoNegocio"  name="TipoNegocio" required/>
+                 <option value="">Tipo De Negocio</option>
                  <option value="Bar">Bar</option>
                  <option value="restaurante">restaurante</option>
                </select>
              </div>
              <div class="input-container">
                <i class="fa fa-address-card"></i>
-               <input type="text" class="input" name="nombrePersona" placeholder="Nombre" required/>
+               <input type="text" class="input" name="nombrePersona" placeholder="Nombre" value="{{ old('nombrePersona') }}" required/>
              </div>
+             <div class="text-danger" style="text-align: center; font-color: #2d0031">
+              <b>{{$errors->first('nombrePersona')}}</b>
+            </div>
              <!--div class="input-container">
                <i class="fa fa-venus-mars"></i>
                <select class="select" id="sexo" name="sexo" required="">
@@ -132,13 +135,19 @@
              </div-->
              <div class="input-container">
                <i class="fa fa-envelope"></i>
-               <input type="email" class="input" id="email" name="email" placeholder="Email" requerid/>
+               <input type="email" class="input" id="email" name="email" placeholder="Email" value="{{ old('email') }}" requerid/>
              </div>
+             <div class="text-danger" style="text-align: center; font-color: #2d0031">
+              <b>{{$errors->first('email')}}</b>
+            </div>
 	          	<div class="input-container">
 	            	<i class="fa fa-lock"></i>
 	            	<input type="password"  id="login-password1" class="input" name="password" placeholder="Contraseña"/>
 	            	<i id="show-password1" class="fa fa-eye"></i>
 	          	</div>
+              <div class="text-danger" style="text-align: center; font-color: #2d0031">
+              <b>{{$errors->first('password')}}</b>
+            </div>
           		<div class="input-container" style="float: left; width:49%">
             		<i class="fa fa-map-marker"></i>
             		<select class="selectCi" id="idDepto"  name="idDepto" required>
@@ -206,16 +215,78 @@ $(document).ready(function() {
   $('#tipo').change(function(e) {
     if ($(this).val() === "proveedor") {
       document.getElementById( 'TipNeg' ).style.display = 'none';
+      document.getElementById("TipoNegocio").required = false;
       document.getElementById( 'NomNeg' ).style.display = 'block';
+      document.getElementById("nombreEstablecimiento").required = true;
     }
     else if ($(this).val() === "cliente") {
       document.getElementById( 'TipNeg' ).style.display = 'none';
+      document.getElementById("TipoNegocio").required = false;
       document.getElementById( 'NomNeg' ).style.display = 'none';
+      document.getElementById("nombreEstablecimiento").required = false;
     }
     else {
       document.getElementById( 'TipNeg' ).style.display = 'block';
+      document.getElementById("TipoNegocio").required = true;
+      document.getElementById("nombreEstablecimiento").required = true;
     }
   })
+
+  //Si se ingresa al formulario debido a una redireccion por error, se vuelven a cargar los datos antiguos
+
+  //Este bloque permite cargar el valor antiguo de la primera lista desplegable
+  var variableJS = "<?php echo e(old('tipo')); ?>" ; 
+  if (variableJS != "") {
+    $("#tipo option[value="+ variableJS +"]").attr("selected",true);
+    if (variableJS === "proveedor") {
+      document.getElementById( 'TipNeg' ).style.display = 'none';
+      document.getElementById("TipoNegocio").required = false;
+      document.getElementById( 'NomNeg' ).style.display = 'block';
+      document.getElementById("nombreEstablecimiento").required = true;
+    }
+    else if (variableJS === "cliente") {
+      document.getElementById( 'TipNeg' ).style.display = 'none';
+      document.getElementById("TipoNegocio").required = false;
+      document.getElementById( 'NomNeg' ).style.display = 'none';
+      document.getElementById("nombreEstablecimiento").required = false;
+    }
+    else {
+      document.getElementById( 'TipNeg' ).style.display = 'block';
+      document.getElementById("TipoNegocio").required = true;
+      document.getElementById("nombreEstablecimiento").required = true;
+    }
+  }
+
+  // Se carga el tipo de negocio seleccionado anteriormente
+  var variableJS2 = "<?php echo e(old('TipoNegocio')); ?>" ;
+  if (variableJS2 != "") {  alert(variableJS2);
+    $("#TipoNegocio option[value="+ variableJS2 +"]").attr("selected",true); }
+
+  //Se carga el departamento seleccionado anteriormete
+  var variableJS3 = "<?php echo e(old('idDepto')); ?>" ;
+  if (variableJS3 != "") {  
+    $("#idDepto option[value="+ variableJS3 +"]").attr("selected",true); 
+    var id = variableJS3;
+      $('#idCiudad').empty();
+      $('#idCiudad').append($('<option>', {
+            value: "",
+            text: 'Elija una opción'
+      }));
+      JSONCiudades = eval(<?php echo json_encode($ciudades);?>);
+      JSONCiudades.forEach(function(currentValue,index,arr) {
+        if(currentValue.idDepartamento == id){
+          $('#idCiudad').append($('<option>', {
+            value: currentValue.id,
+            text: currentValue.nombre
+          }));
+        }
+      });
+  }
+
+  //Se carga el departamento seleccionado anteriormete
+  var variableJS4 = "<?php echo e(old('idCiudad')); ?>" ;
+  if (variableJS4 != "") {  $("#idCiudad option[value="+ variableJS4 +"]").attr("selected",true); }
+
 });
 </script>
 </body>
