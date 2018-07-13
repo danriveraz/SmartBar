@@ -45,6 +45,7 @@
 @media screen and (max-width:768px){.tabs.blue .label {padding: 14px 25px;
 }}
 
+
 .tabs.blue .tab-content {
   z-index: 2;
   display: none;
