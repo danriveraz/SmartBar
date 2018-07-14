@@ -248,19 +248,14 @@ class UsuariosController extends Controller
       if($usuarioActual->esAdmin == 0){
         $usuario = User::find($id);
         $notificacionesAuxiliar = Notificaciones::Usuario(Auth::user()->id)->get();
-        $notificaciones[] = array();
+        $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
         $nuevas = 0;
 
-        for ($i=0; $i < sizeof($notificacionesAuxiliar); $i++) { 
-          if($notificacionesAuxiliar[$i]->estado == "nueva"){
+        for ($i=0; $i < sizeof($notificaciones); $i++) { 
+          if($notificaciones[$i]->estado == "nueva"){
             $nuevas = $nuevas + 1;
           }
-          if($i < 4){
-            array_push($notificaciones, $notificacionesAuxiliar[$i]);
-          }
         }
-        
-        array_shift($notificaciones);
         return view('Usuario.editEmpleado')
               ->with('usuario',$usuario)
               ->with('notificaciones',$notificaciones)
@@ -271,20 +266,14 @@ class UsuariosController extends Controller
         $ciudades = Ciudad::all();
         $usuario = User::find($id);
         $empresa = Empresa::find($usuario->empresaActual);
-        $notificacionesAuxiliar = Notificaciones::Usuario(Auth::user()->id)->get();
-        $notificaciones[] = array();
+        $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
         $nuevas = 0;
 
-        for ($i=0; $i < sizeof($notificacionesAuxiliar); $i++) { 
-          if($notificacionesAuxiliar[$i]->estado == "nueva"){
+        for ($i=0; $i < sizeof($notificaciones); $i++) { 
+          if($notificaciones[$i]->estado == "nueva"){
             $nuevas = $nuevas + 1;
           }
-          if($i < 4){
-            array_push($notificaciones, $notificacionesAuxiliar[$i]);
-          }
         }
-        
-        array_shift($notificaciones);
         return view('Usuario.edit')
               ->with('usuario',$usuario)
               ->with('empresa',$empresa)
@@ -296,20 +285,14 @@ class UsuariosController extends Controller
       }
     }else if($auxiliar == 1){
       $usuario = User::find($id);
-      $notificacionesAuxiliar = Notificaciones::Usuario(Auth::user()->id)->get();
-      $notificaciones[] = array();
-      $nuevas = 0;
+      $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+        $nuevas = 0;
 
-      for ($i=0; $i < sizeof($notificacionesAuxiliar); $i++) { 
-        if($notificacionesAuxiliar[$i]->estado == "nueva"){
-          $nuevas = $nuevas + 1;
+        for ($i=0; $i < sizeof($notificaciones); $i++) { 
+          if($notificaciones[$i]->estado == "nueva"){
+            $nuevas = $nuevas + 1;
+          }
         }
-        if($i < 4){
-          array_push($notificaciones, $notificacionesAuxiliar[$i]);
-        }
-      }
-      
-      array_shift($notificaciones);
       return view('Usuario.editEmpleado')
             ->with('usuario',$usuario)
             ->with('notificaciones',$notificaciones)
@@ -344,20 +327,14 @@ class UsuariosController extends Controller
       if($usuarioActual->id == $id){
         if($usuarioActual->esAdmin == 0){
             $usuario = User::find($id);
-            $notificacionesAuxiliar = Notificaciones::Usuario(Auth::user()->id)->get();
-            $notificaciones[] = array();
-            $nuevas = 0;
+            $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+        $nuevas = 0;
 
-            for ($i=0; $i < sizeof($notificacionesAuxiliar); $i++) { 
-              if($notificacionesAuxiliar[$i]->estado == "nueva"){
-                $nuevas = $nuevas + 1;
-              }
-              if($i < 4){
-                array_push($notificaciones, $notificacionesAuxiliar[$i]);
-              }
-            }
-            
-            array_shift($notificaciones);
+        for ($i=0; $i < sizeof($notificaciones); $i++) { 
+          if($notificaciones[$i]->estado == "nueva"){
+            $nuevas = $nuevas + 1;
+          }
+        }
             return view('Usuario.editEmpleado')
                   ->with('usuario',$usuario)
                   ->with('notificaciones',$notificaciones)
@@ -368,20 +345,14 @@ class UsuariosController extends Controller
           $usuario = User::find($id);
           $Empresa = Empresa::find($usuario->empresaActual);
           $nuevaTab = $tab;
-          $notificacionesAuxiliar = Notificaciones::Usuario(Auth::user()->id)->get();
-          $notificaciones[] = array();
+          $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
           $nuevas = 0;
 
-          for ($i=0; $i < sizeof($notificacionesAuxiliar); $i++) { 
-            if($notificacionesAuxiliar[$i]->estado == "nueva"){
+          for ($i=0; $i < sizeof($notificaciones); $i++) { 
+            if($notificaciones[$i]->estado == "nueva"){
               $nuevas = $nuevas + 1;
             }
-            if($i < 4){
-              array_push($notificaciones, $notificacionesAuxiliar[$i]);
-            }
           }
-          
-          array_shift($notificaciones);
           return view('Usuario.edit')
                 ->with('usuario',$usuario)
                 ->with('empresa',$Empresa)
@@ -395,20 +366,14 @@ class UsuariosController extends Controller
         }
       }else if($auxiliar == 1){
         $usuario = User::find($id);
-        $notificacionesAuxiliar = Notificaciones::Usuario(Auth::user()->id)->get();
-        $notificaciones[] = array();
+        $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
         $nuevas = 0;
 
-        for ($i=0; $i < sizeof($notificacionesAuxiliar); $i++) { 
-          if($notificacionesAuxiliar[$i]->estado == "nueva"){
+        for ($i=0; $i < sizeof($notificaciones); $i++) { 
+          if($notificaciones[$i]->estado == "nueva"){
             $nuevas = $nuevas + 1;
           }
-          if($i < 4){
-            array_push($notificaciones, $notificacionesAuxiliar[$i]);
-          }
         }
-        
-        array_shift($notificaciones);
         return view('Usuario.editEmpleado')
               ->with('usuario',$usuario)
               ->with('notificaciones',$notificaciones)

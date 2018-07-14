@@ -309,17 +309,26 @@
                    <div class="notifications-wrapper">
 
                      @foreach($notificaciones as $notificacion)
+                     @if($notificacion->estado == "nueva")
+                     <form autocomplete="on" method="GET" action="{{route('notificacion.updateNotificacion',$notificacion)}}" id="formNotificaciones{{$notificacion->id}}" class="notificacion" style="background-color: #edf2fa;">
+                     @else
                      <form autocomplete="on" method="GET" action="{{route('notificacion.updateNotificacion',$notificacion)}}" id="formNotificaciones{{$notificacion->id}}" class="notificacion">
+                     @endif
                      {{csrf_field()}}
-                     <a class="content" type="submit"  onclick="document.getElementById('formNotificaciones{{$notificacion->id}}').submit();">
-                       <div class="notification-item">
-                		<div class="iconNot"><i class="glyphicon glyphicon-bell"></i></div>
-                        <h4 class="item-title">Notificacion de Perfil <small> 1 day ago</small></h4>
-                		<div class="divtext">
-                        {{$notificacion->descripcion}}
-                		</div>
-                      </div>
-                    </a>
+                      <a class="content" type="submit"  onclick="document.getElementById('formNotificaciones{{$notificacion->id}}').submit();">
+                        <div class="notification-item">
+                      		<div class="iconNot">
+                            <i class="glyphicon glyphicon-bell"></i>
+                          </div>
+                          <h4 class="item-title">Notificacion de Perfil 
+                            <small> 1 day ago</small>
+                          </h4>
+                      		<div class="divtext">
+                              {{$notificacion->descripcion}}
+                      		</div>
+                        </div>
+                      </a>
+                    </form>
                     @endforeach
 
 
@@ -503,7 +512,6 @@
     }
 
     .notificacion:hover {
-      border-bottom-color: #2d0031;
       color: #2d0031;
       background: transparent;
     }
@@ -513,7 +521,6 @@
     }
 
     .aNotificaciones:hover{
-      border-bottom-color: #2d0031;
       color: #2d0031;
       background: transparent;
     }

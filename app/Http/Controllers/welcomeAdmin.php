@@ -37,21 +37,14 @@ class welcomeAdmin extends Controller
     public function index()
     {   
 
-        $notificacionesAuxiliar = Notificaciones::Usuario(Auth::user()->id)->get();
-        $allNotifications = Notificaciones::Usuario(Auth::user()->id)->get();
-        $notificaciones[] = array();
+        $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
         $nuevas = 0;
 
-        for ($i=0; $i < sizeof($notificacionesAuxiliar); $i++) { 
-          if($notificacionesAuxiliar[$i]->estado == "nueva"){
+        for ($i=0; $i < sizeof($notificaciones); $i++) { 
+          if($notificaciones[$i]->estado == "nueva"){
             $nuevas = $nuevas + 1;
           }
-          if($i < 4){
-            array_push($notificaciones, $notificacionesAuxiliar[$i]);
-          }
         }
-        
-        array_shift($notificaciones);
 
         $flag = false; 
         if(Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual]])->first()!= null) {
@@ -83,7 +76,6 @@ class welcomeAdmin extends Controller
                     ->with('datosVentasComparacionSemanas',$datosVentasComparacionSemanas)
                     ->with('mesasConMasVentas',$mesasConMasVentas)
                     ->with('flag', $flag)
-                    ->with('allNotifications',$allNotifications)
                     ->with('notificaciones',$notificaciones)
                     ->with('nuevas',$nuevas);
             
@@ -91,7 +83,6 @@ class welcomeAdmin extends Controller
             $flag = true;
             return View('WelcomeAdmin/welcome')
                 ->with('flag', $flag)
-                ->with('allNotifications',$allNotifications)
                 ->with('notificaciones',$notificaciones)
                 ->with('nuevas',$nuevas);
         }

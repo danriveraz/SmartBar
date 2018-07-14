@@ -54,11 +54,21 @@
 
               <div class="factspace text-right" >
                 <strong class=" text1 text-danger" style="color: #2d0031;" id="mesaActual">
+                  @if($empresa->tipoRegimen == "comun")
                   Factura No. #
-                  @if(sizeof($facturas) == 0)
-                    0
+                    @if(sizeof($facturas) == 0)
+                      0
+                    @else
+                    {{$facturas[0]->idBar}}
+                    @endif
                   @else
-                  {{$facturas[0]->idBar}}
+                    Documento equivalente 
+                    a la factura No # 
+                    @if(sizeof($facturas) == 0)
+                    0
+                    @else
+                    {{$facturas[0]->idBar}}
+                    @endif
                   @endif
                 </strong>
                 <p>
@@ -253,7 +263,7 @@
             <div class="total text-right">
               <p class="extra-notes">
                 <strong>Notas Adicionales</strong>
-                Vive la Vida "a cada instante como si fuera el ultimo de tu vida... Porque la felicidad no llega de afuera, nace desde adentro..."
+                {{$empresa->notas}}
               </p>
               <div class="field">
                 Subtotal <span id="subtotal">$379.00</span>
@@ -311,6 +321,13 @@
                   </div>
                 </div>            
               </div>
+              @if($empresa->tipoRegimen == "comun")
+                <br>
+                <div class="text-center">
+                <strong  style="text-align: center;">Resolución DIAN: {{$empresa->nresolucionFacturacion}} de {{$empresa->fechaResolucion}} del No. {{$empresa->nInicio}} hasta {{$empresa->nFinal}}
+                </strong>
+              </div>
+                @endif
             </div>
           </div>     
 
