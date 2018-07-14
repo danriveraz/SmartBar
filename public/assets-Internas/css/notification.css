@@ -110,7 +110,6 @@ ul.dropdown-menu.notifications .notifications-wrapper a.content {
 }
 ul.dropdown-menu.notifications .notifications-wrapper a.content:hover {
     color: #000;
-    background-color: #F7F7F7;
 }
 .login-nav ul.nav.navbar-nav.navbar-right li a {
     display: block;

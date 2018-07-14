@@ -37,13 +37,17 @@ class welcomeAdmin extends Controller
     public function index()
     {   
 
-        $notificaciones = Notificaciones::Usuario(Auth::user()->id)->get();
+        $notificaciones = Notificaciones::Usuario(Auth::id())->get();
         $nuevas = 0;
-
+        $fechaActual = Carbon::now()->subHour(5);
+        $fecha2array = array();
         for ($i=0; $i < sizeof($notificaciones); $i++) { 
           if($notificaciones[$i]->estado == "nueva"){
             $nuevas = $nuevas + 1;
           }
+          $fechaNotificacion = Carbon::parse($notificaciones[$i]->fecha);
+          $diferencia = $fechaActual->diffInDays($fechaNotificacion,true);
+          array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
         }
 
         $flag = false; 
@@ -77,14 +81,16 @@ class welcomeAdmin extends Controller
                     ->with('mesasConMasVentas',$mesasConMasVentas)
                     ->with('flag', $flag)
                     ->with('notificaciones',$notificaciones)
-                    ->with('nuevas',$nuevas);
+                    ->with('nuevas',$nuevas)
+                    ->with('fecha2array',$fecha2array);
             
         } else {
             $flag = true;
             return View('WelcomeAdmin/welcome')
                 ->with('flag', $flag)
                 ->with('notificaciones',$notificaciones)
-                ->with('nuevas',$nuevas);
+                ->with('nuevas',$nuevas)
+                ->with('fecha2array',$fecha2array);
         }
     }
 

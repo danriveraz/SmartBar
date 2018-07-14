@@ -8,7 +8,7 @@
           <div class="table-container">
             <table class="table table-filter">
               <tbody>
-                @foreach($allNotifications as $notificacion)
+                @foreach($notificaciones as $notificacion)
                 <tr data-status="pagado">
                   <td></td>
                   <td>

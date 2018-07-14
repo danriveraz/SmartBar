@@ -9,6 +9,7 @@ use PocketByR\Http\Controllers\Controller;
 use PocketByR\User;
 use PocketByR\Notificaciones;
 use Auth;
+use Carbon\Carbon;
 
 
 class NotificacionesController extends Controller
@@ -20,27 +21,23 @@ class NotificacionesController extends Controller
 	public function index(){
 
 		$usuario = Auth::user();
-		$notificacionesAuxiliar = Notificaciones::Usuario($usuario->id)->get();
-		$allNotifications = Notificaciones::Usuario($usuario->id)->get();
-        $notificaciones[] = array();
+		$notificaciones = Notificaciones::Usuario($usuario->id)->get();
         $nuevas = 0;
-
-        for ($i=0; $i < sizeof($notificacionesAuxiliar); $i++) { 
-          if($notificacionesAuxiliar[$i]->estado == "nueva"){
+        $fechaActual = Carbon::now()->subHour(5);
+        $fecha2array = array();
+        for ($i=0; $i < sizeof($notificaciones); $i++) { 
+          if($notificaciones[$i]->estado == "nueva"){
             $nuevas = $nuevas + 1;
           }
-          if($i < 4){
-            array_push($notificaciones, $notificacionesAuxiliar[$i]);
-          }
+          $fechaNotificacion = Carbon::parse($notificaciones[$i]->fecha);
+          $diferencia = $fechaActual->diffInDays($fechaNotificacion,true);
+          array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
         }
         
-        array_shift($notificaciones);
-
         return View('Notificaciones/index')
                 ->with('notificaciones',$notificaciones)
                 ->with('nuevas',$nuevas)
-                ->with('allNotifications',$allNotifications);
-
+                ->with('fecha2array',$fecha2array);
 	}
 
     public function modificarNotificacion(Request $request, $id){
@@ -52,7 +49,7 @@ class NotificacionesController extends Controller
 			$notificacion->save();
 		}
 		//Redireccionamiento
-		if($notificacion->ruta == "perfil"){
+		if($notificacion->ruta == "Perfil"){
 			session_start();
 			$_SESSION['id'] = $usuario->id;
 	        $tab = 'perfil';

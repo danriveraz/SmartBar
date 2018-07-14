@@ -281,28 +281,7 @@
                     </p>
                     @endif
                   </a>
-                  <!-- NOTIFICACIONES
-                  <ul class="dropdown-menu" style="width: 330px;">
-                    @foreach($notificaciones as $notificacion)
-                    <li>
-                      <form autocomplete="on" method="GET" action="{{route('notificacion.updateNotificacion',$notificacion)}}" id="formNotificaciones{{$notificacion->id}}" class="notificacion">
-                      {{csrf_field()}}
-                        <a href="#" type="submit" class="aNotificaciones" onclick="document.getElementById('formNotificaciones{{$notificacion->id}}').submit();">
-                            {{$notificacion->descripcion}}
-                            @if($notificacion->estado == 'nueva')
-                            <div class="notifications label label-info">
-                              Nuevo
-                            </div>
-                            @endif
-                        </a>
-                      </form>
-                    </li>
-                    @endforeach
-                    <div class="text-center">
-                      <a href="{{url('notificaciones')}}" style="color: #2d0031;"> Ver todas</a>
-                    </div>
-  				        </ul>-->
-                  <!-- NOTIFICACIONES NUEVAS-->
+                  <!-- NOTIFICACIONES -->
                   <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
                     <div class="notification-heading"><h4 class="menu-title">Notificationes</h4><h4 class="menu-title pull-right"><a href="{{url('notificaciones')}}">Ver Todoas<i class="glyphicon glyphicon-circle-arrow-right"></i></a></h4>
                     </div>
@@ -320,8 +299,18 @@
                       		<div class="iconNot">
                             <i class="glyphicon glyphicon-bell"></i>
                           </div>
-                          <h4 class="item-title">Notificacion de Perfil 
-                            <small> 1 day ago</small>
+                          <h4 class="item-title">Notificacion de {{$notificacion->ruta}} 
+                            @foreach($fecha2array as $fecha)
+                              @if($fecha[0] == $notificacion->id)
+                                @if($fecha[1] == 0)
+                                  <small>Hoy</small>
+                                @elseif($fecha[1] == 1)
+                                  <small>Hace 1 día</small>
+                                @else
+                                  <small>Hace {{$fecha[1]}} días</small>
+                                @endif
+                              @endif
+                            @endforeach
                           </h4>
                       		<div class="divtext">
                               {{$notificacion->descripcion}}
