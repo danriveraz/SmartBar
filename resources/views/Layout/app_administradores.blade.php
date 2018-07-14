@@ -305,7 +305,7 @@
                                 @if($fecha[1] == 0)
                                   <small>Hoy</small>
                                 @elseif($fecha[1] == 1)
-                                  <small>Hace 1 día</small>
+                                  <small>Ayer</small>
                                 @else
                                   <small>Hace {{$fecha[1]}} días</small>
                                 @endif

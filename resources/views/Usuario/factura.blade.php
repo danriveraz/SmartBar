@@ -278,9 +278,6 @@
                 }
             }
         });
-        if (JSONempresa.tipoRegimen == "comun") {
-        	document.getElementById("imagenResolucion").style.display = 'block';
-        }
 
         $propina = document.getElementById("propinaSugerida").value;
         if($propina == 0 || $propina == ""){
