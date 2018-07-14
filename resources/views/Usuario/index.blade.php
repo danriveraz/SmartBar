@@ -297,7 +297,7 @@
                         <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Facilidad encontrar personal</li>
                       </ul>
                 <div class="input-container" >
-                  <input id="{{$usuario->id}}hojaDeVida" name="hojaDeVida" style="background-color: #4f0157;" type="file"  data-upload-url="#">
+                  <input id="{{$usuario->id}}hojaDeVida" data-show-preview="false" name="hojaDeVida" style="background-color: #4f0157;" type="file"  data-upload-url="#" data-allowed-file-extensions='["pdf"]'>
                   <!-- <button id="{{$usuario->id}}hojaDeVida" name="hojaDeVida" style="font-weight: 400;" type="button" class="bfs btn btn-pocket" data-style="fileStyle-r" data-upload-url="#"><span class="fa fa-file-pdf-o" aria-hidden="true"></span>
                     Subir hoja de vida
                     </button> -->
@@ -307,15 +307,32 @@
                     $(document).ready(function () {// Para inicializar los que tienen hoja de vida
                       var urlhoja = '{{ asset( 'pdf/'.$usuario->hojaDeVida) }}';
                       $("#{{$usuario->id}}hojaDeVida").fileinput({
-                          initialPreview: [urlhoja],
-                          initialPreviewAsData: true,
+                          //initialPreview: [urlhoja],
+                          //initialPreviewAsData: true,
                           initialPreviewConfig: [
                               {type: "pdf", size: 8000, caption: "{{$usuario->hojaDeVida}}", downloadUrl: urlhoja, width: "120px", key: 1}
                           ],
                           deleteUrl: "/site/file-delete",
                           overwriteInitial: false,
                           maxFileSize: 10000,
-                          initialCaption: "Hoja de Vida"
+                          initialCaption: "{{$usuario->hojaDeVida}}",
+                          uploadExtraData: {kvId: '10'},
+                          showUpload: false,
+                          showRemove: false,
+                          maxFileSize: 2024,
+                          browseClass: "bfs btn btn-pocket tamanoLetraBoton",
+                          browseLabel: "<span class=\"fa fa-file-pdf-o\" aria-hidden='true'> </span> Subir hoja de vida",
+                          browseIcon: " ",
+                          layoutTemplates: {
+                                      main1: "{preview}\n" +
+                                      "<div class=\'input-group {class}\'>\n" +
+                                      "   <div class=\'input-group-btn\ input-group-prepend'>\n" +
+                                      "       {browse}\n" +
+                                      "       {upload}\n" +
+                                      "       {remove}\n"+
+                                      "   </div>\n" +
+                                      "   {caption}\n" +
+                                      "</div>"}
                       });
                     });
                   </script>
@@ -323,11 +340,23 @@
                   <script >
                     $(document).ready(function () {// Para inicializar los que tienen hoja de vida
                       $("#{{$usuario->id}}hojaDeVida").fileinput({
-                          initialPreviewAsData: true,
-                          deleteUrl: "/site/file-delete",
-                          overwriteInitial: false,
-                          maxFileSize: 10000,
-                          initialCaption: "Hoja de Vida"
+                        uploadExtraData: {kvId: '10'},
+                        showUpload: false,
+                        showRemove: false,
+                        maxFileSize: 2024,
+                        browseClass: "bfs btn btn-pocket tamanoLetraBoton",
+                        browseLabel: "<span class=\"fa fa-file-pdf-o\" aria-hidden='true'> </span> Subir hoja de vida",
+                        browseIcon: " ",
+                        layoutTemplates: {
+                                    main1: "{preview}\n" +
+                                    "<div class=\'input-group {class}\'>\n" +
+                                    "   <div class=\'input-group-btn\ input-group-prepend'>\n" +
+                                    "       {browse}\n" +
+                                    "       {upload}\n" +
+                                    "       {remove}\n"+
+                                    "   </div>\n" +
+                                    "   {caption}\n" +
+                                    "</div>"}
                       });
                     });
                   </script>
@@ -338,9 +367,9 @@
                 </div>
                 <br>
                 <div  class="form-group">
-                  <a id="registrarUsuario" class="btn btn-pocket" style="font-weight: 400;" type="submit">
+                  <button  class="btn btn-pocket" style="font-weight: 400;" type="submit">
                     <i class="fa fa-send"></i>Guardar Empleado
-                  </a>
+                  </button>
                 </div>
               </div>
               </div>
@@ -520,7 +549,7 @@
                 </button>-->
                 <br>
                 <div class="form-group">
-                  <input id="file-4" name="hojaDeVida" type="file" class="file" data-upload-url="#" accept="pdf/*">
+                  <input id="file-4" name="hojaDeVida" type="file" data-show-preview="false" data-upload-url="#" data-allowed-file-extensions='["pdf"]'>
                 </div>
                 <div class="input-container">
                   <label class="checkbox">
@@ -623,10 +652,25 @@
     });
 
     cambiarCurrent("#miPersonal");
-
+    //subir pdf
     $("#file-4").fileinput({
         uploadExtraData: {kvId: '10'},
-        maxFileSize: 1
+        showUpload: false,
+        showRemove: false,
+        maxFileSize: 2024,
+        browseClass: "bfs btn btn-pocket tamanoLetraBoton",
+        browseLabel: "<span class=\"fa fa-file-pdf-o\" aria-hidden='true'> </span> Subir hoja de vida",
+        browseIcon: " ",
+        layoutTemplates: {
+                    main1: "{preview}\n" +
+                    "<div class=\'input-group {class}\'>\n" +
+                    "   <div class=\'input-group-btn\ input-group-prepend'>\n" +
+                    "       {browse}\n" +
+                    "       {upload}\n" +
+                    "       {remove}\n"+
+                    "   </div>\n" +
+                    "   {caption}\n" +
+                    "</div>"}
     });
     $(".btn-warning").on('click', function () {
         var $el = $("#file-4");
@@ -774,6 +818,9 @@ $('.stop-propagation').on('click', function (e) {
   #imagenPerfilUsuarioCircular{
     width: 150px;
     height: 150px;
+  }
+  .tamanoLetraBoton{
+    font-weight: 400;
   }
 </style>
 @endsection
