@@ -137,7 +137,7 @@
                             </div>
                           <!-- Fin div para mensajes chat-->
                           <a href="{{ url('Agenda/') }}" title="Agenda"><i style="float: center;" class="fa fa-calendar-check-o pull-right"></i></a>
-                          <a href="{{url('Estadisticas/')}}" title="Estadísticas"><i style="float: center;" class="fa fa-bar-chart pull-right"></i></a>
+                          <a data-toggle="modal" data-target="#ModalEstadisticas{{$usuario->id}}" title="Estadísticas"><i style="float: center;" class="fa fa-bar-chart pull-right"></i></a>
                       </div>
                   </div>
                 </div>
@@ -448,6 +448,27 @@
 </div>
 @endforeach
 <!--Fin modal mensaje-->
+
+
+<!--inicio modal Estadísticas Empleado-->
+@foreach($usuarios as $usuario)
+<div class="modal fade" id="ModalEstadisticas{{$usuario->id}}">
+  <div class="modal-body modal-lg">
+    <div class="modal-content" style="background-color:#FFFFFF">
+      <div class="modal-header">
+          <button aria-hidden="true" class=" close " data-dismiss="modal" type="button">&times;</button>
+          <h4 class="modal-title text-center"> Estadísticas de {{$usuario->nombrePersona}} </h4>
+
+      </div>
+      <div class="modal-body">
+        <h1>Aquí irán las estadísticas</h1>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+<!--Fin modal Estadísticas empleado-->
+
 
 
 <!--Inicio modal crear personal-->

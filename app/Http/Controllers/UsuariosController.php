@@ -2509,6 +2509,8 @@ class UsuariosController extends Controller
             'fechaNacimiento' => 'required|date|before:'.$hoyMenos18anios,
             'sexo' => 'required',
             'Permisos' => 'required',
+            'salario' => 'required',
+            'direccion' => 'required',
             'hojaDeVida' => 'file|mimes:pdf',
             'imagenPerfil' => 'image'
          ],$messages);
