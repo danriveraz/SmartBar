@@ -32,6 +32,11 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 
 <!--Fuente Requerida -->
 {!!Html::style('assets-home\styles\styles-login-min.css')!!}
+{!!Html::style('assets-home\styles\main.css')!!}
+  {!!Html::style('assets-home\styles\font-awesome.css')!!}
+    <link type="image/x-icon" rel="shortcut icon" href="{{asset('assets-home/images/icon.png')}}"/>
+    {!!Html::script("assets-home\scripts\jquery-1.12.4.min.js")!!}
+    {!!Html::script("assets-home\scripts\main.js")!!}
 </head>
 <body>
 <div class="main-container">
@@ -44,22 +49,24 @@
                 <p class="intro-summary">Por favor, introduzca su dirección de correo electrónico</p>
             </div>
             <div class="user-access-form">         
-                <form  method="post" action="{{ url('Auth/email') }}">
+                <form  method="post" action="{{ url('Auth/resetpassword') }}">
                   {{ csrf_field() }}
-                  <div class="" style="text-align: center;">
-                   @if (session('status'))
-                      <div class="alert alert-success">
-                          {{ session('status') }}
-                      </div>
-                  @endif
+                   <div class="" style="text-align: center;">
                    <div class="text-danger" style="text-align: center; font-color: #2d0031">
                     <b>{{$errors->first()}}</b>
                   </div>
                   </div>
+                  <input type="hidden" name="token" value="{{$token}}">
                     <div class="input-wrapper">
                         <input type="text" name="email" id="email" value="" class="email" placeholder="E-mail">
                     </div>
-                    <input type="submit" name="submit" id="submit" value="enviar" class="enviar">
+                    <div class="input-wrapper">
+                        <input type="password" name="password" value="" placeholder="Password" autocomplete="new-password">
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="password" name="password_confirmation" value="" placeholder="password_confirmation" autocomplete="new-password">
+                    </div>
+                    <input type="submit" name="submit" id="submit" value="cambiar" class="enviar">
                 </form>
             </div> 
             <div class="colorGris user-access-footer">
