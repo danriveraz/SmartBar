@@ -448,13 +448,34 @@
 </div>
 @endforeach
 <!--Fin modal mensaje-->
+
+
+<!--Inicio modal crear personal-->
+
+<a id="abrirModal" data-toggle="modal" data-target="#modalPersonal" hidden="true"> abrirmodal</a>
+<div class="modal fade" id="modalPersonal" role="dialog">
+  <div class="modal-body modal-lg">
+    <div class="modal-content" style="background-color:#FFFFFF">
+      <div class="modal-header">
+          <button aria-hidden="true" class=" close " data-dismiss="modal" type="button">&times;</button>
+          <h4 class="modal-title text-center"> Crear empleado</h4>
+      </div>
+      <div id="modalBodyPersonal" class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Fin modal crear personal-->
+
+
 <!-- inicio de slider de agregar usuario -->
 <div class="style-selector" >
-  <div class="style-selector-container">
+  <div  class="style-selector-container">
     <div class="row">
       <div class="">
-        <div class="">
-          <div class="widget-content padded">
+        <div id="slider" class="">
+          <div id="formulario" class="widget-content padded">
             <form id="formslider" class="login-form">
             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
             <fieldset>
@@ -574,7 +595,7 @@
   </div>
   <!-- fin de slider de agregar usuario -->
 
-  <div class="style-toggle closed">
+  <div id="abrirSlide" class="style-toggle closed">
     <span aria-hidden="true" class="fa fa-fw fa-plus-circle"></span>
   </div>
 </div>
@@ -806,6 +827,74 @@ $("#registrarUsuario").click(function(){
         }
     });
 });
+
+
+  $(document).ready(function () {// cambio de slider a modal
+
+    $("#abrirSlide").click(function(){//Función para el botón de abrir slide, si es menor a 922 pixeles no abrir el slide, sino el modal
+      if($(window).width()<992){ 
+         $("#abrirModal").click();
+         return 0;
+      }
+
+    });
+
+
+
+    var ventana_ancho = $(window).width();
+    if(ventana_ancho<992){ // si al iniciar la página ya es menor a 992 pixeles, se cambia al modal
+      $('#formulario').appendTo('#modalBodyPersonal'); // Cambia todo el contenido del slide al modal
+    }
+
+
+
+
+    $(window).resize(function() {//Funcion que se activa cada vez que se hace un resize a la ventana
+
+      if($(window).width()<992){ //si el tamaño es menor a 992 pixeles
+
+        $('#formulario').appendTo('#modalBodyPersonal');// Cambia todo el contenido del slide al modal 
+
+        var ventana = $(".style-toggle");//slide
+        
+        var modal=$("#modalPersonal"); //si el modal no está abierto, lo abre
+        if (!$(modal).hasClass("in") && $(ventana).hasClass("open") ) {
+          $("#abrirModal").click();
+        }
+
+        if ($(ventana).hasClass("open")) { // cierra el Slide si está abierto
+          $(ventana).removeClass("open").addClass("closed");
+          return $(".style-selector").animate({
+            "right": "-80%"
+          }, 250);
+        }
+
+
+
+
+      }else{
+        $('#formulario').appendTo('#slider');// cambia todo el contenido del modal al slide
+
+        var modal=$("#modalPersonal"); //si el modal está abierto, lo cierra
+        var ventana = $(".style-toggle");
+
+        if (!$(ventana).hasClass("open") && $(modal).hasClass("in")) { // cierra el Slide si está abierto
+          $("#abrirSlide").click();
+          /*$(ventana).removeClass("closed").addClass("open");
+          return $(".style-selector").animate({
+            "left": "80%"
+          }, 250);*/
+        }
+
+        if ($(modal).hasClass("in")) {
+          $("#modalPersonal").modal('hide');
+        }
+
+      }
+    });
+  });
+
+
 </script>
 
 <script>
