@@ -107,8 +107,8 @@ function cambiarCurrent(idInput) {
 };
 
 
-var routeEliminar = "http://pocketdesigner.co/PocketByR/public/mesas/eliminar";
-var routeModificar = "http://pocketdesigner.co/PocketByR/public/mesas/edit";
+var routeEliminar = "http://pocketdesigner.co/SmartBar/public/mesas/eliminar";
+var routeModificar = "http://pocketdesigner.co/SmartBar/public/mesas/edit";
 function eliminar(idMesa){
       if(confirm('¿Desea eliminar este proveedor?')){
         $.ajax({

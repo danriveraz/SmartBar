@@ -1,10 +1,10 @@
 var idMesa = 0;
 var idFactura = 0;
-var route = "http://localhost/PocketByR/public/mesero/agregar";
-var routeFactura = "http://localhost/PocketByR/public/mesero/factura";
-var routeDisminuir = "http://localhost/PocketByR/public/mesero/disminuir";
-var routeVenta = "http://localhost/PocketByR/public/mesero/venta";
-var routeContiene = "http://localhost/PocketByR/public/mesero/contiene";
+var route = "http://localhost/SmartBar/public/mesero/agregar";
+var routeFactura = "http://localhost/SmartBar/public/mesero/factura";
+var routeDisminuir = "http://localhost/SmartBar/public/mesero/disminuir";
+var routeVenta = "http://localhost/SmartBar/public/mesero/venta";
+var routeContiene = "http://localhost/SmartBar/public/mesero/contiene";
 
 $(document).ready(function(){
   var estado = false;
@@ -252,7 +252,7 @@ function enviarDatos(){
       },
       success : function() {
         if(idProductos.length != 0){
-          window.location = "http://localhost/PocketByR/public/mesero";
+          window.location = "http://localhost/SmartBar/public/mesero";
         }else{
           $( "#message" ).load(window.location.href + " #message" );
         }

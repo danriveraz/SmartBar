@@ -127,7 +127,7 @@
 <script>
   $("div[nombre|='mesa']").click(function(){
     var idDiv = $(this).attr("id");
-    window.location = "http://localhost/PocketByR/public/mesero/"+idDiv;
+    window.location = "http://localhost/SmartBar/public/mesero/"+idDiv;
   });
 </script>
 

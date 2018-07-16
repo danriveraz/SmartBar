@@ -11,6 +11,7 @@ use PocketByR\Empresa;
 use PocketByR\CLiente;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
+use Laracasts\Flash\Flash;
 
 class CajeroController extends Controller
 {
@@ -42,6 +43,11 @@ class CajeroController extends Controller
             for($j=0; $j < sizeof($ventasHechas); $j++){
                 array_push($productos, array(($facturas[$i]->id), $ventasHechas[$j]->id, $ventasHechas[$j]->producto->nombre, $ventasHechas[$j]->cantidad, $ventasHechas[$j]->producto->precio, $ventasHechas[$j]->estadoMesero, $ventasHechas[$j]->estadoCajero)); 
             }
+        }
+        if($empresa->tipoRegimen == "comun"){
+          if($empresa->nresolucionFacturacion == "" || $empresa->fechaResolucion == "0000-00-00" || $empresa->imagenResolucionFacturacion == "" || $empresa->nInicio == 0 || $empresa->nFinal == 0){
+            flash::error('Para poder facturar debe completar todos los campos de su empresa en el perfil de administrador')->important();
+          }
         }
     	return view('Cajero.inicio')->with('totalVentas',$totalVentas)->with('facturas',$facturas)->with('user',$userActual)->with('productos',$productos)->with('empresa', $empresa);
     }

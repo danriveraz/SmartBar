@@ -1,5 +1,6 @@
 @extends(Auth::User()->esAdmin ? 'Layout.app_administradoresOptimizado' : 'Layout.app_empleado')
 @section('content')
+@include('flash::message')
 
 {!!Html::style('assetsNew/styles/content-box.css')!!}
 {!!Html::style('assetsNew/styles/social-buttons.css')!!}
@@ -8,9 +9,6 @@
 {!!Html::style('assetsNew/styles/bootstrap-switch.css')!!}
 
 {!!Html::script("assetsNew/scripts/bootstrap-switch.min.js")!!}
-
-<!-- COMENTADO POR ERROR EN TOPBAR -->
-<!-- {!!Html::script("assetsNew/scripts/bootstrap.min.js")!!} -->
 
 {!!Html::script("assetsNew/scripts/jquery.easy-pie-chart.js")!!}
 {!!Html::script("assetsNew/scripts/jquery.sparkline.min.js")!!}
@@ -73,7 +71,6 @@
                 </strong>
                 <p>
                   <select class="selectFact numberFact" onchange="cambiarFactura(this.value);" style="width: 40%">
-                          <option>Mesa</option>
                            @foreach($facturas as $factura) 
                             @if(sizeof($factura->ventasHechas)>0)
                               <option data-idFactura="{{$factura->id}}"  data-idMesaBar="{{$factura->idBar}}" value="{{$factura->mesa->id}}" id="mesas{{$factura->mesa->id}}"
@@ -261,20 +258,48 @@
 
             </div>
             <div class="total text-right">
-              <p class="extra-notes">
+              <p class="extra-notes" style="width: 50%;">
                 <strong>Notas Adicionales</strong>
                 {{$empresa->notas}}
               </p>
               <div class="field">
-                Subtotal <span id="subtotal">$379.00</span>
+                Subtotal <span id="subtotal">$0.00</span>
+              </div>
+              @if($empresa->tipoRegimen == 'comun')
+              <div class="field">
+                <label>
+                  <input type="checkbox" name="activarIva" id="activarIva" checked/>
+                  <span></span>
+                </label>
+                <label for="tipo" class="control-label"></label>
+                <label style="width: 9%;">Iva {{$empresa->iva}}%</label>
+                <span id="iva" data-regimen="comun">$0.00</span>
               </div>
               <div class="field">
-                @if($user->EmpresaActual->tipoRegimen == "comun")
-                Iva 19% <span id="iva" data-regimen="comun">$0.00</span>
-                @else
-                <span id="iva" data-regimen="simplificado"></span>
-                @endif                
+                <!-- IMPUESTO 1 -->
+                @if($empresa->impuesto1 != "")
+                  <label>
+                    <input type="checkbox" name="activarImp1" id="activarImp1" checked/>
+                    <span></span>
+                  </label>
+                  <label for="tipo" class="control-label"></label>
+                  <label style="width: 9%;">{{$empresa->impuesto1}} {{$empresa->valorImpuesto1}}% </label>
+                  <span id="valorImpuesto1" data-regimen="comun">$0.00</span>
+                @endif
               </div>
+              <div class="field">
+                <!-- IMPUESTO 2 -->
+                @if($empresa->impuesto2 != "")
+                  <label>
+                    <input type="checkbox" name="activarImp2" id="activarImp2" checked/>
+                    <span></span>
+                  </label>
+                  <label for="tipo" class="control-label"></label>
+                  <label style="width: 9%;">{{$empresa->impuesto2}} {{$empresa->valorImpuesto2}}%</label>
+                  <span id="valorImpuesto2" data-regimen="comun">$0.00</span>
+                @endif
+              </div>
+              @endif
               <div class="field grand-total">
                 @if(sizeof($facturas) > 0)
                   <input type="text" id="valorInput" name="valor" value=0 id="" hidden="" data-valorAntiguo="{{$facturas[0]->total}}"><input type="text" id="idFactura" name="idFactura" value="{{$facturas[0]->id}}" id="" hidden="">
@@ -332,7 +357,7 @@
           </div>     
 
           <div class="row">
-            <div class="col-lg-12 center">
+            <div class="col-lg-12 center" id="buttonsDiv">
               @if(sizeof($facturas) > 0)
                 @if(sizeof($facturas[0]->ventasHechas) > 0)
                   <button class="factBot btn btn-bitbucket pull-right"><i class="fa fa-money"></i>Pagar</button>
@@ -366,6 +391,7 @@
 <script>
   var JSONproductos = eval(<?php echo json_encode($productos); ?>);
   var JSONfacturas = eval(<?php echo json_encode($facturas); ?>);
+  var JSONEmpresa = eval(<?php echo json_encode($empresa); ?>);
   var clic = 0;
   jQuery.fn.animateAuto = function(prop, speed, callback){
     var elem, height, width;
@@ -382,16 +408,45 @@
         else if(prop === "both")
             el.animate({"width":width,"height":height}, speed, callback);
     });  
-  }
+  } 
+
   $(window).ready(function(){
-    actualizarTotal();
-  $('#toggle').on('click',function(){
-      if($(this).next().hasClass('desplegado')){
-        $(this).next().removeClass('desplegado').animate({height:0},500);
-      }else{
-        $(this).next().addClass('desplegado').animateAuto("height",500);
+
+    if(JSONEmpresa.tipoRegimen == "comun"){
+      if(JSONEmpresa.nresolucionFacturacion == "" || JSONEmpresa.fechaResolucion == "0000-00-00" || JSONEmpresa.nInicio == 0 || JSONEmpresa.nFinal == 0 ){
+        document.getElementById("buttonsDiv").style.display = 'none';
       }
-    })
+    }
+
+    actualizarTotal();
+    $('#toggle').on('click',function(){
+        if($(this).next().hasClass('desplegado')){
+          $(this).next().removeClass('desplegado').animate({height:0},500);
+        }else{
+          $(this).next().addClass('desplegado').animateAuto("height",500);
+        }
+      })
+    $("#activarIva").click(function() {  
+        if($("#activarIva").is(':checked')) {  
+             actualizarTotal();  
+        } else {  
+             actualizarTotal();  
+        }  
+    });  
+    $("#activarImp1").click(function() {  
+        if($("#activarImp1").is(':checked')) {  
+             actualizarTotal();  
+        } else {  
+             actualizarTotal();  
+        }  
+    });  
+    $("#activarImp2").click(function() {  
+        if($("#activarImp2").is(':checked')) {  
+             actualizarTotal();  
+        } else {  
+             actualizarTotal();  
+        }  
+    });  
   })
 
 var cambiarFactura = function(id){
@@ -477,7 +532,7 @@ $("body").on("change",".numberFact",function(event){
 
 $("body").on("change",".infoClinte",function(event){
     var datos = document.getElementsByClassName("form-control");
-    alert(datos.length);
+    //alert(datos.length);
 });
 
 function activarRequired(){
@@ -515,7 +570,9 @@ function validarEfectivo() {
     if(efectivo != ""){
       var total = document.getElementById("total").dataset.total;
       var cambio = efectivo - total;    
-      $("#cambio").val("$" + Intl.NumberFormat().format(cambio));
+      if(Math.sign(cambio) != -1){
+        $("#cambio").val("$" + Intl.NumberFormat().format(cambio));
+      }
     }
     else{
       $("#cambio").val("");
@@ -535,30 +592,59 @@ function actualizarTotal() {
   for (i = 0; i < totales.length; i++) {
     acumulador = acumulador + parseInt(totales[i].dataset.valor);
   }
-  $("#subtotal").html("$" + Intl.NumberFormat().format(acumulador-acumulador*0.19));
-  var campoIva = document.getElementById("iva").dataset.regimen;
-  var iva = acumulador*0.19;
+
+  var iva = 0;
+  var imp1 = 0;
+  var imp2 = 0;
+
+  if($('#activarIva').is(':checked')){
+    var campoIva = document.getElementById("iva").dataset.regimen;
+    iva = acumulador*(JSONEmpresa.iva/100);
+  }
+
+  if($('#activarImp1').is(':checked')){
+    var campoImp1 = document.getElementById("valorImpuesto1").dataset.regimen;
+    imp1 = acumulador*(JSONEmpresa.valorImpuesto1/100);
+  }
+
+  if($('#activarImp2').is(':checked')){
+    var campoImp2 = document.getElementById("valorImpuesto2").dataset.regimen;
+    imp2 = acumulador*(JSONEmpresa.valorImpuesto2/100);
+  }
+
+  subtotal = iva + imp1 + imp2;
+  $("#subtotal").html("$" + Intl.NumberFormat().format(subtotal));
   var total = acumulador;
   if(campoIva == "comun"){
-    $("#iva").html("$" + Intl.NumberFormat().format(iva));  
+    $("#iva").html("$" + Intl.NumberFormat().format(iva));
+    $("#valorImpuesto1").html("$" + Intl.NumberFormat().format(imp1));
+    $("#valorImpuesto2").html("$" + Intl.NumberFormat().format(imp2));  
   }
   var propina = document.getElementById("propina");
   if(propina.dataset.modificacion == "false"){
-    propina.dataset.propina = total*.10;
-    propina.value= total*.10;
-    total= total+total*.10;
+    propina.dataset.propina = total*(JSONEmpresa.propina/100);
+    propina.value= total*(JSONEmpresa.propina/100);
+    total= total + subtotal + total*(JSONEmpresa.propina/100);
   }else if(propina.value != ""){
     total= total+parseInt(propina.value);
   }
   /* VALIDACIÓN ERROR POR LLAMADA A ID NO EXISTENTE */
-  if(JSONfacturas > 0){
+  //if(JSONfacturas > 0){
     var totalInput = document.getElementById("valorInput");
     totalInput.value = parseInt(totalInput.dataset.valorantiguo) + total;
     document.getElementById("total").dataset.total = (total);
     $("#total").html("$" + Intl.NumberFormat().format(total));
     validarEfectivo();
-  }
+  //}
 }
-</script>        
+</script>       
+
+<!-- ESTILO PARA EL MENSAJE FLASH -->
+<style type="text/css">
+  .alert{
+    text-align: center;
+  }
+</style>
+
 {!!Html::script('assetsNew/scripts/main.js')!!}
 @endsection
