@@ -9,9 +9,11 @@ use PocketByR\Venta;
 use PocketByR\Mesa;
 use PocketByR\Empresa;
 use PocketByR\CLiente;
+use PocketByR\Notificaciones;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use Laracasts\Flash\Flash;
+use Carbon\Carbon;
 
 class CajeroController extends Controller
 {
@@ -49,7 +51,29 @@ class CajeroController extends Controller
             flash::error('Para poder facturar debe completar todos los campos de su empresa en el perfil de administrador')->important();
           }
         }
-    	return view('Cajero.inicio')->with('totalVentas',$totalVentas)->with('facturas',$facturas)->with('user',$userActual)->with('productos',$productos)->with('empresa', $empresa);
+
+      $notificaciones = Notificaciones::Usuario(Auth::id())->get();
+      $nuevas = 0;
+      $fechaActual = Carbon::now()->subHour(5);
+      $fecha2array = array();
+      for ($i=0; $i < sizeof($notificaciones); $i++) { 
+        if($notificaciones[$i]->estado == "nueva"){
+          $nuevas = $nuevas + 1;
+        }
+        $fechaNotificacion = Carbon::parse($notificaciones[$i]->fecha);
+        $diferencia = $fechaActual->diffInDays($fechaNotificacion,true);
+        array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
+      }
+
+    	return view('Cajero.inicio')
+            ->with('totalVentas',$totalVentas)
+            ->with('facturas',$facturas)
+            ->with('user',$userActual)
+            ->with('productos',$productos)
+            ->with('empresa', $empresa)
+            ->with('notificaciones',$notificaciones)
+            ->with('nuevas',$nuevas)
+            ->with('fecha2array',$fecha2array);
     }
   
     public function historial(Request $request){

@@ -1,4 +1,4 @@
-@extends(Auth::User()->esAdmin ? 'Layout.app_administradoresOptimizado' : 'Layout.app_empleado')
+@extends(Auth::User()->esAdmin ? 'Layout.app_administradores' : 'Layout.app_empleado')
 @section('content')
 @include('flash::message')
 
@@ -355,7 +355,7 @@
                 @endif
             </div>
           </div>     
-
+          <br>
           <div class="row">
             <div class="col-lg-12 center" id="buttonsDiv">
               @if(sizeof($facturas) > 0)
