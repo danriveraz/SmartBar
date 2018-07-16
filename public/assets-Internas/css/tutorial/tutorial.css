@@ -1,0 +1,41 @@
+@media screen and (min-width: 400px){
+	.modal-dialog {
+		width: 40%;
+	}
+
+	.modal-body img {
+		width: 100%;
+	}
+}  
+@media (min-width: 300px) and (max-width: 400px) {
+	.modal-dialog {
+		width: 90%;
+	}
+
+	.modal-body img {
+		width: 100%;
+	}
+}
+
+.modal-body progress[value] {
+	width: 100%;
+	border: none;
+	border-radius: 10px;
+	color: #2f0033;
+}
+
+.modal-body progress::-webkit-progress-bar {
+    border: 0;
+    border-radius: 10px;
+    background-color: #DDDDDD;
+    color: #2f0033;
+}
+.modal-body progress::-webkit-progress-value {
+    border: 0;
+    border-radius: 10px;
+    color: #2f0033;
+}
+.modal-body progress::-moz-progress-bar {
+    border: 0;
+    border-radius: 10px;
+}

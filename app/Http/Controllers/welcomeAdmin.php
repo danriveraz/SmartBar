@@ -50,7 +50,8 @@ class welcomeAdmin extends Controller
           array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
         }
 
-        $flag = false; 
+        $flag = false;
+        $userActual = Auth::user();
         if(Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual]])->first()!= null) {
             $categoriasMasVendidas = $this->categoriasMasVendidas();// llamado a la función queretorna un arreglo con dos valores
 
@@ -82,7 +83,8 @@ class welcomeAdmin extends Controller
                     ->with('flag', $flag)
                     ->with('notificaciones',$notificaciones)
                     ->with('nuevas',$nuevas)
-                    ->with('fecha2array',$fecha2array);
+                    ->with('fecha2array',$fecha2array)
+                    ->with('tutorial',$userActual->estadoTut);
             
         } else {
             $flag = true;
@@ -90,7 +92,8 @@ class welcomeAdmin extends Controller
                 ->with('flag', $flag)
                 ->with('notificaciones',$notificaciones)
                 ->with('nuevas',$nuevas)
-                ->with('fecha2array',$fecha2array);
+                ->with('fecha2array',$fecha2array)
+                ->with('tutorial',$userActual->estadoTut);
         }
     }
 

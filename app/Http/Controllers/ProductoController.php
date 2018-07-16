@@ -12,6 +12,8 @@ use PocketByR\Insumo;
 use PocketByR\Contiene;
 use PocketByR\Categoria;
 use Laracasts\Flash\Flash; 
+use PocketByR\Notificaciones;
+use Carbon\Carbon;
 use Auth;
 
 class ProductoController extends Controller
@@ -29,6 +31,20 @@ class ProductoController extends Controller
   }  
 
   public function index(Request $request){
+
+    $notificaciones = Notificaciones::Usuario(Auth::id())->get();
+    $nuevas = 0;
+    $fechaActual = Carbon::now()->subHour(5);
+    $fecha2array = array();
+    for ($i=0; $i < sizeof($notificaciones); $i++) { 
+      if($notificaciones[$i]->estado == "nueva"){
+        $nuevas = $nuevas + 1;
+      }
+      $fechaNotificacion = Carbon::parse($notificaciones[$i]->fecha);
+      $diferencia = $fechaActual->diffInDays($fechaNotificacion,true);
+      array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
+    }
+
     $userActual = Auth::user();
     $categorias = Categoria::where('idEmpresa' , $userActual->empresaActual)->
                              lists('nombre','id');
@@ -38,7 +54,11 @@ class ProductoController extends Controller
                            orderBy('nombre','ASC')->
                            paginate(1000);
     $contenido = Contiene::where('idEmpresa', $userActual->empresaActual);
-    return view('Producto.index',compact('categorias'))->with('productos',$productos)->with('contenido', $contenido);
+    return view('Producto.index',compact('categorias'))->
+            with('productos',$productos)->
+            with('contenido', $contenido)->
+            with('nuevas', $nuevas)->
+            with('notificaciones',$notificaciones);
   }
 
   public function ingredientes(Request $request){

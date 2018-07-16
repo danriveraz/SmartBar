@@ -6,13 +6,18 @@ use Illuminate\Http\Request;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 use PocketByR\Insumo;
 use PocketByR\Proveedor;
 use PocketByR\Producto;
 use PocketByR\Categoria;
 use PocketByR\Contiene;
 use Laracasts\Flash\Flash;
+use PocketByR\Notificaciones;
+use Carbon\Carbon;
 use Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Book;
 
 class InsumoController extends Controller
 {
@@ -30,6 +35,21 @@ class InsumoController extends Controller
     }
 
     public function index(Request $request){
+
+      $notificaciones = Notificaciones::Usuario(Auth::id())->get();
+      $nuevas = 0;
+      $fechaActual = Carbon::now()->subHour(5);
+      $fecha2array = array();
+      for ($i=0; $i < sizeof($notificaciones); $i++) { 
+        if($notificaciones[$i]->estado == "nueva"){
+          $nuevas = $nuevas + 1;
+        }
+        $fechaNotificacion = Carbon::parse($notificaciones[$i]->fecha);
+        $diferencia = $fechaActual->diffInDays($fechaNotificacion,true);
+        array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
+      }
+
+    
       $userActual = Auth::user();
       $categorias = Categoria::where('idEmpresa' , $userActual->empresaActual)->get();
 
@@ -37,7 +57,11 @@ class InsumoController extends Controller
 
       $insumos = Insumo::where('idEmpresa' , $userActual->empresaActual)->orderBy('nombre','ASC')->get();
 
-      return view('Insumo.index')->with('insumos',$insumos)->with('categorias',$categorias)->with('proveedores',$proveedores);
+      return view('Insumo.index')->with('insumos',$insumos)->
+                                   with('categorias',$categorias)->
+                                   with('proveedores',$proveedores)->
+                                   with('nuevas', $nuevas)->
+                                   with('notificaciones',$notificaciones);
   }
 
   public function modificar(Request $request){
@@ -51,10 +75,10 @@ class InsumoController extends Controller
     $insumo->precioUnidad = $request->venta;
     $insumo->valorCompra = $request->compra;
     $insumo->medida = $request->medida;
-
-    
+        
     $insumo->cantidadMedida = $request->cantMedida;
     $insumo->cantidadRestante = $request->cantMedida*$request->unidades;
+
 
 
     if($insumo->tipo != $request->tipo){
@@ -66,22 +90,22 @@ class InsumoController extends Controller
         $producto->idCategoria = $request->categoria;
         $producto->idEmpresa = $userActual->empresaActual;
         $producto->save();
-
+        /*
         $contiene = new Contiene;
         $contiene->idProducto = $producto->id;
         $contiene->idInsumo = $insumo->id;
         $contiene->cantidad = $insumo->cantidadMedida;
         $contiene->idEmpresa = $userActual->empresaActual;
-        $contiene->save();
+        $contiene->save();*/
       }else{
-        $producto = Producto::Nombre($nombre)->where('idEmpresa',$userActual->empresaActual)->first();
+        /*$producto = Producto::Nombre($nombre)->where('idEmpresa',$userActual->empresaActual)->first();
         $contenido = Contiene::IdProducto($producto->id)->get();
         foreach($contenido as $contiene){
           $contiene->delete();
         }
-        $producto->delete();
+        $producto->delete();*/
       }
-    }
+    }/*
     else if($request->tipo == 1){
       $producto = Producto::Nombre($nombre)->where('idEmpresa',$userActual->empresaActual)->first();
       $producto->nombre = $request->nombre;
@@ -91,14 +115,27 @@ class InsumoController extends Controller
       $contiene->cantidad = $insumo->cantidadMedida;
       $contiene->save();
       $producto->save();
-    }
+    }*/
     $insumo->save();
-
+    return json_encode($insumo->id);
   }
 
   public function eliminar(Request $request){
+    $contiene = Contiene::IdInsumo($request->id)->get();
+    $numeroIngredientes = count($contiene);
+    /*foreach ($contiene as $key => $value) {
+      $value->delete();
+    }*/
+    if($numeroIngredientes == 1){
+      return json_encode($numeroIngredientes == 1);
+      $producto = Producto::find($contiene[0]->idProducto)->first();
+      $ingredientes = Contiene::idProducto($producto->id)->get();
+      if(count($ingredientes) == 1){
+        $producto->delete();
+      }
+    }
     $insumo = Insumo::find($request->id);
-    $insumo->delete();
+    //$insumo->delete();
   }
 
   public function store(Request $request){
@@ -177,6 +214,18 @@ class InsumoController extends Controller
       }
       Flash::success("El insumo se ha registrado satisfactoriamente")->important();
       return redirect()->route('insumo.index');
+  }
+
+  public function import(Request $request){
+    Excel::load('public/plantilla.xlsx', function($reader) {
+      foreach ($reader->get() as $row) {
+        $insumo = new Insumo;
+        $insumo->cantidadUnidad = $row->und;
+        $insumo->nombre = $row->nombre;
+
+        $insumo->save();
+      }
+    })->get();
   }
 
   public function show($id){

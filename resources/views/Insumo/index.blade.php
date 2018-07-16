@@ -377,8 +377,8 @@
 </div>
 
 <script>
-  var routeModificar = "http://localhost/SmartBar/public/insumo/modificar";
-  var routeEliminar = "http://localhost/SmartBar/public/insumo/eliminar";
+  var routeModificar = "http://localhost/Smartbar/public/insumo/modificar";
+  var routeEliminar = "http://localhost/Smartbar/public/insumo/eliminar";
 
 
   $(document).ready(function(){
@@ -461,18 +461,18 @@
     }
   };
 
-  function modificar(idInsumo){
-    var nombre = $("#nombre"+idInsumo).val();
-    var marca = $("#marca"+idInsumo).val();
-    var proveedor = $("#proveedores"+idInsumo).val();
-    var nombreProveedor = $("#proveedores"+idInsumo+ " option:selected").text();
-    var unidades = $("#unidades"+idInsumo).val();
-    var compra = $("#compra"+idInsumo).val();
-    var venta = $("#venta"+idInsumo).val();
-    var cantMedida = $("#cantMedida"+idInsumo).val();
-    var medida = $("#medida"+idInsumo).val();
-    var check = document.getElementById("stipo"+idInsumo);
-    var categoria = $("#categoria"+idInsumo).val();
+  function modificar(id){
+    var nombre = $("#nombre"+id).val();
+    var marca = $("#marca"+id).val();
+    var proveedor = $("#proveedores"+id).val();
+    var nombreProveedor = $("#proveedores"+id+ " option:selected").text();
+    var unidades = $("#unidades"+id).val();
+    var compra = $("#compra"+id).val();
+    var venta = $("#venta"+id).val();
+    var cantMedida = $("#cantMedida"+id).val();
+    var medida = $("#medida"+id).val();
+    var check = document.getElementById("stipo"+id);
+    var categoria = $("#categoria"+id).val();
     var tipo = '0';
 
     if(check.checked){
@@ -506,7 +506,7 @@
       url: routeModificar,
       type: 'GET',
       data: {
-        id: idInsumo,
+        id: id,
         nombre: nombre,
         marca: marca,
         proveedor: proveedor,
@@ -518,8 +518,10 @@
         tipo: tipo,
         categoria: categoria
       },
-      success: function(){
-        $("#"+idInsumo).children("td").each(function (indextd){
+      success: function(data){
+      	var dato = JSON.parse(data);
+      	alert(dato);
+        $("#"+id).children("td").each(function (indextd){
           if(indextd == 1){
             $(this).text(nombre);
           }else if(indextd == 2){
@@ -549,20 +551,23 @@
     });
   }
 
-  function eliminar(idInsumo){
-    if(confirm('¿Desea eliminar este insumo?')){
+  function eliminar(id){
+    if(confirm('Es posible que el producto esté siendo utilizado como un ingrediente.\n¿Desea eliminarlo de los productos que lo utilizan?')){
       $.ajax({
         url: routeEliminar,
         type: 'GET',
         data: {
-          id: idInsumo
+          id: id
         },
-        success: function(){
-            $("#"+idInsumo).remove();
+        success: function(data){
+        	var dato = JSON.parse(data);
+        	alert(dato);
+            $("#"+id).remove();
             alert("Insumo eliminado exitosamente.");
+            location.reload();
         },
         error: function(data){
-          alert('No se puede eliminar el insumo porque es ingrediente de algún producto.');
+        	alert('Ooops disculpanos, hemos tenido un error al eliminar tu insumo');
         }
       });
     }

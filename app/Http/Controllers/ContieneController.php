@@ -10,6 +10,8 @@ use PocketByR\Producto;
 use PocketByR\Contiene;
 use PocketByR\Categoria;
 use Laracasts\Flash\Flash;
+use PocketByR\Notificaciones;
+use Carbon\Carbon;
 use Auth;
 
 class ContieneController extends Controller
@@ -27,6 +29,20 @@ public function __construct()
         }
     }  
   public function index(Request $request){
+
+    $notificaciones = Notificaciones::Usuario(Auth::id())->get();
+    $nuevas = 0;
+    $fechaActual = Carbon::now()->subHour(5);
+    $fecha2array = array();
+    for ($i=0; $i < sizeof($notificaciones); $i++) { 
+      if($notificaciones[$i]->estado == "nueva"){
+        $nuevas = $nuevas + 1;
+      }
+      $fechaNotificacion = Carbon::parse($notificaciones[$i]->fecha);
+      $diferencia = $fechaActual->diffInDays($fechaNotificacion,true);
+      array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
+    }
+
     $userActual = Auth::user();
     session_start();
     $id = $_SESSION['id'];
@@ -48,7 +64,9 @@ public function __construct()
                                    with('producto',$producto)->
                                    with('insumosDisponibles',$insumosDisponibles)->
                                    with('categorias', $categorias)->
-                                   with('medidas', $medidas);
+                                   with('medidas', $medidas)->
+                                   with('nuevas', $nuevas)->
+                                   with('notificaciones',$notificaciones);
     }else{
       $producto = new Producto;
       $producto->id = 0;
@@ -62,7 +80,9 @@ public function __construct()
                                    with('producto',$producto)->
                                    with('insumosDisponibles',$insumosDisponibles)->
                                    with('categorias', $categorias)->
-                                   with('medidas', $medidas);
+                                   with('medidas', $medidas)->
+                                   with('nuevas', $nuevas)->
+                                   with('notificaciones',$notificaciones);
     }
   }
 
