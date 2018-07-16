@@ -34,6 +34,7 @@ return array(
     'AlterTableCategoriaImagen' => $baseDir . '/database/migrations/2018_01_29_110959_AlterTableCategoriaImagen.php',
     'AlterTableVenta' => $baseDir . '/database/migrations/2017_07_26_214105_alterTableVenta.php',
     'AltertableAgendaTrabajadores' => $baseDir . '/database/migrations/2018_02_15_230904_altertable_agendaTrabajadores.php',
+    'AltertableContadorFactura' => $baseDir . '/database/migrations/2018_07_16_164214_altertable_contadorFactura.php',
     'AltertableEmpresaImpuestos' => $baseDir . '/database/migrations/2018_07_06_160148_altertable_empresa_impuestos.php',
     'AltertableFechaNotificacion' => $baseDir . '/database/migrations/2018_07_13_191244_altertable_fechaNotificacion.php',
     'Altertableadminimagenes' => $baseDir . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',

@@ -54,7 +54,7 @@ class CajeroController extends Controller
 
       $notificaciones = Notificaciones::Usuario(Auth::id())->get();
       $nuevas = 0;
-      $fechaActual = Carbon::now()->subHour(5);
+      $fechaActual = Carbon::now();
       $fecha2array = array();
       for ($i=0; $i < sizeof($notificaciones); $i++) { 
         if($notificaciones[$i]->estado == "nueva"){
@@ -64,6 +64,8 @@ class CajeroController extends Controller
         $diferencia = $fechaActual->diffInDays($fechaNotificacion,true);
         array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
       }
+      $fecha = Carbon::now();
+      $fecha = Carbon::parse($fecha)->format('d/m/Y H:i');
 
     	return view('Cajero.inicio')
             ->with('totalVentas',$totalVentas)
@@ -73,7 +75,8 @@ class CajeroController extends Controller
             ->with('empresa', $empresa)
             ->with('notificaciones',$notificaciones)
             ->with('nuevas',$nuevas)
-            ->with('fecha2array',$fecha2array);
+            ->with('fecha2array',$fecha2array)
+            ->with('fecha',$fecha);
     }
   
     public function historial(Request $request){

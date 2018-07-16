@@ -87,16 +87,9 @@
                         </select>
                         <a class="recarga"  title="recargar" href=""><span class="fa fa-fw fa-repeat" title="recargar"></span></a>
                         <br>
-                    <span class="spanR" id="fecha"> 
-                    <?php   
-                      if(sizeof($facturas)!=0){
-                        $date = new DateTime($facturas[0]->fecha);
-                        echo $date->format('M d, Y');
-                        echo " - ". $date->format('g:i A'); 
-                      }else{
-                        echo "<br>";
-                      }
-                      ?></span>
+                    <span class="spanR" id="fecha" style="color: #111"> 
+                      {{$fecha}}
+                    </span>
                     <span class="label label-danger">Pendiente</span>
                         </p>
                    <div id="contenedorMesas">
@@ -158,17 +151,9 @@
             <span class="input-group-addon"><i class="fa fa-envelope-open-o"></i></span>
             <input id="mail" class="form-control" placeholder="Email" type="text" name="mail">
           </div>
-        </div> 
-    
-        <div class="invoice-address col-md-12" style="aling-items: center;justify-content: center;">
-          <div class="input-group" >
-            <label class="checkbox"><input id="check" type="checkbox" name="enviarCorreo" onchange="activarRequired();"><span>Enviar a correo en Pdf</span></label>
-          </div>
-        </div>     
-    
-        </div>
+        </div>      
+      </div>
     </div>
-
 <!-- fin de inicio de barra para cliente -->
 
         <div class="row">
@@ -629,13 +614,13 @@ function actualizarTotal() {
     total= total+parseInt(propina.value);
   }
   /* VALIDACIÓN ERROR POR LLAMADA A ID NO EXISTENTE */
-  //if(JSONfacturas > 0){
+  if(JSONproductos.length > 0){
     var totalInput = document.getElementById("valorInput");
     totalInput.value = parseInt(totalInput.dataset.valorantiguo) + total;
     document.getElementById("total").dataset.total = (total);
     $("#total").html("$" + Intl.NumberFormat().format(total));
     validarEfectivo();
-  //}
+  }
 }
 </script>       
 

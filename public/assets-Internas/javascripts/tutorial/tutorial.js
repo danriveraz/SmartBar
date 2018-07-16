@@ -72,7 +72,7 @@ function cambio(slide, direccion){
 
 function finTutorial(){
   $.ajax({
-    url: "http://localhost/Smartbar/public/usuario/tutorial",
+    url: "http://localhost/SmartBar/public/usuario/tutorial",
     type: 'GET',
     data: {},
     success: function(){},
