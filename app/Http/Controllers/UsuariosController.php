@@ -348,6 +348,7 @@ class UsuariosController extends Controller
             $diferencia = $fechaActual->diffInDays($fechaNotificacion,true);
             array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
           }
+
           return view('Usuario.edit')
                 ->with('usuario',$usuario)
                 ->with('empresa',$Empresa)

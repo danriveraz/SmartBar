@@ -12,7 +12,12 @@ use PocketByR\Categoria;
 use PocketByR\Factura;
 use PocketByR\Contiene;
 use PocketByR\Venta;
-
+/*Daniel*/
+use PocketByR\Empresa;
+use PocketByR\Notificaciones;
+use Carbon\Carbon;
+use PocketByR\User;
+/*Fin Daniel*/
 use Laracasts\Flash\Flash;
 
 class MeseroController extends Controller
@@ -44,6 +49,9 @@ class MeseroController extends Controller
     }
 
     public function factura(Request $request){
+        /*Daniel*/
+        $empresa = Empresa::find(Auth::user()->empresaActual);
+        /*Fin Daniel */
         $idMesa = $request->idM;
         $busqueda = Factura::buscarFacturaId($idMesa)->get()->last();
 
@@ -63,6 +71,9 @@ class MeseroController extends Controller
         $nfactura->idEmpresa = Auth::user()->empresaActual;
         $nfactura->idUsuario = Auth::user()->id;
         $nfactura->idMesa = $idMesa;
+        /*Daniel*/
+        $nfactura->idBar = $empresa->contadorFactura;
+        /*Fin Daniel*/
         $nfactura->save();
         $factura = Factura::buscarFacturaId($idMesa)->get()->last();
         $respuesta[] = array(
@@ -186,11 +197,11 @@ class MeseroController extends Controller
     }
 
     public function venta(Request $request){
-
       $productos = $request->productosTabla;
       $cantidades = $request->cantidadesTabla;
       $totales = $request->totalesTabla;
       $idFactura = $request->factura;
+      $empresa = Empresa::find(Auth::user()->empresaActual);
       $idMesa = $request->mesa;
       $ventas = Venta::pedidoActualMesa($idFactura)->get();
 
@@ -215,7 +226,9 @@ class MeseroController extends Controller
             if($auxiliar == false){
               $nuevaVenta = new Venta;
               $nuevaVenta->cantidad = $cantidades[$i];
-              $nuevaVenta->hora = date("Y-m-d H:i:s", time());
+              /*Daniel -> cambio de "date("Y-m-d H:i:s", time());" por Carbon::now()*/
+              $nuevaVenta->hora = Carbon::now();
+              /*Fin Daniel*/
               $nuevaVenta->estadoMesero = 'Vigente';
               $nuevaVenta->estadoBartender = 'Por atender';
               $nuevaVenta->estadoCajero = '0';
@@ -234,7 +247,9 @@ class MeseroController extends Controller
           for($i=0; $i<$size; $i++){
             $venta = new Venta;
             $venta->cantidad = $cantidades[$i];
-            $venta->hora = date("Y-m-d H:i:s", time());
+            /*Daniel -> cambio de "date("Y-m-d H:i:s", time());" por Carbon::now()*/
+            $venta->hora = Carbon::now();
+            /*Fin Daniel*/
             $venta->estadoMesero = 'Vigente';
             $venta->estadoBartender = 'Por atender';
             $venta->estadoCajero = '0';
@@ -250,6 +265,31 @@ class MeseroController extends Controller
           $mesa = Mesa::find($idMesa);
           $mesa->estado = 'Ocupada';
           $mesa->save();
+
+          /*Daniel*/
+          $empresa->contadorFactura = $empresa->contadorFactura + 1;
+          $diferencia = $empresa->nFin - $empresa->contadorFactura;
+          $usuarios = User::SearchUsers(Auth::user()->empresaActual)->get();
+
+          for ($i=0; $i < sizeof($usuarios); $i++) { 
+            if($diferencia == 100 || $diferencia == 50){
+              $notificacion = new Notificaciones();
+              $notificacion->estado = "nueva";
+              $notificacion->descripcion = "¡Facturación próxima a agotarse!";
+              $notificacion->ruta = "Perfil";
+              $notificacion->fecha = Carbon::now();
+              $idEmpresa = $empresa->id;
+              $idUsuario = $usuarios[$i]->id;
+              $notificacion->save();
+            }
+          }
+          
+          if($empresa->tipoRegimen == "comun"){
+            if($empresa->nresolucionFacturacion != "" || $empresa->fechaResolucion != "0000-00-00" || $empresa->imagenResolucionFacturacion != "" || $empresa->nInicio != 0 || $empresa->nFinal == 0){
+              $empresa->save();
+            }
+          }
+          /*Fin Daniel*/
 
           flash::success('El pedido se ha creado satisfactoriamente')->important();
         }

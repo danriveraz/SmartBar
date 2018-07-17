@@ -10,6 +10,7 @@ use PocketByR\Producto;
 use PocketByR\Notificaciones;
 use PocketByR\Contiene;
 use PocketByR\Categoria;
+use PocketByR\User;
 use PocketByR\Factura;
 use DB;
 use Carbon\Carbon;
@@ -41,7 +42,7 @@ class welcomeAdmin extends Controller
         $nuevas = 0;
         $fechaActual = Carbon::now()->subHour(5);
         $fecha2array = array();
-        for ($i=0; $i < sizeof($notificaciones); $i++) { 
+        for ($i=0; $i < sizeof($notificaciones); $i++) {
           if($notificaciones[$i]->estado == "nueva"){
             $nuevas = $nuevas + 1;
           }
