@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use PocketByR\User;
+use PocketByR\Empresa;
 use PocketByR\Notificaciones;
 use Auth;
 use Carbon\Carbon;
