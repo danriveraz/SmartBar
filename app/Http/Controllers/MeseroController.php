@@ -271,8 +271,8 @@ class MeseroController extends Controller
           $diferencia = $empresa->nFin - $empresa->contadorFactura;
           $usuarios = User::SearchUsers(Auth::user()->empresaActual)->get();
 
-          for ($i=0; $i < sizeof($usuarios); $i++) { 
-            if($diferencia == 100 || $diferencia == 50){
+          if($diferencia == 100 || $diferencia == 50){
+            for ($i=0; $i < sizeof($usuarios); $i++) { 
               $notificacion = new Notificaciones();
               $notificacion->estado = "nueva";
               $notificacion->descripcion = "¡Facturación próxima a agotarse!";
