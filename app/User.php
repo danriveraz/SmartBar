@@ -48,9 +48,6 @@ class User extends Authenticatable
       return $this->hasmany('PocketByR\Mensaje','id_receptor', 'id');
     }
 
-
-
-
     public function inicioSesion(){// función para crear un registro en la tabla de registroEntadaSalida, para administrar las entradas y salidas del usuario
         $Inicio = new RegistroLogin;
         $Inicio->idUsuario =  $this->id;
@@ -69,5 +66,10 @@ class User extends Authenticatable
 
     public function scopeSearchUsers($query, $empresa){
       return $query->where('empresaActual','LIKE',"%$empresa%");
+    }
+	
+    public function scopeUsuariosEmpresa($query, $idEmpresa){
+      return $query->where('idEmpresa',$idEmpresa)
+                    ->where('esAdmin',0);
     }
 }

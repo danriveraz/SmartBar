@@ -136,7 +136,7 @@
                               <button type="submit" class="btn btn-pocket btn-block"><i class="fa fa-send"></i>Enviar</button>
                             </div>
                           <!-- Fin div para mensajes chat-->
-                          <a href="{{ url('Agenda/') }}" title="Agenda"><i style="float: center;" class="fa fa-calendar-check-o pull-right"></i></a>
+                          <a href="{{ url('agenda') }}" title="agenda"><i style="float: center;" class="fa fa-calendar-check-o pull-right"></i></a>
                           <a data-toggle="modal" data-target="#ModalEstadisticas{{$usuario->id}}" title="Estadísticas"><i style="float: center;" class="fa fa-bar-chart pull-right"></i></a>
                       </div>
                   </div>
@@ -807,7 +807,7 @@ $("#registrarUsuario").click(function(){
           '        <div class="headingPocket">'+
           '          <div data-toggle="modal" href="#ModalMsg'+usuarioNuevo.id+'">'+
           '            <a class="PocketA"><i class="fa fa-comments pull-right"></i></a></div>'+
-          '            <a class="PocketA" href="{{ url("Agenda/") }}"><i class="fa fa-calendar-check-o pull-right"></i></a>'+
+          '            <a class="PocketA" href="{{ url("agenda") }}"><i class="fa fa-calendar-check-o pull-right"></i></a>'+
           '            <a class="PocketA" href="{{url("Estadisticas/")}}"><i class="fa fa-bar-chart pull-right"></i></a>'+
           '        </div>'+
           '      </div>  '+
