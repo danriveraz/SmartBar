@@ -212,7 +212,7 @@ class Factura extends Model
       return $query;
     }
 
-    public function scopelistarFacturaDia($query, $idEmpresa){
+    public function scopelistarFacturaDia($query, $idEmpresa){//En caso de ser un bar
       $AnhoMes=date("Y-m");
       $dia = date("d");
       $hora = date("G");
@@ -242,5 +242,16 @@ class Factura extends Model
         $query->where('factura.idEmpresa', $idEmpresa)
         ->where('factura.estado','Finalizada');
         return $query;
+    }
+
+    public function scopeFacturasHoyRestaurantes($query, $idEmpresa){
+      $AnhoMes=date("Y-m");
+      $dia = date("d");
+      $hora = date("G");
+
+      $query->where('factura.idEmpresa', $idEmpresa)
+        ->whereBetween('fecha', [ "$AnhoMes-$dia 00:01:00.000000", "$AnhoMes-$dia 23:59:59.000000"])
+        ->select("id");
+      return $query;
     }
 }

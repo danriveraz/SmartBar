@@ -8,9 +8,15 @@ class Mesa extends Model
 {
    protected $table = 'mesa';
 
-   public function scopeActualizarEstado($query, $id){
+    public function scopeActualizarEstado($query, $id){
         $query->where('mesa.id', "$id")
           ->update(['mesa.estado' => "Desocupada"]);
+    }
+
+    public function scopeMesasReservadas($query, $idEmpresa){
+      return $query->where([
+                  ['estado','LIKE',"Reservada"],
+                  ['idEmpresa', $idEmpresa]]);
     }
 
     public function scopeMesasAdmin($query, $idEmpresa){

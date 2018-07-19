@@ -66,7 +66,8 @@ public function __construct()
                                    with('categorias', $categorias)->
                                    with('medidas', $medidas)->
                                    with('nuevas', $nuevas)->
-                                   with('notificaciones',$notificaciones);
+                                   with('notificaciones',$notificaciones)->
+                                   with('fecha2array',$fecha2array);
     }else{
       $producto = new Producto;
       $producto->id = 0;

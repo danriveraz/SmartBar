@@ -36,6 +36,14 @@ class Venta extends Model
             ->select('nombre', 'cantidad', 'precio', 'venta.id');
       return $query;
   }
+
+  public function scopeListarElementosId($query, $id){
+      $query->where('idFactura', $id)
+            ->join('producto', 'venta.idProducto', '=', 'producto.id')
+            ->select('venta.idProducto', 'cantidad', 'precio', 'venta.id');
+      return $query;
+  }
+
   public function scopeListarPendientesValidacion1($query, $idFactura){
         return $query->where([
                   ['idFactura', $idFactura],

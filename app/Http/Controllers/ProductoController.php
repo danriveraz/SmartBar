@@ -58,7 +58,8 @@ class ProductoController extends Controller
             with('productos',$productos)->
             with('contenido', $contenido)->
             with('nuevas', $nuevas)->
-            with('notificaciones',$notificaciones);
+            with('notificaciones',$notificaciones)->
+            with('fecha2array',$fecha2array);
   }
 
   public function ingredientes(Request $request){

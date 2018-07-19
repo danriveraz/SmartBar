@@ -61,7 +61,8 @@ class InsumoController extends Controller
                                    with('categorias',$categorias)->
                                    with('proveedores',$proveedores)->
                                    with('nuevas', $nuevas)->
-                                   with('notificaciones',$notificaciones);
+                                   with('notificaciones',$notificaciones)->
+                                   with('fecha2array',$fecha2array);
   }
 
   public function modificar(Request $request){

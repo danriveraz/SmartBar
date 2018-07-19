@@ -9,9 +9,12 @@ use PocketByR\Http\Controllers\Controller;
 use PocketByR\Producto;
 use PocketByR\Notificaciones;
 use PocketByR\Contiene;
+use PocketByR\Insumo;
 use PocketByR\Categoria;
 use PocketByR\User;
 use PocketByR\Factura;
+use PocketByR\Venta;
+use PocketByR\Mesa;
 use DB;
 use Carbon\Carbon;
 
@@ -55,6 +58,42 @@ class welcomeAdmin extends Controller
         $userActual = Auth::user();
         if(Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual]])->first()!= null) {
             $categoriasMasVendidas = $this->categoriasMasVendidas();// llamado a la función queretorna un arreglo con dos valores
+
+            //ESTADISTICAS DEL DÍA 
+
+            //Utilidad 
+            $utilidadHoy = 0;
+            $facturasHoy = Factura::listarFacturaDia(Auth::user()->empresaActual)->get();
+            for ($i=0; $i < sizeof($facturasHoy); $i++) { 
+                $ventas = Venta::listarElementosId($facturasHoy[$i]->id)->get();
+                for ($j=0; $j < sizeof($ventas); $j++) { 
+                    $contiene = Contiene::idProducto($ventas[$j]->idProducto)->get();
+                    for ($k=0; $k < sizeof($contiene); $k++) { 
+                        $insumo = Insumo::find($contiene[$k]->idInsumo);
+                        $utilidad = 0;
+                        if($insumo->esProducto){
+                            $utilidad = $insumo->valorCompra - $insumo->precioUnidad;
+                            $utilidadHoy = $utilidadHoy + $utilidad;
+                        }else{//validación si es bar o restaurante falta
+                            $producto = Producto::find($contiene[$k]->idProducto);
+                            $costoXonza = ($contiene[$k]->cantidad)/$insumo->valorCompra;
+                            $ventaXonza = ($contiene[$k]->cantidad)/$insumo->precioUnidad;
+                            $utilidad = $producto->precio - ($contiene[$k]->cantidad)/$insumo->valorCompra;
+                            $utilidadHoy = $utilidadHoy + $utilidad;
+                        }
+                    }
+                }
+            }   
+
+            //Ventas por vendedor
+
+            //Mesas reservadas si hay
+            $mesasReservadas = Mesa::mesasReservadas(Auth::user()->empresaActual)->get();
+            dd($mesasReservadas);
+
+            //FIN ESTADISTICAS DEL DÍA
+
+
 
             $ventaTotal = Factura::totalEnTodasLasVentas(Auth::user()->empresaActual)->first();// la venta en todos los tiempo, para poder sacar el porcentaje de ventas
             $meserosMasVendedores =  Factura::ventasMesero(Auth::user()->empresaActual,$ventaTotal->totalVentas)->get();//Top 10meseros
