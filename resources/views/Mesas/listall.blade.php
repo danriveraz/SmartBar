@@ -2,12 +2,12 @@
   <div class="col-sm-12">
     <div class="widget-container fluid-height clearfix">
       <div class="widget-content padded clearfix">
-        <table class="table table-bordered table-striped" id="tablaMesas">
+        <table style="width:100%;" class="table table-bordered table-striped" id="tablaMesas">
           <thead>
-            <th width="1%" hidden="true"> </th>
-            <th width="45%">Nombre</th>
-            <th width="45%">Estado</th>
-            <th width="9%" id="opcionesMesas">Opciones</th>
+            <th  hidden="true"> </th>
+            <th >Nombre</th>
+            <th >Estado</th>
+            <th id="opcionesMesas">Opciones</th>
           </thead>
           <tbody>
           	@foreach($mesas as $mesa)
@@ -25,11 +25,11 @@
                 </td>
             	</tr>
               <div class="modal fade" id="editModalMesas{{$mesa->id}}">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-md" style="width: 50%;">
                   <div class="modal-content">
                     <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
                       <button aria-hidden="true" class="close" data-dismiss="modal" type="button"  style="color:white">&times;</button>
-                      <h4 class="modal-title">
+                      <h4 class="modal-title" style="font-weight: 400;font-size: 16px;">
                         Editar mesa
                       </h4>
                     </div>
@@ -38,34 +38,68 @@
                         <div class="widget-content padded">
                           {!! Form::open() !!}
                             <fieldset>
-                              <div class="row"> 
-                                <div class="widget-content">
-                                  <div class="form-group">
+                            <div class="widget-content">
+                              <div class="row">
+                                <div class="col-sm-12">
+                                 <div class="col-sm-6">
+                                 <!-- inicio de slider categoria-->
+                                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                 <!-- Carousel indicators -->
+                          		<!-- Wrapper for carousel items -->
+                                  <div class="carousel-inner">
+                                  <div class="item active">
+                                  <img src="{{asset ('assets-Internas/images/SliderProfileCategoria/image-iso3.png')}}" alt="First Slide">
+                                  </div>
+                                  </div>
+                                  <!-- Carousel controls -->
+                                  </div>
+                                  <!-- fin de slider categoria-->
+                                  </div>
+                                 <div class="col-sm-6 login-form">
+                                   <p class="lead" style="margin-bottom: 10px;">Edita la <span class="text-success">Mesas</span></p>
+                                    <ul class="list-unstyled" style="line-height: 1.5">
+                                    <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Nombra la mesa a tu manera</li>
+                                    <br>
+                                    <div class="widget-content">
                                     <div class="form-group">
-                                      <input type="text" id="nombreMesa{{$mesa->id}}" placeholder="Nombre" class="form-control" value="{{$mesa->nombreMesa}}" required="true" />
+                                    <div class="input-container">
+                                    <i class="glyphicon glyphicon-glass"></i>
+                                     <input class="input" type="text" id="nombreMesa{{$mesa->id}}" placeholder="Nombre" value="{{$mesa->nombreMesa}}" required="true" />
                                     </div>
-                                    <div class="form-group">
-                                      <select id="estadoMesa{{$mesa->id}}"  class="form-control">
-                                        <option value="Disponible" <?php if($mesa->estado == "Disponible") echo "selected=''" ?> >Disponible</option>
-                                        <option value="Ocupada"  <?php if($mesa->estado == "Ocupada") echo "selected=''" ?> >Ocupada</option>
-                                        <option value="Reservada" <?php if($mesa->estado == "Reservada") echo "selected=''" ?> >Reservada</option>
-                                      </select>
+                                    <div class="input-container">
+                                    <i class="glyphicon glyphicon-glass"></i>
+                                    <select id="estadoMesa{{$mesa->id}}" style="width: 200px;"  class="select">
+                                      <option value="Disponible" <?php if($mesa->estado == "Disponible") echo "selected=''" ?> >Disponible</option>
+                                      <option value="Ocupada"  <?php if($mesa->estado == "Ocupada") echo "selected=''" ?> >Ocupada</option>
+                                      <option value="Reservada" <?php if($mesa->estado == "Reservada") echo "selected=''" ?> >Reservada</option>
+                                    </select>
+
                                     </div>
-                                  </div>  
-                                </div>  
+
+                                    </div>
+                                    </div>
+                                <div class="modal-footer">
+                                  <button class="btn btn-primary" data-dismiss="modal"  style="BACKGROUND-COLOR: rgb(79,0,85); color:white" onclick="modificarMesa({{$mesa->id}})">Guardar</button>
+                                </div>
+                                </div>
+                                </div>
+
+
+                                </div>
                               </div>
                             </fieldset>
-                          {!! Form::close() !!} 
+                          {!! Form::close() !!}
                         </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button class="btn btn-primary" data-dismiss="modal"  style="BACKGROUND-COLOR: rgb(79,0,85); color:white" onclick="modificarMesa({{$mesa->id}})">Guardar</button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            @endforeach   
+<!-- asdfasfas-->
+
+
+
+            @endforeach
           </tbody>
         </table>
       </div>
@@ -74,7 +108,7 @@
 </div>
 
 <script type="text/javascript">
-  
+
   var routeModificarMesas = "http://localhost/SmartBar/public/mesas/modificar";
   var routeEliminarMesas = "http://localhost/SmartBar/public/mesas/eliminar";
 
@@ -145,17 +179,16 @@
               }
           ]
       } );
-  
+
 </script>
 
 <style type="text/css">
 
   #dataTable2.thead.tr.th{
-    width: 800px;
+    width: 100%;
   }
-  
+
   .th.sorting_disabled{
-    width: 800px;
+    width: 100%;
   }
 </style>
-

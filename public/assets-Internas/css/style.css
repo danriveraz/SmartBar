@@ -2717,7 +2717,7 @@ input[type="text"] {
 .modal-content {
   border-radius: 0px;
   box-shadow: none;
-  background: rgba(255, 255, 255, 0.94);
+  /*background: rgba(255, 255, 255, 0.94);Perfil*/
   border: 0; }
 
 .modal-footer .btn {
