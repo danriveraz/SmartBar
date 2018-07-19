@@ -41,6 +41,7 @@ return array(
     'Altertableadminimagenes' => $baseDir . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',
     'Altertablecategoria' => $baseDir . '/database/migrations/2017_08_02_170443_altertablecategoria.php',
     'Altertablecontiene' => $baseDir . '/database/migrations/2017_07_14_161041_altertablecontiene.php',
+    'AltertableinsumoEsProducto' => $baseDir . '/database/migrations/2018_07_19_112559_altertableinsumo_esProducto.php',
     'Altertableinsumos' => $baseDir . '/database/migrations/2017_07_13_152912_altertableinsumos.php',
     'Altertablemesa' => $baseDir . '/database/migrations/2017_07_26_154954_altertablemesa.php',
     'Altertableproductos' => $baseDir . '/database/migrations/2017_07_05_100014_altertableproductos.php',
