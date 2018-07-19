@@ -36,6 +36,7 @@ return array(
     'AltertableAgendaTrabajadores' => $baseDir . '/database/migrations/2018_02_15_230904_altertable_agendaTrabajadores.php',
     'AltertableContadorFactura' => $baseDir . '/database/migrations/2018_07_16_164214_altertable_contadorFactura.php',
     'AltertableEmpresaImpuestos' => $baseDir . '/database/migrations/2018_07_06_160148_altertable_empresa_impuestos.php',
+    'AltertableFacturaFlujoPersonas' => $baseDir . '/database/migrations/2018_07_19_153830_altertable_factura_flujoPersonas.php',
     'AltertableFechaNotificacion' => $baseDir . '/database/migrations/2018_07_13_191244_altertable_fechaNotificacion.php',
     'AltertableTurnosEmpresa' => $baseDir . '/database/migrations/2018_07_18_144350_altertable_turnosEmpresa.php',
     'Altertableadminimagenes' => $baseDir . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',

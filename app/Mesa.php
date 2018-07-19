@@ -41,4 +41,8 @@ class Mesa extends Model
                   ['idEmpresa', $id]
               ]);
     }
+
+    public function scopeMasVende(){
+      return $query->where('idUsuario',"$usuario")->orderBy('fecha','DESC');
+    }
 }

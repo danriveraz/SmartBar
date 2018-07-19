@@ -372,6 +372,7 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'AltertableAgendaTrabajadores' => __DIR__ . '/../..' . '/database/migrations/2018_02_15_230904_altertable_agendaTrabajadores.php',
         'AltertableContadorFactura' => __DIR__ . '/../..' . '/database/migrations/2018_07_16_164214_altertable_contadorFactura.php',
         'AltertableEmpresaImpuestos' => __DIR__ . '/../..' . '/database/migrations/2018_07_06_160148_altertable_empresa_impuestos.php',
+        'AltertableFacturaFlujoPersonas' => __DIR__ . '/../..' . '/database/migrations/2018_07_19_153830_altertable_factura_flujoPersonas.php',
         'AltertableFechaNotificacion' => __DIR__ . '/../..' . '/database/migrations/2018_07_13_191244_altertable_fechaNotificacion.php',
         'AltertableTurnosEmpresa' => __DIR__ . '/../..' . '/database/migrations/2018_07_18_144350_altertable_turnosEmpresa.php',
         'Altertableadminimagenes' => __DIR__ . '/../..' . '/database/migrations/2017_05_19_144649_altertableadminimagenes.php',

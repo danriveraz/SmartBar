@@ -60,7 +60,6 @@ class welcomeAdmin extends Controller
             $categoriasMasVendidas = $this->categoriasMasVendidas();// llamado a la función queretorna un arreglo con dos valores
 
             //ESTADISTICAS DEL DÍA 
-
             //Utilidad 
             $utilidadHoy = 0;
             $facturasHoy = Factura::listarFacturaDia(Auth::user()->empresaActual)->get();
@@ -84,13 +83,48 @@ class welcomeAdmin extends Controller
                     }
                 }
             }   
-
             //Ventas por vendedor
 
             //Mesas reservadas si hay
             $mesasReservadas = Mesa::mesasReservadas(Auth::user()->empresaActual)->get();
-            dd($mesasReservadas);
 
+            //Personal trabajando hoy
+
+            //Flujo de personas
+            $flujoPersonas = 0;
+            for ($i=0; $i < sizeof($facturasHoy); $i++) { 
+                $facturAux = Factura::find($facturasHoy[$i]->id);
+                $flujoPersonas = $flujoPersonas + $facturAux->nPersonas;
+            }
+
+            //Mesa que más vende
+            $mesasMayores = array(); // Retorna la mesa que más vende
+            for ($i=0; $i < sizeof($facturasHoy); $i++) {
+                $facturAux = Factura::find($facturasHoy[$i]->id);
+                $boolean = 0;
+                for ($j=0; $j < sizeof($mesasMayores); $j++) { 
+                    if($mesasMayores[0] == $facturAux->idMesa){
+                        $mesasMayores[1] = $mesasMayores[1] + $facturAux->total;
+                        $boolean == 1;
+                    }
+                }
+                if($boolean == 0){
+                    array_push($mesasMayores, array($facturAux->idMesa, $facturAux->total)); 
+                }
+            }
+
+            function mesaSorting($a, $b){
+                $t1 = $a['1'];
+                $t2 = $b['1'];
+                if($t1 > $t2) return 1;
+                else return 0;
+            }
+            usort($mesasMayores, function($a, $b){
+                $t1 = $a['1'];
+                $t2 = $b['1'];
+                if($t1 < $t2) return 1;
+                else return 0;
+            });
             //FIN ESTADISTICAS DEL DÍA
 
 
