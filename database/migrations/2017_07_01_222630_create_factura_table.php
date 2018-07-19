@@ -18,7 +18,6 @@ class CreateFacturaTable extends Migration
             $table->integer('total');
             $table->dateTime('fecha');
             $table->integer('idAdmin')->unsigned();
-            $table->foreign('idAdmin')->references('id')->on('admin');
             $table->integer('idUsuario')->unsigned();
             $table->foreign('idUsuario')->references('id')->on('usuario');
             $table->integer('idMesa')->unsigned();
