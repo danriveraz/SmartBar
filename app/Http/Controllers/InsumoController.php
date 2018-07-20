@@ -80,8 +80,6 @@ class InsumoController extends Controller
     $insumo->cantidadMedida = $request->cantMedida;
     $insumo->cantidadRestante = $request->cantMedida*$request->unidades;
 
-
-
     if($insumo->tipo != $request->tipo){
       $insumo->tipo = $request->tipo;
       if($request->tipo == 1){
@@ -91,22 +89,22 @@ class InsumoController extends Controller
         $producto->idCategoria = $request->categoria;
         $producto->idEmpresa = $userActual->empresaActual;
         $producto->save();
-        /*
+        
         $contiene = new Contiene;
         $contiene->idProducto = $producto->id;
         $contiene->idInsumo = $insumo->id;
         $contiene->cantidad = $insumo->cantidadMedida;
         $contiene->idEmpresa = $userActual->empresaActual;
-        $contiene->save();*/
+        $contiene->save();
       }else{
-        /*$producto = Producto::Nombre($nombre)->where('idEmpresa',$userActual->empresaActual)->first();
+        $producto = Producto::Nombre($nombre)->where('idEmpresa',$userActual->empresaActual)->first();
         $contenido = Contiene::IdProducto($producto->id)->get();
         foreach($contenido as $contiene){
           $contiene->delete();
         }
-        $producto->delete();*/
+        $producto->delete();
       }
-    }/*
+    }
     else if($request->tipo == 1){
       $producto = Producto::Nombre($nombre)->where('idEmpresa',$userActual->empresaActual)->first();
       $producto->nombre = $request->nombre;
@@ -116,27 +114,23 @@ class InsumoController extends Controller
       $contiene->cantidad = $insumo->cantidadMedida;
       $contiene->save();
       $producto->save();
-    }*/
+    }
     $insumo->save();
-    return json_encode($insumo->id);
   }
 
   public function eliminar(Request $request){
     $contiene = Contiene::IdInsumo($request->id)->get();
-    $numeroIngredientes = count($contiene);
-    /*foreach ($contiene as $key => $value) {
+    foreach ($contiene as $key => $value) {
+      $producto = Producto::find($value->idProducto);
       $value->delete();
-    }*/
-    if($numeroIngredientes == 1){
-      return json_encode($numeroIngredientes == 1);
-      $producto = Producto::find($contiene[0]->idProducto)->first();
       $ingredientes = Contiene::idProducto($producto->id)->get();
-      if(count($ingredientes) == 1){
+      if(count($ingredientes) == 0){
         $producto->delete();
       }
     }
+
     $insumo = Insumo::find($request->id);
-    //$insumo->delete();
+    $insumo->delete();
   }
 
   public function store(Request $request){

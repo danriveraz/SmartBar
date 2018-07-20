@@ -56,7 +56,7 @@
 		                  </td>
 		                  <td>
 		                    <a class="table-actions pocketMorado" href=""><i class="fa fa-pencil" data-toggle="modal" href="#editModal{{$insumo->id}}" title="Editar Insumo"></i></a>
-		                    <a class="table-actions pocketMorado" href="#" onclick="eliminar({{$insumo->id}})"><i class="fa fa-trash-o" title="Eliminar Insumo"></i></a>
+		                    <a class="table-actions pocketMorado" href="" onclick="eliminar({{$insumo->id}})"><i class="fa fa-trash-o" title="Eliminar Insumo"></i></a>
 												<a class="table-actions pocketMorado" href="{{route('Tienda.index')}}"><i class="fa fa-500px" title="Tienda"></i></a>
 
 											</td>
@@ -377,8 +377,8 @@
 </div>
 
 <script>
-  var routeModificar = "http://localhost/Smartbar/public/insumo/modificar";
-  var routeEliminar = "http://localhost/Smartbar/public/insumo/eliminar";
+  var routeModificar = "http://localhost/SmartBar/public/insumo/modificar";
+  var routeEliminar = "http://localhost/SmartBar/public/insumo/eliminar";
 
 
   $(document).ready(function(){
@@ -518,9 +518,7 @@
         tipo: tipo,
         categoria: categoria
       },
-      success: function(data){
-      	var dato = JSON.parse(data);
-      	alert(dato);
+      success: function(){
         $("#"+id).children("td").each(function (indextd){
           if(indextd == 1){
             $(this).text(nombre);
@@ -552,16 +550,15 @@
   }
 
   function eliminar(id){
-    if(confirm('Es posible que el producto esté siendo utilizado como un ingrediente.\n¿Desea eliminarlo de los productos que lo utilizan?')){
+  	var confirmar = confirm("Es posible que el producto esté siendo utilizado como un ingrediente.\n¿Desea eliminarlo de los productos que lo utilizan?");
+    if(confirmar){
       $.ajax({
         url: routeEliminar,
         type: 'GET',
         data: {
           id: id
         },
-        success: function(data){
-        	var dato = JSON.parse(data);
-        	alert(dato);
+        success: function(){
             $("#"+id).remove();
             alert("Insumo eliminado exitosamente.");
             location.reload();
@@ -572,6 +569,7 @@
       });
     }
   }
+
   $(".seleccionar").click(function(){
     var idElegido = $(this).attr("id");
     var palabra = "#editModal";
