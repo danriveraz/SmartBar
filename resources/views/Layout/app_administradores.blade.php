@@ -296,10 +296,10 @@
                      {{csrf_field()}}
                       <a class="content" type="submit"  onclick="document.getElementById('formNotificaciones{{$notificacion->id}}').submit();">
                         <div class="notification-item">
-                      		<div class="iconNot">
+                      		<div class="iconNot NotProfile">
                             <i class="glyphicon glyphicon-bell"></i>
                           </div>
-                          <h4 class="item-title">Notificacion de {{$notificacion->ruta}} 
+                          <h4 class="item-title">Notificacion de {{$notificacion->ruta}}
                             @foreach($fecha2array as $fecha)
                               @if($fecha[0] == $notificacion->id)
                                 @if($fecha[1] == 0)

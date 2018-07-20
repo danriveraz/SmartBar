@@ -1,0 +1,57 @@
+
+.media-body,.media-left{display:table-cell;vertical-align:top}
+
+/*===============================sidebar with icons=============================*/
+.pmd-content { margin-left:274px;}
+
+.pmd-content { margin-left: 64px;}
+
+
+/*====================section custom css================*/
+.section-custom{ max-width:800px;}
+
+/*========================= Notification  Start=========================*/
+.btn-group .list-group .list-group-item-text{font-size:13px;line-height:20px;display:inline-block;font-weight:400;color:#666;font-family:Roboto}
+.btn-group .list-group .list-group-item-date,.page-content .list-group .list-group-item-date{display:block;color:#6c6c6c;font-size:13px}
+.btn-group .list-group .list-group-item a{font-weight:500;color:#333;font-family:Roboto}
+.btn-group .list-group li:last-child { border:0;}
+.NotPrin .media-body{overflow:visible}
+.page-content > h2{color:#a4a4a4}
+.page-content .list-group-item-text{font-family:roboto;font-weight:300; opacity:1; font-size:16px}
+.page-content .list-group-item-text a{font-weight:500; color:#333;}
+.NotPrin .card .list-group-item{border-bottom:1px solid #e8e8e8;border-radius:0;margin:0;position:relative;padding:15px}
+.page-content .list-group-item.last{border:none;padding-bottom:0}
+.list-group-item.saved-article:hover,.list-group-item.saved-article.unread, .list-group-item.unread{background:#F7F7F7}
+.list-group-item.saved-article.unread, .list-group-item.unread{ background:#fff;}
+.list-group-item-text {opacity: 0.74;}
+.NotPrin .list-group-item.new-day:first-child{margin-top:46px}
+.NotPrin .list-group-item.new-day::before{content:attr(data-date);display:block;font-size:14px;font-weight:normal;left:0;position:absolute;color:#868686;top:-30px;}
+.NotPrin .list-group-item.new-day{border-top:1px solid rgba(0,0,0,0.08);margin-top:62px}
+.mobile-only { display:none !important;}
+
+.page-content .list-group .list-group-item{
+border: 1px solid #dddddd !important;
+margin-bottom: -1px !important;
+padding: 10px 15px !important;}
+
+.page-content .list-group{box-shadow: none;}
+
+
+.media-left .iconNot {
+    position: static;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+	margin-right: 10px;
+}	
+	
+.media-left .iconNot i {
+    align-content: center;
+    margin: auto;
+    text-align: center;
+left: 25%;
+top: 20%;
+	color: white;}
+	
+	.media-body .list-group-item-heading small{color: #777;}
+	.media-body .list-group-item-heading span{color: black;font-weight: bold;}	
