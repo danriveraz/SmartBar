@@ -69,11 +69,11 @@
 		              <div class="factspace text-right" >
 		                <strong class=" text1 text-danger" style="color: #2d0031;">
 		                	@if($empresa->tipoRegimen == "comun")
-		                		Factura No. #
+		                		Factura No.
 		                    	{{$empresa->contadorFactura}}
 		                    @else
 		                    	Documento equivalente 
-		                    	a la factura No # {{$empresa->contadorFactura}}
+		                    	a la factura No. {{$empresa->contadorFactura}}
 		                    @endif
 		                </strong>
 		                <p>

@@ -53,7 +53,7 @@
               <div class="factspace text-right" >
                 <strong class=" text1 text-danger" style="color: #2d0031;" id="mesaActual">
                   @if($empresa->tipoRegimen == "comun")
-                  Factura No. #
+                  Factura No.
                     @if(sizeof($facturas) == 0)
                       0
                     @else
@@ -61,7 +61,7 @@
                     @endif
                   @else
                     Documento equivalente 
-                    a la factura No # 
+                    a la factura No.
                     @if(sizeof($facturas) == 0)
                     0
                     @else

@@ -519,12 +519,16 @@ class UsuariosController extends Controller
       $empresa->nombreEstablecimiento = $request->nombreEstablecimiento;
       $empresa->direccion = $request->direccionEstablecimiento;
       $empresa->telefono = $request->telefonoEstablecimiento;
-      $empresa->tipoRegimen = $request->tipoRegimen;
       $empresa->nresolucionFacturacion = null;
       $empresa->fechaResolucion = null;
       $empresa->nInicio = 0;
       $empresa->nFinal = 0;
       $empresa->nit = $request->nit;
+
+      if($empresa->tipoRegimen != $request->tipoRegimen){
+        $empresa->tipoRegimen = $request->tipoRegimen;
+        $empresa->contadorFactura = 1;
+      }
 
       if($empresa->tipoRegimen == "Tipo regimen"){
         $empresa->save();
@@ -535,7 +539,10 @@ class UsuariosController extends Controller
         return redirect()->route('Auth.usuario.editUsuario',$tab);
       }else if($empresa->tipoRegimen == "comun" ){
         $empresa->nresolucionFacturacion = $request->resolucion;
-        $empresa->nInicio = $request->nInicio;
+        if($empresa->nInicio != $request->nInicio){
+          $empresa->nInicio = $request->nInicio;
+          $empresa->contadorFactura = $empresa->nInicio;
+        }
         $empresa->nFinal = $request->nFinal;
         $empresa->fechaResolucion = $request->fechaResolucion;
         $file2 = $request->file('imgRes');

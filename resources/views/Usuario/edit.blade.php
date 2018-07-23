@@ -315,14 +315,21 @@
                       </div>
                       <div class="input-container">
                         <div class="input-group">
-                          <div class="col-md-6">
+                          <div class="col-md-4">
+                            @if($empresa->nInicio != 0)
+                            <input name="prefijo" id="prefijo" type="text" class="input" placeholder="Prefijo" value="" required="true">
+                            @else
+                            <input name="prefijo" id="prefijo" type="text" class="input" placeholder="Prefijo" required="true">
+                            @endif
+                          </div>
+                          <div class="col-md-4">
                             @if($empresa->nInicio != 0)
                             <input name="nInicio" id="nInicio" type="text" class="input" placeholder="Del No." value="{{$empresa->nInicio}}" required="true">
                             @else
                             <input name="nInicio" id="nInicio" type="text" class="input" placeholder="Del No." required="true">
                             @endif
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-4">
                             @if($empresa->nFinal != 0)
                             <input name="nFinal" id="nFinal" type="text" class="input" placeholder="Hasta" value="{{$empresa->nFinal}}" required="true">
                             @else
@@ -397,7 +404,8 @@
                   <i class="fa fa-send"></i>Adquirir</a>
                 @endif
                 <p>
-                10% descuento en pago trimestral.
+                  <br>
+                  10% descuento en pago trimestral.
                 </p>
               </div>
               @if($usuario->membresia == 3)
@@ -429,7 +437,8 @@
                   <i class="fa fa-send"></i>Adquirir</a>
                 @endif
                 <p>
-                    Descuento en membresia de $ 198.000 Cop
+                  <br>
+                  Descuento en membresia de $ 198.000 Cop
                 </p>
               </div>
               @if($usuario->membresia == 2)
@@ -458,6 +467,7 @@
                   <i class="fa fa-send"></i>Adquirir</a>
                 @endif
                 <p>
+                  <br>
                   10% descuento en pago anual.
                 </p>
               </div>
