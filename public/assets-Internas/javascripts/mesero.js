@@ -33,8 +33,8 @@ $(document).ready(function(){
 cambiarCurrent("#mesero");
 
 $('#basicDemo').carousel({
-            interval: false
-        });
+  interval: false
+});
 
 $('#basicDemo').bind('slid', function() {
     var currentIndex = $('li.active').attr('id');
