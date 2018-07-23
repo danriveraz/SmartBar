@@ -78,7 +78,7 @@ class MeseroController extends Controller
         $factura = Factura::buscarFacturaId($idMesa)->get()->last();
         $respuesta[] = array(
          'validacion' => false,
-         'idFactura' => $factura
+         'idFactura' => $factura->id
         );
         return json_encode($respuesta);
       }
