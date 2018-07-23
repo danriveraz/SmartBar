@@ -117,9 +117,11 @@
           <i id="show-password" class="fa fa-eye"></i>
         </div>
         <div class="rememberme-container">
-          <input type="checkbox" name="rememberme" id="rememberme"/>
-          <label for="rememberme" class="rememberme"><span>Recuérdame</span></label>
-          <a class="forgot-password" href="{{ url('Auth/resetpassword') }}">Se te olvidó tu contraseña?</a>
+          <label class="chekPocket">Recordar
+            <input type="checkbox" checked="checked">
+            <span class="checkmark"></span>
+          </label>
+          <a class="forgot-password" href="{{ url('Auth/resetpassword') }}">Olvide mi contraseña?</a>
         </div>
         <input type="submit" name="login" value="Iniciar Sesión" class="button"/>
         <!--a href="#" class="register">Register</a-->
