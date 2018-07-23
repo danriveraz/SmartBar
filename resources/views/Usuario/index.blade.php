@@ -461,7 +461,12 @@
 
       </div>
       <div class="modal-body">
-        <h1>Aquí irán las estadísticas</h1>
+        <h1>Producto mas vendido: {{$estadisticasUsuarios[$usuario->id][0]}} </h1>
+        <h1>Analisis de costo beneficio: 
+          @if($estadisticasUsuarios[$usuario->id][1] < 1) Bajo
+          @elseif($estadisticasUsuarios[$usuario->id][1] >= 1 && $estadisticasUsuarios[$usuario->id][1] < 2) Medio
+          @else Alto
+          @endif </h1>
       </div>
     </div>
   </div>

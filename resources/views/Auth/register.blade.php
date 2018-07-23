@@ -113,7 +113,7 @@
                <i class="fa fa-reorder"></i>
                <select class="select" id="TipoNegocio"  name="TipoNegocio" required/>
                  <option value="">Tipo De Negocio</option>
-                 <option value="Bar">Bar</option>
+                 <option value="bar">Bar</option>
                  <option value="restaurante">restaurante</option>
                </select>
              </div>

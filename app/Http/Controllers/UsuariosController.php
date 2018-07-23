@@ -13,6 +13,7 @@ use Auth;
 use Mail;
 use Laracasts\Flash\Flash;
 use PocketByR\Empresa;
+use PocketByR\Venta;
 use PocketByR\Proveedor;
 use PocketByR\Insumo;
 use PocketByR\Producto;
@@ -44,11 +45,51 @@ class UsuariosController extends Controller
       array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
     }
     $usuarios = User::where('idEmpresa',Auth::User()->empresaActual)->orderBy('id','ASC')->paginate(10);
+    $estadisticasUsuarios = array();
+    foreach($usuarios as $usuario){
+      $ventas = Venta::where('idMesero', '=', $usuario->id)
+                                  ->orwhere('idBartender', '=', $usuario->id)
+                                  ->orwhere('idCajero', '=', $usuario->id)
+                                  ->get();
+      $productoMasVendido = array();
+      $ganancia = 0;
+      foreach($ventas as $venta){
+        if(array_key_exists($venta->producto->nombre, $productoMasVendido)){
+         $productoMasVendido[$venta->producto->nombre] += $venta->cantidad;
+        }
+        else{
+          $productoMasVendido[$venta->producto->nombre] = $venta->cantidad;
+        }
+
+        //Segunda estadistica
+        $contador = 0;
+        $gananciaVenta = $venta->cantidad * $venta->producto->precio; 
+        if($venta->idMesero == $usuario->id) $contador += 1;
+        if($venta->idBartender == $usuario->id) $contador += 1;
+        if($venta->idCajero == $usuario->id) $contador += 1;
+
+        $gananciaVenta /= 3;
+        $gananciaVenta *= $contador; 
+        $ganancia += $gananciaVenta;
+      }
+
+      if(sizeof($productoMasVendido) == 0){
+        $estadisticasUsuarios[$usuario->id] = array(0, 0);
+      }
+      else{
+        $salario = $usuario->salario;
+        if($salario == 0) $salario = 1;
+        $ganancia = $ganancia/$salario;
+        $estadisticasUsuarios[$usuario->id] = array(array_search(max($productoMasVendido),$productoMasVendido), $ganancia);
+      }
+      
+    }
     return view('Usuario.index')
           ->with('usuarios',$usuarios)
           ->with('notificaciones',$notificaciones)
           ->with('nuevas',$nuevas)
-          ->with('fecha2array',$fecha2array);
+          ->with('fecha2array',$fecha2array)
+          ->with('estadisticasUsuarios',$estadisticasUsuarios);
   }
 
   public function create(){
