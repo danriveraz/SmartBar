@@ -1,7 +1,7 @@
 @extends('Layout.app_empleado')
-<link rel="stylesheet" href="stylesheets/styleMesas.css">
-<link rel="stylesheet" href="stylesheets/styleCategorias.css">
-<link rel="stylesheet" href="stylesheets/mesero.css">
+<link rel="stylesheet" href="assets-Internas\css\styleMesas.css">
+<link rel="stylesheet" href="assets-Internas\css\styleCategorias.css">
+<link rel="stylesheet" href="assets-Internas\css\mesero.css">
 @section('content')
 
 <!-- SE INCLUYE MAIN.JS PARA CORREGIR TABLA -->
@@ -220,9 +220,9 @@
 		</div>
 	</div>
 
-<script src="javascripts/mesero.js"></script>
-<script src="javascripts/jquery.mixitup.min.js"></script>
-<script src="javascripts/mainMesas.js"></script>   
+<script src="assets-Internas\javascripts\mesero.js"></script>
+<script src="assets-Internas\javascripts\mainMesas.js"></script>
+<script src="assets-Internas\javascripts\jquery.mixitup.min.js"></script> 
 </body>
 
 @endsection
