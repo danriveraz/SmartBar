@@ -472,13 +472,47 @@ class UsuariosController extends Controller
         $usuario->telefono = $request->telefono;
         $usuario->save();
 
+        $email = $request->email;
+        $usuarioaux = User::search($email)->get();
+        $emailaux = $usuario->email;
+        if(sizeof($usuarioaux) == 0){
+          $usuario->email = $email;
+          $usuario->save();
+        }else{
+          if($usuarioaux[0]->email == $emailaux){
+            $usuario->save();
+          }else{
+            flash::warning('Correo en uso')->important();
+            session_start();
+            $_SESSION['id'] = $id;
+            $tab = 'perfil';
+            return redirect()->route('Auth.usuario.editUsuario',$tab);
+          }
+        }
+
+        if($request->password != ''){
+          $validacionPassword = $request->password;
+          if(strlen($validacionPassword) <= 5 || strlen($validacionPassword) >= 18){
+            flash::error('La contraseña debe estar en tre 5 y 18 caracteres')->important();
+            session_start();
+            $_SESSION['id'] = $id;
+            $tab = 'perfil';
+            return redirect()->route('Auth.usuario.editUsuario',$tab);
+          }else{
+            if($request->password !=null){
+              $usuario->password = bcrypt($request->password);
+              $usuario->save();
+            }
+          }
+        }
+          
         flash::success('El usuario ha sido modificado exitosamente')->important();
         session_start();
         $_SESSION['id'] = $id;
         $tab = 'perfil';
         return redirect()->route('Auth.usuario.editUsuario',$tab);
       }
-    }else if($request->ventana == 11){
+    }else if($request->ventana == 2){
       $usuario = User::find($id);
       $empresa = Empresa::find($usuario->empresaActual);
 
@@ -597,7 +631,7 @@ class UsuariosController extends Controller
             $tab = 'perfil';
             return redirect()->route('Auth.usuario.editUsuario',$tab);
           }
-        }        
+        } 
       }
     }else if($request->ventana == 3){
       $usuario = User::find($id);

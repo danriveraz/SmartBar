@@ -505,8 +505,10 @@ $("body").on("mouseleave",".popover-trigger",function(event){
 $("body").on("change",".numberFact",function(event){
     var valor = $(this).val();
     var idNumber = $(this).attr("id");
+    console.log(this);
     var precio = $("#"+idNumber).data('precio');
     var idVenta = $("#"+idNumber).data('idventa');
+    console.log(idVenta);
     var idEstadoCajero = "estado"+idVenta;
     var estadoActual = document.getElementById(idEstadoCajero).dataset.estadoactual;
     $("#"+idEstadoCajero).val(parseInt(valor)+ parseInt(estadoActual));

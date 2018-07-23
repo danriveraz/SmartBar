@@ -2,13 +2,8 @@
 @section('content')
 @include('flash::message')
 
-<!-- ESTILOS VISTA PERFIL
-{!!Html::style('assets/css/main.css')!!}
-{!!Html::style('stylesheets/profile.css')!!}-->
-
-<!-- Estilos Nuevos vista perfil-->
+<!-- Estilos vista perfil-->
 {!!Html::style('assets-Internas/css/styleProfile.css')!!}
-
 <!-- FIN -->
 
 <!-- Contendor todo seleccion-->
@@ -20,10 +15,10 @@
 			<div class="profile-sidebar">
 				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
-				<!-- img de perfil-->
-				<div class="user-info">
-                {!! Form::open(['route' => ['Auth.usuario.posteditUsuario',$usuario], 'method' => 'POST','enctype' => 'multipart/form-data', 'class' => 'input-append', 'id' => 'formEditFotoPerfil']) !!}
-                {{ csrf_field() }}
+				  <!-- img de perfil-->
+				  <div class="user-info">
+            {!! Form::open(['route' => ['Auth.usuario.posteditUsuario',$usuario], 'method' => 'POST','enctype' => 'multipart/form-data', 'class' => 'input-append', 'id' => 'formEditFotoPerfil']) !!}
+              {{ csrf_field() }}
                 <div class="widget-content fileupload fileupload-new" data-provides="fileupload" >
                   <div class="gallery-container fileupload-new img-thumbnail">
                     <div id="imgActual" class="gallery-item filter1" rel="" style="border-radius: 50%; width: 150px; height: 150px;background-color: #2d0031;">
@@ -61,7 +56,7 @@
                 <div hidden>
                   <input id="ventanaFactura" name="ventanaFactura" class="form-control" value=""  type="text">
                 </div>
-                {!! Form::close() !!}
+            {!! Form::close() !!}
           <ul class="meta list list-unstyled">
             <li class="name">{{$usuario->nombrePersona}}
             <br>
@@ -115,24 +110,43 @@
 			</div>
 		</div>
 		<div class="col-sm-9 col-md-9">
-            <div class="profile-content">
-          		<!-- MAIN CONTENT -->
-         		<div class="tab-content">
-				@if($nuevaTab == "perfil")
-				<div class="tab-pane active" id="tab1">
-				@else
-				<div class="tab-pane" id="tab1">
-				@endif
-				<div>
+      <div class="profile-content">
+        <!-- MAIN CONTENT -->
+        <div class="tab-content">
+  				@if($nuevaTab == "perfil")
+  				<div class="tab-pane active" id="tab1">
+  				@else
+  				<div class="tab-pane" id="tab1">
+  				@endif
+				    <div>
 				<!-- Inicio tab Perfil-->
-				<div class="well" style="background-color: white;">
-				<ul class="nav nav-tabs">
-				<li class="active" title="Perfil"><a href="#myprofile" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-user"></i><label>&#160;Perfil</label></a></li>
-				<li title="Empresa"><a href="#empresa" role="tab" data-toggle="tab"><i class="fa fa-reorder"></i><label>&#160;Empresa</label></a></li>
-				<li title="PocketClub"><a href="#billings" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-globe"></i><label>&emsp;PockeClub</label></a></li>
-				<li title="Bolsillo"><a href="#preferences" role="tab" data-toggle="tab"><i class="fa fa-reddit-alien"></i><label>&emsp;Bolsillo</label></a></li>
-				</ul>
-                {!! Form::open(['route' => ['Auth.usuario.posteditUsuario',$usuario], 'method' => 'POST','enctype' => 'multipart/form-data', 'class' => 'login-form', 'id' => 'formEditUsuario']) !!}
+				      <div class="well" style="background-color: white;">
+        				<ul class="nav nav-tabs">
+        				  <li class="active" title="Perfil">
+                    <a href="#myprofile" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-user"></i><label>&#160;Perfil</label>
+                    </a>
+                  </li>
+        				  <li title="Empresa">
+                    <a href="#empresa" role="tab" data-toggle="tab">
+                      <i class="fa fa-reorder">
+                      </i>
+                      <label>&#160;Empresa</label>
+                    </a>
+                  </li>
+        				  <li title="PocketClub">
+                    <a href="#billings" role="tab" data-toggle="tab">
+                      <i class="glyphicon glyphicon-globe"></i>
+                      <label>&emsp;PockeClub</label>
+                    </a>
+                  </li>
+        				  <li title="Bolsillo">
+                    <a href="#preferences" role="tab" data-toggle="tab">
+                      <i class="fa fa-reddit-alien"></i>
+                      <label>&emsp;Bolsillo</label>
+                    </a>
+                  </li>
+        				</ul>
+                  {!! Form::open(['route' => ['Auth.usuario.posteditUsuario',$usuario], 'method' => 'POST','enctype' => 'multipart/form-data', 'class' => 'login-form', 'id' => 'formEditUsuario']) !!}
                   {{ csrf_field() }}
                     <div class="tab-content content-profile">
                       <!-- MY PROFILE -->
@@ -146,7 +160,7 @@
           									<div class="containerSpacing">
           										<div class="input-container">
           											<i class="fa fa-user"></i>
-          											<input class="input" value="{{$usuario->nombrePersona}}" placeholder="Nombre Completo" type="text"/>
+          											<input class="input" name="nombrePersona" value="{{$usuario->nombrePersona}}" placeholder="Nombre Completo" type="text"/>
           										</div>
           										<div class="input-container">
           											<i class="fa fa-address-card"></i>
@@ -172,30 +186,31 @@
           											<i class="fa fa-phone"></i>
           											<input class="input" name="telefono" type="text"  placeholder="Telefono o Celular" value="{{$usuario->telefono}}" maxlength="10"/>
           										</div>
-          									<div class="form-group" hidden="true">
-          									<input id="ventana" name="ventana" class="form-control" value=""  type="text">
-          									</div>
+            									<div class="form-group" hidden="true">
+            									 <input id="ventana" name="ventana" class="form-control" value=""  type="text">
+            									</div>
           									</div>
           								</div>
           								</div><!--fin del col conte1-->
           								<div class="col-sm-6">
           								<div class="widget-container" style="min-height: 250px !important;">
           									<div class="containerSpacing">
-          									<p class="lead col-centrada" style="margin-bottom: 10px;">Información de tu<span class="text-success"> Cuenta</span></p>
-
+          									 <p class="lead col-centrada" style="margin-bottom: 10px;">
+                              Información de tu<span class="text-success"> Cuenta</span>
+                             </p>
           									<div class="container">
           										<div class="input-container">
           											<i class="fa fa-envelope-o"></i>
-          											<input type="text" class="input" name="nombre" placeholder="Email" value="{{$usuario->email}}"/>
+          											<input type="text" class="input" name="email" placeholder="Email" value="{{$usuario->email}}"/>
           										</div>
           										<div class="input-container">
           											<i class="fa fa-lock"></i>
-          											<input type="password"  id="login-password" class="input" name="password" placeholder="Contraseña"/>
+          											<input type="password"  id="password" class="input" name="password" placeholder="Contraseña"/>
           											<i id="show-password" class="fa fa-eye"></i>
           										</div>
           										<div class="input-container">
           											<i class="fa fa-lock"></i>
-          											<input type="password"  id="login-password1" class="input" name="password" placeholder="Contraseña Nueva"/>
+          											<input type="password"  id="passwordC" class="input" name="password" placeholder="Confirmar Contraseña"/>
           											<i id="show-password1" class="fa fa-eye"></i>
           										</div>
           									</div>
@@ -207,7 +222,7 @@
                           <div class="row">
             								<div class="col-sm-12">
             								<div class="form-group" align="center">
-            									<a id="btn-guardar1" class="btn btn-pocket" style="font-weight: 400;" type="submit" onclick="setValue(this)">
+            									<a id="btn-guardar-perfil" class="btn btn-pocket" style="font-weight: 400;" type="submit" onclick="setValue(this)">
             									<i class="fa fa-send"></i>Guardar
             									</a>
             								</div>
@@ -226,7 +241,7 @@
 									<div class="containerSpacing">
 										<div class="input-container">
 											<i class="fa fa-bars"></i>
-											<input class="input" name="nombreEstablecimiento" type="text" c placeholder="Nombre del Establecimiento" value="{{$empresa->nombreEstablecimiento}}" required="true"/>
+											<input class="input" name="nombreEstablecimiento" type="text" placeholder="Nombre del Establecimiento" value="{{$empresa->nombreEstablecimiento}}" required="true"/>
 										</div>
 										<div class="input-container">
 											<i class="fa fa-map-marker"></i>
@@ -254,7 +269,6 @@
                     <p class="lead" style="margin-bottom: 10px;">Informacion <span class="text-success">Tributaria</span></p>
                   </div>
                   <div class="container">
-
 									  <div class="input-container">
 										  @if($empresa->nit == 0)
 											<i class="fa fa-drivers-license"></i>
@@ -264,7 +278,6 @@
 											<input name="nit" type="text" class="input" placeholder="Ingrese su nit xxxxxxx-xx" value="{{$empresa->nit}}" required="true">
 										  @endif
 									  </div>
-
 										<div class="input-container">
                     <i class="fa fa-venus-mars"></i>
                     <select id="tipoRegimen" name="tipoRegimen" class="select" onchange="valor(this.value);">
@@ -281,7 +294,6 @@
                       @endif
                     </select>
 										</div>
-
                     <div id="regimenComun" style="display: none;">
                       <div class="input-container">
                         <div class="input-group" style="width: 100%;">
@@ -321,24 +333,22 @@
                       </div>
                     </div>
 									</div>
-
-									</div>
-								</div>
 								</div>
 							</div>
-                          <!-- Fin de contenedor del Empresa-->
-                          <div class="row">
-            								<div class="col-sm-12">
-            								<div class="form-group" align="center">
-            									<a id="btn-guardarEmpresa" class="btn btn-pocket" style="font-weight: 400;" type="submit" onclick="setValue(this)">
-            									<i class="fa fa-send"></i>Guardar
-            									</a>
-            								</div>
-            								</div>
-            							</div>
-
 						</div>
-                      </div>
+					</div>
+          <!-- Fin de contenedor del Empresa-->
+          <div class="row">
+						<div class="col-sm-12">
+						<div class="form-group" align="center">
+							<a id="btn-guardarEmpresa" class="btn btn-pocket" style="font-weight: 400;" type="submit" onclick="setValue(this)">
+							 <i class="fa fa-send"></i>Guardar
+							</a>
+						</div>
+						</div>
+					</div>
+				</div>
+      </div>
                       <!-- END MY PROFILE -->
                       <!-- Tap PocketClub -->
                       <div class="tab-pane fade" id="billings">
@@ -747,15 +757,43 @@
   var JSONusuario = eval(<?php echo json_encode($usuario); ?>);
   var JSONempresa = eval(<?php echo json_encode($empresa); ?>);
   $(document).ready(function(){
-      listcat();
-      listmesas();
-      $("#modalImagen").fancybox({
-            helpers: {
-                title : {
-                    type : 'float'
-                }
+    // Show Password
+    $('#show-password').click(function()
+    {
+      if ($(this).hasClass('fa-eye'))
+      {
+        $('#password').attr('type', 'text');
+        $(this).removeClass('fa-eye');
+        $(this).addClass('fa-eye-slash');
+      } else {
+        $('#password').attr('type', 'password');
+        $(this).removeClass('fa-eye-slash');
+        $(this).addClass('fa-eye');
+      }
+    })
+    
+    $('#show-password1').click(function()
+      {
+        if ($(this).hasClass('fa-eye'))
+        {
+          $('#passwordC').attr('type', 'text');
+          $(this).removeClass('fa-eye');
+          $(this).addClass('fa-eye-slash');
+        } else {
+          $('#passwordC').attr('type', 'password');
+          $(this).removeClass('fa-eye-slash');
+          $(this).addClass('fa-eye');
+        }
+    })
+    listcat();
+    listmesas();
+    $("#modalImagen").fancybox({
+        helpers: {
+            title : {
+                type : 'float'
             }
-        });
+        }
+    });
      // $(".gallery-item filter1 fancybox").fancybox({ });
       if(JSONempresa.tipoRegimen == "comun"){
         document.getElementById('regimenComun').style.display = "block";
@@ -859,22 +897,22 @@
   };
 
   function setValue(idBtn) {
-    if(idBtn.id == "btn-guardar1"){
-      ventana.value = 1;
-    }else if(idBtn.id == "btn-guardarEmpresa"){
-      ventana.value = 11;
-
-    }else if(idBtn.id == "btn-guardar2"){
+    if(idBtn.id == "btn-guardar-perfil"){
       if(password.value == passwordC.value) {
-        ventana.value = 2;
+        ventana.value = 1;
         formEditUsuario.submit();
-      }else{
+      }
+      else{
         alert("Las contraseña no coinciden");
       }
+    }else if(idBtn.id == "btn-guardarEmpresa"){
+      ventana.value = 2;
+      formEditUsuario.submit();
     }else if(idBtn.id == "btn-guardar3"){
       ventana.value = 3;
     }else if(idBtn.id == "btn-guardarimg"){
       ventanaFactura.value = 4;
+      formEditFotoPerfil.submit();
     }else if(idBtn.id == "btn-guardar5"){
       ventana.value = 5;
       formEditUsuario.submit();
