@@ -5,9 +5,49 @@
       <div class="container-fluid main-content">
         <div class="page-title chart-container">
           <h1>
-            Charts
+            Gráficas
           </h1>
         </div>
+        <dv class="row">
+          <div class="row">
+            <div class="col-md-6">
+              <i class="fa fa-bar-chart-o"></i>Categorias Más Vendidas
+            </div>
+            <div class="col-md-6">
+              <form  class="login-form">
+                <fieldset>
+                <div class="input-container"> Fecha de Búsqueda
+                  <i class="fa fa-birthday-cake"></i>
+                  <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha de Nacimiento" name="fechaNacimiento" id="fechaNacimiento" type="date">
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+                <div class="widget-container fluid-height">
+                  <div class="widget-content padded text-center">
+                    <div class="graph-container">
+                      <div class="caption"></div>
+                      <div class="graph" id="hero-bar"></div>
+                      <!-- Bar Charts:Morris -->
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="widget-container fluid-height">
+                  <div class="widget-content padded text-center">
+                    <div class="graph-container">
+                      <div class="caption"></div>
+                      <div class="graph" id="hero-graph"></div>
+                      <!-- Bar Charts:Morris -->
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </dv>
         <div class="row">
           <!-- Line Chart -->
           <div class="col-md-6">
@@ -174,7 +214,7 @@
               <div class="widget-content padded text-center">
                 <div class="graph-container">
                   <div class="caption"></div>
-                  <div class="graph" id="hero-graph"></div>
+                  <div class="graph" id=""></div>
                   <!-- Line Chart:Morris -->
                 </div>
               </div>
@@ -189,7 +229,7 @@
               <div class="widget-content padded text-center">
                 <div class="graph-container">
                   <div class="caption"></div>
-                  <div class="graph" id="hero-bar"></div>
+                  <div class="graph" id="categoriasBar"></div>
                   <!-- Bar Charts:Morris -->
                 </div>
               </div>
@@ -287,9 +327,180 @@
 
 <script type="text/javascript">
   /*
-  $(document).ready(function(){
-    cambiarCurrent("#miInventario");
+   * =============================================================================
+   *   Morris Chart JS
+   * =============================================================================
+   */
+  $(window).resize(function(e) {
+    var morrisResize;
+    clearTimeout(morrisResize);
+    return morrisResize = setTimeout(function() {
+      return buildMorris(true);
+    }, 500);
   });
-*/
+  $(function() {
+    return buildMorris();
+  });
+  buildMorris = function($re,$categoriasMásVendidas) {
+    var tax_data;
+    if ($re) {
+      $(".graph").html("");
+    }
+    tax_data = [
+      {
+        period: "2011 Q3",
+        licensed: 3407,
+        sorned: 660
+      }, {
+        period: "2011 Q2",
+        licensed: 3351,
+        sorned: 629
+      }, {
+        period: "2011 Q1",
+        licensed: 3269,
+        sorned: 618
+      }, {
+        period: "2010 Q4",
+        licensed: 3246,
+        sorned: 661
+      }, {
+        period: "2009 Q4",
+        licensed: 3171,
+        sorned: 676
+      }, {
+        period: "2008 Q4",
+        licensed: 3155,
+        sorned: 681
+      }, {
+        period: "2007 Q4",
+        licensed: 3226,
+        sorned: 620
+      }, {
+        period: "2006 Q4",
+        licensed: 3245,
+        sorned: null
+      }, {
+        period: "2005 Q4",
+        licensed: 3289,
+        sorned: null
+      }
+    ];
+    if ($('#hero-graph').length) {
+      Morris.Line({
+        element: "hero-graph",
+        data: {!! $categoriasVentasPorSemana !!},
+        xkey: "semana",
+        ykeys: ["Bebidas", "Cervezas","Otros","Licores"],
+        labels: ["Bebida", "Cerveza","Otros","Licores"],
+        lineColors: ["#5bc0de", "#60c560", "#2d0031", "#666666"]
+      });
+    }
+    if ($('#hero-donut').length) {
+      Morris.Donut({
+        element: "hero-donut",
+        data: [
+          {
+            label: "Development",
+            value: 25
+          }, {
+            label: "Sales & Marketing",
+            value: 40
+          }, {
+            label: "User Experience",
+            value: 25
+          }, {
+            label: "Human Resources",
+            value: 10
+          }
+        ],
+        colors: ["#f0ad4e"],
+        formatter: function(y) {
+          return y + "%";
+        }
+      });
+    }
+    if ($('#hero-area').length) {
+      Morris.Area({
+        element: "hero-area",
+        data: [
+          {
+            period: "2010 Q1",
+            iphone: 2666,
+            ipad: null,
+            itouch: 2647
+          }, {
+            period: "2010 Q2",
+            iphone: 2778,
+            ipad: 2294,
+            itouch: 2441
+          }, {
+            period: "2010 Q3",
+            iphone: 4912,
+            ipad: 1969,
+            itouch: 2501
+          }, {
+            period: "2010 Q4",
+            iphone: 3767,
+            ipad: 3597,
+            itouch: 5689
+          }, {
+            period: "2011 Q1",
+            iphone: 6810,
+            ipad: 1914,
+            itouch: 2293
+          }, {
+            period: "2011 Q2",
+            iphone: 5670,
+            ipad: 4293,
+            itouch: 1881
+          }, {
+            period: "2011 Q3",
+            iphone: 4820,
+            ipad: 3795,
+            itouch: 1588
+          }, {
+            period: "2011 Q4",
+            iphone: 15073,
+            ipad: 5967,
+            itouch: 5175
+          }, {
+            period: "2012 Q1",
+            iphone: 10687,
+            ipad: 4460,
+            itouch: 2028
+          }, {
+            period: "2012 Q2",
+            iphone: 8432,
+            ipad: 5713,
+            itouch: 1791
+          }
+        ],
+        xkey: "period",
+        ykeys: ["iphone", "ipad", "itouch"],
+        labels: ["iPhone", "iPad", "iPod Touch"],
+        hideHover: "auto",
+        lineWidth: 2,
+        pointSize: 4,
+        lineColors: ["#a0dcee", "#f1c88e", "#a0e2a0"],
+        fillOpacity: 0.5,
+        smooth: true
+      });
+    }
+
+    if ($('#hero-bar').length) {
+      return Morris.Bar({
+        element: "hero-bar",
+        data: {!!$categorias->toJson(JSON_PRETTY_PRINT);!!},
+        xkey: "nombre",
+        ykeys: ["total"],
+        labels: ["total"],
+        barRatio: 0.4,
+        xLabelAngle: 35,
+        hideHover: "auto",
+        barColors: ["#5bc0de"]
+      });
+    }
+  };
+
 </script>
 @endsection

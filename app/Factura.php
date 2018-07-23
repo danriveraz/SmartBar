@@ -54,7 +54,7 @@ class Factura extends Model
                     ->join('venta', 'factura.id', '=', 'venta.idFactura')
                     ->join('producto', 'venta.idProducto', '=', 'producto.id')
                     ->join('categoria', 'producto.idCategoria', '=', 'categoria.id')
-                    ->select(DB::raw('SUM(`cantidad`) as total'),'idCategoria')
+                    ->select(DB::raw('SUM(`cantidad`) as total'),'idCategoria','categoria.nombre')
                     ->groupBy('idCategoria')
                     ->orderBy('total', 'DESC')
                     ->limit(4);

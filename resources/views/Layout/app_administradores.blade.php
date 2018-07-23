@@ -33,6 +33,7 @@
     {!!Html::style('stylesheets\select2.css')!!}
     {!!Html::style('stylesheets\jquery.fancybox.css')!!}
     {!!Html::style('stylesheets\isotope.css')!!}
+    {!!Html::style('stylesheets\morris.css')!!}<!--PAra las gráficas-->
 
     <!-- ESTOS ESTILOS DESCUADRAN EL REGISTRO DE USUARIOS, SE DEBE ENCONTRAR SOLUCIÓN
      {!!Html::style('stylesheets\jquery.fileupload-ui.css')!!}
@@ -42,7 +43,9 @@
     <!-- LO QUE SI ES NECESARIO js-->
     {!!Html::script("javascripts\jquery.bootstrap.wizard.js")!!}
     {!!Html::script("javascripts/fullcalendar.min.js")!!}
-    {!!Html::script("assets-Internas/javascripts/jquery.easy-pie-chart.js")!!}
+    {!!Html::script("assets-Internas/javascripts/jquery.easy-pie-chart.js")!!}<!--PAra las gráficas-->
+    {!!Html::script('javascripts\raphael.min.js')!!}<!--PAra las gráficas-->
+    {!!Html::script("javascripts\morris.min.js")!!}<!--PAra las gráficas-->
     {!!Html::script("javascripts\jquery.isotope.min.js")!!}
     {!!Html::script("javascripts\isotope_extras.js")!!}
     {!!Html::script("javascripts\modernizr.custom.js")!!}
