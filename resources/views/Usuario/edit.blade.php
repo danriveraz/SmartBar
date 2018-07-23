@@ -349,106 +349,131 @@
 					</div>
 				</div>
       </div>
-                      <!-- END MY PROFILE -->
-                      <!-- Tap PocketClub -->
-                      <div class="tab-pane fade" id="billings">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <div class="container PocketAlertPro">
-                            	<p>
-                                <div class="alert alert-info">
-                                  <h4>!Estas al día</h4>
-                                  <p>
-                                    Tu Membresia PocketClub vence en 30 dias faltando 7 dias te recordaremos el vencimiento de la membresia<p>
-                                  </div>
-                            </div>
+      <!-- END MY PROFILE -->
+      <!-- Tap PocketClub -->
+      <div class="tab-pane fade" id="billings">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="container PocketAlertPro">
+            	<p>
+                <div class="alert alert-info">
+                  <h4>!Estas al día</h4>
+                  <p>
+                    Tu Membresia PocketClub vence en 30 dias faltando 7 dias te recordaremos el vencimiento de la membresia<p>
+                </div>
+            </div>
+          </div>
+        <div class="col-sm-12">
+          <!-- PLANES -->
+          <div class="container">
+          <!-- PLANES -->
+            <div class="blockPlanes text-center">
+              <h2>Membresias PocketClub</h2>
+              <div class="row plans cards-basic">
+          	<div class="row">
+              @if($usuario->membresia == 1)
+                <div class="col plan bg-gray">
+              @else
+                <div class="col plan">
+              @endif
+                <h2 class="plan-title">ÚNICA</h2>
+                <ul>
+                  <li>Hasta 10 Empleados</li>
+                  <li>Asesoria Permanente(✓)</li>
+                  <li>1 sólo negocio</li>
+                  <li>Promociones Únicas SmartShop</li>
+                  <li>Uso del programa por 30 días</li>
+                  <li>Información segura hasta por 90 días</li>
+                  <li>Acceso al 100% de las utilidades SmartBar</li>
+                  <li>No aplica mes GRATIS</li>
+                  <li>0% de ahorro</li>
+                </ul>
+                <h3 class="plan-price"> $ 99.900 COP/Mes</h3>
+                @if($usuario->membresia == 1)
+                  <a id="btn-guardar1" class="btn btn-pocket" style="font-weight: 400;" type="submit" onclick="setValue(this)">
+                  <i class="fa fa-send"></i>Atual Membresia</a>
+                @else
+                  <a id="btn-guardar1" class="btn btn-pocket" style="font-weight: 400;" type="submit" onclick="setValue(this)">
+                  <i class="fa fa-send"></i>Adquirir</a>
+                @endif
+                <p>
+                10% descuento en pago trimestral.
+                </p>
+              </div>
+              @if($usuario->membresia == 3)
+                <div class="col plan bg-gray">
+              @else
+                <div class="col plan">
+              @endif
+                <h2 class="plan-title">ÉLITE</h2>
+                <ul>
+                    <li>Empleados Infinitos</li>
+                    <li>Asesoria Permanente (✓)</li>
+                    <li>Hasta 4 Negocios</li>
+                    <li>Todas las promociones SmartShop</li>
+                    <li>Uso del programa por 3 años</li>
+                    <li>Información segura hasta por 4 años</li>
+                    <li>Acceso al 100% de las utilidades SmartBar</li>
+                    <li>Personaje Real Smartbar GRATIS</li>
+                    <li>El mes 1, 12,24 y 36 son GRATIS</li>
+                    <li>CAPACITACIÓN PROFESIONAL GRATIS (Servicio al Cliente)</li>
+                    <li>Ahorra hasta $ 400.000 Cop</li>
+                </ul>
 
-
-                          </div>
-                          <div class="col-sm-12">
-
-                          <!-- PLANES -->
-                          <div class="container">
-                            <!-- PLANES -->
-                              <div class="blockPlanes text-center">
-                                <h2>Membresias PocketClub</h2>
-                                <div class="row plans cards-basic">
-                            	<div class="row">
-
-                                  <div class="col plan">
-                                      <h2 class="plan-title">ÚNICA</h2>
-                                      <ul>
-                                          <li>Hasta 10 Empleados</li>
-                                          <li>Asesoria Permanente(✓)</li>
-                                          <li>1 sólo negocio</li>
-                                          <li>Promociones Únicas SmartShop</li>
-                                          <li>Uso del programa por 30 días</li>
-                                          <li>Información segura hasta por 90 días</li>
-                                          <li>Acceso al 100% de las utilidades SmartBar</li>
-                                          <li>No aplica mes GRATIS</li>
-                                          <li>0% de ahorro</li>
-                                      </ul>
-                                      <h3 class="plan-price"> $ 99.900 COP/Mes</h3>
-                                      <a id="btn-guardar1" class="btn btn-pocket" style="font-weight: 400;" type="submit" onclick="setValue(this)">
-                                      <i class="fa fa-send"></i>Adquirir</a>
-                                      <p>
-                                      10% descuento en pago trimestral.
-                                  </div>
-                                  <div class="col plan bg-gray">
-
-                                      <h2 class="plan-title">ÉLITE</h2>
-                                      <ul>
-                                          <li>Empleados Infinitos</li>
-                                          <li>Asesoria Permanente (✓)</li>
-                                          <li>Hasta 4 Negocios</li>
-                                          <li>Todas las promociones SmartShop</li>
-                                          <li>Uso del programa por 3 años</li>
-                                          <li>Información segura hasta por 4 años</li>
-                                          <li>Acceso al 100% de las utilidades SmartBar</li>
-                                          <li>Personaje Real Smartbar GRATIS</li>
-                                          <li>El mes 1, 12,24 y 36 son GRATIS</li>
-                                          <li>CAPACITACIÓN PROFESIONAL GRATIS (Servicio al Cliente)</li>
-                                          <li>Ahorra hasta $ 400.000 Cop</li>
-                                      </ul>
-
-                                      <h3 class="plan-price">$ 2.998.800 COP</h3>
-                                      <a id="btn-guardar1" class="btn btn-pocket" style="font-weight: 400;" type="submit" onclick="setValue(this)">
-                                      <i class="fa fa-send"></i>Atual Membresia</a>
-                                      <p>
-                                        Descuento en membresia de $ 198.000 Cop
-                                  </div>
-                                  <div class="col plan">
-                                            <h2 class="plan-title">ESPECIAL</h2>
-                                      <ul>
-                                          <li>Hasta 20 Empleados</li>
-                                          <li>Asesoria Permanente (✓)</li>
-                                          <li>Hasta 2 negocios</li>
-                                          <li>Promociones Únicas y especiales SmartShop</li>
-                                          <li>Uso del programa por 6 meses</li>
-                                          <li>Información segura hasta por 1 año</li>
-                                          <li>Acceso al 100% de las utilidades SmartBar</li>
-                                          <li>El mes 6 es GRATIS</li>
-                                          <li>Ahorra hasta $ 100.000 Cop</li>
-                                      </ul>
-                                      <h3 class="plan-price">$ 499.500 COP</h3>
-                                      <a id="btn-guardar1" class="btn btn-pocket" style="font-weight: 400;" type="submit" onclick="setValue(this)">
-                                      <i class="fa fa-send"></i>Adquirir</a>
-                                      <p>
-                                      10% descuento en pago anual.
-                                  </div>
-                                </div>
-                            	 </div>
-                                <hr>
-                            	<div class="pocket">
-                                <h4>Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas.</h4></div>
-                                <hr>
-                              </div>
-                            <!-- PLANES -->
-                          </div>
-                          <!-- Fin PLANES -->
-                          </div>
-                        </div>
-                      </div>
+                <h3 class="plan-price">$ 2.998.800 COP</h3>
+                @if($usuario->membresia == 3)
+                  <a id="btn-guardar1" class="btn btn-pocket" style="font-weight: 400;" type="submit" onclick="setValue(this)">
+                  <i class="fa fa-send"></i>Atual Membresia</a>
+                @else
+                  <a id="btn-guardar1" class="btn btn-pocket" style="font-weight: 400;" type="submit" onclick="setValue(this)">
+                  <i class="fa fa-send"></i>Adquirir</a>
+                @endif
+                <p>
+                    Descuento en membresia de $ 198.000 Cop
+                </p>
+              </div>
+              @if($usuario->membresia == 2)
+                <div class="col plan bg-gray">
+              @else
+                <div class="col plan">
+              @endif
+                <h2 class="plan-title">ESPECIAL</h2>
+                  <ul>
+                    <li>Hasta 20 Empleados</li>
+                    <li>Asesoria Permanente (✓)</li>
+                    <li>Hasta 2 negocios</li>
+                    <li>Promociones Únicas y especiales SmartShop</li>
+                    <li>Uso del programa por 6 meses</li>
+                    <li>Información segura hasta por 1 año</li>
+                    <li>Acceso al 100% de las utilidades SmartBar</li>
+                    <li>El mes 6 es GRATIS</li>
+                    <li>Ahorra hasta $ 100.000 Cop</li>
+                </ul>
+                <h3 class="plan-price">$ 499.500 COP</h3>
+                @if($usuario->membresia == 2)
+                  <a id="btn-guardar1" class="btn btn-pocket" style="font-weight: 400;" type="submit" onclick="setValue(this)">
+                  <i class="fa fa-send"></i>Atual Membresia</a>
+                @else
+                  <a id="btn-guardar1" class="btn btn-pocket" style="font-weight: 400;" type="submit" onclick="setValue(this)">
+                  <i class="fa fa-send"></i>Adquirir</a>
+                @endif
+                <p>
+                  10% descuento en pago anual.
+                </p>
+              </div>
+            </div>
+        	</div>
+          <hr>
+        	<div class="pocket">
+            <h4>Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas.</h4></div>
+            <hr>
+          </div>
+        <!-- PLANES -->
+        </div>
+        <!-- Fin PLANES -->
+      </div>
+    </div>
+  </div>
                       <!-- END BILLINGS -->
                       <!-- PREFERENCES -->
                       <div class="tab-pane fade" id="preferences">
@@ -812,14 +837,10 @@
         document.getElementById("btn-guardar3").style.display = 'none';
         document.getElementById("mensajeGratis").style.display = 'block';
       }else if(JSONusuario.membresia == 1){
-        document.getElementById("plan1").className = "plan selected-plan";
-        document.getElementById("check1").className = "fa fa-check-circle";
         document.getElementById("bolsillo").style.display = 'none';
         document.getElementById("btn-guardar3").style.display = 'none';
         document.getElementById("mensajeClub").style.display = 'block';
       }else if(JSONusuario.membresia == 2 && JSONempresa.length == 2){
-        document.getElementById("plan2").className = "plan selected-plan";
-        document.getElementById("check2").className = "fa fa-check-circle";
         document.getElementById("bolsillo").style.display = 'none';
         document.getElementById("btn-guardar3").style.display = 'none';
         document.getElementById("mensajeClubEspecial").style.display = 'block';
@@ -827,14 +848,9 @@
         document.getElementById("plan2").className = "plan selected-plan";
         document.getElementById("check2").className = "fa fa-check-circle";
       }else if(JSONusuario.membresia == 3 && JSONempresa.length == 4){
-        document.getElementById("plan3").className = "plan selected-plan";
-        document.getElementById("check3").className = "fa fa-check-circle";
         document.getElementById("bolsillo").style.display = 'none';
         document.getElementById("btn-guardar3").style.display = 'none';
         document.getElementById("mensajeClubElite").style.display = 'block';
-      }else if(JSONusuario.membresia == 3 && JSONempresa.length < 4){
-        document.getElementById("plan3").className = "plan selected-plan";
-        document.getElementById("check3").className = "fa fa-check-circle";
       }
       setInterval('mostrarBtnImagen()', 1000);
   });
@@ -863,16 +879,6 @@
             text: currentValue.nombre
         }));
         }
-    });
-  });
-
-  $(function() {
-    // plans
-    $('.btn-choose-plan').on('click', function() {
-      $('.plan').removeClass('selected-plan');
-      $('.plan-title span').find('i').remove();
-      $(this).parent().addClass('selected-plan');
-      $(this).parent().find('.plan-title').append('<span><i class="fa fa-check-circle"></i></span>');
     });
   });
 
