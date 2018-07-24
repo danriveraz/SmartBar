@@ -13,6 +13,7 @@ class Notificaciones extends Model
     }
 
     public function scopeUsuario($query, $usuario){
-        return $query->where('idUsuario',"$usuario")->orderBy('fecha','DESC');
+        return $query->where('idUsuario',"$usuario")
+        			->orderBy('created_at','DESC');
     }
 }
