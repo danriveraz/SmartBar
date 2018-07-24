@@ -87,7 +87,7 @@ class welcomeAdmin extends Controller
 
             //Mesas reservadas si hay
             $mesasReservadas = Mesa::mesasReservadas(Auth::user()->empresaActual)->get();
-
+            $nMesasReservadas = sizeof($mesasReservadas);
             //Personal trabajando hoy
 
             //Flujo de personas
@@ -127,8 +127,6 @@ class welcomeAdmin extends Controller
             });
             //FIN ESTADISTICAS DEL DÍA
 
-
-
             $ventaTotal = Factura::totalEnTodasLasVentas(Auth::user()->empresaActual)->first();// la venta en todos los tiempo, para poder sacar el porcentaje de ventas
             $meserosMasVendedores =  Factura::ventasMesero(Auth::user()->empresaActual,$ventaTotal->totalVentas)->get();//Top 10meseros
             $bartenderMasVendedores =  Factura::ventasBartender(Auth::user()->empresaActual,$ventaTotal->totalVentas)->get();//Top 10 Bartender
@@ -158,16 +156,90 @@ class welcomeAdmin extends Controller
                     ->with('notificaciones',$notificaciones)
                     ->with('nuevas',$nuevas)
                     ->with('fecha2array',$fecha2array)
-                    ->with('tutorial',$userActual->estadoTut);
+                    ->with('tutorial',$userActual->estadoTut)
+                    ->with('utilidadHoy',$utilidadHoy)
+                    ->with('nMesasReservadas',$nMesasReservadas)
+                    ->with('flujoPersonas',$flujoPersonas);
             
         } else {
             $flag = true;
+            //ESTADISTICAS DEL DÍA 
+            //Utilidad 
+            $utilidadHoy = 0;
+            $facturasHoy = Factura::listarFacturaDia(Auth::user()->empresaActual)->get();
+            for ($i=0; $i < sizeof($facturasHoy); $i++) { 
+                $ventas = Venta::listarElementosId($facturasHoy[$i]->id)->get();
+                for ($j=0; $j < sizeof($ventas); $j++) { 
+                    $contiene = Contiene::idProducto($ventas[$j]->idProducto)->get();
+                    for ($k=0; $k < sizeof($contiene); $k++) { 
+                        $insumo = Insumo::find($contiene[$k]->idInsumo);
+                        $utilidad = 0;
+                        if($insumo->esProducto){
+                            $utilidad = $insumo->valorCompra - $insumo->precioUnidad;
+                            $utilidadHoy = $utilidadHoy + $utilidad;
+                        }else{//validación si es bar o restaurante falta
+                            $producto = Producto::find($contiene[$k]->idProducto);
+                            $costoXonza = ($contiene[$k]->cantidad)/$insumo->valorCompra;
+                            $ventaXonza = ($contiene[$k]->cantidad)/$insumo->precioUnidad;
+                            $utilidad = $producto->precio - ($contiene[$k]->cantidad)/$insumo->valorCompra;
+                            $utilidadHoy = $utilidadHoy + $utilidad;
+                        }
+                    }
+                }
+            }   
+            //Ventas por vendedor
+
+            //Mesas reservadas si hay
+            $mesasReservadas = Mesa::mesasReservadas(Auth::user()->empresaActual)->get();
+
+            //Personal trabajando hoy
+
+            //Flujo de personas
+            $flujoPersonas = 0;
+            for ($i=0; $i < sizeof($facturasHoy); $i++) { 
+                $facturAux = Factura::find($facturasHoy[$i]->id);
+                $flujoPersonas = $flujoPersonas + $facturAux->nPersonas;
+            }
+
+            //Mesa que más vende
+            $mesasMayores = array(); // Retorna la mesa que más vende
+            for ($i=0; $i < sizeof($facturasHoy); $i++) {
+                $facturAux = Factura::find($facturasHoy[$i]->id);
+                $boolean = 0;
+                for ($j=0; $j < sizeof($mesasMayores); $j++) { 
+                    if($mesasMayores[0] == $facturAux->idMesa){
+                        $mesasMayores[1] = $mesasMayores[1] + $facturAux->total;
+                        $boolean == 1;
+                    }
+                }
+                if($boolean == 0){
+                    array_push($mesasMayores, array($facturAux->idMesa, $facturAux->total)); 
+                }
+            }
+
+            function mesaSorting($a, $b){
+                $t1 = $a['1'];
+                $t2 = $b['1'];
+                if($t1 > $t2) return 1;
+                else return 0;
+            }
+            usort($mesasMayores, function($a, $b){
+                $t1 = $a['1'];
+                $t2 = $b['1'];
+                if($t1 < $t2) return 1;
+                else return 0;
+            });
+            //FIN ESTADISTICAS DEL DÍA
             return View('WelcomeAdmin/welcome')
                 ->with('flag', $flag)
                 ->with('notificaciones',$notificaciones)
                 ->with('nuevas',$nuevas)
                 ->with('fecha2array',$fecha2array)
-                ->with('tutorial',$userActual->estadoTut);
+                ->with('tutorial',$userActual->estadoTut)
+                ->with('utilidadHoy',$utilidadHoy)
+                ->with('utilidadHoy',$utilidadHoy)
+                ->with('nMesasReservadas',$nMesasReservadas)
+                ->with('flujoPersonas',$flujoPersonas);
         }
     }
 
