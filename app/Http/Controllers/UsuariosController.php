@@ -19,6 +19,7 @@ use PocketByR\Insumo;
 use PocketByR\Producto;
 use PocketByR\Contiene;
 use PocketByR\Notificaciones;
+use PocketByR\ResolucionFacturacion;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 
@@ -519,10 +520,6 @@ class UsuariosController extends Controller
       $empresa->nombreEstablecimiento = $request->nombreEstablecimiento;
       $empresa->direccion = $request->direccionEstablecimiento;
       $empresa->telefono = $request->telefonoEstablecimiento;
-      $empresa->nresolucionFacturacion = null;
-      $empresa->fechaResolucion = null;
-      $empresa->nInicio = 0;
-      $empresa->nFinal = 0;
       $empresa->nit = $request->nit;
 
       if($empresa->tipoRegimen != $request->tipoRegimen){
@@ -531,6 +528,7 @@ class UsuariosController extends Controller
       }
 
       if($empresa->tipoRegimen == "Tipo regimen"){
+        $empresa->nresolucionFacturacion = null;
         $empresa->save();
         flash::warning('La empresa ha sido modificada exitosamente, recuerde definir un tipo de regimen')->important();
         session_start();
@@ -538,12 +536,44 @@ class UsuariosController extends Controller
         $tab = 'perfil';
         return redirect()->route('Auth.usuario.editUsuario',$tab);
       }else if($empresa->tipoRegimen == "comun" ){
+
+        if($empresa->nresolucionFacturacion != ''){
+          $viejaResolucion = ResolucionFacturacion::prefijo($request->prefijo, $empresa->id)->get();
+          $booleanAux = 0;
+          for ($i=0; $i < sizeof($viejaResolucion); $i++) { 
+            if($request->resolucion == $viejaResolucion[$i]->nresolucionFacturacion
+              || $request->nInicio == $viejaResolucion[$i]->nInicio
+              || $request->nFinal == $viejaResolucion[$i]->nFinal
+              || $request->fechaResolucion == $viejaResolucion[$i]->fechaResolucion){
+              $booleanAux = 1;
+            }
+          }
+          if($booleanAux == 0){
+            $nuevaResolucion = new ResolucionFacturacion;
+            $nuevaResolucion->nresolucionFacturacion = $empresa->nresolucionFacturacion;
+            $nuevaResolucion->imagenResolucionFacturacion = $empresa->imagenResolucionFacturacion;
+            $nuevaResolucion->fechaResolucion = $empresa->fechaResolucion;
+            $nuevaResolucion->nInicio = $empresa->nInicio;
+            $nuevaResolucion->nFinal = $empresa->nFinal;
+            $nuevaResolucion->prefijo = $empresa->prefijo;
+            $nuevaResolucion->idEmpresa = $empresa->id;
+            $nuevaResolucion->save();
+          }else{
+            flash::error('Debes cargar una resolución de facturación diferente a las anteriores')->important();
+            session_start();
+            $_SESSION['id'] = $id;
+            $tab = 'perfil';
+            return redirect()->route('Auth.usuario.editUsuario',$tab);
+          }
+        }
+
         $empresa->nresolucionFacturacion = $request->resolucion;
         if($empresa->nInicio != $request->nInicio){
           $empresa->nInicio = $request->nInicio;
           $empresa->contadorFactura = $empresa->nInicio;
+          $empresa->nFinal = $request->nFinal;
         }
-        $empresa->nFinal = $request->nFinal;
+        $empresa->prefijo = $request->prefijo;
         $empresa->fechaResolucion = $request->fechaResolucion;
         $file2 = $request->file('imgRes');
         $path = public_path() . '/assets-Internas/images/facturacion/';
@@ -554,7 +584,6 @@ class UsuariosController extends Controller
           $file2->move($path, $perfilNombre2);
           if($empresa->imagenResolucionFacturacion != ""){
             $imagenActual = $path . $empresa->imagenResolucionFacturacion;
-            unlink($imagenActual);
           }
           $empresa->imagenResolucionFacturacion = $perfilNombre2;
         }
@@ -574,6 +603,11 @@ class UsuariosController extends Controller
           return redirect()->route('Auth.usuario.editUsuario',$tab);
         }
       }
+      $empresa->nresolucionFacturacion = null;
+      $empresa->fechaResolucion = null;
+      $empresa->prefijo = "";
+      $empresa->nInicio = 0;
+      $empresa->nFinal = 0;
       $empresa->save();
       flash::success('La empresa ha sido modificada exitosamente')->important();
       session_start();

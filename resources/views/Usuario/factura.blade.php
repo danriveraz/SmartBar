@@ -70,7 +70,8 @@
 		                <strong class=" text1 text-danger" style="color: #2d0031;">
 		                	@if($empresa->tipoRegimen == "comun")
 		                		Factura No.
-		                    	{{$empresa->contadorFactura}}
+		                		<br>
+	                			{{$empresa->prefijo}} - {{$empresa->contadorFactura}}
 		                    @else
 		                    	Documento equivalente 
 		                    	a la factura No. {{$empresa->contadorFactura}}

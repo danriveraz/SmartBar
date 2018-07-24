@@ -316,11 +316,7 @@
                       <div class="input-container">
                         <div class="input-group">
                           <div class="col-md-4">
-                            @if($empresa->nInicio != 0)
-                            <input name="prefijo" id="prefijo" type="text" class="input" placeholder="Prefijo" value="" required="true">
-                            @else
-                            <input name="prefijo" id="prefijo" type="text" class="input" placeholder="Prefijo" required="true">
-                            @endif
+                            <input name="prefijo" id="prefijo" type="text" class="input" placeholder="Prefijo" value="{{$empresa->prefijo}}" required="true">
                           </div>
                           <div class="col-md-4">
                             @if($empresa->nInicio != 0)
@@ -905,6 +901,7 @@
       document.getElementById('resolucion').value = null;
       document.getElementById('fechaResolucion').required = false;
       document.getElementById('fechaResolucion').value = null;
+      document.getElementById('prefijo').value = null;
       document.getElementById('nInicio').required = false;
       document.getElementById('nInicio').value = null;
       document.getElementById('nFinal').required = false;

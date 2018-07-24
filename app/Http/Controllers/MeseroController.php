@@ -49,38 +49,42 @@ class MeseroController extends Controller
     }
 
     public function factura(Request $request){
-        /*Daniel*/
-        $empresa = Empresa::find(Auth::user()->empresaActual);
-        /*Fin Daniel */
+      /*Daniel*/
+      $empresa = Empresa::find(Auth::user()->empresaActual);
+      /*Fin Daniel */
+      if($empresa->contadorFactura <= $empresa->nFinal){
         $idMesa = $request->idM;
         $busqueda = Factura::buscarFacturaId($idMesa)->get()->last();
 
-      if(sizeOf($busqueda) > 0){
-        $ventas = Venta::pedidoProductos($busqueda->id)->get();
-        $respuesta[] = array(
-        'validacion' => true,
-        'idFactura' => $busqueda->id,
-        'ventas' => $ventas
-        );
-        return json_encode($respuesta);
+        if(sizeOf($busqueda) > 0){
+          $ventas = Venta::pedidoProductos($busqueda->id)->get();
+          $respuesta[] = array(
+          'validacion' => true,
+          'idFactura' => $busqueda->id,
+          'ventas' => $ventas
+          );
+          return json_encode($respuesta);
+        }else{
+          $nfactura = new Factura;
+          $nfactura->estado = "En proceso";
+          $nfactura->fecha = date("Y-m-d H:i:s", time());
+          $nfactura->total = 0;
+          $nfactura->idEmpresa = Auth::user()->empresaActual;
+          $nfactura->idUsuario = Auth::user()->id;
+          $nfactura->idMesa = $idMesa;
+          /*Daniel*/
+          $nfactura->idBar = $empresa->contadorFactura;
+          /*Fin Daniel*/
+          $nfactura->save();
+          $factura = Factura::buscarFacturaId($idMesa)->get()->last();
+          $respuesta[] = array(
+           'validacion' => false,
+           'idFactura' => $factura->id
+          );
+          return json_encode($respuesta);
+        }
       }else{
-        $nfactura = new Factura;
-        $nfactura->estado = "En proceso";
-        $nfactura->fecha = date("Y-m-d H:i:s", time());
-        $nfactura->total = 0;
-        $nfactura->idEmpresa = Auth::user()->empresaActual;
-        $nfactura->idUsuario = Auth::user()->id;
-        $nfactura->idMesa = $idMesa;
-        /*Daniel*/
-        $nfactura->idBar = $empresa->contadorFactura;
-        /*Fin Daniel*/
-        $nfactura->save();
-        $factura = Factura::buscarFacturaId($idMesa)->get()->last();
-        $respuesta[] = array(
-         'validacion' => false,
-         'idFactura' => $factura->id
-        );
-        return json_encode($respuesta);
+        $request->session()->flash('error_msg', 'Facturación agotada, si desea realizar este procedimiento, ésta debe debe renovarse');
       }
     }
 
@@ -197,106 +201,115 @@ class MeseroController extends Controller
     }
 
     public function venta(Request $request){
-      $productos = $request->productosTabla;
-      $cantidades = $request->cantidadesTabla;
-      $totales = $request->totalesTabla;
-      $idFactura = $request->factura;
       $empresa = Empresa::find(Auth::user()->empresaActual);
-      $idMesa = $request->mesa;
-      $ventas = Venta::pedidoActualMesa($idFactura)->get();
+      if($empresa->contadorFactura <= $empresa->nFinal){
+        $productos = $request->productosTabla;
+        $cantidades = $request->cantidadesTabla;
+        $totales = $request->totalesTabla;
+        $idFactura = $request->factura;
+        $idMesa = $request->mesa;
+        $ventas = Venta::pedidoActualMesa($idFactura)->get();
+        $size = sizeOf($productos);
+        $sizeVenta = sizeOf($ventas);
 
-      $size = sizeOf($productos);
-      $sizeVenta = sizeOf($ventas);
+        if($size != 0){
+          if($sizeVenta != 0){
+            for($i=0; $i<$size; $i++){
+              $auxiliar = false;
+              foreach($ventas as $venta){
+                if($venta->idProducto == $productos[$i] && $venta->cantidad != $cantidades[$i] && $venta->obsequio == $totales[$i]){
+                  $auxiliar = true;
+                  $venta->cantidad = $cantidades[$i];
+                  $venta->save();
+                }elseif($venta->idProducto == $productos[$i] && $venta->cantidad == $cantidades[$i] && $venta->obsequio == $totales[$i]){
+                  $auxiliar = true;
+                }
+              }
 
-      if($size != 0){
-        if($sizeVenta != 0){
+              if($auxiliar == false){
+                $nuevaVenta = new Venta;
+                $nuevaVenta->cantidad = $cantidades[$i];
+                /*Daniel -> cambio de "date("Y-m-d H:i:s", time());" por Carbon::now()*/
+                $nuevaVenta->hora = Carbon::now();
+                /*Fin Daniel*/
+                $nuevaVenta->estadoMesero = 'Vigente';
+                $nuevaVenta->estadoBartender = 'Por atender';
+                $nuevaVenta->estadoCajero = '0';
+                $nuevaVenta->idFactura = $idFactura;
+                $nuevaVenta->idProducto = $productos[$i];
+                $nuevaVenta->obsequio = $totales[$i];
+                $nuevaVenta->idMesero = Auth::user()->id;
+                $nuevaVenta->idBartender = Auth::user()->id;
+                $nuevaVenta->idCajero = Auth::user()->id;
+                $nuevaVenta->save();
+              }
 
-          for($i=0; $i<$size; $i++){
-            $auxiliar = false;
-            foreach($ventas as $venta){
-              if($venta->idProducto == $productos[$i] && $venta->cantidad != $cantidades[$i] && $venta->obsequio == $totales[$i]){
-                $auxiliar = true;
-                $venta->cantidad = $cantidades[$i];
-                $venta->save();
-              }elseif($venta->idProducto == $productos[$i] && $venta->cantidad == $cantidades[$i] && $venta->obsequio == $totales[$i]){
-                $auxiliar = true;
+            }
+            flash::success('El pedido se ha modificado satisfactoriamente.')->important();
+          }else{
+            for($i=0; $i<$size; $i++){
+              $venta = new Venta;
+              $venta->cantidad = $cantidades[$i];
+              /*Daniel -> cambio de "date("Y-m-d H:i:s", time());" por Carbon::now()*/
+              $venta->hora = Carbon::now();
+              /*Fin Daniel*/
+              $venta->estadoMesero = 'Vigente';
+              $venta->estadoBartender = 'Por atender';
+              $venta->estadoCajero = '0';
+              $venta->idFactura = $idFactura;
+              $venta->idProducto = $productos[$i];
+              $venta->obsequio = $totales[$i];
+              $venta->idMesero = Auth::user()->id;
+              $venta->idBartender = Auth::user()->id;
+              $venta->idCajero = Auth::user()->id;
+              $venta->save();
+            }
+
+            $mesa = Mesa::find($idMesa);
+            $mesa->estado = 'Ocupada';
+            $mesa->save();
+
+            /*Daniel*/
+            $empresa->contadorFactura = $empresa->contadorFactura + 1;
+            $usuarios = User::SearchUsers(Auth::user()->empresaActual)->get();
+            $diferencia = $empresa->nFinal - $empresa->contadorFactura;
+            if($diferencia == 100 || $diferencia == 50){
+              for ($i=0; $i < sizeof($usuarios); $i++) { 
+                $notificacion = new Notificaciones;
+                $notificacion->estado = "nueva";
+                $notificacion->descripcion = "¡Facturación próxima a agotarse!";
+                $notificacion->ruta = "Perfil";
+                $notificacion->fecha = Carbon::now();
+                $notificacion->idEmpresa = $empresa->id;
+                $notificacion->idUsuario = $usuarios[$i]->id;
+                $notificacion->save();
+              }
+            }else if($diferencia == 0){
+              for ($i=0; $i < sizeof($usuarios); $i++) { 
+                $notificacion = new Notificaciones;
+                $notificacion->estado = "nueva";
+                $notificacion->descripcion = "Facturación agotada, renovar ahora";
+                $notificacion->ruta = "Perfil";
+                $notificacion->fecha = Carbon::now();
+                $notificacion->idEmpresa = $empresa->id;
+                $notificacion->idUsuario = $usuarios[$i]->id;
+                $notificacion->save();
               }
             }
-
-            if($auxiliar == false){
-              $nuevaVenta = new Venta;
-              $nuevaVenta->cantidad = $cantidades[$i];
-              /*Daniel -> cambio de "date("Y-m-d H:i:s", time());" por Carbon::now()*/
-              $nuevaVenta->hora = Carbon::now();
-              /*Fin Daniel*/
-              $nuevaVenta->estadoMesero = 'Vigente';
-              $nuevaVenta->estadoBartender = 'Por atender';
-              $nuevaVenta->estadoCajero = '0';
-              $nuevaVenta->idFactura = $idFactura;
-              $nuevaVenta->idProducto = $productos[$i];
-              $nuevaVenta->obsequio = $totales[$i];
-              $nuevaVenta->idMesero = Auth::user()->id;
-              $nuevaVenta->idBartender = Auth::user()->id;
-              $nuevaVenta->idCajero = Auth::user()->id;
-              $nuevaVenta->save();
+            if($empresa->tipoRegimen == "comun"){
+              if($empresa->nresolucionFacturacion != "" || $empresa->fechaResolucion != "0000-00-00" || $empresa->imagenResolucionFacturacion != "" || $empresa->nInicio != 0 || $empresa->nFinal == 0){
+                $empresa->save();
+              }
             }
-
-          }
-          flash::success('El pedido se ha modificado satisfactoriamente.')->important();
-        }else{
-          for($i=0; $i<$size; $i++){
-            $venta = new Venta;
-            $venta->cantidad = $cantidades[$i];
-            /*Daniel -> cambio de "date("Y-m-d H:i:s", time());" por Carbon::now()*/
-            $venta->hora = Carbon::now();
             /*Fin Daniel*/
-            $venta->estadoMesero = 'Vigente';
-            $venta->estadoBartender = 'Por atender';
-            $venta->estadoCajero = '0';
-            $venta->idFactura = $idFactura;
-            $venta->idProducto = $productos[$i];
-            $venta->obsequio = $totales[$i];
-            $venta->idMesero = Auth::user()->id;
-            $venta->idBartender = Auth::user()->id;
-            $venta->idCajero = Auth::user()->id;
-            $venta->save();
+            flash::success('El pedido se ha creado satisfactoriamente')->important();
           }
-
-          $mesa = Mesa::find($idMesa);
-          $mesa->estado = 'Ocupada';
-          $mesa->save();
-
-          /*Daniel*/
-          $empresa->contadorFactura = $empresa->contadorFactura + 1;
-          $diferencia = $empresa->nFin - $empresa->contadorFactura;
-          $usuarios = User::SearchUsers(Auth::user()->empresaActual)->get();
-
-          if($diferencia == 100 || $diferencia == 50){
-            for ($i=0; $i < sizeof($usuarios); $i++) { 
-              $notificacion = new Notificaciones();
-              $notificacion->estado = "nueva";
-              $notificacion->descripcion = "¡Facturación próxima a agotarse!";
-              $notificacion->ruta = "Perfil";
-              $notificacion->fecha = Carbon::now();
-              $idEmpresa = $empresa->id;
-              $idUsuario = $usuarios[$i]->id;
-              $notificacion->save();
-            }
-          }
-          
-          if($empresa->tipoRegimen == "comun"){
-            if($empresa->nresolucionFacturacion != "" || $empresa->fechaResolucion != "0000-00-00" || $empresa->imagenResolucionFacturacion != "" || $empresa->nInicio != 0 || $empresa->nFinal == 0){
-              $empresa->save();
-            }
-          }
-          /*Fin Daniel*/
-
-          flash::success('El pedido se ha creado satisfactoriamente')->important();
+        }else{
+          $request->session()->flash('error_msg', 'Deben agregarse productos para completar el pedido');
         }
       }else{
-        $request->session()->flash('error_msg', 'Deben agregarse productos para completar el pedido');
+        $request->session()->flash('error_msg', 'Facturación agotada, si desea realizar este procedimiento, ésta debe debe renovarse');
       }
-
     }
     /**
      * Show the form for creating a new resource.

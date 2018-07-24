@@ -54,45 +54,46 @@
                 <strong class=" text1 text-danger" style="color: #2d0031;" id="mesaActual">
                   @if($empresa->tipoRegimen == "comun")
                   Factura No.
+                  <br>
                     @if(sizeof($facturas) == 0)
-                      0
+                      {{$empresa->prefijo}} - 1 
                     @else
-                    {{$facturas[0]->idBar}}
+                      {{$empresa->prefijo}} - {{$facturas[0]->idBar}}
                     @endif
                   @else
                     Documento equivalente 
                     a la factura No.
                     @if(sizeof($facturas) == 0)
-                    0
+                      1
                     @else
-                    {{$facturas[0]->idBar}}
+                      {{$facturas[0]->idBar}}
                     @endif
                   @endif
                 </strong>
                 <p>
                   <select class="selectFact numberFact" onchange="cambiarFactura(this.value);" style="width: 40%">
-                           @foreach($facturas as $factura) 
-                            @if(sizeof($factura->ventasHechas)>0)
-                              <option data-idFactura="{{$factura->id}}"  data-idMesaBar="{{$factura->idBar}}" value="{{$factura->mesa->id}}" id="mesas{{$factura->mesa->id}}"
-                                data-fecha="<?php  $date = new DateTime($factura->fecha);
-                        echo $date->format('M d, Y');
-                        ?>" data-hora="<?php echo  $date->format('g:i A'); 
-                        ?>"
-                        data-mesero="{{$factura->ventasHechas[0]->mesero->nombrePersona}}"
-                        data-cajero="{{$factura->ventasHechas[0]->cajero->nombrePersona}}"
-                        data-bartender="{{$factura->ventasHechas[0]->bartender->nombrePersona}}"
-                        data-idFactura="{{$facturas[0]->id}}">{{$factura->mesa->nombreMesa}} </option>
-                            @endif
-                          @endforeach
-                        </select>
-                        <a class="recarga"  title="recargar" href=""><span class="fa fa-fw fa-repeat" title="recargar"></span></a>
-                        <br>
+                    @foreach($facturas as $factura) 
+                      @if(sizeof($factura->ventasHechas)>0)
+                      <option data-idFactura="{{$factura->id}}"  data-idMesaBar="{{$factura->idBar}}" value="{{$factura->mesa->id}}" id="mesas{{$factura->mesa->id}}"
+                                  data-fecha="<?php  $date = new DateTime($factura->fecha);
+                          echo $date->format('M d, Y');
+                          ?>" data-hora="<?php echo  $date->format('g:i A'); 
+                          ?>"
+                          data-mesero="{{$factura->ventasHechas[0]->mesero->nombrePersona}}"
+                          data-cajero="{{$factura->ventasHechas[0]->cajero->nombrePersona}}"
+                          data-bartender="{{$factura->ventasHechas[0]->bartender->nombrePersona}}"
+                          data-idFactura="{{$facturas[0]->id}}">{{$factura->mesa->nombreMesa}} </option>
+                      @endif
+                    @endforeach
+                  </select>
+                    <a class="recarga"  title="recargar" href=""><span class="fa fa-fw fa-repeat" title="recargar"></span></a>
+                    <br>
                     <span class="spanR" id="fecha" style="color: #111"> 
                       {{$fecha}}
                     </span>
                     <span class="label label-danger">Pendiente</span>
-                        </p>
-                   <div id="contenedorMesas">
+                </p>
+                <div id="contenedorMesas">
                   @foreach($facturas as $factura)
                     @if(sizeof($factura->ventasHechas)>0)
                       <a id="myButton{{$factura->mesa->id}}" data-toggle="tab" href="#tabMesas{{$factura->mesa->id}}" hidden=""></a>
