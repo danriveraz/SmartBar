@@ -99,6 +99,8 @@ class welcomeAdmin extends Controller
 
             //Mesa que más vende
             $mesasMayores = array(); // Retorna la mesa que más vende
+            $mesaArray[] = ['Nombre','Productos'];
+            $mesasAux = Mesa::mesasAdmin(Auth::user()->empresaActual)->get();
             for ($i=0; $i < sizeof($facturasHoy); $i++) {
                 $facturAux = Factura::find($facturasHoy[$i]->id);
                 $boolean = 0;
@@ -109,7 +111,11 @@ class welcomeAdmin extends Controller
                     }
                 }
                 if($boolean == 0){
-                    array_push($mesasMayores, array($facturAux->idMesa, $facturAux->total)); 
+                    for ($j=0; $j < sizeof($mesasAux) ; $j++) { 
+                        if($mesasAux[$j]->id == $facturAux->idMesa){
+                            array_push($mesasMayores, array($mesasAux[$j]->nombreMesa, $facturAux->total)); 
+                        }
+                    }
                 }
             }
 
@@ -125,6 +131,11 @@ class welcomeAdmin extends Controller
                 if($t1 < $t2) return 1;
                 else return 0;
             });
+
+            for ($i=0; $i < sizeof($mesasMayores); $i++) { 
+                $mesaArray[$i+1] = [$mesasMayores[$i][0], $mesasMayores[$i][1]];
+            }
+
             //FIN ESTADISTICAS DEL DÍA
 
             $ventaTotal = Factura::totalEnTodasLasVentas(Auth::user()->empresaActual)->first();// la venta en todos los tiempo, para poder sacar el porcentaje de ventas
@@ -141,7 +152,6 @@ class welcomeAdmin extends Controller
             $datosVentasComparacionSemanas = $this->ventaCadaDiaSemana();// venta de la semana pasada y actual, detallada en cada día 
 
             $mesasConMasVentas =  Factura::mesasConMasVentas(Auth::user()->empresaActual,$ventaTotal->totalVentas)->limit(4)->get(); // consulta de las 4 mesas en las que más se ha vendido
-
             return View('WelcomeAdmin/welcome')->with('categoriasMasVendidas',$categoriasMasVendidas['categoriasMasVendidas'])
                     ->with('sumaVentasDeCadaCategoria',$categoriasMasVendidas['sumaVentasDeCadaCategoria'])
                     ->with('meserosMasVendedores',$meserosMasVendedores)
@@ -159,8 +169,8 @@ class welcomeAdmin extends Controller
                     ->with('tutorial',$userActual->estadoTut)
                     ->with('utilidadHoy',$utilidadHoy)
                     ->with('nMesasReservadas',$nMesasReservadas)
-                    ->with('flujoPersonas',$flujoPersonas);
-            
+                    ->with('flujoPersonas',$flujoPersonas)
+                    ->with('mesas',json_encode($mesaArray));
         } else {
             $flag = true;
             //ESTADISTICAS DEL DÍA 
@@ -203,6 +213,8 @@ class welcomeAdmin extends Controller
 
             //Mesa que más vende
             $mesasMayores = array(); // Retorna la mesa que más vende
+            $mesaArray[] = ['Nombre','Productos'];
+            $mesasAux = Mesa::mesasAdmin(Auth::user()->empresaActual)->get();
             for ($i=0; $i < sizeof($facturasHoy); $i++) {
                 $facturAux = Factura::find($facturasHoy[$i]->id);
                 $boolean = 0;
@@ -213,7 +225,11 @@ class welcomeAdmin extends Controller
                     }
                 }
                 if($boolean == 0){
-                    array_push($mesasMayores, array($facturAux->idMesa, $facturAux->total)); 
+                    for ($j=0; $j < sizeof($mesasAux) ; $j++) { 
+                        if($mesasAux[$j]->id == $facturAux->idMesa){
+                            array_push($mesasMayores, array($mesasAux[$j]->nombreMesa, $facturAux->total)); 
+                        }
+                    }
                 }
             }
 
@@ -229,6 +245,10 @@ class welcomeAdmin extends Controller
                 if($t1 < $t2) return 1;
                 else return 0;
             });
+
+            for ($i=0; $i < sizeof($mesasMayores); $i++) { 
+                $mesaArray[$i+1] = [$mesasMayores[$i][0], $mesasMayores[$i][1]];
+            }
             //FIN ESTADISTICAS DEL DÍA
             return View('WelcomeAdmin/welcome')
                 ->with('flag', $flag)
@@ -239,7 +259,8 @@ class welcomeAdmin extends Controller
                 ->with('utilidadHoy',$utilidadHoy)
                 ->with('utilidadHoy',$utilidadHoy)
                 ->with('nMesasReservadas',$nMesasReservadas)
-                ->with('flujoPersonas',$flujoPersonas);
+                ->with('flujoPersonas',$flujoPersonas)
+                ->with('mesas',json_encode($mesaArray));
         }
     }
 

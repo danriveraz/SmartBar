@@ -486,7 +486,7 @@
         smooth: true
       });
     }
-
+    console.log({!!$categorias->toJson(JSON_PRETTY_PRINT);!!});
     if ($('#hero-bar').length) {
       return Morris.Bar({
         element: "hero-bar",
