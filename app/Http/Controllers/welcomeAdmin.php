@@ -191,7 +191,7 @@ class welcomeAdmin extends Controller
 
             //Mesas reservadas si hay
             $mesasReservadas = Mesa::mesasReservadas(Auth::user()->empresaActual)->get();
-
+            $nMesasReservadas = sizeof($mesasReservadas);
             //Personal trabajando hoy
 
             //Flujo de personas
