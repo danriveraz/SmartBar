@@ -64,12 +64,15 @@
 <br>
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
+      <div class="col-md-6">
         <div id = "container">
         </div>
-    </div>
-    <div class="col-md-6">
-
+      </div>
+      <div class="col-md-6">
+        <div id="piechart">
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -260,6 +263,7 @@
 <!-- JS ESTADISTICAS -->
 <script type="text/javascript">
   var mesas = <?php echo $mesas; ?>;
+  var vendedores = <?php echo $vendedores; ?>;
   google.charts.setOnLoadCallback(drawChart);
 
   function drawChart() {
@@ -275,6 +279,25 @@
 
     var chart = new google.visualization.ColumnChart(document.getElementById('container'));
     chart.draw(data, options);
+  }
+
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChartPie);
+
+  function drawChartPie() {
+
+    var dataPie = google.visualization.arrayToDataTable(vendedores);
+
+    var optionsPie = {
+      title: 'Ventas por vendedor',
+      width: 500,
+      height: 350,
+      legend: { position: 'none' },
+    };
+
+    var chartPie = new google.visualization.PieChart(document.getElementById('piechart'));
+
+    chartPie.draw(dataPie, optionsPie);
   }
 </script>
 <!-- FIN JS ESTADISTICAS -->
