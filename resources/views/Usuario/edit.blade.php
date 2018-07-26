@@ -537,39 +537,7 @@
                                                         <label>Departamento</label>
                                                         <div>
                                                           <select id="idDepto"  name="idDepto" required class="form-control">
-                                                                                                  <option value="1">Amazonas</option>
-                                                                                                  <option value="2">Antioquia</option>
-                                                                                                  <option value="3">Arauca</option>
-                                                                                                  <option value="4">Atl&aacute;ntico</option>
-                                                                                                  <option value="5">Bol&iacute;var</option>
-                                                                                                  <option value="6">Boyac&aacute;</option>
-                                                                                                  <option value="7">Caldas</option>
-                                                                                                  <option value="8">Caquet&aacute;</option>
-                                                                                                  <option value="9">Casanare</option>
-                                                                                                  <option value="10">Cauca</option>
-                                                                                                  <option value="11">Cesar</option>
-                                                                                                  <option value="12">Choc&oacute;</option>
-                                                                                                  <option value="13">C&oacute;rdoba</option>
-                                                                                                  <option value="14">Cundinamarca</option>
-                                                                                                  <option value="15">G&uuml;ainia</option>
-                                                                                                  <option value="16">Guaviare</option>
-                                                                                                  <option value="17">Huila</option>
-                                                                                                  <option value="18">La Guajira</option>
-                                                                                                  <option value="19">Magdalena</option>
-                                                                                                  <option value="20">Meta</option>
-                                                                                                  <option value="21">Nari&ntilde;o</option>
-                                                                                                  <option value="22">Norte de Santander</option>
-                                                                                                  <option value="23">Putumayo</option>
-                                                                                                  <option value="24">Quindo</option>
-                                                                                                  <option value="25">Risaralda</option>
-                                                                                                  <option value="26">San Andr&eacute;s y Providencia</option>
-                                                                                                  <option value="27">Santander</option>
-                                                                                                  <option value="28">Sucre</option>
-                                                                                                  <option value="29">Tolima</option>
-                                                                                                  <option value="30">Valle del Cauca</option>
-                                                                                                  <option value="31">Vaup&eacute;s</option>
-                                                                                                  <option value="32">Vichada</option>
-                                                                                              </select>
+                                                          </select>
                                                         </div>
                                                       </div>
                                                       <div class="form-group">
@@ -600,175 +568,180 @@
 
 				</div>
 				</div>
-				<div class="tab-pane" id="tab2">
-				<div id="">
+        @if($nuevaTab == 'categorias')
+        <div class="tab-pane active" id="tab2">
+        @else
+        <div class="tab-pane" id="tab2">
+        @endif
+				  <div id="">
           <!--contiene la categoria-->
-          <div class="container-fluid">
-                        <div class="section-heading">
-                          <div class="row">
-                          <div class="col-sm-12">
-                          <div class="col-sm-8">
-                              <p class="lead" style="margin-bottom: 10px;font-size: 18px;">Llenar tus categorias es mucho mas <span class="text-success">facil y rapido</span></p>
-                          </div>
-                          <div class="col-sm-4">
-                            <div align="right">
-                              <a href="#addModalCategoria" class="btn btn-pocket" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
-                                <i class="fa fa-plus"></i>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
+            <div class="container-fluid">
+              <div class="section-heading">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="col-sm-8">
+                      <p class="lead" style="margin-bottom: 10px;font-size: 18px;">
+                        Llenar tus categorias es mucho mas 
+                        <span class="text-success">
+                          facil y rapido
+                        </span>
+                      </p>
+                    </div>
+                    <div class="col-sm-4">
+                      <div align="right">
+                        <a href="#addModalCategoria" class="btn btn-pocket" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+                          <i class="fa fa-plus"></i>
+                        </a>
                       </div>
-                          <p>
-                        </div>
-                        <div class="col-sm-12" style="align-content: center;">
-                          <div id="list-cat"></div>
-                        </div>
-                        <div class="modal fade in" id="addModalCategoria" role="dialog">
-                          <div class="modal-dialog modal-md" style="width: 50%;">
-                            <div class="modal-content">
-                              <form class="login-form" method="POST" action="http://localhost/SmartBar/public/categoria" accept-charset="UTF-8" >
-                                <input name="_token" type="hidden" value="KVKz5nwgKXCeAS25elAJDika8G9WEzoS9T8fD2Co">
-                                <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
-                                <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
-                                  <h4 class="modal-title" style="font-weight: 400;font-size: 16px;">
-                                  Nueva Categoría
-                                  </h4>
-                                </div>
-                                <div class="modal-body">
-
-                                  <div class="row">
-                                    <div class="col-sm-12">
-                                    <div class="col-sm-6">
-                                      <!-- inicio de slider categoria-->
-                                      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                    										<!-- Carousel indicators -->
-
-                    										<!-- Wrapper for carousel items -->
-                    										<div class="carousel-inner">
-                    											<div class="item active">
-                    												<img src="{{asset ('assets-Internas/images/SliderProfileCategoria/image-iso3.png')}}" alt="First Slide">
-                    											</div>
-                    										</div>
-                    										<!-- Carousel controls -->
-                    									</div>
-                                      <!-- fin de slider categoria-->
-                                    </div>
-                                    <div class="col-sm-6">
-                                      <div class="widget-content">
-                                        <div class="form-group">
-                                          <div class="input-container">
-                                            <i class="glyphicon glyphicon-glass"></i>
-                                            <input type="text" name="nombre" class="input" placeholder="Nombre" required="true" required="true" />
-                                          </div>
-                                          <br>
-                                          <div class="input-container">
-                                            <i class="fa fa-money"></i>
-                                              <input type="number" min="0" step="any" name="precio" placeholder="Precio" class="input" />
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button class="btn btn-pocket" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" ><i class="fa fa-send"></i>Guardar</button>
-                                      </div>
-                                    </div>
-                                    </div>
+                    </div>
+                  </div>
+                </div>
+                <p>
+              </div>
+              <div class="col-sm-12" style="align-content: center;">
+                <div id="list-cat"></div>
+              </div>
+              <div class="modal fade in" id="addModalCategoria" role="dialog">
+                <div class="modal-dialog modal-md" style="width: 50%;">
+                  <div class="modal-content">
+                    {!! Form::open(['method' => 'POST', 'action' => 'CategoriaController@store', 'class' => 'login-form']) !!}
+                      {{ csrf_field() }}
+                      <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+                        <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" style="font-weight: 400;font-size: 16px;">
+                          Nueva Categoría
+                        </h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="col-sm-6">
+                              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    						<div class="carousel-inner">
+              										<div class="item active">
+              												<img src="{{asset ('assets-Internas/images/SliderProfileCategoria/image-iso3.png')}}" alt="First Slide">
+            											</div>
+            										</div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="widget-content">
+                                <div class="form-group">
+                                  <div class="input-container">
+                                    <i class="glyphicon glyphicon-glass"></i>
+                                      <input type="text" name="nombre" class="input" placeholder="Nombre" required="true" required="true" />
+                                  </div>
+                                  <br>
+                                  <div class="input-container">
+                                    <i class="fa fa-money"></i>
+                                      <input type="number" min="0" step="any" name="precio" placeholder="Precio" class="input" />
                                   </div>
                                 </div>
-                              </form>
+                              </div>
+                              <div class="modal-footer">
+                                <button class="btn btn-pocket" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" ><i class="fa fa-send"></i>Guardar</button>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-          <!--contiene la categoria-->
+                    {!! Form::close() !!}
+                  </div>
+                </div>
+              </div>
+            </div>
 				</div>
-				</div>
-				<div class="tab-pane" id="tab3">
-				</div>
+			</div>
+			<div class="tab-pane" id="tab3">
+			</div>
 
-				<div class="tab-pane" id="tab4">
+			@if($nuevaTab == 'mesas')
+      <div class="tab-pane active" id="tab4">
+      @else
+      <div class="tab-pane" id="tab4">
+      @endif
 				<div id="">
           <!--Inicio de mesas-->
           <div class="container-fluid">
-                        <div class="section-heading">
-                          <div class="row">
+            <div class="section-heading">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="col-sm-8">
+                    <p class="lead" style="margin-bottom: 10px;font-size: 18px;">Llenar tu numero de Mesas es <span class="text-success">facil y rapido</span></p>
+                  </div>
+                  <div class="col-sm-4">
+                    <div align="right">
+                      <a href="#addModalMesas" class="btn btn-pocket" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+                        <i class="fa fa-plus"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p>
+            </div>
+            <div class="col-sm-12">
+              <div id="list-mesas"> </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="modal fade in" id="addModalMesas" >
+                <div class="modal-dialog modal-md" style="width: 50%;">
+                  <div class="modal-content">
+                    <form class="login-form" name="formulario" autocomplete="on" method="post" action="{{url('mesas/create')}}">
+                    {{csrf_field()}}
+                      <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
+                        <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" style="font-weight: 400;font-size: 16px;">
+                          Nueva Mesa
+                        </h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
                           <div class="col-sm-12">
-                          <div class="col-sm-8">
-                              <p class="lead" style="margin-bottom: 10px;font-size: 18px;">Llenar tu numero de Mesas es <span class="text-success">facil y rapido</span></p>
-                          </div>
-                          <div class="col-sm-4">
-                            <div align="right">
-                              <a href="#addModalMesas" class="btn btn-pocket" data-toggle="modal" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
-                                <i class="fa fa-plus"></i>
-                              </a>
+                            <div class="col-sm-6">
+                              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            										<div class="carousel-inner">
+            											<div class="item active">
+            												<img src="{{asset ('assets-Internas/images/SliderProfileCategoria/image-iso3.png')}}" alt="First Slide">
+            											</div>
+            										</div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <p class="lead" style="margin-bottom: 10px;">
+                                Añade la cantidad de
+                                <span class="text-success">
+                                  Mesas
+                                </span>
+                              </p>
+                              <ul class="list-unstyled" style="line-height: 1.5">
+                                <li>
+                                  <span class="fa fa-check text-success" style="padding-right:5px;">
+                                  </span>Nombralas a tu elección en la tabla
+                                </li>
+                                <br>
+                              </ul>
+                              <div class="widget-content">
+                                <div class="form-group">
+                                  <div class="input-container">
+                                    <i class="glyphicon glyphicon-glass"></i>
+                                    <input class="input" type="number" name="cantidad"  placeholder="Cantidad de mesas" min="0" required="true"/>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button class="btn btn-pocket" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" ><i class="fa fa-send"></i>Guardar</button>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                          <p>
-                      </div>
-
-                        <div class="col-sm-12">
-                          <div id="list-mesas"> </div>
-                        </div>
-                        <div class="col-sm-12">
-                          <div class="modal fade in" id="addModalMesas" >
-                            <div class="modal-dialog modal-md" style="width: 50%;">
-                              <div class="modal-content">
-                                <form class="login-form" name="formulario" autocomplete="on" method="post" action="http://localhost/SmartBar/public/mesas/create">
-                                    <input type="hidden" name="_token" value="KVKz5nwgKXCeAS25elAJDika8G9WEzoS9T8fD2Co">
-                                  <div class="modal-header" style="BACKGROUND-COLOR: rgb(79,0,85); color:white">
-                                  <button aria-hidden="true" type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
-                                    <h4 class="modal-title" style="font-weight: 400;font-size: 16px;">
-                                    Nueva Mesa
-                                    </h4>
-                                  </div>
-                                  <div class="modal-body">
-                                    <div class="row">
-                                      <div class="col-sm-12">
-                                      <div class="col-sm-6">
-                                        <!-- inicio de slider categoria-->
-                                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                      										<!-- Carousel indicators -->
-
-                      										<!-- Wrapper for carousel items -->
-                      										<div class="carousel-inner">
-                      											<div class="item active">
-                      												<img src="{{asset ('assets-Internas/images/SliderProfileCategoria/image-iso3.png')}}" alt="First Slide">
-                      											</div>
-                      										</div>
-                      										<!-- Carousel controls -->
-                      									</div>
-                                        <!-- fin de slider categoria-->
-                                      </div>
-                                      <div class="col-sm-6">
-                                        <p class="lead" style="margin-bottom: 10px;">Añade la cantidad de <span class="text-success">Mesas</span></p>
-                                          <ul class="list-unstyled" style="line-height: 1.5">
-                                            <li><span class="fa fa-check text-success" style="padding-right:5px;"></span>Nombralas a tu elección en la tabla</li>
-                                            <br>
-                                        <div class="widget-content">
-                                          <div class="form-group">
-                                            <div class="input-container">
-                                              <i class="glyphicon glyphicon-glass"></i>
-                                              <input class="input" type="number" name="cantidad"  placeholder="Cantidad de mesas" min="0" required="true"/>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button class="btn btn-pocket" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" ><i class="fa fa-send"></i>Guardar</button>
-                                        </div>
-                                      </div>
-                                      </div>
-                                    </div>
-
-                                  </div>
-                                </form>
-                            </div>
-                           </div>
-                          </div>
-                        </div>
-                      </div>
-
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <!-- Fin de Mesas-->
 			  </div>
 			</div>
