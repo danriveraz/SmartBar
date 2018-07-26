@@ -65,11 +65,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="col-md-6">
-        <div id="container"></div>
-      </div>
       <div class="col-md-6" style="margin-top: 2%;">
         <div id="piechart"></div>
+      </div>
+      <div class="col-md-6">
+        <div id="container"></div>
       </div>
     </div>
   </div>
