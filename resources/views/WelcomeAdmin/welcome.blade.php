@@ -2,8 +2,12 @@
 @section('content')
 {!!Html::style('assets-Internas\css/tutorial/tutorial.css')!!}
 {!!Html::script('assets-Internas\javascripts/tutorial/tutorial.js')!!}
-
+<script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
+<script type = "text/javascript">
+         google.charts.load('current', {packages: ['corechart']});     
+</script>
 <!-- INICIO ESTADISTICAS -->
+<br>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -12,9 +16,15 @@
           <i class="fa fa-money"></i>
           <div class="social-data">
             <h1>
-              {{$utilidadHoy}}
+              <?php 
+                echo(ceil($utilidadHoy)) 
+              ?>
             </h1>
-            Utilidad facturado HOY
+          </div>
+          <div>
+            <p>
+              Utilidad facturado HOY
+            </p>
           </div>
         </div>
       </div>
@@ -25,7 +35,11 @@
             <h1>
               {{$nMesasReservadas}}
             </h1>
-            Mesas reservadas HOY
+          </div>
+          <div>
+            <p>
+              Mesas reservadas HOY
+            </p>
           </div>
         </div>
       </div>
@@ -36,13 +50,30 @@
             <h1>
               {{$flujoPersonas}}
             </h1>
-            Flujo de personas
+          </div>
+          <div>
+            <p>
+              Flujo de personas
+            </p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+        <div id = "container">
+        </div>
+    </div>
+    <div class="col-md-6">
+
+    </div>
+  </div>
+</div>
+<br>
 <!-- FIN ESTADISTICAS -->
 
 <!-- Inicio del tutorial -->
@@ -216,7 +247,7 @@
 </footer>
 
 <script>
-$(document).ready(function () {
+  $(document).ready(function () {
     var tutorial = '{{$tutorial}}';
     if(tutorial != 1){
       $("#modal1").modal("show");
@@ -225,4 +256,26 @@ $(document).ready(function () {
     }
   });
 </script>
+
+<!-- JS ESTADISTICAS -->
+<script type="text/javascript">
+  var mesas = <?php echo $mesas; ?>;
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    // Define the chart to be drawn.
+    var data = google.visualization.arrayToDataTable(mesas);
+
+    var options = {
+      title: 'Ventas por mesas HOY',
+      width: 500,
+      height: 350,
+      legend: { position: 'none' },
+    }; 
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('container'));
+    chart.draw(data, options);
+  }
+</script>
+<!-- FIN JS ESTADISTICAS -->
 @endsection
