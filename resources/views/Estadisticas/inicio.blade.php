@@ -8,46 +8,150 @@
             Gráficas
           </h1>
         </div>
-        <dv class="row">
-          <div class="row">
-            <div class="col-md-6">
-              <i class="fa fa-bar-chart-o"></i>Categorias Más Vendidas
+
+<div class="row">
+  <div class="col-md-6">
+    <!-- Inicio Gráfica de categorias ventas totales -->
+    <div class="row">
+      <i class="fa fa-bar-chart-o"></i>Categorias Más Vendidas
+      <form id="formCategoriaTotal" class="login-form">
+        <fieldset>
+        <div class="col-md-4">
+            <div class="input-container"> 
+              <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio"  type="date">
             </div>
-            <div class="col-md-6">
-              <form  class="login-form">
-                <fieldset>
-                <div class="input-container"> Fecha de Búsqueda
-                  <i class="fa fa-birthday-cake"></i>
-                  <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha de Nacimiento" name="fechaNacimiento" id="fechaNacimiento" type="date">
-                </div>
-              </form>
+        </div>
+        <div class="col-md-4">
+            <div class="input-container"> 
+              <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin" type="date">
+            </div>
+        </div>
+        <div class="col-md-2">
+          <div  class="form-group">
+            <a id='buscarCategoriaTotal' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+              <i class="fa fa-send"></i>
+              Buscar
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+        <div class="widget-container fluid-height">
+          <div class="widget-content padded text-center">
+            <div class="graph-container">
+              <div class="caption"></div>
+              <div class="graph" id="GraficaCategoriasTotal"></div>
+              <!-- Bar Charts:Morris -->
             </div>
           </div>
+        </div>
+    </div>
+    <!-- Fin Gráfica de categorias ventas totales -->
+  </div>
+  <!-- Inicio de tabulador de Gráfica de categorias -->
+  <div class="col-md-6">
+    <div id="exTab2" class="container"> 
+      <ul class="nav nav-tabs">
+        <li >
+          <a href="#tabCategoriasDias" data-toggle="tab">Por Días</a>
+        </li>
+        <li class="active">
+          <a  href="#tabCategoriasSemana" data-toggle="tab">Por Semana</a>
+        </li>
+        <li><a href="#3" data-toggle="tab">Solution</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+
+        <!-- Inicio Gráfica de categorias Por Días -->
+        <div class="tab-pane" id="tabCategoriasDias">
           <div class="row">
-            <div class="col-md-6">
-                <div class="widget-container fluid-height">
-                  <div class="widget-content padded text-center">
-                    <div class="graph-container">
-                      <div class="caption"></div>
-                      <div class="graph" id="hero-bar"></div>
-                      <!-- Bar Charts:Morris -->
-                    </div>
+            <form id="formCategoriaSemana" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio"  type="date">
                   </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="widget-container fluid-height">
-                  <div class="widget-content padded text-center">
-                    <div class="graph-container">
-                      <div class="caption"></div>
-                      <div class="graph" id="hero-graph"></div>
-                      <!-- Bar Charts:Morris -->
-                    </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin" type="date">
                   </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarCategoriaDias' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
                 </div>
-            </div>
+              </div>
+            </form>
           </div>
-        </dv>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaCategoriasDias"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de categorias Por Dias -->
+        <!-- Inicio Gráfica de categorias Por semanas -->
+        <div class="tab-pane active" id="tabCategoriasSemana">
+          <div class="row">
+            <form id="formCategoriaSemana" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" id="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin" id="fechaFin" type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarCategoriaSemana' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaCategoriasSemana"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de categorias Por semanas -->
+        <div class="tab-pane" id="3">
+          <h3>add clearfix to tab-content (see the css)</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fin de tabulador de Gráfica de categorias -->
+</div>
+
+
+
         <div class="row">
           <!-- Line Chart -->
           <div class="col-md-6">
@@ -331,6 +435,10 @@
    *   Morris Chart JS
    * =============================================================================
    */
+   // datos para las gráficas, se pasa por medio de variables globales para tener acceso a ellas desde las funciones de ajax y la función que se llama cada vez que se hace resize
+   var datosCategoriaTotal = {!!$categorias->toJson(JSON_PRETTY_PRINT);!!};
+   var datosCategoriaSemana = {!! $categoriasVentasPorSemana !!};
+
   $(window).resize(function(e) {
     var morrisResize;
     clearTimeout(morrisResize);
@@ -341,7 +449,7 @@
   $(function() {
     return buildMorris();
   });
-  buildMorris = function($re,$categoriasMásVendidas) {
+  buildMorris = function($re) {
     var tax_data;
     if ($re) {
       $(".graph").html("");
@@ -385,16 +493,7 @@
         sorned: null
       }
     ];
-    if ($('#hero-graph').length) {
-      Morris.Line({
-        element: "hero-graph",
-        data: {!! $categoriasVentasPorSemana !!},
-        xkey: "semana",
-        ykeys: ["Bebidas", "Cervezas","Otros","Licores"],
-        labels: ["Bebida", "Cerveza","Otros","Licores"],
-        lineColors: ["#5bc0de", "#60c560", "#2d0031", "#666666"]
-      });
-    }
+
     if ($('#hero-donut').length) {
       Morris.Donut({
         element: "hero-donut",
@@ -486,11 +585,45 @@
         smooth: true
       });
     }
+//Gráfica del comportamiento de ventas agrupado por semana
+    if ($('#GraficaCategoriasSemana').length) {
+      Morris.Line({
+        element: "GraficaCategoriasSemana",
+        data: datosCategoriaSemana,
+        xkey: "semana",
+        ykeys: ["Bebidas", "Cervezas","Otros","Licores"],
+        labels: ["Bebida", "Cerveza","Otros","Licores"],
+        lineColors: ["#5bc0de", "#60c560", "#2d0031", "#666666"],
+        hideHover: "auto",
+        smooth:false,
+        postUnits:' Ventas',
+        //dateFormat:function (x) { return new Date(x).toString(); },
+        //hoverCallback: function (index, options, content, row) {return "sin(" + content + ") = " + options;}
+      });
+    }
 
-    if ($('#hero-bar').length) {
+//Gráfica del comportamiento de ventas agrupado por Días
+    if ($('#GraficaCategoriasDias').length) {
+      Morris.Line({
+        element: "GraficaCategoriasDias",
+        data: datosCategoriaSemana,
+        xkey: "semana",
+        ykeys: ["Bebidas", "Cervezas","Otros","Licores"],
+        labels: ["Bebida", "Cerveza","Otros","Licores"],
+        lineColors: ["#00ff00", "#00ff00", "#00ff00", "#00ff00"],
+        hideHover: "auto",
+        smooth:false,
+        postUnits:' Ventas',
+        //dateFormat:function (x) { return new Date(x).toString(); },
+        //hoverCallback: function (index, options, content, row) {return "sin(" + content + ") = " + options;}
+      });
+    }
+
+//Gráfica de barras para las ventas totales
+    if ($('#GraficaCategoriasTotal').length) {
       return Morris.Bar({
-        element: "hero-bar",
-        data: {!!$categorias->toJson(JSON_PRETTY_PRINT);!!},
+        element: "GraficaCategoriasTotal",
+        data: datosCategoriaTotal,
         xkey: "nombre",
         ykeys: ["total"],
         labels: ["total"],
@@ -500,7 +633,82 @@
         barColors: ["#5bc0de"]
       });
     }
+
+
+
+
   };
+
+//Ajax para cargar los datos de 
+$("#buscarCategoriaSemana").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formCategoriaSemana')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasCategoriasPorSemana')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (data) {
+          $('#GraficaCategoriasSemana').empty();
+          datosCategoriaSemana = data;
+          Morris.Line({
+            element: "GraficaCategoriasSemana",
+            data: data,
+            xkey: "semana",
+            ykeys: ["Bebidas", "Cervezas","Otros","Licores"],
+            labels: ["Bebida", "Cerveza","Otros","Licores"],
+            lineColors: ["#5bc0de", "#60c560", "#2d0031", "#666666"]
+          });
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+$("#buscarCategoriaTotal").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formCategoriaTotal')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/categoriasMasVendidas')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (data) {
+          $('#GraficaCategoriasTotal').empty();
+          datosCategoriaTotal = data;
+          Morris.Bar({
+            element: "GraficaCategoriasTotal",
+            data: data,
+            xkey: "nombre",
+            ykeys: ["total"],
+            labels: ["total"],
+            barRatio: 0.4,
+            xLabelAngle: 35,
+            hideHover: "auto",
+            barColors: ["#5bc0de"]
+          });
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+//Esto es para refresar las gráficas cada vez que se cambia de tabulación, PD: esas gráficas molestan mucho 
+$('[data-toggle="tab"]').click(function(){
+  var morrisResize;
+  clearTimeout(morrisResize);
+  return morrisResize = setTimeout(function() {
+    return buildMorris(true);
+  }, 500);
+});
 
 </script>
 @endsection

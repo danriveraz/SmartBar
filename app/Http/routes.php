@@ -110,7 +110,6 @@ Route::get('bartender/', 'BartenderController@index');
 Route::post('bartender/edit', 'BartenderController@edit');
 Route::get('bartender/checkout', 'BartenderController@checkout');
 
-Route::resource('Estadisticas', 'EstadisticasController');
 
 Route::post('cajero/edit', 'CajeroController@edit');
 Route::get('cajero/', 'CajeroController@index');
@@ -169,3 +168,9 @@ Route::get('mail', function () { // esto lo hice para poder probar los emails
 
     return view("Emails/confirmacionDatosTrabajador")->with('data',$data);
 });
+
+
+//rutas para las estadisticas, llamados de ajax
+Route::resource('Estadisticas', 'EstadisticasController');
+Route::post('Estadisticas/ventasCategoriasPorSemana', 'EstadisticasController@ventasCategoriasPorSemana'); 
+Route::post('Estadisticas/categoriasMasVendidas', 'EstadisticasController@categoriasMasVendidas');
