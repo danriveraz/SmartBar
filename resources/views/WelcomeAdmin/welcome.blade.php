@@ -66,12 +66,10 @@
   <div class="row">
     <div class="col-md-12">
       <div class="col-md-6">
-        <div id = "container">
-        </div>
+        <div id="container"></div>
       </div>
-      <div class="col-md-6">
-        <div id="piechart">
-        </div>
+      <div class="col-md-6" style="margin-top: 2%;">
+        <div id="piechart"></div>
       </div>
     </div>
   </div>
@@ -264,41 +262,81 @@
 <script type="text/javascript">
   var mesas = <?php echo $mesas; ?>;
   var vendedores = <?php echo $vendedores; ?>;
+  google.charts.load('current', {'packages':['corechart']});
+  //Estadisticas de las mesas
   google.charts.setOnLoadCallback(drawChart);
 
   function drawChart() {
-    // Define the chart to be drawn.
     var data = google.visualization.arrayToDataTable(mesas);
-
     var options = {
-      title: 'Ventas por mesas HOY',
       width: 500,
       height: 350,
+      is3D: true,
       legend: { position: 'none' },
+      title: 'Ventas por mesas HOY',
+      titleTextStyle: {
+        color: '#666666',
+        fontName: 'Lato',
+        fontSize: '20',
+        bold: 'false',
+      },
     }; 
 
     var chart = new google.visualization.ColumnChart(document.getElementById('container'));
+    google.visualization.events.addListener(chart, 'ready', titleCenter);
+
     chart.draw(data, options);
+
+    function titleCenter() {
+      var $container = $('#container');
+      var svgWidth = $container.find('svg').width();
+      var $titleElem = $container.find("text:contains(" + options.title + ")");
+      var titleWidth = $titleElem.html().length * ($titleElem.attr('font-size')/2);
+      var xAxisAlign = (svgWidth - titleWidth)/2;
+      $titleElem.attr('x', xAxisAlign);
+    }
   }
 
-  google.charts.load('current', {'packages':['corechart']});
+  //Estadisticas de los vendedores
   google.charts.setOnLoadCallback(drawChartPie);
 
   function drawChartPie() {
-
     var dataPie = google.visualization.arrayToDataTable(vendedores);
 
     var optionsPie = {
-      title: 'Ventas por vendedor',
       width: 500,
       height: 350,
+      is3D: true,
       legend: { position: 'none' },
+      title: 'Ventas por vendedor HOY',
+      titleTextStyle: {
+        color: '#666666',
+        fontName: 'Lato',
+        fontSize: '20',
+        bold: 'false',
+      },
+      isStacked: true,
     };
 
     var chartPie = new google.visualization.PieChart(document.getElementById('piechart'));
-
+    google.visualization.events.addListener(chartPie, 'ready', titleCenterPie);
     chartPie.draw(dataPie, optionsPie);
+
+    function titleCenterPie() {
+      var $container = $('#piechart');
+      var svgWidth = $container.find('svg').width();
+      var $titleElem = $container.find("text:contains(" + optionsPie.title + ")");
+      var titleWidth = $titleElem.html().length * ($titleElem.attr('font-size')/2);
+      var xAxisAlign = (svgWidth - titleWidth)/2;
+      $titleElem.attr('x', xAxisAlign);
+    }
   }
+
 </script>
 <!-- FIN JS ESTADISTICAS -->
+
+<style type="text/css">
+  #piechart{
+  }
+</style>
 @endsection
