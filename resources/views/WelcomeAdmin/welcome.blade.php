@@ -241,7 +241,7 @@
                   </div>
               </div>
 
-	<div class="modal-footer" style="padding: 0px;">
+	<div class="modal-footer buttonTuto" style="padding: 0px;">
         <button type="button" class="btn btn-pocket" data-dismiss="modal" onclick="cambio(0,0)"  style="font-weight: 400">Siguiente</button>
     </div>
 
@@ -306,8 +306,8 @@
 	</div>
 	<!-- Jssor Slider End -->
 <!--Fin-->
-      <div class="modal-footer" style="padding: 0px;">
-        <button type="button" class="btn btn-pocket" data-dismiss="modal" onclick="cambio(0,1)" style="font-weight: 400">Anterior</button>
+      <div class="modal-footer buttonTuto" style="padding: 0px;">
+        <button type="button" class="btn btn-pocket pull-left" data-dismiss="modal" onclick="cambio(0,1)" style="font-weight: 400">Anterior</button>
         <button type="button" class="btn btn-pocket" data-dismiss="modal" onclick="cambio(1,0)" style="font-weight: 400">Siguiente</button>
       </div>
 <br>
