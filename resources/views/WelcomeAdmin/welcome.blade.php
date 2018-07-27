@@ -88,7 +88,7 @@
 <!-- Inicio del tutorial -->
 
 <!-- Modal 1 -->
-<div class="modal fade" data-backdrop="static" data-keyboard="false" id="modal1" role="dialog">
+<div class="modal fade" style="overflow: auto !important;" data-backdrop="static" data-keyboard="false" id="modal1" role="dialog">
 <!--Inicio-->
 <div id="login-overlay" class="modal-dialog">
       <div class="modal-content">
@@ -241,7 +241,7 @@
                   </div>
               </div>
 
-	<div class="modal-footer buttonTuto" style="padding: 0px;">
+	<div class="modal-footer buttonTuto slide1Tuto" style="padding: 0px;">
         <button type="button" class="btn btn-pocket" data-dismiss="modal" onclick="cambio(0,0)"  style="font-weight: 400">Siguiente</button>
     </div>
 
@@ -252,7 +252,7 @@
 </div>
 
 <!-- Modal 2 -->
-<div class="modal fade" data-backdrop="static" data-keyboard="false" id="modal2" role="dialog">
+<div class="modal fade" style="overflow: auto !important;" data-backdrop="static" data-keyboard="false" id="modal2" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
@@ -316,132 +316,59 @@
 </div>
 
 <!-- Modal 3 -->
-<div class="modal fade" data-backdrop="static" data-keyboard="false" id="modal3" role="dialog">
+<div class="modal fade" style="overflow: auto !important;" data-backdrop="static" data-keyboard="false" id="modal3" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"></h4>
-      </div>
-      <div class="modal-body">
-        <img src="http://localhost/Smartbar/public/assets-Internas/images/tutorial/3.jpg">
-        <progress value="25" max="100"></progress>
-      </div>
+<!-- Inicio de Contenido-->
+<div class="container bg-overlay">
+	<div class="row text-center">
+		<h1>This is a beautiful background image<br> with a transparent overlay.</h1>
+        <h4>You can just use the "<strong>.bg-overlay</strong>" class on any container/element,<br>
+        and specify the image you want to use and its height.</h4>
+        <br><br>
+        <button type="button" style="font-weight: 400" class="btn btn-pocket btn-lg"data-dismiss="modal" onclick="finTutorial()">Get Started</button>
+	</div>
+</div>
+<!-- Fin de Contenido-->
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cambio(1,1)">Anterior</button>
+<!--    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cambio(1,1)">Anterior</button>
         <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cambio(2,0)">Siguiente</button>
+-->
+<section id="carousel" class="sliderTuText" style="background-color: white;">
+<div class="container">
+<div class="row">
+  <div class="col-md-12">
+    <div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
+      <!-- Carousel indicators -->
+      <!-- Carousel items -->
+      <div class="carousel-inner">
+        <div class="active item">
+          <blockquote>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantiumtempore</p>
+          </blockquote>
+        </div>
+        <div class="item">
+          <blockquote>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantiumtempore</p>
+          </blockquote>
+        </div>
+        <div class="item">
+          <blockquote>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantiumtempore</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
       </div>
     </div>
   </div>
 </div>
 <!-- Modal 4 -->
-<div class="modal fade" data-backdrop="static" data-keyboard="false" id="modal4" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"></h4>
-      </div>
-      <div class="modal-body">
-        <img src="http://localhost/Smartbar/public/assets-Internas/images/tutorial/4.jpg">
-        <progress value="37.5" max="100"></progress>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cambio(2,1)">Anterior</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cambio(3,0)">Siguiente</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal 5 -->
-<div class="modal fade" data-backdrop="static" data-keyboard="false" id="modal5" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"></h4>
-      </div>
-      <div class="modal-body">
-        <img src="http://localhost/Smartbar/public/assets-Internas/images/tutorial/5.jpg">
-        <progress value="50" max="100"></progress>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cambio(3,1)">Anterior</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cambio(4,0)">Siguiente</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal 6 -->
-<div class="modal fade" data-backdrop="static" data-keyboard="false" id="modal6" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"></h4>
-      </div>
-      <div class="modal-body">
-        <img src="http://localhost/Smartbar/public/assets-Internas/images/tutorial/6.jpg">
-        <progress value="62.5" max="100"></progress>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cambio(4,1)">Anterior</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cambio(5,0)">Siguiente</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal 7 -->
-<div class="modal fade" data-backdrop="static" data-keyboard="false" id="modal7" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"></h4>
-      </div>
-      <div class="modal-body">
-        <img src="http://localhost/Smartbar/public/assets-Internas/images/tutorial/7.jpg">
-        <progress value="75" max="100"></progress>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cambio(5,1)">Anterior</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cambio(6,0)">Siguiente</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal 8 -->
-<div class="modal fade" data-backdrop="static" data-keyboard="false" id="modal8" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"></h4>
-      </div>
-      <div class="modal-body">
-        <img src="http://localhost/Smartbar/public/assets-Internas/images/tutorial/8.jpg">
-        <progress value="87.5" max="100"></progress>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cambio(6,1)">Anterior</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cambio(7,0)">Siguiente</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal 9 -->
-<div class="modal fade" data-backdrop="static" data-keyboard="false" id="modal9" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"></h4>
-      </div>
-      <div class="modal-body">
-        <img src="http://localhost/Smartbar/public/assets-Internas/images/tutorial/9.jpg">
-        <progress value="100" max="100"></progress>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cambio(7,1)">Anterior</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="finTutorial()">Continuar</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!--Fin del tutorial-->
 <footer>
     <div class="container">
         <div class="col-md-10 col-md-offset-1 text-center">

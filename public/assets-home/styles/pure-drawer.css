@@ -160,7 +160,7 @@
   z-index: 1;
   height: 100%;
   visibility: hidden;
-  background-color: #fcf9f9;
+  background-color: #FFFFFF;
   -webkit-transition-property: all;
           transition-property: all;
   -webkit-transition-duration: 500ms;
@@ -172,13 +172,13 @@
 
 @media only screen and (min-width: 40.063em) {
   .pure-drawer {
-    width: 420px;
+    width: 400px;
   }
 }
 
 @media only screen and (min-width: 64.063em) {
   .pure-drawer {
-    width: 420px;
+    width: 400px;
   }
 }
 

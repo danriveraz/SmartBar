@@ -13,8 +13,7 @@
 
 .tabs.blue {
 
-	
-    max-width: 400px;
+	/*max-width: 400px;*/
 	width: 100%;
 	z-index: 1;
 	position: absolute;
@@ -74,10 +73,10 @@
 }
 
 /* TAB COLOR SCHEME FOR BLUE*/
-.tabblue .tabs .label {background: #dbdbdb;color: #2d0031}
+.tabblue .tabs .label {background: #f8f8f8;;color: #2d0031}
 
 .tabblue .tabs .label1 {
-	background-color: #e31212;
+	background-color: #f8f8f8;
 	color: white;
 	display: block;
 	padding: 15px 19px;
@@ -89,7 +88,7 @@
 }/*boton cerrar*/
 .tabblue .tabs .label1:hover { background: #ec1313;}
 
-.tabblue .tabs .label:hover { background: #c3c3c3;}
+.tabblue .tabs .label:hover { background: #	c3c3c3;}
 .tabblue .tabs .tab-content {  background-color: white;}
 .tabblue .tabs [id^="tab"]:checked + .label {background: #ffffff; color: black}
 .tabblue .tabaddon { color: #16B3F5;}
@@ -146,8 +145,15 @@ text-decoration:none;
 /* CONTENT */
 .login-form-content {
 	background-color: #FFFFFF;
-	padding: 25px 25px;
+	padding: 25px 10px 25px 25px;
 }
+
+@media screen and (max-width: 768px){
+	.login-form-content {
+		padding: 25px 10px 25px 10px;
+	}
+}
+
 .login-form-content i{
     width: 30px;
     text-align: center;
