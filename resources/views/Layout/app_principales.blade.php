@@ -88,7 +88,7 @@
 <!-- inicio de contenigo de login-->
     <nav class="pure-drawer" data-position="right" style="overflow: auto">
     <section class="tabblue">
-    <ul class="tabs blue" style="background-color: #FFFFFF">
+    <ul class="tabs blue" style="background-color: #f8f8f8">
     <!-- Inicio del Tag #1-->
           <li>
             <input type="radio" name="tabs blue" id="tab1" checked />
