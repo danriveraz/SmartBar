@@ -541,17 +541,24 @@ body.login2 {
             display: block;
             height: 100%;
             text-align: center;
-            padding: 10px 10px 9px;
+            padding: 5px 10px 5px 10px;
             font-size: 12px;
             font-weight: 400;
             color: #999999;
             -webkit-transition: all 0.3s;
             -moz-transition: all 0.3s;
             transition: all 0.3s; }
+            .navbar .container-fluid.main-nav .nav-collapse .nav > li > a img {
+				width: 56px;
+				height: 56px;
+              	display: block;
+ 			}
+			.navbar .container-fluid.main-nav .nav-collapse .nav > li > a label {margin-bottom: -2px!important;}
+
             .navbar .container-fluid.main-nav .nav-collapse .nav > li > a span {
               font-size: 28px;
-              width: 40px;
-              height: 40px;
+              width: 56px;
+              height: 56px;
               display: block;
               margin: 0 auto 2px; }
             .navbar .container-fluid.main-nav .nav-collapse .nav > li > a .caret {
@@ -559,7 +566,10 @@ body.login2 {
               margin-right: -6px;
               border-top-color: #999999; }
             .navbar .container-fluid.main-nav .nav-collapse .nav > li > a.current {
-              color: #2d0031; }
+              color: #2d0031; 
+			  border-bottom: solid #790b83;}
+            .navbar .container-fluid.main-nav .nav-collapse .nav > li .current label {
+			  font-size: 14px}
               .navbar .container-fluid.main-nav .nav-collapse .nav > li > a.current span {
                 color: #2d0031; }
               .navbar .container-fluid.main-nav .nav-collapse .nav > li > a.current .caret {
@@ -3598,6 +3608,48 @@ body.fourofour {
 
 /*@media (max-width: 494px) {.hidden-xs {display: none !important;}}aparece iconos de notificacion*/
 
+/* mobile top bar barra iconos*/
+@media (max-width: 979px) {
+	.navbar .container-fluid.main-nav .nav-collapse .nav > li > a label {display: none;}	
+	.navbar .container-fluid.main-nav .nav-collapse .nav > li > a .caret {display: none;}
+}
+
+@media (max-width: 474px) {
+	.navbar .container-fluid.main-nav .nav-collapse .nav > li > a {padding: 5px 5px;}
+}
+
+@media (max-width: 420px) {
+.navbar .container-fluid.main-nav .nav-collapse .nav > li > a span {width: 46px;height: 46px;}
+	.navbar .container-fluid.main-nav .nav-collapse .nav > li > a img {width:40px;height: 40px;}
+	.navbar .container-fluid.main-nav .nav-collapse .nav > li > a {padding: 1px 1px;}
+}
+
+
+/* parte arriba de iconos*/
+@media (max-width: 538px) {
+	.dropdown .dropdown-toggle label{display: none}
+	.clearfix .nav-collapse .nav label{display: none}
+	.clearfix .nav-collapse .nav .dropdown .MobEtiq .caret {display: none}
+	.navbar .container-fluid.top-bar .nav > li.user .caret {display: none}/*icon barrra arriba*/
+	.navbar .container-fluid.top-bar .nav > li.user {margin-left: 0px;}/*icon barrra arriba*/
+	.navbar .container-fluid.top-bar .nav > li {margin-right: 0px}/*icon barrra arriba*/
+	/*.container-fluid .logo img {width: 60%}*/
+   }
+@media (max-width: 554px) {
+	.navbar .container-fluid.top-bar .logo {margin: 5px 5px 0 -20px;}/*icon barrra arriba logo*/
+}
+
+
+@media (max-width: 402px) {
+	.navbar .container-fluid.top-bar .logo {margin: -53px 5px 0 -20px;}/*icon barrra arriba logo*/
+	.navbar .container-fluid.top-bar .logo img{width: 75%;   padding-top: 10px;}/*icon barrra arriba logo*/
+}
+/* Fin mobile top bar barra iconos*/
+
+
+
+
+
 @media (max-width: 621px) {.navbar .container-fluid.main-nav .nav-collapse .nav > li {margin: 0 0px;}}
 
 @media (max-width: 1200px) {
@@ -3751,25 +3803,7 @@ body.fourofour {
         .messages .message-content .message-header .date {
           float: none !important; } }*/
 
-@media (max-width: 494px) {
-	.dropdown .dropdown-toggle label{display: none}
-	.clearfix .nav-collapse .nav label{display: none}
-	.clearfix .nav-collapse .nav .dropdown .MobEtiq .caret {display: none}
-	.navbar .container-fluid.top-bar .nav > li.user .caret {display: none}/*icon barrra arriba*/
-	.navbar .container-fluid.top-bar .nav > li.user {margin-left: 0px;}/*icon barrra arriba*/
-	.navbar .container-fluid.top-bar .nav > li {margin-right: 0px}/*icon barrra arriba*/
-	/*.container-fluid .logo img {width: 60%}*/
-   }
-@media (max-width: 493px) {
-	.navbar .container-fluid.top-bar .logo {margin: 5px 5px 0 -20px;}/*icon barrra arriba logo*/
-}
 
-
-@media (max-width: 380px) {
-	.navbar .container-fluid.top-bar .logo {margin: -53px 5px 0 -20px;}/*icon barrra arriba logo*/
-	.navbar .container-fluid.top-bar .logo img{width: 75%}/*icon barrra arriba logo*/
-
-}
 
 @media (max-width: 364px) {
 	.social-wrapper #social-container .item {width: 315px;margin: 0px;}/*personal*/

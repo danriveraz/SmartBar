@@ -404,8 +404,10 @@
               <ul class="nav layout-icons">
                <li class="dropdown">
                 <a class="MobEtiq" data-toggle="dropdown" href="">
-                  <span aria-hidden="true" class="fa fa-5x fa-reorder">
-                  </span><label>{{Auth::User()->EmpresaActual->nombreEstablecimiento}}</label><b class="caret">
+                  <span aria-hidden="true">
+                    <img src="{{asset('assets-Internas/images/Layout-icons/negocio.png')}}">
+                  </span>
+                  <label>{{Auth::User()->EmpresaActual->nombreEstablecimiento}}</label><b class="caret">
                   </b>
                 </a>
                   <ul class="dropdown-menu">
@@ -424,33 +426,40 @@
 
                 <li>
                   <a id="miPersonal" href={{url("/Auth/usuario")}}>
-                    <span aria-hidden="true" class="fa fa-fw fa-users">
-                    </span><label>Mi Personal</label></a>
+                    <span aria-hidden="true">
+                      <img src="{{asset('assets-Internas/images/Layout-icons/personal.png')}}">
+                    </span>
+                    <label>Mi Personal</label></a>
                 </li>
 
                 <li>
                   <a id="miCarta" href="{{route('producto.index')}}">
-                    <span aria-hidden="true" class="fa fa-fw fa-square">
-                    </span><label>Mi Carta</label></a>
+                    <span aria-hidden="true">
+                      <img src="{{asset('assets-Internas/images/Layout-icons/carta.png')}}">
+                    </span>
+                    <label>Mi Carta</label></a>
                 </li>
 
                 <li>
                   <a id="miInventario" href="{{route('insumo.index')}}">
-                    <span aria-hidden="true" class="fa fa-fw fa-scribd">
-                    </span><label>Mi Inventario</label></a>
+                    <span aria-hidden="true">
+                      <img src="{{asset('assets-Internas/images/Layout-icons/inventario.png')}}">
+                    </span>
+                    <label>Mi Inventario</label></a>
                 </li>
 
                 <li>
                   <a id="informacion" href="{{url('Estadisticas/')}}">
-                  <span aria-hidden="true" class="fa fa-fw fa-line-chart">
-                  </span><label>Mis Reportes</label></a>
+                    <span aria-hidden="true">
+                      <img src="{{asset('assets-Internas/images/Layout-icons/reportes.png')}}">
+                    </span>
+                  <label>Mis Reportes</label></a>
                 </li>
 
                 <li>
                   <a id="smartShop" href="">
-                    <!--<span aria-hidden="true" class="fa fa-fw fa-cart-plus "></span>-->
-                    <span>
-                      <img src="{{asset('assets-Internas/images/Layout-icons/Smartshop.jpeg')}}">
+                    <span aria-hidden="true">
+                      <img src="{{asset('assets-Internas/images/Layout-icons/smartshop.png')}}">
                     </span>
                     <label>SmartShop</label>
                   </a>
