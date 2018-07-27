@@ -48,6 +48,7 @@ public function __construct()
     $id = $_SESSION['id'];
     $categorias = Categoria::where('idEmpresa', $userActual->empresaActual)->
                              lists('nombre','id');
+    $categoriAux = Categoria::CategoriasEmpresa($userActual->empresaActual)->get();
     $insumosDisponibles = Insumo::Search($request->nombre)->
                           where('idEmpresa' , $userActual->empresaActual)->
                           orderBy('nombre','ASC')->
@@ -64,6 +65,7 @@ public function __construct()
                                    with('producto',$producto)->
                                    with('insumosDisponibles',$insumosDisponibles)->
                                    with('categorias', $categorias)->
+                                   with('categoriAux',$categoriAux)->
                                    with('medidas', $medidas)->
                                    with('nuevas', $nuevas)->
                                    with('notificaciones',$notificaciones)->
@@ -81,6 +83,7 @@ public function __construct()
                                    with('producto',$producto)->
                                    with('insumosDisponibles',$insumosDisponibles)->
                                    with('categorias', $categorias)->
+                                   with('categoriAux',$categoriAux)->
                                    with('medidas', $medidas)->
                                    with('nuevas', $nuevas)->
                                    with('notificaciones',$notificaciones)->

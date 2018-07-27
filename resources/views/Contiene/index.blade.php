@@ -79,7 +79,7 @@
           <div class="login-form col-sm-6 col-lg-6">
               <div class="input-container">
                 <i class="fa fa-outdent"></i>
-                {!! Form::select('categorias', $categorias, $producto->idCategoria, ['class'=>'select', 'placeholder' => 'Categorias', 'id' => 'categoria', 'style' => 'width: 70%;']) !!}
+                {!! Form::select('categorias', $categorias, $producto->idCategoria, ['class'=>'select', 'placeholder' => 'Categorias', 'id' => 'categoria','onchange' => 'valor(this.value);', 'style' => 'width: 70%;']) !!}
               </div>
               <div class="input-container">
                 <i class="fa fa-money"></i>
@@ -296,6 +296,21 @@
     }
   }
 
+  var valor = function(x){
+    var JSONcategorias = eval(<?php echo json_encode($categoriAux); ?>);
+    var precio = document.getElementById("precio");
+    for (var i = 0; i < JSONcategorias.length; i++) {
+      if(JSONcategorias[i].id == x){
+        if(JSONcategorias[i].precio != 0){
+          precio.value = JSONcategorias[i].precio;
+        }
+      }
+    }
+    if(x == ''){
+      precio.value = '';
+    }
+  };
+
   function adicionarInsumo(insumo){
     var cantidad = $("#"+insumo.id).val();
     var medida = insumo.medida;//$("#medida"+insumo.id).val();
@@ -408,6 +423,7 @@
   }
 
   function enviarDatos(idProducto){
+
     if(confirm('¿Desea Guardar todos los insumos agregados?')){
       var nombre = $("#nombre").val();
       var precio = $("#precio").val();
