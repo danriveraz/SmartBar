@@ -43,7 +43,7 @@ class welcomeAdmin extends Controller
 
         $notificaciones = Notificaciones::Usuario(Auth::id())->get();
         $nuevas = 0;
-        $fechaActual = Carbon::now()->subHour(5);
+        $fechaActual = Carbon::now();
         $fecha2array = array();
         for ($i=0; $i < sizeof($notificaciones); $i++) {
           if($notificaciones[$i]->estado == "nueva"){

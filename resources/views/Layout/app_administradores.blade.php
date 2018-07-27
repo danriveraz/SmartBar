@@ -401,7 +401,7 @@
           </div>
           <div class="container-fluid main-nav clearfix">
             <div class="nav-collapse">
-              <ul class="nav">
+              <ul class="nav layout-icons">
                <li class="dropdown">
                 <a class="MobEtiq" data-toggle="dropdown" href="">
                   <span aria-hidden="true" class="fa fa-5x fa-reorder">
@@ -448,8 +448,12 @@
 
                 <li>
                   <a id="smartShop" href="">
-                  <span aria-hidden="true" class="fa fa-fw fa-cart-plus ">
-                  </span><label>SmartShop</label></a>
+                    <!--<span aria-hidden="true" class="fa fa-fw fa-cart-plus "></span>-->
+                    <span>
+                      <img src="{{asset('assets-Internas/images/Layout-icons/Smartshop.jpeg')}}">
+                    </span>
+                    <label>SmartShop</label>
+                  </a>
                 </li>
               </ul>
 

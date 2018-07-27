@@ -1,7 +1,7 @@
 @extends('Layout.app_administradores')
 @section('content')
 <title>
-  SMARTBAR
+  CONTIENE
 </title>
 <!-- Nav tabs nombre de la lista -->
         <ul class="nav nav-tabs" role="tablist">
@@ -260,7 +260,8 @@
 
 
 <script>
-
+  var JSONProducto = eval(<?php echo json_encode($producto); ?>);
+  //console.log(JSONProducto);  
   var routeEliminar = "http://localhost/SmartBar/public/contiene/eliminar";
   var routeGuardar = "http://localhost/SmartBar/public/contiene/guardar";
 

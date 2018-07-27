@@ -32,9 +32,9 @@ public function __construct()
 
     $notificaciones = Notificaciones::Usuario(Auth::id())->get();
     $nuevas = 0;
-    $fechaActual = Carbon::now()->subHour(5);
+    $fechaActual = Carbon::now();
     $fecha2array = array();
-    for ($i=0; $i < sizeof($notificaciones); $i++) { 
+    for ($i=0; $i < sizeof($notificaciones); $i++) {
       if($notificaciones[$i]->estado == "nueva"){
         $nuevas = $nuevas + 1;
       }
@@ -71,7 +71,7 @@ public function __construct()
     }else{
       $producto = new Producto;
       $producto->id = 0;
-      $producto->imagen = "admins/bar.png";
+      $producto->imagen = "bar.png";
       $contienen = [];
       $insumos = [];
       $medidas = [];
@@ -83,7 +83,8 @@ public function __construct()
                                    with('categorias', $categorias)->
                                    with('medidas', $medidas)->
                                    with('nuevas', $nuevas)->
-                                   with('notificaciones',$notificaciones);
+                                   with('notificaciones',$notificaciones)->
+                                   with('fecha2array',$fecha2array);
     }
   }
 
