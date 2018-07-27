@@ -2,6 +2,9 @@
 @section('content')
 {!!Html::style('assets-Internas\css/tutorial/tutorial.css')!!}
 {!!Html::script('assets-Internas\javascripts/tutorial/tutorial.js')!!}
+<title>
+  SMARTBAR
+</title>
 <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
 <script type = "text/javascript">
          google.charts.load('current', {packages: ['corechart']});     

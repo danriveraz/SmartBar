@@ -1,6 +1,9 @@
 ﻿@extends(Auth::User()->esAdmin ? 'Layout.app_administradores' : 'Layout.app_empleado')
 @section('content')
 {!!Html::style('assetsNew/styles/inventario.css')!!}
+<title>
+  INVENTARIO
+</title>
 <div class="modal-shiftfix">
 	<div class="container main-content">
 		@include('flash::message')

@@ -2,9 +2,6 @@
 <html>
 <head>
  <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>
-      SMARTBAR
-    </title>
     <link rel="shortcut icon" href="{{asset('images/icon.png')}}">
     <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
 

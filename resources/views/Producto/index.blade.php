@@ -1,6 +1,8 @@
 @extends('Layout.app_administradores')
 @section('content')
-
+<title>
+  PRODUCTO
+</title>
 <div class="container main-content">
   <div class="page-title"></div>
   <div class="row">

@@ -1,6 +1,9 @@
 @extends('Layout.app_administradores')
 @section('content')
 {!!Html::style('assets-Internas/css/styleNotifi.css')!!}
+<title>
+  NOTIFICACIONES
+</title>
 <div style="background: #FCFCFC;">
   <div id="content" class="pmd-content inner-page">
     <div class="page-title" style="padding: 0 10px !important; padding-top: 30px !important;">

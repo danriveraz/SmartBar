@@ -1,6 +1,8 @@
 @extends('Layout.app_administradores')
 @section('content')
-
+<title>
+  SMARTBAR
+</title>
 <!-- Nav tabs nombre de la lista -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#yorkminster" aria-controls="home" role="tab" data-toggle="tab" class="pocketMorado" style="color: #111; font-weight: 600;">Contenido</a></li>

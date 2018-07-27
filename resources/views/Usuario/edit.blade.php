@@ -1,7 +1,9 @@
 @extends(Auth::User()->esAdmin ? 'Layout.app_administradores' : 'Layout.app_empleado')
 @section('content')
 @include('flash::message')
-
+<title>
+  PERFIL
+</title>
 <!-- Estilos vista perfil-->
 {!!Html::style('assets-Internas/css/styleProfile.css')!!}
 <!-- FIN -->
