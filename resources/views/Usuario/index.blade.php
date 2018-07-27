@@ -10,6 +10,7 @@
 </style>
 
 <!--Barra de título y botones de busqueda-->
+<br>
 <div id="page-content">
   <div class="col-lg-12">
     <div class="row invoice-header">
@@ -462,7 +463,7 @@
       </div>
       <div class="modal-body">
         <h1>Producto mas vendido: {{$estadisticasUsuarios[$usuario->id][0]}} </h1>
-        <h1>Analisis de costo beneficio: 
+        <h1>Analisis de costo beneficio:
           @if($estadisticasUsuarios[$usuario->id][1] < 1) Bajo
           @elseif($estadisticasUsuarios[$usuario->id][1] >= 1 && $estadisticasUsuarios[$usuario->id][1] < 2) Medio
           @else Alto
@@ -858,7 +859,7 @@ $("#registrarUsuario").click(function(){
   $(document).ready(function () {// cambio de slider a modal
 
     $("#abrirSlide").click(function(){//Función para el botón de abrir slide, si es menor a 922 pixeles no abrir el slide, sino el modal
-      if($(window).width()<992){ 
+      if($(window).width()<992){
          $("#abrirModal").click();
          return 0;
       }
@@ -879,10 +880,10 @@ $("#registrarUsuario").click(function(){
 
       if($(window).width()<992){ //si el tamaño es menor a 992 pixeles
 
-        $('#formulario').appendTo('#modalBodyPersonal');// Cambia todo el contenido del slide al modal 
+        $('#formulario').appendTo('#modalBodyPersonal');// Cambia todo el contenido del slide al modal
 
         var ventana = $(".style-toggle");//slide
-        
+
         var modal=$("#modalPersonal"); //si el modal no está abierto, lo abre
         if (!$(modal).hasClass("in") && $(ventana).hasClass("open") ) {
           $("#abrirModal").click();
