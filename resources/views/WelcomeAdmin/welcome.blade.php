@@ -267,7 +267,17 @@
   google.charts.setOnLoadCallback(drawChart);
 
   function drawChart() {
-    var data = google.visualization.arrayToDataTable(mesas);
+    console.log(mesas, vendedores[0]);
+    if(mesas.length > 1){
+      var data = google.visualization.arrayToDataTable(mesas);
+    }else{
+      var data = google.visualization.arrayToDataTable([
+        ['Nombre', 'Total venta'],
+        ['Mesa de ejemplo 1', 2],
+        ['Mesa de ejemplo 2', 1]
+        ]);
+    }
+
     var options = {
       width: 500,
       height: 350,
@@ -301,7 +311,15 @@
   google.charts.setOnLoadCallback(drawChartPie);
 
   function drawChartPie() {
-    var dataPie = google.visualization.arrayToDataTable(vendedores);
+    if(vendedores.length > 1){
+      var dataPie = google.visualization.arrayToDataTable(vendedores);
+    }else{
+      var dataPie = google.visualization.arrayToDataTable([
+        ['Nombre', 'Total venta'],
+        ['Vendedor de ejemplo 1', 2],
+        ['Vendedor de ejemplo 2', 1]
+        ]);
+    }
 
     var optionsPie = {
       width: 500,
