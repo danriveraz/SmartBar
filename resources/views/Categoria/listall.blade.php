@@ -12,6 +12,7 @@
           </thead>
           <tbody>
             @foreach($categorias as $categoria)
+            @if($categoria->eliminado == false)
               <tr id="categoria{{$categoria->id}}">
                 <div>
                   <td id="categoria{{$categoria->id}}">
@@ -87,6 +88,7 @@
                   </div>
                 </div>
             <!-- FIN MODAL EDIT -->
+            @endif
             @endforeach
           </tbody>
         </table>
@@ -174,7 +176,7 @@
             $("#categoria"+idCategoria).remove();
         },
         error: function(data){
-          alert('No se puede eliminar la categoria, ya que existe historial de productos del mismo.');
+          alert('Ooops discúlpanos, hemos tenido un error al eliminar tu categoría.');
         }
       });
     }

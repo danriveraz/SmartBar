@@ -368,6 +368,8 @@ class ComposerStaticInit0f7b8ea7d66932e2e5a61ac4c047f03e
         'AgregarCliente' => __DIR__ . '/../..' . '/database/migrations/2018_01_04_120442_agregar_cliente.php',
         'AgregarColumnasUsuario' => __DIR__ . '/../..' . '/database/migrations/2017_07_27_144627_agregar_columnas_usuario.php',
         'AlterTableCategoriaImagen' => __DIR__ . '/../..' . '/database/migrations/2018_01_29_110959_AlterTableCategoriaImagen.php',
+        'AlterTableEliminarCategoria' => __DIR__ . '/../..' . '/database/migrations/2018_07_27_164953_alter_table_eliminarCategoria.php',
+        'AlterTableEliminarProducto' => __DIR__ . '/../..' . '/database/migrations/2018_07_27_155251_alter_table_eliminarProducto.php',
         'AlterTableFechaResolucionFacturacion' => __DIR__ . '/../..' . '/database/migrations/2018_07_24_105834_alter_table_fechaResolucionFacturacion.php',
         'AlterTablePrefijoEmpresa' => __DIR__ . '/../..' . '/database/migrations/2018_07_24_093713_alter_table_prefijoEmpresa.php',
         'AlterTableVenta' => __DIR__ . '/../..' . '/database/migrations/2017_07_26_214105_alterTableVenta.php',

@@ -808,7 +808,6 @@
       $("#fechaNacimiento").load(this);
       $('[data-toggle="popover"]').popover();
       function update(){
-        document.getElementById('no').style.width = '10%';
         document.getElementById('opcionesMesas').style.width = '5%';
         document.getElementById('opcionesCategorias').style.width = '5%';
       }

@@ -45,6 +45,30 @@ class ProductoController extends Controller
       array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
     }
 
+    return view('Producto.index')->
+            with('nuevas', $nuevas)->
+            with('notificaciones',$notificaciones)->
+            with('fecha2array',$fecha2array);
+  }
+
+  public function listall(Request $request){
+    $notificaciones = Notificaciones::Usuario(Auth::id())->get();
+    $nuevas = 0;
+    $fechaActual = Carbon::now();
+    $fecha2array = array();
+    for ($i=0; $i < sizeof($notificaciones); $i++) {
+      if($notificaciones[$i]->estado == "nueva"){
+        $nuevas = $nuevas + 1;
+      }
+      $fechaNotificacion = Carbon::parse($notificaciones[$i]->fecha);
+      $diferencia = $fechaActual->diffInDays($fechaNotificacion,true);
+      array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
+    }
+
+    $producto = Producto::find(40);
+    $contenido = Contiene::idProducto($producto->id)->get();
+    //dd($producto, $contenido);
+
     $userActual = Auth::user();
     $categorias = Categoria::where('idEmpresa' , $userActual->empresaActual)->
                              lists('nombre','id');
@@ -54,7 +78,7 @@ class ProductoController extends Controller
                            orderBy('nombre','ASC')->
                            paginate(1000);
     $contenido = Contiene::where('idEmpresa', $userActual->empresaActual);
-    return view('Producto.index',compact('categorias'))->
+    return view('Producto.listall',compact('categorias'))->
             with('productos',$productos)->
             with('contenido', $contenido)->
             with('nuevas', $nuevas)->
@@ -93,26 +117,13 @@ class ProductoController extends Controller
   }
   
   public function eliminar(Request $request){
-
-    $producto = Producto::find($request->id)->first();
+    $producto = Producto::find($request->id);
+    $producto->eliminado = 1;
+    $producto->save();
     $contenido = Contiene::idProducto($producto->id)->get();
-    foreach($contenido as $contiene){
-      $contiene->delete();
+    for ($i=0; $i < sizeof($contenido); $i++){ 
+      $contenido[$i]->delete();
     }
-    $producto->delete();
-  }
-
-  public function listall(Request $request){
-    $userActual = Auth::user();
-    $categorias = Categoria::where('idEmpresa' , $userActual->empresaActual)->
-                             lists('nombre','id');
-    $cats = Categoria::where('idEmpresa',$userActual->empresaActual)->get();
-    $productos = Producto::Search($request->nombre)->
-                           Category($request->categorias)->
-                           where('idEmpresa' , $userActual->empresaActual)->
-                           orderBy('nombre','ASC')->
-                           paginate(1000);
-    return view('Producto.listall',compact('categorias'))->with('productos',$productos)->with('cats',$cats);
   }
 
   public function create(Request $request){

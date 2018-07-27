@@ -61,7 +61,7 @@ Route::group(['prefix' => 'Auth'], function(){
 
   Route::get('usuario/{id}/edit', ['uses' => 'UsuariosController@edit', 'as' => 'Auth.usuario.edit']);
 
-  Route::get('editarUsuairo/{tab}', ['uses' => 'UsuariosController@editProfile', 'as' => 'Auth.usuario.editUsuario']);
+  Route::get('editarUsuario/{tab}', ['uses' => 'UsuariosController@editProfile', 'as' => 'Auth.usuario.editUsuario']);
   
   Route::post('editarUsuairo/{id}/edit', ['uses' => 'UsuariosController@posteditProfile', 'as' => 'Auth.usuario.posteditUsuario']);
 

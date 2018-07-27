@@ -7,6 +7,7 @@ use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use PocketByR\Categoria;
 use PocketByR\Producto;
+use PocketByR\Contiene;
 use Laracasts\Flash\Flash;
 use Auth;
 
@@ -40,9 +41,7 @@ class CategoriaController extends Controller
       $productos = Producto::where('idCategoria' , $userActual->idEmpresa)->get();
 
       $arregloProductos[] = array();
-      //dd($categorias);
-      //dd($arregloProductos);
-      //dd(is_array($arregloProductos));
+
       for ($i=0; $i < sizeof($categorias); $i++) { 
           array_push($arregloProductos, Producto::where('idCategoria' , $categorias[$i]->id)->get());
           //
@@ -97,8 +96,19 @@ class CategoriaController extends Controller
 
    public function eliminar(Request $request){
       $categoria = Categoria::find($request->id);
-      $categoria->delete();
+      $productos = Producto::category($categoria->id)->get();
+      for ($i=0; $i < sizeof($productos); $i++) { 
+        $contenido = Contiene::idProducto($productos[$i]->id)->get();
+        for ($j=0; $j < sizeof($contenido); $j++) { 
+          $contenido[$j]->delete();
+        }
+        $productos[$i]->eliminado = 1;
+        $productos[$i]->save();
+      }
+      $categoria->eliminado = 1;
+      $categoria->save();
     }   
+
     public function modificar(Request $request){
       $categoria = Categoria::find($request->id);
       $categoria->nombre = $request->nombre;
