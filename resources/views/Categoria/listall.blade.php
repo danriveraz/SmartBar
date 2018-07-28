@@ -174,6 +174,7 @@
         },
         success: function(){
             $("#categoria"+idCategoria).remove();
+            alert("Categoría eliminada exitosamente.");
         },
         error: function(data){
           alert('Ooops discúlpanos, hemos tenido un error al eliminar tu categoría.');

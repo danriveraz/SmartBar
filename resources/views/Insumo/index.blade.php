@@ -13,58 +13,62 @@
 			<div class="widget-container fluid-height clearfix">
 			  <div class="widget-content padded clearfix">
 				<table class="table table-bordered table-striped" id="example">
-				  <thead>
-					<th  width="7%" align="center">
-					  Und
-					 </th>
-					<th width="15%">
-					  Nombre
-					</th>
-					<th width="15%" class="hidden-xs">
-					  Marca
-					</th>
-					<th width="15%" class="hidden-xs">
-					  Proveedor
-					</th>
-					<th width="10%" class="hidden-xs">
-					  Compra
-					</th>
-					<th width="10%">
-					  Venta
-					</th>
-					<th width="8%">
-					  Disponible
-					</th>
-					<th width="8%">
-					  Medida
-					</th>
-				   <th width="10%" class="hidden-xs">
-					  Opciones
-					</th>
-				  </thead>
-				  <tbody>
+				  	<thead>
+						<th  width="7%" align="center">
+						  Und
+						</th>
+						<th width="15%">
+						  Nombre
+						</th>
+						<th width="15%" class="hidden-xs">
+						  Marca
+						</th>
+						<th width="15%" class="hidden-xs">
+						  Proveedor
+						</th>
+						<th width="10%" class="hidden-xs">
+						  Compra
+						</th>
+						<th width="10%">
+						  Venta
+						</th>
+						<th width="8%">
+						  Disponible
+						</th>
+						<th width="8%">
+						  Medida
+						</th>
+						<th width="10%" class="hidden-xs">
+						  Opciones
+						</th>
+					</thead>
+				  	<tbody>
 		              @foreach($insumos as $insumo)
 		                <tr id="{{$insumo->id}}">
-		                  <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->cantidadUnidad}}</td>
-		                  <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->nombre}}</td>
-		                  <td id="{{$insumo->id}}" class="seleccionar hidden-xs">{{$insumo->marca}}</td>
-		                  <td id="{{$insumo->id}}" class="seleccionar hidden-xs">{{$insumo->proveedor->nombre}}</td>
-		                  <td id="{{$insumo->id}}" class="seleccionar hidden-xs">{{$insumo->valorCompra}}</td>
-		                  <td id="{{$insumo->id}}" class="seleccionar">{{$insumo->precioUnidad}}</td>
-		                  <td id="{{$insumo->id}}" class="seleccionar">{{number_format($insumo->cantidadMedida,2)}}</td>
-		                  <td id="{{$insumo->id}}" class="seleccionar">
-		                  	<span class="label label-Pocket">
-		                  		<b><?php if($insumo->medida == "0"){echo "Onza";}else{echo "Unidad";}?></b>
-		                  	</span>
-		                  </td>
-		                  <td>
-		                    <a class="table-actions pocketMorado" href=""><i class="fa fa-pencil" data-toggle="modal" href="#editModal{{$insumo->id}}" title="Editar Insumo"></i></a>
-		                    <a class="table-actions pocketMorado" href="" onclick="eliminar({{$insumo->id}})"><i class="fa fa-trash-o" title="Eliminar Insumo"></i></a>
-												<a class="table-actions pocketMorado" href="{{route('Tienda.index')}}"><i class="fa fa-500px" title="Tienda"></i></a>
-
-											</td>
+		                	<td id="{{$insumo->id}}" class="seleccionar">{{$insumo->cantidadUnidad}}</td>
+							<td id="{{$insumo->id}}" class="seleccionar">{{$insumo->nombre}}</td>
+							<td id="{{$insumo->id}}" class="seleccionar hidden-xs">{{$insumo->marca}}</td>
+							<td id="{{$insumo->id}}" class="seleccionar hidden-xs">{{$insumo->proveedor->nombre}}</td>
+							<td id="{{$insumo->id}}" class="seleccionar hidden-xs">{{$insumo->valorCompra}}</td>
+							<td id="{{$insumo->id}}" class="seleccionar">{{$insumo->precioUnidad}}</td>
+							<td id="{{$insumo->id}}" class="seleccionar">{{number_format($insumo->cantidadMedida,2)}}</td>
+							<td id="{{$insumo->id}}" class="seleccionar">
+			                  	<span class="label label-Pocket">
+			                  		<b><?php if($insumo->medida == "0"){echo "Onza";}else{echo "Unidad";}?></b>
+			                  	</span>
+							</td>
+		                  	<td>
+			                    <a class="table-actions pocketMorado" href="#">
+			                    	<i class="fa fa-pencil" data-toggle="modal" href="#editModal{{$insumo->id}}" title="Editar Insumo"></i>
+			                    </a>
+			                    <a class="table-actions pocketMorado" href="#" onclick="eliminar({{$insumo->id}})">
+			                    	<i class="fa fa-trash-o" title="Eliminar Insumo"></i>
+			                    </a>
+								<a class="table-actions pocketMorado" href="{{route('Tienda.index')}}">
+									<i class="fa fa-500px" title="Tienda"></i>
+								</a>
+							</td>
 		                </tr>
-
 		              <!--Modal para editar -->
 		              <div class="modal fade" id="editModal{{$insumo->id}}" role="dialog">
 		                <div class="modal-dialog modal-lg">
@@ -564,7 +568,6 @@
         success: function(){
             $("#"+id).remove();
             alert("Insumo eliminado exitosamente.");
-            location.reload();
         },
         error: function(data){
         	alert('Ooops disculpanos, hemos tenido un error al eliminar tu insumo');

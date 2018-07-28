@@ -33,6 +33,7 @@ return array(
     'AgregarColumnasUsuario' => $baseDir . '/database/migrations/2017_07_27_144627_agregar_columnas_usuario.php',
     'AlterTableCategoriaImagen' => $baseDir . '/database/migrations/2018_01_29_110959_AlterTableCategoriaImagen.php',
     'AlterTableEliminarCategoria' => $baseDir . '/database/migrations/2018_07_27_164953_alter_table_eliminarCategoria.php',
+    'AlterTableEliminarInsumo' => $baseDir . '/database/migrations/2018_07_28_141034_alter_table_eliminarInsumo.php',
     'AlterTableEliminarProducto' => $baseDir . '/database/migrations/2018_07_27_155251_alter_table_eliminarProducto.php',
     'AlterTableFechaResolucionFacturacion' => $baseDir . '/database/migrations/2018_07_24_105834_alter_table_fechaResolucionFacturacion.php',
     'AlterTablePrefijoEmpresa' => $baseDir . '/database/migrations/2018_07_24_093713_alter_table_prefijoEmpresa.php',

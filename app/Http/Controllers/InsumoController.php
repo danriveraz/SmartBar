@@ -125,12 +125,14 @@ class InsumoController extends Controller
       $value->delete();
       $ingredientes = Contiene::idProducto($producto->id)->get();
       if(count($ingredientes) == 0){
-        $producto->delete();
+        $producto->eliminado = 1;
+        $producto->save();
       }
     }
 
     $insumo = Insumo::find($request->id);
-    $insumo->delete();
+    $insumo->eliminado = 1;
+    $insumo->save();
   }
 
   public function store(Request $request){

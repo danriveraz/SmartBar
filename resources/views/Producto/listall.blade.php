@@ -184,6 +184,7 @@
         },
         success: function(){
           $("#"+idProducto).remove();
+          alert("Producto eliminado exitosamente.");
         },
         error: function(data){
           alert('Ooops discúlpanos, hemos tenido un error al modificar tu producto.');
