@@ -1,6 +1,6 @@
 @extends('Layout.app_administradores')
 @section('content')
-
+<script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
     <div class="modal-shiftfix">
       <div class="container-fluid main-content">
         <div class="page-title chart-container">
@@ -66,23 +66,23 @@
       <div class="tab-content">
 
         <!-- Inicio Gráfica de categorias Por Días -->
-        <div class="tab-pane" id="tabCategoriasDias">
+        <div class="tab-pane active" id="tabCategoriasDias">
           <div class="row">
-            <form id="formCategoriaSemana" class="login-form">
+            <form id="formCategoriaDias" class="login-form">
               <fieldset>
               <div class="col-md-4">
                   <div class="input-container"> 
-                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio"  type="date">
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" type="date">
                   </div>
               </div>
               <div class="col-md-4">
                   <div class="input-container"> 
-                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin" type="date">
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin"  type="date">
                   </div>
               </div>
               <div class="col-md-2">
                 <div  class="form-group">
-                  <a id='buscarCategoriaDias' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                  <a id='buscarCategoriaDia' class="btn btn-pocket" type="submit" style="font-weight: 400;">
                     <i class="fa fa-send"></i>
                     Buscar
                   </a>
@@ -436,15 +436,17 @@
    * =============================================================================
    */
    // datos para las gráficas, se pasa por medio de variables globales para tener acceso a ellas desde las funciones de ajax y la función que se llama cada vez que se hace resize
-   var datosCategoriaTotal = {!!$categorias->toJson(JSON_PRETTY_PRINT);!!};
+   var datosCategoriaTotal = {!!$categorias!!};
    var datosCategoriaSemana = {!! $categoriasVentasPorSemana !!};
+   var datosCategoriaDia = {!!$categoriasVentasPorDia!!};
 
   $(window).resize(function(e) {
-    var morrisResize;
+    drawChart()
+    /*var morrisResize;
     clearTimeout(morrisResize);
     return morrisResize = setTimeout(function() {
       return buildMorris(true);
-    }, 500);
+    }, 500);*/
   });
   $(function() {
     return buildMorris();
@@ -586,7 +588,7 @@
       });
     }
 //Gráfica del comportamiento de ventas agrupado por semana
-    if ($('#GraficaCategoriasSemana').length) {
+    /*if ($('#GraficaCategoriasSemana').length) {
       Morris.Line({
         element: "GraficaCategoriasSemana",
         data: datosCategoriaSemana,
@@ -600,10 +602,10 @@
         //dateFormat:function (x) { return new Date(x).toString(); },
         //hoverCallback: function (index, options, content, row) {return "sin(" + content + ") = " + options;}
       });
-    }
+    }*/
 
 //Gráfica del comportamiento de ventas agrupado por Días
-    if ($('#GraficaCategoriasDias').length) {
+    /*if ($('#GraficaCategoriasDias').length) {
       Morris.Line({
         element: "GraficaCategoriasDias",
         data: datosCategoriaSemana,
@@ -617,10 +619,10 @@
         //dateFormat:function (x) { return new Date(x).toString(); },
         //hoverCallback: function (index, options, content, row) {return "sin(" + content + ") = " + options;}
       });
-    }
+    }*/
 
 //Gráfica de barras para las ventas totales
-    if ($('#GraficaCategoriasTotal').length) {
+    /*if ($('#GraficaCategoriasTotal').length) {
       return Morris.Bar({
         element: "GraficaCategoriasTotal",
         data: datosCategoriaTotal,
@@ -632,7 +634,7 @@
         hideHover: "auto",
         barColors: ["#5bc0de"]
       });
-    }
+    }*/
 
 
 
@@ -655,19 +657,14 @@ $("#buscarCategoriaSemana").click(function(){
         success: function (data) {
           $('#GraficaCategoriasSemana').empty();
           datosCategoriaSemana = data;
-          Morris.Line({
-            element: "GraficaCategoriasSemana",
-            data: data,
-            xkey: "semana",
-            ykeys: ["Bebidas", "Cervezas","Otros","Licores"],
-            labels: ["Bebida", "Cerveza","Otros","Licores"],
-            lineColors: ["#5bc0de", "#60c560", "#2d0031", "#666666"]
-          });
+          console.log(data);
+          drawChart(); // repinta la gráfica
         }, error: function(xhr,status, response) {
           console.log(xhr.responseText);
         }
     });
 });
+
 $("#buscarCategoriaTotal").click(function(){
     console.log("entro");
     var type = "POST";
@@ -680,20 +677,35 @@ $("#buscarCategoriaTotal").click(function(){
         contentType: false,
         processData: false,
         data: formData,
-        success: function (data) {
-          $('#GraficaCategoriasTotal').empty();
-          datosCategoriaTotal = data;
-          Morris.Bar({
-            element: "GraficaCategoriasTotal",
-            data: data,
-            xkey: "nombre",
-            ykeys: ["total"],
-            labels: ["total"],
-            barRatio: 0.4,
-            xLabelAngle: 35,
-            hideHover: "auto",
-            barColors: ["#5bc0de"]
-          });
+        success: function (datos) {
+
+        datosCategoriaTotal = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarCategoriaDia").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formCategoriaDias')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasCategoriasPorDia')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosCategoriaDia = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
         }, error: function(xhr,status, response) {
           console.log(xhr.responseText);
         }
@@ -702,13 +714,64 @@ $("#buscarCategoriaTotal").click(function(){
 
 
 //Esto es para refresar las gráficas cada vez que se cambia de tabulación, PD: esas gráficas molestan mucho 
-$('[data-toggle="tab"]').click(function(){
+/*$('[data-toggle="tab"]').click(function(){
   var morrisResize;
   clearTimeout(morrisResize);
   return morrisResize = setTimeout(function() {
     return buildMorris(true);
   }, 500);
-});
+});*/
+
+google.charts.load('current', {packages: ['corechart','bar','line']});     
+google.charts.setOnLoadCallback(drawChart);
+
+// función que se llama para dibujar las gráficas
+function drawChart() {
+  //Gráfica de barras para las ventas totales
+  var data = new google.visualization.DataTable(datosCategoriaTotal);
+  var options = {
+    title: 'Categorias más vendidas',
+    height: 350,
+    legend: { position: 'none' },
+    annotations: {
+      textStyle: {
+        fontName: 'Times-Roman',
+        fontSize: 55,
+        bold: true,
+        italic: true,
+        // The color of the text.
+        color: '#871b47',
+        // The color of the text outline.
+        auraColor: '#d799ae',
+        // The transparency of the text.
+        opacity: 0.8
+      }
+    }
+    
+  }; 
+  var chart = new google.charts.Bar(document.getElementById('GraficaCategoriasTotal'));
+  chart.draw(data, google.charts.Bar.convertOptions(options));
+
+  //Gráfica de Lineas para las ventas de categorias por semana
+  var data = new google.visualization.DataTable(datosCategoriaSemana);
+  var options = {
+    title: 'Total de Ventas Por Categorias Divido en Semanas',
+    height: 340, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaCategoriasSemana'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+  //Gráfica de Lineas para las ventas de categorias por Día
+  var data = new google.visualization.DataTable(datosCategoriaDia);
+  var options = {
+    title: 'Total de Ventas Por Categorias Divido en Días',
+    height: 340, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaCategoriasDias'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+
+}
 
 </script>
 @endsection
