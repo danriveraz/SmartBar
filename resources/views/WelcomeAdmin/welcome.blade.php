@@ -7,8 +7,8 @@
 </title>
 
 
-<!--css para Nuevo Tutorial-->
-{!!Html::script('assets-Internas\javascripts/tutorial/sliderTuto.js')!!}
+<!--css para Nuevo Tutorial
+{!!Html::script('assets-Internas\javascripts/tutorial/sliderTuto.js')!!}-->
 
 <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
 <script type = "text/javascript">
@@ -258,53 +258,24 @@
     <div class="modal-content">
 			<br>
 <!--Inicio-->
-<div id="slider1_container" style="visibility: hidden; position: relative; margin: 0 auto;
-	top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden;">
-			<!-- Loading Screen -->
-			<div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
-					<img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
-			</div>
-
-			<!-- Slides Container -->
-			<div data-u="slides" style="position: absolute; left: 0px; top: 0px; width: 1300px; height: 500px; overflow: hidden;">
-					<div>
-							<img data-u="image" src="https://images.pexels.com/photos/312491/pexels-photo-312491.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" />
-					</div>
-					<div>
-							<img data-u="image" src="https://images.pexels.com/photos/312491/pexels-photo-312491.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" />
-					</div>
-					<div>
-							<img data-u="image" src="https://images.pexels.com/photos/305268/pexels-photo-305268.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" />
-					</div>
-			</div>
-
-			<!--#region Bullet Navigator Skin Begin -->
-			<!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
-			<div data-u="navigator" class="jssorb031" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
-					<div data-u="prototype" class="i" style="width:16px;height:16px;">
-							<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-									<circle class="b" cx="8000" cy="8000" r="5800"></circle>
-							</svg>
-					</div>
-			</div>
-			<!--#endregion Bullet Navigator Skin End -->
-
-			<!--#region Arrow Navigator Skin Begin -->
-			<!-- Help: https://www.jssor.com/development/slider-with-arrow-navigator.html -->
-
-			<div data-u="arrowleft" class="jssora051" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
-					<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-							<polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
-					</svg>
-			</div>
-			<div data-u="arrowright" class="jssora051" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
-					<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-							<polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
-					</svg>
-			</div>
-			<!--#endregion Arrow Navigator Skin End -->
-	</div>
-	<!-- Jssor Slider End -->
+            <div class="container-fluid" id="slider">
+                <div class="slider-inner col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div id="owl-demo" class="owl-carousel owl-theme" style="margin-top: 20px;">
+                        <div class="item">
+                            <img src="http://www.waypoint.com/wp-content/uploads/2016/12/WRG-ReputationSafeguardginHero-images-1366x400.jpg" alt="sliderimg1">
+                        </div>
+                        <div class="item">
+                            <img src="http://www.waypoint.com/wp-content/uploads/2016/07/WRG-Hero-images-1366x400-Home.png" alt="sliderimg2">
+                        </div>
+                        <div class="item">
+                            <img src="http://www.waypoint.com/wp-content/uploads/2016/07/WRG-Hero-images-1366x400-Industry.png" alt="sliderimg3">
+                        </div>
+                        <div class="item">
+                            <img src="http://www.waypoint.com/wp-content/uploads/2016/06/WRG-Hero-images-1366x400-Solutions.png" alt="sliderimg3">
+                        </div>
+                    </div>
+                </div>
+            </div>
 <!--Fin-->
       <div class="modal-footer buttonTuto" style="padding: 0px;">
         <button type="button" class="btn btn-pocket pull-left" data-dismiss="modal" onclick="cambio(0,1)" style="font-weight: 400">Anterior</button>
@@ -538,7 +509,27 @@ $('#TipReg').change(function(){
 
 
 </script>
-
-
+<!--- script de slider tuto-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css" rel="stylesheet" type="text/css"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" rel="stylesheet" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js" type="text/javascript"></script>
+<script>
+$(function () {
+    var count = 0;
+    $('.owl-carousel').each(function () {
+        $(this).attr('id', 'owl-demo' + count);
+        $('#owl-demo' + count).owlCarousel({
+            navigation: true,
+            slideSpeed: 300,
+            pagination: true,
+            singleItem: true,
+            autoPlay: 2000,
+            autoHeight: true
+        });
+        count++;
+    });
+});
+</script>
+<!--- script de slider tuto-->
 
 @endsection
