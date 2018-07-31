@@ -5,13 +5,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="generator" content="HTML5">   
+  <meta name="generator" content="HTML5">
   <meta name="application-name" content="PocketSmartbar"/>
   <meta name="author" content="Pocket Company S.A.S"/>
   <meta name="description" content="Aplicativo inteligente online, escencial en Bares, Discotecas y/o Restaurantes, que facilita enormemente el trabajo  de administradores, empleados, proveedores y clientes de estos." />
   <meta name="generator" content="Html5 Css Javascrip" />
   <meta name="keywords" content="Compañero inseparable, sistema inteligente de manejo de negocios, bares, restaurantes, discotecas, licores, comidas, cocteles, información almacenada en la nube, sistema pos, sitema pos para restaurantes, software para restaurante, software POS para restaurante, sistema de punto de ventas, sistema de facturación, software de inventario, software para punto de ventas, software POS, sistema POS, Colombia, POS online" />
-  <meta name="encoding" charset="utf-8" />      
+  <meta name="encoding" charset="utf-8" />
 <!-- Datos Open Graph -->
   <meta property="og:title" content="PocketSmartbar" />
   <meta property="og:type" content="WebSite" />
@@ -19,19 +19,80 @@
   <meta property="og:description" content="Aplicativo inteligente online, escencial en Bares, Discotecas y/o Restaurantes, que facilita enormemente el trabajo  de administradores, empleados, proveedores y clientes de estos.">
   <meta property="og:site_name" content="PocketSmartBar">
   <meta property="og:image" content="{{asset('assets-home/images/p')}}"><!--poner link de la imagen--!>
-  <!-- Datos Twitter Card -->   
+  <!-- Datos Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@pocketsmartbar">
   <meta name="twitter:creator" content="@pocketsmartbar" />
 <!-- Etiquetas meta -->
   <title>Registro - PocketSmartBar</title>
-  <link type="image/x-icon" rel="shortcut icon" href="{{asset('assets-home/images/icon.png')}}"/>        
-<!-- Datos meta Graph --> 
-    
-<!-- Styles -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 
-    <style>
+  <link type="image/x-icon" rel="shortcut icon" href="{{asset('assets-home/images/icon.png')}}"/>
+<!-- Datos meta Graph -->
 
+<!-- Styles -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <style>
+    /* Customize the label (the container) */
+    .chekPocket {
+      position: relative;
+      padding-left: 30px;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* Hide the browser's default checkbox */
+    .chekPocket input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    /* Create a custom checkbox */
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      background-color: #eee;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .chekPocket:hover input ~ .checkmark {
+      background-color: #ccc;
+    }
+
+    /* When the checkbox is checked, add a blue background */
+    .chekPocket input:checked ~ .checkmark {
+      background-color: #2d0031;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+
+    /* Show the checkmark when checked */
+    .chekPocket input:checked ~ .checkmark:after {
+      display: block;
+    }
+
+    /* Style the checkmark/indicator */
+    .chekPocket .checkmark:after {
+      left: 5px;
+      top: 4px;
+      width: 5px;
+      height: 9px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
 
 
 
@@ -49,7 +110,7 @@ height: 100%;
 
 padding: 100px 80px;
     background-color:#FFF}
-    
+
 .sidebar-large1{
     display:table-cell;
     width:500px;
@@ -91,13 +152,13 @@ padding: 100px 80px;
                                 <img src="{{asset('assets-home/images/logoPrin.png')}}"/>
                             </a>
                         </div>
-                        <h3>Bienvenido! Tu amigo inseparable te espera </h3>                        
-                    </div> 
+                        <h3>Bienvenido! Tu amigo inseparable te espera </h3>
+                    </div>
                     <div class="center" style="text-align: center;">
                         @if (Session::has('message'))
                             {{Session::get('message')}}
                         @endif
-                    </div>  
+                    </div>
                                     <!--a href="#" class="register">Register</a-->
     				<form  autocomplete="on" method="post" action="{{url('Auth/login')}}" class="login-form">
     					{{ csrf_field() }}
@@ -110,11 +171,13 @@ padding: 100px 80px;
     						<input type="password" name="password" id="login-password" value="" class="input" placeholder="Contraseña" required>
                 <i id="show-password" class="fa fa-eye"></i>
     					</div>
-                        <div class="rememberme-container">
-                            <input type="checkbox" name="rememberme" id="rememberme"/>
-                            <label for="rememberme" class="rememberme"><span>Recuérdame</span></label>
-                            <a class="forgot-password" href="{{url('Auth/resetpassword')}}">Se te olvidó tu contraseña?</a>
-                        </div>
+              <div class="rememberme-container">
+                <label class="chekPocket">Recordar
+                  <input type="checkbox" checked="checked">
+                  <span class="checkmark"></span>
+                </label>
+                <a class="forgot-password" href="{{ url('Auth/resetpassword') }}">Olvide mi contraseña?</a>
+              </div>
     					<input type="submit" name="submit" id="submit" value="INGRESAR" class="button">
     				</form>
         	<div class="separator"></div>
@@ -128,10 +191,10 @@ padding: 100px 80px;
     </aside>
     <!-- Content Slideshow  -->
     <section class="content">
-        <div class="hero-login bg-cover" style="background-image: url({{asset('assets-home/images/login-slide-4.jpg')}}")"> 
+        <div class="hero-login bg-cover" style="background-image: url({{asset('assets-home/images/login-slide-4.jpg')}}")">
         </div>
     </section>
 
-</div>    
+</div>
 </body>
 </html>

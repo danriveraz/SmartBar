@@ -34,7 +34,7 @@
   <link href="assets/styles/pocketStyle.css" rel="stylesheet">
 <!-- GRT Youtube Plugin para video CSS -->
   <link rel="stylesheet" href="assets/styles/video/grt-youtube-popup.css">
-<!-- Font Awsome
+<!-- Font Awsome-->
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <!-- style para login -->
 <link rel="stylesheet" href="assets/styles/main.css"/><!--style para login-->
@@ -419,37 +419,55 @@
 </section>		
 <!-- TESTIMONIOS MIEMBROS CLUB-->
 <section class="block" data-name="Users">
-    <div class="block-content text-center">
-      <h2>Miembros PocketClub Opinan</h2>
-      <div class="row cards-basic">
-        <div class="col bg-gray-white">
-            <img class="grayscale" src="assets/images/testimonios/user-monica.png" alt="" />
-            <h3>Juliana Vargas</h3>
-            <p>Nunca senti que fuera tan fácil manejar mis negocios, desde que hago parte de Smartbar. ¡Gracias por existir!</p>
-            <a class="button small lemon" href="" target="_blank" rel="nofollow">Ver testimonio</a>
-        </div>        
-        <div class="col bg-gray-white">
-            <img class="grayscale" src="assets/images/testimonios/user-monica4.png" alt="" />
-            <h3>Daniel Rivera</h3>
-			<input type="checkbox" class="read-more-state" id="post-1" />
-            <p class="read-more-wrap">Desde que cuento con Smartbar, tomo mejores desiciones, y mi negocio a crecido<span class="read-more-target"> más rápido de lo que algun avez soñe, definitivamente, nunca me puede faltar, Smartbar.</span><label for="post-1" class="read-more-trigger"></label></p>
-            <a class="button small lemon" href="" target="_blank">Ver testimonio</a>
-        </div>        
-        <div class="col bg-gray-white">
-            <img class="grayscale" src="assets/images/testimonios/user-monica2.png" alt="" />
-            <h3>Alvaro Diaz</h3>
-			<input type="checkbox" class="read-more-state" id="post-2" />
-            <p class="read-more-wrap">Smartbar es un Excelente aplicativo... Una herramienta muy fácil y dinámica  para <span class="read-more-target">conocer el estado actual de la organización. Me gusta mucho.</span><label for="post-2" class="read-more-trigger"></label></p>
-            <a class="button small lemon" href="" target="_blank" rel="nofollow">Ver testimonio</a>
-        </div>        
-        <div class="col bg-gray-white">
-            <img class="grayscale" src="assets/images/testimonios/user-monica3.png" alt="" />
-            <h3>BlankAndWhite</h3>
-			<input type="checkbox" class="read-more-state" id="post-3" />
-            <p>Mis empleados tienen más claro lo que tienen que hacer, tienen todas las herramientas a la mano y <span class="read-more-target">yo soy menos indispensable, nunca pense tener tanto tiempo libre, y mi negocio creciendo a pasos agigantados.</span><label for="post-3" class="read-more-trigger"></label></p>
-            <a class="button small lemon" href="" target="_blank" rel="nofollow">Ver testimonio</a>
-        </div>
-      </div>
+    <div class="block-content">
+      <h2 class=" text-center">Miembros PocketClub Opinan</h2>
+      
+		<div class="testimonial-container">
+	<div class="dk-container">
+		<div class="cd-testimonials-wrapper cd-container">
+			<ul class="cd-testimonials">
+				<li>
+					<div class="testimonial-content">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+						<div class="cd-author">
+							<img src="https://placehold.it/350x350/222222/222222" alt="Author image">
+							<ul class="cd-author-info">
+								<li>Lorem<strong>Ipsum</strong><br><span>@twitterhandle</span></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="testimonial-content">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Cras mattis consectetur purus sit amet fermentum.</p>
+						<div class="cd-author">
+							<img src="https://placehold.it/350x350/222222/222222" alt="Author image">
+							<ul class="cd-author-info">
+								<li>Lorem<strong>Ipsum</strong><br><span>@twitterhandle</span></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="testimonial-content">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Cras mattis consectetur purus sit amet fermentum.</p>
+						<div class="cd-author">
+							<img src="https://placehold.it/350x350/222222/222222" alt="Author image">
+							<ul class="cd-author-info">
+								<li>Lorem<strong>Ipsum</strong><br><span>@twitterhandle</span></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- cd-testimonials -->
+	</div>
+</div>
+		
     </div>
 </section>		
  <footer>
@@ -522,5 +540,28 @@ window.smartsupp||(function(d) {
 })(document);
 </script>	
 	
+<!-- script para testimonios-->
+<script src="assets/scripts/jquery.flexslider.js"></script>
+
+	    <script >
+      jQuery(document).ready(function ($) {
+	//create the slider
+	$('.cd-testimonials-wrapper').flexslider({
+		selector: ".cd-testimonials > li",
+		animation: "slide",
+		controlNav: true,
+		slideshow: true,
+		smoothHeight: true,
+		start: function start() {
+			$('.cd-testimonials').children('li').css({
+				'opacity': 1,
+				'position': 'relative' });
+
+		} });
+
+});
+      //# sourceURL=pen.js
+    </script>
+
 </body>
 </html>
