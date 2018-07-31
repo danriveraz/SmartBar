@@ -14,6 +14,7 @@ use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use Laracasts\Flash\Flash;
 use Carbon\Carbon;
+use PocketByR\User;
 
 class CajeroController extends Controller
 {
@@ -83,6 +84,19 @@ class CajeroController extends Controller
       $facturas = Factura::listarTodas(Auth::user()->empresaActual)->get();
       $productos = array();
       $clientes = array();
+      $usuario = Auth::user();
+      $notificaciones = Notificaciones::Usuario($usuario->id)->get();
+      $nuevas = 0;
+      $fechaActual = Carbon::now();
+      $fecha2array = array();
+      for ($i=0; $i < sizeof($notificaciones); $i++) { 
+        if($notificaciones[$i]->estado == "nueva"){
+          $nuevas = $nuevas + 1;
+        }
+        $fechaNotificacion = Carbon::parse($notificaciones[$i]->fecha);
+        $diferencia = $fechaActual->diffInDays($fechaNotificacion,true);
+        array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
+        }
       //dd($facturas[0]->cliente->nombre);
        for($i=0; $i < sizeof($facturas); $i++){
             $ventasHechas = $facturas[$i]->ventasHechas;
@@ -97,7 +111,13 @@ class CajeroController extends Controller
                array_push($clientes, array($facturas[$i]->cliente->id, $facturas[$i]->cliente->nombre, $facturas[$i]->cliente->nit, $facturas[$i]->cliente->telefono, $facturas[$i]->cliente->email, $facturas[$i]->cliente->direccion1));
             }
         }
-      return view('Cajero.historial')->with('facturas',$facturas)->with('productos',$productos)->with('clientes',$clientes);
+      return view('Cajero.historial')
+            ->with('facturas',$facturas)
+            ->with('productos',$productos)
+            ->with('clientes',$clientes)
+            ->with('notificaciones',$notificaciones)
+            ->with('nuevas',$nuevas)
+            ->with('fecha2array',$fecha2array);
     }
     public function show($id){
 
