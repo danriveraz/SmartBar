@@ -52,7 +52,8 @@ class EstadisticasController extends Controller
 
         $categorias = $this->categoriasMasVendidas($request);// obtiene el id de las 4 categorias más vendida
         $categoriasSemana = $this->ventasCategoriasPorSemana($request);//Llamado a la función para el comportamiento de ventas por semana de las categorias
-        $categoriasDia = $this->ventasCategoriasPorDia($request);//
+        $categoriasDia = $this->ventasCategoriasPorDia($request);//Llamado a la función para el comportamiento de ventas por Dia de las categorias
+        $categoriasMes = $this->ventasCategoriasPorMes($request);//Llamado a la función para el comportamiento de ventas por Mes de las categorias
 
 
         return view('Estadisticas.inicio')          
@@ -61,7 +62,8 @@ class EstadisticasController extends Controller
             ->with('fecha2array',$fecha2array)
             ->with('categorias',$categorias)
             ->with('categoriasVentasPorSemana',$categoriasSemana)
-            ->with('categoriasVentasPorDia',$categoriasDia);
+            ->with('categoriasVentasPorDia',$categoriasDia)
+            ->with('categoriasVentasPorMes',$categoriasMes);
     }
 
     public function categoriasMasVendidas(Request $request){
@@ -173,7 +175,7 @@ class EstadisticasController extends Controller
                     ->limit(4)
                     ->get();// obtiene el id de las 4 categorias más vendidas
 
-        $CategoriasPorSemana = Factura::where([['factura.estado', 'Finalizada'],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
+        $CategoriasPorDia = Factura::where([['factura.estado', 'Finalizada'],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
             ->join('venta', 'factura.id', '=', 'venta.idFactura')
             ->join('producto', 'venta.idProducto', '=', 'producto.id')
             ->join('categoria', 'producto.idCategoria', '=', 'categoria.id')
@@ -193,14 +195,14 @@ class EstadisticasController extends Controller
             array_push($cols , ['id'=> 'Cantidad'.$nombre,'label'=> 'Cantidad de Ventas de '.$nombre, 'type'=> 'number']);
         }
 
-        foreach ($CategoriasPorSemana as $key => $categoria) {
+        foreach ($CategoriasPorDia as $key => $categoria) {
             if($numDia!=$categoria->dia){// Cada que el número de la semana cambie accede aqui, se agrega la semana anterior al arreglo general y se reinicia el arreglo auxiliar para la próxima semana
                 if(!(empty($auxDia) )){// validación por si es vacio el arreglo
                     array_push($categoriasToJson, $auxDia);
                 }
                 $auxDia = array();
                 $numDia = $categoria->dia;
-                $auxDia['semana']=$categoria->mes."/".$numDia;
+                $auxDia['dia']=$categoria->mes."/".$numDia;
                 //$auxDia['dia']=$numDia;
                 foreach ($categorias->pluck('nombre')->toArray() as $key => $nombre) {
                     $auxDia[$nombre] = 0;//se inicia el arreglo con los nombres de las categorias
@@ -224,6 +226,78 @@ class EstadisticasController extends Controller
         //dd(json_encode($rows));
         $categoriasToJson = ['cols' => $cols , 'rows' => $rows];
 
+
+        $categoriasToJson = json_encode($categoriasToJson,JSON_NUMERIC_CHECK);// el arreglo se convierte a formato json, esta variable es anviada a la vista para las gráficas
+
+        return $categoriasToJson;
+
+    }
+
+
+
+
+    public function ventasCategoriasPorMes(Request $request){
+        $categorias = Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
+                    ->join('venta', 'factura.id', '=', 'venta.idFactura')
+                    ->join('producto', 'venta.idProducto', '=', 'producto.id')
+                    ->join('categoria', 'producto.idCategoria', '=', 'categoria.id')
+                    ->select(DB::raw('SUM(`cantidad`) as total'),'idCategoria','categoria.nombre')
+                    ->groupBy('idCategoria')
+                    ->orderBy('total', 'DESC')
+                    ->limit(4)
+                    ->get();// obtiene el id de las 4 categorias más vendidas
+
+        $CategoriasPorMes = Factura::where([['factura.estado', 'Finalizada'],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
+            ->join('venta', 'factura.id', '=', 'venta.idFactura')
+            ->join('producto', 'venta.idProducto', '=', 'producto.id')
+            ->join('categoria', 'producto.idCategoria', '=', 'categoria.id')
+            ->whereIn('categoria.id', $categorias->pluck('idCategoria')->toArray())
+            ->select(DB::raw('SUM(`cantidad`) as total'),DB::raw('MONTH(`fecha`) as mes'),'idCategoria','categoria.nombre',DB::raw('YEAR(`fecha`) as anio'))
+            ->groupBy('idCategoria')
+            ->groupBy(DB::raw('YEAR(`fecha`)'))
+            ->groupBy(DB::raw('MONTH(`fecha`)'))//se hace el group by por el mes en que fue realizada la factura
+            ->orderBy('fecha', 'ASC')
+            ->get();
+
+        $auxMes = array();//array auxiliar donde se guarda la información por Mes
+        $numMes = 0; // variable para guardar el numero del Mes
+        $categoriasToJson = array();// arreglo final donde se guardan los datos de todas los meses, para despues convertirlo a formato Json
+        $cols = [['id'=> 'Mes','label'=> 'Mes', 'type'=> 'string']];
+        foreach ($categorias->pluck('nombre')->toArray() as $key => $nombre) {
+            array_push($cols , ['id'=> 'Cantidad'.$nombre,'label'=> 'Cantidad de Ventas de '.$nombre, 'type'=> 'number']);
+        }
+
+        foreach ($CategoriasPorMes as $key => $categoria) {
+            if($numMes!=$categoria->mes){// Cada que el número del mes cambie accede aqui, se agrega la semana anterior al arreglo general y se reinicia el arreglo auxiliar para el próximo mes
+                if(!(empty($auxMes) )){// validación por si es vacio el arreglo
+                    array_push($categoriasToJson, $auxMes);
+                }
+                $auxMes = array();
+                $numMes = $categoria->mes;
+                $auxMes['mes']=$categoria->anio."/".$numMes;
+                //$auxMes['mes']=$numMes;
+                foreach ($categorias->pluck('nombre')->toArray() as $key => $nombre) {
+                    $auxMes[$nombre] = 0;//se inicia el arreglo con los nombres de las categorias
+                }
+            }
+            $auxMes[$categoria->nombre]=$categoria->total;// se guarda el total de la categoria 
+            $numMes=$categoria->mes;
+        }
+        array_push($categoriasToJson, $auxMes);// se agrega al arreglo general, el último auxiliar, ya que en foreach no se agrega el último
+
+
+        $rows = array();   
+        foreach ($categoriasToJson as $key => $fila) {
+            $auxRow = array();
+            foreach ($fila as $key => $valor) {
+                array_push($auxRow,['v' => $valor ]);    
+            }
+            array_push($rows, ['c'=>  $auxRow]);                
+        }
+
+        //dd(json_encode($rows));
+        //dd($categoriasToJson);
+        $categoriasToJson = ['cols' => $cols , 'rows' => $rows];
 
         $categoriasToJson = json_encode($categoriasToJson,JSON_NUMERIC_CHECK);// el arreglo se convierte a formato json, esta variable es anviada a la vista para las gráficas
 

@@ -175,3 +175,4 @@ Route::resource('Estadisticas', 'EstadisticasController');
 Route::post('Estadisticas/ventasCategoriasPorSemana', 'EstadisticasController@ventasCategoriasPorSemana'); 
 Route::post('Estadisticas/categoriasMasVendidas', 'EstadisticasController@categoriasMasVendidas');
 Route::post('Estadisticas/ventasCategoriasPorDia', 'EstadisticasController@ventasCategoriasPorDia');
+Route::post('Estadisticas/ventasCategoriasPorMes', 'EstadisticasController@ventasCategoriasPorMes');

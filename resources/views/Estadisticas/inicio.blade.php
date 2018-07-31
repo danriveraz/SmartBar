@@ -53,20 +53,62 @@
   <div class="col-md-6">
     <div id="exTab2" class="container"> 
       <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#tabCategoriasHora" data-toggle="tab">Por Horas</a>
+        </li>
         <li >
           <a href="#tabCategoriasDias" data-toggle="tab">Por Días</a>
         </li>
-        <li class="active">
+        <li >
           <a  href="#tabCategoriasSemana" data-toggle="tab">Por Semana</a>
         </li>
-        <li><a href="#3" data-toggle="tab">Solution</a>
+        <li><a href="#tabCategoriasMes" data-toggle="tab">Por Mes</a>
         </li>
       </ul>
 
       <div class="tab-content">
 
+        <!-- Inicio Gráfica de categorias Por Horas -->
+        <div class="tab-pane active" id="tabCategoriasHora">
+          <div class="row">
+            <form id="formCategoriaHora" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarCategoriaHora' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaCategoriasHora"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de categorias Por Horas -->
+
         <!-- Inicio Gráfica de categorias Por Días -->
-        <div class="tab-pane active" id="tabCategoriasDias">
+        <div class="tab-pane" id="tabCategoriasDias">
           <div class="row">
             <form id="formCategoriaDias" class="login-form">
               <fieldset>
@@ -104,7 +146,7 @@
         </div>
         <!-- Fin Gráfica de categorias Por Dias -->
         <!-- Inicio Gráfica de categorias Por semanas -->
-        <div class="tab-pane active" id="tabCategoriasSemana">
+        <div class="tab-pane" id="tabCategoriasSemana">
           <div class="row">
             <form id="formCategoriaSemana" class="login-form">
               <fieldset>
@@ -141,9 +183,44 @@
           </div>
         </div>
         <!-- Fin Gráfica de categorias Por semanas -->
-        <div class="tab-pane" id="3">
-          <h3>add clearfix to tab-content (see the css)</h3>
+        <!-- Inicio Gráfica de categorias Por Mes -->
+        <div class="tab-pane" id="tabCategoriasMes">
+          <div class="row">
+            <form id="formCategoriaMes" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarCategoriaMes' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaCategoriasMes"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
         </div>
+        <!-- Fin Gráfica de categorias Por Mes -->
       </div>
     </div>
   </div>
@@ -439,6 +516,7 @@
    var datosCategoriaTotal = {!!$categorias!!};
    var datosCategoriaSemana = {!! $categoriasVentasPorSemana !!};
    var datosCategoriaDia = {!!$categoriasVentasPorDia!!};
+   var datosCategoriaMes = {!!$categoriasVentasPorMes!!};
 
   $(window).resize(function(e) {
     drawChart()
@@ -713,14 +791,41 @@ $("#buscarCategoriaDia").click(function(){
 });
 
 
+
+
+$("#buscarCategoriaMes").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formCategoriaMes')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasCategoriasPorMes')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosCategoriaMes = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
 //Esto es para refresar las gráficas cada vez que se cambia de tabulación, PD: esas gráficas molestan mucho 
-/*$('[data-toggle="tab"]').click(function(){
+$('[data-toggle="tab"]').click(function(){
+  //drawChart();
   var morrisResize;
   clearTimeout(morrisResize);
   return morrisResize = setTimeout(function() {
-    return buildMorris(true);
+    return drawChart();
   }, 500);
-});*/
+});
 
 google.charts.load('current', {packages: ['corechart','bar','line']});     
 google.charts.setOnLoadCallback(drawChart);
@@ -770,6 +875,14 @@ function drawChart() {
   var chart = new google.charts.Line(document.getElementById('GraficaCategoriasDias'));
   chart.draw(data, google.charts.Line.convertOptions(options));
 
+  //Gráfica de Lineas para las ventas de categorias por Mes
+  var data = new google.visualization.DataTable(datosCategoriaMes);
+  var options = {
+    title: 'Total de Ventas Por Categorias Divido en Meses',
+    height: 340, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaCategoriasMes'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
 
 }
 
