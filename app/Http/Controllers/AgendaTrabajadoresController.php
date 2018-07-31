@@ -7,7 +7,10 @@ use Illuminate\Support\Facades\Validator;
 use PocketByR\Http\Requests;
 use PocketByR\Http\Controllers\Controller;
 use PocketByR\User;
+use PocketByR\Horarios;
 use PocketByR\Notificaciones;
+use PocketByR\Empresa;
+use PocketByR\Extraoficiales;
 use Auth;
 use Laracasts\Flash\Flash;
 use PocketByR\AgendaTrabajadores;
@@ -32,7 +35,12 @@ class AgendaTrabajadoresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $empleados = User::usuariosEmpresa(Auth::user()->empresaActual)->get();
+        $idEmpresa = Auth::user()->empresaActual;
+        $empleados = User::usuariosEmpresa($idEmpresa)->get();
+        $horarios = Horarios::HorariosEmpresa($idEmpresa)->get();
+        $espacio = intval(6/count($horarios));
+        $nombreEmpresa = Empresa::find($idEmpresa)->nombreEstablecimiento;
+        $extraoficiales = Extraoficiales::Empresa($idEmpresa)->get();
         $ids = array();
         $empleadosIzq = array();
         $empleadosDer = array();
@@ -67,7 +75,7 @@ class AgendaTrabajadoresController extends Controller
      		array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
         }
         
-        return view('AgendaTrabajadores.index')->with('empleadosIzq',$empleadosIzq)->with('empleadosDer',$empleadosDer)->with('numeracion',$ids)->with('numEmpleadosIzq', $numeroEmpleadosIzq)->with('turnos', json_encode($turnosEmpleados))->with('notificaciones', $notificaciones)->with('nuevas', $nuevas)->with('fecha2array', $fecha2array);
+        return view('AgendaTrabajadores.index')->with('empleadosIzq',$empleadosIzq)->with('empleadosDer',$empleadosDer)->with('numeracion',$ids)->with('numEmpleadosIzq', $numeroEmpleadosIzq)->with('turnos', json_encode($turnosEmpleados))->with('nombreEmpresa', $nombreEmpresa)->with('horarios', $horarios)->with('espacio',$espacio)->with('extraoficiales', $extraoficiales)->with('notificaciones', $notificaciones)->with('nuevas', $nuevas)->with('fecha2array', $fecha2array);
     }
 
     /**
