@@ -176,3 +176,4 @@ Route::post('Estadisticas/ventasCategoriasPorSemana', 'EstadisticasController@ve
 Route::post('Estadisticas/categoriasMasVendidas', 'EstadisticasController@categoriasMasVendidas');
 Route::post('Estadisticas/ventasCategoriasPorDia', 'EstadisticasController@ventasCategoriasPorDia');
 Route::post('Estadisticas/ventasCategoriasPorMes', 'EstadisticasController@ventasCategoriasPorMes');
+Route::post('Estadisticas/ventasCategoriasPorDia', 'EstadisticasController@ventasCategoriasPorHora');

@@ -78,11 +78,6 @@
                     <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" type="date">
                   </div>
               </div>
-              <div class="col-md-4">
-                  <div class="input-container"> 
-                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin"  type="date">
-                  </div>
-              </div>
               <div class="col-md-2">
                 <div  class="form-group">
                   <a id='buscarCategoriaHora' class="btn btn-pocket" type="submit" style="font-weight: 400;">
@@ -517,6 +512,7 @@
    var datosCategoriaSemana = {!! $categoriasVentasPorSemana !!};
    var datosCategoriaDia = {!!$categoriasVentasPorDia!!};
    var datosCategoriaMes = {!!$categoriasVentasPorMes!!};
+   var datosCategoriaHora = {!!$categoriasVentasPorHora!!};
 
   $(window).resize(function(e) {
     drawChart()
@@ -817,6 +813,31 @@ $("#buscarCategoriaMes").click(function(){
 });
 
 
+
+
+$("#buscarCategoriaHora").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formCategoriaHora')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasCategoriasPorDia')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosCategoriaHora = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
 //Esto es para refresar las gráficas cada vez que se cambia de tabulación, PD: esas gráficas molestan mucho 
 $('[data-toggle="tab"]').click(function(){
   //drawChart();
@@ -882,6 +903,15 @@ function drawChart() {
     height: 340, 
   }; 
   var chart = new google.charts.Line(document.getElementById('GraficaCategoriasMes'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+  //Gráfica de Lineas para las ventas de categorias por Mes
+  var data = new google.visualization.DataTable(datosCategoriaHora);
+  var options = {
+    title: 'Total de Ventas Por Categorias Divido en Meses',
+    height: 340, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaCategoriasHora'));
   chart.draw(data, google.charts.Line.convertOptions(options));
 
 }

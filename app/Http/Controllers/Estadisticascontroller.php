@@ -55,6 +55,9 @@ class EstadisticasController extends Controller
         $categoriasDia = $this->ventasCategoriasPorDia($request);//Llamado a la función para el comportamiento de ventas por Dia de las categorias
         $categoriasMes = $this->ventasCategoriasPorMes($request);//Llamado a la función para el comportamiento de ventas por Mes de las categorias
 
+        $request->request->add(['fechaInicio' => Carbon::now()]);
+        $categoriasHora = $this->ventasCategoriasPorHora($request);//Llamado a la función para el comportamiento de ventas por Día de las categorias
+
 
         return view('Estadisticas.inicio')          
             ->with('notificaciones',$notificaciones)
@@ -63,7 +66,8 @@ class EstadisticasController extends Controller
             ->with('categorias',$categorias)
             ->with('categoriasVentasPorSemana',$categoriasSemana)
             ->with('categoriasVentasPorDia',$categoriasDia)
-            ->with('categoriasVentasPorMes',$categoriasMes);
+            ->with('categoriasVentasPorMes',$categoriasMes)
+            ->with('categoriasVentasPorHora',$categoriasHora);
     }
 
     public function categoriasMasVendidas(Request $request){
@@ -304,6 +308,97 @@ class EstadisticasController extends Controller
         return $categoriasToJson;
 
     }
+
+
+
+    public function ventasCategoriasPorHora(Request $request){
+        //Se calculan las horas de búsqueda al rededor de un día
+        $fechaInicio = new Carbon($request->fechaInicio);
+        $fechaFin = new Carbon($request->fechaInicio);
+        $fechaInicio->startOfDay()->subHours(6);
+        $fechaFin->startOfDay()->addHours(30);
+
+        $categorias = Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual],['factura.fecha','>=',$fechaInicio],['factura.fecha','<',$fechaFin]])
+                    ->join('venta', 'factura.id', '=', 'venta.idFactura')
+                    ->join('producto', 'venta.idProducto', '=', 'producto.id')
+                    ->join('categoria', 'producto.idCategoria', '=', 'categoria.id')
+                    ->select(DB::raw('SUM(`cantidad`) as total'),'idCategoria','categoria.nombre')
+                    ->groupBy('idCategoria')
+                    ->orderBy('total', 'DESC')
+                    ->limit(4)
+                    ->get();// obtiene el id de las 4 categorias más vendidas
+
+        $CategoriasPorHora = Factura::where([['factura.estado', 'Finalizada'],['factura.fecha','>=',$fechaInicio],['factura.fecha','<',$fechaFin]])
+            ->join('venta', 'factura.id', '=', 'venta.idFactura')
+            ->join('producto', 'venta.idProducto', '=', 'producto.id')
+            ->join('categoria', 'producto.idCategoria', '=', 'categoria.id')
+            ->whereIn('categoria.id', $categorias->pluck('idCategoria')->toArray())
+            ->select(DB::raw('SUM(`cantidad`) as total'),DB::raw('HOUR(`fecha`) as hora'),'idCategoria','categoria.nombre',DB::raw('DAY(`fecha`) as dia'))
+            ->groupBy('idCategoria')
+            ->groupBy(DB::raw('DAY(`fecha`)'))
+            ->groupBy(DB::raw('HOUR(`fecha`)'))//se hace el group by por el mes en que fue realizada la factura
+            ->orderBy('fecha', 'ASC')
+            ->get();
+
+
+        $auxHora = array();//array auxiliar donde se guarda la información por Hora
+        $numHora = 0; // variable para guardar la hora
+        $categoriasToJson = array();// arreglo final donde se guardan los datos de todas las horas, para despues convertirlo a formato Json
+        $cols = [['id'=> 'Hora','label'=> 'Hora', 'type'=> 'string']];
+        foreach ($categorias->pluck('nombre')->toArray() as $key => $nombre) {
+            array_push($cols , ['id'=> 'Cantidad'.$nombre,'label'=> $nombre, 'type'=> 'number']);
+        }
+
+// este while crea un arreglo con posiciones reservadas por cada hora que se va a graficar en la vista, recorre hora por hora 
+        while ($fechaInicio->lessThan($fechaFin)) {
+            $auxLLenar = array();
+            $auxLLenar['hora']=$fechaInicio->day."/".$fechaInicio->hour.":00";
+            foreach ($categorias->pluck('nombre')->toArray() as $key => $nombre) {
+                $auxLLenar[$nombre] = 0;//se inicia el arreglo con los nombres de las categorias
+            }
+            $categoriasToJson[$fechaInicio->day."/".$fechaInicio->hour] = $auxLLenar;
+            $fechaInicio->addHours(1);
+        }
+
+//Todo lo que está comentado es  como está hecho en las funciones anteriores, solo que ahora tiene en cuenta las horas en las que no se vendió nada, para una mejor visualización de los datos, si queda bien, ya se podrá borrar
+        foreach ($CategoriasPorHora as $key => $categoria) {
+            /*if($numHora!=$categoria->hora){// Cada que el número de la hora cambie accede aqui, se agrega la semana anterior al arreglo general y se reinicia el arreglo auxiliar para la proxima hora
+                if(!(empty($auxHora) )){// validación por si es vacio el arreglo
+                    array_push($categoriasToJson, $auxHora);
+                }
+                $auxHora = array();
+                $numHora = $categoria->hora;
+                $auxHora['hora']=$categoria->dia."/".$numHora.":00";
+                //$auxHora['hora']=$numHora;
+                foreach ($categorias->pluck('nombre')->toArray() as $key => $nombre) {
+                    $auxHora[$nombre] = 0;//se inicia el arreglo con los nombres de las categorias
+                }
+            }
+            */
+            $categoriasToJson[$categoria->dia."/".$categoria->hora][$categoria->nombre]=$categoria->total;// se guarda el total de la categoria 
+            //$numHora=$categoria->hora;
+        }
+        //array_push($categoriasToJson, $auxHora);// se agrega al arreglo general, el último auxiliar, ya que en foreach no se agrega el último
+
+
+        $rows = array();   
+        foreach ($categoriasToJson as $key => $fila) {
+            $auxRow = array();
+            foreach ($fila as $key => $valor) {
+                array_push($auxRow,['v' => $valor ]);    
+            }
+            array_push($rows, ['c'=>  $auxRow]);                
+        }
+
+        //dd(json_encode($rows, JSON_PRETTY_PRINT));
+        $categoriasToJson = ['cols' => $cols , 'rows' => $rows];
+
+        $categoriasToJson = json_encode($categoriasToJson,JSON_NUMERIC_CHECK);// el arreglo se convierte a formato json, esta variable es anviada a la vista para las gráficas
+
+        return $categoriasToJson;
+
+    }
+
 } 
 
 
