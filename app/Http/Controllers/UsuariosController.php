@@ -2610,6 +2610,8 @@ class UsuariosController extends Controller
           $usuario->empresaActual= Auth::user()->empresaActual;
           $usuario->confirmoEmail = 1;
           $usuario->estado = true;
+          $usuario->telefono = $request->telefono;
+
           if($usuario->sexo == "Femenino"){
             $usuario->imagenPerfil = "perfil.jpg";
           }else{

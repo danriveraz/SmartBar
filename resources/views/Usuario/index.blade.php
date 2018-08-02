@@ -198,97 +198,96 @@
                       <input name="nombrePersona" class="input" value="{{$usuario->nombrePersona}}" placeholder="Username" type="text" >
                     </div>
                     <div class="input-container">
-                      <i class="fa fa-map"></i>
-                      <input class="input" value="{{$usuario->direccion}}" name="direccion" placeholder="Dirección" type="text">
+                      <i class="fa fa-phone-square"></i>
+                      <input class="input" value="{{$usuario->telefono}}" name="telefono" placeholder="telefono" type="text">
                     </div>
                     <div class="input-container">
-                      <i class="fa fa-address-card"></i>
-                      <input name="cedula" class="input" value="{{$usuario->cedula}}"  placeholder="Identificacion" type="text">
+                      <i class="fa fa-envelope"></i>
+                      <input class="input" placeholder="Email" value="{{$usuario->email}}" disable type="email">
                     </div>
                     <!-- <a class="pull-right" href="#">Mirar Calendario De Trabajo</a> -->
                   </div>
                   <div class="col-md-4">
-                  <div class="input-container">
-                    <i class="fa fa-venus-mars"></i>
-                      <select name='sexo' class="select" placeholder="Tipo De Sexo">
-                        @if($usuario->sexo=='Femenino')
-                          <option value="Masculino">Masculino</option>
-                          <option value="Femenino" selected="selected">Femenino</option>
-                        @else
-                          <option value="Masculino" selected="selected">Masculino</option>
-                          <option value="Femenino" >Femenino</option>
-                        @endif
+                    <div class="input-container">
+                      <i class="fa fa-address-card"></i>
+                      <input class="input"  name="cedula" value="{{$usuario->cedula}}" placeholder="Identificación" type="text">
+                    </div>
+                    <div class="input-container">
+                      <i class="fa fa-map"></i>
+                      <input class="input" value="{{$usuario->direccion}}" name="direccion" placeholder="Dirección" type="text">
+                    </div>
+                    <div class="input-container">
+                      <i class="fa fa-venus-mars"></i>
+                        <select name='sexo' class="select" placeholder="Tipo De Sexo">
+                          @if($usuario->sexo=='Femenino')
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino" selected="selected">Femenino</option>
+                          @else
+                            <option value="Masculino" selected="selected">Masculino</option>
+                            <option value="Femenino" >Femenino</option>
+                          @endif
+                        </select>
+                    </div>
+                    <div class="input-container">
+                      <i class="fa fa-birthday-cake"></i>
+                      <input data-date-format="yyyy/mm/dd" value="{{$usuario->fechaNacimiento}}" class="input" data-date-autoclose="true" placeholder="Fecha de Nacimiento" type="date" name="fechaNacimiento" >
+                    </div>
+                    <div class="input-container">
+                      <i class="fa fa-money"></i>
+                      <input class="input" value="{{$usuario->salario}}" name="salario" type="number">
+                    </div>
+                    <input type="text" name="permisoPrincipal" value="
+                      @if($usuario->esAdmin == 2) Administrador
+                      @elseif($usuario->esMesero == 2) Mesero
+                      @elseif($usuario->esBartender == 2) Bartender
+                      @elseif($usuario->esCajero == 2) Cajero
+                      @endif
+                    " hidden id="{{$usuario->id}}permisoPrincipal"><!-- oculto para permiso principal-->
+                    <div class="input-container">
+                      <i class="fa fa-users"></i>
+                      <select id="selectPermisos{{$usuario->id}}" name="Permisos[]"class="form-control selectPermisos" multiple style="padding: 0px 0px; width: 80%">
+                        <option value="Administrador"
+                          @if($usuario->esAdmin != 0 )
+                            selected="selected"
+                          @endif
+                        >Administrador</option>
+                        <option value="Mesero" selected="selected"
+                            @if($usuario->esMesero != 0 )
+                              selected="selected"
+                            @endif
+                        >Mesero</option>
+                        <option value="Bartender"
+                            @if($usuario->esBartender != 0)
+                              selected="selected"
+                            @endif
+                        >Bartender</option>
+                        <option value="Cajero"
+                            @if($usuario->esCajero != 0)
+                              selected="selected"
+                            @endif
+                        >Cajero</option>
                       </select>
-                  </div>
-                  <div class="input-container">
-                    <i class="fa fa-birthday-cake"></i>
-                    <input data-date-format="yyyy/mm/dd" value="{{$usuario->fechaNacimiento}}" class="input" data-date-autoclose="true" placeholder="Fecha de Nacimiento" type="date" name="fechaNacimiento" >
-                  </div>
-                  <div class="input-container">
-                    <i class="fa fa-key"></i>
-                    <input class="input" name="contrasena" placeholder="Contraseña" type="password">
-                  </div>
-                  <div class="input-container">
-                    <i class="fa fa-key"></i>
-                    <input class="input" name="contrasen
-                    na_confirmation" placeholder="Confirmar Contraseña" type="password">
-                  </div>
-                  <div class="input-container">
-                    <i class="fa fa-money"></i>
-                    <input class="input" value="{{$usuario->salario}}" name="salario" type="number">
-                  </div>
-                  <input type="text" name="permisoPrincipal" value="
-                    @if($usuario->esAdmin == 2) Administrador
-                    @elseif($usuario->esMesero == 2) Mesero
-                    @elseif($usuario->esBartender == 2) Bartender
-                    @elseif($usuario->esCajero == 2) Cajero
-                    @endif
-                  " hidden id="{{$usuario->id}}permisoPrincipal"><!-- oculto para permiso principal-->
-                  <div class="input-container">
-                    <i class="fa fa-users"></i>
-                    <select id="selectPermisos{{$usuario->id}}" name="Permisos[]"class="form-control selectPermisos" multiple style="padding: 0px 0px; width: 80%">
-                      <option value="Administrador"
-                        @if($usuario->esAdmin != 0 )
-                          selected="selected"
-                        @endif
-                      >Administrador</option>
-                      <option value="Mesero" selected="selected"
-                          @if($usuario->esMesero != 0 )
-                            selected="selected"
-                          @endif
-                      >Mesero</option>
-                      <option value="Bartender"
-                          @if($usuario->esBartender != 0)
-                            selected="selected"
-                          @endif
-                      >Bartender</option>
-                      <option value="Cajero"
-                          @if($usuario->esCajero != 0)
-                            selected="selected"
-                          @endif
-                      >Cajero</option>
-                    </select>
-                  </div>
-                  <script type="">//inicializar el select2 y el permiso principal
-                    $(document).ready(function(){
-                      var selectPermisos = $('#selectPermisos{{$usuario->id}}');
-                      var arregloDePermisosOrdenados = [$("#{{$usuario->id}}permisoPrincipal").val().trim()];
-                      selectPermisos.select2().on("change", function (e) {
-                        var count = $(this).select2('data').length;
-                        if( e.added ){
-                          arregloDePermisosOrdenados.push(e.added.id);
-                          console.log(arregloDePermisosOrdenados);
-                        }else {
-                          var index = arregloDePermisosOrdenados.indexOf(e.removed.id);
-                          if (index > -1) {
-                              arregloDePermisosOrdenados.splice(index, 1);
+                    </div>
+                    <script type="">//inicializar el select2 y el permiso principal
+                      $(document).ready(function(){
+                        var selectPermisos = $('#selectPermisos{{$usuario->id}}');
+                        var arregloDePermisosOrdenados = [$("#{{$usuario->id}}permisoPrincipal").val().trim()];
+                        selectPermisos.select2().on("change", function (e) {
+                          var count = $(this).select2('data').length;
+                          if( e.added ){
+                            arregloDePermisosOrdenados.push(e.added.id);
+                            console.log(arregloDePermisosOrdenados);
+                          }else {
+                            var index = arregloDePermisosOrdenados.indexOf(e.removed.id);
+                            if (index > -1) {
+                                arregloDePermisosOrdenados.splice(index, 1);
+                            }
+                            console.log(arregloDePermisosOrdenados);
                           }
-                          console.log(arregloDePermisosOrdenados);
-                        }
-                        $("#{{$usuario->id}}permisoPrincipal").val(arregloDePermisosOrdenados[0]);
+                          $("#{{$usuario->id}}permisoPrincipal").val(arregloDePermisosOrdenados[0]);
+                      });
                     });
-                  });
-                  </script>
+                    </script>
               </div>
               <div class="col-md-4" style="height: 300px">
                 <p class="lead" style="margin-bottom: 10px;">Sube la hoja de vida de tu <span class="text-success">Empleado</span></p>
@@ -543,7 +542,7 @@
                 </div>
                 <div class="input-container">
                   <i class="fa fa-phone-square"></i>
-                  <input class="input" placeholder="Teléfono" type="text">
+                  <input class="input" name="telefono" id="telefono" placeholder="Teléfono" type="text">
                 </div>
                 <div class="input-container">
                   <i class="fa fa-envelope"></i>
@@ -557,7 +556,7 @@
                   </div>
                   <div class="input-container">
                     <i class="fa fa-map-marker"></i>
-                    <input class="input" name="direccion" placeholder="Dirección" type="text">
+                    <input class="input" name="direccion" id="direccion"placeholder="Dirección" type="text">
                   </div>
                   <div class="input-container">
                     <i class="fa fa-venus-mars"></i>
@@ -572,7 +571,7 @@
                   </div>
                   <div class="input-container">
                     <i class="fa fa-money"></i>
-                    <input class="input" name="salario" placeholder="Salario Diario" type="number">
+                    <input class="input" name="salario" id="salario" placeholder="Salario Diario" type="number">
                   </div>
                   <input type="text" name="permisoPrincipal" value="Mesero" hidden id="permisoPrincipal"><!-- oculto para permiso principal-->
                   <div class="input-container">
@@ -771,6 +770,17 @@ $("#registrarUsuario").click(function(){
     var token = $("#token").val();
     var formData = new FormData($('#formslider')[0]);
 
+    // cerrar la ventana de registro
+    var ventana = $(".style-toggle");
+    if ($(ventana).hasClass("open")) {
+      $(ventana).removeClass("open").addClass("closed");
+      $(".style-selector").animate({
+        "right": "-80%"
+      }, 250);
+    }
+
+
+
     $.ajax({
         url: '{{url('Auth/registerUser')}}',
         headers: {'X-CSRF-TOKEN': token},
@@ -793,39 +803,66 @@ $("#registrarUsuario").click(function(){
               permisoQueTiene += ' Cajero';
            }
 
-          var cadenaToTag = '<div class=" item row widget-container fluid-height">'+
-          '  <div class="widget-container fluid-height clearfix ">'+
-          '      <div class="heading Habilitado">'+
-          '        <a href="{{url("Auth/usuario")}}'+usuarioNuevo.id+'/active"><i data-toggle="tooltip" data-placement="left" title="Deshabilitar" class="pocketMorado fa fa-times pull-right" ></i></a>'+
-          '      </div>'+
-          '    <div class="profile-info clearfix padded3 Habilitado" data-toggle="modal" href="#myModal'+usuarioNuevo.id+'">'+
-          '      <div class="social-avatar">'+
-          '        <img width="70" height="70" class="avatar" src="{{asset("images/admins/")}}/'+usuarioNuevo.imagenPerfil+'">'+
-          '      </div>'+
-          '        <div class="profile-details">'+
-          '          <strong><a class="pocketMorado user-name" >'+usuarioNuevo.nombrePersona+'</a></strong><br>'+permisoQueTiene+''+
-          '          <i class="fa fa-check-circle"></i>'+usuarioNuevo.salario+''+
-          '        </div>'+
-          '    </div>'+
-          '    <div class="widget-content padded3 colorpocket">'+
-          '  <div class="col-md-4 colorpocket"></div>'+
-          '      <div class="col-md-8 colorpocket"> '+
-          '        <div class="headingPocket">'+
-          '          <div data-toggle="modal" href="#ModalMsg'+usuarioNuevo.id+'">'+
-          '            <a class="PocketA"><i class="fa fa-comments pull-right"></i></a></div>'+
-          '            <a class="PocketA" href="{{ url("agenda") }}"><i class="fa fa-calendar-check-o pull-right"></i></a>'+
-          '            <a class="PocketA" href="{{url("Estadisticas/")}}"><i class="fa fa-bar-chart pull-right"></i></a>'+
-          '        </div>'+
-          '      </div>  '+
-          '    </div>'+
-          '  </div>'+
-          '</div>';
+var cadenaToTag = '<div class="item row widget-container fluid-height                   Administrador                                    Habilitado                   isotope-item" style="position: absolute; left: 0px; top: 0px; opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1);">'+
+'  <div class="widget-container fluid-height clearfix ">'+
+'                    <div class="heading Habilitado">'+
+'        <a href="{{url("Auth/usuario")}}'+usuarioNuevo.id+'/active"><i title="Deshabilitar" class="pocketMorado fa fa-times pull-right"></i></a>'+
+'        <i data-toggle="modal" data-target="#myModal'+usuarioNuevo.id+'" class="pocketMorado fa fa-pencil-square-o pull-right" title="editar Empleado"></i>'+
+'    '+
+'    </div>'+
+'    <div class="profile-info clearfix padded3  Habilitado'+
+'                                              ">'+
+'      <div class="social-avatar">'+
+'        <img width="70" height="70" class="avatar" src="{{asset("images/admins/")}}/'+usuarioNuevo.imagenPerfil+'">'+
+'      </div>'+
+'        <div class="profile-details">'+
+'          <strong><a class="pocketMorado user-name">'+usuarioNuevo.nombrePersona+'</a></strong><br>'+permisoQueTiene+'<br>'+
+'          <i class="fa fa-check-circle"></i>&nbsp;'+usuarioNuevo.salario+''+
+'        </div>'+
+'    </div>'+
+'    <div class="widget-content padded3 colorpocket">'+
+'      <div class="col-md-12">'+
+'        <div class="col-md-4 colorpocket"></div>'+
+'          <div class="col-md-8 colorpocket">'+
+'            <div class="headingPocket">'+
+'                <!-- <div data-toggle="modal" href="#ModalMsg1">'+
+'                  <a class=""><i class="fa fa-comments pull-right"></i></a>'+
+'                </div> -->'+
+'                <!-- div para mensajes chat-->'+
+'                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i style="float: center;" class="fa fa-comments pull-right" title="Mensaje" onclick="mensajes("mensaje"+1);"></i></a>'+
+'                  <div class="dropdown-menu form-login" role="menu" id="mensaje1" style="display: none; margin-top: 0%;">'+
+'                    <div class="form-group">'+
+'                        <label for="exampleInputEmail1" class="pocketMorado"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Chat Empleado</label>'+
+'                        <textarea class="form-control" placeholder="Escribir Mensaje..."></textarea>'+
+'                    </div>'+
+'                    <button type="submit" class="btn btn-pocket btn-block"><i class="fa fa-send"></i>Enviar</button>'+
+'                  </div>'+
+'                <!-- Fin div para mensajes chat-->'+
+'                <a href="http://localhost/SmartBar/public/agenda" title="agenda"><i style="float: center;" class="fa fa-calendar-check-o pull-right"></i></a>'+
+'                <a data-toggle="modal" data-target="#ModalEstadisticas1" title="Estadísticas"><i style="float: center;" class="fa fa-bar-chart pull-right"></i></a>'+
+'            </div>'+
+'        </div>'+
+'      </div>'+
+'    </div>'+
+'  </div>'+
+'</div>';
+
+
+
            var $link = $(cadenaToTag);
            $("#social-container").isotope('insert', $link);// añadir al isotope de usuarios
-           $("#nombrePersona").val("");
-           $("#cedula").val("");
-           $("#email").val("");
-           $("#fechaNacimiento").val("");
+
+           //Limpia el formulario
+          $("#nombrePersona").val("");
+          $("#cedula").val("");
+          $("#email").val("");
+          $("#fechaNacimiento").val("");
+          $("#telefono").val("");
+          $("#direccion").val("");
+          $("#salario").val("");
+          $("#file-4").fileinput('clear');
+          $('#eliminarImagen').click();
+
            /*document.getElementById('sexo').checked = false;
            document.getElementById('sexo1').checked = false;
            for (i=0;i<a.length;i++){
@@ -834,23 +871,29 @@ $("#registrarUsuario").click(function(){
            for (i=0;i<document.querySelectorAll("input.Obsequio:checked").length;i++){
                 document.querySelectorAll("input.Obsequio:checked")[i].checked = 0;
            }*/
-            // cerrar la ventana de registro
-            var ventana = $(".style-toggle");
-            if ($(ventana).hasClass("open")) {
-              $(ventana).removeClass("open").addClass("closed");
-              return $(".style-selector").animate({
-                "right": "-80%"
-              }, 250);
-            }
+           $.notify("Trabajador Creado Exitosamente", "info");
+
         }, error: function(xhr,status, response) {
-              var error = jQuery.parseJSON(xhr.responseText);
-                for(var k in error.message){
-                    if(error.message.hasOwnProperty(k)){
-                        error.message[k].forEach(function(val){
-                          $.notify(val, "info");
-                        });
-                    }
+
+          // cerrar la ventana de registro
+          console.log("antes");
+          var ventana = $(".style-toggle");
+          if ($(ventana).hasClass("closed")) {
+            $(ventana).removeClass("closed").addClass("open");
+            $(".style-selector").animate({
+              "right": 0
+            }, 250);
+          }
+          console.log("despues");
+
+          var error = jQuery.parseJSON(xhr.responseText);
+            for(var k in error.message){
+                if(error.message.hasOwnProperty(k)){
+                    error.message[k].forEach(function(val){
+                      $.notify(val, "info");
+                    });
                 }
+            }
         }
     });
 });
