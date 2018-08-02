@@ -409,11 +409,26 @@
 	            },
 	            {
 	                text:      '<i class="fa fa-upload" id="subirArchivo" name="subirArchivo"></i>',
-	                titleAttr: 'Subir archivo'
+	                titleAttr: 'Subir archivo',
+	                action:    function ( e, dt, node, config ) {
+	                	$.ajax({
+	                		url: "http://localhost/SmartBar/public/insumo/importar",
+	                		type: 'GET',
+	                		data: {},
+	                		success: function(){
+	                			alert("bien");
+	                		},
+	                		error: function(data){
+	                			alert("mal");
+	                		}
+	                	});
+	                }
 	            }
 	        ]
     	} );
     });
+
+
   function cambiarCurrent(idInput) {
     $(".current").removeClass("current");
     $(idInput).addClass("current");

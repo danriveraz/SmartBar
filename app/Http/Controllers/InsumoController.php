@@ -213,14 +213,28 @@ class InsumoController extends Controller
       return redirect()->route('insumo.index');
   }
 
-  public function import(Request $request){
-    Excel::load('public/plantilla.xlsx', function($reader) {
+  public function importar(Request $request){
+
+    $userActual = Auth::user();
+
+    Excel::load('C:/xampp/htdocs/SmartBar/public/assets-Internas/smartbar.xlsx', function($reader) {
       foreach ($reader->get() as $row) {
         $insumo = new Insumo;
-        $insumo->cantidadUnidad = $row->und;
+        
+        $insumo->cantidadUnidad = $row->unidad;
         $insumo->nombre = $row->nombre;
+        $insumo->marca = $row->marca;
+        $insumo->valorCompra = $row->compra;
+        $insumo->precioUnidad = $row->venta;
+        $insumo->cantidadMedida = $row->catidad_de_medida;
+        $insumo->medida = $row->medida;
+        $insumo->cantidadRestante = $row->unidad * $row->catidad_de_medida;
+        //$insumo->idEmpresa = $userActual->empresaActual;
+        $insumo->esPRoducto = 0;
+        $insumo->eliminado = 0;
+        $insumo->idProveedor = 1;
 
-        $insumo->save();
+        //$insumo->save();
       }
     })->get();
   }

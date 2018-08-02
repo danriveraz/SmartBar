@@ -70,6 +70,7 @@ Route::group(['prefix' => 'Auth'], function(){
   Route::post('verificarUser', 'UsuariosController@verificarUser');
 });
 
+Route::get('insumo/importar', 'InsumoController@importar');
 Route::get('insumo/eliminar', 'InsumoController@eliminar');
 Route::get('insumo/modificar', 'InsumoController@modificar');
 Route::resource('insumo', 'InsumoController');
