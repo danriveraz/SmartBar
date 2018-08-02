@@ -71,7 +71,7 @@
                   @endif
                 </strong>
                 <p>
-                  <select class="selectFact numberFact" onchange="cambiarFactura(this.value);" style="width: 40%">
+                  <select class="selectFact" onchange="cambiarFactura(this.value);" style="width: 40%">
                     @foreach($facturas as $factura) 
                       @if(sizeof($factura->ventasHechas)>0)
                       <option data-idFactura="{{$factura->id}}"  data-idMesaBar="{{$factura->idBar}}" value="{{$factura->mesa->id}}" id="mesas{{$factura->mesa->id}}"
@@ -162,7 +162,7 @@
             <div class="widget-container fluid-height clearfix">
               <div class="col-md-4 text-center">
                 <div class="heading" style="color:#9F9F9F;">
-                  <i class="fa fa-houzz"></i>Mesero:<span id="mesero">         
+                  <i class="fa fa-houzz"></i>Mesero:<span id="nombreMesero">         
                     @if(sizeof($facturas) > 0)
                       @if(sizeof($facturas[0]->ventasHechas) > 0)
                         {{$facturas[0]->ventasHechas[0]->mesero->nombrePersona}}
@@ -173,7 +173,7 @@
               </div>
               <div class="col-md-4 text-center">
                 <div class="heading"  style="color:#9F9F9F;">
-                  <i class="fa fa-imdb"></i>Bartender:<span id="bartender"> 
+                  <i class="fa fa-imdb"></i>Bartender:<span id="nombreBartender"> 
                    @if(sizeof($facturas) > 0)
                       @if(sizeof($facturas[0]->ventasHechas) > 0)
                         {{$facturas[0]->ventasHechas[0]->bartender->nombrePersona}}
@@ -184,7 +184,7 @@
               </div>
               <div class="col-md-4 text-center">
                 <div class="heading"  style="color:#9F9F9F;">
-                  <i class="fa fa-imdb"></i>Cajero:<span id="cajero">  
+                  <i class="fa fa-imdb"></i>Cajero:<span id="nombreCajero">  
                     @if(sizeof($facturas) > 0)
                       @if(sizeof($facturas[0]->ventasHechas) > 0)
                         {{$facturas[0]->ventasHechas[0]->cajero->nombrePersona}}
@@ -438,9 +438,9 @@
 var cambiarFactura = function(id){
   $("#mesaActual").html("Factura No. # "+$("#mesas"+id).data('idmesabar'));
   $("#fecha").html($("#mesas"+id).data('fecha')+" - "+$("#mesas"+id).data('hora'));
-  $("#mesero").html(" "+$("#mesas"+id).data('mesero'));
-  $("#cajero").html(" "+$("#mesas"+id).data('cajero'));
-  $("#bartender").html(" "+$("#mesas"+id).data('bartender'));  
+  $("#nombreMesero").html(" "+$("#mesas"+id).data('mesero'));
+  $("#nombreCajero").html(" "+$("#mesas"+id).data('cajero'));
+  $("#nombreBartender").html(" "+$("#mesas"+id).data('bartender'));  
   refrescarTabla(id);
 };
 
@@ -506,10 +506,8 @@ $("body").on("mouseleave",".popover-trigger",function(event){
 $("body").on("change",".numberFact",function(event){
     var valor = $(this).val();
     var idNumber = $(this).attr("id");
-    console.log(this);
     var precio = $("#"+idNumber).data('precio');
     var idVenta = $("#"+idNumber).data('idventa');
-    console.log(idVenta);
     var idEstadoCajero = "estado"+idVenta;
     var estadoActual = document.getElementById(idEstadoCajero).dataset.estadoactual;
     $("#"+idEstadoCajero).val(parseInt(valor)+ parseInt(estadoActual));
