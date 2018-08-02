@@ -820,7 +820,7 @@ $("#buscarCategoriaHora").click(function(){
     var type = "POST";
     var formData = new FormData($('#formCategoriaHora')[0]);
     $.ajax({
-        url: '{{url('Estadisticas/ventasCategoriasPorDia')}}',
+        url: '{{url('Estadisticas/ventasCategoriasPorHora')}}',
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         type: type,
         dataType: 'json',
