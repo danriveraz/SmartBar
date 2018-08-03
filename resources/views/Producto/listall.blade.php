@@ -13,11 +13,10 @@
             @foreach($productos as $producto)
               @if($producto->eliminado == false)
               <tr id="{{$producto->id}}">
-                <td id="{{$producto->id}}" class="seleccionar">{{$producto->nombre}}</td>
+                <td id="{{$producto->id}}">{{$producto->nombre}}</td>
                 <td id="{{$producto->id}}" class="seleccionar">{{$producto->precio}}</td>
                 <td id="{{$producto->id}}" class="seleccionar">{{$categorias[$producto->idCategoria]}}</td>
                 <td>
-                  <div>
                     <a class="table-actions pocketMorado" href="">
                       <i class="fa fa-book" data-toggle="modal" href="#modalReceta{{$producto->id}}"  title="Preparación"></i>
                       <!-- Se comenta la función onclick debido a que genera error, revisar en caso de que esta sea necesaria-->
@@ -29,7 +28,6 @@
                     <a class="table-actions pocketMorado" href="#" onclick="eliminarProducto({{$producto->id}})">
                       <i class="fa fa-trash-o" title="Eliminar"></i>
                     </a>
-                  </div>
                 </td>
                 <div class="modal fade" id="modalReceta{{$producto->id}}" role="dialog">
                   <div class="dialog1 modal-dialog">
@@ -86,6 +84,7 @@
   $(document).ready(function(){
     cambiarCurrent("#miCarta");
     $('#example').DataTable( {
+        responsive: true,
         dom: 'lBfrtip',
         buttons: [
             {

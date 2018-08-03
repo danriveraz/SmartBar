@@ -712,7 +712,7 @@ body.sidebar-nav {
     .style-selector .style-selector-container .style-toggle1 {
       position: absolute;
       right: 100%;
-      top: -1px;
+      /*top: -1px; por mi carta*/
       background: white;
       border-radius: 5px 0 0 5px;
       width: 48px;

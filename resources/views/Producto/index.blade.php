@@ -1,10 +1,9 @@
 @extends('Layout.app_administradores')
 @section('content')
 <title>
-  PRODUCTO
+  PocketSmarBar - Mi Carta
 </title>
 <div class="container main-content">
-  <div class="page-title"></div>
   <div class="col-sm-12">
     <div id="list-productos"> </div>
   </div>

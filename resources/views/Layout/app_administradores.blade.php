@@ -329,8 +329,6 @@
 
     <div class="footer">
     </div>
-    <br>
-    <p>
   </body>
 
   <script type="text/javascript">
