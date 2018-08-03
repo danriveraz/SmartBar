@@ -1,7 +1,7 @@
 @extends('Layout.app_administradores')
 @section('content')
 <title>
-  CONTIENE
+  PocketSmarBar - Editar Mi Carta
 </title>
 <!-- Nav tabs nombre de la lista -->
         <ul class="nav nav-tabs" role="tablist">
@@ -44,7 +44,7 @@
                     </div>
                   </div>
                   <div id="imgReemplazo" onchange="funcioncita();" class="gallery-item fileupload-preview fileupload-exists img-thumbnail" style="border-radius: 50%; width: 150px; height: 150px; background: #ffffff;" >
-                    
+
                   </div>
                   <div hidden>
                     <span class=" btn-file" id="subirImagenPerfil">
@@ -65,7 +65,7 @@
           <!-- Fin contiene cambio de imagen del insumo -->
 		<!-- Responsive Table -->
         <div class="col-sm-9 col-lg-8 marLef-5">
-		
+
         <div class="page-title">
         <div class="row">
           <div class="col-sm-6 col-lg-6">
@@ -73,7 +73,7 @@
               	<div class="input-container">
                   <i class="fa fa-pencil"></i>
                   <input class="Titulo-css2" id="nombre" placeholder="Nombre" value="{{$producto->nombre}}"/>
-				</div>	
+				</div>
                 </div>
           </div>
           <div class="login-form col-sm-6 col-lg-6">
@@ -92,7 +92,7 @@
           </div>
         </div>
       	</div>
-	
+
 		<!-- Tabla de Ingredientes-->
         <div class="widget-container fluid-height clearfix" style="box-shadow: none;">
           <div class="heading">
@@ -148,12 +148,12 @@
     	</div><!--fluid-height clearfix-->
 		</div><!--col-lg-12-->
 	 </div><!--row-->
-<!-- Fin de tabla y dactos del insumo-->		
+<!-- Fin de tabla y dactos del insumo-->
   </div><!-- Fin del container-fluid main-content-->
-	 
+
 	<!-- tabla-->
     <div class="container main-content">
-      <div class="row"> 
+      <div class="row">
         <div class="col-lg-12">
           <div class="widget-container fluid-height clearfix">
             <div class="widget-content padded clearfix">
@@ -197,30 +197,28 @@
                       <span class="label label-Pocket">
                         <b><?php if($insumo->medida == 1) echo "Unidad"; else echo "Onza";?></b>
                       </span>
-                    </td>                     
+                    </td>
                     <td class="text-center actions">
-                      <div class="action-buttons">
                         <a class="table-actions pocketMorado"><i class="fa fa-plus" onclick="adicionarInsumo({{$insumo}})" title="Adicionar Insumo"></i></a>
-                      </div>
                     </td>
                   </tr>
                   @endforeach
                 </tbody>
               </table>
             </div>
-          </div> 
-        </div> 
-      </div> 
-      <br>                                
-      </div> 
+          </div>
+        </div>
+      </div>
+      <br>
+      </div>
     </div>
-	 
+
 	<!-- Tab de Preparacion-->
-    <div role="tabpanel" class="tab-pane" id="yorkcastle">            
+    <div role="tabpanel" class="tab-pane" id="yorkcastle">
       <div class="container main-content">
-        <!-- DataTables Example -->         
-        <div class="row"> 
-        <!-- fin de la tabla de selecion de productos-->      
+        <!-- DataTables Example -->
+        <div class="row">
+        <!-- fin de la tabla de selecion de productos-->
           <div class="col-lg-12">
               <div class="col-lg-12">
               <div class="widget-content padded">
@@ -247,12 +245,12 @@
                   {{$producto->receta}}
                 </div>-->
               </div>
-              </div> <!-- fin del modal 2-->             
-                    
+              </div> <!-- fin del modal 2-->
+
                     </div>
-                  </div>  
-               </div>     
-            </div>         
+                  </div>
+               </div>
+            </div>
     </div>
 <!-- Fin de Tab panes -->
 
@@ -261,7 +259,7 @@
 
 <script>
   var JSONProducto = eval(<?php echo json_encode($producto); ?>);
-  //console.log(JSONProducto);  
+  //console.log(JSONProducto);
   var routeEliminar = "http://localhost/SmartBar/public/contiene/eliminar";
   var routeGuardar = "http://localhost/SmartBar/public/contiene/guardar";
 
@@ -274,6 +272,7 @@
         }
     });
     $('#example').DataTable( {
+          responsive: true,
           dom: 'lBfrtip',
           buttons: [
               {
@@ -360,7 +359,7 @@
       $("#"+insumo.id).val('');
       $("#medida"+insumo.id).val(insumo.medida);
     }
-  }  
+  }
 
   /*function adicionarTodo(){
     var insumos = [];
@@ -382,7 +381,7 @@
         if(medida[i] == 2 || medida[i] == 3){
           var cantidadAux = cantidad/30;
           cantidad = cantidadAux;
-        }        
+        }
         if(cantidad != 0){
           if(document.getElementById("fila"+insumos[i])!=null){
             $("#fila"+insumos[i]).children("td").each(function (indextd)
@@ -391,7 +390,7 @@
                 var nuevaCantidad = parseFloat($(this).text())+parseFloat(cantidad);
                 $(this).text(nuevaCantidad);
               }
-            });            
+            });
           }
           else{
             /*var fila = '<tr id="fila'+insumos[i]+'"><td  style="display: none;">'+insumos[i]+'</td><td>'+nombres[i]+'</td><td>'+cantidad+'</td><td><button type="submit" class="btn btn-dufault" onclick="eliminarInsumo({{$producto->id}},'+insumos[i]+')" style="BACKGROUND-COLOR: rgb(79,0,85); color:white"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>';
@@ -465,12 +464,12 @@
         }
       });
     }
-  }  
+  }
 
 </script>
 <style>
 
-    #imagenPerfilUsuarioCircular{ 
+    #imagenPerfilUsuarioCircular{
       width: 150px;
       height: 150px;
       background: #2f003;
@@ -481,29 +480,29 @@
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     .input-group .icon-addon .form-control {
         border-radius: 0;
     }
-    
+
     .icon-addon {
         position: relative;
         color: rgb(79,0,85);
         display: block;
     }
-    
+
     .icon-addon:after,
     .icon-addon:before {
         display: table;
         content: " ";
     }
-    
+
     .icon-addon:after {
         clear: both;
     }
-    
+
     .icon-addon.addon-md .glyphicon,
-    .icon-addon .glyphicon, 
+    .icon-addon .glyphicon,
     .icon-addon.addon-md .fa,
     .icon-addon .fa {
         position: absolute;
@@ -516,21 +515,21 @@
         padding: 10px 0;
         top: 1px
     }
-    
+
     .icon-addon.addon-lg .form-control {
         line-height: 1.33;
         height: 46px;
         font-size: 18px;
         padding: 10px 16px 10px 40px;
     }
-    
+
     .icon-addon.addon-sm .form-control {
         height: 30px;
         padding: 5px 10px 5px 28px;
         font-size: 12px;
         line-height: 1.5;
     }
-    
+
     .icon-addon.addon-lg .fa,
     .icon-addon.addon-lg .glyphicon {
         font-size: 18px;
@@ -538,14 +537,14 @@
         left: 11px;
         top: 4px;
     }
-    
+
     .icon-addon.addon-md .form-control,
     .icon-addon .form-control {
         padding-left: 30px;
         float: left;
         font-weight: normal;
     }
-    
+
     .icon-addon.addon-sm .fa,
     .icon-addon.addon-sm .glyphicon {
         margin-left: 0;
@@ -553,7 +552,7 @@
         left: 5px;
         top: -1px
     }
-    
+
     .icon-addon .form-control:focus + .glyphicon,
     .icon-addon:hover .glyphicon,
     .icon-addon .form-control:focus + .fa,
