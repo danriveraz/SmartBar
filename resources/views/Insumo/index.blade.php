@@ -2,8 +2,18 @@
 @section('content')
 {!!Html::style('assetsNew/styles/inventario.css')!!}
 <title>
-  INVENTARIO
+  PocketSmarBar - Mi Inventario
 </title>
+
+<!-- script para activar tabla responsive-->
+<script type="text/javascript" language="javascript" class="init">
+$(document).ready(function() {
+$('#').DataTable(
+{responsive: true});
+} );
+</script>
+<!-- script para activar tabla responsive-->
+
 <div class="modal-shiftfix">
 	<div class="container main-content">
 		@include('flash::message')
@@ -20,13 +30,13 @@
 						<th width="15%">
 						  Nombre
 						</th>
-						<th width="15%" class="hidden-xs">
+						<th width="15%">
 						  Marca
 						</th>
-						<th width="15%" class="hidden-xs">
+						<th width="15%">
 						  Proveedor
 						</th>
-						<th width="10%" class="hidden-xs">
+						<th width="10%">
 						  Compra
 						</th>
 						<th width="10%">
@@ -38,18 +48,18 @@
 						<th width="8%">
 						  Medida
 						</th>
-						<th width="10%" class="hidden-xs">
+						<th width="10%">
 						  Opciones
 						</th>
 					</thead>
 				  	<tbody>
 		              @foreach($insumos as $insumo)
 		                <tr id="{{$insumo->id}}">
-		                	<td id="{{$insumo->id}}" class="seleccionar">{{$insumo->cantidadUnidad}}</td>
+		                	<td id="{{$insumo->id}}">{{$insumo->cantidadUnidad}}</td>
 							<td id="{{$insumo->id}}" class="seleccionar">{{$insumo->nombre}}</td>
-							<td id="{{$insumo->id}}" class="seleccionar hidden-xs">{{$insumo->marca}}</td>
-							<td id="{{$insumo->id}}" class="seleccionar hidden-xs">{{$insumo->proveedor->nombre}}</td>
-							<td id="{{$insumo->id}}" class="seleccionar hidden-xs">{{$insumo->valorCompra}}</td>
+							<td id="{{$insumo->id}}" class="seleccionar">{{$insumo->marca}}</td>
+							<td id="{{$insumo->id}}" class="seleccionar">{{$insumo->proveedor->nombre}}</td>
+							<td id="{{$insumo->id}}" class="seleccionar">{{$insumo->valorCompra}}</td>
 							<td id="{{$insumo->id}}" class="seleccionar">{{$insumo->precioUnidad}}</td>
 							<td id="{{$insumo->id}}" class="seleccionar">{{number_format($insumo->cantidadMedida,2)}}</td>
 							<td id="{{$insumo->id}}" class="seleccionar">
@@ -391,6 +401,7 @@
   $(document).ready(function(){
       cambiarCurrent("#miInventario");
       $('#example').DataTable( {
+        responsive: true,
 	        dom: 'lBfrtip',
 	        buttons: [
 	            {

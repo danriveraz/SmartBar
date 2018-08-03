@@ -16,11 +16,7 @@ function editRow ( oTable, nRow )
   var jqTds = $('>td', nRow);
   jqTds[0].innerHTML = '<input type="text" value="'+aData[0]+'">';
   jqTds[1].innerHTML = '<input type="text" value="'+aData[1]+'">';
-  jqTds[2].innerHTML = '<input type="text" value="'+aData[2]+'">';
-  jqTds[3].innerHTML = '<input type="date" value="'+aData[3]+'">';
-  jqTds[4].innerHTML = '<input type="text" value="'+aData[4]+'">';
-  jqTds[5].innerHTML = '<input type="text" value="'+aData[5]+'">';
-  jqTds[6].innerHTML = '<a class="edit-row" href="javascript:void(0)">Save</a>';
+  jqTds[2].innerHTML = '<a class="edit-row" href="javascript:void(0)">Save</a>';
 }
 
 function saveRow ( oTable, nRow )
@@ -28,11 +24,7 @@ function saveRow ( oTable, nRow )
   var jqInputs = $('input', nRow);
   oTable.fnUpdate( jqInputs[0].value, nRow, 0, false );
   oTable.fnUpdate( jqInputs[1].value, nRow, 1, false );
-  oTable.fnUpdate( jqInputs[2].value, nRow, 2, false );
-  oTable.fnUpdate( jqInputs[3].value, nRow, 3, false );
-  oTable.fnUpdate( jqInputs[4].value, nRow, 4, false );
-  oTable.fnUpdate( jqInputs[5].value, nRow, 5, false );
-  oTable.fnUpdate( '<a class="edit-row" href="javascript:void(0)">Edit</a>', nRow, 6, false );
+  oTable.fnUpdate( '<a class="edit-row" href="javascript:void(0)">Edit</a>', nRow, 2, false );
   oTable.fnDraw();
 }
 
@@ -51,7 +43,7 @@ $(document).ready(function() {
   $('#add-row').click( function (e) {
     e.preventDefault();
 
-    var aiNew = oTable.fnAddData( [ '', '', '', '', '', '',
+    var aiNew = oTable.fnAddData( [ '', '',
       '<a class="edit-row" href="javascript:void(0)">Edit</a>', '<a class="delete-row" href="javascript:void(0)">Delete</a>' ] );
     var nRow = oTable.fnGetNodes( aiNew[0] );
     editRow( oTable, nRow );

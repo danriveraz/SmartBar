@@ -253,37 +253,206 @@
 
 <!-- Modal 2 -->
 <div class="modal fade" style="overflow: auto !important;" data-backdrop="static" data-keyboard="false" id="modal2" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-			<br>
-<!--Inicio-->
-            <div class="container-fluid" id="slider">
-                <div class="slider-inner col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div id="owl-demo" class="owl-carousel owl-theme" style="margin-top: 20px;">
-                        <div class="item">
-                            <img src="http://www.waypoint.com/wp-content/uploads/2016/12/WRG-ReputationSafeguardginHero-images-1366x400.jpg" alt="sliderimg1">
-                        </div>
-                        <div class="item">
-                            <img src="http://www.waypoint.com/wp-content/uploads/2016/07/WRG-Hero-images-1366x400-Home.png" alt="sliderimg2">
-                        </div>
-                        <div class="item">
-                            <img src="http://www.waypoint.com/wp-content/uploads/2016/07/WRG-Hero-images-1366x400-Industry.png" alt="sliderimg3">
-                        </div>
-                        <div class="item">
-                            <img src="http://www.waypoint.com/wp-content/uploads/2016/06/WRG-Hero-images-1366x400-Solutions.png" alt="sliderimg3">
-                        </div>
-                    </div>
-                </div>
+<!-- Inicio-->
+<div id="login-overlay" class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="well">
+				<div class="RegPocket container">
+					<div class="row form-group">
+						<div class="col-xs-12" style="background-color: white">
+							<div class="nav nav-pills">
+								<p></p>
+								<p class="lead text-center" style="margin-bottom: 10px;font-family: "open sans", "segoe ui"; font-weight: 300">Añade y edita tus <span class="text-success">Categorias</span></p>
+								<p></p>
+							</div>
+						</div>
+					</div>
+					<div class="row" >
+						<div class="col-md-12">
+							<div class="col-md-12 well ">
+
+							<div id="tab-content2" class="tab-content">
+								<!-- registro-->
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="widget-container fluid-height clearfix">
+              <div class="heading">
+                <a class="btn btn-sm btn-primary-outline pull-right" href="#" id="add-row"><i class="fa fa-plus"></i>Add row</a>
+              </div>
+              <div class="widget-content padded clearfix">
+                <table class="table table-bordered table-striped" id="datatable-editable">
+                  <thead>
+                    <th>
+                      Nombre
+                    </th>
+                    <th>
+                      Precio
+                    </th>
+                    <th width="60"></th>
+                    <th width="75"></th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        Robert
+                      </td>
+                      <td>
+                        Kelso
+                      </td>
+                      <td>
+                        <a class="edit-row" href="">Edit</a>
+                      </td>
+                      <td>
+                        <a class="delete-row" href="">Delete</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Robert
+                      </td>
+                      <td>
+                        Kelso
+                      </td>
+                      <td>
+                        <a class="edit-row" href="">Edit</a>
+                      </td>
+                      <td>
+                        <a class="delete-row" href="">Delete</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Robert
+                      </td>
+                      <td>
+                        Kelso
+                      </td>
+                      <td>
+                        <a class="edit-row" href="">Edit</a>
+                      </td>
+                      <td>
+                        <a class="delete-row" href="">Delete</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Robert
+                      </td>
+                      <td>
+                        Kelso
+                      </td>
+                      <td>
+                        <a class="edit-row" href="">Edit</a>
+                      </td>
+                      <td>
+                        <a class="delete-row" href="">Delete</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Robert
+                      </td>
+                      <td>
+                        Kelso
+                      </td>
+                      <td>
+                        <a class="edit-row" href="">Edit</a>
+                      </td>
+                      <td>
+                        <a class="delete-row" href="">Delete</a>
+                      </td>
+                    </tr>
+	                <tr>
+                      <td>
+                        Robert
+                      </td>
+                      <td>
+                        Kelso
+                      </td>
+                      <td>
+                        <a class="edit-row" href="">Edit</a>
+                      </td>
+                      <td>
+                        <a class="delete-row" href="">Delete</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Robert
+                      </td>
+                      <td>
+                        Kelso
+                      </td>
+                      <td>
+                        <a class="edit-row" href="">Edit</a>
+                      </td>
+                      <td>
+                        <a class="delete-row" href="">Delete</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Robert
+                      </td>
+                      <td>
+                        Kelso
+                      </td>
+                      <td>
+                        <a class="edit-row" href="">Edit</a>
+                      </td>
+                      <td>
+                        <a class="delete-row" href="">Delete</a>
+                      </td>
+                    </tr>
+					<tr>
+                      <td>
+                        Robert
+                      </td>
+                      <td>
+                        Kelso
+                      </td>
+                      <td>
+                        <a class="edit-row" href="">Edit</a>
+                      </td>
+                      <td>
+                        <a class="delete-row" href="">Delete</a>
+                      </td>
+                    </tr>
+				  </table>
+              </div>
             </div>
-<!--Fin-->
+          </div>
+        </div>
+
+								<!-- tab-content2-->
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+                          </form>
+                      </div>
+                  </div>
+                  <div class="col-md-6 TutoPo">
+					  <br>
+                    <img style="max-width:100%;" src="http://localhost/Smartbar/public/assets-Internas/images/tutorial/admin/BienvenidaComple.jpg" />
+                  </div>
+              </div>
+
       <div class="modal-footer buttonTuto" style="padding: 0px;">
         <button type="button" class="btn btn-pocket pull-left" data-dismiss="modal" onclick="cambio(0,1)" style="font-weight: 400">Anterior</button>
         <button type="button" class="btn btn-pocket" data-dismiss="modal" onclick="cambio(1,0)" style="font-weight: 400">Siguiente</button>
       </div>
-<br>
-    </div>
+
+          </div>
+      </div>
   </div>
+<!-- Fin -->
 </div>
 
 <!-- Modal 3 -->

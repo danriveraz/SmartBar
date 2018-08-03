@@ -10,7 +10,6 @@
 </style>
 
 <!--Barra de título y botones de busqueda-->
-<br>
 <div id="page-content">
   <div class="col-lg-12">
     <div class="row invoice-header">

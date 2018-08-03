@@ -6527,7 +6527,7 @@ td.hidden-xs {
   display: table-cell !important;
 }
 
-/*MODIFICACION PARA TABLAS INVENTARIO Y MI CARTAR 767*/
+/*MODIFICACION PARA TABLAS INVENTARIO Y MI CARTAR 767
 @media (max-width: 630px) {
   tr.hidden-xs {
     display: none !important;
@@ -6537,7 +6537,7 @@ td.hidden-xs {
     display: none !important;
   }
 }
-
+*/
 @media (min-width: 768px) and (max-width: 991px) {
   .hidden-xs.hidden-sm {
     display: none !important;

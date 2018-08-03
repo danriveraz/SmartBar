@@ -15,7 +15,6 @@
     {!!Html::style('assets-Internas/css/component-chosen.css')!!}
     {!!Html::style('assets-Internas/css/notification.css')!!}
 
-
     <!-- jquery -->
     <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
@@ -55,7 +54,6 @@
     {!!Html::script("javascripts\dropzone.js")!!}
     {!!Html::script("javascripts\jquery.nestable.js")!!}
     {!!Html::script("assets-Internas/javascripts/main.js")!!}
-
     {!!Html::script("javascripts\bootstrap-datepicker.js")!!}
     {!!Html::script('javascripts/upload/fileinput.js')!!}
     {!!Html::script("javascripts\bootstrap-fileupload.js")!!}
@@ -64,7 +62,7 @@
     <!-- DATATABLES + ICONOS-->
     {!!Html::script("assets-Internas\javascripts\datatable-editable.js")!!}
     {!!Html::script("assets-Internas\javascripts\jquery.dataTables.js")!!}
-    {!!Html::script("assets-Internas\javascripts\jquery.dataTables.min.js")!!}
+    <!--{!!Html::script("assets-Internas\javascripts\jquery.dataTables.min.js")!!}-->
     {!!Html::style('assets-Internas\css\datatables.css')!!}
 
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js"></script>
@@ -80,8 +78,7 @@
     {!!Html::style('stylesheets\dropzone.css')!!}
     {!!Html::style('stylesheets\nestable.css')!!}
     {!!Html::style('stylesheets\pygments.css')!!}
-    -->
-
+    <div class="SpacingHeader"></div>
     <script>
     // ajax para verificar que el usuario esté logueado y así no dejar ver la página
      $(document).ready(function(){
@@ -100,8 +97,14 @@
     });
     </script>
 
-
 {!!Html::script('javascripts/upload/fileinput.js')!!}
+
+<!--SCRIPT PARA PONER DATATABLE RESPONSIVE-->
+<script language="JavaScript" src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
+<script language="JavaScript" src="https://cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap.min.js" type="text/javascript"></script>
+ {!!Html::style('assets-Internas/css/responsive.bootstrap.css')!!}
+<!--SCRIPT PARA PONER DATATABLE RESPONSIVE-->
+
 
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   </head>
@@ -292,7 +295,7 @@
                 </li>
 
                 <li>
-                  <a id="informacion" href="{{url('Estadisticas/')}}">
+                  <a id="miReportes" href="{{url('Estadisticas/')}}">
                     <span aria-hidden="true">
                       <img src="{{asset('assets-Internas/images/Layout-icons/reportes.png')}}">
                     </span>
@@ -326,6 +329,8 @@
 
     <div class="footer">
     </div>
+    <br>
+    <p>
   </body>
 
   <script type="text/javascript">

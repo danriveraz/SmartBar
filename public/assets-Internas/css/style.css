@@ -27,6 +27,10 @@ border: 0px solid #000000;
 .marLef-5{margin-left: -5%;}
 
 
+.SpacingHeader{margin: 20px;}
+@media (max-width: 420px) {
+	.SpacingHeader{margin: 0px;}
+}
 /*----------------------------------------------------------------------------------- */
 /* input para titulos */
 /*----------------------------------------------------------------------------------- */
@@ -3813,10 +3817,10 @@ body.fourofour {
 /*----------------------------------------------------------------------------------- */
 /*  Mobile Styles table*/
 /*----------------------------------------------------------------------------------- */
-@media (max-width: 800px) {
+/*@media (max-width: 800px) {
 	.dataTable th.sorting::after, .dataTable th.sorting::before{display: none}
 	.dataTable th.sorting_asc::after {display: none}
-}
+}para quitar botones del las tablas*/ 
 
 @media (max-width: 508px) {.dataTables_filter {display: none;}}
 
@@ -3824,7 +3828,7 @@ body.fourofour {
 
 @media (max-width: 649px) {	.table-pocket {display: none;} .MinSpacing {width: 40px!important;}}
 
-@media (max-width: 454px) {.dataTable th.hidden-pocket {display: none;}.dataTable td.hidden-pocket {display: none;}}
+/*@media (max-width: 454px) {.dataTable th.hidden-pocket {display: none;}.dataTable td.hidden-pocket {display: none;}}*/
 
 
 

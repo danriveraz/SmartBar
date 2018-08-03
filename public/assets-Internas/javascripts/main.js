@@ -359,6 +359,7 @@
      * =============================================================================
      */
     $("#dataTable1,#dataTable2").dataTable({
+		responsive: true,
       "sPaginationType": "full_numbers",
       aoColumnDefs: [
         {
