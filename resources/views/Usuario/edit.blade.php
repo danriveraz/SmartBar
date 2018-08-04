@@ -2,7 +2,8 @@
 @section('content')
 @include('flash::message')
 <title>
-  PERFIL
+  PocketSmarBar - Mi Perfil
+
 </title>
 <!-- Estilos vista perfil-->
 {!!Html::style('assets-Internas/css/styleProfile.css')!!}
@@ -583,7 +584,7 @@
                   <div class="col-sm-12">
                     <div class="col-sm-8">
                       <p class="lead" style="margin-bottom: 10px;font-size: 18px;">
-                        Llenar tus categorias es mucho mas 
+                        Llenar tus categorias es mucho mas
                         <span class="text-success">
                           facil y rapido
                         </span>
@@ -777,7 +778,7 @@
         $(this).addClass('fa-eye');
       }
     })
-    
+
     $('#show-password1').click(function()
       {
         if ($(this).hasClass('fa-eye'))

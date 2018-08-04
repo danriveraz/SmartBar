@@ -51,7 +51,7 @@
                                   <div class="col-md-4">
                                     <div class="bs-example">
                                         <div id="myCarousel" class="carousel" data-ride="carousel">
-                                        <!-- Carousel indicators -->  
+                                        <!-- Carousel indicators -->
                                           <!-- Wrapper for carousel items -->
                                           <div class="carousel-inner">
                                             <img src="{{ asset ('images/categorias/'.$categoria->imagen)}}" style="width: 150px; height: 150px;">
@@ -74,13 +74,13 @@
                                         </div>
                                       </div>
                                     </div>
-                                  </div>   
+                                  </div>
                                   <div class="modal-footer">
                                     <button class="btn btn-default" data-dismiss="modal" onclick="modificarCategoria({{$categoria->id}})" style="BACKGROUND-COLOR: rgb(79,0,85); color:white" >Guardar</button>
                                   </div>
                                 </div>
                               </fieldset>
-                            {!! Form::close() !!} 
+                            {!! Form::close() !!}
                           </div>
                         </div>
                       </div>
@@ -156,12 +156,12 @@
             $(this).text(precio);
           }
         });
-        
+
       },
       error: function(data){
         alert('Error al modificar');
       }
-    });       
+    });
   }
 
    function eliminarCategoria(idCategoria){
@@ -192,6 +192,7 @@
   });
 
   $("#tablaCategorias").DataTable( {
+          responsive: true,
           dom: 'lBfrtip',
           buttons: [
               {

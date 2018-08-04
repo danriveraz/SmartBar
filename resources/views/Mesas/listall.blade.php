@@ -13,7 +13,7 @@
           	@foreach($mesas as $mesa)
             	<tr id="mesa{{$mesa->id}}">
                 <td hidden="true"> </td>
-            		<td id="mesa{{$mesa->id}}" class="seleccionar">{{$mesa->nombreMesa}}</td>
+            		<td id="mesa{{$mesa->id}}">{{$mesa->nombreMesa}}</td>
             		<td id="mesa{{$mesa->id}}" class="seleccionar">{{$mesa->estado}}</td>
                 <td align="right" >
                   <a class="table-actions pocketMorado" href="">
@@ -165,6 +165,7 @@
   });
 
   $("#tablaMesas").DataTable( {
+          responsive: true,
           dom: 'lBfrtip',
           buttons: [
               {
