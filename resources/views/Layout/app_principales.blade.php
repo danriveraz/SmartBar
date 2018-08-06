@@ -226,7 +226,7 @@
       <div class="socmed-login">
         <a href="{{url('Auth/Google')}}" class="socmed-btn google-btn">
           <i style="color: white;padding: 0px;" class="fa fa-google"></i>
-          <span style="font-weight: 400;">Registrar con Google</span>
+          <span style="font-weight:400;">Registrar con Google</span>
         </a>
       </div>
             </div><!--  fin de login-form-content-->

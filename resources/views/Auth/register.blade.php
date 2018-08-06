@@ -177,7 +177,7 @@
 			<div class="socmed-login">
 				<a href="{{url('Auth/Google')}}" class="socmed-btn google-btn">
 					<i class="fa fa-google"></i>
-					<span style="font-weight:400;">Iniciar Sesión con Google</span>
+					<span style="font-weight:400; ">Iniciar Sesión con Google</span>
 				</a>
 			</div>
         </div><!--  fin de login-form-content-->
