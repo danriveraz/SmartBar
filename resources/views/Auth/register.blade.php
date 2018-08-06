@@ -124,7 +124,7 @@
              <div class="text-danger" style="text-align: center; font-color: #2d0031">
               <b>{{$errors->first('nombrePersona')}}</b>
             </div>
-             <!--div class="input-container">
+             <div class="input-container">
                <i class="fa fa-venus-mars"></i>
                <select class="select" id="sexo" name="sexo" required="">
                  <option value="">Sexo</option>
@@ -132,7 +132,7 @@
                  <option value="Femenino">Femenino</option>
                  <option value="Otro">Otro</option>
                </select>
-             </div-->
+             </div>
              <div class="input-container">
                <i class="fa fa-envelope"></i>
                <input type="email" class="input" id="email" name="email" placeholder="Email" value="{{ old('email') }}" requerid/>
@@ -177,7 +177,7 @@
 			<div class="socmed-login">
 				<a href="{{url('Auth/Google')}}" class="socmed-btn google-btn">
 					<i class="fa fa-google"></i>
-					<span>Iniciar Sesión con Google</span>
+					<span style="font-weight:400;">Iniciar Sesión con Google</span>
 				</a>
 			</div>
         </div><!--  fin de login-form-content-->
@@ -235,7 +235,7 @@ $(document).ready(function() {
   //Si se ingresa al formulario debido a una redireccion por error, se vuelven a cargar los datos antiguos
 
   //Este bloque permite cargar el valor antiguo de la primera lista desplegable
-  var variableJS = "<?php echo e(old('tipo')); ?>" ; 
+  var variableJS = "<?php echo e(old('tipo')); ?>" ;
   if (variableJS != "") {
     $("#tipo option[value="+ variableJS +"]").attr("selected",true);
     if (variableJS === "proveedor") {
@@ -264,8 +264,8 @@ $(document).ready(function() {
 
   //Se carga el departamento seleccionado anteriormete
   var variableJS3 = "<?php echo e(old('idDepto')); ?>" ;
-  if (variableJS3 != "") {  
-    $("#idDepto option[value="+ variableJS3 +"]").attr("selected",true); 
+  if (variableJS3 != "") {
+    $("#idDepto option[value="+ variableJS3 +"]").attr("selected",true);
     var id = variableJS3;
       $('#idCiudad').empty();
       $('#idCiudad').append($('<option>', {

@@ -181,7 +181,7 @@
             <i class="fa fa-address-card"></i>
             <input type="text" class="input" name="nombrePersona" placeholder="Nombre" required/>
           </div>
-          <!--div class="input-container">
+          <div class="input-container">
             <i class="fa fa-venus-mars"></i>
             <select class="select" id="sexo" name="sexo" required="">
               <option value="">Sexo</option>
@@ -189,7 +189,7 @@
               <option value="Femenino">Femenino</option>
               <option value="Otro">Otro</option>
             </select>
-          </div-->
+          </div>
           <div class="input-container">
             <i class="fa fa-envelope"></i>
             <input type="email" class="input" id="email" name="email" placeholder="Email" requerid/>
@@ -226,7 +226,7 @@
       <div class="socmed-login">
         <a href="{{url('Auth/Google')}}" class="socmed-btn google-btn">
           <i style="color: white;padding: 0px;" class="fa fa-google"></i>
-          <span>Registrar con Google</span>
+          <span style="font-weight: 400;">Registrar con Google</span>
         </a>
       </div>
             </div><!--  fin de login-form-content-->

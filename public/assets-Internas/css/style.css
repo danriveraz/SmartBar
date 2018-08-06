@@ -3643,8 +3643,8 @@ body.fourofour {
 	.navbar .container-fluid.top-bar .logo {margin: 5px 5px 0 -20px;}/*icon barrra arriba logo*/
 }
 
-
-@media (max-width: 402px) {
+/*400*/
+@media (max-width: 381px) {
 	.navbar .container-fluid.top-bar .logo {margin: -53px 5px 0 -20px;}/*icon barrra arriba logo*/
 	.navbar .container-fluid.top-bar .logo img{width: 75%;   padding-top: 10px;}/*icon barrra arriba logo*/
 }
