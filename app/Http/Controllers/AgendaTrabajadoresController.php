@@ -38,44 +38,49 @@ class AgendaTrabajadoresController extends Controller
         $idEmpresa = Auth::user()->empresaActual;
         $empleados = User::usuariosEmpresa($idEmpresa)->get();
         $horarios = Horarios::HorariosEmpresa($idEmpresa)->get();
-        $espacio = intval(6/count($horarios));
-        $nombreEmpresa = Empresa::find($idEmpresa)->nombreEstablecimiento;
-        $extraoficiales = Extraoficiales::Empresa($idEmpresa)->get();
-        $ids = array();
-        $empleadosIzq = array();
-        $empleadosDer = array();
-        $turnosEmpleados = array();
-        foreach ($empleados as $key => $empleado) {
-            array_push($ids, $key);
-            if ($key % 2 == 0) {
-                array_push($empleadosIzq, $empleado);
-            }else{
-                array_push($empleadosDer, $empleado);
-            }
+        if(count($horarios) > 0){
+          $espacio = intval(6/count($horarios));
+          $nombreEmpresa = Empresa::find($idEmpresa)->nombreEstablecimiento;
+          $extraoficiales = Extraoficiales::Empresa($idEmpresa)->get();
+          $ids = array();
+          $empleadosIzq = array();
+          $empleadosDer = array();
+          $turnosEmpleados = array();
+          foreach ($empleados as $key => $empleado) {
+              array_push($ids, $key);
+              if ($key % 2 == 0) {
+                  array_push($empleadosIzq, $empleado);
+              }else{
+                  array_push($empleadosDer, $empleado);
+              }
 
-            $turnos = AgendaTrabajadores::Turnos($empleado->id)->get();
-            if($turnos->count() > 0){
-                $turnos->push($empleado->nombrePersona);
-                array_push($turnosEmpleados, $turnos);
-            }
-        }
+              $turnos = AgendaTrabajadores::Turnos($empleado->id)->get();
+              if($turnos->count() > 0){
+                  $turnos->push($empleado->nombrePersona);
+                  array_push($turnosEmpleados, $turnos);
+              }
+          }
 
-        $numeroEmpleadosIzq = count($empleadosIzq);
+          $numeroEmpleadosIzq = count($empleadosIzq);
 
-        $notificaciones = Notificaciones::Usuario(Auth::id())->get();
-        $nuevas = 0;
-        $fechaActual = Carbon::now();
-        $fecha2array = array();
-        for ($i=0; $i < sizeof($notificaciones); $i++) { 
-     		if($notificaciones[$i]->estado == "nueva"){
-     			$nuevas++;
-     		}
-     		$fechaNotificacion = Carbon::parse($notificaciones[$i]->fecha);
-     		$diferencia = $fechaActual->diffInDays($fechaNotificacion,true);
-     		array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
+          $notificaciones = Notificaciones::Usuario(Auth::id())->get();
+          $nuevas = 0;
+          $fechaActual = Carbon::now();
+          $fecha2array = array();
+          for ($i=0; $i < sizeof($notificaciones); $i++) { 
+          if($notificaciones[$i]->estado == "nueva"){
+            $nuevas++;
+          }
+          $fechaNotificacion = Carbon::parse($notificaciones[$i]->fecha);
+          $diferencia = $fechaActual->diffInDays($fechaNotificacion,true);
+          array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
+          }
+          
+          return view('AgendaTrabajadores.index')->with('empleadosIzq',$empleadosIzq)->with('empleadosDer',$empleadosDer)->with('numeracion',$ids)->with('numEmpleadosIzq', $numeroEmpleadosIzq)->with('turnos', json_encode($turnosEmpleados))->with('nombreEmpresa', $nombreEmpresa)->with('horarios', $horarios)->with('espacio',$espacio)->with('extraoficiales', $extraoficiales)->with('notificaciones', $notificaciones)->with('nuevas', $nuevas)->with('fecha2array', $fecha2array);
+        }else{
+          return redirect('/Auth/usuario');
         }
         
-        return view('AgendaTrabajadores.index')->with('empleadosIzq',$empleadosIzq)->with('empleadosDer',$empleadosDer)->with('numeracion',$ids)->with('numEmpleadosIzq', $numeroEmpleadosIzq)->with('turnos', json_encode($turnosEmpleados))->with('nombreEmpresa', $nombreEmpresa)->with('horarios', $horarios)->with('espacio',$espacio)->with('extraoficiales', $extraoficiales)->with('notificaciones', $notificaciones)->with('nuevas', $nuevas)->with('fecha2array', $fecha2array);
     }
 
     /**
