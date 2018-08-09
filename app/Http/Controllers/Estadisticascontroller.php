@@ -49,7 +49,7 @@ class EstadisticasController extends Controller
         $request->request->add(['fechaFin' => '9999-01-01']);
         // ya que la primer estadística es en todo el tiempo de existencia, se agrega esta fecha para asegurar que retorne todos los datos
 
-
+        $productos = $this->productosMasVendidos($request);// obtiene el id de los 4 productos más vendidos
         $categorias = $this->categoriasMasVendidas($request);// obtiene el id de las 4 categorias más vendida
         $categoriasSemana = $this->ventasCategoriasPorSemana($request);//Llamado a la función para el comportamiento de ventas por semana de las categorias
         $categoriasDia = $this->ventasCategoriasPorDia($request);//Llamado a la función para el comportamiento de ventas por Dia de las categorias
@@ -67,8 +67,39 @@ class EstadisticasController extends Controller
             ->with('categoriasVentasPorSemana',$categoriasSemana)
             ->with('categoriasVentasPorDia',$categoriasDia)
             ->with('categoriasVentasPorMes',$categoriasMes)
-            ->with('categoriasVentasPorHora',$categoriasHora);
+            ->with('categoriasVentasPorHora',$categoriasHora)
+            ->with('productos',$productos);
     }
+
+
+    public function productosMasVendidos(Request $request){
+        $productos =  Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
+                    ->join('venta', 'factura.id', '=', 'venta.idFactura')
+                    ->join('producto', 'venta.idProducto', '=', 'producto.id')
+                    ->join('categoria', 'producto.idCategoria', '=', 'categoria.id')
+                    ->select(DB::raw('SUM(`cantidad`) as total'),'idProducto','producto.nombre')
+                    ->groupBy('idProducto')
+                    ->orderBy('total', 'DESC')
+                    ->limit(4)
+                    ->get();
+
+        $cols = [['id'=> 'Nombre','label'=> 'Nombre', 'type'=> 'string'],['id'=> 'Cantidad','label'=> 'Cantidad', 'type'=> 'number']];
+        $rows = array();
+        foreach ($productos as $key => $producto) {
+            array_push($rows, ['c'=> [ ['v' => $producto->nombre ] , ['v'=>$producto->total ] ]]);
+        }
+        $jsonGrafcas = ['cols' => $cols , 'rows' => $rows];            
+        //dd(json_encode($rows ,JSON_NUMERIC_CHECK));
+
+        return json_encode($jsonGrafcas);
+    }
+
+
+
+
+
+
+
 
     public function categoriasMasVendidas(Request $request){
         $categorias =  Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
@@ -112,37 +143,51 @@ class EstadisticasController extends Controller
             ->join('producto', 'venta.idProducto', '=', 'producto.id')
             ->join('categoria', 'producto.idCategoria', '=', 'categoria.id')
             ->whereIn('categoria.id', $categorias->pluck('idCategoria')->toArray())
-            ->select(DB::raw('SUM(`cantidad`) as total'),DB::raw('WEEK(`fecha`) as semana'),'idCategoria','categoria.nombre',DB::raw('YEAR(`fecha`) as anio'))
+            ->select(DB::raw('SUM(`cantidad`) as total'),DB::raw('WEEK(`fecha`) as semana'),'idCategoria','categoria.nombre',DB::raw('YEAR(`fecha`) as anio'),'fecha')
             ->groupBy('idCategoria')
             ->groupBy(DB::raw('WEEK(`fecha`)'))//se hace el group by por la semana del año en que fue realizada la factura
             ->orderBy('fecha', 'ASC')
             ->get();
+
+//organizar las fechas, para el rango a mostrar
+        if($request->fechaInicio=='0000-01-01'){
+            
+            $fechaInicio = new Carbon($CategoriasPorSemana[0]->fecha);
+            $fechaFin = new Carbon($CategoriasPorSemana->last()->fecha);
+            $fechaFin->addWeek(1);
+            $fechaInicio->subWeek(1);
+
+            //dd($fechaInicio,$fechaFin);
+
+        }else{
+    
+            $fechaInicio = new Carbon($request->fechaInicio);
+            $fechaFin = new Carbon($request->fechaFin);
+            
+        }
 
         $auxSemana = array();//array auxiliar donde se guarda la información por semana
         $numSemana = 0; // variable para guardar el numero de la semana
         $categoriasToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
         $cols = [['id'=> 'Semana','label'=> 'Semana', 'type'=> 'string']];
         foreach ($categorias->pluck('nombre')->toArray() as $key => $nombre) {
-            array_push($cols , ['id'=> 'Cantidad'.$nombre,'label'=> 'Cantidad de Ventas de '.$nombre, 'type'=> 'number']);
+            array_push($cols , ['id'=> 'Cantidad'.$nombre,'label'=> $nombre, 'type'=> 'number']);
         }
 
-        foreach ($CategoriasPorSemana as $key => $categoria) {
-            if($numSemana!=$categoria->semana){// Cada que el número de la semana cambie accede aqui, se agrega la semana anterior al arreglo general y se reinicia el arreglo auxiliar para la próxima semana
-                if(!(empty($auxSemana) )){// validación por si es vacio el arreglo
-                    array_push($categoriasToJson, $auxSemana);
-                }
-                $auxSemana = array();
-                $numSemana = $categoria->semana;
-                //$auxSemana['semana']=$categoria->anio." W".$numSemana;
-                $auxSemana['semana']=$numSemana;
-                foreach ($categorias->pluck('nombre')->toArray() as $key => $nombre) {
-                    $auxSemana[$nombre] = 0;//se inicia el arreglo con los nombres de las categorias
-                }
+// se crean un arreglo con todos los datos
+        while ($fechaInicio->lessThan($fechaFin)) {
+            $auxLLenar = array();
+            $auxLLenar['semana']=$fechaInicio->year."/".$fechaInicio->weekOfYear;
+            foreach ($categorias->pluck('nombre')->toArray() as $key => $nombre) {
+                $auxLLenar[$nombre] = 0;//se inicia el arreglo con los nombres de las categorias
             }
-            $auxSemana[$categoria->nombre]=$categoria->total;// se guarda el total de la categoria 
-            $numSemana=$categoria->semana;
+            $categoriasToJson[$fechaInicio->year."/".$fechaInicio->weekOfYear] = $auxLLenar;
+            $fechaInicio->addWeek(1);
         }
-        array_push($categoriasToJson, $auxSemana);// se agrega al arreglo general, el último auxiliar, ya que en foreach no se agrega el último
+        foreach ($CategoriasPorSemana as $key => $categoria) {
+            $categoriasToJson[$categoria->anio."/".$categoria->semana][$categoria->nombre]=$categoria->total;
+        }
+//Fin de crear el arreglo
 
 
         $rows = array();   
@@ -191,31 +236,48 @@ class EstadisticasController extends Controller
             ->orderBy('fecha', 'ASC')
             ->get();
 
+//organizar las fechas, para el rango a mostrar
+        if($request->fechaInicio=='0000-01-01'){
+            
+            $fechaInicio = new Carbon();
+            $fechaFin = new Carbon();
+            $fechaInicio->day = $CategoriasPorDia[0]->dia;
+            $fechaInicio->month = $CategoriasPorDia[0]->mes;
+            $fechaFin->day = $CategoriasPorDia->last()->dia+1;
+            $fechaFin->month = $CategoriasPorDia->last()->mes;
+
+            //dd($fechaInicio,$fechaFin);
+
+        }else{
+    
+            $fechaInicio = new Carbon($request->fechaInicio);
+            $fechaFin = new Carbon($request->fechaFin);
+            
+        }
+
         $auxDia = array();//array auxiliar donde se guarda la información por día
         $numDia = 0; // variable para guardar el numero del día
         $categoriasToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
         $cols = [['id'=> 'Dia','label'=> 'Día', 'type'=> 'string']];
         foreach ($categorias->pluck('nombre')->toArray() as $key => $nombre) {
-            array_push($cols , ['id'=> 'Cantidad'.$nombre,'label'=> 'Cantidad de Ventas de '.$nombre, 'type'=> 'number']);
+            array_push($cols , ['id'=> 'Cantidad'.$nombre,'label'=> $nombre, 'type'=> 'number']);
+        }
+
+// se crean un arreglo con todos los datos
+        while ($fechaInicio->lessThan($fechaFin)) {
+            $auxLLenar = array();
+            $auxLLenar['dia']=$fechaInicio->month."/".$fechaInicio->day;
+            foreach ($categorias->pluck('nombre')->toArray() as $key => $nombre) {
+                $auxLLenar[$nombre] = 0;//se inicia el arreglo con los nombres de las categorias
+            }
+            $categoriasToJson[$fechaInicio->month."/".$fechaInicio->day] = $auxLLenar;
+            $fechaInicio->addDay(1);
         }
 
         foreach ($CategoriasPorDia as $key => $categoria) {
-            if($numDia!=$categoria->dia){// Cada que el número de la semana cambie accede aqui, se agrega la semana anterior al arreglo general y se reinicia el arreglo auxiliar para la próxima semana
-                if(!(empty($auxDia) )){// validación por si es vacio el arreglo
-                    array_push($categoriasToJson, $auxDia);
-                }
-                $auxDia = array();
-                $numDia = $categoria->dia;
-                $auxDia['dia']=$categoria->mes."/".$numDia;
-                //$auxDia['dia']=$numDia;
-                foreach ($categorias->pluck('nombre')->toArray() as $key => $nombre) {
-                    $auxDia[$nombre] = 0;//se inicia el arreglo con los nombres de las categorias
-                }
-            }
-            $auxDia[$categoria->nombre]=$categoria->total;// se guarda el total de la categoria 
-            $numDia=$categoria->dia;
+            $categoriasToJson[$categoria->mes."/".$categoria->dia][$categoria->nombre]=$categoria->total;
         }
-        array_push($categoriasToJson, $auxDia);// se agrega al arreglo general, el último auxiliar, ya que en foreach no se agrega el último
+// termina la creacion del arreglo
 
 
         $rows = array();   
@@ -241,6 +303,8 @@ class EstadisticasController extends Controller
 
 
     public function ventasCategoriasPorMes(Request $request){
+
+
         $categorias = Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
                     ->join('venta', 'factura.id', '=', 'venta.idFactura')
                     ->join('producto', 'venta.idProducto', '=', 'producto.id')
@@ -263,35 +327,49 @@ class EstadisticasController extends Controller
             ->orderBy('fecha', 'ASC')
             ->get();
 
+//organizar las fechas, para el rango a mostrar
+        if($request->fechaInicio=='0000-01-01'){
+            
+            $fechaInicio = new Carbon($request->fechaInicio);
+            $fechaFin = new Carbon($request->fechaFin);
+            $fechaInicio->year = $CategoriasPorMes[0]->anio;
+            $fechaInicio->month = $CategoriasPorMes[0]->mes;
+            $fechaFin->year = $CategoriasPorMes->last()->anio;
+            $fechaFin->month = $CategoriasPorMes->last()->mes+1;
+
+        }else{
+    
+            $fechaInicio = new Carbon($request->fechaInicio);
+            $fechaFin = new Carbon($request->fechaFin);
+            
+        }
+
         $auxMes = array();//array auxiliar donde se guarda la información por Mes
         $numMes = 0; // variable para guardar el numero del Mes
         $categoriasToJson = array();// arreglo final donde se guardan los datos de todas los meses, para despues convertirlo a formato Json
-        $cols = [['id'=> 'Mes','label'=> 'Mes', 'type'=> 'string']];
+
+        $cols = [['id'=> 'Mes','label'=> 'Mes', 'type'=> 'string']];// se crean el nombre de las columnas para la creación del json 
         foreach ($categorias->pluck('nombre')->toArray() as $key => $nombre) {
-            array_push($cols , ['id'=> 'Cantidad'.$nombre,'label'=> 'Cantidad de Ventas de '.$nombre, 'type'=> 'number']);
+            array_push($cols , ['id'=> 'Cantidad'.$nombre,'label'=> $nombre, 'type'=> 'number']);
         }
 
-        foreach ($CategoriasPorMes as $key => $categoria) {
-            if($numMes!=$categoria->mes){// Cada que el número del mes cambie accede aqui, se agrega la semana anterior al arreglo general y se reinicia el arreglo auxiliar para el próximo mes
-                if(!(empty($auxMes) )){// validación por si es vacio el arreglo
-                    array_push($categoriasToJson, $auxMes);
-                }
-                $auxMes = array();
-                $numMes = $categoria->mes;
-                $auxMes['mes']=$categoria->anio."/".$numMes;
-                //$auxMes['mes']=$numMes;
-                foreach ($categorias->pluck('nombre')->toArray() as $key => $nombre) {
-                    $auxMes[$nombre] = 0;//se inicia el arreglo con los nombres de las categorias
-                }
+// se crean un arreglo con todos los datos
+        while ($fechaInicio->lessThan($fechaFin)) {
+            $auxLLenar = array();
+            $auxLLenar['mes']=$fechaInicio->year."/".$fechaInicio->month;
+            foreach ($categorias->pluck('nombre')->toArray() as $key => $nombre) {
+                $auxLLenar[$nombre] = 0;//se inicia el arreglo con los nombres de las categorias
             }
-            $auxMes[$categoria->nombre]=$categoria->total;// se guarda el total de la categoria 
-            $numMes=$categoria->mes;
+            $categoriasToJson[$fechaInicio->year."/".$fechaInicio->month] = $auxLLenar;
+            $fechaInicio->addMonth(1);
         }
-        array_push($categoriasToJson, $auxMes);// se agrega al arreglo general, el último auxiliar, ya que en foreach no se agrega el último
-
+        foreach ($CategoriasPorMes as $key => $categoria) {
+            $categoriasToJson[$categoria->anio."/".$categoria->mes][$categoria->nombre]=$categoria->total;
+        }
+// termina la creación del arreglo
 
         $rows = array();   
-        foreach ($categoriasToJson as $key => $fila) {
+        foreach ($categoriasToJson as $key => $fila) {// aquí se convierte el arreglo creado anteriormente a formato de json para las gráficas de google
             $auxRow = array();
             foreach ($fila as $key => $valor) {
                 array_push($auxRow,['v' => $valor ]);    
@@ -300,7 +378,6 @@ class EstadisticasController extends Controller
         }
 
         //dd(json_encode($rows));
-        //dd($categoriasToJson);
         $categoriasToJson = ['cols' => $cols , 'rows' => $rows];
 
         $categoriasToJson = json_encode($categoriasToJson,JSON_NUMERIC_CHECK);// el arreglo se convierte a formato json, esta variable es anviada a la vista para las gráficas
@@ -398,6 +475,7 @@ class EstadisticasController extends Controller
         return $categoriasToJson;
 
     }
+
 
 } 
 

@@ -2686,7 +2686,7 @@ class UsuariosController extends Controller
 
           // enviar mail
           $data = ['user'=>$usuario, 'contrasena' => $contrasena];
-          Mail::send('Emails.confirmacionDatosTrabajador', ['data' => $data], function($mail) use($data){
+          Mail::later(120,'Emails.confirmacionDatosTrabajador', ['data' => $data], function($mail) use($data){
               $mail->to($data['user']->email)->subject('Bienvenido a SMARTBAR');
           });
 

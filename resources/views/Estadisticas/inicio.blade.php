@@ -224,6 +224,223 @@
 
 
 
+
+<div class="row">
+  <div class="col-md-6">
+    <!-- Inicio Gráfica de Productos ventas totales -->
+    <div class="row">
+      <i class="fa fa-bar-chart-o"></i>Productos Más Vendidos
+      <form id="formProductoTotal" class="login-form">
+        <fieldset>
+        <div class="col-md-4">
+            <div class="input-container"> 
+              <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio"  type="date">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-container"> 
+              <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin" type="date">
+            </div>
+        </div>
+        <div class="col-md-2">
+          <div  class="form-group">
+            <a id='buscarProductoTotal' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+              <i class="fa fa-send"></i>
+              Buscar
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+        <div class="widget-container fluid-height">
+          <div class="widget-content padded text-center">
+            <div class="graph-container">
+              <div class="caption"></div>
+              <div class="graph" id="GraficaProductosTotal"></div>
+              <!-- Bar Charts:Morris -->
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- Fin Gráfica de Productos ventas totales -->
+  </div>
+  <!-- Inicio de tabulador de Gráfica de Productos -->
+  <div class="col-md-6">
+    <div id="exTab2" class="container"> 
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#tabProductosHora" data-toggle="tab">Por Horas</a>
+        </li>
+        <li >
+          <a href="#tabProductosDias" data-toggle="tab">Por Días</a>
+        </li>
+        <li >
+          <a  href="#tabProductosSemana" data-toggle="tab">Por Semana</a>
+        </li>
+        <li><a href="#tabProductosMes" data-toggle="tab">Por Mes</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+
+        <!-- Inicio Gráfica de Productos Por Horas -->
+        <div class="tab-pane active" id="tabProductosHora">
+          <div class="row">
+            <form id="formProductoHora" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarProductoHora' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaProductosHora"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Productos Por Horas -->
+
+        <!-- Inicio Gráfica de Productos Por Días -->
+        <div class="tab-pane" id="tabProductosDias">
+          <div class="row">
+            <form id="formProductoDias" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarProductoDia' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaProductosDias"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Productos Por Dias -->
+        <!-- Inicio Gráfica de Productos Por semanas -->
+        <div class="tab-pane" id="tabProductosSemana">
+          <div class="row">
+            <form id="formProductoSemana" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" id="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin" id="fechaFin" type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarProductoSemana' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaProductosSemana"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Productos Por semanas -->
+        <!-- Inicio Gráfica de Productos Por Mes -->
+        <div class="tab-pane" id="tabProductosMes">
+          <div class="row">
+            <form id="formProductoMes" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarProductoMes' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaProductosMes"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Productos Por Mes -->
+      </div>
+    </div>
+  </div>
+  <!-- Fin de tabulador de Gráfica de Productos -->
+</div>
+
+
+
+
         <div class="row">
           <!-- Line Chart -->
           <div class="col-md-6">
@@ -405,7 +622,7 @@
               <div class="widget-content padded text-center">
                 <div class="graph-container">
                   <div class="caption"></div>
-                  <div class="graph" id="categoriasBar"></div>
+                  <div class="graph" id="ProductosBar"></div>
                   <!-- Bar Charts:Morris -->
                 </div>
               </div>
@@ -508,6 +725,7 @@
    * =============================================================================
    */
    // datos para las gráficas, se pasa por medio de variables globales para tener acceso a ellas desde las funciones de ajax y la función que se llama cada vez que se hace resize
+   var datosProductoTotal = {!!$productos!!};
    var datosCategoriaTotal = {!!$categorias!!};
    var datosCategoriaSemana = {!! $categoriasVentasPorSemana !!};
    var datosCategoriaDia = {!!$categoriasVentasPorDia!!};
@@ -854,26 +1072,23 @@ google.charts.setOnLoadCallback(drawChart);
 // función que se llama para dibujar las gráficas
 function drawChart() {
   //Gráfica de barras para las ventas totales
+  var data = new google.visualization.DataTable(datosProductoTotal);
+  var options = {
+    title: 'Productos más vendidos',
+    height: 350,
+    legend: { position: 'none' },
+  }; 
+  var chart = new google.charts.Bar(document.getElementById('GraficaProductosTotal'));
+  chart.draw(data, google.charts.Bar.convertOptions(options));
+
+
+
+  //Gráfica de barras para las ventas totales
   var data = new google.visualization.DataTable(datosCategoriaTotal);
   var options = {
     title: 'Categorias más vendidas',
     height: 350,
     legend: { position: 'none' },
-    annotations: {
-      textStyle: {
-        fontName: 'Times-Roman',
-        fontSize: 55,
-        bold: true,
-        italic: true,
-        // The color of the text.
-        color: '#871b47',
-        // The color of the text outline.
-        auraColor: '#d799ae',
-        // The transparency of the text.
-        opacity: 0.8
-      }
-    }
-    
   }; 
   var chart = new google.charts.Bar(document.getElementById('GraficaCategoriasTotal'));
   chart.draw(data, google.charts.Bar.convertOptions(options));
