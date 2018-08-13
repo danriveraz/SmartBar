@@ -5,7 +5,7 @@
       <div class="container-fluid main-content">
         <div class="page-title chart-container">
           <h1>
-            Gráficas
+            Gráficas De Categorias
           </h1>
         </div>
 
@@ -13,7 +13,6 @@
   <div class="col-md-6">
     <!-- Inicio Gráfica de categorias ventas totales -->
     <div class="row">
-      <i class="fa fa-bar-chart-o"></i>Categorias Más Vendidas
       <form id="formCategoriaTotal" class="login-form">
         <fieldset>
         <div class="col-md-4">
@@ -224,7 +223,11 @@
 
 
 
-
+<div class="page-title chart-container">
+  <h1>
+    Gráficas De Productos
+  </h1>
+</div>
 <div class="row">
   <div class="col-md-6">
     <!-- Inicio Gráfica de Productos ventas totales -->
@@ -726,6 +729,10 @@
    */
    // datos para las gráficas, se pasa por medio de variables globales para tener acceso a ellas desde las funciones de ajax y la función que se llama cada vez que se hace resize
    var datosProductoTotal = {!!$productos!!};
+   var datosProductoSemana = {!!$productosVentasPorSemana!!};
+   var datosProductoDia = {!!$productosVentasPorDia!!};
+   var datosProductoMes = {!!$productosVentasPorMes!!};
+   var datosProductoHora = {!!$productosVentasPorHora!!};
    var datosCategoriaTotal = {!!$categorias!!};
    var datosCategoriaSemana = {!! $categoriasVentasPorSemana !!};
    var datosCategoriaDia = {!!$categoriasVentasPorDia!!};
@@ -957,6 +964,7 @@ $("#buscarCategoriaSemana").click(function(){
     });
 });
 
+
 $("#buscarCategoriaTotal").click(function(){
     console.log("entro");
     var type = "POST";
@@ -1005,8 +1013,6 @@ $("#buscarCategoriaDia").click(function(){
 });
 
 
-
-
 $("#buscarCategoriaMes").click(function(){
     console.log("entro");
     var type = "POST";
@@ -1030,15 +1036,37 @@ $("#buscarCategoriaMes").click(function(){
     });
 });
 
-
-
-
-$("#buscarCategoriaHora").click(function(){
+//-----------------------AJAX PRODUCTOS----------------------
+$("#buscarProductoSemana").click(function(){
     console.log("entro");
     var type = "POST";
-    var formData = new FormData($('#formCategoriaHora')[0]);
+    var formData = new FormData($('#formProductoSemana')[0]);
     $.ajax({
-        url: '{{url('Estadisticas/ventasCategoriasPorHora')}}',
+        url: '{{url('Estadisticas/ventasProductosPorSemana')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (data) {
+          $('#GraficaProductosSemana').empty();
+          datosProductoSemana = data;
+          console.log(data);
+          drawChart(); // repinta la gráfica
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarProductoTotal").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formProductoTotal')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ProductosMasVendidas')}}',
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         type: type,
         dataType: 'json',
@@ -1047,7 +1075,80 @@ $("#buscarCategoriaHora").click(function(){
         data: formData,
         success: function (datos) {
 
-        datosCategoriaHora = datos;//Actualiza la variable de los datos
+        datosProductoTotal = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarProductoDia").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formProductoDias')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasProductosPorDia')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosProductoDia = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarProductoMes").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formProductoMes')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasProductosPorMes')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosProductoMes = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarProductoHora").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formProductoHora')[0]);
+    console.log(FormData);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasProductosPorHora')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosProductoHora = datos;//Actualiza la variable de los datos
         drawChart(); // repinta la gráfica
 
         }, error: function(xhr,status, response) {
@@ -1071,7 +1172,7 @@ google.charts.setOnLoadCallback(drawChart);
 
 // función que se llama para dibujar las gráficas
 function drawChart() {
-  //Gráfica de barras para las ventas totales
+  //Gráfica de barras para las ventas totales por producto
   var data = new google.visualization.DataTable(datosProductoTotal);
   var options = {
     title: 'Productos más vendidos',
@@ -1081,6 +1182,45 @@ function drawChart() {
   var chart = new google.charts.Bar(document.getElementById('GraficaProductosTotal'));
   chart.draw(data, google.charts.Bar.convertOptions(options));
 
+//Gráfica de Lineas para las ventas de productos por semana
+  var data = new google.visualization.DataTable(datosProductoSemana);
+  var options = {
+    title: 'Total de Ventas Por Productos Divido en Semanas',
+    height: 340, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaProductosSemana'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+  //Gráfica de Lineas para las ventas de productos por Día
+  var data = new google.visualization.DataTable(datosProductoDia);
+  var options = {
+    title: 'Total de Ventas Por Productos Divido en Días',
+    height: 340, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaProductosDias'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+  //Gráfica de Lineas para las ventas de productos por mes
+  var data = new google.visualization.DataTable(datosProductoMes);
+  var options = {
+    title: 'Total de Ventas Por Productos Divido en Meses',
+    height: 340, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaProductosMes'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+    //Gráfica de Lineas para las ventas de productos por Hora
+  var data = new google.visualization.DataTable(datosProductoHora);
+  var options = {
+    title: 'Total de Ventas Por Productos Divido en Horas',
+    height: 340, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaProductosHora'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+  google.visualization.events.addListener(chart, 'error', function (googleError) {
+      google.visualization.errors.removeError(googleError.id);
+      document.getElementById("GraficaProductosHora").innerHTML = "No hay datos para Mostrar, Seleccione un día con ventas";
+  });
 
 
   //Gráfica de barras para las ventas totales
@@ -1128,6 +1268,11 @@ function drawChart() {
   }; 
   var chart = new google.charts.Line(document.getElementById('GraficaCategoriasHora'));
   chart.draw(data, google.charts.Line.convertOptions(options));
+  google.visualization.events.addListener(chart, 'error', function (googleError) {
+      google.visualization.errors.removeError(googleError.id);
+      document.getElementById("GraficaCategoriasHora").innerHTML = "No hay datos para Mostrar, Seleccione un día con ventas";
+  });
+
 
 }
 
