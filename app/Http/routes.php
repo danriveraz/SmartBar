@@ -179,7 +179,7 @@ Route::post('Estadisticas/ventasCategoriasPorDia', 'EstadisticasController@venta
 Route::post('Estadisticas/ventasCategoriasPorMes', 'EstadisticasController@ventasCategoriasPorMes');
 Route::post('Estadisticas/ventasCategoriasPorHora', 'EstadisticasController@ventasCategoriasPorHora');
 Route::post('Estadisticas/ventasProductosPorSemana', 'EstadisticasController@ventasProductosPorSemana'); 
-Route::post('Estadisticas/productosMasVendidas', 'EstadisticasController@productosMasVendidas');
+Route::post('Estadisticas/productosMasVendidos', 'EstadisticasController@productosMasVendidos');
 Route::post('Estadisticas/ventasProductosPorDia', 'EstadisticasController@ventasProductosPorDia');
 Route::post('Estadisticas/ventasProductosPorMes', 'EstadisticasController@ventasProductosPorMes');
 Route::post('Estadisticas/ventasProductosPorHora', 'EstadisticasController@ventasProductosPorHora');

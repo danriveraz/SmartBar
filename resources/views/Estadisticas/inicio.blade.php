@@ -444,6 +444,226 @@
 
 
 
+<div class="page-title chart-container">
+  <h1>
+    Gráficas De Meseros
+  </h1>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <!-- Inicio Gráfica de Meseros ventas totales -->
+    <div class="row">
+      <i class="fa fa-bar-chart-o"></i>Top 4 Meseros con más ventas
+      <form id="formMeseroTotal" class="login-form">
+        <fieldset>
+        <div class="col-md-4">
+            <div class="input-container"> 
+              <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio"  type="date">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-container"> 
+              <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin" type="date">
+            </div>
+        </div>
+        <div class="col-md-2">
+          <div  class="form-group">
+            <a id='buscarMeseroTotal' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+              <i class="fa fa-send"></i>
+              Buscar
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+        <div class="widget-container fluid-height">
+          <div class="widget-content padded text-center">
+            <div class="graph-container">
+              <div class="caption"></div>
+              <div class="graph" id="GraficaMeserosTotal"></div>
+              <!-- Bar Charts:Morris -->
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- Fin Gráfica de Meseros ventas totales -->
+  </div>
+  <!-- Inicio de tabulador de Gráfica de Meseros -->
+  <div class="col-md-6">
+    <div id="exTab2" class="container"> 
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#tabMeserosHora" data-toggle="tab">Por Horas</a>
+        </li>
+        <li >
+          <a href="#tabMeserosDias" data-toggle="tab">Por Días</a>
+        </li>
+        <li >
+          <a  href="#tabMeserosSemana" data-toggle="tab">Por Semana</a>
+        </li>
+        <li><a href="#tabMeserosMes" data-toggle="tab">Por Mes</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+
+        <!-- Inicio Gráfica de Meseros Por Horas -->
+        <div class="tab-pane active" id="tabMeserosHora">
+          <div class="row">
+            <form id="formMeseroHora" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarMeseroHora' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaMeserosHora"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Meseros Por Horas -->
+
+        <!-- Inicio Gráfica de Meseros Por Días -->
+        <div class="tab-pane" id="tabMeserosDias">
+          <div class="row">
+            <form id="formMeseroDias" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarMeseroDia' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaMeserosDias"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Meseros Por Dias -->
+        <!-- Inicio Gráfica de Meseros Por semanas -->
+        <div class="tab-pane" id="tabMeserosSemana">
+          <div class="row">
+            <form id="formMeseroSemana" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" id="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin" id="fechaFin" type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarMeseroSemana' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaMeserosSemana"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Meseros Por semanas -->
+        <!-- Inicio Gráfica de Meseros Por Mes -->
+        <div class="tab-pane" id="tabMeserosMes">
+          <div class="row">
+            <form id="formMeseroMes" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarMeseroMes' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaMeserosMes"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Meseros Por Mes -->
+      </div>
+    </div>
+  </div>
+  <!-- Fin de tabulador de Gráfica de Meseros -->
+</div>
+
+
+
         <div class="row">
           <!-- Line Chart -->
           <div class="col-md-6">
@@ -738,6 +958,8 @@
    var datosCategoriaDia = {!!$categoriasVentasPorDia!!};
    var datosCategoriaMes = {!!$categoriasVentasPorMes!!};
    var datosCategoriaHora = {!!$categoriasVentasPorHora!!};
+   var datosMeseroTotal = {!!$meseros!!};
+   var datosMeseroSemana = {!!$meserosVentasPorSemana!!};
 
   $(window).resize(function(e) {
     drawChart()
@@ -1066,7 +1288,7 @@ $("#buscarProductoTotal").click(function(){
     var type = "POST";
     var formData = new FormData($('#formProductoTotal')[0]);
     $.ajax({
-        url: '{{url('Estadisticas/ProductosMasVendidas')}}',
+        url: '{{url('Estadisticas/productosMasVendidos')}}',
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         type: type,
         dataType: 'json',
@@ -1273,6 +1495,26 @@ function drawChart() {
       document.getElementById("GraficaCategoriasHora").innerHTML = "No hay datos para Mostrar, Seleccione un día con ventas";
   });
 
+
+
+  //Gráfica de barras para las ventas totales de los meseros
+  var data = new google.visualization.DataTable(datosMeseroTotal);
+  var options = {
+    title: 'Meseros que más han vendido',
+    height: 350,
+    legend: { position: 'none' },
+  };
+  var chart = new google.charts.Bar(document.getElementById('GraficaMeserosTotal'));
+  chart.draw(data, google.charts.Bar.convertOptions(options)); 
+
+  //Gráfica de Lineas para las ventas de Meseros por semana
+  var data = new google.visualization.DataTable(datosMeseroSemana);
+  var options = {
+    title: 'Total de Ventas de los meseros Divido en Semanas',
+    height: 340, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaMeserosSemana'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
 
 }
 

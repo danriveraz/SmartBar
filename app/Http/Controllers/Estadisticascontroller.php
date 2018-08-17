@@ -57,6 +57,8 @@ class EstadisticasController extends Controller
         $categoriasSemana = $this->ventasCategoriasPorSemana($request);//Llamado a la función para el comportamiento de ventas por semana de las categorias
         $categoriasDia = $this->ventasCategoriasPorDia($request);//Llamado a la función para el comportamiento de ventas por Dia de las categorias
         $categoriasMes = $this->ventasCategoriasPorMes($request);//Llamado a la función para el comportamiento de ventas por Mes de las categorias
+        $meseros = $this->ventaMeserosTotal($request);// obtiene el id de los 4 Meseros que  más  han vendidos
+        $meserosSemana = $this->ventasMeserosPorSemana($request);// Llamado a la función para el comportamiento de ventas por semana de los meseros
 
         $request->request->add(['fechaInicio' => Carbon::now()]);
         $categoriasHora = $this->ventasCategoriasPorHora($request);//Llamado a la función para el comportamiento de ventas por Día de las categorias
@@ -76,7 +78,9 @@ class EstadisticasController extends Controller
             ->with('productosVentasPorSemana',$productosSemana)
             ->with('productosVentasPorDia',$productosDia)
             ->with('productosVentasPorMes',$productosMes)
-            ->with('productosVentasPorHora',$productosHora);
+            ->with('productosVentasPorHora',$productosHora)
+            ->with('meseros',$meseros)
+            ->with('meserosVentasPorSemana',$meserosSemana);
     }
 
 
@@ -440,7 +444,6 @@ class EstadisticasController extends Controller
         return json_encode($jsonGrafcas);
     }
 
-
     public function ventasCategoriasPorSemana(Request $request){
         //Log::info('fecha Inicio'.$request->fechaInicio);
         //Log::info('fecha Fin'.$request->fechaFin);
@@ -526,7 +529,6 @@ class EstadisticasController extends Controller
         return $categoriasToJson;
 
     }
-
 
     public function ventasCategoriasPorDia(Request $request){
         $categorias = Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
@@ -614,7 +616,6 @@ class EstadisticasController extends Controller
 
     }
 
-
     public function ventasCategoriasPorMes(Request $request){
 
 
@@ -701,7 +702,6 @@ class EstadisticasController extends Controller
 
     }
 
-
     public function ventasCategoriasPorHora(Request $request){
         //Se calculan las horas de búsqueda al rededor de un día
         $fechaInicio = new Carbon($request->fechaInicio);
@@ -772,6 +772,112 @@ class EstadisticasController extends Controller
         $categoriasToJson = json_encode($categoriasToJson,JSON_NUMERIC_CHECK);// el arreglo se convierte a formato json, esta variable es anviada a la vista para las gráficas
 
         return $categoriasToJson;
+
+    }
+
+    public function ventaMeserosTotal(Request $request){
+        $Meseros =  Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual]])
+            ->join('venta', 'factura.id', '=', 'venta.idFactura')
+            ->join('producto', 'venta.idProducto', '=', 'producto.id')
+            ->join('usuario', 'venta.idMesero', '=', 'usuario.id')
+            ->select(DB::raw('SUM(`precio`*`cantidad`) as total'),'idMesero','nombrePersona')
+            ->groupBy('idMesero')
+            ->orderBy('total', 'DESC')
+            ->limit(4)
+            ->get();
+
+        $cols = [['id'=> 'Nombre','label'=> 'Nombre', 'type'=> 'string'],['id'=> 'Cantidad','label'=> 'Cantidad', 'type'=> 'number']];
+        $rows = array();
+        foreach ($Meseros as $key => $Mesero) {
+            array_push($rows, ['c'=> [ ['v' => $Mesero->nombrePersona ] , ['v'=>$Mesero->total ] ]]);
+        }
+        $jsonGrafcas = ['cols' => $cols , 'rows' => $rows];            
+        //dd(json_encode($rows ,JSON_NUMERIC_CHECK));
+
+        return json_encode($jsonGrafcas);
+    
+    }
+
+    public function ventasMeserosPorSemana(Request $request){
+        $Meseros =  Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual]])
+            ->join('venta', 'factura.id', '=', 'venta.idFactura')
+            ->join('producto', 'venta.idProducto', '=', 'producto.id')
+            ->join('usuario', 'venta.idMesero', '=', 'usuario.id')
+            ->select(DB::raw('SUM(`precio`*`cantidad`) as total'),'idMesero','nombrePersona')
+            ->groupBy('idMesero')
+            ->orderBy('total', 'DESC')
+            ->limit(4)
+            ->get();// obtiene el id de las 4 categorias más vendidas
+
+        $MeserosPorSemana = Factura::where([['factura.estado', 'Finalizada'],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<=',$request->fechaFin]])
+            ->join('venta', 'factura.id', '=', 'venta.idFactura')
+            ->join('producto', 'venta.idProducto', '=', 'producto.id')
+            ->join('usuario', 'venta.idMesero', '=', 'usuario.id')
+            ->whereIn('usuario.id', $Meseros->pluck('idMesero')->toArray())
+            ->select(DB::raw('SUM(`precio`*`cantidad`) as total'),DB::raw('WEEK(`fecha`) as semana'),'idMesero','nombrePersona',DB::raw('YEAR(`fecha`) as anio'),'fecha')
+            ->groupBy('idMesero')
+            ->groupBy(DB::raw('WEEK(`fecha`)'))//se hace el group by por la semana del año en que fue realizada la factura
+            ->orderBy('fecha', 'ASC')
+            ->get();
+
+        //organizar las fechas, para el rango a mostrar
+        if($request->fechaInicio=='0000-01-01'){
+            
+            $fechaInicio = new Carbon($MeserosPorSemana[0]->fecha);
+            $fechaFin = new Carbon($MeserosPorSemana->last()->fecha);
+            $fechaFin->addWeek(1);
+            $fechaInicio->subWeek(1);
+
+            //dd($fechaInicio,$fechaFin);
+
+        }else{
+    
+            $fechaInicio = new Carbon($request->fechaInicio);
+            $fechaFin = new Carbon($request->fechaFin);
+            $fechaInicio->subWeek(1);
+            
+        }
+
+        $auxSemana = array();//array auxiliar donde se guarda la información por semana
+        $numSemana = 0; // variable para guardar el numero de la semana
+        $MeserosToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
+        $cols = [['id'=> 'Semana','label'=> 'Semana', 'type'=> 'string']];
+        foreach ($Meseros->pluck('nombrePersona')->toArray() as $key => $nombre) {
+            array_push($cols , ['id'=> 'Cantidad'.$nombre,'label'=> $nombre, 'type'=> 'number']);
+        }
+
+        // se crean un arreglo con todos los datos
+        while ($fechaInicio->lessThan($fechaFin)) {
+            $auxLLenar = array();
+            $auxLLenar['semana']=$fechaInicio->year."/".$fechaInicio->weekOfYear;
+            foreach ($Meseros->pluck('nombrePersona')->toArray() as $key => $nombre) {
+                $auxLLenar[$nombre] = 0;//se inicia el arreglo con los nombres de las Meseros
+            }
+            $MeserosToJson[$fechaInicio->year."/".$fechaInicio->weekOfYear] = $auxLLenar;
+            $fechaInicio->addWeek(1);
+        }
+        foreach ($MeserosPorSemana as $key => $Mesero) {
+            $MeserosToJson[$Mesero->anio."/".$Mesero->semana][$Mesero->nombrePersona]=$Mesero->total;
+        }
+        //Fin de crear el arreglo
+
+
+        $rows = array();   
+        foreach ($MeserosToJson as $key => $fila) {
+            $auxRow = array();
+            foreach ($fila as $key => $valor) {
+                array_push($auxRow,['v' => $valor ]);    
+            }
+            array_push($rows, ['c'=>  $auxRow]);                
+        }
+
+        //dd(json_encode($rows));
+        $MeserosToJson = ['cols' => $cols , 'rows' => $rows];
+
+
+        $MeserosToJson = json_encode($MeserosToJson,JSON_NUMERIC_CHECK);// el arreglo se convierte a formato json, esta variable es anviada a la vista para las gráficas
+
+        return $MeserosToJson;
 
     }
 
