@@ -1,6 +1,8 @@
 @extends('Layout.app_empleado')
 @section('content')
-
+<title>
+  PocketSmarBar - Bartender
+</title>
 <!-- Slider -->
 @if(sizeof($facturas) == 0)
 
@@ -24,16 +26,16 @@
             <!-- Item 1 -->
             <div class="item active slide1">
                 <div class="row"><div class="container">
-                    
+
                     <div class="col-md-9 text-left">
                         <h3 data-animation="animated bounceInDown">Lo nuevo en mixología,</h3>
-                        <h4 data-animation="animated bounceInUp">Lo tienes con SMARTBAR</h4>             
+                        <h4 data-animation="animated bounceInUp">Lo tienes con SMARTBAR</h4>
                      </div>
                      <div>
                      <iframe width="560" height="315" src="https://www.youtube.com/embed/fn6hCcPS2Z0?autoplay=1" frameborder="0" allowfullscreen></iframe></div>
                 </div>
                 </div>
-             </div> 
+             </div>
             <!-- Item 2 -->
             <div class="item slide2">
                 <div class="row"><div class="container">
@@ -55,7 +57,7 @@
                      </div>
                     <div class="col-md-5 text-right">
                         <img style="max-width: 500px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/Slider-bartender/2.png') }}">
-                    </div>     
+                    </div>
                 </div></div>
             </div>
             <!-- Item 4 -->
@@ -67,11 +69,11 @@
                      </div>
                     <div class="col-md-5 text-right">
                         <img style="max-width: 700px;"  data-animation="animated zoomInLeft" src="{{ asset( 'images/Slider-bartender/3.png') }}">
-                    </div>  
+                    </div>
                 </div></div>
             </div>
             <!-- End Item 4 -->
-    
+
         </div>
         <!-- End Wrapper for slides-->
         <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -86,9 +88,9 @@
 <footer>
     <div class="container">
         <div class="col-md-10 col-md-offset-1 text-center">
-            
-            
-        </div>   
+
+
+        </div>
     </div>
 </footer>
 @endif
@@ -117,8 +119,8 @@
             alert('Error al guardar en venta');
          }
        });
-      }   
-      setInterval(update, 5000);      
+      }
+      setInterval(update, 5000);
     });
 
   function cambiarCurrent(idInput) {
@@ -139,7 +141,7 @@
                 <a nombre="pedidoMesa" id="{{$factura->mesa->id}}" href="#myModal{{$factura->mesa->id}}" data-toggle="modal" >
                   <i class="ocupada"><img src="images/mesa.png"></i>
                   <div class="text-Mesas">{{$factura->mesa->nombreMesa}}<br>Hace
-                      <?php   
+                      <?php
                         $fecha1 = new DateTime();
                         if(sizeof($factura->ventas)!=0){
                           $fecha1 = new DateTime($factura->ventas[0]->hora);
@@ -149,12 +151,12 @@
                         $horas = $intervalo->format('%H');
                         $minutos = $intervalo->format('%i');
                         echo (($horas*60)+$minutos);
-                      ?>  mins 
+                      ?>  mins
                   </div>
                 </a>
               </li>
               <li class="gap" style="width: 0.5%;"></li>
-            @endforeach   
+            @endforeach
              <!-- PARA DAR ESPACIO  NO BORRAR-->
             <li class="gap"></li>
             <!-- PARA DAR ESPACIO NO BORRAR-->
@@ -216,7 +218,7 @@
                   <input type="checkbox" name="pedidos[]" value="{{$venta->id}}" width="25" height="25" class="check{{$factura->id}}" ><span></span></label>
                   </td>
                 </tr>
-              @endforeach 
+              @endforeach
               </table>
                 <input type="text" hidden="" name="idFactura" value="{{$factura->idFactura}}">
             </div>
@@ -229,13 +231,13 @@
       </div>
     </div>
   </div>
-@endforeach 
+@endforeach
 
 <!-- COMENTADO POR ERROR EN BARTENDER  "CAROUSEL IS NOT A FUNCTION" -->
 <!-- <script src="javascripts/mesero.js"></script> -->
 
 <script src="javascripts/jquery.mixitup.min.js"></script>
-<script src="javascripts/mainMesas.js"></script> 
+<script src="javascripts/mainMesas.js"></script>
 <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
 
 <script type="text/javascript">

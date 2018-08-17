@@ -8,7 +8,9 @@
   min-width: 280px;
   }
 </style>
-
+<title>
+  PocketSmarBar - Mi Personal
+</title>
 <!--Barra de título y botones de busqueda-->
 <div id="page-content">
   <div class="col-lg-12">

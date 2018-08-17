@@ -162,7 +162,7 @@ xtab-filter
   /* set same size of the .cd-tab-filter */
   height: 50px;
   width: 140px;
-  line-height: 50px;
+  line-height: 60px;
   padding-left: 14px;
 }
 .cd-tab-filter a.selected {
@@ -214,9 +214,9 @@ xtab-filter
     padding: 0 1em;
     width: auto;
     color: #9a9a9a;
-    text-transform: uppercase;
+    /*text-transform: uppercase;
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 1.3rem; texto muy grueso*/
   }
   .no-touch .cd-tab-filter a:hover {
     color: #2d0031;
@@ -254,11 +254,12 @@ xgallery
 -------------------------------- */
 
 .cd-filters a {
-  color: #2d0031; }
+  color: #2d0031;
+    text-decoration: none;}
  .cd-filters a:hover {
     color: #666666;
     text-decoration: none;
-	text-decoration: underline; }
+	/*text-decoration: underline;*/}
 	
 	
 @media only screen and (max-width: 766px) {

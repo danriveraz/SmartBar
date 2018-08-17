@@ -3,7 +3,6 @@
 @include('flash::message')
 <title>
   PocketSmarBar - Mi Perfil
-
 </title>
 <!-- Estilos vista perfil-->
 {!!Html::style('assets-Internas/css/styleProfile.css')!!}
@@ -252,7 +251,7 @@
 										</div>
 										<div class="input-container">
 											<i class="fa fa-phone"></i>
-											<input class="input" name="telefonoEstablecimiento" type="text" placeholder="Teléfono o celular" value="{{$empresa->telefono}}" maxlength="10" required="true"/>
+											<input class="input" name="telefonoEstablecimiento" type="text" placeholder="Teléfono o celular" value="{{$empresa->telefono}}" required="true"/>
 										</div>
 										<div class="input-container">
 											<i class="fa fa-map-marker"></i>
@@ -362,13 +361,18 @@
           <div class="col-sm-12">
             <div class="container PocketAlertPro">
             	<p>
-                <div class="alert alert-info">
+                <div class="alert alert-info backgraundPocket">
                   <h4>!Estas al día</h4>
                   <p>
                     Tu Membresia PocketClub vence en 30 dias faltando 7 dias te recordaremos el vencimiento de la membresia<p>
                 </div>
             </div>
           </div>
+
+<!-- Metodos de Pago-->
+
+<!-- Fin de metodos de Pago-->
+
         <div class="col-sm-12">
           <!-- PLANES -->
           <div class="container">

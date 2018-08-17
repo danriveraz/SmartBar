@@ -3,7 +3,12 @@
 <link rel="stylesheet" href="assets-Internas\css\styleCategorias.css">
 <link rel="stylesheet" href="assets-Internas\css\mesero.css">
 @section('content')
-
+<title>
+  PocketSmarBar - Mesero
+</title>
+<style>
+.navbar .container-fluid.main-nav .nav-collapse .nav {height: inherit !important;}
+</style>
 <!-- SE INCLUYE MAIN.JS PARA CORREGIR TABLA -->
 {!!Html::script('javascripts\main.js')!!}
 
@@ -33,9 +38,9 @@
 				<div id="encabezado" class="cd-tab-filter-wrapper" onclick="desplegar()">
 					<div class="cd-tab-filter">
 						<ul class="cd-filters">
-							<li class="placeholder"> 
+							<li class="placeholder">
 								<a data-type="all" href="">Todas</a> <!-- selected option on mobile -->
-							</li> 
+							</li>
 							<li class="filter"><a class="selected" href="#" data-type="all">Todas</a></li>
 							<li class="filter" data-filter=".color-1"><a href="#" data-type="color-1">Libres</a></li>
 							<li class="filter" data-filter=".color-2"><a href="#" data-type="color-2">Ocupadas</a></li>
@@ -54,7 +59,7 @@
 								<a onclick="seleccionarMesa({{$mesa->id}})">
 									<i class="libre"><img src="images/mesa.png"></i>
 									<div class="text-Mesas">{{$mesa->nombreMesa}}</div>
-								</a>  
+								</a>
 			            	</li>
 							@elseif($mesa->estado == 'Ocupada')
 							<li class="mix color-2 option3" style="width: 10%">
@@ -69,10 +74,10 @@
 									<i class="reservada"><img src="images/mesa.png"></i>
 									<div class="text-Mesas">{{$mesa->nombreMesa}}</div>
 								</a>
-							</li> 
+							</li>
 							@endif
 			            @endforeach
-			            
+
 			            <!-- PARA DAR ESPACIO  NO BORRAR-->
 						<li class="gap"></li>
 						<li class="gap"></li>
@@ -86,7 +91,7 @@
 					</ul>
 					<div class="cd-fail-message">No se han encontrado resultados</div>
 				</section> <!-- cd-gallery -->
-			   
+
 				<!--<a href="#" id="toggle-Mesas" class="btn-toggle">Abrir</a>-->
 
 				<!-- Inicio del filtro-->
@@ -94,17 +99,18 @@
 					<form>
 						<div class="cd-filter-block">
 							<h4>Buscar</h4>
-							
+
 							<div class="cd-filter-content">
 								<input type="search" placeholder="Numero mesa...">
 							</div> <!-- cd-filter-content -->
 						</div> <!-- cd-filter-block -->
 					</form>
 					<a href="#" class="cd-close">Cerrar</a>
-				</div> <!-- cd-filter -->
+				</div>
+      <!-- cd-filter 
 				<a href="#" onclick="desplegar()" class="cd-filter-trigger">Filtros</a>
 			<!-- fin del filtro-->
-			</main>            
+			</main>
 		<!-- fin del mesas-->
 
 
@@ -131,7 +137,7 @@
 					</div>
 				</div>
 			</div>
-      
+
 
 			<div class="row">
 				<div class="col-lg-6">
@@ -156,7 +162,7 @@
 						</div>
 					</div>
 				</div>
-			  
+
 				<div class="col-lg-6">
 					<div class="widget-container fluid-height clearfix">
 						<div class="widget-content padded clearfix">
@@ -176,7 +182,7 @@
 									  Opciones
 									</th>
 								</thead>
-								<tbody>              
+								<tbody>
 								</tbody>
 							</table>
 						</div>
@@ -222,7 +228,7 @@
 
 <script src="assets-Internas\javascripts\mesero.js"></script>
 <script src="assets-Internas\javascripts\mainMesas.js"></script>
-<script src="assets-Internas\javascripts\jquery.mixitup.min.js"></script> 
+<script src="assets-Internas\javascripts\jquery.mixitup.min.js"></script>
 </body>
 
 @endsection

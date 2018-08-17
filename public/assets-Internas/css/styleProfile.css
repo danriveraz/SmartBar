@@ -15,6 +15,10 @@
 
 }
 
+.backgraundPocket{background-color: #2d0031;}
+
+.close{color: black !important;}
+
 /* Profile container */
 .profile {
   margin: 20px 0;
@@ -180,7 +184,6 @@ h4.plan-title{color:#2D0031}
 background-position: 3% 19px;;
 background-repeat: no-repeat;
 background-size: auto 35px;
-background-color: #2d0031;
 border: 0;
 min-width: auto !important;
 text-align: left;

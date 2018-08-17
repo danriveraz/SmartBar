@@ -543,7 +543,7 @@ body.login2 {
           margin: 0 6px; }
           .navbar .container-fluid.main-nav .nav-collapse .nav > li > a {
             display: block;
-            height: 100%;
+            /*height: 100%; por empleado*/
             text-align: center;
             padding: 5px 10px 5px 10px;
             font-size: 12px;
@@ -756,6 +756,14 @@ body.sidebar-nav {
     margin-bottom: 25px;
     color: #5e5e5e;
     font-weight: 300; }
+
+.page-titleFact {
+  margin-top: 30px; }
+  .page-titleFact h1 {
+    margin-bottom: 25px;
+    color: #5e5e5e;
+    font-weight: 300;
+	font-size: 30px;}
 
 /*----------------------------------------------------------------------------------- */
 /*  Buttons */

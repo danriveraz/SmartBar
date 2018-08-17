@@ -2,11 +2,11 @@
 @section('content')
 {!!Html::style('assets-Internas\css/tutorial/tutorial.css')!!}
 {!!Html::script('assets-Internas\javascripts/tutorial/tutorial.js')!!}
+<!-- css para hoy-->
+{!!Html::style('assets-Internas/css/styleWeladmin.css')!!}
 <title>
-  SMARTBAR
+  PocketSmarBar - Bienvenido
 </title>
-
-
 <!--css para Nuevo Tutorial
 {!!Html::script('assets-Internas\javascripts/tutorial/sliderTuto.js')!!}-->
 
@@ -15,61 +15,106 @@
          google.charts.load('current', {packages: ['corechart']});
 </script>
 <!-- INICIO ESTADISTICAS -->
-<br>
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="col-md-4">
-        <div class="item social-widget twitter" style="margin-bottom: 2%;">
-          <i class="fa fa-money"></i>
-          <div class="social-data">
-            <h1>
-              <?php
-                echo(ceil($utilidadHoy))
-              ?>
-            </h1>
+<!-- iconos datos hoy-->
+<div  class="row">
+          <div  class="col-lg-4 col-md-6 col-sm-6">
+              <div  class="card card-stats">
+                  <div  class="card-header card-header-warning card-header-icon">
+                      <div  class="card-icon">
+                        <img src="{{asset('assets-Internas/images/Layout-icons/FacturadoHoy.png')}}">
+                      </div>
+                      <p  class="card-category">Utilidad Facturado</p>
+                      <h3  class="card-title">
+                        <?php
+                          echo(ceil($utilidadHoy))
+                        ?>
+                          <small >.00</small>
+                      </h3>
+                  </div>
+                  <div  class="card-footer">
+					  <div class="col-sm-6 pull-right">
+                      	<div  class="stats">
+							  <i  class="material-icons text-gray">date_range</i>
+							  <a>últimas 24 horas</a>
+						</div>
+                      </div>
+						<div class="col-sm-6 lupe">
+							  <a href="" title="Ver Mas"><i style="font-size: 21px;" class="pull-right material-icons">loupe</i></a>
+						</div>
+                  </div>
+              </div>
           </div>
-          <div>
-            <p>
-              Utilidad facturado HOY
-            </p>
+          <div  class="col-lg-4 col-md-6 col-sm-6">
+              <div  class="card card-stats">
+                  <div  class="card-header card-header-success card-header-icon">
+                      <div  class="card-icon">
+                        <img src="{{asset('assets-Internas/images/Layout-icons/mesa.png')}}">
+                      </div>
+                      <p  class="card-category">Mesas Reservadas</p>
+                      <h3  class="card-title">
+                        {{$nMesasReservadas}}
+                      </h3>
+                  </div>
+                  <div  class="card-footer">
+					  <div class="col-sm-6 pull-right">
+                      	<div  class="stats">
+							  <i  class="material-icons text-gray">date_range</i>
+							  <a>últimas 24 horas</a>
+						</div>
+                      </div>
+						<div class="col-sm-6 lupe">
+							  <a href="" title="Ver Mas"><i style="font-size: 21px;" class="pull-right material-icons">loupe</i></a>
+						</div>
+                  </div>
+              </div>
           </div>
-        </div>
+          <div  class="col-lg-4 col-md-6 col-sm-6">
+              <div  class="card card-stats">
+                  <div  class="card-header card-header-danger card-header-icon">
+                      <div  class="card-icon">
+                        <img src="{{asset('assets-Internas/images/Layout-icons/mesero.png')}}">
+                      </div>
+                      <p  class="card-category">Flujo De Personas</p>
+                      <h3  class="card-title">
+                        {{$flujoPersonas}}
+                      </h3>
+                  </div>
+                  <div  class="card-footer">
+					  <div class="col-sm-6 pull-right">
+                      	<div  class="stats">
+							  <i  class="material-icons text-gray">date_range</i>
+							  <a>últimas 24 horas</a>
+						</div>
+                      </div>
+						<div class="col-sm-6 lupe">
+							  <a href="" title="Ver Mas"><i style="font-size: 21px;" class="pull-right material-icons">loupe</i></a>
+						</div>
+                  </div>
+              </div>
+          </div>
+		<!-- col-lg-3 en todas
+          <div  class="col-lg-3 col-md-6 col-sm-6">
+              <div  class="card card-stats">
+                  <div  class="card-header card-header-info card-header-icon">
+                      <div  class="card-icon">
+                          <i  class="fa fa-twitter"></i>
+                      </div>
+                      <p  class="card-category">Followers</p>
+                      <h3  class="card-title">+245</h3>
+                  </div>
+                  <div  class="card-footer">
+                      <!--<div  class="stats">
+                          <i  class="material-icons">date_range</i>
+                          <a  href="#pablo">Get More Space...</a>
+                      </div>
+                  </div>
+              </div>
+          </div>-->
       </div>
-      <div class="col-md-4">
-        <div class="item social-widget twitter" style="margin-bottom: 2%;">
-          <img src="images/mesa.png" style="margin-left: -5%;">
-          <div class="social-data">
-            <h1>
-              {{$nMesasReservadas}}
-            </h1>
-          </div>
-          <div>
-            <p>
-              Mesas reservadas HOY
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="item social-widget twitter" style="margin-bottom: 2%;">
-          <i class="fa fa-group"></i>
-          <div class="social-data">
-            <h1>
-              {{$flujoPersonas}}
-            </h1>
-          </div>
-          <div>
-            <p>
-              Flujo de personas
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- iconos datos hoy-->
 </div>
-<br>
+
 <div class="container">
   <div class="row">
     <div class="col-md-12">

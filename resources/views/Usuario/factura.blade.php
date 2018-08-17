@@ -1,15 +1,24 @@
 @extends(Auth::User()->esAdmin ? 'Layout.app_administradores' : 'Layout.app_empleado')
 @section('content')
 @include('flash::message')
-{!!Html::style('assetsNew/styles/cajero.css')!!}
-
+{!!Html::style('assets-Internas/css/cajero.css')!!}
+<title>
+  PocketSmarBar - Mi Factura
+</title>
 
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-<div class="container">                   
+<div class="page-titleFact">
+  <div style="background-color: #FCFCFC">
+    <h1 align="center" style="line-height: 1.5;">
+      Así se verá tu factura, ¡editala!
+    </h1>
+  </div>
+</div>
+
+<div class="container">
   <div class="row">
     <div class="col-lg-12">
-    	<h1 align="center">Así se verá tu factura, ¡editala!</h1>
 <!-- inicio-->
 		<div class="receipt-content">
 		  <div class="container bootstrap snippet">
@@ -20,78 +29,84 @@
               	 {{ csrf_field() }}
 			<!-- inicio de prueba -->
 		        <div class="row">
-		          <div class="col-md-3">
-		            <div class="widget-content fileupload fileupload-new" data-provides="fileupload">
-	                    <div class="gallery-container fileupload-new img-thumbnail">
-	                      <div class="gallery-item filter1" rel="" style="border-radius: 50%; width: 150px; height: 150px;">
-	                        @if($empresa->imagenPerfilNegocio!='')
-	                          {!! Html::image('images/admins/'.$empresa->imagenPerfilNegocio,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo', 'id' => 'imagenPerfilNegocioCircular')) !!}
-	                          <!-- clase circular -> , array('class' => 'img-responsive img-circle user-photo') -->
-	                        @else
-	                          <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
-	                        @endif
-	                        <div class="actions">
-	                          <a  id="modalImagen" href="{{ asset ('images/admins/'.$empresa->imagenPerfilNegocio) }}" title="Imagen negocio">
-	                            <img src="{{ asset ('images/admins/'.$empresa->imagenPerfilNegocio) }}" hidden>
-	                            <i class="fa fa-search-plus"></i>
-	                          </a>
-	                          <a onclick="$('#imagenPerfil').click()">
-	                            <i class="fa fa-pencil"></i>
-	                          </a>
-	                        </div>
-	                      </div>
-	                    </div>
-	                    <div class="gallery-item fileupload-preview fileupload-exists img-thumbnail" style="border-radius: 50%; width: 150px; height: 150px; background: #ffffff;">
-	                      
-	                    </div>
-	                    <div hidden>
-	                      <span class=" btn-file" id="subirImagenNegocio">
-	                        <span class="fileupload-new"><i class="fa fa-pencil"></i></span>
-	                        <span class="fileupload-exists"><i class="fa fa-search-plus"></i></span>
-	                        <input type="file" class="form-control" name="imagenPerfilNegocio"  id="imagenPerfil">
-	                      </span>
-	                    </div>
-	                  </div>
-		          </div>
-		          <div class="col-md-6">
-		              <div class="factspace text-center">
-		                <strong class=" text1">
-		                  {{$user->EmpresaActual->nombreEstablecimiento}}
-		                </strong>
-		                <span class="spanR">Nit: {{$user->EmpresaActual->nit}}</span>
-		                <p>
-		                  {{$user->EmpresaActual->direccion}} {{$user->EmpresaActual->ciudad}} {{$user->EmpresaActual->departamento}} <br>
-		                  {{$user->EmpresaActual->telefono}} <br>
-		                </p>           
-		              </div>
-		          </div>
-		          <div class="col-md-3">
-		              <div class="factspace text-right" >
-		                <strong class=" text1 text-danger" style="color: #2d0031;">
-		                	@if($empresa->tipoRegimen == "comun")
-		                		Factura No.
-		                		<br>
-	                			{{$empresa->prefijo}} - {{$empresa->contadorFactura}}
-		                    @else
-		                    	Documento equivalente 
-		                    	a la factura No. {{$empresa->contadorFactura}}
-		                    @endif
-		                </strong>
-		                <p>
-		                    <strong>Mesa:</strong>
-		                        # 
-		                        <a class="recarga"  title="recargar" href="">
-		                        	<span class="fa fa-fw fa-repeat" title="recargar"></span></a>
-		                        <br>
-		                    <span class="spanR" id="fecha"> 
-		                    </span>
-		                    <span class="label label-danger">Pendiente</span>
-		                        </p>
-		                   <div id="contenedorMesas">
-		                </div>
-		              </div>
-		          </div>
-		        </div>        
+              <div class="col-sm-3">
+                <div class="text-aling-cent widget-content fileupload fileupload-new" data-provides="fileupload">
+                  <div class="gallery-container fileupload-new img-thumbnail">
+                    <div class="gallery-item filter1" rel="" style="border-radius: 50%; width: 150px; height: 150px;">
+                    @if($empresa->imagenPerfilNegocio!='')
+                      {!! Html::image('images/admins/'.$empresa->imagenPerfilNegocio,  'imagen de perfil', array('class' => 'img-responsive img-circle user-photo', 'id' => 'imagenPerfilNegocioCircular')) !!}
+                      <!-- clase circular -> , array('class' => 'img-responsive img-circle user-photo') -->
+                    @else
+                      <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image">
+                    @endif
+                    <div class="actions">
+                      <a  id="modalImagen" href="{{ asset ('images/admins/'.$empresa->imagenPerfilNegocio) }}" title="Imagen negocio">
+                      <img src="{{ asset ('images/admins/'.$empresa->imagenPerfilNegocio) }}" hidden>
+                      <i class="fa fa-search-plus"></i>
+                      </a>
+                      <a onclick="$('#imagenPerfil').click()">
+                      <i class="fa fa-pencil"></i>
+                      </a>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="gallery-item fileupload-preview fileupload-exists img-thumbnail" style="border-radius: 50%; width: 150px; height: 150px; background: #ffffff;">
+
+                  </div>
+                  <div hidden>
+                    <span class=" btn-file" id="subirImagenNegocio">
+                    <span class="fileupload-new"><i class="fa fa-pencil"></i></span>
+                    <span class="fileupload-exists"><i class="fa fa-search-plus"></i></span>
+                    <input type="file" class="form-control" name="imagenPerfilNegocio"  id="imagenPerfil">
+                    </span>
+                  </div>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="factspace text-center">
+                <strong class=" text1" style="color: #2d0031;">
+                  {{$user->EmpresaActual->nombreEstablecimiento}}
+                </strong>
+                <span class="spanR">Nit: {{$user->EmpresaActual->nit}}</span>
+                <p>
+                  {{$user->EmpresaActual->direccion}} {{$user->EmpresaActual->ciudad}} {{$user->EmpresaActual->departamento}}
+                  <br>
+                  {{$user->EmpresaActual->telefono}}
+                  <br>
+                  mandalabeer@gmail.com {{$user->EmpresaActual->emailEmpresa}}
+                </p>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="factspace text-Fact" >
+                <strong class=" text1 text-danger" style="color: #2d0031;line-height: 1;">
+                  @if($empresa->tipoRegimen == "comun")
+                    <span class="text-danger" style="font-size: 23px;">FACTURA</span>
+                    <br>
+                    {{$empresa->prefijo}} <span style="font-size: 12px;">No.</span>{{$empresa->contadorFactura}}
+                  @else
+                  <span class="text-danger" style="font-size: 23px;">FACTURA</span>
+                    <br>
+                    <span style="font-size: 12px;">No.</span>{{$empresa->contadorFactura}}
+                  @endif
+                </strong>
+                <br>
+                Regimen {{$empresa->tipoRegimen}}
+                <p>
+                  <span>Mesa:</span>
+                    #
+                    <a class="recarga"  title="recargar" href="">
+                      <span class="fa fa-fw fa-repeat" title="recargar"></span></a>
+                    <br>
+                  <span class="spanR" id="fecha">
+                  </span>
+                  <span style="margin: 10px 0px !important;" class="label label-danger">Pendiente</span>
+                    </p>
+                   <div id="contenedorMesas">
+                </div>
+                </div>
+              </div>
+		        </div>
 					<div class="divider factspace3"></div>
 						<div class="row" id="toggle">
 							<div class="col-md-12 text-center">
@@ -103,23 +118,23 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="widget-container fluid-height clearfix">
-              <div class="col-md-4 text-center">
+              <div class="col-md-4">
                 <div class="heading" style="color:#9F9F9F;">
-                  <i class="fa fa-houzz"></i>Mesero:<span id="mesero">         
+                  <i class="fa fa-houzz"></i>Mesero:<span id="mesero">
                     </span>
                 </div>
           		<div class="factspace3"></div>
               </div>
-              <div class="col-md-4 text-center">
+              <div class="col-md-4">
                 <div class="heading"  style="color:#9F9F9F;">
-                  <i class="fa fa-imdb"></i>Bartender:<span id="bartender"> 
+                  <i class="fa fa-imdb"></i>Bartender:<span id="bartender">
                   </span>
                 </div>
           	  <div class="factspace3"></div>
               </div>
-              <div class="col-md-4 text-center">
+              <div class="col-md-4">
                 <div class="heading"  style="color:#9F9F9F;">
-                  <i class="fa fa-imdb"></i>Cajero:<span id="cajero">  
+                  <i class="fa fa-imdb"></i>Cajero:<span id="cajero">
                     </span>
                 </div>
           	  	<div class="factspace3"></div>
@@ -127,42 +142,42 @@
               </div>
             </div>
         </div>
-        <div class="line-items">      
+        <div class="line-items">
           <div class="col-lg-12 ">
             <div class="headers clearfix">
               <div class="row">
                 <div class="col-xs-5">Producto</div>
-                <div class="FactPocket col-xs-2 text-center">Cantidad</div>
-                <div class="FactPocket col-xs-2 text-center">Pago</div>
-                <div class="FactPocket col-xs-2 text-center">A Pagar</div>
-                <div class="FactPocket col-xs-2 text-center">V. Unitario</div>
-                <div class="FactPocket col-xs-2 text-center">Total</div>
+                <div class="FactPocket disFact col-xs-2 text-center">Cant</div>
+                <div class="FactPocket disFact col-xs-2 text-center">Pago</div>
+                <div class="quitarFact FactPocket col-xs-2 text-center">A Pagar</div>
+                <div class="quitarFact FactPocket col-xs-2 text-center">V. Unitario</div>
+                <div class="quitarFact FactPocket col-xs-2 text-center">Total</div>
               </div>
             </div>
             <div class="items" id="tabla">
             	<div class="row">
 	                <div class="col-xs-5">Producto 1</div>
-	                <div class="FactPocket col-xs-2 text-center">1</div>
-	                <div class="FactPocket col-xs-2 text-center">0</div>
-	                <div class="FactPocket col-xs-2 text-center">100</div>
-	                <div class="FactPocket col-xs-2 text-center">100</div>
-	                <div class="FactPocket col-xs-2 text-center">100</div>
+	                <div class="FactPocket disFact col-xs-2 text-center">1</div>
+	                <div class="FactPocket disFact col-xs-2 text-center">0</div>
+	                <div class="quitarFact FactPocket col-xs-2 text-center">100</div>
+	                <div class="quitarFact FactPocket col-xs-2 text-center">100</div>
+	                <div class="quitarFact FactPocket col-xs-2 text-center">100</div>
 	        	</div>
 	        	<div class="row">
 	                <div class="col-xs-5">Producto 2</div>
-	                <div class="FactPocket col-xs-2 text-center">2</div>
-	                <div class="FactPocket col-xs-2 text-center">1</div>
-	                <div class="FactPocket col-xs-2 text-center">400</div>
-	                <div class="FactPocket col-xs-2 text-center">200</div>
-	                <div class="FactPocket col-xs-2 text-center">200</div>
+	                <div class="FactPocket disFact col-xs-2 text-center">2</div>
+	                <div class="FactPocket disFact col-xs-2 text-center">1</div>
+	                <div class="quitarFact FactPocket col-xs-2 text-center">400</div>
+	                <div class="quitarFact FactPocket col-xs-2 text-center">200</div>
+	                <div class="quitarFact FactPocket col-xs-2 text-center">200</div>
 	        	</div>
 	        	<div class="row">
 	                <div class="col-xs-5">Producto 3</div>
-	                <div class="FactPocket col-xs-2 text-center">4</div>
-	                <div class="FactPocket col-xs-2 text-center">4</div>
-	                <div class="FactPocket col-xs-2 text-center">2000</div>
-	                <div class="FactPocket col-xs-2 text-center">500</div>
-	                <div class="FactPocket col-xs-2 text-center">0</div>
+	                <div class="FactPocket disFact col-xs-2 text-center">4</div>
+	                <div class="FactPocket disFact col-xs-2 text-center">4</div>
+	                <div class="quitarFact FactPocket col-xs-2 text-center">2000</div>
+	                <div class="quitarFact FactPocket col-xs-2 text-center">500</div>
+	                <div class="quitarFact FactPocket col-xs-2 text-center">0</div>
 	        	</div>
            	</div>
            	<div class="total text-right">
@@ -177,7 +192,7 @@
               	<div class="login-form" id="field">
               		<input autocomplete="off" class="input" name="iva" id="iva" placeholder="Iva" data-items="8"  value="Iva" disabled style="width: 10%;"/>
               		<input autocomplete="off" class="input" name="valorIva" id="valorIva" value="{{$empresa->iva}}%" placeholder="0%" data-items="8" style="width: 5%;"/>
-              		<button id="b1" class="add-more btn btn-pocket" type="button" style="padding: 1px 7px; width: 3%;">+</button>              		
+              		<button id="b1" class="add-more btn btn-pocket" type="button" style="padding: 1px 7px; width: 3%;">+</button>
               	</div>
               	<div class="login-form" id="divImpuesto1">
               		<!-- IMPUESTO 1 -->
@@ -204,52 +219,52 @@
 	              	@endif
               	</div>
               </div>
-              <div class="field"> 
+              <div class="field">
                 Total <span id="total">$300</span>
               </div>
             </div>
 		  </div>
           <div class="factspace1"></div>
           <div class="row" >
-            <div class="col-lg-12" >             
-	            <div class="col-md-4"  > 
+            <div class="col-lg-12" >
+	            <div class="col-md-4"  >
 	                <div class="form-group" style="padding-top: 25px;" >
 	                  <div class="input-group" >
 	                    <span class="input-group-addon" title="Propina sugerida"><i class="fa fa-money"></i></span>
 	                    <input class="form-control" name="propinaSugerida" placeholder="Propina sugerida" type="text" value="{{$empresa->propina}}%" id="propinaSugerida">
 	                  </div>
-	                </div>            
+	                </div>
 	            </div>
-	            <div class="col-md-4" > 
+	            <div class="col-md-4" >
 	                <div class="form-group">
 	                  <div class="input-group" style="padding-top: 25px; ">
 	                    <span class="input-group-addon"><i class="fa fa-money"></i></span>
 	                    <input class="form-control" placeholder="Efectivo" type="text" id="efectivo" disabled>
 	                  </div>
-	                </div>            
+	                </div>
 	            </div>
-           	 	<div class="col-md-4"> 
+           	 	<div class="col-md-4">
 	                <div class="form-group" style="padding-top: 25px;">
 	                  <div class="input-group">
 	                    <span class="input-group-addon"><i class="fa fa-refresh"></i></span>
 	                    <input class="form-control" id="cambio" disabled="" placeholder="Cambio" type="text" disabled>
 	                  </div>
-	                </div>            
+	                </div>
             	</div>
 	            @if($empresa->tipoRegimen == "comun")
                 <br>
                 <div class="text-center">
-	            	<strong  style="text-align: center;">Resolución DIAN: {{$empresa->nresolucionFacturacion}} de {{$empresa->fechaResolucion}} del No. {{$empresa->nInicio}} hasta {{$empresa->nFinal}}
-	            	</strong>
+	            	<span  style="text-align: center;"><span class="text-success">Resolución DIAN:</span>< {{$empresa->nresolucionFacturacion}} de {{$empresa->fechaResolucion}} del No. <span class="text-success">{{$empresa->nInicio}}</span> Hasta <span class="text-success">{{$empresa->nFinal}}</span>
+	            	</span>
 	            </div>
                 @endif
 	        </div>
             <div style="text-align: center; margin-top: 2%;" >
-              	<button class="btn btn-bitbucket">
-                  Guardar
+              	<button class="btn btn-pocket" style="font-weight: 400;">
+                  <i class="fa fa-send"></i>Guardar
                 </button>
               </div>
-          	</div>          
+          	</div>
 	    </div>
 	    {!! Form::close() !!}
       </div>
@@ -261,7 +276,7 @@
  </div>
  </div>
  </div>
-</div>                    
+</div>
 
 <!-- fin -->
     </div>
@@ -269,6 +284,17 @@
 </div>
 
 <script type="text/javascript">
+/* cambiar clase para tabla*/
+
+if ($(window).width() < 446) {
+  $(".quitarFact").removeClass("FactPocket col-xs-2 text-center").addClass("col-xs-2 text-center");
+ }
+ else {
+  alert('mas de 446px');
+ }
+
+
+
 	var JSONempresa = eval(<?php echo json_encode($empresa); ?>);
 
 	$(document).ready(function(){
@@ -344,7 +370,7 @@
 
 			if(impuesto1 == ""){
 				contador = 1;
-			}else if(impuesto2 == ""){ 
+			}else if(impuesto2 == ""){
 				contador = 2;
 			}else if(impuesto1 != ""){
 				contador = 2;
@@ -376,12 +402,12 @@
 	          if( input.length ) {
 	              input.val(log);
 	          } else {
-	          	
+
 	          }
 
 	      });
 	  });
-  
+
 });
 </script>
 
@@ -392,7 +418,7 @@
   	}
 
   	#iva:disabled{
-		background-color: #fff;  
+		background-color: #fff;
 		color: #111;
 	}
 </style>

@@ -1,13 +1,20 @@
 @charset "utf-8";
 /* CSS Document */
 
+/*----------------------------------------------------------------------------------- */
 /*colores de notificaciones*/
-.NotProfile{background-color: #8784c3;}
+/*----------------------------------------------------------------------------------- */
+.NotProfile{background-color: deepskyblue;}
+.NotEmpleado{background-color: blueviolet;}
+.NotMiCarta{background-color: orangered;}
+.NotMiInventario{background-color: green;}
+.NotReportes{background-color: yellow;}
+.NotSmartShop{background-color: purple;}
+.NotConfig{background-color: red;}
 
-
-
-
-
+/*----------------------------------------------------------------------------------- */
+/*colores de notificaciones*/
+/*----------------------------------------------------------------------------------- */
 
 /* Fincolores de notificaciones*/
 
