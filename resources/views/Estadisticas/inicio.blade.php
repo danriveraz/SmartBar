@@ -664,6 +664,446 @@
 
 
 
+<div class="page-title chart-container">
+  <h1>
+    Gráficas De Bartender
+  </h1>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <!-- Inicio Gráfica de Bartender ventas totales -->
+    <div class="row">
+      <i class="fa fa-bar-chart-o"></i>Top 4 Bartender con más ventas
+      <form id="formBartenderTotal" class="login-form">
+        <fieldset>
+        <div class="col-md-4">
+            <div class="input-container"> 
+              <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio"  type="date">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-container"> 
+              <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin" type="date">
+            </div>
+        </div>
+        <div class="col-md-2">
+          <div  class="form-group">
+            <a id='buscarBartenderTotal' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+              <i class="fa fa-send"></i>
+              Buscar
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+        <div class="widget-container fluid-height">
+          <div class="widget-content padded text-center">
+            <div class="graph-container">
+              <div class="caption"></div>
+              <div class="graph" id="GraficaBartenderTotal"></div>
+              <!-- Bar Charts:Morris -->
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- Fin Gráfica de Bartender ventas totales -->
+  </div>
+  <!-- Inicio de tabulador de Gráfica de Bartender -->
+  <div class="col-md-6">
+    <div id="exTab2" class="container"> 
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#tabBartenderHora" data-toggle="tab">Por Horas</a>
+        </li>
+        <li >
+          <a href="#tabBartenderDias" data-toggle="tab">Por Días</a>
+        </li>
+        <li >
+          <a  href="#tabBartenderSemana" data-toggle="tab">Por Semana</a>
+        </li>
+        <li><a href="#tabBartenderMes" data-toggle="tab">Por Mes</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+
+        <!-- Inicio Gráfica de Bartender Por Horas -->
+        <div class="tab-pane active" id="tabBartenderHora">
+          <div class="row">
+            <form id="formBartenderHora" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarBartenderHora' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaBartenderHora"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Bartender Por Horas -->
+
+        <!-- Inicio Gráfica de Bartender Por Días -->
+        <div class="tab-pane" id="tabBartenderDias">
+          <div class="row">
+            <form id="formBartenderDias" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarBartenderDia' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaBartenderDias"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Bartender Por Dias -->
+        <!-- Inicio Gráfica de Bartender Por semanas -->
+        <div class="tab-pane" id="tabBartenderSemana">
+          <div class="row">
+            <form id="formBartenderemana" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" id="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin" id="fechaFin" type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarBartenderSemana' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaBartenderSemana"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Bartender Por semanas -->
+        <!-- Inicio Gráfica de Bartender Por Mes -->
+        <div class="tab-pane" id="tabBartenderMes">
+          <div class="row">
+            <form id="formBartenderMes" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarBartenderMes' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaBartenderMes"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Bartender Por Mes -->
+      </div>
+    </div>
+  </div>
+  <!-- Fin de tabulador de Gráfica de Bartender -->
+</div>
+
+
+
+<div class="page-title chart-container">
+  <h1>
+    Gráficas De Cajeros
+  </h1>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <!-- Inicio Gráfica de Cajeros ventas totales -->
+    <div class="row">
+      <i class="fa fa-bar-chart-o"></i>Top 4 Cajeros con más ventas
+      <form id="formCajerosTotal" class="login-form">
+        <fieldset>
+        <div class="col-md-4">
+            <div class="input-container"> 
+              <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio"  type="date">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-container"> 
+              <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin" type="date">
+            </div>
+        </div>
+        <div class="col-md-2">
+          <div  class="form-group">
+            <a id='buscarCajerosTotal' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+              <i class="fa fa-send"></i>
+              Buscar
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+        <div class="widget-container fluid-height">
+          <div class="widget-content padded text-center">
+            <div class="graph-container">
+              <div class="caption"></div>
+              <div class="graph" id="GraficaCajerosTotal"></div>
+              <!-- Bar Charts:Morris -->
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- Fin Gráfica de Cajeros ventas totales -->
+  </div>
+  <!-- Inicio de tabulador de Gráfica de Cajeros -->
+  <div class="col-md-6">
+    <div id="exTab2" class="container"> 
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#tabCajerosHora" data-toggle="tab">Por Horas</a>
+        </li>
+        <li >
+          <a href="#tabCajerosDias" data-toggle="tab">Por Días</a>
+        </li>
+        <li >
+          <a  href="#tabCajerosSemana" data-toggle="tab">Por Semana</a>
+        </li>
+        <li><a href="#tabCajerosMes" data-toggle="tab">Por Mes</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+
+        <!-- Inicio Gráfica de Cajeros Por Horas -->
+        <div class="tab-pane active" id="tabCajerosHora">
+          <div class="row">
+            <form id="formCajerosHora" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarCajerosHora' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaCajerosHora"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Cajeros Por Horas -->
+
+        <!-- Inicio Gráfica de Cajeros Por Días -->
+        <div class="tab-pane" id="tabCajerosDias">
+          <div class="row">
+            <form id="formCajerosDias" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarCajerosDia' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaCajerosDias"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Cajeros Por Dias -->
+        <!-- Inicio Gráfica de Cajeros Por semanas -->
+        <div class="tab-pane" id="tabCajerosSemana">
+          <div class="row">
+            <form id="formCajerosemana" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" id="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin" id="fechaFin" type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarCajerosSemana' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaCajerosSemana"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Cajeros Por semanas -->
+        <!-- Inicio Gráfica de Cajeros Por Mes -->
+        <div class="tab-pane" id="tabCajerosMes">
+          <div class="row">
+            <form id="formCajerosMes" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarCajerosMes' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaCajerosMes"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Cajeros Por Mes -->
+      </div>
+    </div>
+  </div>
+  <!-- Fin de tabulador de Gráfica de Cajeros -->
+</div>
+
+
+
         <div class="row">
           <!-- Line Chart -->
           <div class="col-md-6">
@@ -960,6 +1400,19 @@
    var datosCategoriaHora = {!!$categoriasVentasPorHora!!};
    var datosMeseroTotal = {!!$meseros!!};
    var datosMeseroSemana = {!!$meserosVentasPorSemana!!};
+   var datosMeseroDia = {!!$meserosVentasPorDia!!};
+   var datosMeseroMes = {!!$meserosVentasPorMes!!};
+   var datosMeseroHora = {!!$meserosVentasPorHora!!};
+   var datosBartenderTotal = {!!$Bartender!!};
+   var datosBartenderSemana = {!!$BartenderVentasPorSemana!!};
+   var datosBartenderDia = {!!$BartenderVentasPorDia!!};
+   var datosBartenderMes = {!!$BartenderVentasPorMes!!};
+   var datosBartenderHora = {!!$BartenderVentasPorHora!!};
+   var datosCajerosTotal = {!!$Cajeros!!};
+   var datosCajerosSemana = {!!$CajerosVentasPorSemana!!};
+   var datosCajerosDia = {!!$CajerosVentasPorDia!!};
+   var datosCajerosMes = {!!$CajerosVentasPorMes!!};
+   var datosCajerosHora = {!!$CajerosVentasPorHora!!};
 
   $(window).resize(function(e) {
     drawChart()
@@ -1379,6 +1832,372 @@ $("#buscarProductoHora").click(function(){
     });
 });
 
+//-----------------------AJAX MESEROS----------------------
+$("#buscarMeseroSemana").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formMeseroSemana')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasMeserosPorSemana')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (data) {
+          $('#GraficaMeserosSemana').empty();
+          datosMeseroSemana = data;
+          console.log(data);
+          drawChart(); // repinta la gráfica
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarMeseroTotal").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formMeseroTotal')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/MeserosMasVendidos')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosMeseroTotal = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarMeseroDia").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formMeseroDias')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasMeserosPorDia')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosMeseroDia = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarMeseroMes").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formMeseroMes')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasMeserosPorMes')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosMeseroMes = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarMeseroHora").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formMeseroHora')[0]);
+    console.log(FormData);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasMeserosPorHora')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosMeseroHora = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+//-----------------------AJAX BARTENDER----------------------
+$("#buscarBartenderSemana").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formBartenderemana')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasBartenderPorSemana')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (data) {
+          $('#GraficaBartenderSemana').empty();
+          datosBartenderSemana = data;
+          console.log(data);
+          drawChart(); // repinta la gráfica
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarBartenderTotal").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formBartenderTotal')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/BartenderMasVendidos')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosBartenderTotal = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarBartenderDia").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formBartenderDias')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasBartenderPorDia')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosBartenderDia = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarBartenderMes").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formBartenderMes')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasBartenderPorMes')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosBartenderMes = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarBartenderHora").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formBartenderHora')[0]);
+    console.log(FormData);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasBartenderPorHora')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosBartenderHora = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+//-----------------------AJAX Cajeros----------------------
+$("#buscarCajerosSemana").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formCajerosemana')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasCajerosPorSemana')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (data) {
+          $('#GraficaCajerosSemana').empty();
+          datosCajerosSemana = data;
+          console.log(data);
+          drawChart(); // repinta la gráfica
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarCajerosTotal").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formCajerosTotal')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/CajerosMasVendidos')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosCajerosTotal = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarCajerosDia").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formCajerosDias')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasCajerosPorDia')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosCajerosDia = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarCajerosMes").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formCajerosMes')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasCajerosPorMes')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosCajerosMes = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarCajerosHora").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formCajerosHora')[0]);
+    console.log(FormData);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasCajerosPorHora')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosCajerosHora = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+
 //Esto es para refresar las gráficas cada vez que se cambia de tabulación, PD: esas gráficas molestan mucho 
 $('[data-toggle="tab"]').click(function(){
   //drawChart();
@@ -1515,6 +2334,141 @@ function drawChart() {
   }; 
   var chart = new google.charts.Line(document.getElementById('GraficaMeserosSemana'));
   chart.draw(data, google.charts.Line.convertOptions(options));
+
+    //Gráfica de Lineas para las ventas de Meseros por dia
+  var data = new google.visualization.DataTable(datosMeseroDia);
+  var options = {
+    title: 'Total de Ventas de los meseros Divido en Días',
+    height: 340, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaMeserosDias'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+      //Gráfica de Lineas para las ventas de Meseros por mes
+  var data = new google.visualization.DataTable(datosMeseroMes);
+  var options = {
+    title: 'Total de Ventas de los meseros Divido en Meses',
+    height: 340, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaMeserosMes'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+        //Gráfica de Lineas para las ventas de Meseros por mes
+  var data = new google.visualization.DataTable(datosMeseroHora);
+  var options = {
+    title: 'Total de Ventas de los meseros Divido en Horas',
+    height: 340, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaMeserosHora'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+  google.visualization.events.addListener(chart, 'error', function (googleError) {
+      google.visualization.errors.removeError(googleError.id);
+      document.getElementById("GraficaMeserosHora").innerHTML = "No hay datos para Mostrar, Seleccione un día con ventas";
+  });
+
+
+
+//Gráfica de barras para las ventas totales de los Bartender
+  var data = new google.visualization.DataTable(datosBartenderTotal);
+  var options = {
+    title: 'Bartender que más han vendido',
+    height: 300,
+    legend: { position: 'none' },
+  };
+  var chart = new google.charts.Bar(document.getElementById('GraficaBartenderTotal'));
+  chart.draw(data, google.charts.Bar.convertOptions(options)); 
+
+  //Gráfica de Lineas para las ventas de Bartender por semana
+  var data = new google.visualization.DataTable(datosBartenderSemana);
+  var options = {
+    title: 'Total de Ventas de los Bartender Divido en Semanas',
+    height: 300, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaBartenderSemana'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+    //Gráfica de Lineas para las ventas de Bartender por dia
+  var data = new google.visualization.DataTable(datosBartenderDia);
+  var options = {
+    title: 'Total de Ventas de los Bartender Divido en Días',
+    height: 300, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaBartenderDias'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+      //Gráfica de Lineas para las ventas de Bartender por mes
+  var data = new google.visualization.DataTable(datosBartenderMes);
+  var options = {
+    title: 'Total de Ventas de los Bartender Divido en Meses',
+    height: 300, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaBartenderMes'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+        //Gráfica de Lineas para las ventas de Bartender por mes
+  var data = new google.visualization.DataTable(datosBartenderHora);
+  var options = {
+    title: 'Total de Ventas de los Bartender Divido en Horas',
+    height: 300, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaBartenderHora'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+  google.visualization.events.addListener(chart, 'error', function (googleError) {
+      google.visualization.errors.removeError(googleError.id);
+      document.getElementById("GraficaBartenderHora").innerHTML = "No hay datos para Mostrar, Seleccione un día con ventas";
+  });
+
+
+
+//Gráfica de barras para las ventas totales de los Cajeros
+  var data = new google.visualization.DataTable(datosCajerosTotal);
+  var options = {
+    title: 'Cajeros que más han vendido',
+    height: 300,
+    legend: { position: 'none' },
+  };
+  var chart = new google.charts.Bar(document.getElementById('GraficaCajerosTotal'));
+  chart.draw(data, google.charts.Bar.convertOptions(options)); 
+
+  //Gráfica de Lineas para las ventas de Cajeros por semana
+  var data = new google.visualization.DataTable(datosCajerosSemana);
+  var options = {
+    title: 'Total de Ventas de los Cajeros Divido en Semanas',
+    height: 300, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaCajerosSemana'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+    //Gráfica de Lineas para las ventas de Cajeros por dia
+  var data = new google.visualization.DataTable(datosCajerosDia);
+  var options = {
+    title: 'Total de Ventas de los Cajeros Divido en Días',
+    height: 300, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaCajerosDias'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+      //Gráfica de Lineas para las ventas de Cajeros por mes
+  var data = new google.visualization.DataTable(datosCajerosMes);
+  var options = {
+    title: 'Total de Ventas de los Cajeros Divido en Meses',
+    height: 300, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaCajerosMes'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+        //Gráfica de Lineas para las ventas de Cajeros por mes
+  var data = new google.visualization.DataTable(datosCajerosHora);
+  var options = {
+    title: 'Total de Ventas de los Cajeros Divido en Horas',
+    height: 300, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaCajerosHora'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+  google.visualization.events.addListener(chart, 'error', function (googleError) {
+      google.visualization.errors.removeError(googleError.id);
+      document.getElementById("GraficaCajerosHora").innerHTML = "No hay datos para Mostrar, Seleccione un día con ventas";
+  });
 
 }
 
