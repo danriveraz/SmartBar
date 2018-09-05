@@ -3,12 +3,13 @@
 <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
     <div class="modal-shiftfix">
       <div class="container-fluid main-content">
-        <div class="page-title chart-container">
-          <h1>
-            Gráficas De Categorias
-          </h1>
-        </div>
 
+
+<div class="page-title chart-container">
+  <h1>
+    Gráficas De Categorias
+  </h1>
+</div>
 <div class="row">
   <div class="col-md-6">
     <!-- Inicio Gráfica de categorias ventas totales -->
@@ -53,15 +54,15 @@
     <div id="exTab2" class="container"> 
       <ul class="nav nav-tabs">
         <li class="active">
-          <a href="#tabCategoriasHora" data-toggle="tab">Por Horas</a>
+          <a href="#tabCategoriasHora" data-toggle="tab" class="categorias">Por Horas</a>
         </li>
         <li >
-          <a href="#tabCategoriasDias" data-toggle="tab">Por Días</a>
+          <a href="#tabCategoriasDias" data-toggle="tab" class="categorias">Por Días</a>
         </li>
         <li >
-          <a  href="#tabCategoriasSemana" data-toggle="tab">Por Semana</a>
+          <a  href="#tabCategoriasSemana" data-toggle="tab" class="categorias">Por Semana</a>
         </li>
-        <li><a href="#tabCategoriasMes" data-toggle="tab">Por Mes</a>
+        <li><a href="#tabCategoriasMes" data-toggle="tab" class="categorias">Por Mes</a>
         </li>
       </ul>
 
@@ -273,15 +274,15 @@
     <div id="exTab2" class="container"> 
       <ul class="nav nav-tabs">
         <li class="active">
-          <a href="#tabProductosHora" data-toggle="tab">Por Horas</a>
+          <a href="#tabProductosHora" data-toggle="tab" class="productos">Por Horas</a>
         </li>
         <li >
-          <a href="#tabProductosDias" data-toggle="tab">Por Días</a>
+          <a href="#tabProductosDias" data-toggle="tab" class="productos">Por Días</a>
         </li>
         <li >
-          <a  href="#tabProductosSemana" data-toggle="tab">Por Semana</a>
+          <a  href="#tabProductosSemana" data-toggle="tab" class="productos">Por Semana</a>
         </li>
-        <li><a href="#tabProductosMes" data-toggle="tab">Por Mes</a>
+        <li><a href="#tabProductosMes" data-toggle="tab" class="productos">Por Mes</a>
         </li>
       </ul>
 
@@ -494,15 +495,15 @@
     <div id="exTab2" class="container"> 
       <ul class="nav nav-tabs">
         <li class="active">
-          <a href="#tabMeserosHora" data-toggle="tab">Por Horas</a>
+          <a href="#tabMeserosHora" data-toggle="tab" class="meseros">Por Horas</a>
         </li>
         <li >
-          <a href="#tabMeserosDias" data-toggle="tab">Por Días</a>
+          <a href="#tabMeserosDias" data-toggle="tab" class="meseros">Por Días</a>
         </li>
         <li >
-          <a  href="#tabMeserosSemana" data-toggle="tab">Por Semana</a>
+          <a  href="#tabMeserosSemana" data-toggle="tab" class="meseros">Por Semana</a>
         </li>
-        <li><a href="#tabMeserosMes" data-toggle="tab">Por Mes</a>
+        <li><a href="#tabMeserosMes" data-toggle="tab" class="meseros">Por Mes</a>
         </li>
       </ul>
 
@@ -714,15 +715,15 @@
     <div id="exTab2" class="container"> 
       <ul class="nav nav-tabs">
         <li class="active">
-          <a href="#tabBartenderHora" data-toggle="tab">Por Horas</a>
+          <a href="#tabBartenderHora" data-toggle="tab" class="bartender">Por Horas</a>
         </li>
         <li >
-          <a href="#tabBartenderDias" data-toggle="tab">Por Días</a>
+          <a href="#tabBartenderDias" data-toggle="tab" class="bartender">Por Días</a>
         </li>
         <li >
-          <a  href="#tabBartenderSemana" data-toggle="tab">Por Semana</a>
+          <a  href="#tabBartenderSemana" data-toggle="tab" class="bartender">Por Semana</a>
         </li>
-        <li><a href="#tabBartenderMes" data-toggle="tab">Por Mes</a>
+        <li><a href="#tabBartenderMes" data-toggle="tab" class="bartender">Por Mes</a>
         </li>
       </ul>
 
@@ -934,15 +935,15 @@
     <div id="exTab2" class="container"> 
       <ul class="nav nav-tabs">
         <li class="active">
-          <a href="#tabCajerosHora" data-toggle="tab">Por Horas</a>
+          <a href="#tabCajerosHora" data-toggle="tab" class="cajeros">Por Horas</a>
         </li>
         <li >
-          <a href="#tabCajerosDias" data-toggle="tab">Por Días</a>
+          <a href="#tabCajerosDias" data-toggle="tab" class="cajeros">Por Días</a>
         </li>
         <li >
-          <a  href="#tabCajerosSemana" data-toggle="tab">Por Semana</a>
+          <a  href="#tabCajerosSemana" data-toggle="tab" class="cajeros">Por Semana</a>
         </li>
-        <li><a href="#tabCajerosMes" data-toggle="tab">Por Mes</a>
+        <li><a href="#tabCajerosMes" data-toggle="tab" class="cajeros">Por Mes</a>
         </li>
       </ul>
 
@@ -1382,11 +1383,7 @@
     </div>
 
 <script type="text/javascript">
-  /*
-   * =============================================================================
-   *   Morris Chart JS
-   * =============================================================================
-   */
+
    // datos para las gráficas, se pasa por medio de variables globales para tener acceso a ellas desde las funciones de ajax y la función que se llama cada vez que se hace resize
    var datosProductoTotal = {!!$productos!!};
    var datosProductoSemana = {!!$productosVentasPorSemana!!};
@@ -1422,198 +1419,6 @@
       return buildMorris(true);
     }, 500);*/
   });
-  $(function() {
-    return buildMorris();
-  });
-  buildMorris = function($re) {
-    var tax_data;
-    if ($re) {
-      $(".graph").html("");
-    }
-    tax_data = [
-      {
-        period: "2011 Q3",
-        licensed: 3407,
-        sorned: 660
-      }, {
-        period: "2011 Q2",
-        licensed: 3351,
-        sorned: 629
-      }, {
-        period: "2011 Q1",
-        licensed: 3269,
-        sorned: 618
-      }, {
-        period: "2010 Q4",
-        licensed: 3246,
-        sorned: 661
-      }, {
-        period: "2009 Q4",
-        licensed: 3171,
-        sorned: 676
-      }, {
-        period: "2008 Q4",
-        licensed: 3155,
-        sorned: 681
-      }, {
-        period: "2007 Q4",
-        licensed: 3226,
-        sorned: 620
-      }, {
-        period: "2006 Q4",
-        licensed: 3245,
-        sorned: null
-      }, {
-        period: "2005 Q4",
-        licensed: 3289,
-        sorned: null
-      }
-    ];
-
-    if ($('#hero-donut').length) {
-      Morris.Donut({
-        element: "hero-donut",
-        data: [
-          {
-            label: "Development",
-            value: 25
-          }, {
-            label: "Sales & Marketing",
-            value: 40
-          }, {
-            label: "User Experience",
-            value: 25
-          }, {
-            label: "Human Resources",
-            value: 10
-          }
-        ],
-        colors: ["#f0ad4e"],
-        formatter: function(y) {
-          return y + "%";
-        }
-      });
-    }
-    if ($('#hero-area').length) {
-      Morris.Area({
-        element: "hero-area",
-        data: [
-          {
-            period: "2010 Q1",
-            iphone: 2666,
-            ipad: null,
-            itouch: 2647
-          }, {
-            period: "2010 Q2",
-            iphone: 2778,
-            ipad: 2294,
-            itouch: 2441
-          }, {
-            period: "2010 Q3",
-            iphone: 4912,
-            ipad: 1969,
-            itouch: 2501
-          }, {
-            period: "2010 Q4",
-            iphone: 3767,
-            ipad: 3597,
-            itouch: 5689
-          }, {
-            period: "2011 Q1",
-            iphone: 6810,
-            ipad: 1914,
-            itouch: 2293
-          }, {
-            period: "2011 Q2",
-            iphone: 5670,
-            ipad: 4293,
-            itouch: 1881
-          }, {
-            period: "2011 Q3",
-            iphone: 4820,
-            ipad: 3795,
-            itouch: 1588
-          }, {
-            period: "2011 Q4",
-            iphone: 15073,
-            ipad: 5967,
-            itouch: 5175
-          }, {
-            period: "2012 Q1",
-            iphone: 10687,
-            ipad: 4460,
-            itouch: 2028
-          }, {
-            period: "2012 Q2",
-            iphone: 8432,
-            ipad: 5713,
-            itouch: 1791
-          }
-        ],
-        xkey: "period",
-        ykeys: ["iphone", "ipad", "itouch"],
-        labels: ["iPhone", "iPad", "iPod Touch"],
-        hideHover: "auto",
-        lineWidth: 2,
-        pointSize: 4,
-        lineColors: ["#a0dcee", "#f1c88e", "#a0e2a0"],
-        fillOpacity: 0.5,
-        smooth: true
-      });
-    }
-//Gráfica del comportamiento de ventas agrupado por semana
-    /*if ($('#GraficaCategoriasSemana').length) {
-      Morris.Line({
-        element: "GraficaCategoriasSemana",
-        data: datosCategoriaSemana,
-        xkey: "semana",
-        ykeys: ["Bebidas", "Cervezas","Otros","Licores"],
-        labels: ["Bebida", "Cerveza","Otros","Licores"],
-        lineColors: ["#5bc0de", "#60c560", "#2d0031", "#666666"],
-        hideHover: "auto",
-        smooth:false,
-        postUnits:' Ventas',
-        //dateFormat:function (x) { return new Date(x).toString(); },
-        //hoverCallback: function (index, options, content, row) {return "sin(" + content + ") = " + options;}
-      });
-    }*/
-
-//Gráfica del comportamiento de ventas agrupado por Días
-    /*if ($('#GraficaCategoriasDias').length) {
-      Morris.Line({
-        element: "GraficaCategoriasDias",
-        data: datosCategoriaSemana,
-        xkey: "semana",
-        ykeys: ["Bebidas", "Cervezas","Otros","Licores"],
-        labels: ["Bebida", "Cerveza","Otros","Licores"],
-        lineColors: ["#00ff00", "#00ff00", "#00ff00", "#00ff00"],
-        hideHover: "auto",
-        smooth:false,
-        postUnits:' Ventas',
-        //dateFormat:function (x) { return new Date(x).toString(); },
-        //hoverCallback: function (index, options, content, row) {return "sin(" + content + ") = " + options;}
-      });
-    }*/
-
-//Gráfica de barras para las ventas totales
-    /*if ($('#GraficaCategoriasTotal').length) {
-      return Morris.Bar({
-        element: "GraficaCategoriasTotal",
-        data: datosCategoriaTotal,
-        xkey: "nombre",
-        ykeys: ["total"],
-        labels: ["total"],
-        barRatio: 0.4,
-        xLabelAngle: 35,
-        hideHover: "auto",
-        barColors: ["#5bc0de"]
-      });
-    }*/
-
-
-
-
-  };
 
 //Ajax para cargar los datos de 
 $("#buscarCategoriaSemana").click(function(){
@@ -2201,11 +2006,29 @@ $("#buscarCajerosHora").click(function(){
 //Esto es para refresar las gráficas cada vez que se cambia de tabulación, PD: esas gráficas molestan mucho 
 $('[data-toggle="tab"]').click(function(){
   //drawChart();
-  var morrisResize;
-  clearTimeout(morrisResize);
-  return morrisResize = setTimeout(function() {
-    return drawChart();
-  }, 500);
+  var tipo = $(this).attr('class');
+  var timeResize;
+  clearTimeout(timeResize);
+  return timeResize = setTimeout(function() {
+    console.log(tipo);
+    switch(tipo) {
+      case "productos":
+        return chartLineProductos();
+        break;
+      case "categorias":
+        return chartLineCategorias();
+        break;
+      case "bartender":
+        return chartLineBartender();
+        break;
+      case "cajeros":
+        return chartLineCajeros();
+        break;
+      case "meseros":
+        return chartLineMeseros();
+        break;
+    }
+  }, 50);
 });
 
 google.charts.load('current', {packages: ['corechart','bar','line']});     
@@ -2213,6 +2036,19 @@ google.charts.setOnLoadCallback(drawChart);
 
 // función que se llama para dibujar las gráficas
 function drawChart() {
+  chartLineProductos();
+  chartLineCategorias();
+  chartLineBartender();
+  chartLineMeseros();
+  chartLineCajeros();
+  chartBarCategorias();
+  chartBarProductos();
+  chartBarBartender();
+  chartBarMeseros();
+  chartBarCajeros();
+}
+
+function chartBarProductos() {
   //Gráfica de barras para las ventas totales por producto
   var data = new google.visualization.DataTable(datosProductoTotal);
   var options = {
@@ -2222,8 +2058,11 @@ function drawChart() {
   }; 
   var chart = new google.charts.Bar(document.getElementById('GraficaProductosTotal'));
   chart.draw(data, google.charts.Bar.convertOptions(options));
+}
 
-//Gráfica de Lineas para las ventas de productos por semana
+function chartLineProductos() {
+
+  //Gráfica de Lineas para las ventas de productos por semana
   var data = new google.visualization.DataTable(datosProductoSemana);
   var options = {
     title: 'Total de Ventas Por Productos Divido en Semanas',
@@ -2262,7 +2101,9 @@ function drawChart() {
       google.visualization.errors.removeError(googleError.id);
       document.getElementById("GraficaProductosHora").innerHTML = "No hay datos para Mostrar, Seleccione un día con ventas";
   });
+}
 
+function chartBarCategorias() {
 
   //Gráfica de barras para las ventas totales
   var data = new google.visualization.DataTable(datosCategoriaTotal);
@@ -2273,6 +2114,9 @@ function drawChart() {
   }; 
   var chart = new google.charts.Bar(document.getElementById('GraficaCategoriasTotal'));
   chart.draw(data, google.charts.Bar.convertOptions(options));
+}
+
+function chartLineCategorias() {
 
   //Gráfica de Lineas para las ventas de categorias por semana
   var data = new google.visualization.DataTable(datosCategoriaSemana);
@@ -2313,9 +2157,9 @@ function drawChart() {
       google.visualization.errors.removeError(googleError.id);
       document.getElementById("GraficaCategoriasHora").innerHTML = "No hay datos para Mostrar, Seleccione un día con ventas";
   });
+}
 
-
-
+function chartBarMeseros() {
   //Gráfica de barras para las ventas totales de los meseros
   var data = new google.visualization.DataTable(datosMeseroTotal);
   var options = {
@@ -2325,6 +2169,9 @@ function drawChart() {
   };
   var chart = new google.charts.Bar(document.getElementById('GraficaMeserosTotal'));
   chart.draw(data, google.charts.Bar.convertOptions(options)); 
+}
+
+function chartLineMeseros() {
 
   //Gráfica de Lineas para las ventas de Meseros por semana
   var data = new google.visualization.DataTable(datosMeseroSemana);
@@ -2366,9 +2213,11 @@ function drawChart() {
       document.getElementById("GraficaMeserosHora").innerHTML = "No hay datos para Mostrar, Seleccione un día con ventas";
   });
 
+}
 
+function chartBarBartender() {
 
-//Gráfica de barras para las ventas totales de los Bartender
+  //Gráfica de barras para las ventas totales de los Bartender
   var data = new google.visualization.DataTable(datosBartenderTotal);
   var options = {
     title: 'Bartender que más han vendido',
@@ -2377,6 +2226,9 @@ function drawChart() {
   };
   var chart = new google.charts.Bar(document.getElementById('GraficaBartenderTotal'));
   chart.draw(data, google.charts.Bar.convertOptions(options)); 
+}
+
+function chartLineBartender() {
 
   //Gráfica de Lineas para las ventas de Bartender por semana
   var data = new google.visualization.DataTable(datosBartenderSemana);
@@ -2418,9 +2270,10 @@ function drawChart() {
       document.getElementById("GraficaBartenderHora").innerHTML = "No hay datos para Mostrar, Seleccione un día con ventas";
   });
 
+}
 
-
-//Gráfica de barras para las ventas totales de los Cajeros
+function chartBarCajeros() {
+  //Gráfica de barras para las ventas totales de los Cajeros
   var data = new google.visualization.DataTable(datosCajerosTotal);
   var options = {
     title: 'Cajeros que más han vendido',
@@ -2430,6 +2283,9 @@ function drawChart() {
   var chart = new google.charts.Bar(document.getElementById('GraficaCajerosTotal'));
   chart.draw(data, google.charts.Bar.convertOptions(options)); 
 
+}
+
+function chartLineCajeros() {
   //Gráfica de Lineas para las ventas de Cajeros por semana
   var data = new google.visualization.DataTable(datosCajerosSemana);
   var options = {
