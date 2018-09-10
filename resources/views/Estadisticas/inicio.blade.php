@@ -1,8 +1,205 @@
 @extends('Layout.app_administradores')
 @section('content')
 <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
+    {!!Html::script("assets-Internas\javascripts\angular.min.js")!!}<!--  Angular para mostrar mejor los datos de las estadísticas   -->
     <div class="modal-shiftfix">
       <div class="container-fluid main-content">
+
+
+
+<div class="page-title chart-container">
+  <h1>
+    Gráficas De Ventas
+  </h1>
+</div>
+<div class="row" ng-app="moduloEstadisticas" ng-controller="controladorEstadisticas">
+  <!-- Inicio de tabulador de Gráfica de Ventas -->
+  <div class="col-md-6">
+    <div id="exTab2" class="container"> 
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#tabVentasHora" ng-click="tabHora()"  data-toggle="tab"  class="Ventas">Por Horas</a>
+        </li>
+        <li >
+          <a href="#tabVentasDias" ng-click="tabDias()" data-toggle="tab" class="Ventas">Por Días</a>
+        </li>
+        <li >
+          <a  href="#tabVentasSemana" ng-click="tabSemana()"   data-toggle="tab" class="Ventas">Por Semana</a>
+        </li>
+        <li><a href="#tabVentasMes" ng-click="tabMeses()" data-toggle="tab" class="Ventas">Por Mes</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+
+        <!-- Inicio Gráfica de Ventas Por Horas -->
+        <div class="tab-pane active" id="tabVentasHora">
+          <div class="row">
+            <form id="formVentasHora" class="login-form" >
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" ng-model="datosFormHora.fechaInicio" class="input"  placeholder="Fecha Inicio" name="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a ng-click="submitFormHora()"  id='buscarVentasHora' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaVentasHora"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Ventas Por Horas -->
+
+        <!-- Inicio Gráfica de Ventas Por Días -->
+        <div class="tab-pane" id="tabVentasDias">
+          <div class="row">
+            <form id="formVentasDias" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  ng-model="datosFormDia.fechaInicio" placeholder="Fecha Inicio" name="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input" ng-model="datosFormDia.fechaFin" placeholder="Fecha Fin" name="fechaFin"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarVentasDia' ng-click="submitFormDia()" class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaVentasDias"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Ventas Por Dias -->
+        <!-- Inicio Gráfica de Ventas Por semanas -->
+        <div class="tab-pane" id="tabVentasSemana">
+          <div class="row">
+            <form id="formVentasemana" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input" ng-model="datosFormSemana.fechaInicio"  placeholder="Fecha Inicio" name="fechaInicio" id="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  ng-model="datosFormSemana.fechaFin"  placeholder="Fecha Fin" name="fechaFin" id="fechaFin" type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarVentasSemana' ng-click="submitFormSemana()" class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaVentasSemana"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Ventas Por semanas -->
+        <!-- Inicio Gráfica de Ventas Por Mes -->
+        <div class="tab-pane" id="tabVentasMes">
+          <div class="row">
+            <form id="formVentasMes" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input" ng-model="datosFormMes.fechaInicio"  placeholder="Fecha Inicio" name="fechaInicio"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  ng-model="datosFormMes.fechaFin"  placeholder="Fecha Fin" name="fechaFin"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarVentasMes' ng-click="submitFormMes()" class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaVentasMes"></div>
+                    <!-- Bar Charts:Morris -->
+                  </div>
+                </div>
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Ventas Por Mes -->
+      </div>
+    </div>
+  </div>
+  <!-- Fin de tabulador de Gráfica de Ventas -->
+  <div class="col-md-6">
+    <!-- Inicio Gráfica de Ventas ventas totales -->
+    <div class="row">
+      <h1>Datos de las ventas</h1>
+      <h3>Cantidad Vendido: $@{{ventas.ventaTotal}}</h3>
+      <h3>Venta mayor: $@{{ventas.ventaMayor.total}} </h3>
+      <h3>Venta menor: $@{{ventas.ventaMenor.total}} </h3>
+      <h4>Estos datos corresponden a:  </h4>
+      <h4>Fecha Inicio: @{{ventas.fechaInicio.date}} </h4>
+      <h4>Fecha Fin: @{{ventas.fechaFin.date}} </h4>
+    </div>
+    <!-- Fin Gráfica de Ventas ventas totales -->
+  </div>
+</div>
+
+
 
 
 <div class="page-title chart-container">
@@ -1105,6 +1302,9 @@
 
 
 
+
+
+
         <div class="row">
           <!-- Line Chart -->
           <div class="col-md-6">
@@ -1382,7 +1582,11 @@
       </div>
     </div>
 
+
+
 <script type="text/javascript">
+
+
 
    // datos para las gráficas, se pasa por medio de variables globales para tener acceso a ellas desde las funciones de ajax y la función que se llama cada vez que se hace resize
    var datosProductoTotal = {!!$productos!!};
@@ -1410,6 +1614,105 @@
    var datosCajerosDia = {!!$CajerosVentasPorDia!!};
    var datosCajerosMes = {!!$CajerosVentasPorMes!!};
    var datosCajerosHora = {!!$CajerosVentasPorHora!!};
+   var datosVentasSemana = {!!$ventasPorSemana!!};
+   var datosVentasHora = {!!$ventasPorHora!!};
+   var datosVentasDia = {!!$ventasPorDia!!};
+   var datosVentasMes = {!!$ventasPorMes!!};
+
+
+
+  var app = angular.module('moduloEstadisticas', []);
+
+  app.controller('controladorEstadisticas', function($scope, $http) {
+    /*$scope.ventas = {!!$ventasPorSemana!!}.ventaTotal;
+    $scope.ventaMayor = {!!$ventasPorSemana!!}.ventaMayor.total+" Semana: "+{!!$ventasPorSemana!!}.ventaMayor.semana;
+    $scope.ventaMenor = {!!$ventasPorSemana!!}.ventaMenor.total+" Semana: "+{!!$ventasPorSemana!!}.ventaMenor.semana;;
+    $scope.fechaInicio = "Hora: "+datosVentasHora.ventaMayor.hora;
+    $scope.fechaFin = "Hora: "+datosVentasHora.ventaMenor.hora;
+    */
+    $scope.ventas = datosVentasHora;
+    $scope.datosFormHora = {};
+    $scope.datosFormSemana = {};
+    $scope.datosFormDia = {};
+    $scope.datosFormMes = {};
+    $scope.tabSemana = function() {
+        $scope.ventas = datosVentasSemana;
+    };
+    $scope.tabHora = function() {
+        $scope.ventas = datosVentasHora;
+    };
+    $scope.tabDias = function() {
+        $scope.ventas = datosVentasDia;
+    };
+    $scope.tabMeses = function() {
+        $scope.ventas = datosVentasMes;
+    };
+    $scope.submitFormHora = function() {
+        // Posting data to php file
+        $http({
+          method  : 'POST',
+          url     : '{{url('Estadisticas/ventasPorHora')}}',
+          data    : $scope.datosFormHora , //forms user object
+          headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+         }).then(function (response) {
+              console.log(response, 'res');
+              $scope.ventas = response.data;
+              datosVentasHora = response.data;
+              chartLineVentas();
+         },function (error){
+              console.log(error, 'can not get data.');
+         });
+      };
+    $scope.submitFormSemana = function() {
+        // Posting data to php file
+        $http({
+          method  : 'POST',
+          url     : '{{url('Estadisticas/ventasPorSemana')}}',
+          data    : $scope.datosFormSemana , //forms user object
+          headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+         }).then(function (response) {
+              console.log(response, 'res');
+              $scope.ventas = response.data;
+              datosVentasSemana = response.data;
+              chartLineVentas();
+         },function (error){
+              console.log(error, 'can not get data.');
+         });
+      };
+    $scope.submitFormDia = function() {
+        // Posting data to php file
+        $http({
+          method  : 'POST',
+          url     : '{{url('Estadisticas/ventasPorDia')}}',
+          data    : $scope.datosFormDia , //forms user object
+          headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+         }).then(function (response) {
+              console.log(response, 'res');
+              $scope.ventas = response.data;
+              datosVentasDia = response.data;
+              chartLineVentas();
+         },function (error){
+              console.log(error, 'can not get data.');
+         });
+      };
+    $scope.submitFormMes = function() {
+        // Posting data to php file
+        $http({
+          method  : 'POST',
+          url     : '{{url('Estadisticas/ventasPorMes')}}',
+          data    : $scope.datosFormMes , //forms user object
+          headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+         }).then(function (response) {
+              console.log(response, 'res');
+              $scope.ventas = response.data;
+              datosVentasMes = response.data;
+              chartLineVentas();
+         },function (error){
+              console.log(error, 'can not get data.');
+         });
+      };
+
+  });
 
   $(window).resize(function(e) {
     drawChart()
@@ -1436,6 +1739,30 @@ $("#buscarCategoriaSemana").click(function(){
         success: function (data) {
           $('#GraficaCategoriasSemana').empty();
           datosCategoriaSemana = data;
+          console.log(data);
+          drawChart(); // repinta la gráfica
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarCategoriaHora").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formCategoriaHora')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasCategoriasPorHora')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (data) {
+          $('#GraficaCategoriasHora').empty();
+          datosCategoriaHora = data;
           console.log(data);
           drawChart(); // repinta la gráfica
         }, error: function(xhr,status, response) {
@@ -2027,6 +2354,9 @@ $('[data-toggle="tab"]').click(function(){
       case "meseros":
         return chartLineMeseros();
         break;
+      case "Ventas":
+        return chartLineVentas();
+        break;
     }
   }, 50);
 });
@@ -2046,6 +2376,7 @@ function drawChart() {
   chartBarBartender();
   chartBarMeseros();
   chartBarCajeros();
+  chartLineVentas();
 }
 
 function chartBarProductos() {
@@ -2067,6 +2398,7 @@ function chartLineProductos() {
   var options = {
     title: 'Total de Ventas Por Productos Divido en Semanas',
     height: 340, 
+    legend: { position: 'bottom' }
   }; 
   var chart = new google.charts.Line(document.getElementById('GraficaProductosSemana'));
   chart.draw(data, google.charts.Line.convertOptions(options));
@@ -2325,6 +2657,53 @@ function chartLineCajeros() {
       google.visualization.errors.removeError(googleError.id);
       document.getElementById("GraficaCajerosHora").innerHTML = "No hay datos para Mostrar, Seleccione un día con ventas";
   });
+
+}
+
+function chartLineVentas(){
+  //Gráfica de Lineas para las ventas por semana
+  var data = new google.visualization.DataTable(datosVentasSemana.ventas);
+  var options = {
+    title: 'Total de Ventas Divido en Semanas',
+    height: 300,
+    legend: { position: 'none' }, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaVentasSemana'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+  //Gráfica de Lineas para las ventas por semana
+  var data = new google.visualization.DataTable(datosVentasDia.ventas);
+  var options = {
+    title: 'Total de Ventas Divido en Días',
+    height: 300,
+    legend: { position: 'none' }, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaVentasDias'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+  //Gráfica de Lineas para las ventas por horas
+  var data = new google.visualization.DataTable(datosVentasHora.ventas);
+  var options = {
+    title: 'Total de Ventas Divido en Horas',
+    height: 300,
+    legend: { position: 'none' },  
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaVentasHora'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+  google.visualization.events.addListener(chart, 'error', function (googleError) {
+      google.visualization.errors.removeError(googleError.id);
+      document.getElementById("GraficaVentasHora").innerHTML = "No hay datos para Mostrar, Seleccione un día con ventas";
+  });
+
+  //Gráfica de Lineas para las ventas por Meses
+  var data = new google.visualization.DataTable(datosVentasMes.ventas);
+  var options = {
+    title: 'Total de Ventas Divido en Meses',
+    height: 300,
+    legend: { position: 'none' },  
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaVentasMes'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
 
 }
 

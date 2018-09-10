@@ -16,8 +16,7 @@ class EstadisticasController extends Controller
 
 {
     //
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth');
         $userActual = Auth::user();
         if($userActual != null){
@@ -28,6 +27,7 @@ class EstadisticasController extends Controller
         }
 
     }
+
     public function index(Request $request){
         //Bloque de notificaciones
         $notificaciones = Notificaciones::Usuario(Auth::User()->id)->get();
@@ -69,6 +69,9 @@ class EstadisticasController extends Controller
         $CajerosSemana = $this->ventasCajerosPorSemana($request);// Llamado a la función para el comportamiento de ventas por semana de los Cajeros
         $CajerosDia = $this->ventasCajerosPorDia($request);//Llamado a la función para el comportamiento de ventas por Dia de los Cajeros
         $CajerosMes = $this->ventasCajerosPorMes($request);//Llamado a la función para el comportamiento de ventas por Mes de los Cajeros
+        $ventasPorSemana = $this->ventasPorSemana($request);// obtiene las ventas totales dividido en semanas
+        $ventasPorDia = $this->ventasPorDia($request);// obtiene las ventas totales dividido en dias
+        $ventasPorMes = $this->ventasPorMes($request);// obtiene las ventas totales dividido en Meses
 
         $request->request->add(['fechaInicio' => Carbon::now()]);
         $categoriasHora = $this->ventasCategoriasPorHora($request);//Llamado a la función para el comportamiento de ventas por Día de las categorias
@@ -76,6 +79,7 @@ class EstadisticasController extends Controller
         $meserosHora = $this->ventasMeserosPorHora($request);//Llamado a la función para el comportamiento de ventas por Día de los meseros
         $BartenderHora = $this->ventasBartenderPorHora($request);//Llamado a la función para el comportamiento de ventas por Día de los Bartender
         $CajerosHora = $this->ventasCajerosPorHora($request);//Llamado a la función para el comportamiento de ventas por Día de los Cajeros
+        $ventasPorHora = $this->ventasPorHora($request);//Llamado a la función para el comportamiento de ventas por Día
 
 
 
@@ -107,9 +111,339 @@ class EstadisticasController extends Controller
             ->with('CajerosVentasPorSemana',$CajerosSemana)
             ->with('CajerosVentasPorDia',$CajerosDia)
             ->with('CajerosVentasPorMes',$CajerosMes)
-            ->with('CajerosVentasPorHora',$CajerosHora);
+            ->with('CajerosVentasPorHora',$CajerosHora)
+            ->with('ventasPorSemana',$ventasPorSemana)
+            ->with('ventasPorHora',$ventasPorHora)
+            ->with('ventasPorDia',$ventasPorDia)
+            ->with('ventasPorMes',$ventasPorMes);
     }
 
+
+    public function ventasPorHora(Request $request){
+
+        $arrayVariables = array();// array para guardar todas las variables del return
+
+        $fechaInicio = new Carbon($request->fechaInicio);
+        //dd($request->fechaInicio);
+        $fechaFin = new Carbon($request->fechaInicio);
+        $fechaInicio->startOfDay()->subHours(6);
+        $fechaFin->startOfDay()->addHours(30);
+
+        $arrayVariables['fechaInicio']  = clone $fechaInicio;
+        $arrayVariables['fechaFin']= $fechaFin;
+
+        $ventasPorHora = Factura::where([['factura.estado', 'Finalizada'],['factura.fecha','>=',$fechaInicio],['factura.fecha','<',$fechaFin]])
+            ->join('venta', 'factura.id', '=', 'venta.idFactura')
+            ->join('producto', 'venta.idProducto', '=', 'producto.id')
+            ->select(DB::raw('SUM(`precio`*`cantidad`) as total'),DB::raw('HOUR(`fecha`) as hora'),DB::raw('DAY(`fecha`) as dia'),'fecha');
+
+        $ventaTotal = clone $ventasPorHora;    
+        $ventaTotal = $ventasPorHora->get()->first()->total; // la suma total de las ventas en el rango de fechas
+
+        $ventaMayor = clone $ventasPorHora;
+        $ventaMayor = $ventaMayor->groupBy(DB::raw('DAY(`fecha`)'))->groupBy(DB::raw('HOUR(`fecha`)'))->orderBy('total', 'DESC')->get()->first(); // la semana con mayor ventas en el rango de fechas
+
+        $ventaMenor = clone $ventasPorHora;
+        $ventaMenor = $ventaMenor->groupBy(DB::raw('DAY(`fecha`)'))->groupBy(DB::raw('HOUR(`fecha`)'))->orderBy('total', 'ASC')->get()->first(); // la semana de menor ventas en el rango de fechas
+
+        $ventasPorHora = $ventasPorHora->groupBy(DB::raw('DAY(`fecha`)'))->groupBy(DB::raw('HOUR(`fecha`)'))->orderBy('fecha', 'ASC')->get(); // todos los datos para la gráfica
+
+
+        $ventasToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
+        $cols = [['id'=> 'Hora','label'=> 'Hora', 'type'=> 'string'],['id'=> 'Cantidad','label'=> 'Cantidad', 'type'=> 'number']];
+
+
+        // se crean un arreglo con todos los datos
+        while ($fechaInicio->lessThan($fechaFin)) {
+            $auxLLenar = array();
+            $auxLLenar['hora']=$fechaInicio->day."/".$fechaInicio->hour.":00";
+            $auxLLenar['cantidad'] = 0;//se inicia el arreglo con 0
+            $ventasToJson[$fechaInicio->day."/".$fechaInicio->hour.":00"] = $auxLLenar;
+            $fechaInicio->addHours(1);
+        }
+        foreach ($ventasPorHora as $key => $hora) {
+            $ventasToJson[$hora->dia."/".$hora->hora.":00"]['cantidad']=$hora->total;
+        }
+        //Fin de crear el arreglo
+
+        $rows = array();   
+        foreach ($ventasToJson as $key => $fila) {
+            $auxRow = array();
+            foreach ($fila as $key => $valor) {
+                array_push($auxRow,['v' => $valor ]);    
+            }
+            array_push($rows, ['c'=>  $auxRow]);                
+        }
+
+        //dd(json_encode($rows));
+        $ventasToJson = ['cols' => $cols , 'rows' => $rows];
+
+
+        $ventasToJson = json_encode($ventasToJson,JSON_NUMERIC_CHECK);// el arreglo se convierte a formato json, esta variable es enviada a la vista para las gráficas
+
+        $arrayVariables['ventas'] = $ventasToJson;
+        $arrayVariables['ventaTotal'] = $ventaTotal;
+        $arrayVariables['ventaMayor'] = $ventaMayor;
+        $arrayVariables['ventaMenor'] = $ventaMenor;
+
+
+
+        return json_encode($arrayVariables);
+
+    }
+
+    public function ventasPorSemana(Request $request){
+
+        $arrayVariables = array();// array para guardar todas las variables del return
+        $ventasPorSemana = Factura::where([['factura.estado', 'Finalizada'],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
+            ->join('venta', 'factura.id', '=', 'venta.idFactura')
+            ->join('producto', 'venta.idProducto', '=', 'producto.id')
+            ->select(DB::raw('SUM(`precio`*`cantidad`) as total'),DB::raw('WEEK(`fecha`) as semana'),DB::raw('YEAR(`fecha`) as anio'),'fecha');
+
+        $ventaTotal = clone $ventasPorSemana;    
+        $ventaTotal = $ventasPorSemana->get()->first()->total; // la suma total de las ventas en el rango de fechas
+
+        $ventaMayor = clone $ventasPorSemana;
+        $ventaMayor = $ventaMayor->groupBy(DB::raw('WEEK(`fecha`)'))->orderBy('total', 'DESC')->get()->first(); // la semana con mayor ventas en el rango de fechas
+
+        $ventaMenor = clone $ventasPorSemana;
+        $ventaMenor = $ventaMenor->groupBy(DB::raw('WEEK(`fecha`)'))->orderBy('total', 'ASC')->get()->first(); // la semana de menor ventas en el rango de fechas
+
+        $ventasPorSemana = $ventasPorSemana->groupBy(DB::raw('WEEK(`fecha`)'))->orderBy('fecha', 'ASC')->get(); // todos los datos para la gráfica
+
+        //organizar las fechas, para el rango a mostrar
+        if($request->fechaInicio=='0000-01-01'){
+            $arrayVariables['fechaInicio'] = new Carbon($ventasPorSemana[0]->fecha);
+            $arrayVariables['fechaFin'] = new Carbon($ventasPorSemana->last()->fecha);
+
+            $fechaInicio = new Carbon($ventasPorSemana[0]->fecha);
+            $fechaFin = new Carbon($ventasPorSemana->last()->fecha);
+            $fechaFin->addWeek(1);
+            $fechaInicio->subWeek(1);
+        }else{
+            $arrayVariables['fechaInicio'] = new Carbon($request->fechaInicio);
+            $arrayVariables['fechaFin'] = new Carbon($request->fechaFin);
+            $fechaInicio = new Carbon($request->fechaInicio);
+            $fechaFin = new Carbon($request->fechaFin);
+            $fechaInicio->subWeek(1);          
+        }
+
+        $auxSemana = array();//array auxiliar donde se guarda la información por semana
+        $numSemana = 0; // variable para guardar el numero de la semana
+        $ventasToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
+        $cols = [['id'=> 'Semana','label'=> 'Semana', 'type'=> 'string'],['id'=> 'Cantidad','label'=> 'Cantidad', 'type'=> 'number']];
+
+
+        // se crean un arreglo con todos los datos
+        while ($fechaInicio->lessThan($fechaFin)) {
+            $auxLLenar = array();
+            $auxLLenar['semana']=$fechaInicio->year."/".$fechaInicio->weekOfYear;
+            $auxLLenar['cantidad'] = 0;//se inicia el arreglo con 0
+            $ventasToJson[$fechaInicio->year."/".$fechaInicio->weekOfYear] = $auxLLenar;
+            $fechaInicio->addWeek(1);
+        }
+        foreach ($ventasPorSemana as $key => $semana) {
+            $ventasToJson[$semana->anio."/".$semana->semana]['cantidad']=$semana->total;
+        }
+        //Fin de crear el arreglo
+
+        $rows = array();   
+        foreach ($ventasToJson as $key => $fila) {
+            $auxRow = array();
+            foreach ($fila as $key => $valor) {
+                array_push($auxRow,['v' => $valor ]);    
+            }
+            array_push($rows, ['c'=>  $auxRow]);                
+        }
+
+        //dd(json_encode($rows));
+        $ventasToJson = ['cols' => $cols , 'rows' => $rows];
+
+
+        $ventasToJson = json_encode($ventasToJson,JSON_NUMERIC_CHECK);// el arreglo se convierte a formato json, esta variable es enviada a la vista para las gráficas
+
+        $arrayVariables['ventas'] = $ventasToJson;
+        $arrayVariables['ventaTotal'] = $ventaTotal;
+        $arrayVariables['ventaMayor'] = $ventaMayor;
+        $arrayVariables['ventaMenor'] = $ventaMenor;
+
+
+
+        return json_encode($arrayVariables);
+
+    }
+
+    public function ventasPorDia(Request $request){
+        $arrayVariables = array();// array para guardar todas las variables del return
+
+        $ventasPorDia = Factura::where([['factura.estado', 'Finalizada'],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
+            ->join('venta', 'factura.id', '=', 'venta.idFactura')
+            ->join('producto', 'venta.idProducto', '=', 'producto.id')
+            ->select(DB::raw('SUM(`precio`*`cantidad`) as total'),DB::raw('DAY(`fecha`) as dia'),DB::raw('MONTH(`fecha`) as mes'),'fecha');
+
+        $ventaTotal = clone $ventasPorDia;    
+        $ventaTotal = $ventasPorDia->get()->first()->total; // la suma total de las ventas en el rango de fechas
+
+        $ventaMayor = clone $ventasPorDia;
+        $ventaMayor = $ventaMayor->groupBy(DB::raw('DAY(`fecha`)'))->orderBy('total', 'DESC')->get()->first(); // la semana con mayor ventas en el rango de fechas
+
+        $ventaMenor = clone $ventasPorDia;
+        $ventaMenor = $ventaMenor->groupBy(DB::raw('DAY(`fecha`)'))->orderBy('total', 'ASC')->get()->first(); // la semana de menor ventas en el rango de fechas
+
+        $ventasPorDia = $ventasPorDia->groupBy(DB::raw('DAY(`fecha`)'))->orderBy('fecha', 'ASC')->get(); // todos los datos para la gráfica
+
+        //organizar las fechas, para el rango a mostrar
+        if($request->fechaInicio=='0000-01-01'){
+            $arrayVariables['fechaInicio'] = new Carbon($ventasPorDia[0]->fecha);
+            $arrayVariables['fechaFin'] = new Carbon($ventasPorDia->last()->fecha);
+            $fechaInicio = new Carbon();
+            $fechaFin = new Carbon();
+            $fechaInicio->day = $ventasPorDia[0]->dia;
+            $fechaInicio->month = $ventasPorDia[0]->mes;
+            $fechaFin->day = $ventasPorDia->last()->dia+1;
+            $fechaFin->month = $ventasPorDia->last()->mes;
+
+            //dd($fechaInicio,$fechaFin);
+
+        }else{
+            $arrayVariables['fechaInicio'] = new Carbon($request->fechaInicio);
+            $arrayVariables['fechaFin'] = new Carbon($request->fechaFin);    
+            $fechaInicio = new Carbon($request->fechaInicio);
+            $fechaFin = new Carbon($request->fechaFin);
+            
+        }
+
+        $auxSemana = array();//array auxiliar donde se guarda la información por semana
+        $numSemana = 0; // variable para guardar el numero de la semana
+        $ventasToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
+        $cols = [['id'=> 'Día','label'=> 'Día', 'type'=> 'string'],['id'=> 'Cantidad','label'=> 'Cantidad', 'type'=> 'number']];
+
+
+        // se crean un arreglo con todos los datos
+        while ($fechaInicio->lessThan($fechaFin)) {
+            $auxLLenar = array();
+            $auxLLenar['dia']=$fechaInicio->month."/".$fechaInicio->day;
+            $auxLLenar['cantidad'] = 0;//se inicia el arreglo con 0
+            $ventasToJson[$fechaInicio->month."/".$fechaInicio->day] = $auxLLenar;
+            $fechaInicio->addDay(1);
+        }
+        foreach ($ventasPorDia as $key => $dia) {
+            $ventasToJson[$dia->mes."/".$dia->dia]['cantidad']=$dia->total;
+        }
+        //Fin de crear el arreglo
+
+        $rows = array();   
+        foreach ($ventasToJson as $key => $fila) {
+            $auxRow = array();
+            foreach ($fila as $key => $valor) {
+                array_push($auxRow,['v' => $valor ]);    
+            }
+            array_push($rows, ['c'=>  $auxRow]);                
+        }
+
+        //dd(json_encode($rows));
+        $ventasToJson = ['cols' => $cols , 'rows' => $rows];
+
+
+        $ventasToJson = json_encode($ventasToJson,JSON_NUMERIC_CHECK);// el arreglo se convierte a formato json, esta variable es enviada a la vista para las gráficas
+
+        $arrayVariables['ventas'] = $ventasToJson;
+        $arrayVariables['ventaTotal'] = $ventaTotal;
+        $arrayVariables['ventaMayor'] = $ventaMayor;
+        $arrayVariables['ventaMenor'] = $ventaMenor;
+
+
+
+        return json_encode($arrayVariables);
+
+    }
+
+    public function ventasPorMes(Request $request){
+        $arrayVariables = array();// array para guardar todas las variables del return
+
+        $ventasPorMes = Factura::where([['factura.estado', 'Finalizada'],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
+            ->join('venta', 'factura.id', '=', 'venta.idFactura')
+            ->join('producto', 'venta.idProducto', '=', 'producto.id')
+            ->select(DB::raw('SUM(`precio`*`cantidad`) as total'),DB::raw('MONTH(`fecha`) as mes'),DB::raw('YEAR(`fecha`) as anio'),'fecha');
+
+        $ventaTotal = clone $ventasPorMes;    
+        $ventaTotal = $ventasPorMes->get()->first()->total; // la suma total de las ventas en el rango de fechas
+
+        $ventaMayor = clone $ventasPorMes;
+        $ventaMayor = $ventaMayor->groupBy(DB::raw('MONTH(`fecha`)'))->orderBy('total', 'DESC')->get()->first(); // la semana con mayor ventas en el rango de fechas
+
+        $ventaMenor = clone $ventasPorMes;
+        $ventaMenor = $ventaMenor->groupBy(DB::raw('MONTH(`fecha`)'))->orderBy('total', 'ASC')->get()->first(); // la semana de menor ventas en el rango de fechas
+
+        $ventasPorMes = $ventasPorMes->groupBy(DB::raw('MONTH(`fecha`)'))->orderBy('fecha', 'ASC')->get(); // todos los datos para la gráfica
+
+        //organizar las fechas, para el rango a mostrar
+        if($request->fechaInicio=='0000-01-01'){
+            $arrayVariables['fechaInicio'] = new Carbon($ventasPorMes[0]->fecha);
+            $arrayVariables['fechaFin'] = new Carbon($ventasPorMes->last()->fecha);
+            $fechaInicio = new Carbon();
+            $fechaFin = new Carbon();
+            $fechaInicio->year = $ventasPorMes[0]->anio;
+            $fechaInicio->month = $ventasPorMes[0]->mes;
+            $fechaFin->year = $ventasPorMes->last()->anio;
+            $fechaFin->month = $ventasPorMes->last()->mes+1;
+
+            //dd($fechaInicio,$fechaFin);
+
+        }else{
+            $arrayVariables['fechaInicio'] = new Carbon($request->fechaInicio);
+            $arrayVariables['fechaFin'] = new Carbon($request->fechaFin);    
+            $fechaInicio = new Carbon($request->fechaInicio);
+            $fechaInicio->subMonth(1);
+            $fechaFin = new Carbon($request->fechaFin);
+            $fechaFin->addMonth(1);
+            
+        }
+
+        $auxSemana = array();//array auxiliar donde se guarda la información por semana
+        $numSemana = 0; // variable para guardar el numero de la semana
+        $ventasToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
+        $cols = [['id'=> 'Mes','label'=> 'Mes', 'type'=> 'string'],['id'=> 'Cantidad','label'=> 'Cantidad', 'type'=> 'number']];
+
+
+        // se crean un arreglo con todos los datos
+        while ($fechaInicio->lessThan($fechaFin)) {
+            $auxLLenar = array();
+            $auxLLenar['Mes']=$fechaInicio->year."/".$fechaInicio->month;
+            $auxLLenar['cantidad'] = 0;//se inicia el arreglo con 0
+            $ventasToJson[$fechaInicio->year."/".$fechaInicio->month] = $auxLLenar;
+            $fechaInicio->addMonth(1);
+        }
+        foreach ($ventasPorMes as $key => $mes) {
+            $ventasToJson[$mes->anio."/".$mes->mes]['cantidad']=$mes->total;
+        }
+        //Fin de crear el arreglo
+
+        $rows = array();   
+        foreach ($ventasToJson as $key => $fila) {
+            $auxRow = array();
+            foreach ($fila as $key => $valor) {
+                array_push($auxRow,['v' => $valor ]);    
+            }
+            array_push($rows, ['c'=>  $auxRow]);                
+        }
+
+        //dd(json_encode($rows));
+        $ventasToJson = ['cols' => $cols , 'rows' => $rows];
+
+
+        $ventasToJson = json_encode($ventasToJson,JSON_NUMERIC_CHECK);// el arreglo se convierte a formato json, esta variable es enviada a la vista para las gráficas
+
+        $arrayVariables['ventas'] = $ventasToJson;
+        $arrayVariables['ventaTotal'] = $ventaTotal;
+        $arrayVariables['ventaMayor'] = $ventaMayor;
+        $arrayVariables['ventaMenor'] = $ventaMenor;
+
+
+
+        return json_encode($arrayVariables);
+
+    }
 
     public function productosMasVendidos(Request $request){
         $productos =  Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])

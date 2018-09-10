@@ -198,3 +198,7 @@ Route::post('Estadisticas/CajerosMasVendidos', 'EstadisticasController@CajerosMa
 Route::post('Estadisticas/ventasCajerosPorDia', 'EstadisticasController@ventasCajerosPorDia');
 Route::post('Estadisticas/ventasCajerosPorMes', 'EstadisticasController@ventasCajerosPorMes');
 Route::post('Estadisticas/ventasCajerosPorHora', 'EstadisticasController@ventasCajerosPorHora');
+Route::post('Estadisticas/ventasPorHora', 'EstadisticasController@ventasPorHora');
+Route::post('Estadisticas/ventasPorSemana', 'EstadisticasController@ventasPorSemana');
+Route::post('Estadisticas/ventasPorDia', 'EstadisticasController@ventasPorDia');
+Route::post('Estadisticas/ventasPorMes', 'EstadisticasController@ventasPorMes');
