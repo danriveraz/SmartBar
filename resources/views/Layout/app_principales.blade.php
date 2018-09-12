@@ -31,6 +31,8 @@
 <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
 <!--Fuente Requerida -->
+{!!Html::style('assets-home\styles\normalize.css')!!}
+
 {!!Html::style('assets-home\styles\pocketStyle.css')!!}
 {!!Html::style('assets-home\styles\style-Contact.css')!!}
 {!!Html::style('assets-home\styles\custom-Pocket.css')!!}
@@ -150,7 +152,7 @@
             </div>
             <h3>Bienvenido! Tu amigo inseparable te espera </h3>
           </div>
-       <form class="login-form" autocomplete="off" role="form" method="POST" enctype="multipart/form-data" action="{{ url('Auth/register') }}" files="true">
+          <form class="login-form" autocomplete="off" role="form" method="POST" enctype="multipart/form-data" action="{{ url('Auth/register') }}" files="true">
         {{ csrf_field() }}
         <div class="text-danger">
            @if (Session::has('message'))
@@ -159,24 +161,27 @@
          </div>
          <div class="input-container">
            <i class="fa fa-address-book"></i>
-           <select class="select" id="tipo"  name="tipo" required>
-             <option value="dueño">Dueño de Negocio</option>
+           <select class="select" id="tipo"  name="tipo" value="" required>
+             <option value="dueno">Dueño de Negocio</option>
+             <!-- ocultado para actualizacion
              <option value="proveedor">Proveedor</option>
              <option value="cliente">Cliente VIP</option>
+              ocultado para actualizacion-->
            </select>
          </div>
-          <div class="input-container" id="NomNeg">
-            <i class="fa fa-reorder"></i>
-            <input type="text" class="input" name="nombreEstablecimiento" placeholder="Nombre de tu Negocio" required/>
-          </div>
-          <div class="input-container" id="TipNeg">
-            <i class="fa fa-reorder"></i>
-            <select class="select" id="TipoNegocio" name="tipoNegocio" required>
-              <option >Tipo De Negocio</option>
-              <option value="bar">Bar</option>
-              <option value="restaurante">restaurante</option>
-            </select>
-          </div>
+         <div class="input-container" id="NomNeg" style="display:block;">
+           <i class="fa fa-reorder"></i>
+           <input type="text" class="input" id="nombreEstablecimiento" name="nombreEstablecimiento" placeholder="Nombre de tu Negocio" value="{{ old('nombreEstablecimiento') }}" required/>
+         </div>
+         <div class="input-container" id="TipNeg">
+           <i class="fa fa-reorder"></i>
+           <select class="select" id="TipoNegocio"  name="TipoNegocio" required/>
+           <option >Tipo De Negocio</option>
+           <option value="bar">Bar</option>
+           <option value="restaurante">Restaurante</option>
+           <option value="restaurante">Bar y Restaurante</option>
+           </select>
+         </div>
           <div class="input-container">
             <i class="fa fa-address-card"></i>
             <input type="text" class="input" name="nombrePersona" placeholder="Nombre" required/>

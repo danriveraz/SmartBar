@@ -101,20 +101,23 @@
               <i class="fa fa-address-book"></i>
               <select class="select" id="tipo"  name="tipo" value="" required>
                 <option value="dueno">Dueño de Negocio</option>
+                <!-- ocultado para actualizacion
                 <option value="proveedor">Proveedor</option>
                 <option value="cliente">Cliente VIP</option>
+                 ocultado para actualizacion-->
               </select>
             </div>
-             <div class="input-container" id="NomNeg">
+             <div class="input-container" id="NomNeg" style="display:block;">
                <i class="fa fa-reorder"></i>
                <input type="text" class="input" id="nombreEstablecimiento" name="nombreEstablecimiento" placeholder="Nombre de tu Negocio" value="{{ old('nombreEstablecimiento') }}" required/>
              </div>
              <div class="input-container" id="TipNeg">
                <i class="fa fa-reorder"></i>
                <select class="select" id="TipoNegocio"  name="TipoNegocio" required/>
-                 <option value="">Tipo De Negocio</option>
-                 <option value="bar">Bar</option>
-                 <option value="restaurante">restaurante</option>
+               <option >Tipo De Negocio</option>
+               <option value="bar">Bar</option>
+               <option value="restaurante">Restaurante</option>
+               <option value="restaurante">Bar y Restaurante</option>
                </select>
              </div>
              <div class="input-container">
@@ -251,6 +254,7 @@ $(document).ready(function() {
       document.getElementById("nombreEstablecimiento").required = false;
     }
     else {
+      document.getElementById( "NomNeg" ).style.display = 'block';
       document.getElementById( 'TipNeg' ).style.display = 'block';
       document.getElementById("TipoNegocio").required = true;
       document.getElementById("nombreEstablecimiento").required = true;

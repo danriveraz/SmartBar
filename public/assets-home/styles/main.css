@@ -101,7 +101,7 @@
 
 
 body {
-	font-family: "open sans", "segoe ui";
+	font-family: Roboto,sans-serif;
 	font-size: 14px;
 	margin: 0;
 	padding: 0;
@@ -177,7 +177,7 @@ text-decoration:none;
 }
 .login-form-header img {
     padding: 10px;
-	width: 100%;
+	width: 90%;
 }
 
 .login-form-header h3 {
