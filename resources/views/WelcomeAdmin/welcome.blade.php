@@ -566,8 +566,6 @@
     var tutorial = '{{$tutorial}}';
     if(tutorial != 1){
       $("#modal1").modal("show");
-    }else{
-      //$("#modal1").modal("hide");
     }
   });
 </script>

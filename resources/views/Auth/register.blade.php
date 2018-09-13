@@ -111,13 +111,13 @@
                <i class="fa fa-reorder"></i>
                <input type="text" class="input" id="nombreEstablecimiento" name="nombreEstablecimiento" placeholder="Nombre de tu Negocio" value="{{ old('nombreEstablecimiento') }}" required/>
              </div>
-             <div class="input-container" id="TipNeg">
+             <div class="input-container">
                <i class="fa fa-reorder"></i>
-               <select class="select" id="TipoNegocio"  name="TipoNegocio" required/>
-               <option >Tipo De Negocio</option>
-               <option value="bar">Bar</option>
-               <option value="restaurante">Restaurante</option>
-               <option value="restaurante">Bar y Restaurante</option>
+               <select class="select" name="TipoNegocio" required>
+                  <option value="">Tipo De Negocio</option>
+                  <option value="bar">Bar</option>
+                  <option value="restaurante">Restaurante</option>
+                  <option value="barRestaurante">Bar y Restaurante</option>
                </select>
              </div>
              <div class="input-container">
@@ -129,7 +129,7 @@
             </div>
              <div class="input-container">
                <i class="fa fa-venus-mars"></i>
-               <select class="select" id="sexo" name="sexo" required="">
+               <select class="select" name="sexo" required>
                  <option value="">Sexo</option>
                  <option value="Masculino">Masculino</option>
                  <option value="Femenino">Femenino</option>

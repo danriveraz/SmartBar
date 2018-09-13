@@ -34,7 +34,7 @@ class ProductoController extends Controller
 
     $notificaciones = Notificaciones::Usuario(Auth::id())->get();
     $nuevas = 0;
-    $fechaActual = Carbon::now();
+    $fechaActual = Carbon::now()->subHour(5);
     $fecha2array = array();
     for ($i=0; $i < sizeof($notificaciones); $i++) {
       if($notificaciones[$i]->estado == "nueva"){
@@ -64,10 +64,6 @@ class ProductoController extends Controller
       $diferencia = $fechaActual->diffInDays($fechaNotificacion,true);
       array_push($fecha2array, array($notificaciones[$i]->id, $diferencia));
     }
-
-    $producto = Producto::find(40);
-    $contenido = Contiene::idProducto($producto->id)->get();
-    //dd($producto, $contenido);
 
     $userActual = Auth::user();
     $categorias = Categoria::where('idEmpresa' , $userActual->empresaActual)->
