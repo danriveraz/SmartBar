@@ -159,12 +159,11 @@
 					<div class="row setup-content" id="step-1">
 						<div class="col-xs-12">
 							<div class="col-md-12 well ">
-
+              <form method="post" action="" class="login-form">
 							<div id="tab-content2" class="tab-content">
 								<!-- registro-->
 								<div class="login-form-content">
-								<form method="post" action="" class="login-form">
-								<div class="input-container">
+								<div class="input-container" style="margin-top:0px !important;">
 									<i class="fa fa-reorder"></i>
 									<input type="text" class="input" name="negocio" placeholder="Nombre de tu Negocio" required/>
 								</div>
@@ -176,27 +175,19 @@
 									<i class="fa fa-address-card"></i>
 									<input type="text" class="input" name="telefono" placeholder="Telefono" required/>
 								</div>
-								<div class="input-container">
-									<i class="fa fa-map"></i>
-								<select class="select" id="sexo" name="sexo" required="">
-									<option value="Masculino">Masculino</option>
-									<option value="Femenino">Femenino</option>
-									<option value="Otro">Otro</option>
-								</select>
-								</div>
-								<div class="input-container">
-									<i class="fa fa-map"></i>
-								<select class="select" id="sexo" name="sexo" required="">
-									<option value="Masculino">Masculino</option>
-									<option value="Femenino">Femenino</option>
-									<option value="Otro">Otro</option>
-								</select>
-								</div>
 								<!--a href="#" class="register">Register</a-->
-							</form>
-
 							</div><!--  fin de login-form-content-->
+            <p class="lead" style="margin-bottom: 10px; margin-top: 10px;">Cantidad de <span class="text-success">Mesas</span></p>
+              <div class="login-form-content">
+                <div class="input-container" style="margin-top:0px !important;">
+                  <i class="fa fa-pencil-square-o"></i>
+                  <input type="text" class="input" name="telefono" placeholder="No. Mesas" required/>
+                </div>
+              </div>
+
 							  </div> <!-- tab-content2-->
+              </form>
+
 								<br>
 								<div class="col-centrada">
 									<a id="activate-step-2" class="btn btn-pocket" style="font-weight: 400;" type="submit">
@@ -325,150 +316,63 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="widget-container fluid-height clearfix">
-              <div class="heading">
-                <a class="btn btn-sm btn-primary-outline pull-right" href="#" id="add-row"><i class="fa fa-plus"></i>Add row</a>
+
+              <div class="widget-content padded clearfix height400" >
+<!-- Inicio de input dinamico-->
+<form class="login-form" role="form">
+
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="input-group control-group after-add-more">
+
+							<div class="col-md-6 col-sm-6 col-xs-6">
+										<div class="input-container">
+											<i class="glyphicon glyphicon-list-alt"></i>
+											<input type="text" class="input2" name="nombre" placeholder="Nombre"/>
+										</div>
+							</div>
+
+							<div class="col-md-6 col-sm-6 col-xs-6">
+							<div class="input-container">
+								<i class="fa fa-address-card"></i>
+								<input type="text" name="addmore[]" id="ContactNo" class="input2" placeholder="Valor">
+							</div>
+							</div>
+
+
+							<div class="input-group-btn">
+								<button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+							</div>
+						</div>
+					</div>
+			    </div>
+				<div class="copy hide">
+					<div class="control-group input-group" style="margin-top:10px">
+
+						<div class="col-md-6 col-sm-6 col-xs-6">
+						<div class="input-container">
+							<i class="glyphicon glyphicon-list-alt"></i>
+							<input type="text" class="input2" name="nombre" placeholder="Nombre"/>
+						</div>
+
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-6">
+						<div class="input-container">
+							<i class="fa fa-address-card"></i>
+							<input type="text" class="input2" name="nombre" placeholder="Valor"/>
+						</div>
+						</div>
+
+
+						<div class="input-group-btn">
+							<button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i></button>
+						</div>
+					</div>
+				</div>
+
+		    </form>
               </div>
-              <div class="widget-content padded clearfix">
-                <table class="table table-bordered table-striped" id="datatable-editable">
-                  <thead>
-                    <th>
-                      Nombre
-                    </th>
-                    <th>
-                      Precio
-                    </th>
-                    <th width="60"></th>
-                    <th width="75"></th>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        Robert
-                      </td>
-                      <td>
-                        Kelso
-                      </td>
-                      <td>
-                        <a class="edit-row" href="">Edit</a>
-                      </td>
-                      <td>
-                        <a class="delete-row" href="">Delete</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Robert
-                      </td>
-                      <td>
-                        Kelso
-                      </td>
-                      <td>
-                        <a class="edit-row" href="">Edit</a>
-                      </td>
-                      <td>
-                        <a class="delete-row" href="">Delete</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Robert
-                      </td>
-                      <td>
-                        Kelso
-                      </td>
-                      <td>
-                        <a class="edit-row" href="">Edit</a>
-                      </td>
-                      <td>
-                        <a class="delete-row" href="">Delete</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Robert
-                      </td>
-                      <td>
-                        Kelso
-                      </td>
-                      <td>
-                        <a class="edit-row" href="">Edit</a>
-                      </td>
-                      <td>
-                        <a class="delete-row" href="">Delete</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Robert
-                      </td>
-                      <td>
-                        Kelso
-                      </td>
-                      <td>
-                        <a class="edit-row" href="">Edit</a>
-                      </td>
-                      <td>
-                        <a class="delete-row" href="">Delete</a>
-                      </td>
-                    </tr>
-	                <tr>
-                      <td>
-                        Robert
-                      </td>
-                      <td>
-                        Kelso
-                      </td>
-                      <td>
-                        <a class="edit-row" href="">Edit</a>
-                      </td>
-                      <td>
-                        <a class="delete-row" href="">Delete</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Robert
-                      </td>
-                      <td>
-                        Kelso
-                      </td>
-                      <td>
-                        <a class="edit-row" href="">Edit</a>
-                      </td>
-                      <td>
-                        <a class="delete-row" href="">Delete</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Robert
-                      </td>
-                      <td>
-                        Kelso
-                      </td>
-                      <td>
-                        <a class="edit-row" href="">Edit</a>
-                      </td>
-                      <td>
-                        <a class="delete-row" href="">Delete</a>
-                      </td>
-                    </tr>
-					<tr>
-                      <td>
-                        Robert
-                      </td>
-                      <td>
-                        Kelso
-                      </td>
-                      <td>
-                        <a class="edit-row" href="">Edit</a>
-                      </td>
-                      <td>
-                        <a class="delete-row" href="">Delete</a>
-                      </td>
-                    </tr>
-				  </table>
-              </div>
+
             </div>
           </div>
         </div>
@@ -568,6 +472,19 @@
       $("#modal1").modal("show");
     }
   });
+</script>
+
+<!--Script para input dinamico-->
+<script>
+$(document).ready(function() {
+      $(".add-more").click(function(){
+          var html = $(".copy").html();
+          $(".after-add-more").after(html);
+      });
+      $("body").on("click",".remove",function(){
+          $(this).parents(".control-group").remove();
+      });
+    });
 </script>
 
 <!-- JS ESTADISTICAS -->

@@ -1,4 +1,19 @@
 
+/* welcome admin 2 form categorias*/
+
+.login-form .input2 {
+    border: 0;
+    width: 120px;
+}
+
+.height400{
+	height: 390px;
+	overflow: auto;
+}
+
+
+
+
 /* material icons */
 @font-face {
   font-family: 'Material Icons';
