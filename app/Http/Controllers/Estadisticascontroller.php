@@ -72,6 +72,11 @@ class EstadisticasController extends Controller
         $ventasPorSemana = $this->ventasPorSemana($request);// obtiene las ventas totales dividido en semanas
         $ventasPorDia = $this->ventasPorDia($request);// obtiene las ventas totales dividido en dias
         $ventasPorMes = $this->ventasPorMes($request);// obtiene las ventas totales dividido en Meses
+        $mesas = $this->MesasQueMasVenden($request);
+        $MesasMes = $this->ventasMesasPorMes($request);
+        $MesasDia = $this->ventasMesasPorDia($request);
+        $MesasSemana = $this->ventasMesasPorSemana($request);
+
 
         $request->request->add(['fechaInicio' => Carbon::now()]);
         $categoriasHora = $this->ventasCategoriasPorHora($request);//Llamado a la función para el comportamiento de ventas por Día de las categorias
@@ -80,6 +85,7 @@ class EstadisticasController extends Controller
         $BartenderHora = $this->ventasBartenderPorHora($request);//Llamado a la función para el comportamiento de ventas por Día de los Bartender
         $CajerosHora = $this->ventasCajerosPorHora($request);//Llamado a la función para el comportamiento de ventas por Día de los Cajeros
         $ventasPorHora = $this->ventasPorHora($request);//Llamado a la función para el comportamiento de ventas por Día
+        $MesasHora = $this->ventasMesasPorHora($request);
 
 
 
@@ -115,7 +121,12 @@ class EstadisticasController extends Controller
             ->with('ventasPorSemana',$ventasPorSemana)
             ->with('ventasPorHora',$ventasPorHora)
             ->with('ventasPorDia',$ventasPorDia)
-            ->with('ventasPorMes',$ventasPorMes);
+            ->with('ventasPorMes',$ventasPorMes)
+            ->with('mesas',$mesas)
+            ->with('mesasPorHora',$MesasHora)
+            ->with('mesasPorMes',$MesasMes)
+            ->with('mesasPorDia',$MesasDia)
+            ->with('mesasPorSemana',$MesasSemana);
     }
 
 
@@ -128,6 +139,7 @@ class EstadisticasController extends Controller
         $fechaFin = new Carbon($request->fechaInicio);
         $fechaInicio->startOfDay()->subHours(6);
         $fechaFin->startOfDay()->addHours(30);
+        $diferenciaTiempo = $fechaInicio->diffInHours($fechaFin);
 
         $arrayVariables['fechaInicio']  = clone $fechaInicio;
         $arrayVariables['fechaFin']= $fechaFin;
@@ -138,7 +150,7 @@ class EstadisticasController extends Controller
             ->select(DB::raw('SUM(`precio`*`cantidad`) as total'),DB::raw('HOUR(`fecha`) as hora'),DB::raw('DAY(`fecha`) as dia'),'fecha');
 
         $ventaTotal = clone $ventasPorHora;    
-        $ventaTotal = $ventasPorHora->get()->first()->total; // la suma total de las ventas en el rango de fechas
+        $ventaTotal = $ventaTotal->get()->first()->total; // la suma total de las ventas en el rango de fechas
 
         $ventaMayor = clone $ventasPorHora;
         $ventaMayor = $ventaMayor->groupBy(DB::raw('DAY(`fecha`)'))->groupBy(DB::raw('HOUR(`fecha`)'))->orderBy('total', 'DESC')->get()->first(); // la semana con mayor ventas en el rango de fechas
@@ -183,6 +195,7 @@ class EstadisticasController extends Controller
 
         $arrayVariables['ventas'] = $ventasToJson;
         $arrayVariables['ventaTotal'] = $ventaTotal;
+        $arrayVariables['promedio'] = $ventaTotal/$diferenciaTiempo;
         $arrayVariables['ventaMayor'] = $ventaMayor;
         $arrayVariables['ventaMenor'] = $ventaMenor;
 
@@ -210,23 +223,32 @@ class EstadisticasController extends Controller
         $ventaMenor = $ventaMenor->groupBy(DB::raw('WEEK(`fecha`)'))->orderBy('total', 'ASC')->get()->first(); // la semana de menor ventas en el rango de fechas
 
         $ventasPorSemana = $ventasPorSemana->groupBy(DB::raw('WEEK(`fecha`)'))->orderBy('fecha', 'ASC')->get(); // todos los datos para la gráfica
+        $diferenciaTiempo=1;
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            $arrayVariables['fechaInicio'] = new Carbon($ventasPorSemana[0]->fecha);
-            $arrayVariables['fechaFin'] = new Carbon($ventasPorSemana->last()->fecha);
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
 
-            $fechaInicio = new Carbon($ventasPorSemana[0]->fecha);
-            $fechaFin = new Carbon($ventasPorSemana->last()->fecha);
-            $fechaFin->addWeek(1);
-            $fechaInicio->subWeek(1);
-        }else{
-            $arrayVariables['fechaInicio'] = new Carbon($request->fechaInicio);
-            $arrayVariables['fechaFin'] = new Carbon($request->fechaFin);
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaInicio->subWeek(1);          
-        }
+        if(isset($ventasPorSemana[0])){
+
+            if($request->fechaInicio=='0000-01-01'){
+                $arrayVariables['fechaInicio'] = new Carbon($ventasPorSemana[0]->fecha);
+                $arrayVariables['fechaFin'] = new Carbon($ventasPorSemana->last()->fecha);
+
+                $fechaInicio = new Carbon($ventasPorSemana[0]->fecha);
+                $fechaFin = new Carbon($ventasPorSemana->last()->fecha);
+                $diferenciaTiempo = $fechaInicio->diffInWeeks($fechaFin);
+                $fechaFin->addWeek(1);
+                $fechaInicio->subWeek(1);
+            }else{
+                $arrayVariables['fechaInicio'] = new Carbon($request->fechaInicio);
+                $arrayVariables['fechaFin'] = new Carbon($request->fechaFin);
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                $diferenciaTiempo = $fechaInicio->diffInWeeks($fechaFin);
+                $fechaInicio->subWeek(1);
+            }
+        }       
 
         $auxSemana = array();//array auxiliar donde se guarda la información por semana
         $numSemana = 0; // variable para guardar el numero de la semana
@@ -264,6 +286,7 @@ class EstadisticasController extends Controller
 
         $arrayVariables['ventas'] = $ventasToJson;
         $arrayVariables['ventaTotal'] = $ventaTotal;
+        $arrayVariables['promedio'] = $ventaTotal/$diferenciaTiempo;
         $arrayVariables['ventaMayor'] = $ventaMayor;
         $arrayVariables['ventaMenor'] = $ventaMenor;
 
@@ -291,28 +314,34 @@ class EstadisticasController extends Controller
         $ventaMenor = $ventaMenor->groupBy(DB::raw('DAY(`fecha`)'))->orderBy('total', 'ASC')->get()->first(); // la semana de menor ventas en el rango de fechas
 
         $ventasPorDia = $ventasPorDia->groupBy(DB::raw('DAY(`fecha`)'))->orderBy('fecha', 'ASC')->get(); // todos los datos para la gráfica
+        $diferenciaTiempo=1;
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            $arrayVariables['fechaInicio'] = new Carbon($ventasPorDia[0]->fecha);
-            $arrayVariables['fechaFin'] = new Carbon($ventasPorDia->last()->fecha);
-            $fechaInicio = new Carbon();
-            $fechaFin = new Carbon();
-            $fechaInicio->day = $ventasPorDia[0]->dia;
-            $fechaInicio->month = $ventasPorDia[0]->mes;
-            $fechaFin->day = $ventasPorDia->last()->dia+1;
-            $fechaFin->month = $ventasPorDia->last()->mes;
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($ventasPorDia[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                $arrayVariables['fechaInicio'] = new Carbon($ventasPorDia[0]->fecha);
+                $arrayVariables['fechaFin'] = new Carbon($ventasPorDia->last()->fecha);
+                $fechaInicio = new Carbon();
+                $fechaFin = new Carbon();
+                $fechaInicio->day = $ventasPorDia[0]->dia;
+                $fechaInicio->month = $ventasPorDia[0]->mes;
+                $fechaFin->day = $ventasPorDia->last()->dia+1;
+                $fechaFin->month = $ventasPorDia->last()->mes;
+                $diferenciaTiempo = $fechaInicio->diffInDays($fechaFin);
 
-            //dd($fechaInicio,$fechaFin);
+                //dd($fechaInicio,$fechaFin);
 
-        }else{
-            $arrayVariables['fechaInicio'] = new Carbon($request->fechaInicio);
-            $arrayVariables['fechaFin'] = new Carbon($request->fechaFin);    
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            
+            }else{
+                $arrayVariables['fechaInicio'] = new Carbon($request->fechaInicio);
+                $arrayVariables['fechaFin'] = new Carbon($request->fechaFin);    
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                $diferenciaTiempo = $fechaInicio->diffInDays($fechaFin);
+                
+            }
         }
-
         $auxSemana = array();//array auxiliar donde se guarda la información por semana
         $numSemana = 0; // variable para guardar el numero de la semana
         $ventasToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
@@ -349,6 +378,7 @@ class EstadisticasController extends Controller
 
         $arrayVariables['ventas'] = $ventasToJson;
         $arrayVariables['ventaTotal'] = $ventaTotal;
+        $arrayVariables['promedio'] = $ventaTotal/$diferenciaTiempo;
         $arrayVariables['ventaMayor'] = $ventaMayor;
         $arrayVariables['ventaMenor'] = $ventaMenor;
 
@@ -376,30 +406,34 @@ class EstadisticasController extends Controller
         $ventaMenor = $ventaMenor->groupBy(DB::raw('MONTH(`fecha`)'))->orderBy('total', 'ASC')->get()->first(); // la semana de menor ventas en el rango de fechas
 
         $ventasPorMes = $ventasPorMes->groupBy(DB::raw('MONTH(`fecha`)'))->orderBy('fecha', 'ASC')->get(); // todos los datos para la gráfica
+        $diferenciaTiempo=1;
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            $arrayVariables['fechaInicio'] = new Carbon($ventasPorMes[0]->fecha);
-            $arrayVariables['fechaFin'] = new Carbon($ventasPorMes->last()->fecha);
-            $fechaInicio = new Carbon();
-            $fechaFin = new Carbon();
-            $fechaInicio->year = $ventasPorMes[0]->anio;
-            $fechaInicio->month = $ventasPorMes[0]->mes;
-            $fechaFin->year = $ventasPorMes->last()->anio;
-            $fechaFin->month = $ventasPorMes->last()->mes+1;
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($ventasPorMes[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                $arrayVariables['fechaInicio'] = new Carbon($ventasPorMes[0]->fecha);
+                $arrayVariables['fechaFin'] = new Carbon($ventasPorMes->last()->fecha);
+                $fechaInicio = new Carbon();
+                $fechaFin = new Carbon();
+                $fechaInicio->year = $ventasPorMes[0]->anio;
+                $fechaInicio->month = $ventasPorMes[0]->mes;
+                $fechaFin->year = $ventasPorMes->last()->anio;
+                $fechaFin->month = $ventasPorMes->last()->mes+1;
+                $diferenciaTiempo = $fechaInicio->diffInMonths($fechaFin);
+                //dd($fechaInicio,$fechaFin);
 
-            //dd($fechaInicio,$fechaFin);
-
-        }else{
-            $arrayVariables['fechaInicio'] = new Carbon($request->fechaInicio);
-            $arrayVariables['fechaFin'] = new Carbon($request->fechaFin);    
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaInicio->subMonth(1);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaFin->addMonth(1);
-            
+            }else{
+                $arrayVariables['fechaInicio'] = new Carbon($request->fechaInicio);
+                $arrayVariables['fechaFin'] = new Carbon($request->fechaFin);    
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaInicio->subMonth(1);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaFin->addMonth(1);
+                $diferenciaTiempo = $fechaInicio->diffInMonths($fechaFin);
+            }
         }
-
         $auxSemana = array();//array auxiliar donde se guarda la información por semana
         $numSemana = 0; // variable para guardar el numero de la semana
         $ventasToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
@@ -436,6 +470,7 @@ class EstadisticasController extends Controller
 
         $arrayVariables['ventas'] = $ventasToJson;
         $arrayVariables['ventaTotal'] = $ventaTotal;
+        $arrayVariables['promedio'] = $ventaTotal/$diferenciaTiempo;
         $arrayVariables['ventaMayor'] = $ventaMayor;
         $arrayVariables['ventaMenor'] = $ventaMenor;
 
@@ -489,16 +524,19 @@ class EstadisticasController extends Controller
             ->get();
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            
-            $fechaInicio = new Carbon($ProductoPorSemana[0]->fecha);
-            $fechaFin = new Carbon($ProductoPorSemana->last()->fecha);
-            $fechaFin->addWeek(1);
-            $fechaInicio->subWeek(1);
-        }else{
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaInicio->subWeek(1);          
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($ProductoPorSemana[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                $fechaInicio = new Carbon($ProductoPorSemana[0]->fecha);
+                $fechaFin = new Carbon($ProductoPorSemana->last()->fecha);
+                $fechaFin->addWeek(1);
+                $fechaInicio->subWeek(1);
+            }else{
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaInicio->subWeek(1);          
+            }
         }
 
         $auxSemana = array();//array auxiliar donde se guarda la información por semana
@@ -566,24 +604,27 @@ class EstadisticasController extends Controller
             ->get();
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            
-            $fechaInicio = new Carbon();
-            $fechaFin = new Carbon();
-            $fechaInicio->day = $ProductosPorDia[0]->dia;
-            $fechaInicio->month = $ProductosPorDia[0]->mes;
-            $fechaFin->day = $ProductosPorDia->last()->dia+1;
-            $fechaFin->month = $ProductosPorDia->last()->mes;
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($ProductosPorDia[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon();
+                $fechaFin = new Carbon();
+                $fechaInicio->day = $ProductosPorDia[0]->dia;
+                $fechaInicio->month = $ProductosPorDia[0]->mes;
+                $fechaFin->day = $ProductosPorDia->last()->dia+1;
+                $fechaFin->month = $ProductosPorDia->last()->mes;
 
-            //dd($fechaInicio,$fechaFin);
+                //dd($fechaInicio,$fechaFin);
 
-        }else{
-    
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                
+            }
         }
-
         $auxDia = array();//array auxiliar donde se guarda la información por día
         $numDia = 0; // variable para guardar el numero del día
         $ProductosToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
@@ -651,24 +692,27 @@ class EstadisticasController extends Controller
             ->get();
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaInicio->year = $ProductosPorMes[0]->anio;
-            $fechaInicio->month = $ProductosPorMes[0]->mes;
-            $fechaFin->year = $ProductosPorMes->last()->anio;
-            $fechaFin->month = $ProductosPorMes->last()->mes+1;
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($ProductosPorMes[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaInicio->year = $ProductosPorMes[0]->anio;
+                $fechaInicio->month = $ProductosPorMes[0]->mes;
+                $fechaFin->year = $ProductosPorMes->last()->anio;
+                $fechaFin->month = $ProductosPorMes->last()->mes+1;
 
-        }else{
-    
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaInicio->subMonth(1);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaFin->addMonth(1);
-            
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaInicio->subMonth(1);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaFin->addMonth(1);
+                
+            }
         }
-
         $auxMes = array();//array auxiliar donde se guarda la información por Mes
         $numMes = 0; // variable para guardar el numero del Mes
         $ProductosToJson = array();// arreglo final donde se guardan los datos de todas los meses, para despues convertirlo a formato Json
@@ -830,23 +874,26 @@ class EstadisticasController extends Controller
             ->get();
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            
-            $fechaInicio = new Carbon($CategoriasPorSemana[0]->fecha);
-            $fechaFin = new Carbon($CategoriasPorSemana->last()->fecha);
-            $fechaFin->addWeek(1);
-            $fechaInicio->subWeek(1);
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($CategoriasPorSemana[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon($CategoriasPorSemana[0]->fecha);
+                $fechaFin = new Carbon($CategoriasPorSemana->last()->fecha);
+                $fechaFin->addWeek(1);
+                $fechaInicio->subWeek(1);
 
-            //dd($fechaInicio,$fechaFin);
+                //dd($fechaInicio,$fechaFin);
 
-        }else{
-    
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaInicio->subWeek(1);
-            
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaInicio->subWeek(1);
+                
+            }
         }
-
         $auxSemana = array();//array auxiliar donde se guarda la información por semana
         $numSemana = 0; // variable para guardar el numero de la semana
         $categoriasToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
@@ -915,24 +962,27 @@ class EstadisticasController extends Controller
             ->get();
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            
-            $fechaInicio = new Carbon();
-            $fechaFin = new Carbon();
-            $fechaInicio->day = $CategoriasPorDia[0]->dia;
-            $fechaInicio->month = $CategoriasPorDia[0]->mes;
-            $fechaFin->day = $CategoriasPorDia->last()->dia+1;
-            $fechaFin->month = $CategoriasPorDia->last()->mes;
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($CategoriasPorDia[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon();
+                $fechaFin = new Carbon();
+                $fechaInicio->day = $CategoriasPorDia[0]->dia;
+                $fechaInicio->month = $CategoriasPorDia[0]->mes;
+                $fechaFin->day = $CategoriasPorDia->last()->dia+1;
+                $fechaFin->month = $CategoriasPorDia->last()->mes;
 
-            //dd($fechaInicio,$fechaFin);
+                //dd($fechaInicio,$fechaFin);
 
-        }else{
-    
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                
+            }
         }
-
         $auxDia = array();//array auxiliar donde se guarda la información por día
         $numDia = 0; // variable para guardar el numero del día
         $categoriasToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
@@ -1003,24 +1053,27 @@ class EstadisticasController extends Controller
             ->get();
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaInicio->year = $CategoriasPorMes[0]->anio;
-            $fechaInicio->month = $CategoriasPorMes[0]->mes;
-            $fechaFin->year = $CategoriasPorMes->last()->anio;
-            $fechaFin->month = $CategoriasPorMes->last()->mes+1;
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($CategoriasPorMes[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaInicio->year = $CategoriasPorMes[0]->anio;
+                $fechaInicio->month = $CategoriasPorMes[0]->mes;
+                $fechaFin->year = $CategoriasPorMes->last()->anio;
+                $fechaFin->month = $CategoriasPorMes->last()->mes+1;
 
-        }else{
-    
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaInicio->subMonth(1);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaFin->addMonth(1);
-            
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaInicio->subMonth(1);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaFin->addMonth(1);
+                
+            }
         }
-
         $auxMes = array();//array auxiliar donde se guarda la información por Mes
         $numMes = 0; // variable para guardar el numero del Mes
         $categoriasToJson = array();// arreglo final donde se guardan los datos de todas los meses, para despues convertirlo a formato Json
@@ -1182,23 +1235,26 @@ class EstadisticasController extends Controller
             ->get();
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            
-            $fechaInicio = new Carbon($MeserosPorSemana[0]->fecha);
-            $fechaFin = new Carbon($MeserosPorSemana->last()->fecha);
-            $fechaFin->addWeek(1);
-            $fechaInicio->subWeek(1);
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($MeserosPorSemana[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon($MeserosPorSemana[0]->fecha);
+                $fechaFin = new Carbon($MeserosPorSemana->last()->fecha);
+                $fechaFin->addWeek(1);
+                $fechaInicio->subWeek(1);
 
-            //dd($fechaInicio,$fechaFin);
+                //dd($fechaInicio,$fechaFin);
 
-        }else{
-    
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaInicio->subWeek(1);
-            
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaInicio->subWeek(1);
+                
+            }
         }
-
         $auxSemana = array();//array auxiliar donde se guarda la información por semana
         $numSemana = 0; // variable para guardar el numero de la semana
         $MeserosToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
@@ -1266,24 +1322,27 @@ class EstadisticasController extends Controller
             ->get();
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            
-            $fechaInicio = new Carbon();
-            $fechaFin = new Carbon();
-            $fechaInicio->day = $MeserosPorDia[0]->dia;
-            $fechaInicio->month = $MeserosPorDia[0]->mes;
-            $fechaFin->day = $MeserosPorDia->last()->dia+1;
-            $fechaFin->month = $MeserosPorDia->last()->mes;
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($MeserosPorDia[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon();
+                $fechaFin = new Carbon();
+                $fechaInicio->day = $MeserosPorDia[0]->dia;
+                $fechaInicio->month = $MeserosPorDia[0]->mes;
+                $fechaFin->day = $MeserosPorDia->last()->dia+1;
+                $fechaFin->month = $MeserosPorDia->last()->mes;
 
-            //dd($fechaInicio,$fechaFin);
+                //dd($fechaInicio,$fechaFin);
 
-        }else{
-    
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                
+            }
         }
-
         $auxDia = array();//array auxiliar donde se guarda la información por día
         $numDia = 0; // variable para guardar el numero del día
         $MeserosToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
@@ -1352,24 +1411,27 @@ class EstadisticasController extends Controller
             ->get();
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaInicio->year = $MeserosPorMes[0]->anio;
-            $fechaInicio->month = $MeserosPorMes[0]->mes;
-            $fechaFin->year = $MeserosPorMes->last()->anio;
-            $fechaFin->month = $MeserosPorMes->last()->mes+1;
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($MeserosPorMes[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaInicio->year = $MeserosPorMes[0]->anio;
+                $fechaInicio->month = $MeserosPorMes[0]->mes;
+                $fechaFin->year = $MeserosPorMes->last()->anio;
+                $fechaFin->month = $MeserosPorMes->last()->mes+1;
 
-        }else{
-    
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaInicio->subMonth(1);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaFin->addMonth(1);
-            
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaInicio->subMonth(1);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaFin->addMonth(1);
+                
+            }
         }
-
         $auxMes = array();//array auxiliar donde se guarda la información por Mes
         $numMes = 0; // variable para guardar el numero del Mes
         $MeserosToJson = array();// arreglo final donde se guardan los datos de todas los meses, para despues convertirlo a formato Json
@@ -1531,23 +1593,26 @@ class EstadisticasController extends Controller
             ->get();
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            
-            $fechaInicio = new Carbon($BartenderPorSemana[0]->fecha);
-            $fechaFin = new Carbon($BartenderPorSemana->last()->fecha);
-            $fechaFin->addWeek(1);
-            $fechaInicio->subWeek(1);
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($BartenderPorSemana[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon($BartenderPorSemana[0]->fecha);
+                $fechaFin = new Carbon($BartenderPorSemana->last()->fecha);
+                $fechaFin->addWeek(1);
+                $fechaInicio->subWeek(1);
 
-            //dd($fechaInicio,$fechaFin);
+                //dd($fechaInicio,$fechaFin);
 
-        }else{
-    
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaInicio->subWeek(1);
-            
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaInicio->subWeek(1);
+                
+            }
         }
-
         $auxSemana = array();//array auxiliar donde se guarda la información por semana
         $numSemana = 0; // variable para guardar el numero de la semana
         $BartenderToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
@@ -1615,24 +1680,27 @@ class EstadisticasController extends Controller
             ->get();
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            
-            $fechaInicio = new Carbon();
-            $fechaFin = new Carbon();
-            $fechaInicio->day = $BartenderPorDia[0]->dia;
-            $fechaInicio->month = $BartenderPorDia[0]->mes;
-            $fechaFin->day = $BartenderPorDia->last()->dia+1;
-            $fechaFin->month = $BartenderPorDia->last()->mes;
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($BartenderPorDia[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon();
+                $fechaFin = new Carbon();
+                $fechaInicio->day = $BartenderPorDia[0]->dia;
+                $fechaInicio->month = $BartenderPorDia[0]->mes;
+                $fechaFin->day = $BartenderPorDia->last()->dia+1;
+                $fechaFin->month = $BartenderPorDia->last()->mes;
 
-            //dd($fechaInicio,$fechaFin);
+                //dd($fechaInicio,$fechaFin);
 
-        }else{
-    
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                
+            }
         }
-
         $auxDia = array();//array auxiliar donde se guarda la información por día
         $numDia = 0; // variable para guardar el numero del día
         $BartenderToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
@@ -1701,24 +1769,27 @@ class EstadisticasController extends Controller
             ->get();
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaInicio->year = $BartenderPorMes[0]->anio;
-            $fechaInicio->month = $BartenderPorMes[0]->mes;
-            $fechaFin->year = $BartenderPorMes->last()->anio;
-            $fechaFin->month = $BartenderPorMes->last()->mes+1;
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($BartenderPorMes[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaInicio->year = $BartenderPorMes[0]->anio;
+                $fechaInicio->month = $BartenderPorMes[0]->mes;
+                $fechaFin->year = $BartenderPorMes->last()->anio;
+                $fechaFin->month = $BartenderPorMes->last()->mes+1;
 
-        }else{
-    
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaInicio->subMonth(1);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaFin->addMonth(1);
-            
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaInicio->subMonth(1);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaFin->addMonth(1);
+                
+            }
         }
-
         $auxMes = array();//array auxiliar donde se guarda la información por Mes
         $numMes = 0; // variable para guardar el numero del Mes
         $BartenderToJson = array();// arreglo final donde se guardan los datos de todas los meses, para despues convertirlo a formato Json
@@ -1880,23 +1951,26 @@ class EstadisticasController extends Controller
             ->get();
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            
-            $fechaInicio = new Carbon($CajerosPorSemana[0]->fecha);
-            $fechaFin = new Carbon($CajerosPorSemana->last()->fecha);
-            $fechaFin->addWeek(1);
-            $fechaInicio->subWeek(1);
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($CajerosPorSemana[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon($CajerosPorSemana[0]->fecha);
+                $fechaFin = new Carbon($CajerosPorSemana->last()->fecha);
+                $fechaFin->addWeek(1);
+                $fechaInicio->subWeek(1);
 
-            //dd($fechaInicio,$fechaFin);
+                //dd($fechaInicio,$fechaFin);
 
-        }else{
-    
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaInicio->subWeek(1);
-            
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaInicio->subWeek(1);
+                
+            }
         }
-
         $auxSemana = array();//array auxiliar donde se guarda la información por semana
         $numSemana = 0; // variable para guardar el numero de la semana
         $CajerosToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
@@ -1964,24 +2038,27 @@ class EstadisticasController extends Controller
             ->get();
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            
-            $fechaInicio = new Carbon();
-            $fechaFin = new Carbon();
-            $fechaInicio->day = $CajerosPorDia[0]->dia;
-            $fechaInicio->month = $CajerosPorDia[0]->mes;
-            $fechaFin->day = $CajerosPorDia->last()->dia+1;
-            $fechaFin->month = $CajerosPorDia->last()->mes;
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($CajerosPorDia[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon();
+                $fechaFin = new Carbon();
+                $fechaInicio->day = $CajerosPorDia[0]->dia;
+                $fechaInicio->month = $CajerosPorDia[0]->mes;
+                $fechaFin->day = $CajerosPorDia->last()->dia+1;
+                $fechaFin->month = $CajerosPorDia->last()->mes;
 
-            //dd($fechaInicio,$fechaFin);
+                //dd($fechaInicio,$fechaFin);
 
-        }else{
-    
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                
+            }
         }
-
         $auxDia = array();//array auxiliar donde se guarda la información por día
         $numDia = 0; // variable para guardar el numero del día
         $CajerosToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
@@ -2050,24 +2127,27 @@ class EstadisticasController extends Controller
             ->get();
 
         //organizar las fechas, para el rango a mostrar
-        if($request->fechaInicio=='0000-01-01'){
-            
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaInicio->year = $CajerosPorMes[0]->anio;
-            $fechaInicio->month = $CajerosPorMes[0]->mes;
-            $fechaFin->year = $CajerosPorMes->last()->anio;
-            $fechaFin->month = $CajerosPorMes->last()->mes+1;
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($CajerosPorMes[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaInicio->year = $CajerosPorMes[0]->anio;
+                $fechaInicio->month = $CajerosPorMes[0]->mes;
+                $fechaFin->year = $CajerosPorMes->last()->anio;
+                $fechaFin->month = $CajerosPorMes->last()->mes+1;
 
-        }else{
-    
-            $fechaInicio = new Carbon($request->fechaInicio);
-            $fechaInicio->subMonth(1);
-            $fechaFin = new Carbon($request->fechaFin);
-            $fechaFin->addMonth(1);
-            
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaInicio->subMonth(1);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaFin->addMonth(1);
+                
+            }
         }
-
         $auxMes = array();//array auxiliar donde se guarda la información por Mes
         $numMes = 0; // variable para guardar el numero del Mes
         $CajerosToJson = array();// arreglo final donde se guardan los datos de todas los meses, para despues convertirlo a formato Json
@@ -2180,6 +2260,355 @@ class EstadisticasController extends Controller
         $CajerosToJson = json_encode($CajerosToJson,JSON_NUMERIC_CHECK);// el arreglo se convierte a formato json, esta variable es anviada a la vista para las gráficas
 
         return $CajerosToJson;
+
+    }
+
+    public function MesasQueMasVenden(Request $request){
+        $mesas =  Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
+                    ->join('venta', 'factura.id', '=', 'venta.idFactura')
+                    ->join('mesa', 'factura.idMesa', '=', 'mesa.id')
+                    ->select(DB::raw('SUM(`cantidad`) as total'),'factura.idMesa','mesa.nombreMesa')
+                    ->groupBy('factura.idMesa')
+                    ->orderBy('total', 'DESC')
+                    ->limit(4)
+                    ->get();
+
+        $cols = [['id'=> 'Nombre','label'=> 'Nombre', 'type'=> 'string'],['id'=> 'Cantidad','label'=> 'Cantidad', 'type'=> 'number']];
+        $rows = array();
+        foreach ($mesas as $key => $mesa) {
+            array_push($rows, ['c'=> [ ['v' => $mesa->nombreMesa ] , ['v'=>$mesa->total ] ]]);
+        }
+        $jsonGrafcas = ['cols' => $cols , 'rows' => $rows];            
+        //dd(json_encode($rows ,JSON_NUMERIC_CHECK));
+
+        return json_encode($jsonGrafcas);
+    
+    }
+
+    public function ventasMesasPorHora(Request $request){
+        //Se calculan las horas de búsqueda al rededor de un día
+        $fechaInicio = new Carbon($request->fechaInicio);
+        $fechaFin = new Carbon($request->fechaInicio);
+        $fechaInicio->startOfDay()->subHours(6);
+        $fechaFin->startOfDay()->addHours(30);
+
+        $Mesas =  Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual],['factura.fecha','>=',$fechaInicio],['factura.fecha','<',$fechaFin]])
+                    ->join('venta', 'factura.id', '=', 'venta.idFactura')
+                    ->join('mesa', 'factura.idMesa', '=', 'mesa.id')
+                    ->select(DB::raw('SUM(`cantidad`) as total'),'factura.idMesa','mesa.nombreMesa')
+                    ->groupBy('factura.idMesa')
+                    ->orderBy('total', 'DESC')
+                    ->limit(4)
+                    ->get();
+
+        $MesasPorHora = Factura::where([['factura.estado', 'Finalizada'],['factura.fecha','>=',$fechaInicio],['factura.fecha','<',$fechaFin]])
+            ->join('venta', 'factura.id', '=', 'venta.idFactura')
+            ->join('mesa', 'factura.idMesa', '=', 'mesa.id')
+            ->whereIn('mesa.id', $Mesas->pluck('idMesa')->toArray())                    
+            ->select(DB::raw('SUM(`cantidad`) as total'),'factura.idMesa','mesa.nombreMesa',DB::raw('HOUR(`fecha`) as hora'),DB::raw('DAY(`fecha`) as dia'))
+            ->groupBy('idMesa')
+            ->groupBy(DB::raw('DAY(`fecha`)'))
+            ->groupBy(DB::raw('HOUR(`fecha`)'))//se hace el group by por el mes en que fue realizada la factura
+            ->orderBy('fecha', 'ASC')
+            ->get();
+
+
+        $auxHora = array();//array auxiliar donde se guarda la información por Hora
+        $numHora = 0; // variable para guardar la hora
+        $MesasToJson = array();// arreglo final donde se guardan los datos de todas las horas, para despues convertirlo a formato Json
+        $cols = [['id'=> 'Hora','label'=> 'Hora', 'type'=> 'string']];
+        foreach ($Mesas->pluck('nombreMesa')->toArray() as $key => $nombre) {
+            array_push($cols , ['id'=> 'Cantidad'.$nombre,'label'=> $nombre, 'type'=> 'number']);
+        }
+
+        // este while crea un arreglo con posiciones reservadas por cada hora que se va a graficar en la vista, recorre hora por hora 
+        while ($fechaInicio->lessThan($fechaFin)) {
+            $auxLLenar = array();
+            $auxLLenar['hora']=$fechaInicio->day."/".$fechaInicio->hour.":00";
+            foreach ($Mesas->pluck('nombreMesa')->toArray() as $key => $nombre) {
+                $auxLLenar[$nombre] = 0;//se inicia el arreglo con los nombres de las Mesas
+            }
+            $MesasToJson[$fechaInicio->day."/".$fechaInicio->hour] = $auxLLenar;
+            $fechaInicio->addHours(1);
+        }
+
+        foreach ($MesasPorHora as $key => $Mesas) {
+            $MesasToJson[$Mesas->dia."/".$Mesas->hora][$Mesas->nombreMesa]=$Mesas->total;
+        }
+
+
+
+        $rows = array();   
+        foreach ($MesasToJson as $key => $fila) {
+            $auxRow = array();
+            foreach ($fila as $key => $valor) {
+                array_push($auxRow,['v' => $valor ]);    
+            }
+            array_push($rows, ['c'=>  $auxRow]);                
+        }
+
+        //dd(json_encode($rows, JSON_PRETTY_PRINT));
+        $MesasToJson = ['cols' => $cols , 'rows' => $rows];
+
+        $MesasToJson = json_encode($MesasToJson,JSON_NUMERIC_CHECK);// el arreglo se convierte a formato json, esta variable es anviada a la vista para las gráficas
+
+        return $MesasToJson;
+
+    }
+
+    public function ventasMesasPorMes(Request $request){
+        $Mesas =  Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
+                    ->join('venta', 'factura.id', '=', 'venta.idFactura')
+                    ->join('mesa', 'factura.idMesa', '=', 'mesa.id')
+                    ->select(DB::raw('SUM(`cantidad`) as total'),'factura.idMesa','mesa.nombreMesa')
+                    ->groupBy('factura.idMesa')
+                    ->orderBy('total', 'DESC')
+                    ->limit(4)
+                    ->get();
+
+        $MesasPorMes = Factura::where([['factura.estado', 'Finalizada'],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
+            ->join('venta', 'factura.id', '=', 'venta.idFactura')
+            ->join('mesa', 'factura.idMesa', '=', 'mesa.id')
+            ->whereIn('mesa.id', $Mesas->pluck('idMesa')->toArray())                    
+            ->select(DB::raw('SUM(`cantidad`) as total'),'factura.idMesa','mesa.nombreMesa',DB::raw('MONTH(`fecha`) as mes'),DB::raw('YEAR(`fecha`) as anio'))
+            ->groupBy('idMesa')
+            ->groupBy(DB::raw('YEAR(`fecha`)'))
+            ->groupBy(DB::raw('MONTH(`fecha`)'))//se hace el group by por el mes en que fue realizada la factura
+            ->orderBy('fecha', 'ASC')
+            ->get();
+
+        //organizar las fechas, para el rango a mostrar
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($MesasPorMes[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaInicio->year = $MesasPorMes[0]->anio;
+                $fechaInicio->month = $MesasPorMes[0]->mes;
+                $fechaFin->year = $MesasPorMes->last()->anio;
+                $fechaFin->month = $MesasPorMes->last()->mes+1;
+
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaInicio->subMonth(1);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaFin->addMonth(1);
+                
+            }
+        }
+        $auxMes = array();//array auxiliar donde se guarda la información por Mes
+        $numMes = 0; // variable para guardar el numero del Mes
+        $MesasToJson = array();// arreglo final donde se guardan los datos de todas los meses, para despues convertirlo a formato Json
+
+        $cols = [['id'=> 'Mes','label'=> 'Mes', 'type'=> 'string']];// se crean el nombre de las columnas para la creación del json 
+        foreach ($Mesas->pluck('nombreMesa')->toArray() as $key => $nombre) {
+            array_push($cols , ['id'=> 'Cantidad'.$nombre,'label'=> $nombre, 'type'=> 'number']);
+        }
+
+        // se crean un arreglo con todos los datos
+        while ($fechaInicio->lessThan($fechaFin)) {
+            $auxLLenar = array();
+            $auxLLenar['mes']=$fechaInicio->year."/".$fechaInicio->month;
+            foreach ($Mesas->pluck('nombreMesa')->toArray() as $key => $nombre) {
+                $auxLLenar[$nombre] = 0;//se inicia el arreglo con los nombres de las Mesas
+            }
+            $MesasToJson[$fechaInicio->year."/".$fechaInicio->month] = $auxLLenar;
+            $fechaInicio->addMonth(1);
+        }
+        foreach ($MesasPorMes as $key => $Mesas) {
+            $MesasToJson[$Mesas->anio."/".$Mesas->mes][$Mesas->nombreMesa]=$Mesas->total;
+        }
+          // termina la creación del arreglo
+
+        $rows = array();   
+        foreach ($MesasToJson as $key => $fila) {// aquí se convierte el arreglo creado anteriormente a formato de json para las gráficas de google
+            $auxRow = array();
+            foreach ($fila as $key => $valor) {
+                array_push($auxRow,['v' => $valor ]);    
+            }
+            array_push($rows, ['c'=>  $auxRow]);                
+        }
+
+        //dd(json_encode($rows));
+        $MesasToJson = ['cols' => $cols , 'rows' => $rows];
+
+        $MesasToJson = json_encode($MesasToJson,JSON_NUMERIC_CHECK);// el arreglo se convierte a formato json, esta variable es anviada a la vista para las gráficas
+
+        return $MesasToJson;
+
+    }
+
+    public function ventasMesasPorDia(Request $request){
+        $Mesas =  Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
+                    ->join('venta', 'factura.id', '=', 'venta.idFactura')
+                    ->join('mesa', 'factura.idMesa', '=', 'mesa.id')
+                    ->select(DB::raw('SUM(`cantidad`) as total'),'factura.idMesa','mesa.nombreMesa')
+                    ->groupBy('factura.idMesa')
+                    ->orderBy('total', 'DESC')
+                    ->limit(4)
+                    ->get();
+
+        $MesasPorDia = Factura::where([['factura.estado', 'Finalizada'],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
+            ->join('venta', 'factura.id', '=', 'venta.idFactura')
+            ->join('mesa', 'factura.idMesa', '=', 'mesa.id')
+            ->whereIn('mesa.id', $Mesas->pluck('idMesa')->toArray())                    
+            ->select(DB::raw('SUM(`cantidad`) as total'),'factura.idMesa','mesa.nombreMesa',DB::raw('DAY(`fecha`) as dia'),DB::raw('MONTH(`fecha`) as mes'))
+            ->groupBy('idMesa')
+            ->groupBy(DB::raw('MONTH(`fecha`)'))
+            ->groupBy(DB::raw('DAY(`fecha`)'))//se hace el group by por el día en que fue realizada la factura
+            ->orderBy('fecha', 'ASC')
+            ->get();
+
+        //organizar las fechas, para el rango a mostrar
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($MesasPorDia[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon();
+                $fechaFin = new Carbon();
+                $fechaInicio->day = $MesasPorDia[0]->dia;
+                $fechaInicio->month = $MesasPorDia[0]->mes;
+                $fechaFin->day = $MesasPorDia->last()->dia+1;
+                $fechaFin->month = $MesasPorDia->last()->mes;
+
+                //dd($fechaInicio,$fechaFin);
+
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                
+            }
+        }
+        $auxDia = array();//array auxiliar donde se guarda la información por día
+        $numDia = 0; // variable para guardar el numero del día
+        $MesasToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
+        $cols = [['id'=> 'Dia','label'=> 'Día', 'type'=> 'string']];
+        foreach ($Mesas->pluck('nombreMesa')->toArray() as $key => $nombre) {
+            array_push($cols , ['id'=> 'Cantidad'.$nombre,'label'=> $nombre, 'type'=> 'number']);
+        }
+
+        // se crean un arreglo con todos los datos
+        while ($fechaInicio->lessThan($fechaFin)) {
+            $auxLLenar = array();
+            $auxLLenar['dia']="Mes: ".$fechaInicio->month."/Día: ".$fechaInicio->day;
+            foreach ($Mesas->pluck('nombreMesa')->toArray() as $key => $nombre) {
+                $auxLLenar[$nombre] = 0;//se inicia el arreglo con los nombres de las Mesas
+            }
+            $MesasToJson[$fechaInicio->month."/".$fechaInicio->day] = $auxLLenar;
+            $fechaInicio->addDay(1);
+        }
+
+        foreach ($MesasPorDia as $key => $Mesas) {
+            $MesasToJson[$Mesas->mes."/".$Mesas->dia][$Mesas->nombreMesa]=$Mesas->total;
+        }
+        // termina la creacion del arreglo
+
+
+        $rows = array();   
+        foreach ($MesasToJson as $key => $fila) {
+            $auxRow = array();
+            foreach ($fila as $key => $valor) {
+                array_push($auxRow,['v' => $valor ]);    
+            }
+            array_push($rows, ['c'=>  $auxRow]);                
+        }
+
+        //dd(json_encode($rows));
+        $MesasToJson = ['cols' => $cols , 'rows' => $rows];
+
+
+        $MesasToJson = json_encode($MesasToJson,JSON_NUMERIC_CHECK);// el arreglo se convierte a formato json, esta variable es anviada a la vista para las gráficas
+
+        return $MesasToJson;
+
+    }
+
+    public function ventasMesasPorSemana(Request $request){
+        $Mesas =  Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
+                    ->join('venta', 'factura.id', '=', 'venta.idFactura')
+                    ->join('mesa', 'factura.idMesa', '=', 'mesa.id')
+                    ->select(DB::raw('SUM(`cantidad`) as total'),'factura.idMesa','mesa.nombreMesa')
+                    ->groupBy('factura.idMesa')
+                    ->orderBy('total', 'DESC')
+                    ->limit(4)
+                    ->get();
+
+        $MesasPorSemana = Factura::where([['factura.estado', 'Finalizada'],['factura.fecha','>=',$request->fechaInicio],['factura.fecha','<',$request->fechaFin]])
+            ->join('venta', 'factura.id', '=', 'venta.idFactura')
+            ->join('mesa', 'factura.idMesa', '=', 'mesa.id')
+            ->whereIn('mesa.id', $Mesas->pluck('idMesa')->toArray())                    
+            ->select(DB::raw('SUM(`cantidad`) as total'),'factura.idMesa','mesa.nombreMesa',DB::raw('WEEK(`fecha`) as semana'),DB::raw('YEAR(`fecha`) as anio'),'fecha')
+            ->groupBy('idMesa')
+            ->groupBy(DB::raw('WEEK(`fecha`)'))//se hace el group by por la semana del año en que fue realizada la factura
+            ->orderBy('fecha', 'ASC')
+            ->get();
+
+        //organizar las fechas, para el rango a mostrar
+        $fechaInicio =  Carbon::now();
+        $fechaFin =  Carbon::now();
+        if(isset($MesasPorSemana[0])){
+            if($request->fechaInicio=='0000-01-01'){
+                
+                $fechaInicio = new Carbon($MesasPorSemana[0]->fecha);
+                $fechaFin = new Carbon($MesasPorSemana->last()->fecha);
+                $fechaFin->addWeek(1);
+                $fechaInicio->subWeek(1);
+
+                //dd($fechaInicio,$fechaFin);
+
+            }else{
+        
+                $fechaInicio = new Carbon($request->fechaInicio);
+                $fechaFin = new Carbon($request->fechaFin);
+                $fechaInicio->subWeek(1);
+                
+            }
+        }
+        $auxSemana = array();//array auxiliar donde se guarda la información por semana
+        $numSemana = 0; // variable para guardar el numero de la semana
+        $MesasToJson = array();// arreglo final donde se guardan los datos de todas las semanas, para despues convertirlo a formato Json
+        $cols = [['id'=> 'Semana','label'=> 'Semana', 'type'=> 'string']];
+        foreach ($Mesas->pluck('nombreMesa')->toArray() as $key => $nombre) {
+            array_push($cols , ['id'=> 'Cantidad'.$nombre,'label'=> $nombre, 'type'=> 'number']);
+        }
+
+        // se crean un arreglo con todos los datos
+        while ($fechaInicio->lessThan($fechaFin)) {
+            $auxLLenar = array();
+            $auxLLenar['semana']="Año:".$fechaInicio->year."/Semana:".$fechaInicio->weekOfYear;
+            foreach ($Mesas->pluck('nombreMesa')->toArray() as $key => $nombre) {
+                $auxLLenar[$nombre] = 0;//se inicia el arreglo con los nombres de las Mesas
+            }
+            $MesasToJson[$fechaInicio->year."/".$fechaInicio->weekOfYear] = $auxLLenar;
+            $fechaInicio->addWeek(1);
+        }
+        foreach ($MesasPorSemana as $key => $Mesas) {
+            $MesasToJson[$Mesas->anio."/".$Mesas->semana][$Mesas->nombreMesa]=$Mesas->total;
+        }
+        //Fin de crear el arreglo
+
+
+        $rows = array();   
+        foreach ($MesasToJson as $key => $fila) {
+            $auxRow = array();
+            foreach ($fila as $key => $valor) {
+                array_push($auxRow,['v' => $valor ]);    
+            }
+            array_push($rows, ['c'=>  $auxRow]);                
+        }
+
+        //dd(json_encode($rows));
+        $MesasToJson = ['cols' => $cols , 'rows' => $rows];
+
+
+        $MesasToJson = json_encode($MesasToJson,JSON_NUMERIC_CHECK);// el arreglo se convierte a formato json, esta variable es anviada a la vista para las gráficas
+
+        return $MesasToJson;
 
     }
 } 

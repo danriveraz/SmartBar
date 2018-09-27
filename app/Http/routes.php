@@ -202,3 +202,8 @@ Route::post('Estadisticas/ventasPorHora', 'EstadisticasController@ventasPorHora'
 Route::post('Estadisticas/ventasPorSemana', 'EstadisticasController@ventasPorSemana');
 Route::post('Estadisticas/ventasPorDia', 'EstadisticasController@ventasPorDia');
 Route::post('Estadisticas/ventasPorMes', 'EstadisticasController@ventasPorMes');
+Route::post('Estadisticas/ventasMesasPorSemana', 'EstadisticasController@ventasMesasPorSemana'); 
+Route::post('Estadisticas/MesasQueMasVenden', 'EstadisticasController@MesasQueMasVenden');
+Route::post('Estadisticas/ventasMesasPorDia', 'EstadisticasController@ventasMesasPorDia');
+Route::post('Estadisticas/ventasMesasPorMes', 'EstadisticasController@ventasMesasPorMes');
+Route::post('Estadisticas/ventasMesasPorHora', 'EstadisticasController@ventasMesasPorHora');

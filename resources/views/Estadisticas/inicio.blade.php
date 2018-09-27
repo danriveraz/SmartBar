@@ -188,9 +188,10 @@
     <!-- Inicio Gráfica de Ventas ventas totales -->
     <div class="row">
       <h1>Datos de las ventas</h1>
-      <h3>Cantidad Vendido: $@{{ventas.ventaTotal}}</h3>
-      <h3>Venta mayor: $@{{ventas.ventaMayor.total}} </h3>
-      <h3>Venta menor: $@{{ventas.ventaMenor.total}} </h3>
+      <h3>Cantidad Vendido: $@{{ventas.ventaTotal.format(2)}}</h3>
+      <h3>Promedio Vendido: $@{{ventas.promedio.format(2)}}</h3>
+      <h3>Venta mayor: $@{{ventas.ventaMayor.total.format(2)}} </h3>
+      <h3>Venta menor: $@{{ventas.ventaMenor.total.format(2)}} </h3>
       <h4>Estos datos corresponden a:  </h4>
       <h4>Fecha Inicio: @{{ventas.fechaInicio.date}} </h4>
       <h4>Fecha Fin: @{{ventas.fechaFin.date}} </h4>
@@ -1303,284 +1304,225 @@
 
 
 
+<div class="page-title chart-container">
+  <h1>
+    Gráficas De Mesas
+  </h1>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <!-- Inicio Gráfica de Mesas ventas totales -->
+    <div class="row">
+      <i class="fa fa-bar-chart-o"></i>Top 4 Mesas con más ventas
+      <form id="formMesasTotal" class="login-form">
+        <fieldset>
+        <div class="col-md-4">
+            <div class="input-container"> 
+              <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio"  type="date">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-container"> 
+              <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin" type="date">
+            </div>
+        </div>
+        <div class="col-md-2">
+          <div  class="form-group">
+            <a id='buscarMesasTotal' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+              <i class="fa fa-send"></i>
+              Buscar
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+        <div class="widget-container fluid-height">
+          <div class="widget-content padded text-center">
+            <div class="graph-container">
+              <div class="caption"></div>
+              <div class="graph" id="GraficaMesasTotal"></div>
+              <!-- Bar Charts:Morris -->
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- Fin Gráfica de Mesas ventas totales -->
+  </div>
+  <!-- Inicio de tabulador de Gráfica de Mesas -->
+  <div class="col-md-6">
+    <div id="exTab2" class="container"> 
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#tabMesasHora" data-toggle="tab" class="Mesas">Por Horas</a>
+        </li>
+        <li >
+          <a href="#tabMesasDias" data-toggle="tab" class="Mesas">Por Días</a>
+        </li>
+        <li >
+          <a  href="#tabMesasSemana" data-toggle="tab" class="Mesas">Por Semana</a>
+        </li>
+        <li><a href="#tabMesasMes" data-toggle="tab" class="Mesas">Por Mes</a>
+        </li>
+      </ul>
 
+      <div class="tab-content">
 
-        <div class="row">
-          <!-- Line Chart -->
-          <div class="col-md-6">
-            <div class="widget-container">
-              <div class="heading">
-                <i class="fa fa-bar-chart-o"></i>Line Chart
-              </div>
-              <div class="widget-content padded">
-                <div class="chart-graph line-chart">
-                  <div id="linechart-2">
-                    Loading...
+        <!-- Inicio Gráfica de Mesas Por Horas -->
+        <div class="tab-pane active" id="tabMesasHora">
+          <div class="row">
+            <form id="formMesasHora" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" type="date">
                   </div>
-                  <ul class="chart-text-axis">
-                    <li>
-                      1
-                    </li>
-                    <li>
-                      2
-                    </li>
-                    <li>
-                      3
-                    </li>
-                    <li>
-                      4
-                    </li>
-                    <li>
-                      5
-                    </li>
-                    <li>
-                      6
-                    </li>
-                    <li>
-                      7
-                    </li>
-                    <li>
-                      8
-                    </li>
-                    <li>
-                      9
-                    </li>
-                    <li>
-                      10
-                    </li>
-                    <li>
-                      11
-                    </li>
-                    <li>
-                      12
-                    </li>
-                  </ul>
-                  <!-- end Line Chart -->
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarMesasHora' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
-          <!-- Line Chart -->
-          <div class="col-md-6">
-            <div class="widget-container">
-              <div class="heading">
-                <i class="fa fa-bar-chart-o"></i>Bar chart
-              </div>
-              <div class="widget-content padded text-center">
-                <div class="chart-graph">
-                  <div id="barchart-2">
-                    Loading...
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaMesasHora"></div>
+                    <!-- Bar Charts:Morris -->
                   </div>
                 </div>
-              </div>
-            </div>
+              </div>            
           </div>
-          <!-- end Line Chart -->
         </div>
-        <div class="row">
-          <!-- Donut Charts -->
-          <div class="col-lg-8">
-            <div class="widget-container">
-              <div class="heading">
-                <i class="fa fa-bar-chart-o"></i>Donut Charts
+        <!-- Fin Gráfica de Mesas Por Horas -->
+
+        <!-- Inicio Gráfica de Mesas Por Días -->
+        <div class="tab-pane" id="tabMesasDias">
+          <div class="row">
+            <form id="formMesasDias" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" type="date">
+                  </div>
               </div>
-              <div class="widget-content clearfix">
-                <div class="col-sm-4">
-                  <div class="pie-chart1 pie-chart pie-number" data-percent="87">
-                    87%
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarMesasDia' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaMesasDias"></div>
+                    <!-- Bar Charts:Morris -->
                   </div>
                 </div>
-                <div class="col-sm-4">
-                  <div class="pie-chart2 pie-chart pie-number" data-percent="26">
-                    26%
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Mesas Por Dias -->
+        <!-- Inicio Gráfica de Mesas Por semanas -->
+        <div class="tab-pane" id="tabMesasSemana">
+          <div class="row">
+            <form id="formMesasemana" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio" id="fechaInicio" type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin" id="fechaFin" type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarMesasSemana' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaMesasSemana"></div>
+                    <!-- Bar Charts:Morris -->
                   </div>
                 </div>
-                <div class="col-sm-4">
-                  <div class="pie-chart3 pie-chart pie-number" data-percent="54">
-                    54%
+              </div>            
+          </div>
+        </div>
+        <!-- Fin Gráfica de Mesas Por semanas -->
+        <!-- Inicio Gráfica de Mesas Por Mes -->
+        <div class="tab-pane" id="tabMesasMes">
+          <div class="row">
+            <form id="formMesasMes" class="login-form">
+              <fieldset>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Inicio" name="fechaInicio"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="input-container"> 
+                    <input data-date-format="yyyy/mm/dd" class="input"  placeholder="Fecha Fin" name="fechaFin"  type="date">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div  class="form-group">
+                  <a id='buscarMesasMes' class="btn btn-pocket" type="submit" style="font-weight: 400;">
+                    <i class="fa fa-send"></i>
+                    Buscar
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+              <div class="widget-container fluid-height">
+                <div class="widget-content padded text-center">
+                  <div class="graph-container">
+                    <div class="caption"></div>
+                    <div class="graph" id="GraficaMesasMes"></div>
+                    <!-- Bar Charts:Morris -->
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <!-- end Donut Charts --><!-- Pie Chart -->
-          <div class="col-lg-4">
-            <div class="widget-container">
-              <div class="heading">
-                <i class="fa fa-bar-chart-o"></i>Pie Chart
-              </div>
-              <div class="widget-content padded">
-                <div class="pie-chart">
-                  <div id="pie-chart"></div>
-                  <ul class="chart-key">
-                    <li>
-                      <span class="green"></span>Category 1
-                    </li>
-                    <li>
-                      <span class="orange"></span>Category 2
-                    </li>
-                    <li>
-                      <span class="red"></span>Category 3
-                    </li>
-                    <li>
-                      <span class="blue"></span>Category 4
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- end Pie Chart -->
-        </div>
-        <div class="row">
-          <!-- Composite Graph -->
-          <div class="col-lg-6">
-            <div class="widget-container">
-              <div class="heading">
-                <i class="fa fa-bar-chart-o"></i>Composite Graph
-              </div>
-              <div class="widget-content padded text-center">
-                <div id="composite-chart-1">
-                  Loading...
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- end Composite Graph --><!-- Composite Graph -->
-          <div class="col-lg-6">
-            <div class="widget-container">
-              <div class="heading">
-                <i class="fa fa-bar-chart"></i>Composite Graph
-              </div>
-              <div class="widget-content padded">
-                <div id="linechart-1">
-                  Loading...
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- end Composite Graph -->
-        </div>
-        <!-- Line Chart:Morris -->
-        <div class="row">
-          <div class="col-md-6">
-            <div class="widget-container fluid-height">
-              <div class="heading">
-                <i class="fa fa-bar-chart-o"></i>Line Chart
-              </div>
-              <div class="widget-content padded text-center">
-                <div class="graph-container">
-                  <div class="caption"></div>
-                  <div class="graph" id=""></div>
-                  <!-- Line Chart:Morris -->
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Bar Charts:Morris -->
-          <div class="col-md-6">
-            <div class="widget-container fluid-height">
-              <div class="heading">
-                <i class="fa fa-bar-chart-o"></i>Bar Charts
-              </div>
-              <div class="widget-content padded text-center">
-                <div class="graph-container">
-                  <div class="caption"></div>
-                  <div class="graph" id="ProductosBar"></div>
-                  <!-- Bar Charts:Morris -->
-                </div>
-              </div>
-            </div>
+              </div>            
           </div>
         </div>
-        <div class="row">
-          <!-- Area Charts:Morris -->
-          <div class="col-md-6">
-            <div class="widget-container fluid-height">
-              <div class="heading">
-                <i class="fa fa-bar-chart-o"></i>Area Chart
-              </div>
-              <div class="widget-content padded text-center">
-                <div class="graph-container">
-                  <div class="caption"></div>
-                  <div class="graph" id="hero-area"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Area Charts:Morris --><!-- Donut Charts:Morris -->
-          <div class="col-md-6">
-            <div class="widget-container fluid-height">
-              <div class="heading">
-                <i class="fa fa-bar-chart-o"></i>Donut Chart
-              </div>
-              <div class="widget-content padded text-center">
-                <div class="graph-container">
-                  <div class="caption"></div>
-                  <div class="graph" id="hero-donut"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Donut Charts:Morris -->
-        </div>
+        <!-- Fin Gráfica de Mesas Por Mes -->
       </div>
     </div>
-    <div class="style-selector">
-      <div class="style-selector-container">
-        <h2>
-          Layout Style
-        </h2>
-        <select name="layout"><option value="fluid">Fluid<option value="boxed">Boxed</select>
-        <h2>
-          Navigation Style
-        </h2>
-        <select name="nav"><option value="top">Top<option value="left">Left</select>
-        <h2>
-          Color Options
-        </h2>
-        <ul class="color-options clearfix">
-          <li>
-            <a class="blue" href="javascript:chooseStyle('none', 30)"></a>
-          </li>
-          <li>
-            <a class="green" href="javascript:chooseStyle('green-theme', 30)"></a>
-          </li>
-          <li>
-            <a class="orange" href="javascript:chooseStyle('orange-theme', 30)"></a>
-          </li>
-          <li>
-            <a class="magenta" href="javascript:chooseStyle('magenta-theme', 30)"></a>
-          </li>
-          <li>
-            <a class="gray" href="javascript:chooseStyle('gray-theme', 30)"></a>
-          </li>
-        </ul>
-        <h2>
-          Background Patterns
-        </h2>
-        <ul class="pattern-options clearfix">
-          <li>
-            <a class="active" href="#" id="bg-1"></a>
-          </li>
-          <li>
-            <a href="#" id="bg-2"></a>
-          </li>
-          <li>
-            <a href="#" id="bg-3"></a>
-          </li>
-          <li>
-            <a href="#" id="bg-4"></a>
-          </li>
-          <li>
-            <a href="#" id="bg-5"></a>
-          </li>
-        </ul>
-        <div class="style-toggle closed">
-          <span aria-hidden="true" class="hightop-gear"></span>
-        </div>
-      </div>
-    </div>
+  </div>
+  <!-- Fin de tabulador de Gráfica de Mesas -->
+</div>
+
+
 
 
 
@@ -1618,18 +1560,20 @@
    var datosVentasHora = {!!$ventasPorHora!!};
    var datosVentasDia = {!!$ventasPorDia!!};
    var datosVentasMes = {!!$ventasPorMes!!};
+   var datosMesasTotal = {!!$mesas!!};
+   var datosMesasHora = {!!$mesasPorHora!!}
+   var datosMesasMes = {!!$mesasPorMes!!}
+   var datosMesasDia = {!!$mesasPorDia!!}
+   var datosMesasSemana = {!!$mesasPorSemana!!}
 
-
+  Number.prototype.format = function(n, x) {
+      var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+      return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
+  };
 
   var app = angular.module('moduloEstadisticas', []);
 
   app.controller('controladorEstadisticas', function($scope, $http) {
-    /*$scope.ventas = {!!$ventasPorSemana!!}.ventaTotal;
-    $scope.ventaMayor = {!!$ventasPorSemana!!}.ventaMayor.total+" Semana: "+{!!$ventasPorSemana!!}.ventaMayor.semana;
-    $scope.ventaMenor = {!!$ventasPorSemana!!}.ventaMenor.total+" Semana: "+{!!$ventasPorSemana!!}.ventaMenor.semana;;
-    $scope.fechaInicio = "Hora: "+datosVentasHora.ventaMayor.hora;
-    $scope.fechaFin = "Hora: "+datosVentasHora.ventaMenor.hora;
-    */
     $scope.ventas = datosVentasHora;
     $scope.datosFormHora = {};
     $scope.datosFormSemana = {};
@@ -2329,6 +2273,127 @@ $("#buscarCajerosHora").click(function(){
 });
 
 
+//-----------------------AJAX Mesas----------------------
+$("#buscarMesasSemana").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formMesasemana')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasMesasPorSemana')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (data) {
+          $('#GraficaMesasSemana').empty();
+          datosMesasSemana = data;
+          console.log(data);
+          drawChart(); // repinta la gráfica
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarMesasTotal").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formMesasTotal')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/MesasQueMasVenden')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosMesasTotal = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarMesasDia").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formMesasDias')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasMesasPorDia')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosMesasDia = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarMesasMes").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formMesasMes')[0]);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasMesasPorMes')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosMesasMes = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
+
+$("#buscarMesasHora").click(function(){
+    console.log("entro");
+    var type = "POST";
+    var formData = new FormData($('#formMesasHora')[0]);
+    console.log(FormData);
+    $.ajax({
+        url: '{{url('Estadisticas/ventasMesasPorHora')}}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: type,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (datos) {
+
+        datosMesasHora = datos;//Actualiza la variable de los datos
+        drawChart(); // repinta la gráfica
+
+        }, error: function(xhr,status, response) {
+          console.log(xhr.responseText);
+        }
+    });
+});
+
 
 //Esto es para refresar las gráficas cada vez que se cambia de tabulación, PD: esas gráficas molestan mucho 
 $('[data-toggle="tab"]').click(function(){
@@ -2357,6 +2422,9 @@ $('[data-toggle="tab"]').click(function(){
       case "Ventas":
         return chartLineVentas();
         break;
+      case "Mesas":
+        return chartLineMesas();
+        break;
     }
   }, 50);
 });
@@ -2377,6 +2445,8 @@ function drawChart() {
   chartBarMeseros();
   chartBarCajeros();
   chartLineVentas();
+  chartBarMesas();
+  chartLineMesas();
 }
 
 function chartBarProductos() {
@@ -2705,6 +2775,61 @@ function chartLineVentas(){
   var chart = new google.charts.Line(document.getElementById('GraficaVentasMes'));
   chart.draw(data, google.charts.Line.convertOptions(options));
 
+}
+
+function chartBarMesas() {
+  //Gráfica de barras para las ventas totales de los Cajeros
+  var data = new google.visualization.DataTable(datosMesasTotal);
+  var options = {
+    title: 'Mesas que más han vendido',
+    height: 300,
+    legend: { position: 'none' },
+  };
+  var chart = new google.charts.Bar(document.getElementById('GraficaMesasTotal'));
+  chart.draw(data, google.charts.Bar.convertOptions(options)); 
+
+}
+
+function chartLineMesas(){
+  //Gráfica de Lineas para las Mesas por horas
+  var data = new google.visualization.DataTable(datosMesasHora);
+  var options = {
+    title: 'Total de Mesas Divido en Horas',
+    height: 300,
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaMesasHora'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+  google.visualization.events.addListener(chart, 'error', function (googleError) {
+      google.visualization.errors.removeError(googleError.id);
+      document.getElementById("GraficaMesasHora").innerHTML = "No hay datos para Mostrar, Seleccione un día con ventas";
+  });
+
+  //Gráfica de Lineas para las Mesas por Meses
+  var data = new google.visualization.DataTable(datosMesasMes);
+  var options = {
+    title: 'Total de Mesas Divido en Meses',
+    height: 300, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaMesasMes'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+    //Gráfica de Lineas para las Mesas por días
+  var data = new google.visualization.DataTable(datosMesasDia);
+  var options = {
+    title: 'Total de Mesas Divido en Días',
+    height: 300, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaMesasDias'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+
+    //Gráfica de Lineas para las Mesas por días
+  var data = new google.visualization.DataTable(datosMesasSemana);
+  var options = {
+    title: 'Total de Mesas Divido en Semanas',
+    height: 300, 
+  }; 
+  var chart = new google.charts.Line(document.getElementById('GraficaMesasSemana'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
 }
 
 </script>
