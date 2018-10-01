@@ -39,7 +39,7 @@
 <span>Ingresa con esta contraseña: {{$data['contrasena']}}</span>
 <br>
 <br>
-<p><a href="{{url('/')}}/Auth/login}}" target="_blank" class="btn" rel="noopener noreferrer">Confirmar Mi Cuenta</a></p>
+<p><a href="{{url('/')}}/Auth/login" target="_blank" class="btn" rel="noopener noreferrer">Acceder a la Cuenta</a></p>
 </div>
 <div style="margin:0 auto; width:90%; padding:15px">
 
