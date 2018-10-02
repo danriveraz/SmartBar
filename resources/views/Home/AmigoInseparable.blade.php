@@ -27,7 +27,7 @@
             <div class="col bg-gray-white">
                 <div>
                     <h3 class="text-green margin-tiny">Te ayudo a crear un Sistema de Negocio</h3>
-                    <p class="margin-tiny">Cuando emprendes un nuevo negocio siempre tienes la mentalidad, de llegar a un punto en el cual trabajes menos y ganes más dinero, pero para lograr esto, debes crear en tu negocio un sistema, que haga que todo funcione sin que tu estes presente <a href="http://www.pocketSmartbar.com">SmartBar</a>, ayuda a que esta meta, se haga realidad!  </p>
+                    <p class="margin-tiny">Cuando emprendes un nuevo negocio siempre tienes la mentalidad, de llegar a un punto en el cual trabajes menos y ganes más dinero, pero para lograr esto, debes crear en tu negocio un sistema, que haga que todo funcione sin que tu estes presente <a href="https://www.pocketSmartbar.com">SmartBar</a>, ayuda a que esta meta, se haga realidad!  </p>
                     <p class="margin-tiny">Soy el encargado de hacerte la vida, más fácil.</p>
                     <hr>
                 </div>
@@ -87,7 +87,7 @@
   <div class="block-content text-center">
     <h2 class="margin-tiny">Empieza tus <strong>7 Dias gratis</strong></h2>    
     <p><img class="plan-payment" src="{{asset('assets-home/images/logos-payment-col-pocket.png')}}" alt="Métodos de pago"/></p>
-    <p><a class="button large" href="http://pocketsmartbar.com/Auth/register" rel="alternate"><strong>UNIRSE A POCKETCLUB</strong></a></p>
+    <p><a class="button large" href="https://pocketsmartbar.com/Auth/register" rel="alternate"><strong>UNIRSE A POCKETCLUB</strong></a></p>
     <hr>
     <div class="pocket">
     <h4>Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas. <a href="" target="_blank" rel="alternate">¿Que es PocketClub?</a></h4></div>

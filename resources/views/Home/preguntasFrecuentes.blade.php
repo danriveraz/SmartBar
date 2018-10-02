@@ -24,7 +24,7 @@
             <div class="col bg-gray-white">
                 <div>
                     <h3 class="text-green margin-tiny">¿Qué quiere decir que SmartBAr está en la Nube?</h3>
-                    <p class="margin-tiny">La aplicación funciona desde internet, no tienes que preocuparte por instalaciones, servidores, versiones o por copias de seguridad, todo está guardado y protegido por <a href="http://www.pocketSmartbar.com">SmartBar</a>, para acceder sólo necesitas internet. </p>
+                    <p class="margin-tiny">La aplicación funciona desde internet, no tienes que preocuparte por instalaciones, servidores, versiones o por copias de seguridad, todo está guardado y protegido por <a href="https://www.pocketSmartbar.com">SmartBar</a>, para acceder sólo necesitas internet. </p>
                     <p class="margin-tiny">Algunos ejemplos de servicios en la Nube son Dropbox y Facebook.  </p>
                     <p class="margin-tiny">La Nube es la forma más segura de guardar la información, es mucho más seguro que hacerlo en tu computador o en otros medios locales.  </p>
                     <hr>
@@ -98,7 +98,7 @@ También lo puedes usar desde tu celular descargando la aplicación móvil para 
   <div class="block-content text-center" style="padding-top: 0px;">
     <h2 class="margin-tiny">Empieza tus <strong>7 Dias gratis</strong></h2>    
     <p><img class="plan-payment" src="{{asset('assets-home/images/logos-payment-col-pocket.png')}}" alt="Métodos de pago"/></p>
-    <p><a class="button large" href="http://pocketsmartbar.com/Auth/register" rel="alternate"><strong>UNIRSE A POCKETCLUB</strong></a></p>
+    <p><a class="button large" href="https://pocketsmartbar.com/Auth/register" rel="alternate"><strong>UNIRSE A POCKETCLUB</strong></a></p>
     <hr>
     <div class="pocket">
     <h4>Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas. <a href="" target="_blank" rel="alternate">¿Que es PocketClub?</a></h4></div>

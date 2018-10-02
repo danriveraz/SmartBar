@@ -684,7 +684,7 @@ class EstadisticasController extends Controller
             ->join('venta', 'factura.id', '=', 'venta.idFactura')
             ->join('producto', 'venta.idProducto', '=', 'producto.id')
             ->whereIn('Producto.id', $productos->pluck('idProducto')->toArray())
-            ->select(DB::raw('SUM(`cantidad`) as total'),DB::raw('MONTH(`fecha`) as mes'),'idProducto','Producto.nombre',DB::raw('YEAR(`fecha`) as anio'))
+            ->select(DB::raw('SUM(`cantidad`) as total'),DB::raw('MONTH(`fecha`) as mes'),'idProducto','producto.nombre',DB::raw('YEAR(`fecha`) as anio'))
             ->groupBy('idProducto')
             ->groupBy(DB::raw('YEAR(`fecha`)'))
             ->groupBy(DB::raw('MONTH(`fecha`)'))//se hace el group by por el mes en que fue realizada la factura
@@ -776,7 +776,7 @@ class EstadisticasController extends Controller
             ->join('venta', 'factura.id', '=', 'venta.idFactura')
             ->join('producto', 'venta.idProducto', '=', 'producto.id')
             ->whereIn('Producto.id', $productos->pluck('idProducto')->toArray())
-            ->select(DB::raw('SUM(`cantidad`) as total'),DB::raw('HOUR(`fecha`) as hora'),'idProducto','Producto.nombre',DB::raw('DAY(`fecha`) as dia'))
+            ->select(DB::raw('SUM(`cantidad`) as total'),DB::raw('HOUR(`fecha`) as hora'),'idProducto','producto.nombre',DB::raw('DAY(`fecha`) as dia'))
             ->groupBy('idProducto')
             ->groupBy(DB::raw('DAY(`fecha`)'))
             ->groupBy(DB::raw('HOUR(`fecha`)'))//se hace el group by por el mes en que fue realizada la factura

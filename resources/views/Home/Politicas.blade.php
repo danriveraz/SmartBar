@@ -79,7 +79,7 @@
   <div class="block-content text-center" style="padding-top: 0px;">
     <h2 class="margin-tiny">Empieza tus <strong>7 Dias gratis</strong></h2>    
     <p><img class="plan-payment" src="{{asset('assets-home/images/logos-payment-col-pocket.png')}}" alt="Métodos de pago"/></p>
-    <p><a class="button large" href="http://pocketsmartbar.com/Auth/register" rel="alternate"><strong>UNIRSE A POCKETCLUB</strong></a></p>
+    <p><a class="button large" href="https://pocketsmartbar.com/Auth/register" rel="alternate"><strong>UNIRSE A POCKETCLUB</strong></a></p>
     <hr>
 	<div class="pocket">
     <h4>Al ser miembro PocketClub, obtienes descuentos, obsequios y promociones únicas. <a href="" target="_blank" rel="alternate">¿Que es PocketClub?</a></h4></div>

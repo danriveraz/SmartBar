@@ -172,7 +172,7 @@ Route::get('mail', function () { // esto lo hice para poder probar los emails
 
 
 //rutas para las estadisticas, llamados de ajax
-Route::resource('Estadisticas', 'EstadisticasController');
+Route::resource('Estadisticas', 'EstadisticasController', ['only' => ['index']]);
 Route::post('Estadisticas/ventasCategoriasPorSemana', 'EstadisticasController@ventasCategoriasPorSemana'); 
 Route::post('Estadisticas/categoriasMasVendidas', 'EstadisticasController@categoriasMasVendidas');
 Route::post('Estadisticas/ventasCategoriasPorDia', 'EstadisticasController@ventasCategoriasPorDia');
