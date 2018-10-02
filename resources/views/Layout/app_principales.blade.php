@@ -1,6 +1,11 @@
 <!doctype html>
 <html lang="es">
 <head>
+  <script>
+    if (location.protocol != 'https:'){
+     location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+    }
+  </script>
 <!-- Etiquetas meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">

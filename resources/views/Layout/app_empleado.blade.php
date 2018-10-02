@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script>
+      if (location.protocol != 'https:'){
+       location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+      }
+    </script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
        <link rel="shortcut icon" href="{{asset('images/icon.png')}}">
        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css">
