@@ -238,9 +238,15 @@
                       </i>Ayuda</a>
                     </li>
                     <li>
+                      <a id="mesero" href="{{url('mesero/')}}">
+                        <i class="fa fa-beer"></i>
+                        <label>Mesero</label>
+                      </a>
+                    </li>
+                    <li>
                       <a href='{{url("/Auth/logout")}}'>
                       <i class="fa fa-sign-out">
-                      </i>Cerrar Secion</a>
+                      </i>Cerrar Sesión</a>
                     </li>
                   </ul>
                 </li>

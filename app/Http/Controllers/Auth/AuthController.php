@@ -1633,8 +1633,8 @@ class AuthController extends Controller
 
         $authUser = $this->findOrCreateUser($user, $provider);
         if($authUser == null){
-            return redirect("/")
-            ->with("message", "El correo electrónico ya se encuentra asociado a una cuenta");
+            return redirect("/Auth/login")
+            ->with("message", "El correo electrónico ya se encuentra asociado a una cuenta, acceda con el correo y contraseña asociada");
         }
         Auth::login($authUser, true);
         Auth::User()->inicioSesion();// función que se llama para que guarde un nuevo registro en la tabla de registro de inicio y cierre de sesión

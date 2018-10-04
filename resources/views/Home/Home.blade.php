@@ -3,6 +3,11 @@
 
 <!-- ENCABEZADO -->
 <section class="block bg-gray-light" data-name="Hero">
+<div class="text-danger" style="text-align: center;">
+  @if (Session::has('message'))
+    {{Session::get('message')}}
+  @endif
+</div>
   <div class="hero" style="background-image: url('assets-home/images/Found-Pocket.jpg'" target="_blank')">
     <div class="hero-content overlay-mobile">
       <div class="hero-message">

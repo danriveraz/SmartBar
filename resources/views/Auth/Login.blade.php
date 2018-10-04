@@ -154,7 +154,7 @@ padding: 100px 80px;
                         </div>
                         <h3>Bienvenido! Tu amigo inseparable te espera </h3>
                     </div>
-                    <div class="center" style="text-align: center;">
+                    <div class=" text-danger" style="color:Tomato; text-align: center;">
                         @if (Session::has('message'))
                             {{Session::get('message')}}
                         @endif
