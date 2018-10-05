@@ -134,6 +134,8 @@ Route::resource('mesas', 'MesasController');
 Route::resource('WelcomeAdmin', 'welcomeAdmin', ['only' => [
     'index']]);
 
+Route::get('WelcomeAdmin/datos', 'welcomeAdmin@datos');
+
 Route::resource('WelcomeTrabajador', 'WelcomeTrabajadorController', ['only' => [
     'index']]);
 

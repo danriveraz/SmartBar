@@ -17,6 +17,7 @@ use PocketByR\Venta;
 use PocketByR\Mesa;
 use DB;
 use Carbon\Carbon;
+use PocketByR\Empresa;
 
 class welcomeAdmin extends Controller
 { 
@@ -502,5 +503,36 @@ class welcomeAdmin extends Controller
         }
 
         return array('categoriasMasVendidas' => $categoriasMasVendidas, 'sumaVentasDeCadaCategoria' => $sumaVentasDeCadaCategoria);
+    }
+
+    public function datos(Request $request){
+        $userActual = Auth::user();
+        $empresa = Empresa::find($userActual->empresaActual)->first();
+        $empresa->nombreEstablecimiento = $request->negocio;
+        $empresa->direccion = $request->direccion;
+        $empresa->telefono = $request->telefono;
+        $empresa->nit = $request->nit;
+        $empresa->tipoRegimen = $request->tipReg;
+        
+        if($request->tipReg == "RegComun") {
+            $empresa->imagenResolucionFacturacion = $request->imgRes;
+            $empresa->nresolucionFacturacion = $request->resolucion;
+            $empresa->fechaResolucion = $request->fechaResolucion;
+            $empresa->nInicio = $request->nInicio;
+            $empresa->nFinal = $request->nFinal;
+        }
+        $empresa->save();
+
+        $cantidadActualMesas = Mesa::calculaCantidad($userActual->idEmpresa);
+        if(!is_int($cantidadActualMesas)) $cantidadActualMesas = 0;
+        for ($i=0; $i < $request->mesas; $i++) {
+            $cantidadActualMesas++;
+            $mesa = new Mesa;
+            $mesa->idMesa = $cantidadActualMesas;
+            $mesa->nombreMesa = "Mesa $cantidadActualMesas";
+            $mesa->estado = "Disponible";
+            $mesa->idEmpresa = $userActual->idEmpresa;
+            $mesa->save();
+        }        
     }
 }

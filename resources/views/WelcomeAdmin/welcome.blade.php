@@ -159,21 +159,21 @@
 					<div class="row setup-content" id="step-1">
 						<div class="col-xs-12">
 							<div class="col-md-12 well ">
-              <form method="post" action="" class="login-form">
+              <form method="post" class="login-form">
 							<div id="tab-content2" class="tab-content">
 								<!-- registro-->
 								<div class="login-form-content">
 								<div class="input-container" style="margin-top:0px !important;">
 									<i class="fa fa-reorder"></i>
-									<input type="text" class="input" name="negocio" placeholder="Nombre de tu Negocio" required/>
+									<input type="text" class="input" id="negocio" placeholder="Nombre de tu Negocio" required/>
 								</div>
 								<div class="input-container">
 									<i class="fa fa-map-marker"></i>
-									<input type="text" class="input" name="direccion" placeholder="Dirección" required/>
+									<input type="text" class="input" id="direccion" placeholder="Dirección" required/>
 								</div>
 								<div class="input-container">
 									<i class="fa fa-address-card"></i>
-									<input type="text" class="input" name="telefono" placeholder="Telefono" required/>
+									<input type="text" class="input" id="telefono" placeholder="Telefono" required/>
 								</div>
 								<!--a href="#" class="register">Register</a-->
 							</div><!--  fin de login-form-content-->
@@ -181,7 +181,7 @@
               <div class="login-form-content">
                 <div class="input-container" style="margin-top:0px !important;">
                   <i class="fa fa-pencil-square-o"></i>
-                  <input type="text" class="input" name="telefono" placeholder="No. Mesas" required/>
+                  <input type="text" class="input" id="mesas" placeholder="No. Mesas" required/>
                 </div>
               </div>
 
@@ -205,13 +205,13 @@
 							<div id="tab-content2" class="tab-content">
 								<!-- registro-->
 								<div class="login-form-content">
-								<form method="post" action="" class="login-form">
+								<form method="post" class="login-form">
 									<div class="container">
 									<p class="lead" style="margin-bottom: 10px;">Informacion <span class="text-success">Tributaria</span></p>
 								  </div>
 									<div class="input-container">
 									<i class="fa fa-drivers-license"></i>
-									<input name="nit" type="text" class="input" placeholder="Ingrese su nit xxxxxxx-xx" required="true">
+									<input id="nit" type="text" class="input" placeholder="Ingrese su nit xxxxxxx-xx" required="true">
 									</div>
 									<div class="input-container">
 									<i style="line-height: inherit; position: inherit;" class="glyphicon glyphicon-list-alt"></i>
@@ -251,22 +251,23 @@
 									  </div>
 									</div>
 								</form>
-
-							</div><!--  fin de login-form-content-->
-							  </div> <!-- tab-content2-->
 								<br>
 								<div class="col-centrada">
-									<a id="activate-step-2" class="btn btn-pocket" style="font-weight: 400;" type="submit">
+									<a id="guardar-step-2" class="btn btn-pocket" style="font-weight: 400;" type="submit">
 										<i class="fa fa-send"></i>Guardar
 									</a>
 								</div>
 								<br>
+
+							</div><!--  fin de login-form-content-->
+							  </div> <!-- tab-content2-->
+								
 							</div>
 						</div>
 					</div>
 				</div>
 
-                          </form>
+                         
                       </div>
                   </div>
                   <div class="col-md-6 TutoPo">
@@ -278,7 +279,7 @@
               </div>
 
 	<div class="modal-footer buttonTuto slide1Tuto" style="padding: 0px;">
-        <button type="button" class="btn btn-pocket" data-dismiss="modal" onclick="cambio(0,0)"  style="font-weight: 400">Siguiente</button>
+        <button type="button" id="mod1" class="btn btn-pocket" disabled data-dismiss="modal" onclick="cambio(0,0)"  style="font-weight: 400">Siguiente</button>
     </div>
 
           </div>
@@ -352,14 +353,14 @@
 						<div class="col-md-6 col-sm-6 col-xs-6">
 						<div class="input-container">
 							<i class="glyphicon glyphicon-list-alt"></i>
-							<input type="text" class="input2" name="nombre" placeholder="Nombre"/>
+							<input type="text" class="input2" id="nombre" placeholder="Nombre"/>
 						</div>
 
 						</div>
 						<div class="col-md-6 col-sm-6 col-xs-6">
 						<div class="input-container">
 							<i class="fa fa-address-card"></i>
-							<input type="text" class="input2" name="nombre" placeholder="Valor"/>
+							<input type="text" class="input2" id="valor" placeholder="Valor"/>
 						</div>
 						</div>
 
@@ -618,7 +619,48 @@ $(document).ready(function() {
         $('ul.setup-panel li:eq(1)').removeClass('disabled');
         $('ul.setup-panel li a[href="#step-2"]').trigger('click');
         $(this).remove();
-    })
+    });
+
+    $('#guardar-step-2').on('click', function(e) {
+    	var negocio = $("#negocio").val();
+    	var direccion = $("#direccion").val();
+    	var telefono = $("#telefono").val();
+    	var mesas = $("#mesas").val();
+
+    	var nit = $("#nit").val();
+    	var tipReg = $("#TipReg").val();
+
+    	var imgRes = $("#imgRes").val();
+    	var resolucion = $("#resolucion").val();
+    	var fechaResolucion = $("#fechaResolucion").val();
+    	var nInicio = $("#nInicio").val();
+    	var nFinal = $("#nFinal").val();
+
+    	$.ajax({
+    		url: 'https://localhost/SmartBar/public/WelcomeAdmin/datos',
+    		type: 'GET',
+    		data: {
+    			negocio: negocio,
+    			direccion: direccion,
+    			telefono: telefono,
+    			mesas: mesas,
+    			nit: nit,
+    			tipReg: tipReg,
+    			imgRes: imgRes,
+    			resolucion: resolucion,
+    			fechaResolucion: fechaResolucion,
+    			nInicio: nInicio,
+    			nFinal: nFinal
+    		},
+    		success: function(){
+    			alert("La información se ha actualizado correctamente.");
+    			document.getElementById("mod1").disabled = false;
+    		},
+    		error: function(data){
+    			alert('Ooooops, por favor disculpanos. Ocurrió un error y estamos trabajando en ello.');
+    		}
+    	});
+    });
 });
 
 
