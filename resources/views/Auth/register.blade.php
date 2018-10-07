@@ -122,7 +122,7 @@
              </div>
              <div class="input-container">
                <i class="fa fa-address-card"></i>
-               <input type="text" class="input" name="nombrePersona" placeholder="Nombre" value="{{ old('nombrePersona') }}" required/>
+               <input type="text" class="input" name="nombrePersona" placeholder="Nombre Propietario" value="{{ old('nombrePersona') }}" required/>
              </div>
              <div class="text-danger" style="text-align: center; font-color: #2d0031">
               <b>{{$errors->first('nombrePersona')}}</b>

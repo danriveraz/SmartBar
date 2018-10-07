@@ -181,11 +181,14 @@ padding: 100px 80px;
     					<input type="submit" name="submit" id="submit" value="INGRESAR" class="button">
     				</form>
         	<div class="separator"></div>
-            <div class="socmed-login">
+            <!--<div class="socmed-login">
                 <a href="{{url('Auth/Google')}}" class="socmed-btn google-btn">
                     <i class="fa fa-google"></i>
                     <span>Iniciar Sesión con Google</span>
                 </a>
+            </div>-->
+            <div class="login-form-header" style="font-weight: 400 !important;">
+            <h3 style="font-size: 17px; font-weight: 400 !important;"> Si no tienes cuenta <br> Registrate y se parte de nuesta comunidad</h3>
             </div>
         </div><!--  fin de login-form-content-->
     </aside>

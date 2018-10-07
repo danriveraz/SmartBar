@@ -167,6 +167,15 @@
 									<i class="fa fa-reorder"></i>
 									<input type="text" class="input" id="negocio" placeholder="Nombre de tu Negocio" required/>
 								</div>
+                <div class="input-container" id="TipNeg">
+                  <i class="fa fa-reorder"></i>
+                  <select class="select" id="TipoNegocio"  name="TipoNegocio" required>
+                  <option >Tipo De Negocio</option>
+                  <option value="bar">Bar</option>
+                  <option value="restaurante">Restaurante</option>
+                  <option value="barRestaurante">Bar y Restaurante</option>
+                  </select>
+                </div>                
 								<div class="input-container">
 									<i class="fa fa-map-marker"></i>
 									<input type="text" class="input" id="direccion" placeholder="Dirección" required/>
@@ -261,13 +270,13 @@
 
 							</div><!--  fin de login-form-content-->
 							  </div> <!-- tab-content2-->
-								
+
 							</div>
 						</div>
 					</div>
 				</div>
 
-                         
+
                       </div>
                   </div>
                   <div class="col-md-6 TutoPo">

@@ -135,12 +135,16 @@
       </form>
       <!-- END LOGIN -->
       <div class="separator"></div>
-      <div class="socmed-login">
+    <!--<div class="socmed-login">
         <a href="{{url('Auth/Google')}}" class="socmed-btn google-btn">
           <i style="color: white;padding: 0px;" class="fa fa-google"></i>
           <span style="font-weight:400;">Iniciar Sesión con Google</span>
         </a>
-      </div>
+      </div>-->
+      <div style="text-align: center !important;">
+      <h4 style="font-size: 17px;"> Si no tienes cuenta <br> Registrate y se parte de nuesta comunidad</h4>
+    </div>
+
     </div>
             </div>
           </li>
@@ -189,7 +193,7 @@
          </div>
           <div class="input-container">
             <i class="fa fa-address-card"></i>
-            <input type="text" class="input" name="nombrePersona" placeholder="Nombre" required/>
+            <input type="text" class="input" name="nombrePersona" placeholder="Nombre Propietario" required/>
           </div>
           <div class="input-container">
             <i class="fa fa-venus-mars"></i>
