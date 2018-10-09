@@ -75,7 +75,8 @@ function finTutorial(){
     url: "http://localhost/SmartBar/public/usuario/tutorial",
     type: 'GET',
     data: {},
-    success: function(){},
+    success: function(){
+    },
     error: function(data){}
   }); 
 }

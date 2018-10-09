@@ -98,9 +98,9 @@ class UsuariosController extends Controller
   }
 
   public function tutorial(){
-    $userActual = Auth::user();
+    /*$userActual = Auth::user();
     $userActual->estadoTut = 1;
-    $userActual->save();
+    $userActual->save();*/
   }
 
   public function store(Request $request){

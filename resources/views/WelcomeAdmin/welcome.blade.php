@@ -1,7 +1,7 @@
 @extends('Layout.app_administradores')
 @section('content')
 {!!Html::style('assets-Internas\css/tutorial/tutorial.css')!!}
-{!!Html::script('assets-Internas\javascripts/tutorial/tutorial.js')!!}
+{!!Html::script('assets-Internas/javascripts/tutorial/tutorial.js')!!}
 <!-- css para hoy-->
 {!!Html::style('assets-Internas/css/styleWeladmin.css')!!}
 <title>
@@ -425,7 +425,7 @@
         <h4>You can just use the "<strong>.bg-overlay</strong>" class on any container/element,<br>
         and specify the image you want to use and its height.</h4>
         <br><br>
-        <button type="button" style="font-weight: 400" class="btn btn-pocket btn-lg"data-dismiss="modal" onclick="finTutorial()">Get Started</button>
+        <button type="button" style="font-weight: 400" class="btn btn-pocket btn-lg"data-dismiss="modal" >Get Started</button>
 	</div>
 </div>
 <!-- Fin de Contenido-->
@@ -480,6 +480,8 @@
     var tutorial = '{{$tutorial}}';
     if(tutorial != 1){
       $("#modal1").modal("show");
+    }else{
+    	$("#modal1").modal("hide");
     }
   });
 </script>
@@ -635,6 +637,7 @@ $(document).ready(function() {
     	var direccion = $("#direccion").val();
     	var telefono = $("#telefono").val();
     	var mesas = $("#mesas").val();
+    	var TipoNegocio = $("#TipoNegocio").val();
 
     	var nit = $("#nit").val();
     	var tipReg = $("#TipReg").val();
@@ -652,6 +655,7 @@ $(document).ready(function() {
     			negocio: negocio,
     			direccion: direccion,
     			telefono: telefono,
+    			TipoNegocio: TipoNegocio,
     			mesas: mesas,
     			nit: nit,
     			tipReg: tipReg,
