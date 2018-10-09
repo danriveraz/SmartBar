@@ -165,11 +165,11 @@
 								<div class="login-form-content">
 								<div class="input-container" style="margin-top:0px !important;">
 									<i class="fa fa-reorder"></i>
-									<input type="text" class="input" id="negocio" placeholder="Nombre de tu Negocio" required/>
+									<input type="text" class="input" id="negocio" placeholder="Nombre de tu Negocio" value="{{$empresa->nombreEstablecimiento}}" required/>
 								</div>
                 <div class="input-container" id="TipNeg">
                   <i class="fa fa-reorder"></i>
-                  <select class="select" id="TipoNegocio"  name="TipoNegocio" required>
+                  <select class="select" id="TipoNegocio" value="{{$empresa->baroRestaurante}}" name="TipoNegocio" required>
                   <option >Tipo De Negocio</option>
                   <option value="bar">Bar</option>
                   <option value="restaurante">Restaurante</option>
@@ -178,11 +178,11 @@
                 </div>                
 								<div class="input-container">
 									<i class="fa fa-map-marker"></i>
-									<input type="text" class="input" id="direccion" placeholder="Dirección" required/>
+									<input type="text" class="input" id="direccion" placeholder="Dirección" value="{{$empresa->direccion}}" required/>
 								</div>
 								<div class="input-container">
 									<i class="fa fa-address-card"></i>
-									<input type="text" class="input" id="telefono" placeholder="Telefono" required/>
+									<input type="text" class="input" id="telefono" placeholder="Telefono" value="{{$empresa->telefono}}" required/>
 								</div>
 								<!--a href="#" class="register">Register</a-->
 							</div><!--  fin de login-form-content-->
