@@ -364,7 +364,7 @@
                 <div class="alert alert-info backgraundPocket">
                   <h4>!Estas al día</h4>
                   <p>
-                    Tu Membresia PocketClub vence en 30 dias faltando 7 dias te recordaremos el vencimiento de la membresia<p>
+                    Tu Membresia PocketClub vence el {{Auth::User()->empresa()->first()->fechaFinMembresia}}, faltando 7 dias te recordaremos el vencimiento de la membresia<p>
                 </div>
             </div>
           </div>

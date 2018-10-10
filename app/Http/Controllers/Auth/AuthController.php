@@ -23,6 +23,8 @@ use PocketByR\Proveedor;
 use PocketByR\Insumo;
 use PocketByR\Producto;
 use PocketByR\Contiene;
+use Carbon\Carbon;
+
 
 
 class AuthController extends Controller
@@ -120,6 +122,7 @@ class AuthController extends Controller
             $empresa->baroRestaurante = $request->TipoNegocio;
             $empresa->contadorFactura = 1;
             $empresa->iva = 19;
+            $empresa->fechaFinMembresia = Carbon::now()->addDay(7);
             $empresa->save();// crea la empresa con el nombre del establecimiento
 
 
@@ -357,6 +360,7 @@ class AuthController extends Controller
         if ($the_user == null){
             $empresa = new Empresa;
             $empresa->nombreEstablecimiento = '';
+            $empresa->fechaFinMembresia = Carbon::now()->addDay(7);
             $empresa->save();// crea la empresa con el nombre del establecimiento
 
 

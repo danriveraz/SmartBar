@@ -18,6 +18,7 @@ class EstadisticasController extends Controller
     //
     public function __construct(){
         $this->middleware('auth');
+        $this->middleware('Permisos:Admin');
         $userActual = Auth::user();
         if($userActual != null){
             if (!$userActual->esAdmin) {

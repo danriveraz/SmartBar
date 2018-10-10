@@ -21,6 +21,7 @@ class CajeroController extends Controller
      public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('Permisos');
         $userActual = Auth::user();
         if($userActual != null){
             if (!$userActual->esCajero) {

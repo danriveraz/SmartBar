@@ -21,6 +21,12 @@ class guardarAccionUser
         $registroAccion = Auth::User()->registros->last();
         $registroAccion->fill(['salida'=>Carbon::now()]);
         $registroAccion->save();
+        /*if (Carbon::now()->lessThanOrEqualTo(Carbon(Auth::User()->empresa()->first()->fechaFinMembresia))) {
+            return $next($request);
+        }else{
+            return redirect('/WelcomeAdmin');
+            //return redirect('/WelcomeTrabajador');
+        }*/
         return $next($request);
     }
 }

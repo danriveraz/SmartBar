@@ -4,6 +4,8 @@ namespace PocketByR\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 
 class Permisos
 {
@@ -17,7 +19,16 @@ class Permisos
     public function handle($request, Closure $next, $permiso = null)
     {
         $userActual = Auth::user();
-        if(!$userActual->esAdmin){
+        $fechaFinMembresia = new Carbon($userActual->empresa()->first()->fechaFinMembresia);
+        $fechaFinMembresia->endOfDay();
+        if($fechaFinMembresia->lessThan(Carbon::now())) {
+            if($request->route()->uri()!='WelcomeAdmin'){
+                flash('Fecha Límite de la membresía gratuita terminada')->error()->important();
+                return redirect('/WelcomeAdmin')->send();
+            }
+        }
+
+        /*if(!$userActual->esAdmin){
 
             if($permiso=='Mesero' && $userActual->esMesero){
                 return $next($request);
@@ -30,7 +41,7 @@ class Permisos
                 return redirect('/WelcomeTrabajador')->send();
             }
 
-        }
+        }*/
         return $next($request);
     }
 }
