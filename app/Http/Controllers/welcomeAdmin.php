@@ -41,8 +41,8 @@ class welcomeAdmin extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-
+    {
+        $empresa = Empresa::find(Auth::user()->empresaActual)->first();
         $notificaciones = Notificaciones::Usuario(Auth::id())->get();
         $nuevas = 0;
         $fechaActual = Carbon::now();
@@ -192,6 +192,7 @@ class welcomeAdmin extends Controller
                     ->with('nuevas',$nuevas)
                     ->with('fecha2array',$fecha2array)
                     ->with('tutorial',$userActual->estadoTut)
+                    ->with('empresa',$empresa)
                     ->with('utilidadHoy',$utilidadHoy)
                     ->with('nMesasReservadas',$nMesasReservadas)
                     ->with('flujoPersonas',$flujoPersonas)
@@ -306,6 +307,7 @@ class welcomeAdmin extends Controller
                 ->with('nuevas',$nuevas)
                 ->with('fecha2array',$fecha2array)
                 ->with('tutorial',$userActual->estadoTut)
+                ->with('empresa',$empresa)
                 ->with('utilidadHoy',$utilidadHoy)
                 ->with('utilidadHoy',$utilidadHoy)
                 ->with('nMesasReservadas',$nMesasReservadas)
