@@ -476,6 +476,11 @@
     </div>
 </footer>
 
+<!-- SCRIPT SWEETALERT -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- SCRIPT SWEETALERT -->
+
+
 <script>
   $(document).ready(function () {
     var tutorial = '{{$tutorial}}';
@@ -667,11 +672,26 @@ $(document).ready(function() {
     			nFinal: nFinal
     		},
     		success: function(){
-    			alert("La información se ha actualizado correctamente.");
+    			//alert("La información se ha actualizado correctamente.");
+          //swal ( "La información se ha actualizado correctamente ") ;
+          swal({
+            title: "Información Guardada!",
+            text: "Registro actualizado correctamente ",
+            icon: "success",
+            buttons: false,
+            timer: 10000,
+          });
     			document.getElementById("mod1").disabled = false;
     		},
     		error: function(data){
-    			alert('Ooooops, por favor disculpanos. Ocurrió un error y estamos trabajando en ello.');
+          swal({
+            title: "warning!",
+            text: "por favor disculpanos. Ocurrió un error y estamos trabajando en ello.",
+            icon: "warning",
+            buttons: false,
+            //timer: 10000,
+          });
+
     		}
     	});
     });

@@ -350,6 +350,12 @@
         document.form.submit();
     }
   </script>
+
+  <!-- SCRIPT SWEETALERT -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- SCRIPT SWEETALERT -->
+
+
   <!-- Smartsupp Live Chat script -->
   <script type="text/javascript">
   var _smartsupp = _smartsupp || {};
