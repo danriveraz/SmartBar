@@ -59,5 +59,11 @@ class HomeController extends Controller
                 ->with('ciudades', $ciudades);
     }
 
+		public function errors(){
+        $departamentos = Departamento::all();
+        $ciudades = Ciudad::all();
+        return view('errors.503')->with('departamentos',$departamentos)
+                ->with('ciudades', $ciudades);
+    }
 
 }

@@ -269,11 +269,10 @@
    <div>
      <div class="pocketPadin block-content text-center">
         <ul class="list-inline">
-           <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
-           <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
-           <li><a href="#"><i class="fa fa-instagram fa-2x"></i></a></li>
-           <li><a href="#"><i class="fa fa-youtube fa-2x"></i></a></li>
-           <li><a href="#"><i class="fa fa-google-play fa-2x"></i></a></li>
+           <li><a href="https://www.facebook.com/PocketSmartBar/" target="_blank"><i class="fa fa-facebook fa-2x"></i></a></li>
+           <li><a href="https://twitter.com/pocketsmartbar/" target="_blank"><i class="fa fa-twitter fa-2x"></i></a></li>
+           <li><a href="https://www.instagram.com/pocketsmartbar/" target="_blank"><i class="fa fa-instagram fa-2x"></i></a></li>
+           <li><a href="https://www.youtube.com/channel/UC9MeOjQqxTsqdu6up_ZCiaA?view_as=subscriber" target="_blank"><i class="fa fa-youtube fa-2x" ></i></a></li>
          </ul>
       </div>
       <div class="pocketPadin block-content text-center">

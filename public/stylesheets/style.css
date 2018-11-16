@@ -3424,13 +3424,13 @@ body.fourofour {
   padding: 0;
   position: relative; }
   body.fourofour .fourofour-container {
-    max-width: 400px;
-    width: 400px;
+    max-width: 600px;
+    width: 600px;
     text-align: center;
     color: white;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 42%;
     margin: -200px 0 0 -200px; }
     body.fourofour .fourofour-container h1 {
       font-size: 200px;
@@ -3445,6 +3445,30 @@ body.fourofour {
       body.fourofour .fourofour-container a.btn:hover {
         color: #2d0031;
         background-color: white; }
+/* forur container para eroors construction*/
+  body.fourofour .fourofour-container2 {
+    max-width: 600px;
+    width: 600px;
+    text-align: center;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 42%;
+    margin: -250px 0 0 -200px; }
+    body.fourofour .fourofour-container2 h1 {
+      font-size: 200px;
+      font-weight: 100;}
+    body.fourofour .fourofour-container2 h2 {
+      font-size: 32px;
+      font-weight: 100;
+      margin-bottom: 40px; }
+    body.fourofour .fourofour-container2 a.btn {
+      border-color: white;
+      color: white; }
+      body.fourofour .fourofour-container2 a.btn:hover {
+        color: #2d0031;
+        background-color: white; }
+
   body.fourofour.bg-danger {
     background-color: #d9534f; }
     body.fourofour.bg-danger h1 {
@@ -3700,10 +3724,19 @@ body.fourofour {
   body.fourofour .fourofour-container {
     max-width: 320px;
     width: 320px;
-    margin: -190px 0 0 -160px; }
+    margin: -190px 0 0 -130px; }
     body.fourofour .fourofour-container h1 {
       font-size: 160px; }
     body.fourofour .fourofour-container h2 {
+      font-size: 28px; }
+	
+	  body.fourofour .fourofour-container2 {
+    max-width: 320px;
+    width: 320px;
+    margin: -190px 0 0 -130px; }
+    body.fourofour .fourofour-container2 h1 {
+      font-size: 160px; }
+    body.fourofour .fourofour-container2 h2 {
       font-size: 28px; }
 
   .widget-container.chat-page {

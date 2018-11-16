@@ -176,7 +176,7 @@
                   <option value="restaurante">Restaurante</option>
                   <option value="barRestaurante">Bar y Restaurante</option>
                   </select>
-                </div>                
+                </div>
 								<div class="input-container">
 									<i class="fa fa-map-marker"></i>
 									<input type="text" class="input" id="direccion" placeholder="Dirección" value="{{$empresa->direccion}}" required/>

@@ -107,7 +107,7 @@ class AuthController extends Controller
         $departamentos = Departamento::All();
         $ciudades = Ciudad::all();
 
-        if ($validator->fails()){  
+        if ($validator->fails()){
             return redirect("Auth/register")
             ->withErrors($validator)
             ->withInput()
@@ -129,15 +129,16 @@ class AuthController extends Controller
             $admin = new User;
             $admin->nombrePersona = $request->nombrePersona;
             $admin->email = $request->email;
+            $admin->sexo = $request->sexo;
             $admin->pais= "Colombia";
             $admin->departamento = Departamento::find($request->idDepto)->nombre;
             $admin->ciudad = Ciudad::find($request->idCiudad)->nombre;
             $admin->confirmoEmail = 0;
             $admin->estado = true;
 
-            $admin->imagenPerfil = "perfilhombre.png";
-            $admin->imagenNegocio = "perfilhombre.png";
-            
+            $admin->imagenPerfil = "bar.png";
+            $admin->imagenNegocio = "bar.png";
+
             $admin->password = bcrypt($request->password);
             $admin->remember_token = str_random(100);
             $admin->confirm_token = str_random(100);
@@ -146,19 +147,18 @@ class AuthController extends Controller
             $admin->esBartender = true;
             $admin->esMesero = true;
             $admin->obsequio = true;
-            $admin->cedula= $request->email; // coloco el email aquí temporalmente mientras se crea, unas lineas más adelante lo actualizo
+            //$admin->cedula= $request->email; // coloco el email aquí temporalmente mientras se crea, unas lineas más adelante lo actualizo
             $admin->idEmpresa = $empresa->id; // id de la empresa para saber a quién pertenece
             $admin->empresaActual =  $empresa->id;
-            $admin->estadoTut = 13;
+            $admin->estadoTut = 0;
             $admin->save();// guarda el usuario registrado
 
             $empresa->usuario_id = $admin->id;// obtiene el id del usuario que creo la empres apara saber la referencia
             $empresa->departamento = $departamentos[($request->idDepto) -1]->nombre;
             $empresa->ciudad = $ciudades[($request->idCiudad) -1]->nombre;
-            $empresa->notas = "Felicidad es saber que cuentas con un compañero inseparable como SMARTBAR.";
             $empresa->save();// guarda los cambios
 
-            
+
             // parte del código para generar el username inicial
             $admin->cedula = $admin->id;
 

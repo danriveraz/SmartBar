@@ -318,9 +318,9 @@ hr{border:0;height:1px;color:#e8ebf0;background-color:#e8ebf0}
 
 /* container avatar */
 
-.container-pocket{max-width:960px;margin:0 auto;width:80%}
+.container-pocket{max-width:100%;margin:0 auto;width:80%}
 
-.container-pocket{max-width:1120px;padding:0rem 2rem 1rem 2rem;width:100%}
+.container-pocket{max-width:100%;padding:0rem 2rem 1rem 2rem;width:100%}
 
 @media screen and (max-width:768px){
 	.container-pocket{width:100%;padding:0rem 2rem 4rem 2rem}}
@@ -351,9 +351,16 @@ body.show-grid .row{outline:#00eed3 solid 1px}
 
 /*-----------------div para imagen banner avatar pocket----------------------*/
 .design-bottom-img {width: 300px;}	
-@media (min-width: 769px){.design-bottom-img{margin-top:30px;right: 0px;position:absolute;}}
-@media (max-width: 768px){.design-bottom-img{display:block;margin:auto;}}
+@media (min-width: 769px){.design-bottom-img{margin: 20px 0 0 -200px;right: 200px;position:absolute;}}
+@media (min-width: 768px){.design-bottom-img{display:block;margin:auto;}}
 /*-----------------Fixed NO BORRAR-----------------*/
+
+/*-----------------div para imagen banner avatar pocket----------------------*/
+@media (max-width: 770px){.design-bottom-img{right: 250px;}}
+/*-----------------Fixed NO BORRAR-----------------*/
+
+
+
 .fixed{position:fixed;width:100%}
 /*-----------------Fixed NO BORRAR-----------------*/
 

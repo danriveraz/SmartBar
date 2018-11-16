@@ -14,14 +14,15 @@
   </head>
   <body class="fourofour" style="background-color:#2d0031">
     <!-- Login Screen -->
-    <div class="fourofour-container">
-      <h1>
-        <i class="fa fa-unlink"></i>
-      </h1>
+    <div class="fourofour-container2">
+
+
+		<img class="" width="80%" src="{{asset('assets-home/images/web-construction.png')}}">
+
       <h2>
-        <b>Oops! Error 503!</b>
+        <b>¡Estamos creando algo increíble para ti!</b>
         <br>
-        No podemos validar tu solicitud
+        Esperalo pronto
       </h2>
       <a class="btn btn-lg btn-default-outline" href="{{url('/')}}"><i class="fa fa-home"></i>Retornar</a>
     </div>

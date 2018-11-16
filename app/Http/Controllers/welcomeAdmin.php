@@ -21,7 +21,7 @@ use PocketByR\Empresa;
 use PocketByR\Proveedor;
 
 class welcomeAdmin extends Controller
-{ 
+{
     public function __construct()
     {
         $this->middleware('auth');
@@ -61,15 +61,15 @@ class welcomeAdmin extends Controller
         if(Factura::where([['factura.estado', 'Finalizada'],['factura.idEmpresa', Auth::user()->empresaActual]])->first()!= null) {
             $categoriasMasVendidas = $this->categoriasMasVendidas();// llamado a la función queretorna un arreglo con dos valores
 
-            //ESTADISTICAS DEL DÍA 
-            //Utilidad 
+            //ESTADISTICAS DEL DÍA
+            //Utilidad
             $utilidadHoy = 0;
             $facturasHoy = Factura::listarFacturaDia(Auth::user()->empresaActual)->get();
-            for ($i=0; $i < sizeof($facturasHoy); $i++) { 
+            for ($i=0; $i < sizeof($facturasHoy); $i++) {
                 $ventas = Venta::listarElementosId($facturasHoy[$i]->id)->get();
-                for ($j=0; $j < sizeof($ventas); $j++) { 
+                for ($j=0; $j < sizeof($ventas); $j++) {
                     $contiene = Contiene::idProducto($ventas[$j]->idProducto)->get();
-                    for ($k=0; $k < sizeof($contiene); $k++) { 
+                    for ($k=0; $k < sizeof($contiene); $k++) {
                         $insumo = Insumo::find($contiene[$k]->idInsumo);
                         $utilidad = 0;
                         if($insumo->esProducto){
@@ -84,7 +84,7 @@ class welcomeAdmin extends Controller
                         }
                     }
                 }
-            }   
+            }
             //Ventas por vendedor
             $vendedores = array();
             $vendedorArray[] = ['Nombre', 'Total venta'];
@@ -92,23 +92,23 @@ class welcomeAdmin extends Controller
             for ($i=0; $i < sizeof($facturasHoy); $i++) {
                 $facturAux = Factura::find($facturasHoy[$i]->id);
                 $boolean = 0;
-                for ($j=0; $j < sizeof($vendedores); $j++) { 
+                for ($j=0; $j < sizeof($vendedores); $j++) {
                     if($vendedores[$j][0] == $facturAux->idUsuario){
                         $vendedores[$j][2] = $vendedores[$j][2] + $facturAux->total;
                         $boolean = 1;
                     }
                 }
                 if($boolean == 0){
-                    for ($j=0; $j < sizeof($meserosAux) ; $j++) { 
+                    for ($j=0; $j < sizeof($meserosAux) ; $j++) {
                         if($meserosAux[$j]->id == $facturAux->idUsuario){
                             //dd($meserosAux[$j]->id);
-                            array_push($vendedores, array($meserosAux[$j]->id, $meserosAux[$j]->nombrePersona, $facturAux->total)); 
+                            array_push($vendedores, array($meserosAux[$j]->id, $meserosAux[$j]->nombrePersona, $facturAux->total));
                             //dd($vendedores);
                         }
                     }
                 }
             }
-            for ($i=0; $i < sizeof($vendedores); $i++) { 
+            for ($i=0; $i < sizeof($vendedores); $i++) {
                 $vendedorArray[$i+1] = [$vendedores[$i][1], $vendedores[$i][2]];
             }
             //Mesas reservadas si hay
@@ -118,7 +118,7 @@ class welcomeAdmin extends Controller
 
             //Flujo de personas
             $flujoPersonas = 0;
-            for ($i=0; $i < sizeof($facturasHoy); $i++) { 
+            for ($i=0; $i < sizeof($facturasHoy); $i++) {
                 $facturAux = Factura::find($facturasHoy[$i]->id);
                 $flujoPersonas = $flujoPersonas + $facturAux->nPersonas;
             }
@@ -130,16 +130,16 @@ class welcomeAdmin extends Controller
             for ($i=0; $i < sizeof($facturasHoy); $i++) {
                 $facturAux = Factura::find($facturasHoy[$i]->id);
                 $boolean = 0;
-                for ($j=0; $j < sizeof($mesasMayores); $j++) { 
+                for ($j=0; $j < sizeof($mesasMayores); $j++) {
                     if($mesasMayores[$j][0] == $facturAux->idMesa){
                         $mesasMayores[$j][2] = $mesasMayores[$j][2] + $facturAux->total;
                         $boolean = 1;
                     }
                 }
                 if($boolean == 0){
-                    for ($j=0; $j < sizeof($mesasAux) ; $j++) { 
+                    for ($j=0; $j < sizeof($mesasAux) ; $j++) {
                         if($mesasAux[$j]->id == $facturAux->idMesa){
-                            array_push($mesasMayores, array($mesasAux[$j]->id, $mesasAux[$j]->nombreMesa, $facturAux->total)); 
+                            array_push($mesasMayores, array($mesasAux[$j]->id, $mesasAux[$j]->nombreMesa, $facturAux->total));
                         }
                     }
                 }
@@ -158,7 +158,7 @@ class welcomeAdmin extends Controller
                 else return 0;
             });
 
-            for ($i=0; $i < sizeof($mesasMayores); $i++) { 
+            for ($i=0; $i < sizeof($mesasMayores); $i++) {
                 $mesaArray[$i+1] = [$mesasMayores[$i][1], $mesasMayores[$i][2]];
             }
             //FIN ESTADISTICAS DEL DÍA
@@ -174,7 +174,7 @@ class welcomeAdmin extends Controller
 
             $ventasSemana  = $this->VentasSemana();// Lamado a la función que ontener los datos de la semana actual y la semana anterior, para la tabla de comparación
 
-            $datosVentasComparacionSemanas = $this->ventaCadaDiaSemana();// venta de la semana pasada y actual, detallada en cada día 
+            $datosVentasComparacionSemanas = $this->ventaCadaDiaSemana();// venta de la semana pasada y actual, detallada en cada día
 
             $mesasConMasVentas =  Factura::mesasConMasVentas(Auth::user()->empresaActual,$ventaTotal->totalVentas)->limit(4)->get(); // consulta de las 4 mesas en las que más se ha vendido
             return View('WelcomeAdmin/welcome')->with('categoriasMasVendidas',$categoriasMasVendidas['categoriasMasVendidas'])
@@ -200,15 +200,15 @@ class welcomeAdmin extends Controller
                     ->with('vendedores', json_encode($vendedorArray));
         } else {
             $flag = true;
-            //ESTADISTICAS DEL DÍA 
-            //Utilidad 
+            //ESTADISTICAS DEL DÍA
+            //Utilidad
             $utilidadHoy = 0;
             $facturasHoy = Factura::listarFacturaDia(Auth::user()->empresaActual)->get();
-            for ($i=0; $i < sizeof($facturasHoy); $i++) { 
+            for ($i=0; $i < sizeof($facturasHoy); $i++) {
                 $ventas = Venta::listarElementosId($facturasHoy[$i]->id)->get();
-                for ($j=0; $j < sizeof($ventas); $j++) { 
+                for ($j=0; $j < sizeof($ventas); $j++) {
                     $contiene = Contiene::idProducto($ventas[$j]->idProducto)->get();
-                    for ($k=0; $k < sizeof($contiene); $k++) { 
+                    for ($k=0; $k < sizeof($contiene); $k++) {
                         $insumo = Insumo::find($contiene[$k]->idInsumo);
                         $utilidad = 0;
                         if($insumo->esProducto){
@@ -223,7 +223,7 @@ class welcomeAdmin extends Controller
                         }
                     }
                 }
-            }   
+            }
             //Ventas por vendedor
             $vendedores = array();
             $vendedorArray[] = ['Nombre', 'Total venta'];
@@ -231,23 +231,23 @@ class welcomeAdmin extends Controller
             for ($i=0; $i < sizeof($facturasHoy); $i++) {
                 $facturAux = Factura::find($facturasHoy[$i]->id);
                 $boolean = 0;
-                for ($j=0; $j < sizeof($vendedores); $j++) { 
+                for ($j=0; $j < sizeof($vendedores); $j++) {
                     if($vendedores[$j][0] == $facturAux->idUsuario){
                         $vendedores[$j][2] = $vendedores[$j][2] + $facturAux->total;
                         $boolean = 1;
                     }
                 }
                 if($boolean == 0){
-                    for ($j=0; $j < sizeof($meserosAux) ; $j++) { 
+                    for ($j=0; $j < sizeof($meserosAux) ; $j++) {
                         if($meserosAux[$j]->id == $facturAux->idUsuario){
                             //dd($meserosAux[$j]->id);
-                            array_push($vendedores, array($meserosAux[$j]->id, $meserosAux[$j]->nombrePersona, $facturAux->total)); 
+                            array_push($vendedores, array($meserosAux[$j]->id, $meserosAux[$j]->nombrePersona, $facturAux->total));
                             //dd($vendedores);
                         }
                     }
                 }
             }
-            for ($i=0; $i < sizeof($vendedores); $i++) { 
+            for ($i=0; $i < sizeof($vendedores); $i++) {
                 $vendedorArray[$i+1] = [$vendedores[$i][1], $vendedores[$i][2]];
             }
             //Mesas reservadas si hay
@@ -257,7 +257,7 @@ class welcomeAdmin extends Controller
 
             //Flujo de personas
             $flujoPersonas = 0;
-            for ($i=0; $i < sizeof($facturasHoy); $i++) { 
+            for ($i=0; $i < sizeof($facturasHoy); $i++) {
                 $facturAux = Factura::find($facturasHoy[$i]->id);
                 $flujoPersonas = $flujoPersonas + $facturAux->nPersonas;
             }
@@ -269,16 +269,16 @@ class welcomeAdmin extends Controller
             for ($i=0; $i < sizeof($facturasHoy); $i++) {
                 $facturAux = Factura::find($facturasHoy[$i]->id);
                 $boolean = 0;
-                for ($j=0; $j < sizeof($mesasMayores); $j++) { 
+                for ($j=0; $j < sizeof($mesasMayores); $j++) {
                     if($mesasMayores[$j][0] == $facturAux->idMesa){
                         $mesasMayores[$j][2] = $mesasMayores[$j][2] + $facturAux->total;
                         $boolean = 1;
                     }
                 }
                 if($boolean == 0){
-                    for ($j=0; $j < sizeof($mesasAux) ; $j++) { 
+                    for ($j=0; $j < sizeof($mesasAux) ; $j++) {
                         if($mesasAux[$j]->id == $facturAux->idMesa){
-                            array_push($mesasMayores, array($mesasAux[$j]->id, $mesasAux[$j]->nombreMesa, $facturAux->total)); 
+                            array_push($mesasMayores, array($mesasAux[$j]->id, $mesasAux[$j]->nombreMesa, $facturAux->total));
                         }
                     }
                 }
@@ -297,7 +297,7 @@ class welcomeAdmin extends Controller
                 else return 0;
             });
 
-            for ($i=0; $i < sizeof($mesasMayores); $i++) { 
+            for ($i=0; $i < sizeof($mesasMayores); $i++) {
                 $mesaArray[$i+1] = [$mesasMayores[$i][1], $mesasMayores[$i][2]];
             }
             //FIN ESTADISTICAS DEL DÍA
@@ -406,9 +406,9 @@ class welcomeAdmin extends Controller
                 next($ventaSemanaAnterior);
             }else{
                 array_push($arrayVentaSemanaAnterior,0);
-            }    
+            }
         }
-        $datosSemanas=  [$arrayVentaSemanaActual,$arrayVentaSemanaAnterior];       
+        $datosSemanas=  [$arrayVentaSemanaActual,$arrayVentaSemanaAnterior];
         return $datosSemanas;
     }
 
@@ -459,7 +459,7 @@ class welcomeAdmin extends Controller
         return $venta->totalVentas;
     }
 
-    public function categoriasMasVendidas(){//Función auxiliar para la consulta de las categorias más vendidas 
+    public function categoriasMasVendidas(){//Función auxiliar para la consulta de las categorias más vendidas
 
         $categorias = Factura::todasLasVentas(Auth::user()->empresaActual)->get();// obtiene el id de las 4 categorias más vendidas
         $categoriasMasVendidas = array();// arreglo donde se guarda el objeto categoria de las 4 más vendidas
@@ -469,13 +469,13 @@ class welcomeAdmin extends Controller
 
         $carbon = new \Carbon\Carbon();
 
-        $sumaVentasDeCadaCategoria = array(); // arreglo donde se guardar la suma de las ventas de cada categoria 
+        $sumaVentasDeCadaCategoria = array(); // arreglo donde se guardar la suma de las ventas de cada categoria
         foreach ($categorias as $key => $categoria) {
 
             $fechaInicioEstadisticas = $carbon->now()->subWeek(5)->startOfWeek();// fecha del lunes, de la sexta semana anterior
 
             $sumas = array();// arreglo para las ventas de cada semana
-            for ($i=0; $i <6 ; $i++) { 
+            for ($i=0; $i <6 ; $i++) {
                 $fechaInit = $fechaInicioEstadisticas->toDateTimeString();//inicio de semana
                 $fechaFin = $fechaInicioEstadisticas->addWeek(1)->toDateTimeString();//Fin desemana
                 $suma =  $ventasDespuesDe = Factura::ventasEntreFechas($categoria->idCategoria,$fechaInit,$fechaFin)
@@ -492,7 +492,7 @@ class welcomeAdmin extends Controller
             } else {
                 $porcentaje = ($ventaSemanaActual*100)/($ventaSemanaPasada)-100;
             }
-            
+
             $classEtiqueta = "fa fa-pause text-success";
             if ($porcentaje<0) {
                    $classEtiqueta = "fa fa-caret-down text-danger";
@@ -502,7 +502,7 @@ class welcomeAdmin extends Controller
             array_push($sumas, $porcentaje);
             array_push($sumas, $classEtiqueta);
 
-            array_push($sumaVentasDeCadaCategoria, $sumas); 
+            array_push($sumaVentasDeCadaCategoria, $sumas);
         }
 
         return array('categoriasMasVendidas' => $categoriasMasVendidas, 'sumaVentasDeCadaCategoria' => $sumaVentasDeCadaCategoria);
@@ -512,14 +512,14 @@ class welcomeAdmin extends Controller
         $userActual = Auth::user();
         $userActual->estadoTut = 1;
         $userActual->save();
-        $empresa = Empresa::find($userActual->empresaActual)->first();
+        $empresa = Empresa::find($userActual->empresaActual);
         $empresa->nombreEstablecimiento = $request->negocio;
         $empresa->direccion = $request->direccion;
         $empresa->telefono = $request->telefono;
         $empresa->baroRestaurante = $request->TipoNegocio;
         $empresa->nit = $request->nit;
         $empresa->tipoRegimen = $request->tipReg;
-        
+
         if($request->tipReg == "RegComun") {
             $empresa->imagenResolucionFacturacion = $request->imgRes;
             $empresa->nresolucionFacturacion = $request->resolucion;
@@ -928,7 +928,7 @@ class welcomeAdmin extends Controller
                 $insumo45->idEmpresa = $empresa->id;
                 $insumo45->save();
 
-                //PRODUCTOS BAR 
+                //PRODUCTOS BAR
                 $producto1 = new Producto;
                 $producto1->nombre = "Alexander";
                 $producto1->descripcion = "Cóctel digestivo por las propiedades digestivas del coñac o brandy";
@@ -1842,6 +1842,6 @@ class welcomeAdmin extends Controller
                 $contiene78->cantidad = 6;
                 $contiene78->idEmpresa = $empresa->id;
                 $contiene78->save();
-            }        
+            }
     }
 }

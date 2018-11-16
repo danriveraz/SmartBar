@@ -10,6 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/errors', 'HomeController@errors');
 
 Route::get('/', 'HomeController@home');
 Route::get('/home', 'HomeController@home');
@@ -62,7 +63,7 @@ Route::group(['prefix' => 'Auth'], function(){
   Route::get('usuario/{id}/edit', ['uses' => 'UsuariosController@edit', 'as' => 'Auth.usuario.edit']);
 
   Route::get('editarUsuario/{tab}', ['uses' => 'UsuariosController@editProfile', 'as' => 'Auth.usuario.editUsuario']);
-  
+
   Route::post('editarUsuairo/{id}/edit', ['uses' => 'UsuariosController@posteditProfile', 'as' => 'Auth.usuario.posteditUsuario']);
 
   Route::get('usuario/{id}/destroy', ['uses' => 'UsuariosController@destroy', 'as' => 'Auth.usuario.destroy']);
@@ -175,27 +176,27 @@ Route::get('mail', function () { // esto lo hice para poder probar los emails
 
 //rutas para las estadisticas, llamados de ajax
 Route::resource('Estadisticas', 'EstadisticasController', ['only' => ['index']]);
-Route::post('Estadisticas/ventasCategoriasPorSemana', 'EstadisticasController@ventasCategoriasPorSemana'); 
+Route::post('Estadisticas/ventasCategoriasPorSemana', 'EstadisticasController@ventasCategoriasPorSemana');
 Route::post('Estadisticas/categoriasMasVendidas', 'EstadisticasController@categoriasMasVendidas');
 Route::post('Estadisticas/ventasCategoriasPorDia', 'EstadisticasController@ventasCategoriasPorDia');
 Route::post('Estadisticas/ventasCategoriasPorMes', 'EstadisticasController@ventasCategoriasPorMes');
 Route::post('Estadisticas/ventasCategoriasPorHora', 'EstadisticasController@ventasCategoriasPorHora');
-Route::post('Estadisticas/ventasProductosPorSemana', 'EstadisticasController@ventasProductosPorSemana'); 
+Route::post('Estadisticas/ventasProductosPorSemana', 'EstadisticasController@ventasProductosPorSemana');
 Route::post('Estadisticas/productosMasVendidos', 'EstadisticasController@productosMasVendidos');
 Route::post('Estadisticas/ventasProductosPorDia', 'EstadisticasController@ventasProductosPorDia');
 Route::post('Estadisticas/ventasProductosPorMes', 'EstadisticasController@ventasProductosPorMes');
 Route::post('Estadisticas/ventasProductosPorHora', 'EstadisticasController@ventasProductosPorHora');
-Route::post('Estadisticas/ventasMeserosPorSemana', 'EstadisticasController@ventasMeserosPorSemana'); 
+Route::post('Estadisticas/ventasMeserosPorSemana', 'EstadisticasController@ventasMeserosPorSemana');
 Route::post('Estadisticas/meserosMasVendidos', 'EstadisticasController@meserosMasVendidos');
 Route::post('Estadisticas/ventasMeserosPorDia', 'EstadisticasController@ventasMeserosPorDia');
 Route::post('Estadisticas/ventasMeserosPorMes', 'EstadisticasController@ventasMeserosPorMes');
 Route::post('Estadisticas/ventasMeserosPorHora', 'EstadisticasController@ventasMeserosPorHora');
-Route::post('Estadisticas/ventasBartenderPorSemana', 'EstadisticasController@ventasBartenderPorSemana'); 
+Route::post('Estadisticas/ventasBartenderPorSemana', 'EstadisticasController@ventasBartenderPorSemana');
 Route::post('Estadisticas/BartenderMasVendidos', 'EstadisticasController@BartenderMasVendidos');
 Route::post('Estadisticas/ventasBartenderPorDia', 'EstadisticasController@ventasBartenderPorDia');
 Route::post('Estadisticas/ventasBartenderPorMes', 'EstadisticasController@ventasBartenderPorMes');
 Route::post('Estadisticas/ventasBartenderPorHora', 'EstadisticasController@ventasBartenderPorHora');
-Route::post('Estadisticas/ventasCajerosPorSemana', 'EstadisticasController@ventasCajerosPorSemana'); 
+Route::post('Estadisticas/ventasCajerosPorSemana', 'EstadisticasController@ventasCajerosPorSemana');
 Route::post('Estadisticas/CajerosMasVendidos', 'EstadisticasController@CajerosMasVendidos');
 Route::post('Estadisticas/ventasCajerosPorDia', 'EstadisticasController@ventasCajerosPorDia');
 Route::post('Estadisticas/ventasCajerosPorMes', 'EstadisticasController@ventasCajerosPorMes');
@@ -204,7 +205,7 @@ Route::post('Estadisticas/ventasPorHora', 'EstadisticasController@ventasPorHora'
 Route::post('Estadisticas/ventasPorSemana', 'EstadisticasController@ventasPorSemana');
 Route::post('Estadisticas/ventasPorDia', 'EstadisticasController@ventasPorDia');
 Route::post('Estadisticas/ventasPorMes', 'EstadisticasController@ventasPorMes');
-Route::post('Estadisticas/ventasMesasPorSemana', 'EstadisticasController@ventasMesasPorSemana'); 
+Route::post('Estadisticas/ventasMesasPorSemana', 'EstadisticasController@ventasMesasPorSemana');
 Route::post('Estadisticas/MesasQueMasVenden', 'EstadisticasController@MesasQueMasVenden');
 Route::post('Estadisticas/ventasMesasPorDia', 'EstadisticasController@ventasMesasPorDia');
 Route::post('Estadisticas/ventasMesasPorMes', 'EstadisticasController@ventasMesasPorMes');
