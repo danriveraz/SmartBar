@@ -184,8 +184,7 @@
          </div>
          <div class="input-container" id="TipNeg">
            <i class="fa fa-reorder"></i>
-           <select class="select" id="TipoNegocio"  name="TipoNegocio" required>
-           <option >Tipo De Negocio</option>
+           <select class="select" id="TipoNegocio" placeholder="Tipo de negoicio" name="TipoNegocio" required>
            <option value="bar">Bar</option>
            <!--<option value="restaurante">Restaurante</option>
            <option value="barRestaurante">Bar y Restaurante</option>-->
