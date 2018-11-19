@@ -679,7 +679,7 @@ $(document).ready(function() {
             text: "Registro actualizado correctamente ",
             icon: "success",
             buttons: false,
-            timer: 10000,
+            //timer: 10000,
           });
     			document.getElementById("mod1").disabled = false;
     		},
