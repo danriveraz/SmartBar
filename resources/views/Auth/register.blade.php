@@ -116,8 +116,8 @@
                <select class="select" name="TipoNegocio" required>
                   <option value="">Tipo De Negocio</option>
                   <option value="bar">Bar</option>
-                  <option value="restaurante">Restaurante</option>
-                  <option value="barRestaurante">Bar y Restaurante</option>
+                  <!--<option value="restaurante">Restaurante</option>
+                  <option value="barRestaurante">Bar y Restaurante</option>-->
                </select>
              </div>
              <div class="input-container">
