@@ -170,11 +170,20 @@
 								</div>
                 <div class="input-container" id="TipNeg">
                   <i class="fa fa-reorder"></i>
-                  <select class="select" id="TipoNegocio" value="{{$empresa->baroRestaurante}}" name="TipoNegocio" required>
-                  <option >Tipo De Negocio</option>
-                  <option value="bar">Bar</option>
-                  <option value="restaurante">Restaurante</option>
-                  <option value="barRestaurante">Bar y Restaurante</option>
+                  <select class="select" id="TipoNegocio" name="TipoNegocio" required>
+                    @if($empresa->baroRestaurante=='bar')
+                    <option value="bar"selected="selected">Bar</option>
+                    <!--<option value="restaurante">Restaurante</option>
+                    <option value="barRestaurante">Bar y Restaurante</option>-->
+                    @elseif($empresa->baroRestaurante=='restarutante')
+                    <option value="bar">Bar</option>
+                    <!--<option value="restaurante" selected="selected">Restaurante</option>
+                    <option value="barRestaurante">Bar y Restaurante</option>-->
+                    @else
+                    <option value="bar">Bar</option>
+                    <!--<option value="restaurante">Restaurante</option>
+                    <option value="barRestaurante" selected="selected">Bar y Restaurante</option>-->
+                    @endif
                   </select>
                 </div>
 								<div class="input-container">

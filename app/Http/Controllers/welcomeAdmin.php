@@ -42,7 +42,7 @@ class welcomeAdmin extends Controller
      */
     public function index()
     {
-        $empresa = Empresa::find(Auth::user()->empresaActual)->first();
+        $empresa = Empresa::find(Auth::user()->empresaActual);
         $notificaciones = Notificaciones::Usuario(Auth::id())->get();
         $nuevas = 0;
         $fechaActual = Carbon::now();
